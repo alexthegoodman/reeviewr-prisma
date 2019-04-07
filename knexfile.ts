@@ -4,8 +4,9 @@ const config = require("config");
 
 module.exports = {
   test: {
-    client: "pg",
-    connection: config.get("databaseUrl"),
+    client: "mysql",
+    // connection: config.get("databaseUrl"),
+    connection: config.get("databaseConnection"),
     migrations: {
       directory: __dirname + "/db/migrations",
     },
@@ -14,8 +15,9 @@ module.exports = {
     },
   },
   development: {
-    client: "pg",
-    connection: config.get("databaseUrl"),
+    client: "mysql",
+    // connection: config.get("databaseUrl"),
+    connection: config.get("databaseConnection"),
     migrations: {
       directory: __dirname + "/db/migrations",
     },
@@ -24,8 +26,9 @@ module.exports = {
     },
   },
   production: {
-    client: "pg",
-    connection: config.get("databaseUrl"),
+    client: "mysql",
+    // connection: config.get("databaseUrl"),
+    connection: config.get("databaseConnection"),
     migrations: {
       directory: __dirname + "/db/migrations",
     },

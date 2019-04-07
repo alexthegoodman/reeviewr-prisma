@@ -1,13 +1,24 @@
 version: "2"
 services:
-  postgres:
-    image: postgres:10.5
-    env_file: "./docker/docker.env"
+  # postgres:
+  #   image: postgres:10.5
+  #   env_file: "./docker/docker.env"
+  #   ports:
+  #     - "5432:5432"
+  #   command: -c log_statement='all'
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
     ports:
-      - "5432:5432"
-    command: -c log_statement='all'
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_USER: "root"
+      MYSQL_ROOT_PASSWORD: "root"
 
   redis:
     image: redis:4
     ports:
       - "6379:6379"
+

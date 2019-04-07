@@ -11,6 +11,13 @@ const WORKER_CONCURRENCY =
 module.exports = {
   environment: process.env.NODE_ENV,
   databaseUrl: process.env.DATABASE_URL,
+  databaseConnection: {
+    host: process.env.DB_HOST || '127.0.0.1',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || 'root',
+    database: process.env.DATABASE || 'development',
+  },
+
   minify: process.env.MINIFY === "true",
 
   production: process.env.NODE_ENV === "production",

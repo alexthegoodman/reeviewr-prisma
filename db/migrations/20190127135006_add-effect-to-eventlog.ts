@@ -1,13 +1,14 @@
 import * as Knex from "knex";
 
-exports.up = async function(knex: Knex): Promise<any> {
+exports.up = async function (knex: Knex): Promise<any> {
   await knex.schema.alterTable("EventLog", table => {
-    table.jsonb("effect");
-    table.index(["payload", "effect"], "eventLogIndex", "GIN");
+    // table.jsonb("effect");
+    table.specificType("effect", "longtext");
+    // table.index(["payload", "effect"], "eventLogIndex", "GIN");
   });
 };
 
-exports.down = async function(knex: Knex): Promise<any> {
+exports.down = async function (knex: Knex): Promise<any> {
   await knex.raw('drop index "eventLogIndex";');
   await knex.schema.alterTable("EventLog", table => {
     table.dropColumn("effect");
