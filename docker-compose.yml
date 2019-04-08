@@ -1,24 +1,27 @@
-version: "2"
+version: "3"
 services:
-  # postgres:
-  #   image: postgres:10.5
-  #   env_file: "./docker/docker.env"
-  #   ports:
-  #     - "5432:5432"
-  #   command: -c log_statement='all'
-
-  db:
-    image: mysql
-    command: --default-authentication-plugin=mysql_native_password
+  prisma:
+    image: prismagraphql/prisma:1.30
     restart: always
     ports:
-      - "3306:3306"
+      - "4466:4466"
     environment:
-      MYSQL_ROOT_USER: "root"
-      MYSQL_ROOT_PASSWORD: "root"
-
-  redis:
-    image: redis:4
-    ports:
-      - "6379:6379"
-
+      PRISMA_CONFIG: |
+        port: 4466
+        databases:
+          default:
+            connector: mysql
+            host: mysql
+            port: 3306
+            user: root
+            password: prisma
+            migrations: true
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: prisma
+    volumes:
+      - mysql:/var/lib/mysql
+volumes:
+  mysql:
