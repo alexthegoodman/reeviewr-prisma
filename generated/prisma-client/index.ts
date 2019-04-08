@@ -14,7 +14,20 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
 
 export interface Exists {
+  blogPost: (where?: BlogPostWhereInput) => Promise<boolean>;
+  blogPostMeta: (where?: BlogPostMetaWhereInput) => Promise<boolean>;
+  file: (where?: FileWhereInput) => Promise<boolean>;
+  fileMeta: (where?: FileMetaWhereInput) => Promise<boolean>;
+  profilePage: (where?: ProfilePageWhereInput) => Promise<boolean>;
+  profilePageMeta: (where?: ProfilePageMetaWhereInput) => Promise<boolean>;
+  review: (where?: ReviewWhereInput) => Promise<boolean>;
+  reviewMeta: (where?: ReviewMetaWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
+  userFeedback: (where?: UserFeedbackWhereInput) => Promise<boolean>;
+  userFeedbackMeta: (where?: UserFeedbackMetaWhereInput) => Promise<boolean>;
+  userMeta: (where?: UserMetaWhereInput) => Promise<boolean>;
+  userTrack: (where?: UserTrackWhereInput) => Promise<boolean>;
+  userTrackMeta: (where?: UserTrackMetaWhereInput) => Promise<boolean>;
 }
 
 export interface Node {}
@@ -36,6 +49,192 @@ export interface Prisma {
    * Queries
    */
 
+  blogPost: (where: BlogPostWhereUniqueInput) => BlogPostPromise;
+  blogPosts: (
+    args?: {
+      where?: BlogPostWhereInput;
+      orderBy?: BlogPostOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<BlogPost>;
+  blogPostsConnection: (
+    args?: {
+      where?: BlogPostWhereInput;
+      orderBy?: BlogPostOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => BlogPostConnectionPromise;
+  blogPostMeta: (where: BlogPostMetaWhereUniqueInput) => BlogPostMetaPromise;
+  blogPostMetas: (
+    args?: {
+      where?: BlogPostMetaWhereInput;
+      orderBy?: BlogPostMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<BlogPostMeta>;
+  blogPostMetasConnection: (
+    args?: {
+      where?: BlogPostMetaWhereInput;
+      orderBy?: BlogPostMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => BlogPostMetaConnectionPromise;
+  file: (where: FileWhereUniqueInput) => FilePromise;
+  files: (
+    args?: {
+      where?: FileWhereInput;
+      orderBy?: FileOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<File>;
+  filesConnection: (
+    args?: {
+      where?: FileWhereInput;
+      orderBy?: FileOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FileConnectionPromise;
+  fileMeta: (where: FileMetaWhereUniqueInput) => FileMetaPromise;
+  fileMetas: (
+    args?: {
+      where?: FileMetaWhereInput;
+      orderBy?: FileMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<FileMeta>;
+  fileMetasConnection: (
+    args?: {
+      where?: FileMetaWhereInput;
+      orderBy?: FileMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FileMetaConnectionPromise;
+  profilePage: (where: ProfilePageWhereUniqueInput) => ProfilePagePromise;
+  profilePages: (
+    args?: {
+      where?: ProfilePageWhereInput;
+      orderBy?: ProfilePageOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<ProfilePage>;
+  profilePagesConnection: (
+    args?: {
+      where?: ProfilePageWhereInput;
+      orderBy?: ProfilePageOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ProfilePageConnectionPromise;
+  profilePageMeta: (
+    where: ProfilePageMetaWhereUniqueInput
+  ) => ProfilePageMetaPromise;
+  profilePageMetas: (
+    args?: {
+      where?: ProfilePageMetaWhereInput;
+      orderBy?: ProfilePageMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<ProfilePageMeta>;
+  profilePageMetasConnection: (
+    args?: {
+      where?: ProfilePageMetaWhereInput;
+      orderBy?: ProfilePageMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ProfilePageMetaConnectionPromise;
+  review: (where: ReviewWhereUniqueInput) => ReviewPromise;
+  reviews: (
+    args?: {
+      where?: ReviewWhereInput;
+      orderBy?: ReviewOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Review>;
+  reviewsConnection: (
+    args?: {
+      where?: ReviewWhereInput;
+      orderBy?: ReviewOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ReviewConnectionPromise;
+  reviewMeta: (where: ReviewMetaWhereUniqueInput) => ReviewMetaPromise;
+  reviewMetas: (
+    args?: {
+      where?: ReviewMetaWhereInput;
+      orderBy?: ReviewMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<ReviewMeta>;
+  reviewMetasConnection: (
+    args?: {
+      where?: ReviewMetaWhereInput;
+      orderBy?: ReviewMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ReviewMetaConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserPromise;
   users: (
     args?: {
@@ -59,12 +258,284 @@ export interface Prisma {
       last?: Int;
     }
   ) => UserConnectionPromise;
+  userFeedback: (where: UserFeedbackWhereUniqueInput) => UserFeedbackPromise;
+  userFeedbacks: (
+    args?: {
+      where?: UserFeedbackWhereInput;
+      orderBy?: UserFeedbackOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<UserFeedback>;
+  userFeedbacksConnection: (
+    args?: {
+      where?: UserFeedbackWhereInput;
+      orderBy?: UserFeedbackOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => UserFeedbackConnectionPromise;
+  userFeedbackMeta: (
+    where: UserFeedbackMetaWhereUniqueInput
+  ) => UserFeedbackMetaPromise;
+  userFeedbackMetas: (
+    args?: {
+      where?: UserFeedbackMetaWhereInput;
+      orderBy?: UserFeedbackMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<UserFeedbackMeta>;
+  userFeedbackMetasConnection: (
+    args?: {
+      where?: UserFeedbackMetaWhereInput;
+      orderBy?: UserFeedbackMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => UserFeedbackMetaConnectionPromise;
+  userMeta: (where: UserMetaWhereUniqueInput) => UserMetaPromise;
+  userMetas: (
+    args?: {
+      where?: UserMetaWhereInput;
+      orderBy?: UserMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<UserMeta>;
+  userMetasConnection: (
+    args?: {
+      where?: UserMetaWhereInput;
+      orderBy?: UserMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => UserMetaConnectionPromise;
+  userTrack: (where: UserTrackWhereUniqueInput) => UserTrackPromise;
+  userTracks: (
+    args?: {
+      where?: UserTrackWhereInput;
+      orderBy?: UserTrackOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<UserTrack>;
+  userTracksConnection: (
+    args?: {
+      where?: UserTrackWhereInput;
+      orderBy?: UserTrackOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => UserTrackConnectionPromise;
+  userTrackMeta: (where: UserTrackMetaWhereUniqueInput) => UserTrackMetaPromise;
+  userTrackMetas: (
+    args?: {
+      where?: UserTrackMetaWhereInput;
+      orderBy?: UserTrackMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<UserTrackMeta>;
+  userTrackMetasConnection: (
+    args?: {
+      where?: UserTrackMetaWhereInput;
+      orderBy?: UserTrackMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => UserTrackMetaConnectionPromise;
   node: (args: { id: ID_Output }) => Node;
 
   /**
    * Mutations
    */
 
+  createBlogPost: (data: BlogPostCreateInput) => BlogPostPromise;
+  updateBlogPost: (
+    args: { data: BlogPostUpdateInput; where: BlogPostWhereUniqueInput }
+  ) => BlogPostPromise;
+  updateManyBlogPosts: (
+    args: { data: BlogPostUpdateManyMutationInput; where?: BlogPostWhereInput }
+  ) => BatchPayloadPromise;
+  upsertBlogPost: (
+    args: {
+      where: BlogPostWhereUniqueInput;
+      create: BlogPostCreateInput;
+      update: BlogPostUpdateInput;
+    }
+  ) => BlogPostPromise;
+  deleteBlogPost: (where: BlogPostWhereUniqueInput) => BlogPostPromise;
+  deleteManyBlogPosts: (where?: BlogPostWhereInput) => BatchPayloadPromise;
+  createBlogPostMeta: (data: BlogPostMetaCreateInput) => BlogPostMetaPromise;
+  updateBlogPostMeta: (
+    args: { data: BlogPostMetaUpdateInput; where: BlogPostMetaWhereUniqueInput }
+  ) => BlogPostMetaPromise;
+  updateManyBlogPostMetas: (
+    args: {
+      data: BlogPostMetaUpdateManyMutationInput;
+      where?: BlogPostMetaWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertBlogPostMeta: (
+    args: {
+      where: BlogPostMetaWhereUniqueInput;
+      create: BlogPostMetaCreateInput;
+      update: BlogPostMetaUpdateInput;
+    }
+  ) => BlogPostMetaPromise;
+  deleteBlogPostMeta: (
+    where: BlogPostMetaWhereUniqueInput
+  ) => BlogPostMetaPromise;
+  deleteManyBlogPostMetas: (
+    where?: BlogPostMetaWhereInput
+  ) => BatchPayloadPromise;
+  createFile: (data: FileCreateInput) => FilePromise;
+  updateFile: (
+    args: { data: FileUpdateInput; where: FileWhereUniqueInput }
+  ) => FilePromise;
+  updateManyFiles: (
+    args: { data: FileUpdateManyMutationInput; where?: FileWhereInput }
+  ) => BatchPayloadPromise;
+  upsertFile: (
+    args: {
+      where: FileWhereUniqueInput;
+      create: FileCreateInput;
+      update: FileUpdateInput;
+    }
+  ) => FilePromise;
+  deleteFile: (where: FileWhereUniqueInput) => FilePromise;
+  deleteManyFiles: (where?: FileWhereInput) => BatchPayloadPromise;
+  createFileMeta: (data: FileMetaCreateInput) => FileMetaPromise;
+  updateFileMeta: (
+    args: { data: FileMetaUpdateInput; where: FileMetaWhereUniqueInput }
+  ) => FileMetaPromise;
+  updateManyFileMetas: (
+    args: { data: FileMetaUpdateManyMutationInput; where?: FileMetaWhereInput }
+  ) => BatchPayloadPromise;
+  upsertFileMeta: (
+    args: {
+      where: FileMetaWhereUniqueInput;
+      create: FileMetaCreateInput;
+      update: FileMetaUpdateInput;
+    }
+  ) => FileMetaPromise;
+  deleteFileMeta: (where: FileMetaWhereUniqueInput) => FileMetaPromise;
+  deleteManyFileMetas: (where?: FileMetaWhereInput) => BatchPayloadPromise;
+  createProfilePage: (data: ProfilePageCreateInput) => ProfilePagePromise;
+  updateProfilePage: (
+    args: { data: ProfilePageUpdateInput; where: ProfilePageWhereUniqueInput }
+  ) => ProfilePagePromise;
+  updateManyProfilePages: (
+    args: {
+      data: ProfilePageUpdateManyMutationInput;
+      where?: ProfilePageWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertProfilePage: (
+    args: {
+      where: ProfilePageWhereUniqueInput;
+      create: ProfilePageCreateInput;
+      update: ProfilePageUpdateInput;
+    }
+  ) => ProfilePagePromise;
+  deleteProfilePage: (where: ProfilePageWhereUniqueInput) => ProfilePagePromise;
+  deleteManyProfilePages: (
+    where?: ProfilePageWhereInput
+  ) => BatchPayloadPromise;
+  createProfilePageMeta: (
+    data: ProfilePageMetaCreateInput
+  ) => ProfilePageMetaPromise;
+  updateProfilePageMeta: (
+    args: {
+      data: ProfilePageMetaUpdateInput;
+      where: ProfilePageMetaWhereUniqueInput;
+    }
+  ) => ProfilePageMetaPromise;
+  updateManyProfilePageMetas: (
+    args: {
+      data: ProfilePageMetaUpdateManyMutationInput;
+      where?: ProfilePageMetaWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertProfilePageMeta: (
+    args: {
+      where: ProfilePageMetaWhereUniqueInput;
+      create: ProfilePageMetaCreateInput;
+      update: ProfilePageMetaUpdateInput;
+    }
+  ) => ProfilePageMetaPromise;
+  deleteProfilePageMeta: (
+    where: ProfilePageMetaWhereUniqueInput
+  ) => ProfilePageMetaPromise;
+  deleteManyProfilePageMetas: (
+    where?: ProfilePageMetaWhereInput
+  ) => BatchPayloadPromise;
+  createReview: (data: ReviewCreateInput) => ReviewPromise;
+  updateReview: (
+    args: { data: ReviewUpdateInput; where: ReviewWhereUniqueInput }
+  ) => ReviewPromise;
+  updateManyReviews: (
+    args: { data: ReviewUpdateManyMutationInput; where?: ReviewWhereInput }
+  ) => BatchPayloadPromise;
+  upsertReview: (
+    args: {
+      where: ReviewWhereUniqueInput;
+      create: ReviewCreateInput;
+      update: ReviewUpdateInput;
+    }
+  ) => ReviewPromise;
+  deleteReview: (where: ReviewWhereUniqueInput) => ReviewPromise;
+  deleteManyReviews: (where?: ReviewWhereInput) => BatchPayloadPromise;
+  createReviewMeta: (data: ReviewMetaCreateInput) => ReviewMetaPromise;
+  updateReviewMeta: (
+    args: { data: ReviewMetaUpdateInput; where: ReviewMetaWhereUniqueInput }
+  ) => ReviewMetaPromise;
+  updateManyReviewMetas: (
+    args: {
+      data: ReviewMetaUpdateManyMutationInput;
+      where?: ReviewMetaWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertReviewMeta: (
+    args: {
+      where: ReviewMetaWhereUniqueInput;
+      create: ReviewMetaCreateInput;
+      update: ReviewMetaUpdateInput;
+    }
+  ) => ReviewMetaPromise;
+  deleteReviewMeta: (where: ReviewMetaWhereUniqueInput) => ReviewMetaPromise;
+  deleteManyReviewMetas: (where?: ReviewMetaWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (
     args: { data: UserUpdateInput; where: UserWhereUniqueInput }
@@ -81,6 +552,118 @@ export interface Prisma {
   ) => UserPromise;
   deleteUser: (where: UserWhereUniqueInput) => UserPromise;
   deleteManyUsers: (where?: UserWhereInput) => BatchPayloadPromise;
+  createUserFeedback: (data: UserFeedbackCreateInput) => UserFeedbackPromise;
+  updateUserFeedback: (
+    args: { data: UserFeedbackUpdateInput; where: UserFeedbackWhereUniqueInput }
+  ) => UserFeedbackPromise;
+  updateManyUserFeedbacks: (
+    args: {
+      data: UserFeedbackUpdateManyMutationInput;
+      where?: UserFeedbackWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertUserFeedback: (
+    args: {
+      where: UserFeedbackWhereUniqueInput;
+      create: UserFeedbackCreateInput;
+      update: UserFeedbackUpdateInput;
+    }
+  ) => UserFeedbackPromise;
+  deleteUserFeedback: (
+    where: UserFeedbackWhereUniqueInput
+  ) => UserFeedbackPromise;
+  deleteManyUserFeedbacks: (
+    where?: UserFeedbackWhereInput
+  ) => BatchPayloadPromise;
+  createUserFeedbackMeta: (
+    data: UserFeedbackMetaCreateInput
+  ) => UserFeedbackMetaPromise;
+  updateUserFeedbackMeta: (
+    args: {
+      data: UserFeedbackMetaUpdateInput;
+      where: UserFeedbackMetaWhereUniqueInput;
+    }
+  ) => UserFeedbackMetaPromise;
+  updateManyUserFeedbackMetas: (
+    args: {
+      data: UserFeedbackMetaUpdateManyMutationInput;
+      where?: UserFeedbackMetaWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertUserFeedbackMeta: (
+    args: {
+      where: UserFeedbackMetaWhereUniqueInput;
+      create: UserFeedbackMetaCreateInput;
+      update: UserFeedbackMetaUpdateInput;
+    }
+  ) => UserFeedbackMetaPromise;
+  deleteUserFeedbackMeta: (
+    where: UserFeedbackMetaWhereUniqueInput
+  ) => UserFeedbackMetaPromise;
+  deleteManyUserFeedbackMetas: (
+    where?: UserFeedbackMetaWhereInput
+  ) => BatchPayloadPromise;
+  createUserMeta: (data: UserMetaCreateInput) => UserMetaPromise;
+  updateUserMeta: (
+    args: { data: UserMetaUpdateInput; where: UserMetaWhereUniqueInput }
+  ) => UserMetaPromise;
+  updateManyUserMetas: (
+    args: { data: UserMetaUpdateManyMutationInput; where?: UserMetaWhereInput }
+  ) => BatchPayloadPromise;
+  upsertUserMeta: (
+    args: {
+      where: UserMetaWhereUniqueInput;
+      create: UserMetaCreateInput;
+      update: UserMetaUpdateInput;
+    }
+  ) => UserMetaPromise;
+  deleteUserMeta: (where: UserMetaWhereUniqueInput) => UserMetaPromise;
+  deleteManyUserMetas: (where?: UserMetaWhereInput) => BatchPayloadPromise;
+  createUserTrack: (data: UserTrackCreateInput) => UserTrackPromise;
+  updateUserTrack: (
+    args: { data: UserTrackUpdateInput; where: UserTrackWhereUniqueInput }
+  ) => UserTrackPromise;
+  updateManyUserTracks: (
+    args: {
+      data: UserTrackUpdateManyMutationInput;
+      where?: UserTrackWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertUserTrack: (
+    args: {
+      where: UserTrackWhereUniqueInput;
+      create: UserTrackCreateInput;
+      update: UserTrackUpdateInput;
+    }
+  ) => UserTrackPromise;
+  deleteUserTrack: (where: UserTrackWhereUniqueInput) => UserTrackPromise;
+  deleteManyUserTracks: (where?: UserTrackWhereInput) => BatchPayloadPromise;
+  createUserTrackMeta: (data: UserTrackMetaCreateInput) => UserTrackMetaPromise;
+  updateUserTrackMeta: (
+    args: {
+      data: UserTrackMetaUpdateInput;
+      where: UserTrackMetaWhereUniqueInput;
+    }
+  ) => UserTrackMetaPromise;
+  updateManyUserTrackMetas: (
+    args: {
+      data: UserTrackMetaUpdateManyMutationInput;
+      where?: UserTrackMetaWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertUserTrackMeta: (
+    args: {
+      where: UserTrackMetaWhereUniqueInput;
+      create: UserTrackMetaCreateInput;
+      update: UserTrackMetaUpdateInput;
+    }
+  ) => UserTrackMetaPromise;
+  deleteUserTrackMeta: (
+    where: UserTrackMetaWhereUniqueInput
+  ) => UserTrackMetaPromise;
+  deleteManyUserTrackMetas: (
+    where?: UserTrackMetaWhereInput
+  ) => BatchPayloadPromise;
 
   /**
    * Subscriptions
@@ -90,9 +673,48 @@ export interface Prisma {
 }
 
 export interface Subscription {
+  blogPost: (
+    where?: BlogPostSubscriptionWhereInput
+  ) => BlogPostSubscriptionPayloadSubscription;
+  blogPostMeta: (
+    where?: BlogPostMetaSubscriptionWhereInput
+  ) => BlogPostMetaSubscriptionPayloadSubscription;
+  file: (
+    where?: FileSubscriptionWhereInput
+  ) => FileSubscriptionPayloadSubscription;
+  fileMeta: (
+    where?: FileMetaSubscriptionWhereInput
+  ) => FileMetaSubscriptionPayloadSubscription;
+  profilePage: (
+    where?: ProfilePageSubscriptionWhereInput
+  ) => ProfilePageSubscriptionPayloadSubscription;
+  profilePageMeta: (
+    where?: ProfilePageMetaSubscriptionWhereInput
+  ) => ProfilePageMetaSubscriptionPayloadSubscription;
+  review: (
+    where?: ReviewSubscriptionWhereInput
+  ) => ReviewSubscriptionPayloadSubscription;
+  reviewMeta: (
+    where?: ReviewMetaSubscriptionWhereInput
+  ) => ReviewMetaSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
+  userFeedback: (
+    where?: UserFeedbackSubscriptionWhereInput
+  ) => UserFeedbackSubscriptionPayloadSubscription;
+  userFeedbackMeta: (
+    where?: UserFeedbackMetaSubscriptionWhereInput
+  ) => UserFeedbackMetaSubscriptionPayloadSubscription;
+  userMeta: (
+    where?: UserMetaSubscriptionWhereInput
+  ) => UserMetaSubscriptionPayloadSubscription;
+  userTrack: (
+    where?: UserTrackSubscriptionWhereInput
+  ) => UserTrackSubscriptionPayloadSubscription;
+  userTrackMeta: (
+    where?: UserTrackMetaSubscriptionWhereInput
+  ) => UserTrackMetaSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
@@ -103,11 +725,223 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type UserOrderByInput =
+export type UserMetaOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
+  | "metaType_ASC"
+  | "metaType_DESC"
+  | "metaName_ASC"
+  | "metaName_DESC"
+  | "metaValue_ASC"
+  | "metaValue_DESC"
+  | "metaDeleted_ASC"
+  | "metaDeleted_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type FileMetaOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "metaType_ASC"
+  | "metaType_DESC"
+  | "metaName_ASC"
+  | "metaName_DESC"
+  | "metaValue_ASC"
+  | "metaValue_DESC"
+  | "metaDeleted_ASC"
+  | "metaDeleted_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type ReviewMetaOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "metaType_ASC"
+  | "metaType_DESC"
+  | "metaName_ASC"
+  | "metaName_DESC"
+  | "metaValue_ASC"
+  | "metaValue_DESC"
+  | "metaDeleted_ASC"
+  | "metaDeleted_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type UserTrackOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "itemType_ASC"
+  | "itemType_DESC"
+  | "itemStatus_ASC"
+  | "itemStatus_DESC"
+  | "itemUrlSegment_ASC"
+  | "itemUrlSegment_DESC"
+  | "itemMimeType_ASC"
+  | "itemMimeType_DESC"
+  | "itemName_ASC"
+  | "itemName_DESC"
+  | "itemContent_ASC"
+  | "itemContent_DESC"
+  | "itemDeleted_ASC"
+  | "itemDeleted_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type ProfilePageOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "itemType_ASC"
+  | "itemType_DESC"
+  | "itemStatus_ASC"
+  | "itemStatus_DESC"
+  | "itemUrlSegment_ASC"
+  | "itemUrlSegment_DESC"
+  | "itemMimeType_ASC"
+  | "itemMimeType_DESC"
+  | "itemName_ASC"
+  | "itemName_DESC"
+  | "itemContent_ASC"
+  | "itemContent_DESC"
+  | "itemDeleted_ASC"
+  | "itemDeleted_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type UserFeedbackOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "itemType_ASC"
+  | "itemType_DESC"
+  | "itemStatus_ASC"
+  | "itemStatus_DESC"
+  | "itemUrlSegment_ASC"
+  | "itemUrlSegment_DESC"
+  | "itemMimeType_ASC"
+  | "itemMimeType_DESC"
+  | "itemName_ASC"
+  | "itemName_DESC"
+  | "itemContent_ASC"
+  | "itemContent_DESC"
+  | "itemDeleted_ASC"
+  | "itemDeleted_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type BlogPostOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "itemType_ASC"
+  | "itemType_DESC"
+  | "itemStatus_ASC"
+  | "itemStatus_DESC"
+  | "itemUrlSegment_ASC"
+  | "itemUrlSegment_DESC"
+  | "itemMimeType_ASC"
+  | "itemMimeType_DESC"
+  | "itemName_ASC"
+  | "itemName_DESC"
+  | "itemContent_ASC"
+  | "itemContent_DESC"
+  | "itemDeleted_ASC"
+  | "itemDeleted_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type FileOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "itemType_ASC"
+  | "itemType_DESC"
+  | "itemStatus_ASC"
+  | "itemStatus_DESC"
+  | "itemUrlSegment_ASC"
+  | "itemUrlSegment_DESC"
+  | "itemMimeType_ASC"
+  | "itemMimeType_DESC"
+  | "itemName_ASC"
+  | "itemName_DESC"
+  | "itemContent_ASC"
+  | "itemContent_DESC"
+  | "itemDeleted_ASC"
+  | "itemDeleted_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type BlogPostMetaOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "metaType_ASC"
+  | "metaType_DESC"
+  | "metaName_ASC"
+  | "metaName_DESC"
+  | "metaValue_ASC"
+  | "metaValue_DESC"
+  | "metaDeleted_ASC"
+  | "metaDeleted_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type ProfilePageMetaOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "metaType_ASC"
+  | "metaType_DESC"
+  | "metaName_ASC"
+  | "metaName_DESC"
+  | "metaValue_ASC"
+  | "metaValue_DESC"
+  | "metaDeleted_ASC"
+  | "metaDeleted_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type UserFeedbackMetaOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "metaType_ASC"
+  | "metaType_DESC"
+  | "metaName_ASC"
+  | "metaName_DESC"
+  | "metaValue_ASC"
+  | "metaValue_DESC"
+  | "metaDeleted_ASC"
+  | "metaDeleted_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type UserTrackMetaOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "metaType_ASC"
+  | "metaType_DESC"
+  | "metaName_ASC"
+  | "metaName_DESC"
+  | "metaValue_ASC"
+  | "metaValue_DESC"
+  | "metaDeleted_ASC"
+  | "metaDeleted_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -115,16 +949,875 @@ export type UserOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface UserCreateInput {
-  name: String;
+export type ReviewOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "itemType_ASC"
+  | "itemType_DESC"
+  | "itemStatus_ASC"
+  | "itemStatus_DESC"
+  | "itemUrlSegment_ASC"
+  | "itemUrlSegment_DESC"
+  | "itemMimeType_ASC"
+  | "itemMimeType_DESC"
+  | "itemName_ASC"
+  | "itemName_DESC"
+  | "itemContent_ASC"
+  | "itemContent_DESC"
+  | "itemDeleted_ASC"
+  | "itemDeleted_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type UserOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "userType_ASC"
+  | "userType_DESC"
+  | "userEmail_ASC"
+  | "userEmail_DESC"
+  | "userPassword_ASC"
+  | "userPassword_DESC"
+  | "confirmHash_ASC"
+  | "confirmHash_DESC"
+  | "forgotHash_ASC"
+  | "forgotHash_DESC"
+  | "userConfirmed_ASC"
+  | "userConfirmed_DESC"
+  | "userDeleted_ASC"
+  | "userDeleted_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export interface FileMetaUpdateWithoutFileDataInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
 }
 
-export interface UserUpdateInput {
-  name?: String;
+export type BlogPostWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface BlogPostMetaCreateWithoutBlogPostInput {
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
 }
 
-export interface UserUpdateManyMutationInput {
-  name?: String;
+export interface UserFeedbackCreateInput {
+  user?: UserCreateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+  itemMeta?: UserFeedbackMetaCreateManyWithoutUserFeedbackInput;
+}
+
+export interface BlogPostUpdateInput {
+  user?: UserUpdateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+  itemMeta?: BlogPostMetaUpdateManyWithoutBlogPostInput;
+}
+
+export interface FileMetaUpdateInput {
+  file?: FileUpdateOneWithoutItemMetaInput;
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserUpdateOneInput {
+  create?: UserCreateInput;
+  update?: UserUpdateDataInput;
+  upsert?: UserUpsertNestedInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export type BlogPostMetaWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserUpdateDataInput {
+  userType?: Int;
+  userEmail?: String;
+  userPassword?: String;
+  confirmHash?: String;
+  forgotHash?: String;
+  userConfirmed?: Int;
+  userDeleted?: Boolean;
+  userMeta?: UserMetaUpdateManyWithoutUserInput;
+}
+
+export interface UserMetaSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserMetaWhereInput;
+  AND?: UserMetaSubscriptionWhereInput[] | UserMetaSubscriptionWhereInput;
+  OR?: UserMetaSubscriptionWhereInput[] | UserMetaSubscriptionWhereInput;
+  NOT?: UserMetaSubscriptionWhereInput[] | UserMetaSubscriptionWhereInput;
+}
+
+export interface UserMetaUpdateManyWithoutUserInput {
+  create?: UserMetaCreateWithoutUserInput[] | UserMetaCreateWithoutUserInput;
+  delete?: UserMetaWhereUniqueInput[] | UserMetaWhereUniqueInput;
+  connect?: UserMetaWhereUniqueInput[] | UserMetaWhereUniqueInput;
+  set?: UserMetaWhereUniqueInput[] | UserMetaWhereUniqueInput;
+  disconnect?: UserMetaWhereUniqueInput[] | UserMetaWhereUniqueInput;
+  update?:
+    | UserMetaUpdateWithWhereUniqueWithoutUserInput[]
+    | UserMetaUpdateWithWhereUniqueWithoutUserInput;
+  upsert?:
+    | UserMetaUpsertWithWhereUniqueWithoutUserInput[]
+    | UserMetaUpsertWithWhereUniqueWithoutUserInput;
+  deleteMany?: UserMetaScalarWhereInput[] | UserMetaScalarWhereInput;
+  updateMany?:
+    | UserMetaUpdateManyWithWhereNestedInput[]
+    | UserMetaUpdateManyWithWhereNestedInput;
+}
+
+export type FileWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserMetaUpdateWithWhereUniqueWithoutUserInput {
+  where: UserMetaWhereUniqueInput;
+  data: UserMetaUpdateWithoutUserDataInput;
+}
+
+export interface FileMetaWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  file?: FileWhereInput;
+  metaType?: String;
+  metaType_not?: String;
+  metaType_in?: String[] | String;
+  metaType_not_in?: String[] | String;
+  metaType_lt?: String;
+  metaType_lte?: String;
+  metaType_gt?: String;
+  metaType_gte?: String;
+  metaType_contains?: String;
+  metaType_not_contains?: String;
+  metaType_starts_with?: String;
+  metaType_not_starts_with?: String;
+  metaType_ends_with?: String;
+  metaType_not_ends_with?: String;
+  metaName?: String;
+  metaName_not?: String;
+  metaName_in?: String[] | String;
+  metaName_not_in?: String[] | String;
+  metaName_lt?: String;
+  metaName_lte?: String;
+  metaName_gt?: String;
+  metaName_gte?: String;
+  metaName_contains?: String;
+  metaName_not_contains?: String;
+  metaName_starts_with?: String;
+  metaName_not_starts_with?: String;
+  metaName_ends_with?: String;
+  metaName_not_ends_with?: String;
+  metaValue?: String;
+  metaValue_not?: String;
+  metaValue_in?: String[] | String;
+  metaValue_not_in?: String[] | String;
+  metaValue_lt?: String;
+  metaValue_lte?: String;
+  metaValue_gt?: String;
+  metaValue_gte?: String;
+  metaValue_contains?: String;
+  metaValue_not_contains?: String;
+  metaValue_starts_with?: String;
+  metaValue_not_starts_with?: String;
+  metaValue_ends_with?: String;
+  metaValue_not_ends_with?: String;
+  metaDeleted?: Boolean;
+  metaDeleted_not?: Boolean;
+  AND?: FileMetaWhereInput[] | FileMetaWhereInput;
+  OR?: FileMetaWhereInput[] | FileMetaWhereInput;
+  NOT?: FileMetaWhereInput[] | FileMetaWhereInput;
+}
+
+export interface UserMetaUpdateWithoutUserDataInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserWhereInput;
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+}
+
+export interface UserMetaUpsertWithWhereUniqueWithoutUserInput {
+  where: UserMetaWhereUniqueInput;
+  update: UserMetaUpdateWithoutUserDataInput;
+  create: UserMetaCreateWithoutUserInput;
+}
+
+export interface ReviewSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ReviewWhereInput;
+  AND?: ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput;
+  OR?: ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput;
+  NOT?: ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput;
+}
+
+export interface UserMetaScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  metaType?: String;
+  metaType_not?: String;
+  metaType_in?: String[] | String;
+  metaType_not_in?: String[] | String;
+  metaType_lt?: String;
+  metaType_lte?: String;
+  metaType_gt?: String;
+  metaType_gte?: String;
+  metaType_contains?: String;
+  metaType_not_contains?: String;
+  metaType_starts_with?: String;
+  metaType_not_starts_with?: String;
+  metaType_ends_with?: String;
+  metaType_not_ends_with?: String;
+  metaName?: String;
+  metaName_not?: String;
+  metaName_in?: String[] | String;
+  metaName_not_in?: String[] | String;
+  metaName_lt?: String;
+  metaName_lte?: String;
+  metaName_gt?: String;
+  metaName_gte?: String;
+  metaName_contains?: String;
+  metaName_not_contains?: String;
+  metaName_starts_with?: String;
+  metaName_not_starts_with?: String;
+  metaName_ends_with?: String;
+  metaName_not_ends_with?: String;
+  metaValue?: String;
+  metaValue_not?: String;
+  metaValue_in?: String[] | String;
+  metaValue_not_in?: String[] | String;
+  metaValue_lt?: String;
+  metaValue_lte?: String;
+  metaValue_gt?: String;
+  metaValue_gte?: String;
+  metaValue_contains?: String;
+  metaValue_not_contains?: String;
+  metaValue_starts_with?: String;
+  metaValue_not_starts_with?: String;
+  metaValue_ends_with?: String;
+  metaValue_not_ends_with?: String;
+  metaDeleted?: Boolean;
+  metaDeleted_not?: Boolean;
+  AND?: UserMetaScalarWhereInput[] | UserMetaScalarWhereInput;
+  OR?: UserMetaScalarWhereInput[] | UserMetaScalarWhereInput;
+  NOT?: UserMetaScalarWhereInput[] | UserMetaScalarWhereInput;
+}
+
+export interface ProfilePageSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ProfilePageWhereInput;
+  AND?: ProfilePageSubscriptionWhereInput[] | ProfilePageSubscriptionWhereInput;
+  OR?: ProfilePageSubscriptionWhereInput[] | ProfilePageSubscriptionWhereInput;
+  NOT?: ProfilePageSubscriptionWhereInput[] | ProfilePageSubscriptionWhereInput;
+}
+
+export interface UserMetaUpdateManyWithWhereNestedInput {
+  where: UserMetaScalarWhereInput;
+  data: UserMetaUpdateManyDataInput;
+}
+
+export type FileMetaWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserMetaUpdateManyDataInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface BlogPostMetaSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: BlogPostMetaWhereInput;
+  AND?:
+    | BlogPostMetaSubscriptionWhereInput[]
+    | BlogPostMetaSubscriptionWhereInput;
+  OR?:
+    | BlogPostMetaSubscriptionWhereInput[]
+    | BlogPostMetaSubscriptionWhereInput;
+  NOT?:
+    | BlogPostMetaSubscriptionWhereInput[]
+    | BlogPostMetaSubscriptionWhereInput;
+}
+
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
+}
+
+export type ProfilePageWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface BlogPostMetaUpdateManyWithoutBlogPostInput {
+  create?:
+    | BlogPostMetaCreateWithoutBlogPostInput[]
+    | BlogPostMetaCreateWithoutBlogPostInput;
+  delete?: BlogPostMetaWhereUniqueInput[] | BlogPostMetaWhereUniqueInput;
+  connect?: BlogPostMetaWhereUniqueInput[] | BlogPostMetaWhereUniqueInput;
+  set?: BlogPostMetaWhereUniqueInput[] | BlogPostMetaWhereUniqueInput;
+  disconnect?: BlogPostMetaWhereUniqueInput[] | BlogPostMetaWhereUniqueInput;
+  update?:
+    | BlogPostMetaUpdateWithWhereUniqueWithoutBlogPostInput[]
+    | BlogPostMetaUpdateWithWhereUniqueWithoutBlogPostInput;
+  upsert?:
+    | BlogPostMetaUpsertWithWhereUniqueWithoutBlogPostInput[]
+    | BlogPostMetaUpsertWithWhereUniqueWithoutBlogPostInput;
+  deleteMany?: BlogPostMetaScalarWhereInput[] | BlogPostMetaScalarWhereInput;
+  updateMany?:
+    | BlogPostMetaUpdateManyWithWhereNestedInput[]
+    | BlogPostMetaUpdateManyWithWhereNestedInput;
+}
+
+export interface ProfilePageMetaWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  profilePage?: ProfilePageWhereInput;
+  metaType?: String;
+  metaType_not?: String;
+  metaType_in?: String[] | String;
+  metaType_not_in?: String[] | String;
+  metaType_lt?: String;
+  metaType_lte?: String;
+  metaType_gt?: String;
+  metaType_gte?: String;
+  metaType_contains?: String;
+  metaType_not_contains?: String;
+  metaType_starts_with?: String;
+  metaType_not_starts_with?: String;
+  metaType_ends_with?: String;
+  metaType_not_ends_with?: String;
+  metaName?: String;
+  metaName_not?: String;
+  metaName_in?: String[] | String;
+  metaName_not_in?: String[] | String;
+  metaName_lt?: String;
+  metaName_lte?: String;
+  metaName_gt?: String;
+  metaName_gte?: String;
+  metaName_contains?: String;
+  metaName_not_contains?: String;
+  metaName_starts_with?: String;
+  metaName_not_starts_with?: String;
+  metaName_ends_with?: String;
+  metaName_not_ends_with?: String;
+  metaValue?: String;
+  metaValue_not?: String;
+  metaValue_in?: String[] | String;
+  metaValue_not_in?: String[] | String;
+  metaValue_lt?: String;
+  metaValue_lte?: String;
+  metaValue_gt?: String;
+  metaValue_gte?: String;
+  metaValue_contains?: String;
+  metaValue_not_contains?: String;
+  metaValue_starts_with?: String;
+  metaValue_not_starts_with?: String;
+  metaValue_ends_with?: String;
+  metaValue_not_ends_with?: String;
+  metaDeleted?: Boolean;
+  metaDeleted_not?: Boolean;
+  AND?: ProfilePageMetaWhereInput[] | ProfilePageMetaWhereInput;
+  OR?: ProfilePageMetaWhereInput[] | ProfilePageMetaWhereInput;
+  NOT?: ProfilePageMetaWhereInput[] | ProfilePageMetaWhereInput;
+}
+
+export interface BlogPostMetaUpdateWithWhereUniqueWithoutBlogPostInput {
+  where: BlogPostMetaWhereUniqueInput;
+  data: BlogPostMetaUpdateWithoutBlogPostDataInput;
+}
+
+export interface BlogPostWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  user?: UserWhereInput;
+  itemType?: String;
+  itemType_not?: String;
+  itemType_in?: String[] | String;
+  itemType_not_in?: String[] | String;
+  itemType_lt?: String;
+  itemType_lte?: String;
+  itemType_gt?: String;
+  itemType_gte?: String;
+  itemType_contains?: String;
+  itemType_not_contains?: String;
+  itemType_starts_with?: String;
+  itemType_not_starts_with?: String;
+  itemType_ends_with?: String;
+  itemType_not_ends_with?: String;
+  itemStatus?: String;
+  itemStatus_not?: String;
+  itemStatus_in?: String[] | String;
+  itemStatus_not_in?: String[] | String;
+  itemStatus_lt?: String;
+  itemStatus_lte?: String;
+  itemStatus_gt?: String;
+  itemStatus_gte?: String;
+  itemStatus_contains?: String;
+  itemStatus_not_contains?: String;
+  itemStatus_starts_with?: String;
+  itemStatus_not_starts_with?: String;
+  itemStatus_ends_with?: String;
+  itemStatus_not_ends_with?: String;
+  itemUrlSegment?: String;
+  itemUrlSegment_not?: String;
+  itemUrlSegment_in?: String[] | String;
+  itemUrlSegment_not_in?: String[] | String;
+  itemUrlSegment_lt?: String;
+  itemUrlSegment_lte?: String;
+  itemUrlSegment_gt?: String;
+  itemUrlSegment_gte?: String;
+  itemUrlSegment_contains?: String;
+  itemUrlSegment_not_contains?: String;
+  itemUrlSegment_starts_with?: String;
+  itemUrlSegment_not_starts_with?: String;
+  itemUrlSegment_ends_with?: String;
+  itemUrlSegment_not_ends_with?: String;
+  itemMimeType?: String;
+  itemMimeType_not?: String;
+  itemMimeType_in?: String[] | String;
+  itemMimeType_not_in?: String[] | String;
+  itemMimeType_lt?: String;
+  itemMimeType_lte?: String;
+  itemMimeType_gt?: String;
+  itemMimeType_gte?: String;
+  itemMimeType_contains?: String;
+  itemMimeType_not_contains?: String;
+  itemMimeType_starts_with?: String;
+  itemMimeType_not_starts_with?: String;
+  itemMimeType_ends_with?: String;
+  itemMimeType_not_ends_with?: String;
+  itemName?: String;
+  itemName_not?: String;
+  itemName_in?: String[] | String;
+  itemName_not_in?: String[] | String;
+  itemName_lt?: String;
+  itemName_lte?: String;
+  itemName_gt?: String;
+  itemName_gte?: String;
+  itemName_contains?: String;
+  itemName_not_contains?: String;
+  itemName_starts_with?: String;
+  itemName_not_starts_with?: String;
+  itemName_ends_with?: String;
+  itemName_not_ends_with?: String;
+  itemContent?: String;
+  itemContent_not?: String;
+  itemContent_in?: String[] | String;
+  itemContent_not_in?: String[] | String;
+  itemContent_lt?: String;
+  itemContent_lte?: String;
+  itemContent_gt?: String;
+  itemContent_gte?: String;
+  itemContent_contains?: String;
+  itemContent_not_contains?: String;
+  itemContent_starts_with?: String;
+  itemContent_not_starts_with?: String;
+  itemContent_ends_with?: String;
+  itemContent_not_ends_with?: String;
+  itemDeleted?: Boolean;
+  itemDeleted_not?: Boolean;
+  itemMeta_every?: BlogPostMetaWhereInput;
+  itemMeta_some?: BlogPostMetaWhereInput;
+  itemMeta_none?: BlogPostMetaWhereInput;
+  AND?: BlogPostWhereInput[] | BlogPostWhereInput;
+  OR?: BlogPostWhereInput[] | BlogPostWhereInput;
+  NOT?: BlogPostWhereInput[] | BlogPostWhereInput;
+}
+
+export interface BlogPostMetaUpdateWithoutBlogPostDataInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface BlogPostMetaWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  blogPost?: BlogPostWhereInput;
+  metaType?: String;
+  metaType_not?: String;
+  metaType_in?: String[] | String;
+  metaType_not_in?: String[] | String;
+  metaType_lt?: String;
+  metaType_lte?: String;
+  metaType_gt?: String;
+  metaType_gte?: String;
+  metaType_contains?: String;
+  metaType_not_contains?: String;
+  metaType_starts_with?: String;
+  metaType_not_starts_with?: String;
+  metaType_ends_with?: String;
+  metaType_not_ends_with?: String;
+  metaName?: String;
+  metaName_not?: String;
+  metaName_in?: String[] | String;
+  metaName_not_in?: String[] | String;
+  metaName_lt?: String;
+  metaName_lte?: String;
+  metaName_gt?: String;
+  metaName_gte?: String;
+  metaName_contains?: String;
+  metaName_not_contains?: String;
+  metaName_starts_with?: String;
+  metaName_not_starts_with?: String;
+  metaName_ends_with?: String;
+  metaName_not_ends_with?: String;
+  metaValue?: String;
+  metaValue_not?: String;
+  metaValue_in?: String[] | String;
+  metaValue_not_in?: String[] | String;
+  metaValue_lt?: String;
+  metaValue_lte?: String;
+  metaValue_gt?: String;
+  metaValue_gte?: String;
+  metaValue_contains?: String;
+  metaValue_not_contains?: String;
+  metaValue_starts_with?: String;
+  metaValue_not_starts_with?: String;
+  metaValue_ends_with?: String;
+  metaValue_not_ends_with?: String;
+  metaDeleted?: Boolean;
+  metaDeleted_not?: Boolean;
+  AND?: BlogPostMetaWhereInput[] | BlogPostMetaWhereInput;
+  OR?: BlogPostMetaWhereInput[] | BlogPostMetaWhereInput;
+  NOT?: BlogPostMetaWhereInput[] | BlogPostMetaWhereInput;
+}
+
+export interface BlogPostMetaUpsertWithWhereUniqueWithoutBlogPostInput {
+  where: BlogPostMetaWhereUniqueInput;
+  update: BlogPostMetaUpdateWithoutBlogPostDataInput;
+  create: BlogPostMetaCreateWithoutBlogPostInput;
+}
+
+export interface UserTrackUpdateOneWithoutItemMetaInput {
+  create?: UserTrackCreateWithoutItemMetaInput;
+  update?: UserTrackUpdateWithoutItemMetaDataInput;
+  upsert?: UserTrackUpsertWithoutItemMetaInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserTrackWhereUniqueInput;
+}
+
+export interface BlogPostMetaScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  metaType?: String;
+  metaType_not?: String;
+  metaType_in?: String[] | String;
+  metaType_not_in?: String[] | String;
+  metaType_lt?: String;
+  metaType_lte?: String;
+  metaType_gt?: String;
+  metaType_gte?: String;
+  metaType_contains?: String;
+  metaType_not_contains?: String;
+  metaType_starts_with?: String;
+  metaType_not_starts_with?: String;
+  metaType_ends_with?: String;
+  metaType_not_ends_with?: String;
+  metaName?: String;
+  metaName_not?: String;
+  metaName_in?: String[] | String;
+  metaName_not_in?: String[] | String;
+  metaName_lt?: String;
+  metaName_lte?: String;
+  metaName_gt?: String;
+  metaName_gte?: String;
+  metaName_contains?: String;
+  metaName_not_contains?: String;
+  metaName_starts_with?: String;
+  metaName_not_starts_with?: String;
+  metaName_ends_with?: String;
+  metaName_not_ends_with?: String;
+  metaValue?: String;
+  metaValue_not?: String;
+  metaValue_in?: String[] | String;
+  metaValue_not_in?: String[] | String;
+  metaValue_lt?: String;
+  metaValue_lte?: String;
+  metaValue_gt?: String;
+  metaValue_gte?: String;
+  metaValue_contains?: String;
+  metaValue_not_contains?: String;
+  metaValue_starts_with?: String;
+  metaValue_not_starts_with?: String;
+  metaValue_ends_with?: String;
+  metaValue_not_ends_with?: String;
+  metaDeleted?: Boolean;
+  metaDeleted_not?: Boolean;
+  AND?: BlogPostMetaScalarWhereInput[] | BlogPostMetaScalarWhereInput;
+  OR?: BlogPostMetaScalarWhereInput[] | BlogPostMetaScalarWhereInput;
+  NOT?: BlogPostMetaScalarWhereInput[] | BlogPostMetaScalarWhereInput;
+}
+
+export type ProfilePageMetaWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface BlogPostMetaUpdateManyWithWhereNestedInput {
+  where: BlogPostMetaScalarWhereInput;
+  data: BlogPostMetaUpdateManyDataInput;
+}
+
+export interface UserTrackCreateOneWithoutItemMetaInput {
+  create?: UserTrackCreateWithoutItemMetaInput;
+  connect?: UserTrackWhereUniqueInput;
+}
+
+export interface BlogPostMetaUpdateManyDataInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export type ReviewWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface BlogPostUpdateManyMutationInput {
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+}
+
+export interface ReviewMetaWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  review?: ReviewWhereInput;
+  metaType?: String;
+  metaType_not?: String;
+  metaType_in?: String[] | String;
+  metaType_not_in?: String[] | String;
+  metaType_lt?: String;
+  metaType_lte?: String;
+  metaType_gt?: String;
+  metaType_gte?: String;
+  metaType_contains?: String;
+  metaType_not_contains?: String;
+  metaType_starts_with?: String;
+  metaType_not_starts_with?: String;
+  metaType_ends_with?: String;
+  metaType_not_ends_with?: String;
+  metaName?: String;
+  metaName_not?: String;
+  metaName_in?: String[] | String;
+  metaName_not_in?: String[] | String;
+  metaName_lt?: String;
+  metaName_lte?: String;
+  metaName_gt?: String;
+  metaName_gte?: String;
+  metaName_contains?: String;
+  metaName_not_contains?: String;
+  metaName_starts_with?: String;
+  metaName_not_starts_with?: String;
+  metaName_ends_with?: String;
+  metaName_not_ends_with?: String;
+  metaValue?: String;
+  metaValue_not?: String;
+  metaValue_in?: String[] | String;
+  metaValue_not_in?: String[] | String;
+  metaValue_lt?: String;
+  metaValue_lte?: String;
+  metaValue_gt?: String;
+  metaValue_gte?: String;
+  metaValue_contains?: String;
+  metaValue_not_contains?: String;
+  metaValue_starts_with?: String;
+  metaValue_not_starts_with?: String;
+  metaValue_ends_with?: String;
+  metaValue_not_ends_with?: String;
+  metaDeleted?: Boolean;
+  metaDeleted_not?: Boolean;
+  AND?: ReviewMetaWhereInput[] | ReviewMetaWhereInput;
+  OR?: ReviewMetaWhereInput[] | ReviewMetaWhereInput;
+  NOT?: ReviewMetaWhereInput[] | ReviewMetaWhereInput;
+}
+
+export interface UserFeedbackMetaUpdateManyWithoutUserFeedbackInput {
+  create?:
+    | UserFeedbackMetaCreateWithoutUserFeedbackInput[]
+    | UserFeedbackMetaCreateWithoutUserFeedbackInput;
+  delete?:
+    | UserFeedbackMetaWhereUniqueInput[]
+    | UserFeedbackMetaWhereUniqueInput;
+  connect?:
+    | UserFeedbackMetaWhereUniqueInput[]
+    | UserFeedbackMetaWhereUniqueInput;
+  set?: UserFeedbackMetaWhereUniqueInput[] | UserFeedbackMetaWhereUniqueInput;
+  disconnect?:
+    | UserFeedbackMetaWhereUniqueInput[]
+    | UserFeedbackMetaWhereUniqueInput;
+  update?:
+    | UserFeedbackMetaUpdateWithWhereUniqueWithoutUserFeedbackInput[]
+    | UserFeedbackMetaUpdateWithWhereUniqueWithoutUserFeedbackInput;
+  upsert?:
+    | UserFeedbackMetaUpsertWithWhereUniqueWithoutUserFeedbackInput[]
+    | UserFeedbackMetaUpsertWithWhereUniqueWithoutUserFeedbackInput;
+  deleteMany?:
+    | UserFeedbackMetaScalarWhereInput[]
+    | UserFeedbackMetaScalarWhereInput;
+  updateMany?:
+    | UserFeedbackMetaUpdateManyWithWhereNestedInput[]
+    | UserFeedbackMetaUpdateManyWithWhereNestedInput;
+}
+
+export interface UserTrackMetaUpdateManyDataInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserFeedbackUpdateInput {
+  user?: UserUpdateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+  itemMeta?: UserFeedbackMetaUpdateManyWithoutUserFeedbackInput;
 }
 
 export interface UserWhereInput {
@@ -142,42 +1835,3064 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
+  userType?: Int;
+  userType_not?: Int;
+  userType_in?: Int[] | Int;
+  userType_not_in?: Int[] | Int;
+  userType_lt?: Int;
+  userType_lte?: Int;
+  userType_gt?: Int;
+  userType_gte?: Int;
+  userEmail?: String;
+  userEmail_not?: String;
+  userEmail_in?: String[] | String;
+  userEmail_not_in?: String[] | String;
+  userEmail_lt?: String;
+  userEmail_lte?: String;
+  userEmail_gt?: String;
+  userEmail_gte?: String;
+  userEmail_contains?: String;
+  userEmail_not_contains?: String;
+  userEmail_starts_with?: String;
+  userEmail_not_starts_with?: String;
+  userEmail_ends_with?: String;
+  userEmail_not_ends_with?: String;
+  userPassword?: String;
+  userPassword_not?: String;
+  userPassword_in?: String[] | String;
+  userPassword_not_in?: String[] | String;
+  userPassword_lt?: String;
+  userPassword_lte?: String;
+  userPassword_gt?: String;
+  userPassword_gte?: String;
+  userPassword_contains?: String;
+  userPassword_not_contains?: String;
+  userPassword_starts_with?: String;
+  userPassword_not_starts_with?: String;
+  userPassword_ends_with?: String;
+  userPassword_not_ends_with?: String;
+  confirmHash?: String;
+  confirmHash_not?: String;
+  confirmHash_in?: String[] | String;
+  confirmHash_not_in?: String[] | String;
+  confirmHash_lt?: String;
+  confirmHash_lte?: String;
+  confirmHash_gt?: String;
+  confirmHash_gte?: String;
+  confirmHash_contains?: String;
+  confirmHash_not_contains?: String;
+  confirmHash_starts_with?: String;
+  confirmHash_not_starts_with?: String;
+  confirmHash_ends_with?: String;
+  confirmHash_not_ends_with?: String;
+  forgotHash?: String;
+  forgotHash_not?: String;
+  forgotHash_in?: String[] | String;
+  forgotHash_not_in?: String[] | String;
+  forgotHash_lt?: String;
+  forgotHash_lte?: String;
+  forgotHash_gt?: String;
+  forgotHash_gte?: String;
+  forgotHash_contains?: String;
+  forgotHash_not_contains?: String;
+  forgotHash_starts_with?: String;
+  forgotHash_not_starts_with?: String;
+  forgotHash_ends_with?: String;
+  forgotHash_not_ends_with?: String;
+  userConfirmed?: Int;
+  userConfirmed_not?: Int;
+  userConfirmed_in?: Int[] | Int;
+  userConfirmed_not_in?: Int[] | Int;
+  userConfirmed_lt?: Int;
+  userConfirmed_lte?: Int;
+  userConfirmed_gt?: Int;
+  userConfirmed_gte?: Int;
+  userDeleted?: Boolean;
+  userDeleted_not?: Boolean;
+  userMeta_every?: UserMetaWhereInput;
+  userMeta_some?: UserMetaWhereInput;
+  userMeta_none?: UserMetaWhereInput;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
 }
 
-export interface UserSubscriptionWhereInput {
+export interface BlogPostMetaCreateInput {
+  blogPost?: BlogPostCreateOneWithoutItemMetaInput;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserTrackMetaUpsertWithWhereUniqueWithoutUserTrackInput {
+  where: UserTrackMetaWhereUniqueInput;
+  update: UserTrackMetaUpdateWithoutUserTrackDataInput;
+  create: UserTrackMetaCreateWithoutUserTrackInput;
+}
+
+export interface BlogPostCreateOneWithoutItemMetaInput {
+  create?: BlogPostCreateWithoutItemMetaInput;
+  connect?: BlogPostWhereUniqueInput;
+}
+
+export type ReviewMetaWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface BlogPostCreateWithoutItemMetaInput {
+  user?: UserCreateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface UserTrackMetaUpdateManyWithoutUserTrackInput {
+  create?:
+    | UserTrackMetaCreateWithoutUserTrackInput[]
+    | UserTrackMetaCreateWithoutUserTrackInput;
+  delete?: UserTrackMetaWhereUniqueInput[] | UserTrackMetaWhereUniqueInput;
+  connect?: UserTrackMetaWhereUniqueInput[] | UserTrackMetaWhereUniqueInput;
+  set?: UserTrackMetaWhereUniqueInput[] | UserTrackMetaWhereUniqueInput;
+  disconnect?: UserTrackMetaWhereUniqueInput[] | UserTrackMetaWhereUniqueInput;
+  update?:
+    | UserTrackMetaUpdateWithWhereUniqueWithoutUserTrackInput[]
+    | UserTrackMetaUpdateWithWhereUniqueWithoutUserTrackInput;
+  upsert?:
+    | UserTrackMetaUpsertWithWhereUniqueWithoutUserTrackInput[]
+    | UserTrackMetaUpsertWithWhereUniqueWithoutUserTrackInput;
+  deleteMany?: UserTrackMetaScalarWhereInput[] | UserTrackMetaScalarWhereInput;
+  updateMany?:
+    | UserTrackMetaUpdateManyWithWhereNestedInput[]
+    | UserTrackMetaUpdateManyWithWhereNestedInput;
+}
+
+export interface BlogPostMetaUpdateInput {
+  blogPost?: BlogPostUpdateOneWithoutItemMetaInput;
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  userEmail?: String;
+}>;
+
+export interface BlogPostUpdateOneWithoutItemMetaInput {
+  create?: BlogPostCreateWithoutItemMetaInput;
+  update?: BlogPostUpdateWithoutItemMetaDataInput;
+  upsert?: BlogPostUpsertWithoutItemMetaInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: BlogPostWhereUniqueInput;
+}
+
+export interface UserTrackMetaCreateWithoutUserTrackInput {
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface BlogPostUpdateWithoutItemMetaDataInput {
+  user?: UserUpdateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+}
+
+export interface UserTrackCreateInput {
+  user?: UserCreateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+  itemMeta?: UserTrackMetaCreateManyWithoutUserTrackInput;
+}
+
+export interface BlogPostUpsertWithoutItemMetaInput {
+  update: BlogPostUpdateWithoutItemMetaDataInput;
+  create: BlogPostCreateWithoutItemMetaInput;
+}
+
+export interface UserMetaUpdateManyMutationInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface BlogPostMetaUpdateManyMutationInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserFeedbackWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  user?: UserWhereInput;
+  itemType?: String;
+  itemType_not?: String;
+  itemType_in?: String[] | String;
+  itemType_not_in?: String[] | String;
+  itemType_lt?: String;
+  itemType_lte?: String;
+  itemType_gt?: String;
+  itemType_gte?: String;
+  itemType_contains?: String;
+  itemType_not_contains?: String;
+  itemType_starts_with?: String;
+  itemType_not_starts_with?: String;
+  itemType_ends_with?: String;
+  itemType_not_ends_with?: String;
+  itemStatus?: String;
+  itemStatus_not?: String;
+  itemStatus_in?: String[] | String;
+  itemStatus_not_in?: String[] | String;
+  itemStatus_lt?: String;
+  itemStatus_lte?: String;
+  itemStatus_gt?: String;
+  itemStatus_gte?: String;
+  itemStatus_contains?: String;
+  itemStatus_not_contains?: String;
+  itemStatus_starts_with?: String;
+  itemStatus_not_starts_with?: String;
+  itemStatus_ends_with?: String;
+  itemStatus_not_ends_with?: String;
+  itemUrlSegment?: String;
+  itemUrlSegment_not?: String;
+  itemUrlSegment_in?: String[] | String;
+  itemUrlSegment_not_in?: String[] | String;
+  itemUrlSegment_lt?: String;
+  itemUrlSegment_lte?: String;
+  itemUrlSegment_gt?: String;
+  itemUrlSegment_gte?: String;
+  itemUrlSegment_contains?: String;
+  itemUrlSegment_not_contains?: String;
+  itemUrlSegment_starts_with?: String;
+  itemUrlSegment_not_starts_with?: String;
+  itemUrlSegment_ends_with?: String;
+  itemUrlSegment_not_ends_with?: String;
+  itemMimeType?: String;
+  itemMimeType_not?: String;
+  itemMimeType_in?: String[] | String;
+  itemMimeType_not_in?: String[] | String;
+  itemMimeType_lt?: String;
+  itemMimeType_lte?: String;
+  itemMimeType_gt?: String;
+  itemMimeType_gte?: String;
+  itemMimeType_contains?: String;
+  itemMimeType_not_contains?: String;
+  itemMimeType_starts_with?: String;
+  itemMimeType_not_starts_with?: String;
+  itemMimeType_ends_with?: String;
+  itemMimeType_not_ends_with?: String;
+  itemName?: String;
+  itemName_not?: String;
+  itemName_in?: String[] | String;
+  itemName_not_in?: String[] | String;
+  itemName_lt?: String;
+  itemName_lte?: String;
+  itemName_gt?: String;
+  itemName_gte?: String;
+  itemName_contains?: String;
+  itemName_not_contains?: String;
+  itemName_starts_with?: String;
+  itemName_not_starts_with?: String;
+  itemName_ends_with?: String;
+  itemName_not_ends_with?: String;
+  itemContent?: String;
+  itemContent_not?: String;
+  itemContent_in?: String[] | String;
+  itemContent_not_in?: String[] | String;
+  itemContent_lt?: String;
+  itemContent_lte?: String;
+  itemContent_gt?: String;
+  itemContent_gte?: String;
+  itemContent_contains?: String;
+  itemContent_not_contains?: String;
+  itemContent_starts_with?: String;
+  itemContent_not_starts_with?: String;
+  itemContent_ends_with?: String;
+  itemContent_not_ends_with?: String;
+  itemDeleted?: Boolean;
+  itemDeleted_not?: Boolean;
+  itemMeta_every?: UserFeedbackMetaWhereInput;
+  itemMeta_some?: UserFeedbackMetaWhereInput;
+  itemMeta_none?: UserFeedbackMetaWhereInput;
+  AND?: UserFeedbackWhereInput[] | UserFeedbackWhereInput;
+  OR?: UserFeedbackWhereInput[] | UserFeedbackWhereInput;
+  NOT?: UserFeedbackWhereInput[] | UserFeedbackWhereInput;
+}
+
+export interface FileCreateInput {
+  user?: UserCreateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+  itemMeta?: FileMetaCreateManyWithoutFileInput;
+}
+
+export interface UserUpdateWithoutUserMetaDataInput {
+  userType?: Int;
+  userEmail?: String;
+  userPassword?: String;
+  confirmHash?: String;
+  forgotHash?: String;
+  userConfirmed?: Int;
+  userDeleted?: Boolean;
+}
+
+export interface FileMetaCreateManyWithoutFileInput {
+  create?: FileMetaCreateWithoutFileInput[] | FileMetaCreateWithoutFileInput;
+  connect?: FileMetaWhereUniqueInput[] | FileMetaWhereUniqueInput;
+}
+
+export interface UserMetaUpdateInput {
+  user?: UserUpdateOneWithoutUserMetaInput;
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface FileMetaCreateWithoutFileInput {
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserCreateOneWithoutUserMetaInput {
+  create?: UserCreateWithoutUserMetaInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface FileUpdateInput {
+  user?: UserUpdateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+  itemMeta?: FileMetaUpdateManyWithoutFileInput;
+}
+
+export interface UserMetaCreateInput {
+  user?: UserCreateOneWithoutUserMetaInput;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface FileMetaUpdateManyWithoutFileInput {
+  create?: FileMetaCreateWithoutFileInput[] | FileMetaCreateWithoutFileInput;
+  delete?: FileMetaWhereUniqueInput[] | FileMetaWhereUniqueInput;
+  connect?: FileMetaWhereUniqueInput[] | FileMetaWhereUniqueInput;
+  set?: FileMetaWhereUniqueInput[] | FileMetaWhereUniqueInput;
+  disconnect?: FileMetaWhereUniqueInput[] | FileMetaWhereUniqueInput;
+  update?:
+    | FileMetaUpdateWithWhereUniqueWithoutFileInput[]
+    | FileMetaUpdateWithWhereUniqueWithoutFileInput;
+  upsert?:
+    | FileMetaUpsertWithWhereUniqueWithoutFileInput[]
+    | FileMetaUpsertWithWhereUniqueWithoutFileInput;
+  deleteMany?: FileMetaScalarWhereInput[] | FileMetaScalarWhereInput;
+  updateMany?:
+    | FileMetaUpdateManyWithWhereNestedInput[]
+    | FileMetaUpdateManyWithWhereNestedInput;
+}
+
+export interface UserFeedbackUpsertWithoutItemMetaInput {
+  update: UserFeedbackUpdateWithoutItemMetaDataInput;
+  create: UserFeedbackCreateWithoutItemMetaInput;
+}
+
+export interface FileMetaUpdateWithWhereUniqueWithoutFileInput {
+  where: FileMetaWhereUniqueInput;
+  data: FileMetaUpdateWithoutFileDataInput;
+}
+
+export interface UserFeedbackUpdateWithoutItemMetaDataInput {
+  user?: UserUpdateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+}
+
+export interface UserFeedbackMetaCreateWithoutUserFeedbackInput {
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserFeedbackMetaUpdateInput {
+  userFeedback?: UserFeedbackUpdateOneWithoutItemMetaInput;
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface FileMetaUpsertWithWhereUniqueWithoutFileInput {
+  where: FileMetaWhereUniqueInput;
+  update: FileMetaUpdateWithoutFileDataInput;
+  create: FileMetaCreateWithoutFileInput;
+}
+
+export interface UserFeedbackCreateWithoutItemMetaInput {
+  user?: UserCreateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface FileMetaScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  metaType?: String;
+  metaType_not?: String;
+  metaType_in?: String[] | String;
+  metaType_not_in?: String[] | String;
+  metaType_lt?: String;
+  metaType_lte?: String;
+  metaType_gt?: String;
+  metaType_gte?: String;
+  metaType_contains?: String;
+  metaType_not_contains?: String;
+  metaType_starts_with?: String;
+  metaType_not_starts_with?: String;
+  metaType_ends_with?: String;
+  metaType_not_ends_with?: String;
+  metaName?: String;
+  metaName_not?: String;
+  metaName_in?: String[] | String;
+  metaName_not_in?: String[] | String;
+  metaName_lt?: String;
+  metaName_lte?: String;
+  metaName_gt?: String;
+  metaName_gte?: String;
+  metaName_contains?: String;
+  metaName_not_contains?: String;
+  metaName_starts_with?: String;
+  metaName_not_starts_with?: String;
+  metaName_ends_with?: String;
+  metaName_not_ends_with?: String;
+  metaValue?: String;
+  metaValue_not?: String;
+  metaValue_in?: String[] | String;
+  metaValue_not_in?: String[] | String;
+  metaValue_lt?: String;
+  metaValue_lte?: String;
+  metaValue_gt?: String;
+  metaValue_gte?: String;
+  metaValue_contains?: String;
+  metaValue_not_contains?: String;
+  metaValue_starts_with?: String;
+  metaValue_not_starts_with?: String;
+  metaValue_ends_with?: String;
+  metaValue_not_ends_with?: String;
+  metaDeleted?: Boolean;
+  metaDeleted_not?: Boolean;
+  AND?: FileMetaScalarWhereInput[] | FileMetaScalarWhereInput;
+  OR?: FileMetaScalarWhereInput[] | FileMetaScalarWhereInput;
+  NOT?: FileMetaScalarWhereInput[] | FileMetaScalarWhereInput;
+}
+
+export interface UserTrackWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  user?: UserWhereInput;
+  itemType?: String;
+  itemType_not?: String;
+  itemType_in?: String[] | String;
+  itemType_not_in?: String[] | String;
+  itemType_lt?: String;
+  itemType_lte?: String;
+  itemType_gt?: String;
+  itemType_gte?: String;
+  itemType_contains?: String;
+  itemType_not_contains?: String;
+  itemType_starts_with?: String;
+  itemType_not_starts_with?: String;
+  itemType_ends_with?: String;
+  itemType_not_ends_with?: String;
+  itemStatus?: String;
+  itemStatus_not?: String;
+  itemStatus_in?: String[] | String;
+  itemStatus_not_in?: String[] | String;
+  itemStatus_lt?: String;
+  itemStatus_lte?: String;
+  itemStatus_gt?: String;
+  itemStatus_gte?: String;
+  itemStatus_contains?: String;
+  itemStatus_not_contains?: String;
+  itemStatus_starts_with?: String;
+  itemStatus_not_starts_with?: String;
+  itemStatus_ends_with?: String;
+  itemStatus_not_ends_with?: String;
+  itemUrlSegment?: String;
+  itemUrlSegment_not?: String;
+  itemUrlSegment_in?: String[] | String;
+  itemUrlSegment_not_in?: String[] | String;
+  itemUrlSegment_lt?: String;
+  itemUrlSegment_lte?: String;
+  itemUrlSegment_gt?: String;
+  itemUrlSegment_gte?: String;
+  itemUrlSegment_contains?: String;
+  itemUrlSegment_not_contains?: String;
+  itemUrlSegment_starts_with?: String;
+  itemUrlSegment_not_starts_with?: String;
+  itemUrlSegment_ends_with?: String;
+  itemUrlSegment_not_ends_with?: String;
+  itemMimeType?: String;
+  itemMimeType_not?: String;
+  itemMimeType_in?: String[] | String;
+  itemMimeType_not_in?: String[] | String;
+  itemMimeType_lt?: String;
+  itemMimeType_lte?: String;
+  itemMimeType_gt?: String;
+  itemMimeType_gte?: String;
+  itemMimeType_contains?: String;
+  itemMimeType_not_contains?: String;
+  itemMimeType_starts_with?: String;
+  itemMimeType_not_starts_with?: String;
+  itemMimeType_ends_with?: String;
+  itemMimeType_not_ends_with?: String;
+  itemName?: String;
+  itemName_not?: String;
+  itemName_in?: String[] | String;
+  itemName_not_in?: String[] | String;
+  itemName_lt?: String;
+  itemName_lte?: String;
+  itemName_gt?: String;
+  itemName_gte?: String;
+  itemName_contains?: String;
+  itemName_not_contains?: String;
+  itemName_starts_with?: String;
+  itemName_not_starts_with?: String;
+  itemName_ends_with?: String;
+  itemName_not_ends_with?: String;
+  itemContent?: String;
+  itemContent_not?: String;
+  itemContent_in?: String[] | String;
+  itemContent_not_in?: String[] | String;
+  itemContent_lt?: String;
+  itemContent_lte?: String;
+  itemContent_gt?: String;
+  itemContent_gte?: String;
+  itemContent_contains?: String;
+  itemContent_not_contains?: String;
+  itemContent_starts_with?: String;
+  itemContent_not_starts_with?: String;
+  itemContent_ends_with?: String;
+  itemContent_not_ends_with?: String;
+  itemDeleted?: Boolean;
+  itemDeleted_not?: Boolean;
+  itemMeta_every?: UserTrackMetaWhereInput;
+  itemMeta_some?: UserTrackMetaWhereInput;
+  itemMeta_none?: UserTrackMetaWhereInput;
+  AND?: UserTrackWhereInput[] | UserTrackWhereInput;
+  OR?: UserTrackWhereInput[] | UserTrackWhereInput;
+  NOT?: UserTrackWhereInput[] | UserTrackWhereInput;
+}
+
+export interface FileMetaUpdateManyWithWhereNestedInput {
+  where: FileMetaScalarWhereInput;
+  data: FileMetaUpdateManyDataInput;
+}
+
+export interface UserFeedbackMetaCreateInput {
+  userFeedback?: UserFeedbackCreateOneWithoutItemMetaInput;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface FileMetaUpdateManyDataInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserFeedbackMetaUpdateManyDataInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface FileUpdateManyMutationInput {
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+}
+
+export interface UserFeedbackMetaScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  metaType?: String;
+  metaType_not?: String;
+  metaType_in?: String[] | String;
+  metaType_not_in?: String[] | String;
+  metaType_lt?: String;
+  metaType_lte?: String;
+  metaType_gt?: String;
+  metaType_gte?: String;
+  metaType_contains?: String;
+  metaType_not_contains?: String;
+  metaType_starts_with?: String;
+  metaType_not_starts_with?: String;
+  metaType_ends_with?: String;
+  metaType_not_ends_with?: String;
+  metaName?: String;
+  metaName_not?: String;
+  metaName_in?: String[] | String;
+  metaName_not_in?: String[] | String;
+  metaName_lt?: String;
+  metaName_lte?: String;
+  metaName_gt?: String;
+  metaName_gte?: String;
+  metaName_contains?: String;
+  metaName_not_contains?: String;
+  metaName_starts_with?: String;
+  metaName_not_starts_with?: String;
+  metaName_ends_with?: String;
+  metaName_not_ends_with?: String;
+  metaValue?: String;
+  metaValue_not?: String;
+  metaValue_in?: String[] | String;
+  metaValue_not_in?: String[] | String;
+  metaValue_lt?: String;
+  metaValue_lte?: String;
+  metaValue_gt?: String;
+  metaValue_gte?: String;
+  metaValue_contains?: String;
+  metaValue_not_contains?: String;
+  metaValue_starts_with?: String;
+  metaValue_not_starts_with?: String;
+  metaValue_ends_with?: String;
+  metaValue_not_ends_with?: String;
+  metaDeleted?: Boolean;
+  metaDeleted_not?: Boolean;
+  AND?: UserFeedbackMetaScalarWhereInput[] | UserFeedbackMetaScalarWhereInput;
+  OR?: UserFeedbackMetaScalarWhereInput[] | UserFeedbackMetaScalarWhereInput;
+  NOT?: UserFeedbackMetaScalarWhereInput[] | UserFeedbackMetaScalarWhereInput;
+}
+
+export interface FileMetaCreateInput {
+  file?: FileCreateOneWithoutItemMetaInput;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserFeedbackMetaUpsertWithWhereUniqueWithoutUserFeedbackInput {
+  where: UserFeedbackMetaWhereUniqueInput;
+  update: UserFeedbackMetaUpdateWithoutUserFeedbackDataInput;
+  create: UserFeedbackMetaCreateWithoutUserFeedbackInput;
+}
+
+export interface FileCreateOneWithoutItemMetaInput {
+  create?: FileCreateWithoutItemMetaInput;
+  connect?: FileWhereUniqueInput;
+}
+
+export interface UserFeedbackMetaUpdateWithWhereUniqueWithoutUserFeedbackInput {
+  where: UserFeedbackMetaWhereUniqueInput;
+  data: UserFeedbackMetaUpdateWithoutUserFeedbackDataInput;
+}
+
+export interface FileCreateWithoutItemMetaInput {
+  user?: UserCreateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface BlogPostCreateInput {
+  user?: UserCreateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+  itemMeta?: BlogPostMetaCreateManyWithoutBlogPostInput;
+}
+
+export interface UserFeedbackMetaCreateManyWithoutUserFeedbackInput {
+  create?:
+    | UserFeedbackMetaCreateWithoutUserFeedbackInput[]
+    | UserFeedbackMetaCreateWithoutUserFeedbackInput;
+  connect?:
+    | UserFeedbackMetaWhereUniqueInput[]
+    | UserFeedbackMetaWhereUniqueInput;
+}
+
+export interface UserCreateInput {
+  userType?: Int;
+  userEmail?: String;
+  userPassword?: String;
+  confirmHash?: String;
+  forgotHash?: String;
+  userConfirmed?: Int;
+  userDeleted?: Boolean;
+  userMeta?: UserMetaCreateManyWithoutUserInput;
+}
+
+export interface FileUpdateOneWithoutItemMetaInput {
+  create?: FileCreateWithoutItemMetaInput;
+  update?: FileUpdateWithoutItemMetaDataInput;
+  upsert?: FileUpsertWithoutItemMetaInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: FileWhereUniqueInput;
+}
+
+export interface UserMetaCreateWithoutUserInput {
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface FileUpdateWithoutItemMetaDataInput {
+  user?: UserUpdateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+}
+
+export interface UserTrackMetaSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  node?: UserTrackMetaWhereInput;
+  AND?:
+    | UserTrackMetaSubscriptionWhereInput[]
+    | UserTrackMetaSubscriptionWhereInput;
+  OR?:
+    | UserTrackMetaSubscriptionWhereInput[]
+    | UserTrackMetaSubscriptionWhereInput;
+  NOT?:
+    | UserTrackMetaSubscriptionWhereInput[]
+    | UserTrackMetaSubscriptionWhereInput;
 }
 
-export type UserWhereUniqueInput = AtLeastOne<{
+export interface FileUpsertWithoutItemMetaInput {
+  update: FileUpdateWithoutItemMetaDataInput;
+  create: FileCreateWithoutItemMetaInput;
+}
+
+export interface UserFeedbackMetaSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserFeedbackMetaWhereInput;
+  AND?:
+    | UserFeedbackMetaSubscriptionWhereInput[]
+    | UserFeedbackMetaSubscriptionWhereInput;
+  OR?:
+    | UserFeedbackMetaSubscriptionWhereInput[]
+    | UserFeedbackMetaSubscriptionWhereInput;
+  NOT?:
+    | UserFeedbackMetaSubscriptionWhereInput[]
+    | UserFeedbackMetaSubscriptionWhereInput;
+}
+
+export interface FileMetaUpdateManyMutationInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface FileWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  user?: UserWhereInput;
+  itemType?: String;
+  itemType_not?: String;
+  itemType_in?: String[] | String;
+  itemType_not_in?: String[] | String;
+  itemType_lt?: String;
+  itemType_lte?: String;
+  itemType_gt?: String;
+  itemType_gte?: String;
+  itemType_contains?: String;
+  itemType_not_contains?: String;
+  itemType_starts_with?: String;
+  itemType_not_starts_with?: String;
+  itemType_ends_with?: String;
+  itemType_not_ends_with?: String;
+  itemStatus?: String;
+  itemStatus_not?: String;
+  itemStatus_in?: String[] | String;
+  itemStatus_not_in?: String[] | String;
+  itemStatus_lt?: String;
+  itemStatus_lte?: String;
+  itemStatus_gt?: String;
+  itemStatus_gte?: String;
+  itemStatus_contains?: String;
+  itemStatus_not_contains?: String;
+  itemStatus_starts_with?: String;
+  itemStatus_not_starts_with?: String;
+  itemStatus_ends_with?: String;
+  itemStatus_not_ends_with?: String;
+  itemUrlSegment?: String;
+  itemUrlSegment_not?: String;
+  itemUrlSegment_in?: String[] | String;
+  itemUrlSegment_not_in?: String[] | String;
+  itemUrlSegment_lt?: String;
+  itemUrlSegment_lte?: String;
+  itemUrlSegment_gt?: String;
+  itemUrlSegment_gte?: String;
+  itemUrlSegment_contains?: String;
+  itemUrlSegment_not_contains?: String;
+  itemUrlSegment_starts_with?: String;
+  itemUrlSegment_not_starts_with?: String;
+  itemUrlSegment_ends_with?: String;
+  itemUrlSegment_not_ends_with?: String;
+  itemMimeType?: String;
+  itemMimeType_not?: String;
+  itemMimeType_in?: String[] | String;
+  itemMimeType_not_in?: String[] | String;
+  itemMimeType_lt?: String;
+  itemMimeType_lte?: String;
+  itemMimeType_gt?: String;
+  itemMimeType_gte?: String;
+  itemMimeType_contains?: String;
+  itemMimeType_not_contains?: String;
+  itemMimeType_starts_with?: String;
+  itemMimeType_not_starts_with?: String;
+  itemMimeType_ends_with?: String;
+  itemMimeType_not_ends_with?: String;
+  itemName?: String;
+  itemName_not?: String;
+  itemName_in?: String[] | String;
+  itemName_not_in?: String[] | String;
+  itemName_lt?: String;
+  itemName_lte?: String;
+  itemName_gt?: String;
+  itemName_gte?: String;
+  itemName_contains?: String;
+  itemName_not_contains?: String;
+  itemName_starts_with?: String;
+  itemName_not_starts_with?: String;
+  itemName_ends_with?: String;
+  itemName_not_ends_with?: String;
+  itemContent?: String;
+  itemContent_not?: String;
+  itemContent_in?: String[] | String;
+  itemContent_not_in?: String[] | String;
+  itemContent_lt?: String;
+  itemContent_lte?: String;
+  itemContent_gt?: String;
+  itemContent_gte?: String;
+  itemContent_contains?: String;
+  itemContent_not_contains?: String;
+  itemContent_starts_with?: String;
+  itemContent_not_starts_with?: String;
+  itemContent_ends_with?: String;
+  itemContent_not_ends_with?: String;
+  itemDeleted?: Boolean;
+  itemDeleted_not?: Boolean;
+  itemMeta_every?: FileMetaWhereInput;
+  itemMeta_some?: FileMetaWhereInput;
+  itemMeta_none?: FileMetaWhereInput;
+  AND?: FileWhereInput[] | FileWhereInput;
+  OR?: FileWhereInput[] | FileWhereInput;
+  NOT?: FileWhereInput[] | FileWhereInput;
+}
+
+export interface ProfilePageCreateInput {
+  user?: UserCreateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+  itemMeta?: ProfilePageMetaCreateManyWithoutProfilePageInput;
+}
+
+export interface ProfilePageMetaSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ProfilePageMetaWhereInput;
+  AND?:
+    | ProfilePageMetaSubscriptionWhereInput[]
+    | ProfilePageMetaSubscriptionWhereInput;
+  OR?:
+    | ProfilePageMetaSubscriptionWhereInput[]
+    | ProfilePageMetaSubscriptionWhereInput;
+  NOT?:
+    | ProfilePageMetaSubscriptionWhereInput[]
+    | ProfilePageMetaSubscriptionWhereInput;
+}
+
+export interface ProfilePageMetaCreateManyWithoutProfilePageInput {
+  create?:
+    | ProfilePageMetaCreateWithoutProfilePageInput[]
+    | ProfilePageMetaCreateWithoutProfilePageInput;
+  connect?: ProfilePageMetaWhereUniqueInput[] | ProfilePageMetaWhereUniqueInput;
+}
+
+export interface FileSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: FileWhereInput;
+  AND?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput;
+  OR?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput;
+  NOT?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput;
+}
+
+export interface ProfilePageMetaCreateWithoutProfilePageInput {
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserTrackMetaUpdateManyMutationInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface ProfilePageUpdateInput {
+  user?: UserUpdateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+  itemMeta?: ProfilePageMetaUpdateManyWithoutProfilePageInput;
+}
+
+export interface UserTrackUpsertWithoutItemMetaInput {
+  update: UserTrackUpdateWithoutItemMetaDataInput;
+  create: UserTrackCreateWithoutItemMetaInput;
+}
+
+export interface ProfilePageMetaUpdateManyWithoutProfilePageInput {
+  create?:
+    | ProfilePageMetaCreateWithoutProfilePageInput[]
+    | ProfilePageMetaCreateWithoutProfilePageInput;
+  delete?: ProfilePageMetaWhereUniqueInput[] | ProfilePageMetaWhereUniqueInput;
+  connect?: ProfilePageMetaWhereUniqueInput[] | ProfilePageMetaWhereUniqueInput;
+  set?: ProfilePageMetaWhereUniqueInput[] | ProfilePageMetaWhereUniqueInput;
+  disconnect?:
+    | ProfilePageMetaWhereUniqueInput[]
+    | ProfilePageMetaWhereUniqueInput;
+  update?:
+    | ProfilePageMetaUpdateWithWhereUniqueWithoutProfilePageInput[]
+    | ProfilePageMetaUpdateWithWhereUniqueWithoutProfilePageInput;
+  upsert?:
+    | ProfilePageMetaUpsertWithWhereUniqueWithoutProfilePageInput[]
+    | ProfilePageMetaUpsertWithWhereUniqueWithoutProfilePageInput;
+  deleteMany?:
+    | ProfilePageMetaScalarWhereInput[]
+    | ProfilePageMetaScalarWhereInput;
+  updateMany?:
+    | ProfilePageMetaUpdateManyWithWhereNestedInput[]
+    | ProfilePageMetaUpdateManyWithWhereNestedInput;
+}
+
+export interface UserTrackMetaUpdateInput {
+  userTrack?: UserTrackUpdateOneWithoutItemMetaInput;
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface ProfilePageMetaUpdateWithWhereUniqueWithoutProfilePageInput {
+  where: ProfilePageMetaWhereUniqueInput;
+  data: ProfilePageMetaUpdateWithoutProfilePageDataInput;
+}
+
+export interface UserTrackMetaCreateInput {
+  userTrack?: UserTrackCreateOneWithoutItemMetaInput;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface ProfilePageMetaUpdateWithoutProfilePageDataInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface ReviewWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  user?: UserWhereInput;
+  itemType?: String;
+  itemType_not?: String;
+  itemType_in?: String[] | String;
+  itemType_not_in?: String[] | String;
+  itemType_lt?: String;
+  itemType_lte?: String;
+  itemType_gt?: String;
+  itemType_gte?: String;
+  itemType_contains?: String;
+  itemType_not_contains?: String;
+  itemType_starts_with?: String;
+  itemType_not_starts_with?: String;
+  itemType_ends_with?: String;
+  itemType_not_ends_with?: String;
+  itemStatus?: String;
+  itemStatus_not?: String;
+  itemStatus_in?: String[] | String;
+  itemStatus_not_in?: String[] | String;
+  itemStatus_lt?: String;
+  itemStatus_lte?: String;
+  itemStatus_gt?: String;
+  itemStatus_gte?: String;
+  itemStatus_contains?: String;
+  itemStatus_not_contains?: String;
+  itemStatus_starts_with?: String;
+  itemStatus_not_starts_with?: String;
+  itemStatus_ends_with?: String;
+  itemStatus_not_ends_with?: String;
+  itemUrlSegment?: String;
+  itemUrlSegment_not?: String;
+  itemUrlSegment_in?: String[] | String;
+  itemUrlSegment_not_in?: String[] | String;
+  itemUrlSegment_lt?: String;
+  itemUrlSegment_lte?: String;
+  itemUrlSegment_gt?: String;
+  itemUrlSegment_gte?: String;
+  itemUrlSegment_contains?: String;
+  itemUrlSegment_not_contains?: String;
+  itemUrlSegment_starts_with?: String;
+  itemUrlSegment_not_starts_with?: String;
+  itemUrlSegment_ends_with?: String;
+  itemUrlSegment_not_ends_with?: String;
+  itemMimeType?: String;
+  itemMimeType_not?: String;
+  itemMimeType_in?: String[] | String;
+  itemMimeType_not_in?: String[] | String;
+  itemMimeType_lt?: String;
+  itemMimeType_lte?: String;
+  itemMimeType_gt?: String;
+  itemMimeType_gte?: String;
+  itemMimeType_contains?: String;
+  itemMimeType_not_contains?: String;
+  itemMimeType_starts_with?: String;
+  itemMimeType_not_starts_with?: String;
+  itemMimeType_ends_with?: String;
+  itemMimeType_not_ends_with?: String;
+  itemName?: String;
+  itemName_not?: String;
+  itemName_in?: String[] | String;
+  itemName_not_in?: String[] | String;
+  itemName_lt?: String;
+  itemName_lte?: String;
+  itemName_gt?: String;
+  itemName_gte?: String;
+  itemName_contains?: String;
+  itemName_not_contains?: String;
+  itemName_starts_with?: String;
+  itemName_not_starts_with?: String;
+  itemName_ends_with?: String;
+  itemName_not_ends_with?: String;
+  itemContent?: String;
+  itemContent_not?: String;
+  itemContent_in?: String[] | String;
+  itemContent_not_in?: String[] | String;
+  itemContent_lt?: String;
+  itemContent_lte?: String;
+  itemContent_gt?: String;
+  itemContent_gte?: String;
+  itemContent_contains?: String;
+  itemContent_not_contains?: String;
+  itemContent_starts_with?: String;
+  itemContent_not_starts_with?: String;
+  itemContent_ends_with?: String;
+  itemContent_not_ends_with?: String;
+  itemDeleted?: Boolean;
+  itemDeleted_not?: Boolean;
+  itemMeta_every?: ReviewMetaWhereInput;
+  itemMeta_some?: ReviewMetaWhereInput;
+  itemMeta_none?: ReviewMetaWhereInput;
+  AND?: ReviewWhereInput[] | ReviewWhereInput;
+  OR?: ReviewWhereInput[] | ReviewWhereInput;
+  NOT?: ReviewWhereInput[] | ReviewWhereInput;
+}
+
+export interface ProfilePageMetaUpsertWithWhereUniqueWithoutProfilePageInput {
+  where: ProfilePageMetaWhereUniqueInput;
+  update: ProfilePageMetaUpdateWithoutProfilePageDataInput;
+  create: ProfilePageMetaCreateWithoutProfilePageInput;
+}
+
+export interface UserTrackMetaScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  metaType?: String;
+  metaType_not?: String;
+  metaType_in?: String[] | String;
+  metaType_not_in?: String[] | String;
+  metaType_lt?: String;
+  metaType_lte?: String;
+  metaType_gt?: String;
+  metaType_gte?: String;
+  metaType_contains?: String;
+  metaType_not_contains?: String;
+  metaType_starts_with?: String;
+  metaType_not_starts_with?: String;
+  metaType_ends_with?: String;
+  metaType_not_ends_with?: String;
+  metaName?: String;
+  metaName_not?: String;
+  metaName_in?: String[] | String;
+  metaName_not_in?: String[] | String;
+  metaName_lt?: String;
+  metaName_lte?: String;
+  metaName_gt?: String;
+  metaName_gte?: String;
+  metaName_contains?: String;
+  metaName_not_contains?: String;
+  metaName_starts_with?: String;
+  metaName_not_starts_with?: String;
+  metaName_ends_with?: String;
+  metaName_not_ends_with?: String;
+  metaValue?: String;
+  metaValue_not?: String;
+  metaValue_in?: String[] | String;
+  metaValue_not_in?: String[] | String;
+  metaValue_lt?: String;
+  metaValue_lte?: String;
+  metaValue_gt?: String;
+  metaValue_gte?: String;
+  metaValue_contains?: String;
+  metaValue_not_contains?: String;
+  metaValue_starts_with?: String;
+  metaValue_not_starts_with?: String;
+  metaValue_ends_with?: String;
+  metaValue_not_ends_with?: String;
+  metaDeleted?: Boolean;
+  metaDeleted_not?: Boolean;
+  AND?: UserTrackMetaScalarWhereInput[] | UserTrackMetaScalarWhereInput;
+  OR?: UserTrackMetaScalarWhereInput[] | UserTrackMetaScalarWhereInput;
+  NOT?: UserTrackMetaScalarWhereInput[] | UserTrackMetaScalarWhereInput;
+}
+
+export interface ProfilePageMetaScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  metaType?: String;
+  metaType_not?: String;
+  metaType_in?: String[] | String;
+  metaType_not_in?: String[] | String;
+  metaType_lt?: String;
+  metaType_lte?: String;
+  metaType_gt?: String;
+  metaType_gte?: String;
+  metaType_contains?: String;
+  metaType_not_contains?: String;
+  metaType_starts_with?: String;
+  metaType_not_starts_with?: String;
+  metaType_ends_with?: String;
+  metaType_not_ends_with?: String;
+  metaName?: String;
+  metaName_not?: String;
+  metaName_in?: String[] | String;
+  metaName_not_in?: String[] | String;
+  metaName_lt?: String;
+  metaName_lte?: String;
+  metaName_gt?: String;
+  metaName_gte?: String;
+  metaName_contains?: String;
+  metaName_not_contains?: String;
+  metaName_starts_with?: String;
+  metaName_not_starts_with?: String;
+  metaName_ends_with?: String;
+  metaName_not_ends_with?: String;
+  metaValue?: String;
+  metaValue_not?: String;
+  metaValue_in?: String[] | String;
+  metaValue_not_in?: String[] | String;
+  metaValue_lt?: String;
+  metaValue_lte?: String;
+  metaValue_gt?: String;
+  metaValue_gte?: String;
+  metaValue_contains?: String;
+  metaValue_not_contains?: String;
+  metaValue_starts_with?: String;
+  metaValue_not_starts_with?: String;
+  metaValue_ends_with?: String;
+  metaValue_not_ends_with?: String;
+  metaDeleted?: Boolean;
+  metaDeleted_not?: Boolean;
+  AND?: ProfilePageMetaScalarWhereInput[] | ProfilePageMetaScalarWhereInput;
+  OR?: ProfilePageMetaScalarWhereInput[] | ProfilePageMetaScalarWhereInput;
+  NOT?: ProfilePageMetaScalarWhereInput[] | ProfilePageMetaScalarWhereInput;
+}
+
+export interface UserTrackMetaUpdateWithWhereUniqueWithoutUserTrackInput {
+  where: UserTrackMetaWhereUniqueInput;
+  data: UserTrackMetaUpdateWithoutUserTrackDataInput;
+}
+
+export interface ProfilePageMetaUpdateManyWithWhereNestedInput {
+  where: ProfilePageMetaScalarWhereInput;
+  data: ProfilePageMetaUpdateManyDataInput;
+}
+
+export interface UserMetaWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  user?: UserWhereInput;
+  metaType?: String;
+  metaType_not?: String;
+  metaType_in?: String[] | String;
+  metaType_not_in?: String[] | String;
+  metaType_lt?: String;
+  metaType_lte?: String;
+  metaType_gt?: String;
+  metaType_gte?: String;
+  metaType_contains?: String;
+  metaType_not_contains?: String;
+  metaType_starts_with?: String;
+  metaType_not_starts_with?: String;
+  metaType_ends_with?: String;
+  metaType_not_ends_with?: String;
+  metaName?: String;
+  metaName_not?: String;
+  metaName_in?: String[] | String;
+  metaName_not_in?: String[] | String;
+  metaName_lt?: String;
+  metaName_lte?: String;
+  metaName_gt?: String;
+  metaName_gte?: String;
+  metaName_contains?: String;
+  metaName_not_contains?: String;
+  metaName_starts_with?: String;
+  metaName_not_starts_with?: String;
+  metaName_ends_with?: String;
+  metaName_not_ends_with?: String;
+  metaValue?: String;
+  metaValue_not?: String;
+  metaValue_in?: String[] | String;
+  metaValue_not_in?: String[] | String;
+  metaValue_lt?: String;
+  metaValue_lte?: String;
+  metaValue_gt?: String;
+  metaValue_gte?: String;
+  metaValue_contains?: String;
+  metaValue_not_contains?: String;
+  metaValue_starts_with?: String;
+  metaValue_not_starts_with?: String;
+  metaValue_ends_with?: String;
+  metaValue_not_ends_with?: String;
+  metaDeleted?: Boolean;
+  metaDeleted_not?: Boolean;
+  AND?: UserMetaWhereInput[] | UserMetaWhereInput;
+  OR?: UserMetaWhereInput[] | UserMetaWhereInput;
+  NOT?: UserMetaWhereInput[] | UserMetaWhereInput;
+}
+
+export interface ProfilePageMetaUpdateManyDataInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export type UserFeedbackWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface ProfilePageUpdateManyMutationInput {
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+}
+
+export interface UserUpsertWithoutUserMetaInput {
+  update: UserUpdateWithoutUserMetaDataInput;
+  create: UserCreateWithoutUserMetaInput;
+}
+
+export interface ProfilePageMetaCreateInput {
+  profilePage?: ProfilePageCreateOneWithoutItemMetaInput;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserCreateWithoutUserMetaInput {
+  userType?: Int;
+  userEmail?: String;
+  userPassword?: String;
+  confirmHash?: String;
+  forgotHash?: String;
+  userConfirmed?: Int;
+  userDeleted?: Boolean;
+}
+
+export interface ProfilePageCreateOneWithoutItemMetaInput {
+  create?: ProfilePageCreateWithoutItemMetaInput;
+  connect?: ProfilePageWhereUniqueInput;
+}
+
+export interface UserFeedbackMetaUpdateManyMutationInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface ProfilePageCreateWithoutItemMetaInput {
+  user?: UserCreateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface UserFeedbackUpdateOneWithoutItemMetaInput {
+  create?: UserFeedbackCreateWithoutItemMetaInput;
+  update?: UserFeedbackUpdateWithoutItemMetaDataInput;
+  upsert?: UserFeedbackUpsertWithoutItemMetaInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserFeedbackWhereUniqueInput;
+}
+
+export interface ProfilePageMetaUpdateInput {
+  profilePage?: ProfilePageUpdateOneWithoutItemMetaInput;
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserTrackMetaWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  userTrack?: UserTrackWhereInput;
+  metaType?: String;
+  metaType_not?: String;
+  metaType_in?: String[] | String;
+  metaType_not_in?: String[] | String;
+  metaType_lt?: String;
+  metaType_lte?: String;
+  metaType_gt?: String;
+  metaType_gte?: String;
+  metaType_contains?: String;
+  metaType_not_contains?: String;
+  metaType_starts_with?: String;
+  metaType_not_starts_with?: String;
+  metaType_ends_with?: String;
+  metaType_not_ends_with?: String;
+  metaName?: String;
+  metaName_not?: String;
+  metaName_in?: String[] | String;
+  metaName_not_in?: String[] | String;
+  metaName_lt?: String;
+  metaName_lte?: String;
+  metaName_gt?: String;
+  metaName_gte?: String;
+  metaName_contains?: String;
+  metaName_not_contains?: String;
+  metaName_starts_with?: String;
+  metaName_not_starts_with?: String;
+  metaName_ends_with?: String;
+  metaName_not_ends_with?: String;
+  metaValue?: String;
+  metaValue_not?: String;
+  metaValue_in?: String[] | String;
+  metaValue_not_in?: String[] | String;
+  metaValue_lt?: String;
+  metaValue_lte?: String;
+  metaValue_gt?: String;
+  metaValue_gte?: String;
+  metaValue_contains?: String;
+  metaValue_not_contains?: String;
+  metaValue_starts_with?: String;
+  metaValue_not_starts_with?: String;
+  metaValue_ends_with?: String;
+  metaValue_not_ends_with?: String;
+  metaDeleted?: Boolean;
+  metaDeleted_not?: Boolean;
+  AND?: UserTrackMetaWhereInput[] | UserTrackMetaWhereInput;
+  OR?: UserTrackMetaWhereInput[] | UserTrackMetaWhereInput;
+  NOT?: UserTrackMetaWhereInput[] | UserTrackMetaWhereInput;
+}
+
+export interface ProfilePageUpdateOneWithoutItemMetaInput {
+  create?: ProfilePageCreateWithoutItemMetaInput;
+  update?: ProfilePageUpdateWithoutItemMetaDataInput;
+  upsert?: ProfilePageUpsertWithoutItemMetaInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: ProfilePageWhereUniqueInput;
+}
+
+export interface UserFeedbackUpdateManyMutationInput {
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+}
+
+export interface ProfilePageUpdateWithoutItemMetaDataInput {
+  user?: UserUpdateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+}
+
+export type UserTrackMetaWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface ProfilePageUpsertWithoutItemMetaInput {
+  update: ProfilePageUpdateWithoutItemMetaDataInput;
+  create: ProfilePageCreateWithoutItemMetaInput;
+}
+
+export interface UserMetaCreateManyWithoutUserInput {
+  create?: UserMetaCreateWithoutUserInput[] | UserMetaCreateWithoutUserInput;
+  connect?: UserMetaWhereUniqueInput[] | UserMetaWhereUniqueInput;
+}
+
+export interface ProfilePageMetaUpdateManyMutationInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserTrackSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserTrackWhereInput;
+  AND?: UserTrackSubscriptionWhereInput[] | UserTrackSubscriptionWhereInput;
+  OR?: UserTrackSubscriptionWhereInput[] | UserTrackSubscriptionWhereInput;
+  NOT?: UserTrackSubscriptionWhereInput[] | UserTrackSubscriptionWhereInput;
+}
+
+export interface ReviewCreateInput {
+  user?: UserCreateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+  itemMeta?: ReviewMetaCreateManyWithoutReviewInput;
+}
+
+export interface ReviewMetaSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ReviewMetaWhereInput;
+  AND?: ReviewMetaSubscriptionWhereInput[] | ReviewMetaSubscriptionWhereInput;
+  OR?: ReviewMetaSubscriptionWhereInput[] | ReviewMetaSubscriptionWhereInput;
+  NOT?: ReviewMetaSubscriptionWhereInput[] | ReviewMetaSubscriptionWhereInput;
+}
+
+export interface ReviewMetaCreateManyWithoutReviewInput {
+  create?:
+    | ReviewMetaCreateWithoutReviewInput[]
+    | ReviewMetaCreateWithoutReviewInput;
+  connect?: ReviewMetaWhereUniqueInput[] | ReviewMetaWhereUniqueInput;
+}
+
+export interface BlogPostSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: BlogPostWhereInput;
+  AND?: BlogPostSubscriptionWhereInput[] | BlogPostSubscriptionWhereInput;
+  OR?: BlogPostSubscriptionWhereInput[] | BlogPostSubscriptionWhereInput;
+  NOT?: BlogPostSubscriptionWhereInput[] | BlogPostSubscriptionWhereInput;
+}
+
+export interface ReviewMetaCreateWithoutReviewInput {
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserTrackUpdateWithoutItemMetaDataInput {
+  user?: UserUpdateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+}
+
+export interface ReviewUpdateInput {
+  user?: UserUpdateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+  itemMeta?: ReviewMetaUpdateManyWithoutReviewInput;
+}
+
+export interface UserTrackUpdateManyMutationInput {
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+}
+
+export interface ReviewMetaUpdateManyWithoutReviewInput {
+  create?:
+    | ReviewMetaCreateWithoutReviewInput[]
+    | ReviewMetaCreateWithoutReviewInput;
+  delete?: ReviewMetaWhereUniqueInput[] | ReviewMetaWhereUniqueInput;
+  connect?: ReviewMetaWhereUniqueInput[] | ReviewMetaWhereUniqueInput;
+  set?: ReviewMetaWhereUniqueInput[] | ReviewMetaWhereUniqueInput;
+  disconnect?: ReviewMetaWhereUniqueInput[] | ReviewMetaWhereUniqueInput;
+  update?:
+    | ReviewMetaUpdateWithWhereUniqueWithoutReviewInput[]
+    | ReviewMetaUpdateWithWhereUniqueWithoutReviewInput;
+  upsert?:
+    | ReviewMetaUpsertWithWhereUniqueWithoutReviewInput[]
+    | ReviewMetaUpsertWithWhereUniqueWithoutReviewInput;
+  deleteMany?: ReviewMetaScalarWhereInput[] | ReviewMetaScalarWhereInput;
+  updateMany?:
+    | ReviewMetaUpdateManyWithWhereNestedInput[]
+    | ReviewMetaUpdateManyWithWhereNestedInput;
+}
+
+export interface UserTrackMetaUpdateWithoutUserTrackDataInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface ReviewMetaUpdateWithWhereUniqueWithoutReviewInput {
+  where: ReviewMetaWhereUniqueInput;
+  data: ReviewMetaUpdateWithoutReviewDataInput;
+}
+
+export interface UserTrackMetaCreateManyWithoutUserTrackInput {
+  create?:
+    | UserTrackMetaCreateWithoutUserTrackInput[]
+    | UserTrackMetaCreateWithoutUserTrackInput;
+  connect?: UserTrackMetaWhereUniqueInput[] | UserTrackMetaWhereUniqueInput;
+}
+
+export interface ReviewMetaUpdateWithoutReviewDataInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserUpdateOneWithoutUserMetaInput {
+  create?: UserCreateWithoutUserMetaInput;
+  update?: UserUpdateWithoutUserMetaDataInput;
+  upsert?: UserUpsertWithoutUserMetaInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface ReviewMetaUpsertWithWhereUniqueWithoutReviewInput {
+  where: ReviewMetaWhereUniqueInput;
+  update: ReviewMetaUpdateWithoutReviewDataInput;
+  create: ReviewMetaCreateWithoutReviewInput;
+}
+
+export type UserMetaWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface ReviewMetaScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  metaType?: String;
+  metaType_not?: String;
+  metaType_in?: String[] | String;
+  metaType_not_in?: String[] | String;
+  metaType_lt?: String;
+  metaType_lte?: String;
+  metaType_gt?: String;
+  metaType_gte?: String;
+  metaType_contains?: String;
+  metaType_not_contains?: String;
+  metaType_starts_with?: String;
+  metaType_not_starts_with?: String;
+  metaType_ends_with?: String;
+  metaType_not_ends_with?: String;
+  metaName?: String;
+  metaName_not?: String;
+  metaName_in?: String[] | String;
+  metaName_not_in?: String[] | String;
+  metaName_lt?: String;
+  metaName_lte?: String;
+  metaName_gt?: String;
+  metaName_gte?: String;
+  metaName_contains?: String;
+  metaName_not_contains?: String;
+  metaName_starts_with?: String;
+  metaName_not_starts_with?: String;
+  metaName_ends_with?: String;
+  metaName_not_ends_with?: String;
+  metaValue?: String;
+  metaValue_not?: String;
+  metaValue_in?: String[] | String;
+  metaValue_not_in?: String[] | String;
+  metaValue_lt?: String;
+  metaValue_lte?: String;
+  metaValue_gt?: String;
+  metaValue_gte?: String;
+  metaValue_contains?: String;
+  metaValue_not_contains?: String;
+  metaValue_starts_with?: String;
+  metaValue_not_starts_with?: String;
+  metaValue_ends_with?: String;
+  metaValue_not_ends_with?: String;
+  metaDeleted?: Boolean;
+  metaDeleted_not?: Boolean;
+  AND?: ReviewMetaScalarWhereInput[] | ReviewMetaScalarWhereInput;
+  OR?: ReviewMetaScalarWhereInput[] | ReviewMetaScalarWhereInput;
+  NOT?: ReviewMetaScalarWhereInput[] | ReviewMetaScalarWhereInput;
+}
+
+export interface UserFeedbackCreateOneWithoutItemMetaInput {
+  create?: UserFeedbackCreateWithoutItemMetaInput;
+  connect?: UserFeedbackWhereUniqueInput;
+}
+
+export interface ReviewMetaUpdateManyWithWhereNestedInput {
+  where: ReviewMetaScalarWhereInput;
+  data: ReviewMetaUpdateManyDataInput;
+}
+
+export interface UserFeedbackMetaUpdateWithoutUserFeedbackDataInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface ReviewMetaUpdateManyDataInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface BlogPostMetaCreateManyWithoutBlogPostInput {
+  create?:
+    | BlogPostMetaCreateWithoutBlogPostInput[]
+    | BlogPostMetaCreateWithoutBlogPostInput;
+  connect?: BlogPostMetaWhereUniqueInput[] | BlogPostMetaWhereUniqueInput;
+}
+
+export interface ReviewUpdateManyMutationInput {
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+}
+
+export interface FileMetaSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: FileMetaWhereInput;
+  AND?: FileMetaSubscriptionWhereInput[] | FileMetaSubscriptionWhereInput;
+  OR?: FileMetaSubscriptionWhereInput[] | FileMetaSubscriptionWhereInput;
+  NOT?: FileMetaSubscriptionWhereInput[] | FileMetaSubscriptionWhereInput;
+}
+
+export interface ReviewMetaCreateInput {
+  review?: ReviewCreateOneWithoutItemMetaInput;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserTrackCreateWithoutItemMetaInput {
+  user?: UserCreateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface ReviewCreateOneWithoutItemMetaInput {
+  create?: ReviewCreateWithoutItemMetaInput;
+  connect?: ReviewWhereUniqueInput;
+}
+
+export interface UserTrackUpdateInput {
+  user?: UserUpdateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+  itemMeta?: UserTrackMetaUpdateManyWithoutUserTrackInput;
+}
+
+export interface ReviewCreateWithoutItemMetaInput {
+  user?: UserCreateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export type UserFeedbackMetaWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface ReviewMetaUpdateInput {
+  review?: ReviewUpdateOneWithoutItemMetaInput;
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserFeedbackMetaUpdateManyWithWhereNestedInput {
+  where: UserFeedbackMetaScalarWhereInput;
+  data: UserFeedbackMetaUpdateManyDataInput;
+}
+
+export interface ReviewUpdateOneWithoutItemMetaInput {
+  create?: ReviewCreateWithoutItemMetaInput;
+  update?: ReviewUpdateWithoutItemMetaDataInput;
+  upsert?: ReviewUpsertWithoutItemMetaInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: ReviewWhereUniqueInput;
+}
+
+export interface UserFeedbackSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserFeedbackWhereInput;
+  AND?:
+    | UserFeedbackSubscriptionWhereInput[]
+    | UserFeedbackSubscriptionWhereInput;
+  OR?:
+    | UserFeedbackSubscriptionWhereInput[]
+    | UserFeedbackSubscriptionWhereInput;
+  NOT?:
+    | UserFeedbackSubscriptionWhereInput[]
+    | UserFeedbackSubscriptionWhereInput;
+}
+
+export interface ReviewUpdateWithoutItemMetaDataInput {
+  user?: UserUpdateOneInput;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName?: String;
+  itemContent?: String;
+  itemDeleted?: Boolean;
+}
+
+export interface UserTrackMetaUpdateManyWithWhereNestedInput {
+  where: UserTrackMetaScalarWhereInput;
+  data: UserTrackMetaUpdateManyDataInput;
+}
+
+export interface UserUpdateManyMutationInput {
+  userType?: Int;
+  userEmail?: String;
+  userPassword?: String;
+  confirmHash?: String;
+  forgotHash?: String;
+  userConfirmed?: Int;
+  userDeleted?: Boolean;
+}
+
+export interface UserUpdateInput {
+  userType?: Int;
+  userEmail?: String;
+  userPassword?: String;
+  confirmHash?: String;
+  forgotHash?: String;
+  userConfirmed?: Int;
+  userDeleted?: Boolean;
+  userMeta?: UserMetaUpdateManyWithoutUserInput;
+}
+
+export interface ReviewMetaUpdateManyMutationInput {
+  metaType?: String;
+  metaName?: String;
+  metaValue?: String;
+  metaDeleted?: Boolean;
+}
+
+export interface ReviewUpsertWithoutItemMetaInput {
+  update: ReviewUpdateWithoutItemMetaDataInput;
+  create: ReviewCreateWithoutItemMetaInput;
+}
+
+export interface UserFeedbackMetaWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  userFeedback?: UserFeedbackWhereInput;
+  metaType?: String;
+  metaType_not?: String;
+  metaType_in?: String[] | String;
+  metaType_not_in?: String[] | String;
+  metaType_lt?: String;
+  metaType_lte?: String;
+  metaType_gt?: String;
+  metaType_gte?: String;
+  metaType_contains?: String;
+  metaType_not_contains?: String;
+  metaType_starts_with?: String;
+  metaType_not_starts_with?: String;
+  metaType_ends_with?: String;
+  metaType_not_ends_with?: String;
+  metaName?: String;
+  metaName_not?: String;
+  metaName_in?: String[] | String;
+  metaName_not_in?: String[] | String;
+  metaName_lt?: String;
+  metaName_lte?: String;
+  metaName_gt?: String;
+  metaName_gte?: String;
+  metaName_contains?: String;
+  metaName_not_contains?: String;
+  metaName_starts_with?: String;
+  metaName_not_starts_with?: String;
+  metaName_ends_with?: String;
+  metaName_not_ends_with?: String;
+  metaValue?: String;
+  metaValue_not?: String;
+  metaValue_in?: String[] | String;
+  metaValue_not_in?: String[] | String;
+  metaValue_lt?: String;
+  metaValue_lte?: String;
+  metaValue_gt?: String;
+  metaValue_gte?: String;
+  metaValue_contains?: String;
+  metaValue_not_contains?: String;
+  metaValue_starts_with?: String;
+  metaValue_not_starts_with?: String;
+  metaValue_ends_with?: String;
+  metaValue_not_ends_with?: String;
+  metaDeleted?: Boolean;
+  metaDeleted_not?: Boolean;
+  AND?: UserFeedbackMetaWhereInput[] | UserFeedbackMetaWhereInput;
+  OR?: UserFeedbackMetaWhereInput[] | UserFeedbackMetaWhereInput;
+  NOT?: UserFeedbackMetaWhereInput[] | UserFeedbackMetaWhereInput;
+}
+
+export interface ProfilePageWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  user?: UserWhereInput;
+  itemType?: String;
+  itemType_not?: String;
+  itemType_in?: String[] | String;
+  itemType_not_in?: String[] | String;
+  itemType_lt?: String;
+  itemType_lte?: String;
+  itemType_gt?: String;
+  itemType_gte?: String;
+  itemType_contains?: String;
+  itemType_not_contains?: String;
+  itemType_starts_with?: String;
+  itemType_not_starts_with?: String;
+  itemType_ends_with?: String;
+  itemType_not_ends_with?: String;
+  itemStatus?: String;
+  itemStatus_not?: String;
+  itemStatus_in?: String[] | String;
+  itemStatus_not_in?: String[] | String;
+  itemStatus_lt?: String;
+  itemStatus_lte?: String;
+  itemStatus_gt?: String;
+  itemStatus_gte?: String;
+  itemStatus_contains?: String;
+  itemStatus_not_contains?: String;
+  itemStatus_starts_with?: String;
+  itemStatus_not_starts_with?: String;
+  itemStatus_ends_with?: String;
+  itemStatus_not_ends_with?: String;
+  itemUrlSegment?: String;
+  itemUrlSegment_not?: String;
+  itemUrlSegment_in?: String[] | String;
+  itemUrlSegment_not_in?: String[] | String;
+  itemUrlSegment_lt?: String;
+  itemUrlSegment_lte?: String;
+  itemUrlSegment_gt?: String;
+  itemUrlSegment_gte?: String;
+  itemUrlSegment_contains?: String;
+  itemUrlSegment_not_contains?: String;
+  itemUrlSegment_starts_with?: String;
+  itemUrlSegment_not_starts_with?: String;
+  itemUrlSegment_ends_with?: String;
+  itemUrlSegment_not_ends_with?: String;
+  itemMimeType?: String;
+  itemMimeType_not?: String;
+  itemMimeType_in?: String[] | String;
+  itemMimeType_not_in?: String[] | String;
+  itemMimeType_lt?: String;
+  itemMimeType_lte?: String;
+  itemMimeType_gt?: String;
+  itemMimeType_gte?: String;
+  itemMimeType_contains?: String;
+  itemMimeType_not_contains?: String;
+  itemMimeType_starts_with?: String;
+  itemMimeType_not_starts_with?: String;
+  itemMimeType_ends_with?: String;
+  itemMimeType_not_ends_with?: String;
+  itemName?: String;
+  itemName_not?: String;
+  itemName_in?: String[] | String;
+  itemName_not_in?: String[] | String;
+  itemName_lt?: String;
+  itemName_lte?: String;
+  itemName_gt?: String;
+  itemName_gte?: String;
+  itemName_contains?: String;
+  itemName_not_contains?: String;
+  itemName_starts_with?: String;
+  itemName_not_starts_with?: String;
+  itemName_ends_with?: String;
+  itemName_not_ends_with?: String;
+  itemContent?: String;
+  itemContent_not?: String;
+  itemContent_in?: String[] | String;
+  itemContent_not_in?: String[] | String;
+  itemContent_lt?: String;
+  itemContent_lte?: String;
+  itemContent_gt?: String;
+  itemContent_gte?: String;
+  itemContent_contains?: String;
+  itemContent_not_contains?: String;
+  itemContent_starts_with?: String;
+  itemContent_not_starts_with?: String;
+  itemContent_ends_with?: String;
+  itemContent_not_ends_with?: String;
+  itemDeleted?: Boolean;
+  itemDeleted_not?: Boolean;
+  itemMeta_every?: ProfilePageMetaWhereInput;
+  itemMeta_some?: ProfilePageMetaWhereInput;
+  itemMeta_none?: ProfilePageMetaWhereInput;
+  AND?: ProfilePageWhereInput[] | ProfilePageWhereInput;
+  OR?: ProfilePageWhereInput[] | ProfilePageWhereInput;
+  NOT?: ProfilePageWhereInput[] | ProfilePageWhereInput;
+}
+
+export interface UserCreateOneInput {
+  create?: UserCreateInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export type UserTrackWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
 export interface NodeNode {
   id: ID_Output;
+}
+
+export interface UserTrackMetaPreviousValues {
+  id: ID_Output;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserTrackMetaPreviousValuesPromise
+  extends Promise<UserTrackMetaPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  metaType: () => Promise<String>;
+  metaName: () => Promise<String>;
+  metaValue: () => Promise<String>;
+  metaDeleted: () => Promise<Boolean>;
+}
+
+export interface UserTrackMetaPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserTrackMetaPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  metaType: () => Promise<AsyncIterator<String>>;
+  metaName: () => Promise<AsyncIterator<String>>;
+  metaValue: () => Promise<AsyncIterator<String>>;
+  metaDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface ProfilePageMeta {
+  id: ID_Output;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface ProfilePageMetaPromise
+  extends Promise<ProfilePageMeta>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  profilePage: <T = ProfilePagePromise>() => T;
+  metaType: () => Promise<String>;
+  metaName: () => Promise<String>;
+  metaValue: () => Promise<String>;
+  metaDeleted: () => Promise<Boolean>;
+}
+
+export interface ProfilePageMetaSubscription
+  extends Promise<AsyncIterator<ProfilePageMeta>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  profilePage: <T = ProfilePageSubscription>() => T;
+  metaType: () => Promise<AsyncIterator<String>>;
+  metaName: () => Promise<AsyncIterator<String>>;
+  metaValue: () => Promise<AsyncIterator<String>>;
+  metaDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ProfilePage {
+  id: ID_Output;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface ProfilePagePromise extends Promise<ProfilePage>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  itemType: () => Promise<String>;
+  itemStatus: () => Promise<String>;
+  itemUrlSegment: () => Promise<String>;
+  itemMimeType: () => Promise<String>;
+  itemName: () => Promise<String>;
+  itemContent: () => Promise<String>;
+  itemDeleted: () => Promise<Boolean>;
+  itemMeta: <T = FragmentableArray<ProfilePageMeta>>(
+    args?: {
+      where?: ProfilePageMetaWhereInput;
+      orderBy?: ProfilePageMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface ProfilePageSubscription
+  extends Promise<AsyncIterator<ProfilePage>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  itemType: () => Promise<AsyncIterator<String>>;
+  itemStatus: () => Promise<AsyncIterator<String>>;
+  itemUrlSegment: () => Promise<AsyncIterator<String>>;
+  itemMimeType: () => Promise<AsyncIterator<String>>;
+  itemName: () => Promise<AsyncIterator<String>>;
+  itemContent: () => Promise<AsyncIterator<String>>;
+  itemDeleted: () => Promise<AsyncIterator<Boolean>>;
+  itemMeta: <T = Promise<AsyncIterator<ProfilePageMetaSubscription>>>(
+    args?: {
+      where?: ProfilePageMetaWhereInput;
+      orderBy?: ProfilePageMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface BlogPostEdge {
+  node: BlogPost;
+  cursor: String;
+}
+
+export interface BlogPostEdgePromise
+  extends Promise<BlogPostEdge>,
+    Fragmentable {
+  node: <T = BlogPostPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface BlogPostEdgeSubscription
+  extends Promise<AsyncIterator<BlogPostEdge>>,
+    Fragmentable {
+  node: <T = BlogPostSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateFileMeta {
+  count: Int;
+}
+
+export interface AggregateFileMetaPromise
+  extends Promise<AggregateFileMeta>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateFileMetaSubscription
+  extends Promise<AsyncIterator<AggregateFileMeta>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AggregateUserTrackMeta {
+  count: Int;
+}
+
+export interface AggregateUserTrackMetaPromise
+  extends Promise<AggregateUserTrackMeta>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserTrackMetaSubscription
+  extends Promise<AsyncIterator<AggregateUserTrackMeta>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BlogPost {
+  id: ID_Output;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface BlogPostPromise extends Promise<BlogPost>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  itemType: () => Promise<String>;
+  itemStatus: () => Promise<String>;
+  itemUrlSegment: () => Promise<String>;
+  itemMimeType: () => Promise<String>;
+  itemName: () => Promise<String>;
+  itemContent: () => Promise<String>;
+  itemDeleted: () => Promise<Boolean>;
+  itemMeta: <T = FragmentableArray<BlogPostMeta>>(
+    args?: {
+      where?: BlogPostMetaWhereInput;
+      orderBy?: BlogPostMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface BlogPostSubscription
+  extends Promise<AsyncIterator<BlogPost>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  itemType: () => Promise<AsyncIterator<String>>;
+  itemStatus: () => Promise<AsyncIterator<String>>;
+  itemUrlSegment: () => Promise<AsyncIterator<String>>;
+  itemMimeType: () => Promise<AsyncIterator<String>>;
+  itemName: () => Promise<AsyncIterator<String>>;
+  itemContent: () => Promise<AsyncIterator<String>>;
+  itemDeleted: () => Promise<AsyncIterator<Boolean>>;
+  itemMeta: <T = Promise<AsyncIterator<BlogPostMetaSubscription>>>(
+    args?: {
+      where?: BlogPostMetaWhereInput;
+      orderBy?: BlogPostMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface UserTrackMetaConnection {
+  pageInfo: PageInfo;
+  edges: UserTrackMetaEdge[];
+}
+
+export interface UserTrackMetaConnectionPromise
+  extends Promise<UserTrackMetaConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserTrackMetaEdge>>() => T;
+  aggregate: <T = AggregateUserTrackMetaPromise>() => T;
+}
+
+export interface UserTrackMetaConnectionSubscription
+  extends Promise<AsyncIterator<UserTrackMetaConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserTrackMetaEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserTrackMetaSubscription>() => T;
+}
+
+export interface BlogPostSubscriptionPayload {
+  mutation: MutationType;
+  node: BlogPost;
+  updatedFields: String[];
+  previousValues: BlogPostPreviousValues;
+}
+
+export interface BlogPostSubscriptionPayloadPromise
+  extends Promise<BlogPostSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = BlogPostPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = BlogPostPreviousValuesPromise>() => T;
+}
+
+export interface BlogPostSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<BlogPostSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = BlogPostSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = BlogPostPreviousValuesSubscription>() => T;
+}
+
+export interface UserTrackEdge {
+  node: UserTrack;
+  cursor: String;
+}
+
+export interface UserTrackEdgePromise
+  extends Promise<UserTrackEdge>,
+    Fragmentable {
+  node: <T = UserTrackPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserTrackEdgeSubscription
+  extends Promise<AsyncIterator<UserTrackEdge>>,
+    Fragmentable {
+  node: <T = UserTrackSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BlogPostPreviousValues {
+  id: ID_Output;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface BlogPostPreviousValuesPromise
+  extends Promise<BlogPostPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  itemType: () => Promise<String>;
+  itemStatus: () => Promise<String>;
+  itemUrlSegment: () => Promise<String>;
+  itemMimeType: () => Promise<String>;
+  itemName: () => Promise<String>;
+  itemContent: () => Promise<String>;
+  itemDeleted: () => Promise<Boolean>;
+}
+
+export interface BlogPostPreviousValuesSubscription
+  extends Promise<AsyncIterator<BlogPostPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  itemType: () => Promise<AsyncIterator<String>>;
+  itemStatus: () => Promise<AsyncIterator<String>>;
+  itemUrlSegment: () => Promise<AsyncIterator<String>>;
+  itemMimeType: () => Promise<AsyncIterator<String>>;
+  itemName: () => Promise<AsyncIterator<String>>;
+  itemContent: () => Promise<AsyncIterator<String>>;
+  itemDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface User {
+  id: ID_Output;
+  userType?: Int;
+  userEmail?: String;
+  userPassword?: String;
+  confirmHash?: String;
+  forgotHash?: String;
+  userConfirmed?: Int;
+  userDeleted?: Boolean;
+}
+
+export interface UserPromise extends Promise<User>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  userType: () => Promise<Int>;
+  userEmail: () => Promise<String>;
+  userPassword: () => Promise<String>;
+  confirmHash: () => Promise<String>;
+  forgotHash: () => Promise<String>;
+  userConfirmed: () => Promise<Int>;
+  userDeleted: () => Promise<Boolean>;
+  userMeta: <T = FragmentableArray<UserMeta>>(
+    args?: {
+      where?: UserMetaWhereInput;
+      orderBy?: UserMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  userType: () => Promise<AsyncIterator<Int>>;
+  userEmail: () => Promise<AsyncIterator<String>>;
+  userPassword: () => Promise<AsyncIterator<String>>;
+  confirmHash: () => Promise<AsyncIterator<String>>;
+  forgotHash: () => Promise<AsyncIterator<String>>;
+  userConfirmed: () => Promise<AsyncIterator<Int>>;
+  userDeleted: () => Promise<AsyncIterator<Boolean>>;
+  userMeta: <T = Promise<AsyncIterator<UserMetaSubscription>>>(
+    args?: {
+      where?: UserMetaWhereInput;
+      orderBy?: UserMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface UserTrackConnection {
+  pageInfo: PageInfo;
+  edges: UserTrackEdge[];
+}
+
+export interface UserTrackConnectionPromise
+  extends Promise<UserTrackConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserTrackEdge>>() => T;
+  aggregate: <T = AggregateUserTrackPromise>() => T;
+}
+
+export interface UserTrackConnectionSubscription
+  extends Promise<AsyncIterator<UserTrackConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserTrackEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserTrackSubscription>() => T;
+}
+
+export interface UserTrackSubscriptionPayload {
+  mutation: MutationType;
+  node: UserTrack;
+  updatedFields: String[];
+  previousValues: UserTrackPreviousValues;
+}
+
+export interface UserTrackSubscriptionPayloadPromise
+  extends Promise<UserTrackSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UserTrackPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserTrackPreviousValuesPromise>() => T;
+}
+
+export interface UserTrackSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserTrackSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserTrackSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserTrackPreviousValuesSubscription>() => T;
+}
+
+export interface UserTrackMeta {
+  id: ID_Output;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserTrackMetaPromise
+  extends Promise<UserTrackMeta>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  userTrack: <T = UserTrackPromise>() => T;
+  metaType: () => Promise<String>;
+  metaName: () => Promise<String>;
+  metaValue: () => Promise<String>;
+  metaDeleted: () => Promise<Boolean>;
+}
+
+export interface UserTrackMetaSubscription
+  extends Promise<AsyncIterator<UserTrackMeta>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  userTrack: <T = UserTrackSubscription>() => T;
+  metaType: () => Promise<AsyncIterator<String>>;
+  metaName: () => Promise<AsyncIterator<String>>;
+  metaValue: () => Promise<AsyncIterator<String>>;
+  metaDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface FileMetaEdge {
+  node: FileMeta;
+  cursor: String;
+}
+
+export interface FileMetaEdgePromise
+  extends Promise<FileMetaEdge>,
+    Fragmentable {
+  node: <T = FileMetaPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface FileMetaEdgeSubscription
+  extends Promise<AsyncIterator<FileMetaEdge>>,
+    Fragmentable {
+  node: <T = FileMetaSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserTrack {
+  id: ID_Output;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface UserTrackPromise extends Promise<UserTrack>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  itemType: () => Promise<String>;
+  itemStatus: () => Promise<String>;
+  itemUrlSegment: () => Promise<String>;
+  itemMimeType: () => Promise<String>;
+  itemName: () => Promise<String>;
+  itemContent: () => Promise<String>;
+  itemDeleted: () => Promise<Boolean>;
+  itemMeta: <T = FragmentableArray<UserTrackMeta>>(
+    args?: {
+      where?: UserTrackMetaWhereInput;
+      orderBy?: UserTrackMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface UserTrackSubscription
+  extends Promise<AsyncIterator<UserTrack>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  itemType: () => Promise<AsyncIterator<String>>;
+  itemStatus: () => Promise<AsyncIterator<String>>;
+  itemUrlSegment: () => Promise<AsyncIterator<String>>;
+  itemMimeType: () => Promise<AsyncIterator<String>>;
+  itemName: () => Promise<AsyncIterator<String>>;
+  itemContent: () => Promise<AsyncIterator<String>>;
+  itemDeleted: () => Promise<AsyncIterator<Boolean>>;
+  itemMeta: <T = Promise<AsyncIterator<UserTrackMetaSubscription>>>(
+    args?: {
+      where?: UserTrackMetaWhereInput;
+      orderBy?: UserTrackMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface UserMetaEdge {
+  node: UserMeta;
+  cursor: String;
+}
+
+export interface UserMetaEdgePromise
+  extends Promise<UserMetaEdge>,
+    Fragmentable {
+  node: <T = UserMetaPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserMetaEdgeSubscription
+  extends Promise<AsyncIterator<UserMetaEdge>>,
+    Fragmentable {
+  node: <T = UserMetaSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BlogPostMetaSubscriptionPayload {
+  mutation: MutationType;
+  node: BlogPostMeta;
+  updatedFields: String[];
+  previousValues: BlogPostMetaPreviousValues;
+}
+
+export interface BlogPostMetaSubscriptionPayloadPromise
+  extends Promise<BlogPostMetaSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = BlogPostMetaPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = BlogPostMetaPreviousValuesPromise>() => T;
+}
+
+export interface BlogPostMetaSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<BlogPostMetaSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = BlogPostMetaSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = BlogPostMetaPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateUserFeedbackMeta {
+  count: Int;
+}
+
+export interface AggregateUserFeedbackMetaPromise
+  extends Promise<AggregateUserFeedbackMeta>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserFeedbackMetaSubscription
+  extends Promise<AsyncIterator<AggregateUserFeedbackMeta>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BlogPostMetaPreviousValues {
+  id: ID_Output;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface BlogPostMetaPreviousValuesPromise
+  extends Promise<BlogPostMetaPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  metaType: () => Promise<String>;
+  metaName: () => Promise<String>;
+  metaValue: () => Promise<String>;
+  metaDeleted: () => Promise<Boolean>;
+}
+
+export interface BlogPostMetaPreviousValuesSubscription
+  extends Promise<AsyncIterator<BlogPostMetaPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  metaType: () => Promise<AsyncIterator<String>>;
+  metaName: () => Promise<AsyncIterator<String>>;
+  metaValue: () => Promise<AsyncIterator<String>>;
+  metaDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface UserFeedbackMetaConnection {
+  pageInfo: PageInfo;
+  edges: UserFeedbackMetaEdge[];
+}
+
+export interface UserFeedbackMetaConnectionPromise
+  extends Promise<UserFeedbackMetaConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserFeedbackMetaEdge>>() => T;
+  aggregate: <T = AggregateUserFeedbackMetaPromise>() => T;
+}
+
+export interface UserFeedbackMetaConnectionSubscription
+  extends Promise<AsyncIterator<UserFeedbackMetaConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserFeedbackMetaEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserFeedbackMetaSubscription>() => T;
+}
+
+export interface FileMetaConnection {
+  pageInfo: PageInfo;
+  edges: FileMetaEdge[];
+}
+
+export interface FileMetaConnectionPromise
+  extends Promise<FileMetaConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<FileMetaEdge>>() => T;
+  aggregate: <T = AggregateFileMetaPromise>() => T;
+}
+
+export interface FileMetaConnectionSubscription
+  extends Promise<AsyncIterator<FileMetaConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<FileMetaEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateFileMetaSubscription>() => T;
+}
+
+export interface UserFeedbackEdge {
+  node: UserFeedback;
+  cursor: String;
+}
+
+export interface UserFeedbackEdgePromise
+  extends Promise<UserFeedbackEdge>,
+    Fragmentable {
+  node: <T = UserFeedbackPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserFeedbackEdgeSubscription
+  extends Promise<AsyncIterator<UserFeedbackEdge>>,
+    Fragmentable {
+  node: <T = UserFeedbackSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface FileSubscriptionPayload {
+  mutation: MutationType;
+  node: File;
+  updatedFields: String[];
+  previousValues: FilePreviousValues;
+}
+
+export interface FileSubscriptionPayloadPromise
+  extends Promise<FileSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = FilePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = FilePreviousValuesPromise>() => T;
+}
+
+export interface FileSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<FileSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = FileSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = FilePreviousValuesSubscription>() => T;
+}
+
+export interface UserTrackMetaSubscriptionPayload {
+  mutation: MutationType;
+  node: UserTrackMeta;
+  updatedFields: String[];
+  previousValues: UserTrackMetaPreviousValues;
+}
+
+export interface UserTrackMetaSubscriptionPayloadPromise
+  extends Promise<UserTrackMetaSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UserTrackMetaPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserTrackMetaPreviousValuesPromise>() => T;
+}
+
+export interface UserTrackMetaSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserTrackMetaSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserTrackMetaSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserTrackMetaPreviousValuesSubscription>() => T;
+}
+
+export interface FilePreviousValues {
+  id: ID_Output;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface FilePreviousValuesPromise
+  extends Promise<FilePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  itemType: () => Promise<String>;
+  itemStatus: () => Promise<String>;
+  itemUrlSegment: () => Promise<String>;
+  itemMimeType: () => Promise<String>;
+  itemName: () => Promise<String>;
+  itemContent: () => Promise<String>;
+  itemDeleted: () => Promise<Boolean>;
+}
+
+export interface FilePreviousValuesSubscription
+  extends Promise<AsyncIterator<FilePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  itemType: () => Promise<AsyncIterator<String>>;
+  itemStatus: () => Promise<AsyncIterator<String>>;
+  itemUrlSegment: () => Promise<AsyncIterator<String>>;
+  itemMimeType: () => Promise<AsyncIterator<String>>;
+  itemName: () => Promise<AsyncIterator<String>>;
+  itemContent: () => Promise<AsyncIterator<String>>;
+  itemDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface AggregateBlogPost {
+  count: Int;
+}
+
+export interface AggregateBlogPostPromise
+  extends Promise<AggregateBlogPost>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateBlogPostSubscription
+  extends Promise<AsyncIterator<AggregateBlogPost>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AggregateFile {
+  count: Int;
+}
+
+export interface AggregateFilePromise
+  extends Promise<AggregateFile>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateFileSubscription
+  extends Promise<AsyncIterator<AggregateFile>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface AggregateUser {
@@ -196,56 +4911,754 @@ export interface AggregateUserSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface BatchPayload {
-  count: Long;
+export interface FileMetaSubscriptionPayload {
+  mutation: MutationType;
+  node: FileMeta;
+  updatedFields: String[];
+  previousValues: FileMetaPreviousValues;
 }
 
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
+export interface FileMetaSubscriptionPayloadPromise
+  extends Promise<FileMetaSubscriptionPayload>,
     Fragmentable {
-  count: () => Promise<Long>;
+  mutation: () => Promise<MutationType>;
+  node: <T = FileMetaPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = FileMetaPreviousValuesPromise>() => T;
 }
 
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
+export interface FileMetaSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<FileMetaSubscriptionPayload>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = FileMetaSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = FileMetaPreviousValuesSubscription>() => T;
 }
 
-export interface UserPreviousValues {
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
+}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
+}
+
+export interface FileMetaPreviousValues {
   id: ID_Output;
-  name: String;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
 }
 
-export interface UserPreviousValuesPromise
-  extends Promise<UserPreviousValues>,
+export interface FileMetaPreviousValuesPromise
+  extends Promise<FileMetaPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
+  metaType: () => Promise<String>;
+  metaName: () => Promise<String>;
+  metaValue: () => Promise<String>;
+  metaDeleted: () => Promise<Boolean>;
 }
 
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValues>>,
+export interface FileMetaPreviousValuesSubscription
+  extends Promise<AsyncIterator<FileMetaPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
+  metaType: () => Promise<AsyncIterator<String>>;
+  metaName: () => Promise<AsyncIterator<String>>;
+  metaValue: () => Promise<AsyncIterator<String>>;
+  metaDeleted: () => Promise<AsyncIterator<Boolean>>;
 }
 
-export interface UserEdge {
-  node: User;
+export interface ReviewMetaEdge {
+  node: ReviewMeta;
   cursor: String;
 }
 
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
+export interface ReviewMetaEdgePromise
+  extends Promise<ReviewMetaEdge>,
+    Fragmentable {
+  node: <T = ReviewMetaPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
+export interface ReviewMetaEdgeSubscription
+  extends Promise<AsyncIterator<ReviewMetaEdge>>,
     Fragmentable {
-  node: <T = UserSubscription>() => T;
+  node: <T = ReviewMetaSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface FileEdge {
+  node: File;
+  cursor: String;
+}
+
+export interface FileEdgePromise extends Promise<FileEdge>, Fragmentable {
+  node: <T = FilePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface FileEdgeSubscription
+  extends Promise<AsyncIterator<FileEdge>>,
+    Fragmentable {
+  node: <T = FileSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateReview {
+  count: Int;
+}
+
+export interface AggregateReviewPromise
+  extends Promise<AggregateReview>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateReviewSubscription
+  extends Promise<AsyncIterator<AggregateReview>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProfilePageSubscriptionPayload {
+  mutation: MutationType;
+  node: ProfilePage;
+  updatedFields: String[];
+  previousValues: ProfilePagePreviousValues;
+}
+
+export interface ProfilePageSubscriptionPayloadPromise
+  extends Promise<ProfilePageSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ProfilePagePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ProfilePagePreviousValuesPromise>() => T;
+}
+
+export interface ProfilePageSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ProfilePageSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ProfilePageSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ProfilePagePreviousValuesSubscription>() => T;
+}
+
+export interface ReviewConnection {
+  pageInfo: PageInfo;
+  edges: ReviewEdge[];
+}
+
+export interface ReviewConnectionPromise
+  extends Promise<ReviewConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ReviewEdge>>() => T;
+  aggregate: <T = AggregateReviewPromise>() => T;
+}
+
+export interface ReviewConnectionSubscription
+  extends Promise<AsyncIterator<ReviewConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ReviewEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateReviewSubscription>() => T;
+}
+
+export interface ProfilePagePreviousValues {
+  id: ID_Output;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface ProfilePagePreviousValuesPromise
+  extends Promise<ProfilePagePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  itemType: () => Promise<String>;
+  itemStatus: () => Promise<String>;
+  itemUrlSegment: () => Promise<String>;
+  itemMimeType: () => Promise<String>;
+  itemName: () => Promise<String>;
+  itemContent: () => Promise<String>;
+  itemDeleted: () => Promise<Boolean>;
+}
+
+export interface ProfilePagePreviousValuesSubscription
+  extends Promise<AsyncIterator<ProfilePagePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  itemType: () => Promise<AsyncIterator<String>>;
+  itemStatus: () => Promise<AsyncIterator<String>>;
+  itemUrlSegment: () => Promise<AsyncIterator<String>>;
+  itemMimeType: () => Promise<AsyncIterator<String>>;
+  itemName: () => Promise<AsyncIterator<String>>;
+  itemContent: () => Promise<AsyncIterator<String>>;
+  itemDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface UserMeta {
+  id: ID_Output;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserMetaPromise extends Promise<UserMeta>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  metaType: () => Promise<String>;
+  metaName: () => Promise<String>;
+  metaValue: () => Promise<String>;
+  metaDeleted: () => Promise<Boolean>;
+}
+
+export interface UserMetaSubscription
+  extends Promise<AsyncIterator<UserMeta>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  metaType: () => Promise<AsyncIterator<String>>;
+  metaName: () => Promise<AsyncIterator<String>>;
+  metaValue: () => Promise<AsyncIterator<String>>;
+  metaDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface FileConnection {
+  pageInfo: PageInfo;
+  edges: FileEdge[];
+}
+
+export interface FileConnectionPromise
+  extends Promise<FileConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<FileEdge>>() => T;
+  aggregate: <T = AggregateFilePromise>() => T;
+}
+
+export interface FileConnectionSubscription
+  extends Promise<AsyncIterator<FileConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<FileEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateFileSubscription>() => T;
+}
+
+export interface AggregateProfilePageMeta {
+  count: Int;
+}
+
+export interface AggregateProfilePageMetaPromise
+  extends Promise<AggregateProfilePageMeta>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateProfilePageMetaSubscription
+  extends Promise<AsyncIterator<AggregateProfilePageMeta>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProfilePageMetaSubscriptionPayload {
+  mutation: MutationType;
+  node: ProfilePageMeta;
+  updatedFields: String[];
+  previousValues: ProfilePageMetaPreviousValues;
+}
+
+export interface ProfilePageMetaSubscriptionPayloadPromise
+  extends Promise<ProfilePageMetaSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ProfilePageMetaPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ProfilePageMetaPreviousValuesPromise>() => T;
+}
+
+export interface ProfilePageMetaSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ProfilePageMetaSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ProfilePageMetaSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ProfilePageMetaPreviousValuesSubscription>() => T;
+}
+
+export interface ProfilePageMetaConnection {
+  pageInfo: PageInfo;
+  edges: ProfilePageMetaEdge[];
+}
+
+export interface ProfilePageMetaConnectionPromise
+  extends Promise<ProfilePageMetaConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProfilePageMetaEdge>>() => T;
+  aggregate: <T = AggregateProfilePageMetaPromise>() => T;
+}
+
+export interface ProfilePageMetaConnectionSubscription
+  extends Promise<AsyncIterator<ProfilePageMetaConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ProfilePageMetaEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateProfilePageMetaSubscription>() => T;
+}
+
+export interface ProfilePageMetaPreviousValues {
+  id: ID_Output;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface ProfilePageMetaPreviousValuesPromise
+  extends Promise<ProfilePageMetaPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  metaType: () => Promise<String>;
+  metaName: () => Promise<String>;
+  metaValue: () => Promise<String>;
+  metaDeleted: () => Promise<Boolean>;
+}
+
+export interface ProfilePageMetaPreviousValuesSubscription
+  extends Promise<AsyncIterator<ProfilePageMetaPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  metaType: () => Promise<AsyncIterator<String>>;
+  metaName: () => Promise<AsyncIterator<String>>;
+  metaValue: () => Promise<AsyncIterator<String>>;
+  metaDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface ProfilePageEdge {
+  node: ProfilePage;
+  cursor: String;
+}
+
+export interface ProfilePageEdgePromise
+  extends Promise<ProfilePageEdge>,
+    Fragmentable {
+  node: <T = ProfilePagePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ProfilePageEdgeSubscription
+  extends Promise<AsyncIterator<ProfilePageEdge>>,
+    Fragmentable {
+  node: <T = ProfilePageSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BlogPostMeta {
+  id: ID_Output;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface BlogPostMetaPromise
+  extends Promise<BlogPostMeta>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  blogPost: <T = BlogPostPromise>() => T;
+  metaType: () => Promise<String>;
+  metaName: () => Promise<String>;
+  metaValue: () => Promise<String>;
+  metaDeleted: () => Promise<Boolean>;
+}
+
+export interface BlogPostMetaSubscription
+  extends Promise<AsyncIterator<BlogPostMeta>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  blogPost: <T = BlogPostSubscription>() => T;
+  metaType: () => Promise<AsyncIterator<String>>;
+  metaName: () => Promise<AsyncIterator<String>>;
+  metaValue: () => Promise<AsyncIterator<String>>;
+  metaDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface UserTrackPreviousValues {
+  id: ID_Output;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface UserTrackPreviousValuesPromise
+  extends Promise<UserTrackPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  itemType: () => Promise<String>;
+  itemStatus: () => Promise<String>;
+  itemUrlSegment: () => Promise<String>;
+  itemMimeType: () => Promise<String>;
+  itemName: () => Promise<String>;
+  itemContent: () => Promise<String>;
+  itemDeleted: () => Promise<Boolean>;
+}
+
+export interface UserTrackPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserTrackPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  itemType: () => Promise<AsyncIterator<String>>;
+  itemStatus: () => Promise<AsyncIterator<String>>;
+  itemUrlSegment: () => Promise<AsyncIterator<String>>;
+  itemMimeType: () => Promise<AsyncIterator<String>>;
+  itemName: () => Promise<AsyncIterator<String>>;
+  itemContent: () => Promise<AsyncIterator<String>>;
+  itemDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface ReviewSubscriptionPayload {
+  mutation: MutationType;
+  node: Review;
+  updatedFields: String[];
+  previousValues: ReviewPreviousValues;
+}
+
+export interface ReviewSubscriptionPayloadPromise
+  extends Promise<ReviewSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ReviewPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ReviewPreviousValuesPromise>() => T;
+}
+
+export interface ReviewSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ReviewSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ReviewSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ReviewPreviousValuesSubscription>() => T;
+}
+
+export interface UserTrackMetaEdge {
+  node: UserTrackMeta;
+  cursor: String;
+}
+
+export interface UserTrackMetaEdgePromise
+  extends Promise<UserTrackMetaEdge>,
+    Fragmentable {
+  node: <T = UserTrackMetaPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserTrackMetaEdgeSubscription
+  extends Promise<AsyncIterator<UserTrackMetaEdge>>,
+    Fragmentable {
+  node: <T = UserTrackMetaSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ReviewPreviousValues {
+  id: ID_Output;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface ReviewPreviousValuesPromise
+  extends Promise<ReviewPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  itemType: () => Promise<String>;
+  itemStatus: () => Promise<String>;
+  itemUrlSegment: () => Promise<String>;
+  itemMimeType: () => Promise<String>;
+  itemName: () => Promise<String>;
+  itemContent: () => Promise<String>;
+  itemDeleted: () => Promise<Boolean>;
+}
+
+export interface ReviewPreviousValuesSubscription
+  extends Promise<AsyncIterator<ReviewPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  itemType: () => Promise<AsyncIterator<String>>;
+  itemStatus: () => Promise<AsyncIterator<String>>;
+  itemUrlSegment: () => Promise<AsyncIterator<String>>;
+  itemMimeType: () => Promise<AsyncIterator<String>>;
+  itemName: () => Promise<AsyncIterator<String>>;
+  itemContent: () => Promise<AsyncIterator<String>>;
+  itemDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface AggregateUserMeta {
+  count: Int;
+}
+
+export interface AggregateUserMetaPromise
+  extends Promise<AggregateUserMeta>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserMetaSubscription
+  extends Promise<AsyncIterator<AggregateUserMeta>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface FileMeta {
+  id: ID_Output;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface FileMetaPromise extends Promise<FileMeta>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  file: <T = FilePromise>() => T;
+  metaType: () => Promise<String>;
+  metaName: () => Promise<String>;
+  metaValue: () => Promise<String>;
+  metaDeleted: () => Promise<Boolean>;
+}
+
+export interface FileMetaSubscription
+  extends Promise<AsyncIterator<FileMeta>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  file: <T = FileSubscription>() => T;
+  metaType: () => Promise<AsyncIterator<String>>;
+  metaName: () => Promise<AsyncIterator<String>>;
+  metaValue: () => Promise<AsyncIterator<String>>;
+  metaDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface UserFeedbackMetaEdge {
+  node: UserFeedbackMeta;
+  cursor: String;
+}
+
+export interface UserFeedbackMetaEdgePromise
+  extends Promise<UserFeedbackMetaEdge>,
+    Fragmentable {
+  node: <T = UserFeedbackMetaPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserFeedbackMetaEdgeSubscription
+  extends Promise<AsyncIterator<UserFeedbackMetaEdge>>,
+    Fragmentable {
+  node: <T = UserFeedbackMetaSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ReviewMetaSubscriptionPayload {
+  mutation: MutationType;
+  node: ReviewMeta;
+  updatedFields: String[];
+  previousValues: ReviewMetaPreviousValues;
+}
+
+export interface ReviewMetaSubscriptionPayloadPromise
+  extends Promise<ReviewMetaSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ReviewMetaPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ReviewMetaPreviousValuesPromise>() => T;
+}
+
+export interface ReviewMetaSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ReviewMetaSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ReviewMetaSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ReviewMetaPreviousValuesSubscription>() => T;
+}
+
+export interface UserFeedbackConnection {
+  pageInfo: PageInfo;
+  edges: UserFeedbackEdge[];
+}
+
+export interface UserFeedbackConnectionPromise
+  extends Promise<UserFeedbackConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserFeedbackEdge>>() => T;
+  aggregate: <T = AggregateUserFeedbackPromise>() => T;
+}
+
+export interface UserFeedbackConnectionSubscription
+  extends Promise<AsyncIterator<UserFeedbackConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserFeedbackEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserFeedbackSubscription>() => T;
+}
+
+export interface ReviewMetaPreviousValues {
+  id: ID_Output;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface ReviewMetaPreviousValuesPromise
+  extends Promise<ReviewMetaPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  metaType: () => Promise<String>;
+  metaName: () => Promise<String>;
+  metaValue: () => Promise<String>;
+  metaDeleted: () => Promise<Boolean>;
+}
+
+export interface ReviewMetaPreviousValuesSubscription
+  extends Promise<AsyncIterator<ReviewMetaPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  metaType: () => Promise<AsyncIterator<String>>;
+  metaName: () => Promise<AsyncIterator<String>>;
+  metaValue: () => Promise<AsyncIterator<String>>;
+  metaDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface UserFeedback {
+  id: ID_Output;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface UserFeedbackPromise
+  extends Promise<UserFeedback>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  itemType: () => Promise<String>;
+  itemStatus: () => Promise<String>;
+  itemUrlSegment: () => Promise<String>;
+  itemMimeType: () => Promise<String>;
+  itemName: () => Promise<String>;
+  itemContent: () => Promise<String>;
+  itemDeleted: () => Promise<Boolean>;
+  itemMeta: <T = FragmentableArray<UserFeedbackMeta>>(
+    args?: {
+      where?: UserFeedbackMetaWhereInput;
+      orderBy?: UserFeedbackMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface UserFeedbackSubscription
+  extends Promise<AsyncIterator<UserFeedback>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  itemType: () => Promise<AsyncIterator<String>>;
+  itemStatus: () => Promise<AsyncIterator<String>>;
+  itemUrlSegment: () => Promise<AsyncIterator<String>>;
+  itemMimeType: () => Promise<AsyncIterator<String>>;
+  itemName: () => Promise<AsyncIterator<String>>;
+  itemContent: () => Promise<AsyncIterator<String>>;
+  itemDeleted: () => Promise<AsyncIterator<Boolean>>;
+  itemMeta: <T = Promise<AsyncIterator<UserFeedbackMetaSubscription>>>(
+    args?: {
+      where?: UserFeedbackMetaWhereInput;
+      orderBy?: UserFeedbackMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface BlogPostConnection {
+  pageInfo: PageInfo;
+  edges: BlogPostEdge[];
+}
+
+export interface BlogPostConnectionPromise
+  extends Promise<BlogPostConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<BlogPostEdge>>() => T;
+  aggregate: <T = AggregateBlogPostPromise>() => T;
+}
+
+export interface BlogPostConnectionSubscription
+  extends Promise<AsyncIterator<BlogPostConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<BlogPostEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateBlogPostSubscription>() => T;
+}
+
+export interface AggregateReviewMeta {
+  count: Int;
+}
+
+export interface AggregateReviewMetaPromise
+  extends Promise<AggregateReviewMeta>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateReviewMetaSubscription
+  extends Promise<AsyncIterator<AggregateReviewMeta>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface UserSubscriptionPayload {
@@ -273,79 +5686,624 @@ export interface UserSubscriptionPayloadSubscription
   previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
-export interface User {
+export interface ReviewEdge {
+  node: Review;
+  cursor: String;
+}
+
+export interface ReviewEdgePromise extends Promise<ReviewEdge>, Fragmentable {
+  node: <T = ReviewPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ReviewEdgeSubscription
+  extends Promise<AsyncIterator<ReviewEdge>>,
+    Fragmentable {
+  node: <T = ReviewSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserPreviousValues {
   id: ID_Output;
-  name: String;
+  userType?: Int;
+  userEmail?: String;
+  userPassword?: String;
+  confirmHash?: String;
+  forgotHash?: String;
+  userConfirmed?: Int;
+  userDeleted?: Boolean;
 }
 
-export interface UserPromise extends Promise<User>, Fragmentable {
+export interface UserPreviousValuesPromise
+  extends Promise<UserPreviousValues>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
+  userType: () => Promise<Int>;
+  userEmail: () => Promise<String>;
+  userPassword: () => Promise<String>;
+  confirmHash: () => Promise<String>;
+  forgotHash: () => Promise<String>;
+  userConfirmed: () => Promise<Int>;
+  userDeleted: () => Promise<Boolean>;
 }
 
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
+export interface UserPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
+  userType: () => Promise<AsyncIterator<Int>>;
+  userEmail: () => Promise<AsyncIterator<String>>;
+  userPassword: () => Promise<AsyncIterator<String>>;
+  confirmHash: () => Promise<AsyncIterator<String>>;
+  forgotHash: () => Promise<AsyncIterator<String>>;
+  userConfirmed: () => Promise<AsyncIterator<Int>>;
+  userDeleted: () => Promise<AsyncIterator<Boolean>>;
 }
 
-export interface UserConnection {
+export interface Review {
+  id: ID_Output;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface ReviewPromise extends Promise<Review>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  itemType: () => Promise<String>;
+  itemStatus: () => Promise<String>;
+  itemUrlSegment: () => Promise<String>;
+  itemMimeType: () => Promise<String>;
+  itemName: () => Promise<String>;
+  itemContent: () => Promise<String>;
+  itemDeleted: () => Promise<Boolean>;
+  itemMeta: <T = FragmentableArray<ReviewMeta>>(
+    args?: {
+      where?: ReviewMetaWhereInput;
+      orderBy?: ReviewMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface ReviewSubscription
+  extends Promise<AsyncIterator<Review>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  itemType: () => Promise<AsyncIterator<String>>;
+  itemStatus: () => Promise<AsyncIterator<String>>;
+  itemUrlSegment: () => Promise<AsyncIterator<String>>;
+  itemMimeType: () => Promise<AsyncIterator<String>>;
+  itemName: () => Promise<AsyncIterator<String>>;
+  itemContent: () => Promise<AsyncIterator<String>>;
+  itemDeleted: () => Promise<AsyncIterator<Boolean>>;
+  itemMeta: <T = Promise<AsyncIterator<ReviewMetaSubscription>>>(
+    args?: {
+      where?: ReviewMetaWhereInput;
+      orderBy?: ReviewMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface File {
+  id: ID_Output;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface FilePromise extends Promise<File>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  itemType: () => Promise<String>;
+  itemStatus: () => Promise<String>;
+  itemUrlSegment: () => Promise<String>;
+  itemMimeType: () => Promise<String>;
+  itemName: () => Promise<String>;
+  itemContent: () => Promise<String>;
+  itemDeleted: () => Promise<Boolean>;
+  itemMeta: <T = FragmentableArray<FileMeta>>(
+    args?: {
+      where?: FileMetaWhereInput;
+      orderBy?: FileMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface FileSubscription
+  extends Promise<AsyncIterator<File>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  itemType: () => Promise<AsyncIterator<String>>;
+  itemStatus: () => Promise<AsyncIterator<String>>;
+  itemUrlSegment: () => Promise<AsyncIterator<String>>;
+  itemMimeType: () => Promise<AsyncIterator<String>>;
+  itemName: () => Promise<AsyncIterator<String>>;
+  itemContent: () => Promise<AsyncIterator<String>>;
+  itemDeleted: () => Promise<AsyncIterator<Boolean>>;
+  itemMeta: <T = Promise<AsyncIterator<FileMetaSubscription>>>(
+    args?: {
+      where?: FileMetaWhereInput;
+      orderBy?: FileMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface AggregateProfilePage {
+  count: Int;
+}
+
+export interface AggregateProfilePagePromise
+  extends Promise<AggregateProfilePage>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateProfilePageSubscription
+  extends Promise<AsyncIterator<AggregateProfilePage>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserFeedbackSubscriptionPayload {
+  mutation: MutationType;
+  node: UserFeedback;
+  updatedFields: String[];
+  previousValues: UserFeedbackPreviousValues;
+}
+
+export interface UserFeedbackSubscriptionPayloadPromise
+  extends Promise<UserFeedbackSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UserFeedbackPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserFeedbackPreviousValuesPromise>() => T;
+}
+
+export interface UserFeedbackSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserFeedbackSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserFeedbackSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserFeedbackPreviousValuesSubscription>() => T;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface UserFeedbackPreviousValues {
+  id: ID_Output;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
+}
+
+export interface UserFeedbackPreviousValuesPromise
+  extends Promise<UserFeedbackPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  itemType: () => Promise<String>;
+  itemStatus: () => Promise<String>;
+  itemUrlSegment: () => Promise<String>;
+  itemMimeType: () => Promise<String>;
+  itemName: () => Promise<String>;
+  itemContent: () => Promise<String>;
+  itemDeleted: () => Promise<Boolean>;
+}
+
+export interface UserFeedbackPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserFeedbackPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  itemType: () => Promise<AsyncIterator<String>>;
+  itemStatus: () => Promise<AsyncIterator<String>>;
+  itemUrlSegment: () => Promise<AsyncIterator<String>>;
+  itemMimeType: () => Promise<AsyncIterator<String>>;
+  itemName: () => Promise<AsyncIterator<String>>;
+  itemContent: () => Promise<AsyncIterator<String>>;
+  itemDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface UserMetaConnection {
   pageInfo: PageInfo;
-  edges: UserEdge[];
+  edges: UserMetaEdge[];
 }
 
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
+export interface UserMetaConnectionPromise
+  extends Promise<UserMetaConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
+  edges: <T = FragmentableArray<UserMetaEdge>>() => T;
+  aggregate: <T = AggregateUserMetaPromise>() => T;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
+export interface UserMetaConnectionSubscription
+  extends Promise<AsyncIterator<UserMetaConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserMetaEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserMetaSubscription>() => T;
 }
 
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
+export interface AggregateBlogPostMeta {
+  count: Int;
 }
 
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
+export interface AggregateBlogPostMetaPromise
+  extends Promise<AggregateBlogPostMeta>,
     Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<Int>;
 }
 
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
+export interface AggregateBlogPostMetaSubscription
+  extends Promise<AsyncIterator<AggregateBlogPostMeta>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserFeedbackMeta {
+  id: ID_Output;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserFeedbackMetaPromise
+  extends Promise<UserFeedbackMeta>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  userFeedback: <T = UserFeedbackPromise>() => T;
+  metaType: () => Promise<String>;
+  metaName: () => Promise<String>;
+  metaValue: () => Promise<String>;
+  metaDeleted: () => Promise<Boolean>;
+}
+
+export interface UserFeedbackMetaSubscription
+  extends Promise<AsyncIterator<UserFeedbackMeta>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  userFeedback: <T = UserFeedbackSubscription>() => T;
+  metaType: () => Promise<AsyncIterator<String>>;
+  metaName: () => Promise<AsyncIterator<String>>;
+  metaValue: () => Promise<AsyncIterator<String>>;
+  metaDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface UserFeedbackMetaSubscriptionPayload {
+  mutation: MutationType;
+  node: UserFeedbackMeta;
+  updatedFields: String[];
+  previousValues: UserFeedbackMetaPreviousValues;
+}
+
+export interface UserFeedbackMetaSubscriptionPayloadPromise
+  extends Promise<UserFeedbackMetaSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UserFeedbackMetaPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserFeedbackMetaPreviousValuesPromise>() => T;
+}
+
+export interface UserFeedbackMetaSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserFeedbackMetaSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserFeedbackMetaSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserFeedbackMetaPreviousValuesSubscription>() => T;
+}
+
+export interface ReviewMetaConnection {
+  pageInfo: PageInfo;
+  edges: ReviewMetaEdge[];
+}
+
+export interface ReviewMetaConnectionPromise
+  extends Promise<ReviewMetaConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ReviewMetaEdge>>() => T;
+  aggregate: <T = AggregateReviewMetaPromise>() => T;
+}
+
+export interface ReviewMetaConnectionSubscription
+  extends Promise<AsyncIterator<ReviewMetaConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ReviewMetaEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateReviewMetaSubscription>() => T;
+}
+
+export interface UserFeedbackMetaPreviousValues {
+  id: ID_Output;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserFeedbackMetaPreviousValuesPromise
+  extends Promise<UserFeedbackMetaPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  metaType: () => Promise<String>;
+  metaName: () => Promise<String>;
+  metaValue: () => Promise<String>;
+  metaDeleted: () => Promise<Boolean>;
+}
+
+export interface UserFeedbackMetaPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserFeedbackMetaPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  metaType: () => Promise<AsyncIterator<String>>;
+  metaName: () => Promise<AsyncIterator<String>>;
+  metaValue: () => Promise<AsyncIterator<String>>;
+  metaDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface ProfilePageMetaEdge {
+  node: ProfilePageMeta;
+  cursor: String;
+}
+
+export interface ProfilePageMetaEdgePromise
+  extends Promise<ProfilePageMetaEdge>,
+    Fragmentable {
+  node: <T = ProfilePageMetaPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ProfilePageMetaEdgeSubscription
+  extends Promise<AsyncIterator<ProfilePageMetaEdge>>,
+    Fragmentable {
+  node: <T = ProfilePageMetaSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateUserTrack {
+  count: Int;
+}
+
+export interface AggregateUserTrackPromise
+  extends Promise<AggregateUserTrack>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserTrackSubscription
+  extends Promise<AsyncIterator<AggregateUserTrack>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BlogPostMetaConnection {
+  pageInfo: PageInfo;
+  edges: BlogPostMetaEdge[];
+}
+
+export interface BlogPostMetaConnectionPromise
+  extends Promise<BlogPostMetaConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<BlogPostMetaEdge>>() => T;
+  aggregate: <T = AggregateBlogPostMetaPromise>() => T;
+}
+
+export interface BlogPostMetaConnectionSubscription
+  extends Promise<AsyncIterator<BlogPostMetaConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<BlogPostMetaEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateBlogPostMetaSubscription>() => T;
+}
+
+export interface UserMetaPreviousValues {
+  id: ID_Output;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface UserMetaPreviousValuesPromise
+  extends Promise<UserMetaPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  metaType: () => Promise<String>;
+  metaName: () => Promise<String>;
+  metaValue: () => Promise<String>;
+  metaDeleted: () => Promise<Boolean>;
+}
+
+export interface UserMetaPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserMetaPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  metaType: () => Promise<AsyncIterator<String>>;
+  metaName: () => Promise<AsyncIterator<String>>;
+  metaValue: () => Promise<AsyncIterator<String>>;
+  metaDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface UserMetaSubscriptionPayload {
+  mutation: MutationType;
+  node: UserMeta;
+  updatedFields: String[];
+  previousValues: UserMetaPreviousValues;
+}
+
+export interface UserMetaSubscriptionPayloadPromise
+  extends Promise<UserMetaSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UserMetaPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserMetaPreviousValuesPromise>() => T;
+}
+
+export interface UserMetaSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserMetaSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserMetaSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserMetaPreviousValuesSubscription>() => T;
+}
+
+export interface BlogPostMetaEdge {
+  node: BlogPostMeta;
+  cursor: String;
+}
+
+export interface BlogPostMetaEdgePromise
+  extends Promise<BlogPostMetaEdge>,
+    Fragmentable {
+  node: <T = BlogPostMetaPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface BlogPostMetaEdgeSubscription
+  extends Promise<AsyncIterator<BlogPostMetaEdge>>,
+    Fragmentable {
+  node: <T = BlogPostMetaSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateUserFeedback {
+  count: Int;
+}
+
+export interface AggregateUserFeedbackPromise
+  extends Promise<AggregateUserFeedback>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserFeedbackSubscription
+  extends Promise<AsyncIterator<AggregateUserFeedback>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProfilePageConnection {
+  pageInfo: PageInfo;
+  edges: ProfilePageEdge[];
+}
+
+export interface ProfilePageConnectionPromise
+  extends Promise<ProfilePageConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProfilePageEdge>>() => T;
+  aggregate: <T = AggregateProfilePagePromise>() => T;
+}
+
+export interface ProfilePageConnectionSubscription
+  extends Promise<AsyncIterator<ProfilePageConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ProfilePageEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateProfilePageSubscription>() => T;
+}
+
+export interface ReviewMeta {
+  id: ID_Output;
+  metaType?: String;
+  metaName: String;
+  metaValue: String;
+  metaDeleted?: Boolean;
+}
+
+export interface ReviewMetaPromise extends Promise<ReviewMeta>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  review: <T = ReviewPromise>() => T;
+  metaType: () => Promise<String>;
+  metaName: () => Promise<String>;
+  metaValue: () => Promise<String>;
+  metaDeleted: () => Promise<Boolean>;
+}
+
+export interface ReviewMetaSubscription
+  extends Promise<AsyncIterator<ReviewMeta>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  review: <T = ReviewSubscription>() => T;
+  metaType: () => Promise<AsyncIterator<String>>;
+  metaName: () => Promise<AsyncIterator<String>>;
+  metaValue: () => Promise<AsyncIterator<String>>;
+  metaDeleted: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface UserEdge {
+  node: User;
+  cursor: String;
+}
+
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
 
 export type Long = string;
-
-/*
-The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
-*/
-export type ID_Input = string | number;
-export type ID_Output = string;
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
@@ -353,9 +6311,20 @@ The `Int` scalar type represents non-fractional signed whole numeric values. Int
 export type Int = number;
 
 /*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
+
+/*
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
+
+/*
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+*/
+export type ID_Input = string | number;
+export type ID_Output = string;
 
 /**
  * Model Metadata
@@ -364,6 +6333,58 @@ export type Boolean = boolean;
 export const models: Model[] = [
   {
     name: "User",
+    embedded: false
+  },
+  {
+    name: "UserMeta",
+    embedded: false
+  },
+  {
+    name: "UserTrack",
+    embedded: false
+  },
+  {
+    name: "UserTrackMeta",
+    embedded: false
+  },
+  {
+    name: "UserFeedback",
+    embedded: false
+  },
+  {
+    name: "UserFeedbackMeta",
+    embedded: false
+  },
+  {
+    name: "ProfilePage",
+    embedded: false
+  },
+  {
+    name: "ProfilePageMeta",
+    embedded: false
+  },
+  {
+    name: "BlogPost",
+    embedded: false
+  },
+  {
+    name: "BlogPostMeta",
+    embedded: false
+  },
+  {
+    name: "Review",
+    embedded: false
+  },
+  {
+    name: "ReviewMeta",
+    embedded: false
+  },
+  {
+    name: "File",
+    embedded: false
+  },
+  {
+    name: "FileMeta",
     embedded: false
   }
 ];

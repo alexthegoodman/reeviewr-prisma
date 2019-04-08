@@ -2,7 +2,59 @@
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-export const typeDefs = /* GraphQL */ `type AggregateUser {
+export const typeDefs = /* GraphQL */ `type AggregateBlogPost {
+  count: Int!
+}
+
+type AggregateBlogPostMeta {
+  count: Int!
+}
+
+type AggregateFile {
+  count: Int!
+}
+
+type AggregateFileMeta {
+  count: Int!
+}
+
+type AggregateProfilePage {
+  count: Int!
+}
+
+type AggregateProfilePageMeta {
+  count: Int!
+}
+
+type AggregateReview {
+  count: Int!
+}
+
+type AggregateReviewMeta {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type AggregateUserFeedback {
+  count: Int!
+}
+
+type AggregateUserFeedbackMeta {
+  count: Int!
+}
+
+type AggregateUserMeta {
+  count: Int!
+}
+
+type AggregateUserTrack {
+  count: Int!
+}
+
+type AggregateUserTrackMeta {
   count: Int!
 }
 
@@ -10,15 +62,1169 @@ type BatchPayload {
   count: Long!
 }
 
+type BlogPost {
+  id: ID!
+  user: User
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta(where: BlogPostMetaWhereInput, orderBy: BlogPostMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [BlogPostMeta!]
+}
+
+type BlogPostConnection {
+  pageInfo: PageInfo!
+  edges: [BlogPostEdge]!
+  aggregate: AggregateBlogPost!
+}
+
+input BlogPostCreateInput {
+  user: UserCreateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: BlogPostMetaCreateManyWithoutBlogPostInput
+}
+
+input BlogPostCreateOneWithoutItemMetaInput {
+  create: BlogPostCreateWithoutItemMetaInput
+  connect: BlogPostWhereUniqueInput
+}
+
+input BlogPostCreateWithoutItemMetaInput {
+  user: UserCreateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+}
+
+type BlogPostEdge {
+  node: BlogPost!
+  cursor: String!
+}
+
+type BlogPostMeta {
+  id: ID!
+  blogPost: BlogPost
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+type BlogPostMetaConnection {
+  pageInfo: PageInfo!
+  edges: [BlogPostMetaEdge]!
+  aggregate: AggregateBlogPostMeta!
+}
+
+input BlogPostMetaCreateInput {
+  blogPost: BlogPostCreateOneWithoutItemMetaInput
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+input BlogPostMetaCreateManyWithoutBlogPostInput {
+  create: [BlogPostMetaCreateWithoutBlogPostInput!]
+  connect: [BlogPostMetaWhereUniqueInput!]
+}
+
+input BlogPostMetaCreateWithoutBlogPostInput {
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+type BlogPostMetaEdge {
+  node: BlogPostMeta!
+  cursor: String!
+}
+
+enum BlogPostMetaOrderByInput {
+  id_ASC
+  id_DESC
+  metaType_ASC
+  metaType_DESC
+  metaName_ASC
+  metaName_DESC
+  metaValue_ASC
+  metaValue_DESC
+  metaDeleted_ASC
+  metaDeleted_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type BlogPostMetaPreviousValues {
+  id: ID!
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+input BlogPostMetaScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  metaType: String
+  metaType_not: String
+  metaType_in: [String!]
+  metaType_not_in: [String!]
+  metaType_lt: String
+  metaType_lte: String
+  metaType_gt: String
+  metaType_gte: String
+  metaType_contains: String
+  metaType_not_contains: String
+  metaType_starts_with: String
+  metaType_not_starts_with: String
+  metaType_ends_with: String
+  metaType_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
+  metaValue: String
+  metaValue_not: String
+  metaValue_in: [String!]
+  metaValue_not_in: [String!]
+  metaValue_lt: String
+  metaValue_lte: String
+  metaValue_gt: String
+  metaValue_gte: String
+  metaValue_contains: String
+  metaValue_not_contains: String
+  metaValue_starts_with: String
+  metaValue_not_starts_with: String
+  metaValue_ends_with: String
+  metaValue_not_ends_with: String
+  metaDeleted: Boolean
+  metaDeleted_not: Boolean
+  AND: [BlogPostMetaScalarWhereInput!]
+  OR: [BlogPostMetaScalarWhereInput!]
+  NOT: [BlogPostMetaScalarWhereInput!]
+}
+
+type BlogPostMetaSubscriptionPayload {
+  mutation: MutationType!
+  node: BlogPostMeta
+  updatedFields: [String!]
+  previousValues: BlogPostMetaPreviousValues
+}
+
+input BlogPostMetaSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: BlogPostMetaWhereInput
+  AND: [BlogPostMetaSubscriptionWhereInput!]
+  OR: [BlogPostMetaSubscriptionWhereInput!]
+  NOT: [BlogPostMetaSubscriptionWhereInput!]
+}
+
+input BlogPostMetaUpdateInput {
+  blogPost: BlogPostUpdateOneWithoutItemMetaInput
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input BlogPostMetaUpdateManyDataInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input BlogPostMetaUpdateManyMutationInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input BlogPostMetaUpdateManyWithoutBlogPostInput {
+  create: [BlogPostMetaCreateWithoutBlogPostInput!]
+  delete: [BlogPostMetaWhereUniqueInput!]
+  connect: [BlogPostMetaWhereUniqueInput!]
+  set: [BlogPostMetaWhereUniqueInput!]
+  disconnect: [BlogPostMetaWhereUniqueInput!]
+  update: [BlogPostMetaUpdateWithWhereUniqueWithoutBlogPostInput!]
+  upsert: [BlogPostMetaUpsertWithWhereUniqueWithoutBlogPostInput!]
+  deleteMany: [BlogPostMetaScalarWhereInput!]
+  updateMany: [BlogPostMetaUpdateManyWithWhereNestedInput!]
+}
+
+input BlogPostMetaUpdateManyWithWhereNestedInput {
+  where: BlogPostMetaScalarWhereInput!
+  data: BlogPostMetaUpdateManyDataInput!
+}
+
+input BlogPostMetaUpdateWithoutBlogPostDataInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input BlogPostMetaUpdateWithWhereUniqueWithoutBlogPostInput {
+  where: BlogPostMetaWhereUniqueInput!
+  data: BlogPostMetaUpdateWithoutBlogPostDataInput!
+}
+
+input BlogPostMetaUpsertWithWhereUniqueWithoutBlogPostInput {
+  where: BlogPostMetaWhereUniqueInput!
+  update: BlogPostMetaUpdateWithoutBlogPostDataInput!
+  create: BlogPostMetaCreateWithoutBlogPostInput!
+}
+
+input BlogPostMetaWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  blogPost: BlogPostWhereInput
+  metaType: String
+  metaType_not: String
+  metaType_in: [String!]
+  metaType_not_in: [String!]
+  metaType_lt: String
+  metaType_lte: String
+  metaType_gt: String
+  metaType_gte: String
+  metaType_contains: String
+  metaType_not_contains: String
+  metaType_starts_with: String
+  metaType_not_starts_with: String
+  metaType_ends_with: String
+  metaType_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
+  metaValue: String
+  metaValue_not: String
+  metaValue_in: [String!]
+  metaValue_not_in: [String!]
+  metaValue_lt: String
+  metaValue_lte: String
+  metaValue_gt: String
+  metaValue_gte: String
+  metaValue_contains: String
+  metaValue_not_contains: String
+  metaValue_starts_with: String
+  metaValue_not_starts_with: String
+  metaValue_ends_with: String
+  metaValue_not_ends_with: String
+  metaDeleted: Boolean
+  metaDeleted_not: Boolean
+  AND: [BlogPostMetaWhereInput!]
+  OR: [BlogPostMetaWhereInput!]
+  NOT: [BlogPostMetaWhereInput!]
+}
+
+input BlogPostMetaWhereUniqueInput {
+  id: ID
+}
+
+enum BlogPostOrderByInput {
+  id_ASC
+  id_DESC
+  itemType_ASC
+  itemType_DESC
+  itemStatus_ASC
+  itemStatus_DESC
+  itemUrlSegment_ASC
+  itemUrlSegment_DESC
+  itemMimeType_ASC
+  itemMimeType_DESC
+  itemName_ASC
+  itemName_DESC
+  itemContent_ASC
+  itemContent_DESC
+  itemDeleted_ASC
+  itemDeleted_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type BlogPostPreviousValues {
+  id: ID!
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+}
+
+type BlogPostSubscriptionPayload {
+  mutation: MutationType!
+  node: BlogPost
+  updatedFields: [String!]
+  previousValues: BlogPostPreviousValues
+}
+
+input BlogPostSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: BlogPostWhereInput
+  AND: [BlogPostSubscriptionWhereInput!]
+  OR: [BlogPostSubscriptionWhereInput!]
+  NOT: [BlogPostSubscriptionWhereInput!]
+}
+
+input BlogPostUpdateInput {
+  user: UserUpdateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: BlogPostMetaUpdateManyWithoutBlogPostInput
+}
+
+input BlogPostUpdateManyMutationInput {
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+}
+
+input BlogPostUpdateOneWithoutItemMetaInput {
+  create: BlogPostCreateWithoutItemMetaInput
+  update: BlogPostUpdateWithoutItemMetaDataInput
+  upsert: BlogPostUpsertWithoutItemMetaInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: BlogPostWhereUniqueInput
+}
+
+input BlogPostUpdateWithoutItemMetaDataInput {
+  user: UserUpdateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+}
+
+input BlogPostUpsertWithoutItemMetaInput {
+  update: BlogPostUpdateWithoutItemMetaDataInput!
+  create: BlogPostCreateWithoutItemMetaInput!
+}
+
+input BlogPostWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  itemType: String
+  itemType_not: String
+  itemType_in: [String!]
+  itemType_not_in: [String!]
+  itemType_lt: String
+  itemType_lte: String
+  itemType_gt: String
+  itemType_gte: String
+  itemType_contains: String
+  itemType_not_contains: String
+  itemType_starts_with: String
+  itemType_not_starts_with: String
+  itemType_ends_with: String
+  itemType_not_ends_with: String
+  itemStatus: String
+  itemStatus_not: String
+  itemStatus_in: [String!]
+  itemStatus_not_in: [String!]
+  itemStatus_lt: String
+  itemStatus_lte: String
+  itemStatus_gt: String
+  itemStatus_gte: String
+  itemStatus_contains: String
+  itemStatus_not_contains: String
+  itemStatus_starts_with: String
+  itemStatus_not_starts_with: String
+  itemStatus_ends_with: String
+  itemStatus_not_ends_with: String
+  itemUrlSegment: String
+  itemUrlSegment_not: String
+  itemUrlSegment_in: [String!]
+  itemUrlSegment_not_in: [String!]
+  itemUrlSegment_lt: String
+  itemUrlSegment_lte: String
+  itemUrlSegment_gt: String
+  itemUrlSegment_gte: String
+  itemUrlSegment_contains: String
+  itemUrlSegment_not_contains: String
+  itemUrlSegment_starts_with: String
+  itemUrlSegment_not_starts_with: String
+  itemUrlSegment_ends_with: String
+  itemUrlSegment_not_ends_with: String
+  itemMimeType: String
+  itemMimeType_not: String
+  itemMimeType_in: [String!]
+  itemMimeType_not_in: [String!]
+  itemMimeType_lt: String
+  itemMimeType_lte: String
+  itemMimeType_gt: String
+  itemMimeType_gte: String
+  itemMimeType_contains: String
+  itemMimeType_not_contains: String
+  itemMimeType_starts_with: String
+  itemMimeType_not_starts_with: String
+  itemMimeType_ends_with: String
+  itemMimeType_not_ends_with: String
+  itemName: String
+  itemName_not: String
+  itemName_in: [String!]
+  itemName_not_in: [String!]
+  itemName_lt: String
+  itemName_lte: String
+  itemName_gt: String
+  itemName_gte: String
+  itemName_contains: String
+  itemName_not_contains: String
+  itemName_starts_with: String
+  itemName_not_starts_with: String
+  itemName_ends_with: String
+  itemName_not_ends_with: String
+  itemContent: String
+  itemContent_not: String
+  itemContent_in: [String!]
+  itemContent_not_in: [String!]
+  itemContent_lt: String
+  itemContent_lte: String
+  itemContent_gt: String
+  itemContent_gte: String
+  itemContent_contains: String
+  itemContent_not_contains: String
+  itemContent_starts_with: String
+  itemContent_not_starts_with: String
+  itemContent_ends_with: String
+  itemContent_not_ends_with: String
+  itemDeleted: Boolean
+  itemDeleted_not: Boolean
+  itemMeta_every: BlogPostMetaWhereInput
+  itemMeta_some: BlogPostMetaWhereInput
+  itemMeta_none: BlogPostMetaWhereInput
+  AND: [BlogPostWhereInput!]
+  OR: [BlogPostWhereInput!]
+  NOT: [BlogPostWhereInput!]
+}
+
+input BlogPostWhereUniqueInput {
+  id: ID
+}
+
+type File {
+  id: ID!
+  user: User
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta(where: FileMetaWhereInput, orderBy: FileMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FileMeta!]
+}
+
+type FileConnection {
+  pageInfo: PageInfo!
+  edges: [FileEdge]!
+  aggregate: AggregateFile!
+}
+
+input FileCreateInput {
+  user: UserCreateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: FileMetaCreateManyWithoutFileInput
+}
+
+input FileCreateOneWithoutItemMetaInput {
+  create: FileCreateWithoutItemMetaInput
+  connect: FileWhereUniqueInput
+}
+
+input FileCreateWithoutItemMetaInput {
+  user: UserCreateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+}
+
+type FileEdge {
+  node: File!
+  cursor: String!
+}
+
+type FileMeta {
+  id: ID!
+  file: File
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+type FileMetaConnection {
+  pageInfo: PageInfo!
+  edges: [FileMetaEdge]!
+  aggregate: AggregateFileMeta!
+}
+
+input FileMetaCreateInput {
+  file: FileCreateOneWithoutItemMetaInput
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+input FileMetaCreateManyWithoutFileInput {
+  create: [FileMetaCreateWithoutFileInput!]
+  connect: [FileMetaWhereUniqueInput!]
+}
+
+input FileMetaCreateWithoutFileInput {
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+type FileMetaEdge {
+  node: FileMeta!
+  cursor: String!
+}
+
+enum FileMetaOrderByInput {
+  id_ASC
+  id_DESC
+  metaType_ASC
+  metaType_DESC
+  metaName_ASC
+  metaName_DESC
+  metaValue_ASC
+  metaValue_DESC
+  metaDeleted_ASC
+  metaDeleted_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type FileMetaPreviousValues {
+  id: ID!
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+input FileMetaScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  metaType: String
+  metaType_not: String
+  metaType_in: [String!]
+  metaType_not_in: [String!]
+  metaType_lt: String
+  metaType_lte: String
+  metaType_gt: String
+  metaType_gte: String
+  metaType_contains: String
+  metaType_not_contains: String
+  metaType_starts_with: String
+  metaType_not_starts_with: String
+  metaType_ends_with: String
+  metaType_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
+  metaValue: String
+  metaValue_not: String
+  metaValue_in: [String!]
+  metaValue_not_in: [String!]
+  metaValue_lt: String
+  metaValue_lte: String
+  metaValue_gt: String
+  metaValue_gte: String
+  metaValue_contains: String
+  metaValue_not_contains: String
+  metaValue_starts_with: String
+  metaValue_not_starts_with: String
+  metaValue_ends_with: String
+  metaValue_not_ends_with: String
+  metaDeleted: Boolean
+  metaDeleted_not: Boolean
+  AND: [FileMetaScalarWhereInput!]
+  OR: [FileMetaScalarWhereInput!]
+  NOT: [FileMetaScalarWhereInput!]
+}
+
+type FileMetaSubscriptionPayload {
+  mutation: MutationType!
+  node: FileMeta
+  updatedFields: [String!]
+  previousValues: FileMetaPreviousValues
+}
+
+input FileMetaSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: FileMetaWhereInput
+  AND: [FileMetaSubscriptionWhereInput!]
+  OR: [FileMetaSubscriptionWhereInput!]
+  NOT: [FileMetaSubscriptionWhereInput!]
+}
+
+input FileMetaUpdateInput {
+  file: FileUpdateOneWithoutItemMetaInput
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input FileMetaUpdateManyDataInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input FileMetaUpdateManyMutationInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input FileMetaUpdateManyWithoutFileInput {
+  create: [FileMetaCreateWithoutFileInput!]
+  delete: [FileMetaWhereUniqueInput!]
+  connect: [FileMetaWhereUniqueInput!]
+  set: [FileMetaWhereUniqueInput!]
+  disconnect: [FileMetaWhereUniqueInput!]
+  update: [FileMetaUpdateWithWhereUniqueWithoutFileInput!]
+  upsert: [FileMetaUpsertWithWhereUniqueWithoutFileInput!]
+  deleteMany: [FileMetaScalarWhereInput!]
+  updateMany: [FileMetaUpdateManyWithWhereNestedInput!]
+}
+
+input FileMetaUpdateManyWithWhereNestedInput {
+  where: FileMetaScalarWhereInput!
+  data: FileMetaUpdateManyDataInput!
+}
+
+input FileMetaUpdateWithoutFileDataInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input FileMetaUpdateWithWhereUniqueWithoutFileInput {
+  where: FileMetaWhereUniqueInput!
+  data: FileMetaUpdateWithoutFileDataInput!
+}
+
+input FileMetaUpsertWithWhereUniqueWithoutFileInput {
+  where: FileMetaWhereUniqueInput!
+  update: FileMetaUpdateWithoutFileDataInput!
+  create: FileMetaCreateWithoutFileInput!
+}
+
+input FileMetaWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  file: FileWhereInput
+  metaType: String
+  metaType_not: String
+  metaType_in: [String!]
+  metaType_not_in: [String!]
+  metaType_lt: String
+  metaType_lte: String
+  metaType_gt: String
+  metaType_gte: String
+  metaType_contains: String
+  metaType_not_contains: String
+  metaType_starts_with: String
+  metaType_not_starts_with: String
+  metaType_ends_with: String
+  metaType_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
+  metaValue: String
+  metaValue_not: String
+  metaValue_in: [String!]
+  metaValue_not_in: [String!]
+  metaValue_lt: String
+  metaValue_lte: String
+  metaValue_gt: String
+  metaValue_gte: String
+  metaValue_contains: String
+  metaValue_not_contains: String
+  metaValue_starts_with: String
+  metaValue_not_starts_with: String
+  metaValue_ends_with: String
+  metaValue_not_ends_with: String
+  metaDeleted: Boolean
+  metaDeleted_not: Boolean
+  AND: [FileMetaWhereInput!]
+  OR: [FileMetaWhereInput!]
+  NOT: [FileMetaWhereInput!]
+}
+
+input FileMetaWhereUniqueInput {
+  id: ID
+}
+
+enum FileOrderByInput {
+  id_ASC
+  id_DESC
+  itemType_ASC
+  itemType_DESC
+  itemStatus_ASC
+  itemStatus_DESC
+  itemUrlSegment_ASC
+  itemUrlSegment_DESC
+  itemMimeType_ASC
+  itemMimeType_DESC
+  itemName_ASC
+  itemName_DESC
+  itemContent_ASC
+  itemContent_DESC
+  itemDeleted_ASC
+  itemDeleted_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type FilePreviousValues {
+  id: ID!
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+}
+
+type FileSubscriptionPayload {
+  mutation: MutationType!
+  node: File
+  updatedFields: [String!]
+  previousValues: FilePreviousValues
+}
+
+input FileSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: FileWhereInput
+  AND: [FileSubscriptionWhereInput!]
+  OR: [FileSubscriptionWhereInput!]
+  NOT: [FileSubscriptionWhereInput!]
+}
+
+input FileUpdateInput {
+  user: UserUpdateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: FileMetaUpdateManyWithoutFileInput
+}
+
+input FileUpdateManyMutationInput {
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+}
+
+input FileUpdateOneWithoutItemMetaInput {
+  create: FileCreateWithoutItemMetaInput
+  update: FileUpdateWithoutItemMetaDataInput
+  upsert: FileUpsertWithoutItemMetaInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: FileWhereUniqueInput
+}
+
+input FileUpdateWithoutItemMetaDataInput {
+  user: UserUpdateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+}
+
+input FileUpsertWithoutItemMetaInput {
+  update: FileUpdateWithoutItemMetaDataInput!
+  create: FileCreateWithoutItemMetaInput!
+}
+
+input FileWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  itemType: String
+  itemType_not: String
+  itemType_in: [String!]
+  itemType_not_in: [String!]
+  itemType_lt: String
+  itemType_lte: String
+  itemType_gt: String
+  itemType_gte: String
+  itemType_contains: String
+  itemType_not_contains: String
+  itemType_starts_with: String
+  itemType_not_starts_with: String
+  itemType_ends_with: String
+  itemType_not_ends_with: String
+  itemStatus: String
+  itemStatus_not: String
+  itemStatus_in: [String!]
+  itemStatus_not_in: [String!]
+  itemStatus_lt: String
+  itemStatus_lte: String
+  itemStatus_gt: String
+  itemStatus_gte: String
+  itemStatus_contains: String
+  itemStatus_not_contains: String
+  itemStatus_starts_with: String
+  itemStatus_not_starts_with: String
+  itemStatus_ends_with: String
+  itemStatus_not_ends_with: String
+  itemUrlSegment: String
+  itemUrlSegment_not: String
+  itemUrlSegment_in: [String!]
+  itemUrlSegment_not_in: [String!]
+  itemUrlSegment_lt: String
+  itemUrlSegment_lte: String
+  itemUrlSegment_gt: String
+  itemUrlSegment_gte: String
+  itemUrlSegment_contains: String
+  itemUrlSegment_not_contains: String
+  itemUrlSegment_starts_with: String
+  itemUrlSegment_not_starts_with: String
+  itemUrlSegment_ends_with: String
+  itemUrlSegment_not_ends_with: String
+  itemMimeType: String
+  itemMimeType_not: String
+  itemMimeType_in: [String!]
+  itemMimeType_not_in: [String!]
+  itemMimeType_lt: String
+  itemMimeType_lte: String
+  itemMimeType_gt: String
+  itemMimeType_gte: String
+  itemMimeType_contains: String
+  itemMimeType_not_contains: String
+  itemMimeType_starts_with: String
+  itemMimeType_not_starts_with: String
+  itemMimeType_ends_with: String
+  itemMimeType_not_ends_with: String
+  itemName: String
+  itemName_not: String
+  itemName_in: [String!]
+  itemName_not_in: [String!]
+  itemName_lt: String
+  itemName_lte: String
+  itemName_gt: String
+  itemName_gte: String
+  itemName_contains: String
+  itemName_not_contains: String
+  itemName_starts_with: String
+  itemName_not_starts_with: String
+  itemName_ends_with: String
+  itemName_not_ends_with: String
+  itemContent: String
+  itemContent_not: String
+  itemContent_in: [String!]
+  itemContent_not_in: [String!]
+  itemContent_lt: String
+  itemContent_lte: String
+  itemContent_gt: String
+  itemContent_gte: String
+  itemContent_contains: String
+  itemContent_not_contains: String
+  itemContent_starts_with: String
+  itemContent_not_starts_with: String
+  itemContent_ends_with: String
+  itemContent_not_ends_with: String
+  itemDeleted: Boolean
+  itemDeleted_not: Boolean
+  itemMeta_every: FileMetaWhereInput
+  itemMeta_some: FileMetaWhereInput
+  itemMeta_none: FileMetaWhereInput
+  AND: [FileWhereInput!]
+  OR: [FileWhereInput!]
+  NOT: [FileWhereInput!]
+}
+
+input FileWhereUniqueInput {
+  id: ID
+}
+
 scalar Long
 
 type Mutation {
+  createBlogPost(data: BlogPostCreateInput!): BlogPost!
+  updateBlogPost(data: BlogPostUpdateInput!, where: BlogPostWhereUniqueInput!): BlogPost
+  updateManyBlogPosts(data: BlogPostUpdateManyMutationInput!, where: BlogPostWhereInput): BatchPayload!
+  upsertBlogPost(where: BlogPostWhereUniqueInput!, create: BlogPostCreateInput!, update: BlogPostUpdateInput!): BlogPost!
+  deleteBlogPost(where: BlogPostWhereUniqueInput!): BlogPost
+  deleteManyBlogPosts(where: BlogPostWhereInput): BatchPayload!
+  createBlogPostMeta(data: BlogPostMetaCreateInput!): BlogPostMeta!
+  updateBlogPostMeta(data: BlogPostMetaUpdateInput!, where: BlogPostMetaWhereUniqueInput!): BlogPostMeta
+  updateManyBlogPostMetas(data: BlogPostMetaUpdateManyMutationInput!, where: BlogPostMetaWhereInput): BatchPayload!
+  upsertBlogPostMeta(where: BlogPostMetaWhereUniqueInput!, create: BlogPostMetaCreateInput!, update: BlogPostMetaUpdateInput!): BlogPostMeta!
+  deleteBlogPostMeta(where: BlogPostMetaWhereUniqueInput!): BlogPostMeta
+  deleteManyBlogPostMetas(where: BlogPostMetaWhereInput): BatchPayload!
+  createFile(data: FileCreateInput!): File!
+  updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
+  updateManyFiles(data: FileUpdateManyMutationInput!, where: FileWhereInput): BatchPayload!
+  upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
+  deleteFile(where: FileWhereUniqueInput!): File
+  deleteManyFiles(where: FileWhereInput): BatchPayload!
+  createFileMeta(data: FileMetaCreateInput!): FileMeta!
+  updateFileMeta(data: FileMetaUpdateInput!, where: FileMetaWhereUniqueInput!): FileMeta
+  updateManyFileMetas(data: FileMetaUpdateManyMutationInput!, where: FileMetaWhereInput): BatchPayload!
+  upsertFileMeta(where: FileMetaWhereUniqueInput!, create: FileMetaCreateInput!, update: FileMetaUpdateInput!): FileMeta!
+  deleteFileMeta(where: FileMetaWhereUniqueInput!): FileMeta
+  deleteManyFileMetas(where: FileMetaWhereInput): BatchPayload!
+  createProfilePage(data: ProfilePageCreateInput!): ProfilePage!
+  updateProfilePage(data: ProfilePageUpdateInput!, where: ProfilePageWhereUniqueInput!): ProfilePage
+  updateManyProfilePages(data: ProfilePageUpdateManyMutationInput!, where: ProfilePageWhereInput): BatchPayload!
+  upsertProfilePage(where: ProfilePageWhereUniqueInput!, create: ProfilePageCreateInput!, update: ProfilePageUpdateInput!): ProfilePage!
+  deleteProfilePage(where: ProfilePageWhereUniqueInput!): ProfilePage
+  deleteManyProfilePages(where: ProfilePageWhereInput): BatchPayload!
+  createProfilePageMeta(data: ProfilePageMetaCreateInput!): ProfilePageMeta!
+  updateProfilePageMeta(data: ProfilePageMetaUpdateInput!, where: ProfilePageMetaWhereUniqueInput!): ProfilePageMeta
+  updateManyProfilePageMetas(data: ProfilePageMetaUpdateManyMutationInput!, where: ProfilePageMetaWhereInput): BatchPayload!
+  upsertProfilePageMeta(where: ProfilePageMetaWhereUniqueInput!, create: ProfilePageMetaCreateInput!, update: ProfilePageMetaUpdateInput!): ProfilePageMeta!
+  deleteProfilePageMeta(where: ProfilePageMetaWhereUniqueInput!): ProfilePageMeta
+  deleteManyProfilePageMetas(where: ProfilePageMetaWhereInput): BatchPayload!
+  createReview(data: ReviewCreateInput!): Review!
+  updateReview(data: ReviewUpdateInput!, where: ReviewWhereUniqueInput!): Review
+  updateManyReviews(data: ReviewUpdateManyMutationInput!, where: ReviewWhereInput): BatchPayload!
+  upsertReview(where: ReviewWhereUniqueInput!, create: ReviewCreateInput!, update: ReviewUpdateInput!): Review!
+  deleteReview(where: ReviewWhereUniqueInput!): Review
+  deleteManyReviews(where: ReviewWhereInput): BatchPayload!
+  createReviewMeta(data: ReviewMetaCreateInput!): ReviewMeta!
+  updateReviewMeta(data: ReviewMetaUpdateInput!, where: ReviewMetaWhereUniqueInput!): ReviewMeta
+  updateManyReviewMetas(data: ReviewMetaUpdateManyMutationInput!, where: ReviewMetaWhereInput): BatchPayload!
+  upsertReviewMeta(where: ReviewMetaWhereUniqueInput!, create: ReviewMetaCreateInput!, update: ReviewMetaUpdateInput!): ReviewMeta!
+  deleteReviewMeta(where: ReviewMetaWhereUniqueInput!): ReviewMeta
+  deleteManyReviewMetas(where: ReviewMetaWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   deleteUser(where: UserWhereUniqueInput!): User
   deleteManyUsers(where: UserWhereInput): BatchPayload!
+  createUserFeedback(data: UserFeedbackCreateInput!): UserFeedback!
+  updateUserFeedback(data: UserFeedbackUpdateInput!, where: UserFeedbackWhereUniqueInput!): UserFeedback
+  updateManyUserFeedbacks(data: UserFeedbackUpdateManyMutationInput!, where: UserFeedbackWhereInput): BatchPayload!
+  upsertUserFeedback(where: UserFeedbackWhereUniqueInput!, create: UserFeedbackCreateInput!, update: UserFeedbackUpdateInput!): UserFeedback!
+  deleteUserFeedback(where: UserFeedbackWhereUniqueInput!): UserFeedback
+  deleteManyUserFeedbacks(where: UserFeedbackWhereInput): BatchPayload!
+  createUserFeedbackMeta(data: UserFeedbackMetaCreateInput!): UserFeedbackMeta!
+  updateUserFeedbackMeta(data: UserFeedbackMetaUpdateInput!, where: UserFeedbackMetaWhereUniqueInput!): UserFeedbackMeta
+  updateManyUserFeedbackMetas(data: UserFeedbackMetaUpdateManyMutationInput!, where: UserFeedbackMetaWhereInput): BatchPayload!
+  upsertUserFeedbackMeta(where: UserFeedbackMetaWhereUniqueInput!, create: UserFeedbackMetaCreateInput!, update: UserFeedbackMetaUpdateInput!): UserFeedbackMeta!
+  deleteUserFeedbackMeta(where: UserFeedbackMetaWhereUniqueInput!): UserFeedbackMeta
+  deleteManyUserFeedbackMetas(where: UserFeedbackMetaWhereInput): BatchPayload!
+  createUserMeta(data: UserMetaCreateInput!): UserMeta!
+  updateUserMeta(data: UserMetaUpdateInput!, where: UserMetaWhereUniqueInput!): UserMeta
+  updateManyUserMetas(data: UserMetaUpdateManyMutationInput!, where: UserMetaWhereInput): BatchPayload!
+  upsertUserMeta(where: UserMetaWhereUniqueInput!, create: UserMetaCreateInput!, update: UserMetaUpdateInput!): UserMeta!
+  deleteUserMeta(where: UserMetaWhereUniqueInput!): UserMeta
+  deleteManyUserMetas(where: UserMetaWhereInput): BatchPayload!
+  createUserTrack(data: UserTrackCreateInput!): UserTrack!
+  updateUserTrack(data: UserTrackUpdateInput!, where: UserTrackWhereUniqueInput!): UserTrack
+  updateManyUserTracks(data: UserTrackUpdateManyMutationInput!, where: UserTrackWhereInput): BatchPayload!
+  upsertUserTrack(where: UserTrackWhereUniqueInput!, create: UserTrackCreateInput!, update: UserTrackUpdateInput!): UserTrack!
+  deleteUserTrack(where: UserTrackWhereUniqueInput!): UserTrack
+  deleteManyUserTracks(where: UserTrackWhereInput): BatchPayload!
+  createUserTrackMeta(data: UserTrackMetaCreateInput!): UserTrackMeta!
+  updateUserTrackMeta(data: UserTrackMetaUpdateInput!, where: UserTrackMetaWhereUniqueInput!): UserTrackMeta
+  updateManyUserTrackMetas(data: UserTrackMetaUpdateManyMutationInput!, where: UserTrackMetaWhereInput): BatchPayload!
+  upsertUserTrackMeta(where: UserTrackMetaWhereUniqueInput!, create: UserTrackMetaCreateInput!, update: UserTrackMetaUpdateInput!): UserTrackMeta!
+  deleteUserTrackMeta(where: UserTrackMetaWhereUniqueInput!): UserTrackMeta
+  deleteManyUserTrackMetas(where: UserTrackMetaWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -38,20 +1244,1155 @@ type PageInfo {
   endCursor: String
 }
 
+type ProfilePage {
+  id: ID!
+  user: User
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta(where: ProfilePageMetaWhereInput, orderBy: ProfilePageMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProfilePageMeta!]
+}
+
+type ProfilePageConnection {
+  pageInfo: PageInfo!
+  edges: [ProfilePageEdge]!
+  aggregate: AggregateProfilePage!
+}
+
+input ProfilePageCreateInput {
+  user: UserCreateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: ProfilePageMetaCreateManyWithoutProfilePageInput
+}
+
+input ProfilePageCreateOneWithoutItemMetaInput {
+  create: ProfilePageCreateWithoutItemMetaInput
+  connect: ProfilePageWhereUniqueInput
+}
+
+input ProfilePageCreateWithoutItemMetaInput {
+  user: UserCreateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+}
+
+type ProfilePageEdge {
+  node: ProfilePage!
+  cursor: String!
+}
+
+type ProfilePageMeta {
+  id: ID!
+  profilePage: ProfilePage
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+type ProfilePageMetaConnection {
+  pageInfo: PageInfo!
+  edges: [ProfilePageMetaEdge]!
+  aggregate: AggregateProfilePageMeta!
+}
+
+input ProfilePageMetaCreateInput {
+  profilePage: ProfilePageCreateOneWithoutItemMetaInput
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+input ProfilePageMetaCreateManyWithoutProfilePageInput {
+  create: [ProfilePageMetaCreateWithoutProfilePageInput!]
+  connect: [ProfilePageMetaWhereUniqueInput!]
+}
+
+input ProfilePageMetaCreateWithoutProfilePageInput {
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+type ProfilePageMetaEdge {
+  node: ProfilePageMeta!
+  cursor: String!
+}
+
+enum ProfilePageMetaOrderByInput {
+  id_ASC
+  id_DESC
+  metaType_ASC
+  metaType_DESC
+  metaName_ASC
+  metaName_DESC
+  metaValue_ASC
+  metaValue_DESC
+  metaDeleted_ASC
+  metaDeleted_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ProfilePageMetaPreviousValues {
+  id: ID!
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+input ProfilePageMetaScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  metaType: String
+  metaType_not: String
+  metaType_in: [String!]
+  metaType_not_in: [String!]
+  metaType_lt: String
+  metaType_lte: String
+  metaType_gt: String
+  metaType_gte: String
+  metaType_contains: String
+  metaType_not_contains: String
+  metaType_starts_with: String
+  metaType_not_starts_with: String
+  metaType_ends_with: String
+  metaType_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
+  metaValue: String
+  metaValue_not: String
+  metaValue_in: [String!]
+  metaValue_not_in: [String!]
+  metaValue_lt: String
+  metaValue_lte: String
+  metaValue_gt: String
+  metaValue_gte: String
+  metaValue_contains: String
+  metaValue_not_contains: String
+  metaValue_starts_with: String
+  metaValue_not_starts_with: String
+  metaValue_ends_with: String
+  metaValue_not_ends_with: String
+  metaDeleted: Boolean
+  metaDeleted_not: Boolean
+  AND: [ProfilePageMetaScalarWhereInput!]
+  OR: [ProfilePageMetaScalarWhereInput!]
+  NOT: [ProfilePageMetaScalarWhereInput!]
+}
+
+type ProfilePageMetaSubscriptionPayload {
+  mutation: MutationType!
+  node: ProfilePageMeta
+  updatedFields: [String!]
+  previousValues: ProfilePageMetaPreviousValues
+}
+
+input ProfilePageMetaSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ProfilePageMetaWhereInput
+  AND: [ProfilePageMetaSubscriptionWhereInput!]
+  OR: [ProfilePageMetaSubscriptionWhereInput!]
+  NOT: [ProfilePageMetaSubscriptionWhereInput!]
+}
+
+input ProfilePageMetaUpdateInput {
+  profilePage: ProfilePageUpdateOneWithoutItemMetaInput
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input ProfilePageMetaUpdateManyDataInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input ProfilePageMetaUpdateManyMutationInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input ProfilePageMetaUpdateManyWithoutProfilePageInput {
+  create: [ProfilePageMetaCreateWithoutProfilePageInput!]
+  delete: [ProfilePageMetaWhereUniqueInput!]
+  connect: [ProfilePageMetaWhereUniqueInput!]
+  set: [ProfilePageMetaWhereUniqueInput!]
+  disconnect: [ProfilePageMetaWhereUniqueInput!]
+  update: [ProfilePageMetaUpdateWithWhereUniqueWithoutProfilePageInput!]
+  upsert: [ProfilePageMetaUpsertWithWhereUniqueWithoutProfilePageInput!]
+  deleteMany: [ProfilePageMetaScalarWhereInput!]
+  updateMany: [ProfilePageMetaUpdateManyWithWhereNestedInput!]
+}
+
+input ProfilePageMetaUpdateManyWithWhereNestedInput {
+  where: ProfilePageMetaScalarWhereInput!
+  data: ProfilePageMetaUpdateManyDataInput!
+}
+
+input ProfilePageMetaUpdateWithoutProfilePageDataInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input ProfilePageMetaUpdateWithWhereUniqueWithoutProfilePageInput {
+  where: ProfilePageMetaWhereUniqueInput!
+  data: ProfilePageMetaUpdateWithoutProfilePageDataInput!
+}
+
+input ProfilePageMetaUpsertWithWhereUniqueWithoutProfilePageInput {
+  where: ProfilePageMetaWhereUniqueInput!
+  update: ProfilePageMetaUpdateWithoutProfilePageDataInput!
+  create: ProfilePageMetaCreateWithoutProfilePageInput!
+}
+
+input ProfilePageMetaWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  profilePage: ProfilePageWhereInput
+  metaType: String
+  metaType_not: String
+  metaType_in: [String!]
+  metaType_not_in: [String!]
+  metaType_lt: String
+  metaType_lte: String
+  metaType_gt: String
+  metaType_gte: String
+  metaType_contains: String
+  metaType_not_contains: String
+  metaType_starts_with: String
+  metaType_not_starts_with: String
+  metaType_ends_with: String
+  metaType_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
+  metaValue: String
+  metaValue_not: String
+  metaValue_in: [String!]
+  metaValue_not_in: [String!]
+  metaValue_lt: String
+  metaValue_lte: String
+  metaValue_gt: String
+  metaValue_gte: String
+  metaValue_contains: String
+  metaValue_not_contains: String
+  metaValue_starts_with: String
+  metaValue_not_starts_with: String
+  metaValue_ends_with: String
+  metaValue_not_ends_with: String
+  metaDeleted: Boolean
+  metaDeleted_not: Boolean
+  AND: [ProfilePageMetaWhereInput!]
+  OR: [ProfilePageMetaWhereInput!]
+  NOT: [ProfilePageMetaWhereInput!]
+}
+
+input ProfilePageMetaWhereUniqueInput {
+  id: ID
+}
+
+enum ProfilePageOrderByInput {
+  id_ASC
+  id_DESC
+  itemType_ASC
+  itemType_DESC
+  itemStatus_ASC
+  itemStatus_DESC
+  itemUrlSegment_ASC
+  itemUrlSegment_DESC
+  itemMimeType_ASC
+  itemMimeType_DESC
+  itemName_ASC
+  itemName_DESC
+  itemContent_ASC
+  itemContent_DESC
+  itemDeleted_ASC
+  itemDeleted_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ProfilePagePreviousValues {
+  id: ID!
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+}
+
+type ProfilePageSubscriptionPayload {
+  mutation: MutationType!
+  node: ProfilePage
+  updatedFields: [String!]
+  previousValues: ProfilePagePreviousValues
+}
+
+input ProfilePageSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ProfilePageWhereInput
+  AND: [ProfilePageSubscriptionWhereInput!]
+  OR: [ProfilePageSubscriptionWhereInput!]
+  NOT: [ProfilePageSubscriptionWhereInput!]
+}
+
+input ProfilePageUpdateInput {
+  user: UserUpdateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: ProfilePageMetaUpdateManyWithoutProfilePageInput
+}
+
+input ProfilePageUpdateManyMutationInput {
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+}
+
+input ProfilePageUpdateOneWithoutItemMetaInput {
+  create: ProfilePageCreateWithoutItemMetaInput
+  update: ProfilePageUpdateWithoutItemMetaDataInput
+  upsert: ProfilePageUpsertWithoutItemMetaInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: ProfilePageWhereUniqueInput
+}
+
+input ProfilePageUpdateWithoutItemMetaDataInput {
+  user: UserUpdateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+}
+
+input ProfilePageUpsertWithoutItemMetaInput {
+  update: ProfilePageUpdateWithoutItemMetaDataInput!
+  create: ProfilePageCreateWithoutItemMetaInput!
+}
+
+input ProfilePageWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  itemType: String
+  itemType_not: String
+  itemType_in: [String!]
+  itemType_not_in: [String!]
+  itemType_lt: String
+  itemType_lte: String
+  itemType_gt: String
+  itemType_gte: String
+  itemType_contains: String
+  itemType_not_contains: String
+  itemType_starts_with: String
+  itemType_not_starts_with: String
+  itemType_ends_with: String
+  itemType_not_ends_with: String
+  itemStatus: String
+  itemStatus_not: String
+  itemStatus_in: [String!]
+  itemStatus_not_in: [String!]
+  itemStatus_lt: String
+  itemStatus_lte: String
+  itemStatus_gt: String
+  itemStatus_gte: String
+  itemStatus_contains: String
+  itemStatus_not_contains: String
+  itemStatus_starts_with: String
+  itemStatus_not_starts_with: String
+  itemStatus_ends_with: String
+  itemStatus_not_ends_with: String
+  itemUrlSegment: String
+  itemUrlSegment_not: String
+  itemUrlSegment_in: [String!]
+  itemUrlSegment_not_in: [String!]
+  itemUrlSegment_lt: String
+  itemUrlSegment_lte: String
+  itemUrlSegment_gt: String
+  itemUrlSegment_gte: String
+  itemUrlSegment_contains: String
+  itemUrlSegment_not_contains: String
+  itemUrlSegment_starts_with: String
+  itemUrlSegment_not_starts_with: String
+  itemUrlSegment_ends_with: String
+  itemUrlSegment_not_ends_with: String
+  itemMimeType: String
+  itemMimeType_not: String
+  itemMimeType_in: [String!]
+  itemMimeType_not_in: [String!]
+  itemMimeType_lt: String
+  itemMimeType_lte: String
+  itemMimeType_gt: String
+  itemMimeType_gte: String
+  itemMimeType_contains: String
+  itemMimeType_not_contains: String
+  itemMimeType_starts_with: String
+  itemMimeType_not_starts_with: String
+  itemMimeType_ends_with: String
+  itemMimeType_not_ends_with: String
+  itemName: String
+  itemName_not: String
+  itemName_in: [String!]
+  itemName_not_in: [String!]
+  itemName_lt: String
+  itemName_lte: String
+  itemName_gt: String
+  itemName_gte: String
+  itemName_contains: String
+  itemName_not_contains: String
+  itemName_starts_with: String
+  itemName_not_starts_with: String
+  itemName_ends_with: String
+  itemName_not_ends_with: String
+  itemContent: String
+  itemContent_not: String
+  itemContent_in: [String!]
+  itemContent_not_in: [String!]
+  itemContent_lt: String
+  itemContent_lte: String
+  itemContent_gt: String
+  itemContent_gte: String
+  itemContent_contains: String
+  itemContent_not_contains: String
+  itemContent_starts_with: String
+  itemContent_not_starts_with: String
+  itemContent_ends_with: String
+  itemContent_not_ends_with: String
+  itemDeleted: Boolean
+  itemDeleted_not: Boolean
+  itemMeta_every: ProfilePageMetaWhereInput
+  itemMeta_some: ProfilePageMetaWhereInput
+  itemMeta_none: ProfilePageMetaWhereInput
+  AND: [ProfilePageWhereInput!]
+  OR: [ProfilePageWhereInput!]
+  NOT: [ProfilePageWhereInput!]
+}
+
+input ProfilePageWhereUniqueInput {
+  id: ID
+}
+
 type Query {
+  blogPost(where: BlogPostWhereUniqueInput!): BlogPost
+  blogPosts(where: BlogPostWhereInput, orderBy: BlogPostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [BlogPost]!
+  blogPostsConnection(where: BlogPostWhereInput, orderBy: BlogPostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BlogPostConnection!
+  blogPostMeta(where: BlogPostMetaWhereUniqueInput!): BlogPostMeta
+  blogPostMetas(where: BlogPostMetaWhereInput, orderBy: BlogPostMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [BlogPostMeta]!
+  blogPostMetasConnection(where: BlogPostMetaWhereInput, orderBy: BlogPostMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BlogPostMetaConnection!
+  file(where: FileWhereUniqueInput!): File
+  files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
+  filesConnection(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
+  fileMeta(where: FileMetaWhereUniqueInput!): FileMeta
+  fileMetas(where: FileMetaWhereInput, orderBy: FileMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FileMeta]!
+  fileMetasConnection(where: FileMetaWhereInput, orderBy: FileMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FileMetaConnection!
+  profilePage(where: ProfilePageWhereUniqueInput!): ProfilePage
+  profilePages(where: ProfilePageWhereInput, orderBy: ProfilePageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProfilePage]!
+  profilePagesConnection(where: ProfilePageWhereInput, orderBy: ProfilePageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProfilePageConnection!
+  profilePageMeta(where: ProfilePageMetaWhereUniqueInput!): ProfilePageMeta
+  profilePageMetas(where: ProfilePageMetaWhereInput, orderBy: ProfilePageMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProfilePageMeta]!
+  profilePageMetasConnection(where: ProfilePageMetaWhereInput, orderBy: ProfilePageMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProfilePageMetaConnection!
+  review(where: ReviewWhereUniqueInput!): Review
+  reviews(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Review]!
+  reviewsConnection(where: ReviewWhereInput, orderBy: ReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ReviewConnection!
+  reviewMeta(where: ReviewMetaWhereUniqueInput!): ReviewMeta
+  reviewMetas(where: ReviewMetaWhereInput, orderBy: ReviewMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ReviewMeta]!
+  reviewMetasConnection(where: ReviewMetaWhereInput, orderBy: ReviewMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ReviewMetaConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  userFeedback(where: UserFeedbackWhereUniqueInput!): UserFeedback
+  userFeedbacks(where: UserFeedbackWhereInput, orderBy: UserFeedbackOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserFeedback]!
+  userFeedbacksConnection(where: UserFeedbackWhereInput, orderBy: UserFeedbackOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserFeedbackConnection!
+  userFeedbackMeta(where: UserFeedbackMetaWhereUniqueInput!): UserFeedbackMeta
+  userFeedbackMetas(where: UserFeedbackMetaWhereInput, orderBy: UserFeedbackMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserFeedbackMeta]!
+  userFeedbackMetasConnection(where: UserFeedbackMetaWhereInput, orderBy: UserFeedbackMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserFeedbackMetaConnection!
+  userMeta(where: UserMetaWhereUniqueInput!): UserMeta
+  userMetas(where: UserMetaWhereInput, orderBy: UserMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserMeta]!
+  userMetasConnection(where: UserMetaWhereInput, orderBy: UserMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserMetaConnection!
+  userTrack(where: UserTrackWhereUniqueInput!): UserTrack
+  userTracks(where: UserTrackWhereInput, orderBy: UserTrackOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserTrack]!
+  userTracksConnection(where: UserTrackWhereInput, orderBy: UserTrackOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserTrackConnection!
+  userTrackMeta(where: UserTrackMetaWhereUniqueInput!): UserTrackMeta
+  userTrackMetas(where: UserTrackMetaWhereInput, orderBy: UserTrackMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserTrackMeta]!
+  userTrackMetasConnection(where: UserTrackMetaWhereInput, orderBy: UserTrackMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserTrackMetaConnection!
   node(id: ID!): Node
 }
 
+type Review {
+  id: ID!
+  user: User
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta(where: ReviewMetaWhereInput, orderBy: ReviewMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ReviewMeta!]
+}
+
+type ReviewConnection {
+  pageInfo: PageInfo!
+  edges: [ReviewEdge]!
+  aggregate: AggregateReview!
+}
+
+input ReviewCreateInput {
+  user: UserCreateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: ReviewMetaCreateManyWithoutReviewInput
+}
+
+input ReviewCreateOneWithoutItemMetaInput {
+  create: ReviewCreateWithoutItemMetaInput
+  connect: ReviewWhereUniqueInput
+}
+
+input ReviewCreateWithoutItemMetaInput {
+  user: UserCreateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+}
+
+type ReviewEdge {
+  node: Review!
+  cursor: String!
+}
+
+type ReviewMeta {
+  id: ID!
+  review: Review
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+type ReviewMetaConnection {
+  pageInfo: PageInfo!
+  edges: [ReviewMetaEdge]!
+  aggregate: AggregateReviewMeta!
+}
+
+input ReviewMetaCreateInput {
+  review: ReviewCreateOneWithoutItemMetaInput
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+input ReviewMetaCreateManyWithoutReviewInput {
+  create: [ReviewMetaCreateWithoutReviewInput!]
+  connect: [ReviewMetaWhereUniqueInput!]
+}
+
+input ReviewMetaCreateWithoutReviewInput {
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+type ReviewMetaEdge {
+  node: ReviewMeta!
+  cursor: String!
+}
+
+enum ReviewMetaOrderByInput {
+  id_ASC
+  id_DESC
+  metaType_ASC
+  metaType_DESC
+  metaName_ASC
+  metaName_DESC
+  metaValue_ASC
+  metaValue_DESC
+  metaDeleted_ASC
+  metaDeleted_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ReviewMetaPreviousValues {
+  id: ID!
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+input ReviewMetaScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  metaType: String
+  metaType_not: String
+  metaType_in: [String!]
+  metaType_not_in: [String!]
+  metaType_lt: String
+  metaType_lte: String
+  metaType_gt: String
+  metaType_gte: String
+  metaType_contains: String
+  metaType_not_contains: String
+  metaType_starts_with: String
+  metaType_not_starts_with: String
+  metaType_ends_with: String
+  metaType_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
+  metaValue: String
+  metaValue_not: String
+  metaValue_in: [String!]
+  metaValue_not_in: [String!]
+  metaValue_lt: String
+  metaValue_lte: String
+  metaValue_gt: String
+  metaValue_gte: String
+  metaValue_contains: String
+  metaValue_not_contains: String
+  metaValue_starts_with: String
+  metaValue_not_starts_with: String
+  metaValue_ends_with: String
+  metaValue_not_ends_with: String
+  metaDeleted: Boolean
+  metaDeleted_not: Boolean
+  AND: [ReviewMetaScalarWhereInput!]
+  OR: [ReviewMetaScalarWhereInput!]
+  NOT: [ReviewMetaScalarWhereInput!]
+}
+
+type ReviewMetaSubscriptionPayload {
+  mutation: MutationType!
+  node: ReviewMeta
+  updatedFields: [String!]
+  previousValues: ReviewMetaPreviousValues
+}
+
+input ReviewMetaSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ReviewMetaWhereInput
+  AND: [ReviewMetaSubscriptionWhereInput!]
+  OR: [ReviewMetaSubscriptionWhereInput!]
+  NOT: [ReviewMetaSubscriptionWhereInput!]
+}
+
+input ReviewMetaUpdateInput {
+  review: ReviewUpdateOneWithoutItemMetaInput
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input ReviewMetaUpdateManyDataInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input ReviewMetaUpdateManyMutationInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input ReviewMetaUpdateManyWithoutReviewInput {
+  create: [ReviewMetaCreateWithoutReviewInput!]
+  delete: [ReviewMetaWhereUniqueInput!]
+  connect: [ReviewMetaWhereUniqueInput!]
+  set: [ReviewMetaWhereUniqueInput!]
+  disconnect: [ReviewMetaWhereUniqueInput!]
+  update: [ReviewMetaUpdateWithWhereUniqueWithoutReviewInput!]
+  upsert: [ReviewMetaUpsertWithWhereUniqueWithoutReviewInput!]
+  deleteMany: [ReviewMetaScalarWhereInput!]
+  updateMany: [ReviewMetaUpdateManyWithWhereNestedInput!]
+}
+
+input ReviewMetaUpdateManyWithWhereNestedInput {
+  where: ReviewMetaScalarWhereInput!
+  data: ReviewMetaUpdateManyDataInput!
+}
+
+input ReviewMetaUpdateWithoutReviewDataInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input ReviewMetaUpdateWithWhereUniqueWithoutReviewInput {
+  where: ReviewMetaWhereUniqueInput!
+  data: ReviewMetaUpdateWithoutReviewDataInput!
+}
+
+input ReviewMetaUpsertWithWhereUniqueWithoutReviewInput {
+  where: ReviewMetaWhereUniqueInput!
+  update: ReviewMetaUpdateWithoutReviewDataInput!
+  create: ReviewMetaCreateWithoutReviewInput!
+}
+
+input ReviewMetaWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  review: ReviewWhereInput
+  metaType: String
+  metaType_not: String
+  metaType_in: [String!]
+  metaType_not_in: [String!]
+  metaType_lt: String
+  metaType_lte: String
+  metaType_gt: String
+  metaType_gte: String
+  metaType_contains: String
+  metaType_not_contains: String
+  metaType_starts_with: String
+  metaType_not_starts_with: String
+  metaType_ends_with: String
+  metaType_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
+  metaValue: String
+  metaValue_not: String
+  metaValue_in: [String!]
+  metaValue_not_in: [String!]
+  metaValue_lt: String
+  metaValue_lte: String
+  metaValue_gt: String
+  metaValue_gte: String
+  metaValue_contains: String
+  metaValue_not_contains: String
+  metaValue_starts_with: String
+  metaValue_not_starts_with: String
+  metaValue_ends_with: String
+  metaValue_not_ends_with: String
+  metaDeleted: Boolean
+  metaDeleted_not: Boolean
+  AND: [ReviewMetaWhereInput!]
+  OR: [ReviewMetaWhereInput!]
+  NOT: [ReviewMetaWhereInput!]
+}
+
+input ReviewMetaWhereUniqueInput {
+  id: ID
+}
+
+enum ReviewOrderByInput {
+  id_ASC
+  id_DESC
+  itemType_ASC
+  itemType_DESC
+  itemStatus_ASC
+  itemStatus_DESC
+  itemUrlSegment_ASC
+  itemUrlSegment_DESC
+  itemMimeType_ASC
+  itemMimeType_DESC
+  itemName_ASC
+  itemName_DESC
+  itemContent_ASC
+  itemContent_DESC
+  itemDeleted_ASC
+  itemDeleted_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ReviewPreviousValues {
+  id: ID!
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+}
+
+type ReviewSubscriptionPayload {
+  mutation: MutationType!
+  node: Review
+  updatedFields: [String!]
+  previousValues: ReviewPreviousValues
+}
+
+input ReviewSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ReviewWhereInput
+  AND: [ReviewSubscriptionWhereInput!]
+  OR: [ReviewSubscriptionWhereInput!]
+  NOT: [ReviewSubscriptionWhereInput!]
+}
+
+input ReviewUpdateInput {
+  user: UserUpdateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: ReviewMetaUpdateManyWithoutReviewInput
+}
+
+input ReviewUpdateManyMutationInput {
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+}
+
+input ReviewUpdateOneWithoutItemMetaInput {
+  create: ReviewCreateWithoutItemMetaInput
+  update: ReviewUpdateWithoutItemMetaDataInput
+  upsert: ReviewUpsertWithoutItemMetaInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: ReviewWhereUniqueInput
+}
+
+input ReviewUpdateWithoutItemMetaDataInput {
+  user: UserUpdateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+}
+
+input ReviewUpsertWithoutItemMetaInput {
+  update: ReviewUpdateWithoutItemMetaDataInput!
+  create: ReviewCreateWithoutItemMetaInput!
+}
+
+input ReviewWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  itemType: String
+  itemType_not: String
+  itemType_in: [String!]
+  itemType_not_in: [String!]
+  itemType_lt: String
+  itemType_lte: String
+  itemType_gt: String
+  itemType_gte: String
+  itemType_contains: String
+  itemType_not_contains: String
+  itemType_starts_with: String
+  itemType_not_starts_with: String
+  itemType_ends_with: String
+  itemType_not_ends_with: String
+  itemStatus: String
+  itemStatus_not: String
+  itemStatus_in: [String!]
+  itemStatus_not_in: [String!]
+  itemStatus_lt: String
+  itemStatus_lte: String
+  itemStatus_gt: String
+  itemStatus_gte: String
+  itemStatus_contains: String
+  itemStatus_not_contains: String
+  itemStatus_starts_with: String
+  itemStatus_not_starts_with: String
+  itemStatus_ends_with: String
+  itemStatus_not_ends_with: String
+  itemUrlSegment: String
+  itemUrlSegment_not: String
+  itemUrlSegment_in: [String!]
+  itemUrlSegment_not_in: [String!]
+  itemUrlSegment_lt: String
+  itemUrlSegment_lte: String
+  itemUrlSegment_gt: String
+  itemUrlSegment_gte: String
+  itemUrlSegment_contains: String
+  itemUrlSegment_not_contains: String
+  itemUrlSegment_starts_with: String
+  itemUrlSegment_not_starts_with: String
+  itemUrlSegment_ends_with: String
+  itemUrlSegment_not_ends_with: String
+  itemMimeType: String
+  itemMimeType_not: String
+  itemMimeType_in: [String!]
+  itemMimeType_not_in: [String!]
+  itemMimeType_lt: String
+  itemMimeType_lte: String
+  itemMimeType_gt: String
+  itemMimeType_gte: String
+  itemMimeType_contains: String
+  itemMimeType_not_contains: String
+  itemMimeType_starts_with: String
+  itemMimeType_not_starts_with: String
+  itemMimeType_ends_with: String
+  itemMimeType_not_ends_with: String
+  itemName: String
+  itemName_not: String
+  itemName_in: [String!]
+  itemName_not_in: [String!]
+  itemName_lt: String
+  itemName_lte: String
+  itemName_gt: String
+  itemName_gte: String
+  itemName_contains: String
+  itemName_not_contains: String
+  itemName_starts_with: String
+  itemName_not_starts_with: String
+  itemName_ends_with: String
+  itemName_not_ends_with: String
+  itemContent: String
+  itemContent_not: String
+  itemContent_in: [String!]
+  itemContent_not_in: [String!]
+  itemContent_lt: String
+  itemContent_lte: String
+  itemContent_gt: String
+  itemContent_gte: String
+  itemContent_contains: String
+  itemContent_not_contains: String
+  itemContent_starts_with: String
+  itemContent_not_starts_with: String
+  itemContent_ends_with: String
+  itemContent_not_ends_with: String
+  itemDeleted: Boolean
+  itemDeleted_not: Boolean
+  itemMeta_every: ReviewMetaWhereInput
+  itemMeta_some: ReviewMetaWhereInput
+  itemMeta_none: ReviewMetaWhereInput
+  AND: [ReviewWhereInput!]
+  OR: [ReviewWhereInput!]
+  NOT: [ReviewWhereInput!]
+}
+
+input ReviewWhereUniqueInput {
+  id: ID
+}
+
 type Subscription {
+  blogPost(where: BlogPostSubscriptionWhereInput): BlogPostSubscriptionPayload
+  blogPostMeta(where: BlogPostMetaSubscriptionWhereInput): BlogPostMetaSubscriptionPayload
+  file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
+  fileMeta(where: FileMetaSubscriptionWhereInput): FileMetaSubscriptionPayload
+  profilePage(where: ProfilePageSubscriptionWhereInput): ProfilePageSubscriptionPayload
+  profilePageMeta(where: ProfilePageMetaSubscriptionWhereInput): ProfilePageMetaSubscriptionPayload
+  review(where: ReviewSubscriptionWhereInput): ReviewSubscriptionPayload
+  reviewMeta(where: ReviewMetaSubscriptionWhereInput): ReviewMetaSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  userFeedback(where: UserFeedbackSubscriptionWhereInput): UserFeedbackSubscriptionPayload
+  userFeedbackMeta(where: UserFeedbackMetaSubscriptionWhereInput): UserFeedbackMetaSubscriptionPayload
+  userMeta(where: UserMetaSubscriptionWhereInput): UserMetaSubscriptionPayload
+  userTrack(where: UserTrackSubscriptionWhereInput): UserTrackSubscriptionPayload
+  userTrackMeta(where: UserTrackMetaSubscriptionWhereInput): UserTrackMetaSubscriptionPayload
 }
 
 type User {
   id: ID!
-  name: String!
+  userType: Int
+  userEmail: String
+  userPassword: String
+  confirmHash: String
+  forgotHash: String
+  userConfirmed: Int
+  userDeleted: Boolean
+  userMeta(where: UserMetaWhereInput, orderBy: UserMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserMeta!]
 }
 
 type UserConnection {
@@ -61,7 +2402,34 @@ type UserConnection {
 }
 
 input UserCreateInput {
-  name: String!
+  userType: Int
+  userEmail: String
+  userPassword: String
+  confirmHash: String
+  forgotHash: String
+  userConfirmed: Int
+  userDeleted: Boolean
+  userMeta: UserMetaCreateManyWithoutUserInput
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutUserMetaInput {
+  create: UserCreateWithoutUserMetaInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutUserMetaInput {
+  userType: Int
+  userEmail: String
+  userPassword: String
+  confirmHash: String
+  forgotHash: String
+  userConfirmed: Int
+  userDeleted: Boolean
 }
 
 type UserEdge {
@@ -69,11 +2437,834 @@ type UserEdge {
   cursor: String!
 }
 
+type UserFeedback {
+  id: ID!
+  user: User
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta(where: UserFeedbackMetaWhereInput, orderBy: UserFeedbackMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserFeedbackMeta!]
+}
+
+type UserFeedbackConnection {
+  pageInfo: PageInfo!
+  edges: [UserFeedbackEdge]!
+  aggregate: AggregateUserFeedback!
+}
+
+input UserFeedbackCreateInput {
+  user: UserCreateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: UserFeedbackMetaCreateManyWithoutUserFeedbackInput
+}
+
+input UserFeedbackCreateOneWithoutItemMetaInput {
+  create: UserFeedbackCreateWithoutItemMetaInput
+  connect: UserFeedbackWhereUniqueInput
+}
+
+input UserFeedbackCreateWithoutItemMetaInput {
+  user: UserCreateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+}
+
+type UserFeedbackEdge {
+  node: UserFeedback!
+  cursor: String!
+}
+
+type UserFeedbackMeta {
+  id: ID!
+  userFeedback: UserFeedback
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+type UserFeedbackMetaConnection {
+  pageInfo: PageInfo!
+  edges: [UserFeedbackMetaEdge]!
+  aggregate: AggregateUserFeedbackMeta!
+}
+
+input UserFeedbackMetaCreateInput {
+  userFeedback: UserFeedbackCreateOneWithoutItemMetaInput
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+input UserFeedbackMetaCreateManyWithoutUserFeedbackInput {
+  create: [UserFeedbackMetaCreateWithoutUserFeedbackInput!]
+  connect: [UserFeedbackMetaWhereUniqueInput!]
+}
+
+input UserFeedbackMetaCreateWithoutUserFeedbackInput {
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+type UserFeedbackMetaEdge {
+  node: UserFeedbackMeta!
+  cursor: String!
+}
+
+enum UserFeedbackMetaOrderByInput {
+  id_ASC
+  id_DESC
+  metaType_ASC
+  metaType_DESC
+  metaName_ASC
+  metaName_DESC
+  metaValue_ASC
+  metaValue_DESC
+  metaDeleted_ASC
+  metaDeleted_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserFeedbackMetaPreviousValues {
+  id: ID!
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+input UserFeedbackMetaScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  metaType: String
+  metaType_not: String
+  metaType_in: [String!]
+  metaType_not_in: [String!]
+  metaType_lt: String
+  metaType_lte: String
+  metaType_gt: String
+  metaType_gte: String
+  metaType_contains: String
+  metaType_not_contains: String
+  metaType_starts_with: String
+  metaType_not_starts_with: String
+  metaType_ends_with: String
+  metaType_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
+  metaValue: String
+  metaValue_not: String
+  metaValue_in: [String!]
+  metaValue_not_in: [String!]
+  metaValue_lt: String
+  metaValue_lte: String
+  metaValue_gt: String
+  metaValue_gte: String
+  metaValue_contains: String
+  metaValue_not_contains: String
+  metaValue_starts_with: String
+  metaValue_not_starts_with: String
+  metaValue_ends_with: String
+  metaValue_not_ends_with: String
+  metaDeleted: Boolean
+  metaDeleted_not: Boolean
+  AND: [UserFeedbackMetaScalarWhereInput!]
+  OR: [UserFeedbackMetaScalarWhereInput!]
+  NOT: [UserFeedbackMetaScalarWhereInput!]
+}
+
+type UserFeedbackMetaSubscriptionPayload {
+  mutation: MutationType!
+  node: UserFeedbackMeta
+  updatedFields: [String!]
+  previousValues: UserFeedbackMetaPreviousValues
+}
+
+input UserFeedbackMetaSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserFeedbackMetaWhereInput
+  AND: [UserFeedbackMetaSubscriptionWhereInput!]
+  OR: [UserFeedbackMetaSubscriptionWhereInput!]
+  NOT: [UserFeedbackMetaSubscriptionWhereInput!]
+}
+
+input UserFeedbackMetaUpdateInput {
+  userFeedback: UserFeedbackUpdateOneWithoutItemMetaInput
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input UserFeedbackMetaUpdateManyDataInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input UserFeedbackMetaUpdateManyMutationInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input UserFeedbackMetaUpdateManyWithoutUserFeedbackInput {
+  create: [UserFeedbackMetaCreateWithoutUserFeedbackInput!]
+  delete: [UserFeedbackMetaWhereUniqueInput!]
+  connect: [UserFeedbackMetaWhereUniqueInput!]
+  set: [UserFeedbackMetaWhereUniqueInput!]
+  disconnect: [UserFeedbackMetaWhereUniqueInput!]
+  update: [UserFeedbackMetaUpdateWithWhereUniqueWithoutUserFeedbackInput!]
+  upsert: [UserFeedbackMetaUpsertWithWhereUniqueWithoutUserFeedbackInput!]
+  deleteMany: [UserFeedbackMetaScalarWhereInput!]
+  updateMany: [UserFeedbackMetaUpdateManyWithWhereNestedInput!]
+}
+
+input UserFeedbackMetaUpdateManyWithWhereNestedInput {
+  where: UserFeedbackMetaScalarWhereInput!
+  data: UserFeedbackMetaUpdateManyDataInput!
+}
+
+input UserFeedbackMetaUpdateWithoutUserFeedbackDataInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input UserFeedbackMetaUpdateWithWhereUniqueWithoutUserFeedbackInput {
+  where: UserFeedbackMetaWhereUniqueInput!
+  data: UserFeedbackMetaUpdateWithoutUserFeedbackDataInput!
+}
+
+input UserFeedbackMetaUpsertWithWhereUniqueWithoutUserFeedbackInput {
+  where: UserFeedbackMetaWhereUniqueInput!
+  update: UserFeedbackMetaUpdateWithoutUserFeedbackDataInput!
+  create: UserFeedbackMetaCreateWithoutUserFeedbackInput!
+}
+
+input UserFeedbackMetaWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  userFeedback: UserFeedbackWhereInput
+  metaType: String
+  metaType_not: String
+  metaType_in: [String!]
+  metaType_not_in: [String!]
+  metaType_lt: String
+  metaType_lte: String
+  metaType_gt: String
+  metaType_gte: String
+  metaType_contains: String
+  metaType_not_contains: String
+  metaType_starts_with: String
+  metaType_not_starts_with: String
+  metaType_ends_with: String
+  metaType_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
+  metaValue: String
+  metaValue_not: String
+  metaValue_in: [String!]
+  metaValue_not_in: [String!]
+  metaValue_lt: String
+  metaValue_lte: String
+  metaValue_gt: String
+  metaValue_gte: String
+  metaValue_contains: String
+  metaValue_not_contains: String
+  metaValue_starts_with: String
+  metaValue_not_starts_with: String
+  metaValue_ends_with: String
+  metaValue_not_ends_with: String
+  metaDeleted: Boolean
+  metaDeleted_not: Boolean
+  AND: [UserFeedbackMetaWhereInput!]
+  OR: [UserFeedbackMetaWhereInput!]
+  NOT: [UserFeedbackMetaWhereInput!]
+}
+
+input UserFeedbackMetaWhereUniqueInput {
+  id: ID
+}
+
+enum UserFeedbackOrderByInput {
+  id_ASC
+  id_DESC
+  itemType_ASC
+  itemType_DESC
+  itemStatus_ASC
+  itemStatus_DESC
+  itemUrlSegment_ASC
+  itemUrlSegment_DESC
+  itemMimeType_ASC
+  itemMimeType_DESC
+  itemName_ASC
+  itemName_DESC
+  itemContent_ASC
+  itemContent_DESC
+  itemDeleted_ASC
+  itemDeleted_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserFeedbackPreviousValues {
+  id: ID!
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+}
+
+type UserFeedbackSubscriptionPayload {
+  mutation: MutationType!
+  node: UserFeedback
+  updatedFields: [String!]
+  previousValues: UserFeedbackPreviousValues
+}
+
+input UserFeedbackSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserFeedbackWhereInput
+  AND: [UserFeedbackSubscriptionWhereInput!]
+  OR: [UserFeedbackSubscriptionWhereInput!]
+  NOT: [UserFeedbackSubscriptionWhereInput!]
+}
+
+input UserFeedbackUpdateInput {
+  user: UserUpdateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: UserFeedbackMetaUpdateManyWithoutUserFeedbackInput
+}
+
+input UserFeedbackUpdateManyMutationInput {
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+}
+
+input UserFeedbackUpdateOneWithoutItemMetaInput {
+  create: UserFeedbackCreateWithoutItemMetaInput
+  update: UserFeedbackUpdateWithoutItemMetaDataInput
+  upsert: UserFeedbackUpsertWithoutItemMetaInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserFeedbackWhereUniqueInput
+}
+
+input UserFeedbackUpdateWithoutItemMetaDataInput {
+  user: UserUpdateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+}
+
+input UserFeedbackUpsertWithoutItemMetaInput {
+  update: UserFeedbackUpdateWithoutItemMetaDataInput!
+  create: UserFeedbackCreateWithoutItemMetaInput!
+}
+
+input UserFeedbackWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  itemType: String
+  itemType_not: String
+  itemType_in: [String!]
+  itemType_not_in: [String!]
+  itemType_lt: String
+  itemType_lte: String
+  itemType_gt: String
+  itemType_gte: String
+  itemType_contains: String
+  itemType_not_contains: String
+  itemType_starts_with: String
+  itemType_not_starts_with: String
+  itemType_ends_with: String
+  itemType_not_ends_with: String
+  itemStatus: String
+  itemStatus_not: String
+  itemStatus_in: [String!]
+  itemStatus_not_in: [String!]
+  itemStatus_lt: String
+  itemStatus_lte: String
+  itemStatus_gt: String
+  itemStatus_gte: String
+  itemStatus_contains: String
+  itemStatus_not_contains: String
+  itemStatus_starts_with: String
+  itemStatus_not_starts_with: String
+  itemStatus_ends_with: String
+  itemStatus_not_ends_with: String
+  itemUrlSegment: String
+  itemUrlSegment_not: String
+  itemUrlSegment_in: [String!]
+  itemUrlSegment_not_in: [String!]
+  itemUrlSegment_lt: String
+  itemUrlSegment_lte: String
+  itemUrlSegment_gt: String
+  itemUrlSegment_gte: String
+  itemUrlSegment_contains: String
+  itemUrlSegment_not_contains: String
+  itemUrlSegment_starts_with: String
+  itemUrlSegment_not_starts_with: String
+  itemUrlSegment_ends_with: String
+  itemUrlSegment_not_ends_with: String
+  itemMimeType: String
+  itemMimeType_not: String
+  itemMimeType_in: [String!]
+  itemMimeType_not_in: [String!]
+  itemMimeType_lt: String
+  itemMimeType_lte: String
+  itemMimeType_gt: String
+  itemMimeType_gte: String
+  itemMimeType_contains: String
+  itemMimeType_not_contains: String
+  itemMimeType_starts_with: String
+  itemMimeType_not_starts_with: String
+  itemMimeType_ends_with: String
+  itemMimeType_not_ends_with: String
+  itemName: String
+  itemName_not: String
+  itemName_in: [String!]
+  itemName_not_in: [String!]
+  itemName_lt: String
+  itemName_lte: String
+  itemName_gt: String
+  itemName_gte: String
+  itemName_contains: String
+  itemName_not_contains: String
+  itemName_starts_with: String
+  itemName_not_starts_with: String
+  itemName_ends_with: String
+  itemName_not_ends_with: String
+  itemContent: String
+  itemContent_not: String
+  itemContent_in: [String!]
+  itemContent_not_in: [String!]
+  itemContent_lt: String
+  itemContent_lte: String
+  itemContent_gt: String
+  itemContent_gte: String
+  itemContent_contains: String
+  itemContent_not_contains: String
+  itemContent_starts_with: String
+  itemContent_not_starts_with: String
+  itemContent_ends_with: String
+  itemContent_not_ends_with: String
+  itemDeleted: Boolean
+  itemDeleted_not: Boolean
+  itemMeta_every: UserFeedbackMetaWhereInput
+  itemMeta_some: UserFeedbackMetaWhereInput
+  itemMeta_none: UserFeedbackMetaWhereInput
+  AND: [UserFeedbackWhereInput!]
+  OR: [UserFeedbackWhereInput!]
+  NOT: [UserFeedbackWhereInput!]
+}
+
+input UserFeedbackWhereUniqueInput {
+  id: ID
+}
+
+type UserMeta {
+  id: ID!
+  user: User
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+type UserMetaConnection {
+  pageInfo: PageInfo!
+  edges: [UserMetaEdge]!
+  aggregate: AggregateUserMeta!
+}
+
+input UserMetaCreateInput {
+  user: UserCreateOneWithoutUserMetaInput
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+input UserMetaCreateManyWithoutUserInput {
+  create: [UserMetaCreateWithoutUserInput!]
+  connect: [UserMetaWhereUniqueInput!]
+}
+
+input UserMetaCreateWithoutUserInput {
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+type UserMetaEdge {
+  node: UserMeta!
+  cursor: String!
+}
+
+enum UserMetaOrderByInput {
+  id_ASC
+  id_DESC
+  metaType_ASC
+  metaType_DESC
+  metaName_ASC
+  metaName_DESC
+  metaValue_ASC
+  metaValue_DESC
+  metaDeleted_ASC
+  metaDeleted_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserMetaPreviousValues {
+  id: ID!
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+input UserMetaScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  metaType: String
+  metaType_not: String
+  metaType_in: [String!]
+  metaType_not_in: [String!]
+  metaType_lt: String
+  metaType_lte: String
+  metaType_gt: String
+  metaType_gte: String
+  metaType_contains: String
+  metaType_not_contains: String
+  metaType_starts_with: String
+  metaType_not_starts_with: String
+  metaType_ends_with: String
+  metaType_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
+  metaValue: String
+  metaValue_not: String
+  metaValue_in: [String!]
+  metaValue_not_in: [String!]
+  metaValue_lt: String
+  metaValue_lte: String
+  metaValue_gt: String
+  metaValue_gte: String
+  metaValue_contains: String
+  metaValue_not_contains: String
+  metaValue_starts_with: String
+  metaValue_not_starts_with: String
+  metaValue_ends_with: String
+  metaValue_not_ends_with: String
+  metaDeleted: Boolean
+  metaDeleted_not: Boolean
+  AND: [UserMetaScalarWhereInput!]
+  OR: [UserMetaScalarWhereInput!]
+  NOT: [UserMetaScalarWhereInput!]
+}
+
+type UserMetaSubscriptionPayload {
+  mutation: MutationType!
+  node: UserMeta
+  updatedFields: [String!]
+  previousValues: UserMetaPreviousValues
+}
+
+input UserMetaSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserMetaWhereInput
+  AND: [UserMetaSubscriptionWhereInput!]
+  OR: [UserMetaSubscriptionWhereInput!]
+  NOT: [UserMetaSubscriptionWhereInput!]
+}
+
+input UserMetaUpdateInput {
+  user: UserUpdateOneWithoutUserMetaInput
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input UserMetaUpdateManyDataInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input UserMetaUpdateManyMutationInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input UserMetaUpdateManyWithoutUserInput {
+  create: [UserMetaCreateWithoutUserInput!]
+  delete: [UserMetaWhereUniqueInput!]
+  connect: [UserMetaWhereUniqueInput!]
+  set: [UserMetaWhereUniqueInput!]
+  disconnect: [UserMetaWhereUniqueInput!]
+  update: [UserMetaUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [UserMetaUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [UserMetaScalarWhereInput!]
+  updateMany: [UserMetaUpdateManyWithWhereNestedInput!]
+}
+
+input UserMetaUpdateManyWithWhereNestedInput {
+  where: UserMetaScalarWhereInput!
+  data: UserMetaUpdateManyDataInput!
+}
+
+input UserMetaUpdateWithoutUserDataInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input UserMetaUpdateWithWhereUniqueWithoutUserInput {
+  where: UserMetaWhereUniqueInput!
+  data: UserMetaUpdateWithoutUserDataInput!
+}
+
+input UserMetaUpsertWithWhereUniqueWithoutUserInput {
+  where: UserMetaWhereUniqueInput!
+  update: UserMetaUpdateWithoutUserDataInput!
+  create: UserMetaCreateWithoutUserInput!
+}
+
+input UserMetaWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  metaType: String
+  metaType_not: String
+  metaType_in: [String!]
+  metaType_not_in: [String!]
+  metaType_lt: String
+  metaType_lte: String
+  metaType_gt: String
+  metaType_gte: String
+  metaType_contains: String
+  metaType_not_contains: String
+  metaType_starts_with: String
+  metaType_not_starts_with: String
+  metaType_ends_with: String
+  metaType_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
+  metaValue: String
+  metaValue_not: String
+  metaValue_in: [String!]
+  metaValue_not_in: [String!]
+  metaValue_lt: String
+  metaValue_lte: String
+  metaValue_gt: String
+  metaValue_gte: String
+  metaValue_contains: String
+  metaValue_not_contains: String
+  metaValue_starts_with: String
+  metaValue_not_starts_with: String
+  metaValue_ends_with: String
+  metaValue_not_ends_with: String
+  metaDeleted: Boolean
+  metaDeleted_not: Boolean
+  AND: [UserMetaWhereInput!]
+  OR: [UserMetaWhereInput!]
+  NOT: [UserMetaWhereInput!]
+}
+
+input UserMetaWhereUniqueInput {
+  id: ID
+}
+
 enum UserOrderByInput {
   id_ASC
   id_DESC
-  name_ASC
-  name_DESC
+  userType_ASC
+  userType_DESC
+  userEmail_ASC
+  userEmail_DESC
+  userPassword_ASC
+  userPassword_DESC
+  confirmHash_ASC
+  confirmHash_DESC
+  forgotHash_ASC
+  forgotHash_DESC
+  userConfirmed_ASC
+  userConfirmed_DESC
+  userDeleted_ASC
+  userDeleted_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -82,7 +3273,13 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
-  name: String!
+  userType: Int
+  userEmail: String
+  userPassword: String
+  confirmHash: String
+  forgotHash: String
+  userConfirmed: Int
+  userDeleted: Boolean
 }
 
 type UserSubscriptionPayload {
@@ -103,12 +3300,612 @@ input UserSubscriptionWhereInput {
   NOT: [UserSubscriptionWhereInput!]
 }
 
+type UserTrack {
+  id: ID!
+  user: User
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta(where: UserTrackMetaWhereInput, orderBy: UserTrackMetaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserTrackMeta!]
+}
+
+type UserTrackConnection {
+  pageInfo: PageInfo!
+  edges: [UserTrackEdge]!
+  aggregate: AggregateUserTrack!
+}
+
+input UserTrackCreateInput {
+  user: UserCreateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: UserTrackMetaCreateManyWithoutUserTrackInput
+}
+
+input UserTrackCreateOneWithoutItemMetaInput {
+  create: UserTrackCreateWithoutItemMetaInput
+  connect: UserTrackWhereUniqueInput
+}
+
+input UserTrackCreateWithoutItemMetaInput {
+  user: UserCreateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+}
+
+type UserTrackEdge {
+  node: UserTrack!
+  cursor: String!
+}
+
+type UserTrackMeta {
+  id: ID!
+  userTrack: UserTrack
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+type UserTrackMetaConnection {
+  pageInfo: PageInfo!
+  edges: [UserTrackMetaEdge]!
+  aggregate: AggregateUserTrackMeta!
+}
+
+input UserTrackMetaCreateInput {
+  userTrack: UserTrackCreateOneWithoutItemMetaInput
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+input UserTrackMetaCreateManyWithoutUserTrackInput {
+  create: [UserTrackMetaCreateWithoutUserTrackInput!]
+  connect: [UserTrackMetaWhereUniqueInput!]
+}
+
+input UserTrackMetaCreateWithoutUserTrackInput {
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+type UserTrackMetaEdge {
+  node: UserTrackMeta!
+  cursor: String!
+}
+
+enum UserTrackMetaOrderByInput {
+  id_ASC
+  id_DESC
+  metaType_ASC
+  metaType_DESC
+  metaName_ASC
+  metaName_DESC
+  metaValue_ASC
+  metaValue_DESC
+  metaDeleted_ASC
+  metaDeleted_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserTrackMetaPreviousValues {
+  id: ID!
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean
+}
+
+input UserTrackMetaScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  metaType: String
+  metaType_not: String
+  metaType_in: [String!]
+  metaType_not_in: [String!]
+  metaType_lt: String
+  metaType_lte: String
+  metaType_gt: String
+  metaType_gte: String
+  metaType_contains: String
+  metaType_not_contains: String
+  metaType_starts_with: String
+  metaType_not_starts_with: String
+  metaType_ends_with: String
+  metaType_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
+  metaValue: String
+  metaValue_not: String
+  metaValue_in: [String!]
+  metaValue_not_in: [String!]
+  metaValue_lt: String
+  metaValue_lte: String
+  metaValue_gt: String
+  metaValue_gte: String
+  metaValue_contains: String
+  metaValue_not_contains: String
+  metaValue_starts_with: String
+  metaValue_not_starts_with: String
+  metaValue_ends_with: String
+  metaValue_not_ends_with: String
+  metaDeleted: Boolean
+  metaDeleted_not: Boolean
+  AND: [UserTrackMetaScalarWhereInput!]
+  OR: [UserTrackMetaScalarWhereInput!]
+  NOT: [UserTrackMetaScalarWhereInput!]
+}
+
+type UserTrackMetaSubscriptionPayload {
+  mutation: MutationType!
+  node: UserTrackMeta
+  updatedFields: [String!]
+  previousValues: UserTrackMetaPreviousValues
+}
+
+input UserTrackMetaSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserTrackMetaWhereInput
+  AND: [UserTrackMetaSubscriptionWhereInput!]
+  OR: [UserTrackMetaSubscriptionWhereInput!]
+  NOT: [UserTrackMetaSubscriptionWhereInput!]
+}
+
+input UserTrackMetaUpdateInput {
+  userTrack: UserTrackUpdateOneWithoutItemMetaInput
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input UserTrackMetaUpdateManyDataInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input UserTrackMetaUpdateManyMutationInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input UserTrackMetaUpdateManyWithoutUserTrackInput {
+  create: [UserTrackMetaCreateWithoutUserTrackInput!]
+  delete: [UserTrackMetaWhereUniqueInput!]
+  connect: [UserTrackMetaWhereUniqueInput!]
+  set: [UserTrackMetaWhereUniqueInput!]
+  disconnect: [UserTrackMetaWhereUniqueInput!]
+  update: [UserTrackMetaUpdateWithWhereUniqueWithoutUserTrackInput!]
+  upsert: [UserTrackMetaUpsertWithWhereUniqueWithoutUserTrackInput!]
+  deleteMany: [UserTrackMetaScalarWhereInput!]
+  updateMany: [UserTrackMetaUpdateManyWithWhereNestedInput!]
+}
+
+input UserTrackMetaUpdateManyWithWhereNestedInput {
+  where: UserTrackMetaScalarWhereInput!
+  data: UserTrackMetaUpdateManyDataInput!
+}
+
+input UserTrackMetaUpdateWithoutUserTrackDataInput {
+  metaType: String
+  metaName: String
+  metaValue: String
+  metaDeleted: Boolean
+}
+
+input UserTrackMetaUpdateWithWhereUniqueWithoutUserTrackInput {
+  where: UserTrackMetaWhereUniqueInput!
+  data: UserTrackMetaUpdateWithoutUserTrackDataInput!
+}
+
+input UserTrackMetaUpsertWithWhereUniqueWithoutUserTrackInput {
+  where: UserTrackMetaWhereUniqueInput!
+  update: UserTrackMetaUpdateWithoutUserTrackDataInput!
+  create: UserTrackMetaCreateWithoutUserTrackInput!
+}
+
+input UserTrackMetaWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  userTrack: UserTrackWhereInput
+  metaType: String
+  metaType_not: String
+  metaType_in: [String!]
+  metaType_not_in: [String!]
+  metaType_lt: String
+  metaType_lte: String
+  metaType_gt: String
+  metaType_gte: String
+  metaType_contains: String
+  metaType_not_contains: String
+  metaType_starts_with: String
+  metaType_not_starts_with: String
+  metaType_ends_with: String
+  metaType_not_ends_with: String
+  metaName: String
+  metaName_not: String
+  metaName_in: [String!]
+  metaName_not_in: [String!]
+  metaName_lt: String
+  metaName_lte: String
+  metaName_gt: String
+  metaName_gte: String
+  metaName_contains: String
+  metaName_not_contains: String
+  metaName_starts_with: String
+  metaName_not_starts_with: String
+  metaName_ends_with: String
+  metaName_not_ends_with: String
+  metaValue: String
+  metaValue_not: String
+  metaValue_in: [String!]
+  metaValue_not_in: [String!]
+  metaValue_lt: String
+  metaValue_lte: String
+  metaValue_gt: String
+  metaValue_gte: String
+  metaValue_contains: String
+  metaValue_not_contains: String
+  metaValue_starts_with: String
+  metaValue_not_starts_with: String
+  metaValue_ends_with: String
+  metaValue_not_ends_with: String
+  metaDeleted: Boolean
+  metaDeleted_not: Boolean
+  AND: [UserTrackMetaWhereInput!]
+  OR: [UserTrackMetaWhereInput!]
+  NOT: [UserTrackMetaWhereInput!]
+}
+
+input UserTrackMetaWhereUniqueInput {
+  id: ID
+}
+
+enum UserTrackOrderByInput {
+  id_ASC
+  id_DESC
+  itemType_ASC
+  itemType_DESC
+  itemStatus_ASC
+  itemStatus_DESC
+  itemUrlSegment_ASC
+  itemUrlSegment_DESC
+  itemMimeType_ASC
+  itemMimeType_DESC
+  itemName_ASC
+  itemName_DESC
+  itemContent_ASC
+  itemContent_DESC
+  itemDeleted_ASC
+  itemDeleted_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserTrackPreviousValues {
+  id: ID!
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean
+}
+
+type UserTrackSubscriptionPayload {
+  mutation: MutationType!
+  node: UserTrack
+  updatedFields: [String!]
+  previousValues: UserTrackPreviousValues
+}
+
+input UserTrackSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserTrackWhereInput
+  AND: [UserTrackSubscriptionWhereInput!]
+  OR: [UserTrackSubscriptionWhereInput!]
+  NOT: [UserTrackSubscriptionWhereInput!]
+}
+
+input UserTrackUpdateInput {
+  user: UserUpdateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: UserTrackMetaUpdateManyWithoutUserTrackInput
+}
+
+input UserTrackUpdateManyMutationInput {
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+}
+
+input UserTrackUpdateOneWithoutItemMetaInput {
+  create: UserTrackCreateWithoutItemMetaInput
+  update: UserTrackUpdateWithoutItemMetaDataInput
+  upsert: UserTrackUpsertWithoutItemMetaInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserTrackWhereUniqueInput
+}
+
+input UserTrackUpdateWithoutItemMetaDataInput {
+  user: UserUpdateOneInput
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String
+  itemContent: String
+  itemDeleted: Boolean
+}
+
+input UserTrackUpsertWithoutItemMetaInput {
+  update: UserTrackUpdateWithoutItemMetaDataInput!
+  create: UserTrackCreateWithoutItemMetaInput!
+}
+
+input UserTrackWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  itemType: String
+  itemType_not: String
+  itemType_in: [String!]
+  itemType_not_in: [String!]
+  itemType_lt: String
+  itemType_lte: String
+  itemType_gt: String
+  itemType_gte: String
+  itemType_contains: String
+  itemType_not_contains: String
+  itemType_starts_with: String
+  itemType_not_starts_with: String
+  itemType_ends_with: String
+  itemType_not_ends_with: String
+  itemStatus: String
+  itemStatus_not: String
+  itemStatus_in: [String!]
+  itemStatus_not_in: [String!]
+  itemStatus_lt: String
+  itemStatus_lte: String
+  itemStatus_gt: String
+  itemStatus_gte: String
+  itemStatus_contains: String
+  itemStatus_not_contains: String
+  itemStatus_starts_with: String
+  itemStatus_not_starts_with: String
+  itemStatus_ends_with: String
+  itemStatus_not_ends_with: String
+  itemUrlSegment: String
+  itemUrlSegment_not: String
+  itemUrlSegment_in: [String!]
+  itemUrlSegment_not_in: [String!]
+  itemUrlSegment_lt: String
+  itemUrlSegment_lte: String
+  itemUrlSegment_gt: String
+  itemUrlSegment_gte: String
+  itemUrlSegment_contains: String
+  itemUrlSegment_not_contains: String
+  itemUrlSegment_starts_with: String
+  itemUrlSegment_not_starts_with: String
+  itemUrlSegment_ends_with: String
+  itemUrlSegment_not_ends_with: String
+  itemMimeType: String
+  itemMimeType_not: String
+  itemMimeType_in: [String!]
+  itemMimeType_not_in: [String!]
+  itemMimeType_lt: String
+  itemMimeType_lte: String
+  itemMimeType_gt: String
+  itemMimeType_gte: String
+  itemMimeType_contains: String
+  itemMimeType_not_contains: String
+  itemMimeType_starts_with: String
+  itemMimeType_not_starts_with: String
+  itemMimeType_ends_with: String
+  itemMimeType_not_ends_with: String
+  itemName: String
+  itemName_not: String
+  itemName_in: [String!]
+  itemName_not_in: [String!]
+  itemName_lt: String
+  itemName_lte: String
+  itemName_gt: String
+  itemName_gte: String
+  itemName_contains: String
+  itemName_not_contains: String
+  itemName_starts_with: String
+  itemName_not_starts_with: String
+  itemName_ends_with: String
+  itemName_not_ends_with: String
+  itemContent: String
+  itemContent_not: String
+  itemContent_in: [String!]
+  itemContent_not_in: [String!]
+  itemContent_lt: String
+  itemContent_lte: String
+  itemContent_gt: String
+  itemContent_gte: String
+  itemContent_contains: String
+  itemContent_not_contains: String
+  itemContent_starts_with: String
+  itemContent_not_starts_with: String
+  itemContent_ends_with: String
+  itemContent_not_ends_with: String
+  itemDeleted: Boolean
+  itemDeleted_not: Boolean
+  itemMeta_every: UserTrackMetaWhereInput
+  itemMeta_some: UserTrackMetaWhereInput
+  itemMeta_none: UserTrackMetaWhereInput
+  AND: [UserTrackWhereInput!]
+  OR: [UserTrackWhereInput!]
+  NOT: [UserTrackWhereInput!]
+}
+
+input UserTrackWhereUniqueInput {
+  id: ID
+}
+
+input UserUpdateDataInput {
+  userType: Int
+  userEmail: String
+  userPassword: String
+  confirmHash: String
+  forgotHash: String
+  userConfirmed: Int
+  userDeleted: Boolean
+  userMeta: UserMetaUpdateManyWithoutUserInput
+}
+
 input UserUpdateInput {
-  name: String
+  userType: Int
+  userEmail: String
+  userPassword: String
+  confirmHash: String
+  forgotHash: String
+  userConfirmed: Int
+  userDeleted: Boolean
+  userMeta: UserMetaUpdateManyWithoutUserInput
 }
 
 input UserUpdateManyMutationInput {
-  name: String
+  userType: Int
+  userEmail: String
+  userPassword: String
+  confirmHash: String
+  forgotHash: String
+  userConfirmed: Int
+  userDeleted: Boolean
+}
+
+input UserUpdateOneInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneWithoutUserMetaInput {
+  create: UserCreateWithoutUserMetaInput
+  update: UserUpdateWithoutUserMetaDataInput
+  upsert: UserUpsertWithoutUserMetaInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateWithoutUserMetaDataInput {
+  userType: Int
+  userEmail: String
+  userPassword: String
+  confirmHash: String
+  forgotHash: String
+  userConfirmed: Int
+  userDeleted: Boolean
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
+}
+
+input UserUpsertWithoutUserMetaInput {
+  update: UserUpdateWithoutUserMetaDataInput!
+  create: UserCreateWithoutUserMetaInput!
 }
 
 input UserWhereInput {
@@ -126,20 +3923,83 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
+  userType: Int
+  userType_not: Int
+  userType_in: [Int!]
+  userType_not_in: [Int!]
+  userType_lt: Int
+  userType_lte: Int
+  userType_gt: Int
+  userType_gte: Int
+  userEmail: String
+  userEmail_not: String
+  userEmail_in: [String!]
+  userEmail_not_in: [String!]
+  userEmail_lt: String
+  userEmail_lte: String
+  userEmail_gt: String
+  userEmail_gte: String
+  userEmail_contains: String
+  userEmail_not_contains: String
+  userEmail_starts_with: String
+  userEmail_not_starts_with: String
+  userEmail_ends_with: String
+  userEmail_not_ends_with: String
+  userPassword: String
+  userPassword_not: String
+  userPassword_in: [String!]
+  userPassword_not_in: [String!]
+  userPassword_lt: String
+  userPassword_lte: String
+  userPassword_gt: String
+  userPassword_gte: String
+  userPassword_contains: String
+  userPassword_not_contains: String
+  userPassword_starts_with: String
+  userPassword_not_starts_with: String
+  userPassword_ends_with: String
+  userPassword_not_ends_with: String
+  confirmHash: String
+  confirmHash_not: String
+  confirmHash_in: [String!]
+  confirmHash_not_in: [String!]
+  confirmHash_lt: String
+  confirmHash_lte: String
+  confirmHash_gt: String
+  confirmHash_gte: String
+  confirmHash_contains: String
+  confirmHash_not_contains: String
+  confirmHash_starts_with: String
+  confirmHash_not_starts_with: String
+  confirmHash_ends_with: String
+  confirmHash_not_ends_with: String
+  forgotHash: String
+  forgotHash_not: String
+  forgotHash_in: [String!]
+  forgotHash_not_in: [String!]
+  forgotHash_lt: String
+  forgotHash_lte: String
+  forgotHash_gt: String
+  forgotHash_gte: String
+  forgotHash_contains: String
+  forgotHash_not_contains: String
+  forgotHash_starts_with: String
+  forgotHash_not_starts_with: String
+  forgotHash_ends_with: String
+  forgotHash_not_ends_with: String
+  userConfirmed: Int
+  userConfirmed_not: Int
+  userConfirmed_in: [Int!]
+  userConfirmed_not_in: [Int!]
+  userConfirmed_lt: Int
+  userConfirmed_lte: Int
+  userConfirmed_gt: Int
+  userConfirmed_gte: Int
+  userDeleted: Boolean
+  userDeleted_not: Boolean
+  userMeta_every: UserMetaWhereInput
+  userMeta_some: UserMetaWhereInput
+  userMeta_none: UserMetaWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
@@ -147,5 +4007,6 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  userEmail: String
 }
 `

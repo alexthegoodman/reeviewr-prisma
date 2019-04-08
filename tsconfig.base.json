@@ -3,7 +3,15 @@
     "allowJs": true,
     "baseUrl": "./modules",
     "jsx": "react",
-    "lib": ["dom", "es6", "es2015", "es2016", "es2017", "es2018"],
+    "lib": [
+      "dom",
+      "es6",
+      "es2015",
+      "es2016",
+      "es2017",
+      "es2018",
+      "esnext.asynciterable"
+    ],
     "module": "esnext",
     "moduleResolution": "node",
     "noUnusedLocals": false,

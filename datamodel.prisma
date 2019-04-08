@@ -1,4 +1,152 @@
 type User {
   id: ID! @unique
-  name: String!
+  userType: Int
+  userEmail: String @unique
+  userPassword: String
+  confirmHash: String
+  forgotHash: String
+  userConfirmed: Int
+  userDeleted: Boolean @default(value: "false")
+  userMeta: [UserMeta!]!
+}
+
+type UserMeta {
+  id: ID! @unique
+  user: User
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean @default(value: "false")
+}
+
+type UserTrack {
+  id: ID! @unique
+  user: User
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean @default(value: "false")
+  itemMeta: [UserTrackMeta!]!
+}
+
+type UserTrackMeta {
+  id: ID! @unique
+  userTrack: UserTrack
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean @default(value: "false")
+}
+
+type UserFeedback {
+  id: ID! @unique
+  user: User
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean @default(value: "false")
+  itemMeta: [UserFeedbackMeta!]!
+}
+
+type UserFeedbackMeta {
+  id: ID! @unique
+  userFeedback: UserFeedback
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean @default(value: "false")
+}
+
+type ProfilePage {
+  id: ID! @unique
+  user: User
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean @default(value: "false")
+  itemMeta: [ProfilePageMeta!]!
+}
+
+type ProfilePageMeta {
+  id: ID! @unique
+  profilePage: ProfilePage
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean @default(value: "false")
+}
+
+type BlogPost {
+  id: ID! @unique
+  user: User
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean @default(value: "false")
+  itemMeta: [BlogPostMeta!]!
+}
+
+type BlogPostMeta {
+  id: ID! @unique
+  blogPost: BlogPost
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean @default(value: "false")
+}
+
+type Review {
+  id: ID! @unique
+  user: User
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean @default(value: "false")
+  itemMeta: [ReviewMeta!]!
+}
+
+type ReviewMeta {
+  id: ID! @unique
+  review: Review
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean @default(value: "false")
+}
+
+type File {
+  id: ID! @unique
+  user: User
+  itemType: String
+  itemStatus: String
+  itemUrlSegment: String
+  itemMimeType: String
+  itemName: String!
+  itemContent: String!
+  itemDeleted: Boolean @default(value: "false")
+  itemMeta: [FileMeta!]!
+}
+
+type FileMeta {
+  id: ID! @unique
+  file: File
+  metaType: String
+  metaName: String!
+  metaValue: String!
+  metaDeleted: Boolean @default(value: "false")
 }
