@@ -1,8 +1,11 @@
 type User {
   id: ID! @unique
+  oldId: ID @unique
   userType: Int
   userEmail: String @unique
   userPassword: String
+  publicHash: String
+  privateHash: String
   confirmHash: String
   forgotHash: String
   userConfirmed: Int
@@ -12,6 +15,7 @@ type User {
 
 type UserMeta {
   id: ID! @unique
+  oldId: String @unique
   user: User
   metaType: String
   metaName: String!
@@ -21,6 +25,7 @@ type UserMeta {
 
 type UserTrack {
   id: ID! @unique
+  oldId: String @unique
   user: User
   itemType: String
   itemStatus: String
@@ -34,6 +39,7 @@ type UserTrack {
 
 type UserTrackMeta {
   id: ID! @unique
+  oldId: String @unique
   userTrack: UserTrack
   metaType: String
   metaName: String!
@@ -43,6 +49,7 @@ type UserTrackMeta {
 
 type UserFeedback {
   id: ID! @unique
+  oldId: String @unique
   user: User
   itemType: String
   itemStatus: String
@@ -56,6 +63,7 @@ type UserFeedback {
 
 type UserFeedbackMeta {
   id: ID! @unique
+  oldId: String @unique
   userFeedback: UserFeedback
   metaType: String
   metaName: String!
@@ -65,6 +73,7 @@ type UserFeedbackMeta {
 
 type ProfilePage {
   id: ID! @unique
+  oldId: String @unique
   user: User
   itemType: String
   itemStatus: String
@@ -78,6 +87,7 @@ type ProfilePage {
 
 type ProfilePageMeta {
   id: ID! @unique
+  oldId: String @unique
   profilePage: ProfilePage
   metaType: String
   metaName: String!
@@ -87,6 +97,7 @@ type ProfilePageMeta {
 
 type BlogPost {
   id: ID! @unique
+  oldId: String @unique
   user: User
   itemType: String
   itemStatus: String
@@ -100,6 +111,7 @@ type BlogPost {
 
 type BlogPostMeta {
   id: ID! @unique
+  oldId: String @unique
   blogPost: BlogPost
   metaType: String
   metaName: String!
@@ -109,6 +121,7 @@ type BlogPostMeta {
 
 type Review {
   id: ID! @unique
+  oldId: String @unique
   user: User
   itemType: String
   itemStatus: String
@@ -122,6 +135,7 @@ type Review {
 
 type ReviewMeta {
   id: ID! @unique
+  oldId: String @unique
   review: Review
   metaType: String
   metaName: String!
@@ -131,6 +145,7 @@ type ReviewMeta {
 
 type File {
   id: ID! @unique
+  oldId: String @unique
   user: User
   itemType: String
   itemStatus: String
@@ -144,6 +159,7 @@ type File {
 
 type FileMeta {
   id: ID! @unique
+  oldId: String @unique
   file: File
   metaType: String
   metaName: String!

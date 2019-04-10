@@ -64,6 +64,7 @@ type BatchPayload {
 
 type BlogPost {
   id: ID!
+  oldId: String
   user: User
   itemType: String
   itemStatus: String
@@ -82,6 +83,7 @@ type BlogPostConnection {
 }
 
 input BlogPostCreateInput {
+  oldId: String
   user: UserCreateOneInput
   itemType: String
   itemStatus: String
@@ -99,6 +101,7 @@ input BlogPostCreateOneWithoutItemMetaInput {
 }
 
 input BlogPostCreateWithoutItemMetaInput {
+  oldId: String
   user: UserCreateOneInput
   itemType: String
   itemStatus: String
@@ -116,6 +119,7 @@ type BlogPostEdge {
 
 type BlogPostMeta {
   id: ID!
+  oldId: String
   blogPost: BlogPost
   metaType: String
   metaName: String!
@@ -130,6 +134,7 @@ type BlogPostMetaConnection {
 }
 
 input BlogPostMetaCreateInput {
+  oldId: String
   blogPost: BlogPostCreateOneWithoutItemMetaInput
   metaType: String
   metaName: String!
@@ -143,6 +148,7 @@ input BlogPostMetaCreateManyWithoutBlogPostInput {
 }
 
 input BlogPostMetaCreateWithoutBlogPostInput {
+  oldId: String
   metaType: String
   metaName: String!
   metaValue: String!
@@ -157,6 +163,8 @@ type BlogPostMetaEdge {
 enum BlogPostMetaOrderByInput {
   id_ASC
   id_DESC
+  oldId_ASC
+  oldId_DESC
   metaType_ASC
   metaType_DESC
   metaName_ASC
@@ -173,6 +181,7 @@ enum BlogPostMetaOrderByInput {
 
 type BlogPostMetaPreviousValues {
   id: ID!
+  oldId: String
   metaType: String
   metaName: String!
   metaValue: String!
@@ -194,6 +203,20 @@ input BlogPostMetaScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   metaType: String
   metaType_not: String
   metaType_in: [String!]
@@ -262,6 +285,7 @@ input BlogPostMetaSubscriptionWhereInput {
 }
 
 input BlogPostMetaUpdateInput {
+  oldId: String
   blogPost: BlogPostUpdateOneWithoutItemMetaInput
   metaType: String
   metaName: String
@@ -270,6 +294,7 @@ input BlogPostMetaUpdateInput {
 }
 
 input BlogPostMetaUpdateManyDataInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -277,6 +302,7 @@ input BlogPostMetaUpdateManyDataInput {
 }
 
 input BlogPostMetaUpdateManyMutationInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -301,6 +327,7 @@ input BlogPostMetaUpdateManyWithWhereNestedInput {
 }
 
 input BlogPostMetaUpdateWithoutBlogPostDataInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -333,6 +360,20 @@ input BlogPostMetaWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   blogPost: BlogPostWhereInput
   metaType: String
   metaType_not: String
@@ -385,11 +426,14 @@ input BlogPostMetaWhereInput {
 
 input BlogPostMetaWhereUniqueInput {
   id: ID
+  oldId: String
 }
 
 enum BlogPostOrderByInput {
   id_ASC
   id_DESC
+  oldId_ASC
+  oldId_DESC
   itemType_ASC
   itemType_DESC
   itemStatus_ASC
@@ -412,6 +456,7 @@ enum BlogPostOrderByInput {
 
 type BlogPostPreviousValues {
   id: ID!
+  oldId: String
   itemType: String
   itemStatus: String
   itemUrlSegment: String
@@ -440,6 +485,7 @@ input BlogPostSubscriptionWhereInput {
 }
 
 input BlogPostUpdateInput {
+  oldId: String
   user: UserUpdateOneInput
   itemType: String
   itemStatus: String
@@ -452,6 +498,7 @@ input BlogPostUpdateInput {
 }
 
 input BlogPostUpdateManyMutationInput {
+  oldId: String
   itemType: String
   itemStatus: String
   itemUrlSegment: String
@@ -471,6 +518,7 @@ input BlogPostUpdateOneWithoutItemMetaInput {
 }
 
 input BlogPostUpdateWithoutItemMetaDataInput {
+  oldId: String
   user: UserUpdateOneInput
   itemType: String
   itemStatus: String
@@ -501,6 +549,20 @@ input BlogPostWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   user: UserWhereInput
   itemType: String
   itemType_not: String
@@ -598,10 +660,12 @@ input BlogPostWhereInput {
 
 input BlogPostWhereUniqueInput {
   id: ID
+  oldId: String
 }
 
 type File {
   id: ID!
+  oldId: String
   user: User
   itemType: String
   itemStatus: String
@@ -620,6 +684,7 @@ type FileConnection {
 }
 
 input FileCreateInput {
+  oldId: String
   user: UserCreateOneInput
   itemType: String
   itemStatus: String
@@ -637,6 +702,7 @@ input FileCreateOneWithoutItemMetaInput {
 }
 
 input FileCreateWithoutItemMetaInput {
+  oldId: String
   user: UserCreateOneInput
   itemType: String
   itemStatus: String
@@ -654,6 +720,7 @@ type FileEdge {
 
 type FileMeta {
   id: ID!
+  oldId: String
   file: File
   metaType: String
   metaName: String!
@@ -668,6 +735,7 @@ type FileMetaConnection {
 }
 
 input FileMetaCreateInput {
+  oldId: String
   file: FileCreateOneWithoutItemMetaInput
   metaType: String
   metaName: String!
@@ -681,6 +749,7 @@ input FileMetaCreateManyWithoutFileInput {
 }
 
 input FileMetaCreateWithoutFileInput {
+  oldId: String
   metaType: String
   metaName: String!
   metaValue: String!
@@ -695,6 +764,8 @@ type FileMetaEdge {
 enum FileMetaOrderByInput {
   id_ASC
   id_DESC
+  oldId_ASC
+  oldId_DESC
   metaType_ASC
   metaType_DESC
   metaName_ASC
@@ -711,6 +782,7 @@ enum FileMetaOrderByInput {
 
 type FileMetaPreviousValues {
   id: ID!
+  oldId: String
   metaType: String
   metaName: String!
   metaValue: String!
@@ -732,6 +804,20 @@ input FileMetaScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   metaType: String
   metaType_not: String
   metaType_in: [String!]
@@ -800,6 +886,7 @@ input FileMetaSubscriptionWhereInput {
 }
 
 input FileMetaUpdateInput {
+  oldId: String
   file: FileUpdateOneWithoutItemMetaInput
   metaType: String
   metaName: String
@@ -808,6 +895,7 @@ input FileMetaUpdateInput {
 }
 
 input FileMetaUpdateManyDataInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -815,6 +903,7 @@ input FileMetaUpdateManyDataInput {
 }
 
 input FileMetaUpdateManyMutationInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -839,6 +928,7 @@ input FileMetaUpdateManyWithWhereNestedInput {
 }
 
 input FileMetaUpdateWithoutFileDataInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -871,6 +961,20 @@ input FileMetaWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   file: FileWhereInput
   metaType: String
   metaType_not: String
@@ -923,11 +1027,14 @@ input FileMetaWhereInput {
 
 input FileMetaWhereUniqueInput {
   id: ID
+  oldId: String
 }
 
 enum FileOrderByInput {
   id_ASC
   id_DESC
+  oldId_ASC
+  oldId_DESC
   itemType_ASC
   itemType_DESC
   itemStatus_ASC
@@ -950,6 +1057,7 @@ enum FileOrderByInput {
 
 type FilePreviousValues {
   id: ID!
+  oldId: String
   itemType: String
   itemStatus: String
   itemUrlSegment: String
@@ -978,6 +1086,7 @@ input FileSubscriptionWhereInput {
 }
 
 input FileUpdateInput {
+  oldId: String
   user: UserUpdateOneInput
   itemType: String
   itemStatus: String
@@ -990,6 +1099,7 @@ input FileUpdateInput {
 }
 
 input FileUpdateManyMutationInput {
+  oldId: String
   itemType: String
   itemStatus: String
   itemUrlSegment: String
@@ -1009,6 +1119,7 @@ input FileUpdateOneWithoutItemMetaInput {
 }
 
 input FileUpdateWithoutItemMetaDataInput {
+  oldId: String
   user: UserUpdateOneInput
   itemType: String
   itemStatus: String
@@ -1039,6 +1150,20 @@ input FileWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   user: UserWhereInput
   itemType: String
   itemType_not: String
@@ -1136,6 +1261,7 @@ input FileWhereInput {
 
 input FileWhereUniqueInput {
   id: ID
+  oldId: String
 }
 
 scalar Long
@@ -1246,6 +1372,7 @@ type PageInfo {
 
 type ProfilePage {
   id: ID!
+  oldId: String
   user: User
   itemType: String
   itemStatus: String
@@ -1264,6 +1391,7 @@ type ProfilePageConnection {
 }
 
 input ProfilePageCreateInput {
+  oldId: String
   user: UserCreateOneInput
   itemType: String
   itemStatus: String
@@ -1281,6 +1409,7 @@ input ProfilePageCreateOneWithoutItemMetaInput {
 }
 
 input ProfilePageCreateWithoutItemMetaInput {
+  oldId: String
   user: UserCreateOneInput
   itemType: String
   itemStatus: String
@@ -1298,6 +1427,7 @@ type ProfilePageEdge {
 
 type ProfilePageMeta {
   id: ID!
+  oldId: String
   profilePage: ProfilePage
   metaType: String
   metaName: String!
@@ -1312,6 +1442,7 @@ type ProfilePageMetaConnection {
 }
 
 input ProfilePageMetaCreateInput {
+  oldId: String
   profilePage: ProfilePageCreateOneWithoutItemMetaInput
   metaType: String
   metaName: String!
@@ -1325,6 +1456,7 @@ input ProfilePageMetaCreateManyWithoutProfilePageInput {
 }
 
 input ProfilePageMetaCreateWithoutProfilePageInput {
+  oldId: String
   metaType: String
   metaName: String!
   metaValue: String!
@@ -1339,6 +1471,8 @@ type ProfilePageMetaEdge {
 enum ProfilePageMetaOrderByInput {
   id_ASC
   id_DESC
+  oldId_ASC
+  oldId_DESC
   metaType_ASC
   metaType_DESC
   metaName_ASC
@@ -1355,6 +1489,7 @@ enum ProfilePageMetaOrderByInput {
 
 type ProfilePageMetaPreviousValues {
   id: ID!
+  oldId: String
   metaType: String
   metaName: String!
   metaValue: String!
@@ -1376,6 +1511,20 @@ input ProfilePageMetaScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   metaType: String
   metaType_not: String
   metaType_in: [String!]
@@ -1444,6 +1593,7 @@ input ProfilePageMetaSubscriptionWhereInput {
 }
 
 input ProfilePageMetaUpdateInput {
+  oldId: String
   profilePage: ProfilePageUpdateOneWithoutItemMetaInput
   metaType: String
   metaName: String
@@ -1452,6 +1602,7 @@ input ProfilePageMetaUpdateInput {
 }
 
 input ProfilePageMetaUpdateManyDataInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -1459,6 +1610,7 @@ input ProfilePageMetaUpdateManyDataInput {
 }
 
 input ProfilePageMetaUpdateManyMutationInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -1483,6 +1635,7 @@ input ProfilePageMetaUpdateManyWithWhereNestedInput {
 }
 
 input ProfilePageMetaUpdateWithoutProfilePageDataInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -1515,6 +1668,20 @@ input ProfilePageMetaWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   profilePage: ProfilePageWhereInput
   metaType: String
   metaType_not: String
@@ -1567,11 +1734,14 @@ input ProfilePageMetaWhereInput {
 
 input ProfilePageMetaWhereUniqueInput {
   id: ID
+  oldId: String
 }
 
 enum ProfilePageOrderByInput {
   id_ASC
   id_DESC
+  oldId_ASC
+  oldId_DESC
   itemType_ASC
   itemType_DESC
   itemStatus_ASC
@@ -1594,6 +1764,7 @@ enum ProfilePageOrderByInput {
 
 type ProfilePagePreviousValues {
   id: ID!
+  oldId: String
   itemType: String
   itemStatus: String
   itemUrlSegment: String
@@ -1622,6 +1793,7 @@ input ProfilePageSubscriptionWhereInput {
 }
 
 input ProfilePageUpdateInput {
+  oldId: String
   user: UserUpdateOneInput
   itemType: String
   itemStatus: String
@@ -1634,6 +1806,7 @@ input ProfilePageUpdateInput {
 }
 
 input ProfilePageUpdateManyMutationInput {
+  oldId: String
   itemType: String
   itemStatus: String
   itemUrlSegment: String
@@ -1653,6 +1826,7 @@ input ProfilePageUpdateOneWithoutItemMetaInput {
 }
 
 input ProfilePageUpdateWithoutItemMetaDataInput {
+  oldId: String
   user: UserUpdateOneInput
   itemType: String
   itemStatus: String
@@ -1683,6 +1857,20 @@ input ProfilePageWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   user: UserWhereInput
   itemType: String
   itemType_not: String
@@ -1780,6 +1968,7 @@ input ProfilePageWhereInput {
 
 input ProfilePageWhereUniqueInput {
   id: ID
+  oldId: String
 }
 
 type Query {
@@ -1830,6 +2019,7 @@ type Query {
 
 type Review {
   id: ID!
+  oldId: String
   user: User
   itemType: String
   itemStatus: String
@@ -1848,6 +2038,7 @@ type ReviewConnection {
 }
 
 input ReviewCreateInput {
+  oldId: String
   user: UserCreateOneInput
   itemType: String
   itemStatus: String
@@ -1865,6 +2056,7 @@ input ReviewCreateOneWithoutItemMetaInput {
 }
 
 input ReviewCreateWithoutItemMetaInput {
+  oldId: String
   user: UserCreateOneInput
   itemType: String
   itemStatus: String
@@ -1882,6 +2074,7 @@ type ReviewEdge {
 
 type ReviewMeta {
   id: ID!
+  oldId: String
   review: Review
   metaType: String
   metaName: String!
@@ -1896,6 +2089,7 @@ type ReviewMetaConnection {
 }
 
 input ReviewMetaCreateInput {
+  oldId: String
   review: ReviewCreateOneWithoutItemMetaInput
   metaType: String
   metaName: String!
@@ -1909,6 +2103,7 @@ input ReviewMetaCreateManyWithoutReviewInput {
 }
 
 input ReviewMetaCreateWithoutReviewInput {
+  oldId: String
   metaType: String
   metaName: String!
   metaValue: String!
@@ -1923,6 +2118,8 @@ type ReviewMetaEdge {
 enum ReviewMetaOrderByInput {
   id_ASC
   id_DESC
+  oldId_ASC
+  oldId_DESC
   metaType_ASC
   metaType_DESC
   metaName_ASC
@@ -1939,6 +2136,7 @@ enum ReviewMetaOrderByInput {
 
 type ReviewMetaPreviousValues {
   id: ID!
+  oldId: String
   metaType: String
   metaName: String!
   metaValue: String!
@@ -1960,6 +2158,20 @@ input ReviewMetaScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   metaType: String
   metaType_not: String
   metaType_in: [String!]
@@ -2028,6 +2240,7 @@ input ReviewMetaSubscriptionWhereInput {
 }
 
 input ReviewMetaUpdateInput {
+  oldId: String
   review: ReviewUpdateOneWithoutItemMetaInput
   metaType: String
   metaName: String
@@ -2036,6 +2249,7 @@ input ReviewMetaUpdateInput {
 }
 
 input ReviewMetaUpdateManyDataInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -2043,6 +2257,7 @@ input ReviewMetaUpdateManyDataInput {
 }
 
 input ReviewMetaUpdateManyMutationInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -2067,6 +2282,7 @@ input ReviewMetaUpdateManyWithWhereNestedInput {
 }
 
 input ReviewMetaUpdateWithoutReviewDataInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -2099,6 +2315,20 @@ input ReviewMetaWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   review: ReviewWhereInput
   metaType: String
   metaType_not: String
@@ -2151,11 +2381,14 @@ input ReviewMetaWhereInput {
 
 input ReviewMetaWhereUniqueInput {
   id: ID
+  oldId: String
 }
 
 enum ReviewOrderByInput {
   id_ASC
   id_DESC
+  oldId_ASC
+  oldId_DESC
   itemType_ASC
   itemType_DESC
   itemStatus_ASC
@@ -2178,6 +2411,7 @@ enum ReviewOrderByInput {
 
 type ReviewPreviousValues {
   id: ID!
+  oldId: String
   itemType: String
   itemStatus: String
   itemUrlSegment: String
@@ -2206,6 +2440,7 @@ input ReviewSubscriptionWhereInput {
 }
 
 input ReviewUpdateInput {
+  oldId: String
   user: UserUpdateOneInput
   itemType: String
   itemStatus: String
@@ -2218,6 +2453,7 @@ input ReviewUpdateInput {
 }
 
 input ReviewUpdateManyMutationInput {
+  oldId: String
   itemType: String
   itemStatus: String
   itemUrlSegment: String
@@ -2237,6 +2473,7 @@ input ReviewUpdateOneWithoutItemMetaInput {
 }
 
 input ReviewUpdateWithoutItemMetaDataInput {
+  oldId: String
   user: UserUpdateOneInput
   itemType: String
   itemStatus: String
@@ -2267,6 +2504,20 @@ input ReviewWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   user: UserWhereInput
   itemType: String
   itemType_not: String
@@ -2364,6 +2615,7 @@ input ReviewWhereInput {
 
 input ReviewWhereUniqueInput {
   id: ID
+  oldId: String
 }
 
 type Subscription {
@@ -2385,9 +2637,12 @@ type Subscription {
 
 type User {
   id: ID!
+  oldId: ID
   userType: Int
   userEmail: String
   userPassword: String
+  publicHash: String
+  privateHash: String
   confirmHash: String
   forgotHash: String
   userConfirmed: Int
@@ -2402,9 +2657,12 @@ type UserConnection {
 }
 
 input UserCreateInput {
+  oldId: ID
   userType: Int
   userEmail: String
   userPassword: String
+  publicHash: String
+  privateHash: String
   confirmHash: String
   forgotHash: String
   userConfirmed: Int
@@ -2423,9 +2681,12 @@ input UserCreateOneWithoutUserMetaInput {
 }
 
 input UserCreateWithoutUserMetaInput {
+  oldId: ID
   userType: Int
   userEmail: String
   userPassword: String
+  publicHash: String
+  privateHash: String
   confirmHash: String
   forgotHash: String
   userConfirmed: Int
@@ -2439,6 +2700,7 @@ type UserEdge {
 
 type UserFeedback {
   id: ID!
+  oldId: String
   user: User
   itemType: String
   itemStatus: String
@@ -2457,6 +2719,7 @@ type UserFeedbackConnection {
 }
 
 input UserFeedbackCreateInput {
+  oldId: String
   user: UserCreateOneInput
   itemType: String
   itemStatus: String
@@ -2474,6 +2737,7 @@ input UserFeedbackCreateOneWithoutItemMetaInput {
 }
 
 input UserFeedbackCreateWithoutItemMetaInput {
+  oldId: String
   user: UserCreateOneInput
   itemType: String
   itemStatus: String
@@ -2491,6 +2755,7 @@ type UserFeedbackEdge {
 
 type UserFeedbackMeta {
   id: ID!
+  oldId: String
   userFeedback: UserFeedback
   metaType: String
   metaName: String!
@@ -2505,6 +2770,7 @@ type UserFeedbackMetaConnection {
 }
 
 input UserFeedbackMetaCreateInput {
+  oldId: String
   userFeedback: UserFeedbackCreateOneWithoutItemMetaInput
   metaType: String
   metaName: String!
@@ -2518,6 +2784,7 @@ input UserFeedbackMetaCreateManyWithoutUserFeedbackInput {
 }
 
 input UserFeedbackMetaCreateWithoutUserFeedbackInput {
+  oldId: String
   metaType: String
   metaName: String!
   metaValue: String!
@@ -2532,6 +2799,8 @@ type UserFeedbackMetaEdge {
 enum UserFeedbackMetaOrderByInput {
   id_ASC
   id_DESC
+  oldId_ASC
+  oldId_DESC
   metaType_ASC
   metaType_DESC
   metaName_ASC
@@ -2548,6 +2817,7 @@ enum UserFeedbackMetaOrderByInput {
 
 type UserFeedbackMetaPreviousValues {
   id: ID!
+  oldId: String
   metaType: String
   metaName: String!
   metaValue: String!
@@ -2569,6 +2839,20 @@ input UserFeedbackMetaScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   metaType: String
   metaType_not: String
   metaType_in: [String!]
@@ -2637,6 +2921,7 @@ input UserFeedbackMetaSubscriptionWhereInput {
 }
 
 input UserFeedbackMetaUpdateInput {
+  oldId: String
   userFeedback: UserFeedbackUpdateOneWithoutItemMetaInput
   metaType: String
   metaName: String
@@ -2645,6 +2930,7 @@ input UserFeedbackMetaUpdateInput {
 }
 
 input UserFeedbackMetaUpdateManyDataInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -2652,6 +2938,7 @@ input UserFeedbackMetaUpdateManyDataInput {
 }
 
 input UserFeedbackMetaUpdateManyMutationInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -2676,6 +2963,7 @@ input UserFeedbackMetaUpdateManyWithWhereNestedInput {
 }
 
 input UserFeedbackMetaUpdateWithoutUserFeedbackDataInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -2708,6 +2996,20 @@ input UserFeedbackMetaWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   userFeedback: UserFeedbackWhereInput
   metaType: String
   metaType_not: String
@@ -2760,11 +3062,14 @@ input UserFeedbackMetaWhereInput {
 
 input UserFeedbackMetaWhereUniqueInput {
   id: ID
+  oldId: String
 }
 
 enum UserFeedbackOrderByInput {
   id_ASC
   id_DESC
+  oldId_ASC
+  oldId_DESC
   itemType_ASC
   itemType_DESC
   itemStatus_ASC
@@ -2787,6 +3092,7 @@ enum UserFeedbackOrderByInput {
 
 type UserFeedbackPreviousValues {
   id: ID!
+  oldId: String
   itemType: String
   itemStatus: String
   itemUrlSegment: String
@@ -2815,6 +3121,7 @@ input UserFeedbackSubscriptionWhereInput {
 }
 
 input UserFeedbackUpdateInput {
+  oldId: String
   user: UserUpdateOneInput
   itemType: String
   itemStatus: String
@@ -2827,6 +3134,7 @@ input UserFeedbackUpdateInput {
 }
 
 input UserFeedbackUpdateManyMutationInput {
+  oldId: String
   itemType: String
   itemStatus: String
   itemUrlSegment: String
@@ -2846,6 +3154,7 @@ input UserFeedbackUpdateOneWithoutItemMetaInput {
 }
 
 input UserFeedbackUpdateWithoutItemMetaDataInput {
+  oldId: String
   user: UserUpdateOneInput
   itemType: String
   itemStatus: String
@@ -2876,6 +3185,20 @@ input UserFeedbackWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   user: UserWhereInput
   itemType: String
   itemType_not: String
@@ -2973,10 +3296,12 @@ input UserFeedbackWhereInput {
 
 input UserFeedbackWhereUniqueInput {
   id: ID
+  oldId: String
 }
 
 type UserMeta {
   id: ID!
+  oldId: String
   user: User
   metaType: String
   metaName: String!
@@ -2991,6 +3316,7 @@ type UserMetaConnection {
 }
 
 input UserMetaCreateInput {
+  oldId: String
   user: UserCreateOneWithoutUserMetaInput
   metaType: String
   metaName: String!
@@ -3004,6 +3330,7 @@ input UserMetaCreateManyWithoutUserInput {
 }
 
 input UserMetaCreateWithoutUserInput {
+  oldId: String
   metaType: String
   metaName: String!
   metaValue: String!
@@ -3018,6 +3345,8 @@ type UserMetaEdge {
 enum UserMetaOrderByInput {
   id_ASC
   id_DESC
+  oldId_ASC
+  oldId_DESC
   metaType_ASC
   metaType_DESC
   metaName_ASC
@@ -3034,6 +3363,7 @@ enum UserMetaOrderByInput {
 
 type UserMetaPreviousValues {
   id: ID!
+  oldId: String
   metaType: String
   metaName: String!
   metaValue: String!
@@ -3055,6 +3385,20 @@ input UserMetaScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   metaType: String
   metaType_not: String
   metaType_in: [String!]
@@ -3123,6 +3467,7 @@ input UserMetaSubscriptionWhereInput {
 }
 
 input UserMetaUpdateInput {
+  oldId: String
   user: UserUpdateOneWithoutUserMetaInput
   metaType: String
   metaName: String
@@ -3131,6 +3476,7 @@ input UserMetaUpdateInput {
 }
 
 input UserMetaUpdateManyDataInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -3138,6 +3484,7 @@ input UserMetaUpdateManyDataInput {
 }
 
 input UserMetaUpdateManyMutationInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -3162,6 +3509,7 @@ input UserMetaUpdateManyWithWhereNestedInput {
 }
 
 input UserMetaUpdateWithoutUserDataInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -3194,6 +3542,20 @@ input UserMetaWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   user: UserWhereInput
   metaType: String
   metaType_not: String
@@ -3246,17 +3608,24 @@ input UserMetaWhereInput {
 
 input UserMetaWhereUniqueInput {
   id: ID
+  oldId: String
 }
 
 enum UserOrderByInput {
   id_ASC
   id_DESC
+  oldId_ASC
+  oldId_DESC
   userType_ASC
   userType_DESC
   userEmail_ASC
   userEmail_DESC
   userPassword_ASC
   userPassword_DESC
+  publicHash_ASC
+  publicHash_DESC
+  privateHash_ASC
+  privateHash_DESC
   confirmHash_ASC
   confirmHash_DESC
   forgotHash_ASC
@@ -3273,9 +3642,12 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
+  oldId: ID
   userType: Int
   userEmail: String
   userPassword: String
+  publicHash: String
+  privateHash: String
   confirmHash: String
   forgotHash: String
   userConfirmed: Int
@@ -3302,6 +3674,7 @@ input UserSubscriptionWhereInput {
 
 type UserTrack {
   id: ID!
+  oldId: String
   user: User
   itemType: String
   itemStatus: String
@@ -3320,6 +3693,7 @@ type UserTrackConnection {
 }
 
 input UserTrackCreateInput {
+  oldId: String
   user: UserCreateOneInput
   itemType: String
   itemStatus: String
@@ -3337,6 +3711,7 @@ input UserTrackCreateOneWithoutItemMetaInput {
 }
 
 input UserTrackCreateWithoutItemMetaInput {
+  oldId: String
   user: UserCreateOneInput
   itemType: String
   itemStatus: String
@@ -3354,6 +3729,7 @@ type UserTrackEdge {
 
 type UserTrackMeta {
   id: ID!
+  oldId: String
   userTrack: UserTrack
   metaType: String
   metaName: String!
@@ -3368,6 +3744,7 @@ type UserTrackMetaConnection {
 }
 
 input UserTrackMetaCreateInput {
+  oldId: String
   userTrack: UserTrackCreateOneWithoutItemMetaInput
   metaType: String
   metaName: String!
@@ -3381,6 +3758,7 @@ input UserTrackMetaCreateManyWithoutUserTrackInput {
 }
 
 input UserTrackMetaCreateWithoutUserTrackInput {
+  oldId: String
   metaType: String
   metaName: String!
   metaValue: String!
@@ -3395,6 +3773,8 @@ type UserTrackMetaEdge {
 enum UserTrackMetaOrderByInput {
   id_ASC
   id_DESC
+  oldId_ASC
+  oldId_DESC
   metaType_ASC
   metaType_DESC
   metaName_ASC
@@ -3411,6 +3791,7 @@ enum UserTrackMetaOrderByInput {
 
 type UserTrackMetaPreviousValues {
   id: ID!
+  oldId: String
   metaType: String
   metaName: String!
   metaValue: String!
@@ -3432,6 +3813,20 @@ input UserTrackMetaScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   metaType: String
   metaType_not: String
   metaType_in: [String!]
@@ -3500,6 +3895,7 @@ input UserTrackMetaSubscriptionWhereInput {
 }
 
 input UserTrackMetaUpdateInput {
+  oldId: String
   userTrack: UserTrackUpdateOneWithoutItemMetaInput
   metaType: String
   metaName: String
@@ -3508,6 +3904,7 @@ input UserTrackMetaUpdateInput {
 }
 
 input UserTrackMetaUpdateManyDataInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -3515,6 +3912,7 @@ input UserTrackMetaUpdateManyDataInput {
 }
 
 input UserTrackMetaUpdateManyMutationInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -3539,6 +3937,7 @@ input UserTrackMetaUpdateManyWithWhereNestedInput {
 }
 
 input UserTrackMetaUpdateWithoutUserTrackDataInput {
+  oldId: String
   metaType: String
   metaName: String
   metaValue: String
@@ -3571,6 +3970,20 @@ input UserTrackMetaWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   userTrack: UserTrackWhereInput
   metaType: String
   metaType_not: String
@@ -3623,11 +4036,14 @@ input UserTrackMetaWhereInput {
 
 input UserTrackMetaWhereUniqueInput {
   id: ID
+  oldId: String
 }
 
 enum UserTrackOrderByInput {
   id_ASC
   id_DESC
+  oldId_ASC
+  oldId_DESC
   itemType_ASC
   itemType_DESC
   itemStatus_ASC
@@ -3650,6 +4066,7 @@ enum UserTrackOrderByInput {
 
 type UserTrackPreviousValues {
   id: ID!
+  oldId: String
   itemType: String
   itemStatus: String
   itemUrlSegment: String
@@ -3678,6 +4095,7 @@ input UserTrackSubscriptionWhereInput {
 }
 
 input UserTrackUpdateInput {
+  oldId: String
   user: UserUpdateOneInput
   itemType: String
   itemStatus: String
@@ -3690,6 +4108,7 @@ input UserTrackUpdateInput {
 }
 
 input UserTrackUpdateManyMutationInput {
+  oldId: String
   itemType: String
   itemStatus: String
   itemUrlSegment: String
@@ -3709,6 +4128,7 @@ input UserTrackUpdateOneWithoutItemMetaInput {
 }
 
 input UserTrackUpdateWithoutItemMetaDataInput {
+  oldId: String
   user: UserUpdateOneInput
   itemType: String
   itemStatus: String
@@ -3739,6 +4159,20 @@ input UserTrackWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: String
+  oldId_not: String
+  oldId_in: [String!]
+  oldId_not_in: [String!]
+  oldId_lt: String
+  oldId_lte: String
+  oldId_gt: String
+  oldId_gte: String
+  oldId_contains: String
+  oldId_not_contains: String
+  oldId_starts_with: String
+  oldId_not_starts_with: String
+  oldId_ends_with: String
+  oldId_not_ends_with: String
   user: UserWhereInput
   itemType: String
   itemType_not: String
@@ -3836,12 +4270,16 @@ input UserTrackWhereInput {
 
 input UserTrackWhereUniqueInput {
   id: ID
+  oldId: String
 }
 
 input UserUpdateDataInput {
+  oldId: ID
   userType: Int
   userEmail: String
   userPassword: String
+  publicHash: String
+  privateHash: String
   confirmHash: String
   forgotHash: String
   userConfirmed: Int
@@ -3850,9 +4288,12 @@ input UserUpdateDataInput {
 }
 
 input UserUpdateInput {
+  oldId: ID
   userType: Int
   userEmail: String
   userPassword: String
+  publicHash: String
+  privateHash: String
   confirmHash: String
   forgotHash: String
   userConfirmed: Int
@@ -3861,9 +4302,12 @@ input UserUpdateInput {
 }
 
 input UserUpdateManyMutationInput {
+  oldId: ID
   userType: Int
   userEmail: String
   userPassword: String
+  publicHash: String
+  privateHash: String
   confirmHash: String
   forgotHash: String
   userConfirmed: Int
@@ -3889,9 +4333,12 @@ input UserUpdateOneWithoutUserMetaInput {
 }
 
 input UserUpdateWithoutUserMetaDataInput {
+  oldId: ID
   userType: Int
   userEmail: String
   userPassword: String
+  publicHash: String
+  privateHash: String
   confirmHash: String
   forgotHash: String
   userConfirmed: Int
@@ -3923,6 +4370,20 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  oldId: ID
+  oldId_not: ID
+  oldId_in: [ID!]
+  oldId_not_in: [ID!]
+  oldId_lt: ID
+  oldId_lte: ID
+  oldId_gt: ID
+  oldId_gte: ID
+  oldId_contains: ID
+  oldId_not_contains: ID
+  oldId_starts_with: ID
+  oldId_not_starts_with: ID
+  oldId_ends_with: ID
+  oldId_not_ends_with: ID
   userType: Int
   userType_not: Int
   userType_in: [Int!]
@@ -3959,6 +4420,34 @@ input UserWhereInput {
   userPassword_not_starts_with: String
   userPassword_ends_with: String
   userPassword_not_ends_with: String
+  publicHash: String
+  publicHash_not: String
+  publicHash_in: [String!]
+  publicHash_not_in: [String!]
+  publicHash_lt: String
+  publicHash_lte: String
+  publicHash_gt: String
+  publicHash_gte: String
+  publicHash_contains: String
+  publicHash_not_contains: String
+  publicHash_starts_with: String
+  publicHash_not_starts_with: String
+  publicHash_ends_with: String
+  publicHash_not_ends_with: String
+  privateHash: String
+  privateHash_not: String
+  privateHash_in: [String!]
+  privateHash_not_in: [String!]
+  privateHash_lt: String
+  privateHash_lte: String
+  privateHash_gt: String
+  privateHash_gte: String
+  privateHash_contains: String
+  privateHash_not_contains: String
+  privateHash_starts_with: String
+  privateHash_not_starts_with: String
+  privateHash_ends_with: String
+  privateHash_not_ends_with: String
   confirmHash: String
   confirmHash_not: String
   confirmHash_in: [String!]
@@ -4007,6 +4496,7 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  oldId: ID
   userEmail: String
 }
 `

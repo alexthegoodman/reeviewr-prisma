@@ -728,6 +728,8 @@ export interface ClientConstructor<T> {
 export type UserMetaOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "oldId_ASC"
+  | "oldId_DESC"
   | "metaType_ASC"
   | "metaType_DESC"
   | "metaName_ASC"
@@ -744,6 +746,8 @@ export type UserMetaOrderByInput =
 export type FileMetaOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "oldId_ASC"
+  | "oldId_DESC"
   | "metaType_ASC"
   | "metaType_DESC"
   | "metaName_ASC"
@@ -760,6 +764,8 @@ export type FileMetaOrderByInput =
 export type ReviewMetaOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "oldId_ASC"
+  | "oldId_DESC"
   | "metaType_ASC"
   | "metaType_DESC"
   | "metaName_ASC"
@@ -776,6 +782,8 @@ export type ReviewMetaOrderByInput =
 export type UserTrackOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "oldId_ASC"
+  | "oldId_DESC"
   | "itemType_ASC"
   | "itemType_DESC"
   | "itemStatus_ASC"
@@ -798,6 +806,8 @@ export type UserTrackOrderByInput =
 export type ProfilePageOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "oldId_ASC"
+  | "oldId_DESC"
   | "itemType_ASC"
   | "itemType_DESC"
   | "itemStatus_ASC"
@@ -820,6 +830,8 @@ export type ProfilePageOrderByInput =
 export type UserFeedbackOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "oldId_ASC"
+  | "oldId_DESC"
   | "itemType_ASC"
   | "itemType_DESC"
   | "itemStatus_ASC"
@@ -842,6 +854,8 @@ export type UserFeedbackOrderByInput =
 export type BlogPostOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "oldId_ASC"
+  | "oldId_DESC"
   | "itemType_ASC"
   | "itemType_DESC"
   | "itemStatus_ASC"
@@ -864,6 +878,8 @@ export type BlogPostOrderByInput =
 export type FileOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "oldId_ASC"
+  | "oldId_DESC"
   | "itemType_ASC"
   | "itemType_DESC"
   | "itemStatus_ASC"
@@ -886,6 +902,8 @@ export type FileOrderByInput =
 export type BlogPostMetaOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "oldId_ASC"
+  | "oldId_DESC"
   | "metaType_ASC"
   | "metaType_DESC"
   | "metaName_ASC"
@@ -902,6 +920,8 @@ export type BlogPostMetaOrderByInput =
 export type ProfilePageMetaOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "oldId_ASC"
+  | "oldId_DESC"
   | "metaType_ASC"
   | "metaType_DESC"
   | "metaName_ASC"
@@ -918,6 +938,8 @@ export type ProfilePageMetaOrderByInput =
 export type UserFeedbackMetaOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "oldId_ASC"
+  | "oldId_DESC"
   | "metaType_ASC"
   | "metaType_DESC"
   | "metaName_ASC"
@@ -934,6 +956,8 @@ export type UserFeedbackMetaOrderByInput =
 export type UserTrackMetaOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "oldId_ASC"
+  | "oldId_DESC"
   | "metaType_ASC"
   | "metaType_DESC"
   | "metaName_ASC"
@@ -952,6 +976,8 @@ export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 export type ReviewOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "oldId_ASC"
+  | "oldId_DESC"
   | "itemType_ASC"
   | "itemType_DESC"
   | "itemStatus_ASC"
@@ -974,12 +1000,18 @@ export type ReviewOrderByInput =
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "oldId_ASC"
+  | "oldId_DESC"
   | "userType_ASC"
   | "userType_DESC"
   | "userEmail_ASC"
   | "userEmail_DESC"
   | "userPassword_ASC"
   | "userPassword_DESC"
+  | "publicHash_ASC"
+  | "publicHash_DESC"
+  | "privateHash_ASC"
+  | "privateHash_DESC"
   | "confirmHash_ASC"
   | "confirmHash_DESC"
   | "forgotHash_ASC"
@@ -994,6 +1026,7 @@ export type UserOrderByInput =
   | "updatedAt_DESC";
 
 export interface FileMetaUpdateWithoutFileDataInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -1002,9 +1035,11 @@ export interface FileMetaUpdateWithoutFileDataInput {
 
 export type BlogPostWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  oldId?: String;
 }>;
 
 export interface BlogPostMetaCreateWithoutBlogPostInput {
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -1012,6 +1047,7 @@ export interface BlogPostMetaCreateWithoutBlogPostInput {
 }
 
 export interface UserFeedbackCreateInput {
+  oldId?: String;
   user?: UserCreateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -1024,6 +1060,7 @@ export interface UserFeedbackCreateInput {
 }
 
 export interface BlogPostUpdateInput {
+  oldId?: String;
   user?: UserUpdateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -1036,6 +1073,7 @@ export interface BlogPostUpdateInput {
 }
 
 export interface FileMetaUpdateInput {
+  oldId?: String;
   file?: FileUpdateOneWithoutItemMetaInput;
   metaType?: String;
   metaName?: String;
@@ -1054,12 +1092,16 @@ export interface UserUpdateOneInput {
 
 export type BlogPostMetaWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  oldId?: String;
 }>;
 
 export interface UserUpdateDataInput {
+  oldId?: ID_Input;
   userType?: Int;
   userEmail?: String;
   userPassword?: String;
+  publicHash?: String;
+  privateHash?: String;
   confirmHash?: String;
   forgotHash?: String;
   userConfirmed?: Int;
@@ -1098,6 +1140,7 @@ export interface UserMetaUpdateManyWithoutUserInput {
 
 export type FileWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  oldId?: String;
 }>;
 
 export interface UserMetaUpdateWithWhereUniqueWithoutUserInput {
@@ -1120,6 +1163,20 @@ export interface FileMetaWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   file?: FileWhereInput;
   metaType?: String;
   metaType_not?: String;
@@ -1171,6 +1228,7 @@ export interface FileMetaWhereInput {
 }
 
 export interface UserMetaUpdateWithoutUserDataInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -1220,6 +1278,20 @@ export interface UserMetaScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   metaType?: String;
   metaType_not?: String;
   metaType_in?: String[] | String;
@@ -1287,9 +1359,11 @@ export interface UserMetaUpdateManyWithWhereNestedInput {
 
 export type FileMetaWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  oldId?: String;
 }>;
 
 export interface UserMetaUpdateManyDataInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -1320,6 +1394,7 @@ export interface UserUpsertNestedInput {
 
 export type ProfilePageWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  oldId?: String;
 }>;
 
 export interface BlogPostMetaUpdateManyWithoutBlogPostInput {
@@ -1357,6 +1432,20 @@ export interface ProfilePageMetaWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   profilePage?: ProfilePageWhereInput;
   metaType?: String;
   metaType_not?: String;
@@ -1427,6 +1516,20 @@ export interface BlogPostWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   user?: UserWhereInput;
   itemType?: String;
   itemType_not?: String;
@@ -1523,6 +1626,7 @@ export interface BlogPostWhereInput {
 }
 
 export interface BlogPostMetaUpdateWithoutBlogPostDataInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -1544,6 +1648,20 @@ export interface BlogPostMetaWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   blogPost?: BlogPostWhereInput;
   metaType?: String;
   metaType_not?: String;
@@ -1624,6 +1742,20 @@ export interface BlogPostMetaScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   metaType?: String;
   metaType_not?: String;
   metaType_in?: String[] | String;
@@ -1675,6 +1807,7 @@ export interface BlogPostMetaScalarWhereInput {
 
 export type ProfilePageMetaWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  oldId?: String;
 }>;
 
 export interface BlogPostMetaUpdateManyWithWhereNestedInput {
@@ -1688,6 +1821,7 @@ export interface UserTrackCreateOneWithoutItemMetaInput {
 }
 
 export interface BlogPostMetaUpdateManyDataInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -1696,9 +1830,11 @@ export interface BlogPostMetaUpdateManyDataInput {
 
 export type ReviewWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  oldId?: String;
 }>;
 
 export interface BlogPostUpdateManyMutationInput {
+  oldId?: String;
   itemType?: String;
   itemStatus?: String;
   itemUrlSegment?: String;
@@ -1723,6 +1859,20 @@ export interface ReviewMetaWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   review?: ReviewWhereInput;
   metaType?: String;
   metaType_not?: String;
@@ -1802,6 +1952,7 @@ export interface UserFeedbackMetaUpdateManyWithoutUserFeedbackInput {
 }
 
 export interface UserTrackMetaUpdateManyDataInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -1809,6 +1960,7 @@ export interface UserTrackMetaUpdateManyDataInput {
 }
 
 export interface UserFeedbackUpdateInput {
+  oldId?: String;
   user?: UserUpdateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -1835,6 +1987,20 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: ID_Input;
+  oldId_not?: ID_Input;
+  oldId_in?: ID_Input[] | ID_Input;
+  oldId_not_in?: ID_Input[] | ID_Input;
+  oldId_lt?: ID_Input;
+  oldId_lte?: ID_Input;
+  oldId_gt?: ID_Input;
+  oldId_gte?: ID_Input;
+  oldId_contains?: ID_Input;
+  oldId_not_contains?: ID_Input;
+  oldId_starts_with?: ID_Input;
+  oldId_not_starts_with?: ID_Input;
+  oldId_ends_with?: ID_Input;
+  oldId_not_ends_with?: ID_Input;
   userType?: Int;
   userType_not?: Int;
   userType_in?: Int[] | Int;
@@ -1871,6 +2037,34 @@ export interface UserWhereInput {
   userPassword_not_starts_with?: String;
   userPassword_ends_with?: String;
   userPassword_not_ends_with?: String;
+  publicHash?: String;
+  publicHash_not?: String;
+  publicHash_in?: String[] | String;
+  publicHash_not_in?: String[] | String;
+  publicHash_lt?: String;
+  publicHash_lte?: String;
+  publicHash_gt?: String;
+  publicHash_gte?: String;
+  publicHash_contains?: String;
+  publicHash_not_contains?: String;
+  publicHash_starts_with?: String;
+  publicHash_not_starts_with?: String;
+  publicHash_ends_with?: String;
+  publicHash_not_ends_with?: String;
+  privateHash?: String;
+  privateHash_not?: String;
+  privateHash_in?: String[] | String;
+  privateHash_not_in?: String[] | String;
+  privateHash_lt?: String;
+  privateHash_lte?: String;
+  privateHash_gt?: String;
+  privateHash_gte?: String;
+  privateHash_contains?: String;
+  privateHash_not_contains?: String;
+  privateHash_starts_with?: String;
+  privateHash_not_starts_with?: String;
+  privateHash_ends_with?: String;
+  privateHash_not_ends_with?: String;
   confirmHash?: String;
   confirmHash_not?: String;
   confirmHash_in?: String[] | String;
@@ -1918,6 +2112,7 @@ export interface UserWhereInput {
 }
 
 export interface BlogPostMetaCreateInput {
+  oldId?: String;
   blogPost?: BlogPostCreateOneWithoutItemMetaInput;
   metaType?: String;
   metaName: String;
@@ -1938,9 +2133,11 @@ export interface BlogPostCreateOneWithoutItemMetaInput {
 
 export type ReviewMetaWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  oldId?: String;
 }>;
 
 export interface BlogPostCreateWithoutItemMetaInput {
+  oldId?: String;
   user?: UserCreateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -1972,6 +2169,7 @@ export interface UserTrackMetaUpdateManyWithoutUserTrackInput {
 }
 
 export interface BlogPostMetaUpdateInput {
+  oldId?: String;
   blogPost?: BlogPostUpdateOneWithoutItemMetaInput;
   metaType?: String;
   metaName?: String;
@@ -1981,6 +2179,7 @@ export interface BlogPostMetaUpdateInput {
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  oldId?: ID_Input;
   userEmail?: String;
 }>;
 
@@ -1994,6 +2193,7 @@ export interface BlogPostUpdateOneWithoutItemMetaInput {
 }
 
 export interface UserTrackMetaCreateWithoutUserTrackInput {
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -2001,6 +2201,7 @@ export interface UserTrackMetaCreateWithoutUserTrackInput {
 }
 
 export interface BlogPostUpdateWithoutItemMetaDataInput {
+  oldId?: String;
   user?: UserUpdateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -2012,6 +2213,7 @@ export interface BlogPostUpdateWithoutItemMetaDataInput {
 }
 
 export interface UserTrackCreateInput {
+  oldId?: String;
   user?: UserCreateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -2029,6 +2231,7 @@ export interface BlogPostUpsertWithoutItemMetaInput {
 }
 
 export interface UserMetaUpdateManyMutationInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -2036,6 +2239,7 @@ export interface UserMetaUpdateManyMutationInput {
 }
 
 export interface BlogPostMetaUpdateManyMutationInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -2057,6 +2261,20 @@ export interface UserFeedbackWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   user?: UserWhereInput;
   itemType?: String;
   itemType_not?: String;
@@ -2153,6 +2371,7 @@ export interface UserFeedbackWhereInput {
 }
 
 export interface FileCreateInput {
+  oldId?: String;
   user?: UserCreateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -2165,9 +2384,12 @@ export interface FileCreateInput {
 }
 
 export interface UserUpdateWithoutUserMetaDataInput {
+  oldId?: ID_Input;
   userType?: Int;
   userEmail?: String;
   userPassword?: String;
+  publicHash?: String;
+  privateHash?: String;
   confirmHash?: String;
   forgotHash?: String;
   userConfirmed?: Int;
@@ -2180,6 +2402,7 @@ export interface FileMetaCreateManyWithoutFileInput {
 }
 
 export interface UserMetaUpdateInput {
+  oldId?: String;
   user?: UserUpdateOneWithoutUserMetaInput;
   metaType?: String;
   metaName?: String;
@@ -2188,6 +2411,7 @@ export interface UserMetaUpdateInput {
 }
 
 export interface FileMetaCreateWithoutFileInput {
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -2200,6 +2424,7 @@ export interface UserCreateOneWithoutUserMetaInput {
 }
 
 export interface FileUpdateInput {
+  oldId?: String;
   user?: UserUpdateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -2212,6 +2437,7 @@ export interface FileUpdateInput {
 }
 
 export interface UserMetaCreateInput {
+  oldId?: String;
   user?: UserCreateOneWithoutUserMetaInput;
   metaType?: String;
   metaName: String;
@@ -2248,6 +2474,7 @@ export interface FileMetaUpdateWithWhereUniqueWithoutFileInput {
 }
 
 export interface UserFeedbackUpdateWithoutItemMetaDataInput {
+  oldId?: String;
   user?: UserUpdateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -2259,6 +2486,7 @@ export interface UserFeedbackUpdateWithoutItemMetaDataInput {
 }
 
 export interface UserFeedbackMetaCreateWithoutUserFeedbackInput {
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -2266,6 +2494,7 @@ export interface UserFeedbackMetaCreateWithoutUserFeedbackInput {
 }
 
 export interface UserFeedbackMetaUpdateInput {
+  oldId?: String;
   userFeedback?: UserFeedbackUpdateOneWithoutItemMetaInput;
   metaType?: String;
   metaName?: String;
@@ -2280,6 +2509,7 @@ export interface FileMetaUpsertWithWhereUniqueWithoutFileInput {
 }
 
 export interface UserFeedbackCreateWithoutItemMetaInput {
+  oldId?: String;
   user?: UserCreateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -2305,6 +2535,20 @@ export interface FileMetaScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   metaType?: String;
   metaType_not?: String;
   metaType_in?: String[] | String;
@@ -2369,6 +2613,20 @@ export interface UserTrackWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   user?: UserWhereInput;
   itemType?: String;
   itemType_not?: String;
@@ -2470,6 +2728,7 @@ export interface FileMetaUpdateManyWithWhereNestedInput {
 }
 
 export interface UserFeedbackMetaCreateInput {
+  oldId?: String;
   userFeedback?: UserFeedbackCreateOneWithoutItemMetaInput;
   metaType?: String;
   metaName: String;
@@ -2478,6 +2737,7 @@ export interface UserFeedbackMetaCreateInput {
 }
 
 export interface FileMetaUpdateManyDataInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -2485,6 +2745,7 @@ export interface FileMetaUpdateManyDataInput {
 }
 
 export interface UserFeedbackMetaUpdateManyDataInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -2492,6 +2753,7 @@ export interface UserFeedbackMetaUpdateManyDataInput {
 }
 
 export interface FileUpdateManyMutationInput {
+  oldId?: String;
   itemType?: String;
   itemStatus?: String;
   itemUrlSegment?: String;
@@ -2516,6 +2778,20 @@ export interface UserFeedbackMetaScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   metaType?: String;
   metaType_not?: String;
   metaType_in?: String[] | String;
@@ -2566,6 +2842,7 @@ export interface UserFeedbackMetaScalarWhereInput {
 }
 
 export interface FileMetaCreateInput {
+  oldId?: String;
   file?: FileCreateOneWithoutItemMetaInput;
   metaType?: String;
   metaName: String;
@@ -2590,6 +2867,7 @@ export interface UserFeedbackMetaUpdateWithWhereUniqueWithoutUserFeedbackInput {
 }
 
 export interface FileCreateWithoutItemMetaInput {
+  oldId?: String;
   user?: UserCreateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -2601,6 +2879,7 @@ export interface FileCreateWithoutItemMetaInput {
 }
 
 export interface BlogPostCreateInput {
+  oldId?: String;
   user?: UserCreateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -2622,9 +2901,12 @@ export interface UserFeedbackMetaCreateManyWithoutUserFeedbackInput {
 }
 
 export interface UserCreateInput {
+  oldId?: ID_Input;
   userType?: Int;
   userEmail?: String;
   userPassword?: String;
+  publicHash?: String;
+  privateHash?: String;
   confirmHash?: String;
   forgotHash?: String;
   userConfirmed?: Int;
@@ -2642,6 +2924,7 @@ export interface FileUpdateOneWithoutItemMetaInput {
 }
 
 export interface UserMetaCreateWithoutUserInput {
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -2649,6 +2932,7 @@ export interface UserMetaCreateWithoutUserInput {
 }
 
 export interface FileUpdateWithoutItemMetaDataInput {
+  oldId?: String;
   user?: UserUpdateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -2699,6 +2983,7 @@ export interface UserFeedbackMetaSubscriptionWhereInput {
 }
 
 export interface FileMetaUpdateManyMutationInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -2720,6 +3005,20 @@ export interface FileWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   user?: UserWhereInput;
   itemType?: String;
   itemType_not?: String;
@@ -2816,6 +3115,7 @@ export interface FileWhereInput {
 }
 
 export interface ProfilePageCreateInput {
+  oldId?: String;
   user?: UserCreateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -2863,6 +3163,7 @@ export interface FileSubscriptionWhereInput {
 }
 
 export interface ProfilePageMetaCreateWithoutProfilePageInput {
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -2870,6 +3171,7 @@ export interface ProfilePageMetaCreateWithoutProfilePageInput {
 }
 
 export interface UserTrackMetaUpdateManyMutationInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -2877,6 +3179,7 @@ export interface UserTrackMetaUpdateManyMutationInput {
 }
 
 export interface ProfilePageUpdateInput {
+  oldId?: String;
   user?: UserUpdateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -2918,6 +3221,7 @@ export interface ProfilePageMetaUpdateManyWithoutProfilePageInput {
 }
 
 export interface UserTrackMetaUpdateInput {
+  oldId?: String;
   userTrack?: UserTrackUpdateOneWithoutItemMetaInput;
   metaType?: String;
   metaName?: String;
@@ -2931,6 +3235,7 @@ export interface ProfilePageMetaUpdateWithWhereUniqueWithoutProfilePageInput {
 }
 
 export interface UserTrackMetaCreateInput {
+  oldId?: String;
   userTrack?: UserTrackCreateOneWithoutItemMetaInput;
   metaType?: String;
   metaName: String;
@@ -2939,6 +3244,7 @@ export interface UserTrackMetaCreateInput {
 }
 
 export interface ProfilePageMetaUpdateWithoutProfilePageDataInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -2960,6 +3266,20 @@ export interface ReviewWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   user?: UserWhereInput;
   itemType?: String;
   itemType_not?: String;
@@ -3076,6 +3396,20 @@ export interface UserTrackMetaScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   metaType?: String;
   metaType_not?: String;
   metaType_in?: String[] | String;
@@ -3140,6 +3474,20 @@ export interface ProfilePageMetaScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   metaType?: String;
   metaType_not?: String;
   metaType_in?: String[] | String;
@@ -3214,6 +3562,20 @@ export interface UserMetaWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   user?: UserWhereInput;
   metaType?: String;
   metaType_not?: String;
@@ -3265,6 +3627,7 @@ export interface UserMetaWhereInput {
 }
 
 export interface ProfilePageMetaUpdateManyDataInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -3273,9 +3636,11 @@ export interface ProfilePageMetaUpdateManyDataInput {
 
 export type UserFeedbackWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  oldId?: String;
 }>;
 
 export interface ProfilePageUpdateManyMutationInput {
+  oldId?: String;
   itemType?: String;
   itemStatus?: String;
   itemUrlSegment?: String;
@@ -3291,6 +3656,7 @@ export interface UserUpsertWithoutUserMetaInput {
 }
 
 export interface ProfilePageMetaCreateInput {
+  oldId?: String;
   profilePage?: ProfilePageCreateOneWithoutItemMetaInput;
   metaType?: String;
   metaName: String;
@@ -3299,9 +3665,12 @@ export interface ProfilePageMetaCreateInput {
 }
 
 export interface UserCreateWithoutUserMetaInput {
+  oldId?: ID_Input;
   userType?: Int;
   userEmail?: String;
   userPassword?: String;
+  publicHash?: String;
+  privateHash?: String;
   confirmHash?: String;
   forgotHash?: String;
   userConfirmed?: Int;
@@ -3314,6 +3683,7 @@ export interface ProfilePageCreateOneWithoutItemMetaInput {
 }
 
 export interface UserFeedbackMetaUpdateManyMutationInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -3321,6 +3691,7 @@ export interface UserFeedbackMetaUpdateManyMutationInput {
 }
 
 export interface ProfilePageCreateWithoutItemMetaInput {
+  oldId?: String;
   user?: UserCreateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -3341,6 +3712,7 @@ export interface UserFeedbackUpdateOneWithoutItemMetaInput {
 }
 
 export interface ProfilePageMetaUpdateInput {
+  oldId?: String;
   profilePage?: ProfilePageUpdateOneWithoutItemMetaInput;
   metaType?: String;
   metaName?: String;
@@ -3363,6 +3735,20 @@ export interface UserTrackMetaWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   userTrack?: UserTrackWhereInput;
   metaType?: String;
   metaType_not?: String;
@@ -3423,6 +3809,7 @@ export interface ProfilePageUpdateOneWithoutItemMetaInput {
 }
 
 export interface UserFeedbackUpdateManyMutationInput {
+  oldId?: String;
   itemType?: String;
   itemStatus?: String;
   itemUrlSegment?: String;
@@ -3433,6 +3820,7 @@ export interface UserFeedbackUpdateManyMutationInput {
 }
 
 export interface ProfilePageUpdateWithoutItemMetaDataInput {
+  oldId?: String;
   user?: UserUpdateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -3445,6 +3833,7 @@ export interface ProfilePageUpdateWithoutItemMetaDataInput {
 
 export type UserTrackMetaWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  oldId?: String;
 }>;
 
 export interface ProfilePageUpsertWithoutItemMetaInput {
@@ -3458,6 +3847,7 @@ export interface UserMetaCreateManyWithoutUserInput {
 }
 
 export interface ProfilePageMetaUpdateManyMutationInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -3476,6 +3866,7 @@ export interface UserTrackSubscriptionWhereInput {
 }
 
 export interface ReviewCreateInput {
+  oldId?: String;
   user?: UserCreateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -3517,6 +3908,7 @@ export interface BlogPostSubscriptionWhereInput {
 }
 
 export interface ReviewMetaCreateWithoutReviewInput {
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -3524,6 +3916,7 @@ export interface ReviewMetaCreateWithoutReviewInput {
 }
 
 export interface UserTrackUpdateWithoutItemMetaDataInput {
+  oldId?: String;
   user?: UserUpdateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -3535,6 +3928,7 @@ export interface UserTrackUpdateWithoutItemMetaDataInput {
 }
 
 export interface ReviewUpdateInput {
+  oldId?: String;
   user?: UserUpdateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -3547,6 +3941,7 @@ export interface ReviewUpdateInput {
 }
 
 export interface UserTrackUpdateManyMutationInput {
+  oldId?: String;
   itemType?: String;
   itemStatus?: String;
   itemUrlSegment?: String;
@@ -3577,6 +3972,7 @@ export interface ReviewMetaUpdateManyWithoutReviewInput {
 }
 
 export interface UserTrackMetaUpdateWithoutUserTrackDataInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -3596,6 +3992,7 @@ export interface UserTrackMetaCreateManyWithoutUserTrackInput {
 }
 
 export interface ReviewMetaUpdateWithoutReviewDataInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -3619,6 +4016,7 @@ export interface ReviewMetaUpsertWithWhereUniqueWithoutReviewInput {
 
 export type UserMetaWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  oldId?: String;
 }>;
 
 export interface ReviewMetaScalarWhereInput {
@@ -3636,6 +4034,20 @@ export interface ReviewMetaScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   metaType?: String;
   metaType_not?: String;
   metaType_in?: String[] | String;
@@ -3696,6 +4108,7 @@ export interface ReviewMetaUpdateManyWithWhereNestedInput {
 }
 
 export interface UserFeedbackMetaUpdateWithoutUserFeedbackDataInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -3703,6 +4116,7 @@ export interface UserFeedbackMetaUpdateWithoutUserFeedbackDataInput {
 }
 
 export interface ReviewMetaUpdateManyDataInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -3717,6 +4131,7 @@ export interface BlogPostMetaCreateManyWithoutBlogPostInput {
 }
 
 export interface ReviewUpdateManyMutationInput {
+  oldId?: String;
   itemType?: String;
   itemStatus?: String;
   itemUrlSegment?: String;
@@ -3738,6 +4153,7 @@ export interface FileMetaSubscriptionWhereInput {
 }
 
 export interface ReviewMetaCreateInput {
+  oldId?: String;
   review?: ReviewCreateOneWithoutItemMetaInput;
   metaType?: String;
   metaName: String;
@@ -3746,6 +4162,7 @@ export interface ReviewMetaCreateInput {
 }
 
 export interface UserTrackCreateWithoutItemMetaInput {
+  oldId?: String;
   user?: UserCreateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -3762,6 +4179,7 @@ export interface ReviewCreateOneWithoutItemMetaInput {
 }
 
 export interface UserTrackUpdateInput {
+  oldId?: String;
   user?: UserUpdateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -3774,6 +4192,7 @@ export interface UserTrackUpdateInput {
 }
 
 export interface ReviewCreateWithoutItemMetaInput {
+  oldId?: String;
   user?: UserCreateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -3786,9 +4205,11 @@ export interface ReviewCreateWithoutItemMetaInput {
 
 export type UserFeedbackMetaWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  oldId?: String;
 }>;
 
 export interface ReviewMetaUpdateInput {
+  oldId?: String;
   review?: ReviewUpdateOneWithoutItemMetaInput;
   metaType?: String;
   metaName?: String;
@@ -3828,6 +4249,7 @@ export interface UserFeedbackSubscriptionWhereInput {
 }
 
 export interface ReviewUpdateWithoutItemMetaDataInput {
+  oldId?: String;
   user?: UserUpdateOneInput;
   itemType?: String;
   itemStatus?: String;
@@ -3844,9 +4266,12 @@ export interface UserTrackMetaUpdateManyWithWhereNestedInput {
 }
 
 export interface UserUpdateManyMutationInput {
+  oldId?: ID_Input;
   userType?: Int;
   userEmail?: String;
   userPassword?: String;
+  publicHash?: String;
+  privateHash?: String;
   confirmHash?: String;
   forgotHash?: String;
   userConfirmed?: Int;
@@ -3854,9 +4279,12 @@ export interface UserUpdateManyMutationInput {
 }
 
 export interface UserUpdateInput {
+  oldId?: ID_Input;
   userType?: Int;
   userEmail?: String;
   userPassword?: String;
+  publicHash?: String;
+  privateHash?: String;
   confirmHash?: String;
   forgotHash?: String;
   userConfirmed?: Int;
@@ -3865,6 +4293,7 @@ export interface UserUpdateInput {
 }
 
 export interface ReviewMetaUpdateManyMutationInput {
+  oldId?: String;
   metaType?: String;
   metaName?: String;
   metaValue?: String;
@@ -3891,6 +4320,20 @@ export interface UserFeedbackMetaWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   userFeedback?: UserFeedbackWhereInput;
   metaType?: String;
   metaType_not?: String;
@@ -3956,6 +4399,20 @@ export interface ProfilePageWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  oldId?: String;
+  oldId_not?: String;
+  oldId_in?: String[] | String;
+  oldId_not_in?: String[] | String;
+  oldId_lt?: String;
+  oldId_lte?: String;
+  oldId_gt?: String;
+  oldId_gte?: String;
+  oldId_contains?: String;
+  oldId_not_contains?: String;
+  oldId_starts_with?: String;
+  oldId_not_starts_with?: String;
+  oldId_ends_with?: String;
+  oldId_not_ends_with?: String;
   user?: UserWhereInput;
   itemType?: String;
   itemType_not?: String;
@@ -4058,6 +4515,7 @@ export interface UserCreateOneInput {
 
 export type UserTrackWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  oldId?: String;
 }>;
 
 export interface NodeNode {
@@ -4066,6 +4524,7 @@ export interface NodeNode {
 
 export interface UserTrackMetaPreviousValues {
   id: ID_Output;
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -4076,6 +4535,7 @@ export interface UserTrackMetaPreviousValuesPromise
   extends Promise<UserTrackMetaPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   metaType: () => Promise<String>;
   metaName: () => Promise<String>;
   metaValue: () => Promise<String>;
@@ -4086,6 +4546,7 @@ export interface UserTrackMetaPreviousValuesSubscription
   extends Promise<AsyncIterator<UserTrackMetaPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   metaType: () => Promise<AsyncIterator<String>>;
   metaName: () => Promise<AsyncIterator<String>>;
   metaValue: () => Promise<AsyncIterator<String>>;
@@ -4094,6 +4555,7 @@ export interface UserTrackMetaPreviousValuesSubscription
 
 export interface ProfilePageMeta {
   id: ID_Output;
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -4104,6 +4566,7 @@ export interface ProfilePageMetaPromise
   extends Promise<ProfilePageMeta>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   profilePage: <T = ProfilePagePromise>() => T;
   metaType: () => Promise<String>;
   metaName: () => Promise<String>;
@@ -4115,6 +4578,7 @@ export interface ProfilePageMetaSubscription
   extends Promise<AsyncIterator<ProfilePageMeta>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   profilePage: <T = ProfilePageSubscription>() => T;
   metaType: () => Promise<AsyncIterator<String>>;
   metaName: () => Promise<AsyncIterator<String>>;
@@ -4147,6 +4611,7 @@ export interface PageInfoSubscription
 
 export interface ProfilePage {
   id: ID_Output;
+  oldId?: String;
   itemType?: String;
   itemStatus?: String;
   itemUrlSegment?: String;
@@ -4158,6 +4623,7 @@ export interface ProfilePage {
 
 export interface ProfilePagePromise extends Promise<ProfilePage>, Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   user: <T = UserPromise>() => T;
   itemType: () => Promise<String>;
   itemStatus: () => Promise<String>;
@@ -4183,6 +4649,7 @@ export interface ProfilePageSubscription
   extends Promise<AsyncIterator<ProfilePage>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   user: <T = UserSubscription>() => T;
   itemType: () => Promise<AsyncIterator<String>>;
   itemStatus: () => Promise<AsyncIterator<String>>;
@@ -4255,243 +4722,20 @@ export interface AggregateUserTrackMetaSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface BlogPost {
-  id: ID_Output;
-  itemType?: String;
-  itemStatus?: String;
-  itemUrlSegment?: String;
-  itemMimeType?: String;
-  itemName: String;
-  itemContent: String;
-  itemDeleted?: Boolean;
+export interface BatchPayload {
+  count: Long;
 }
 
-export interface BlogPostPromise extends Promise<BlogPost>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  user: <T = UserPromise>() => T;
-  itemType: () => Promise<String>;
-  itemStatus: () => Promise<String>;
-  itemUrlSegment: () => Promise<String>;
-  itemMimeType: () => Promise<String>;
-  itemName: () => Promise<String>;
-  itemContent: () => Promise<String>;
-  itemDeleted: () => Promise<Boolean>;
-  itemMeta: <T = FragmentableArray<BlogPostMeta>>(
-    args?: {
-      where?: BlogPostMetaWhereInput;
-      orderBy?: BlogPostMetaOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface BlogPostSubscription
-  extends Promise<AsyncIterator<BlogPost>>,
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  user: <T = UserSubscription>() => T;
-  itemType: () => Promise<AsyncIterator<String>>;
-  itemStatus: () => Promise<AsyncIterator<String>>;
-  itemUrlSegment: () => Promise<AsyncIterator<String>>;
-  itemMimeType: () => Promise<AsyncIterator<String>>;
-  itemName: () => Promise<AsyncIterator<String>>;
-  itemContent: () => Promise<AsyncIterator<String>>;
-  itemDeleted: () => Promise<AsyncIterator<Boolean>>;
-  itemMeta: <T = Promise<AsyncIterator<BlogPostMetaSubscription>>>(
-    args?: {
-      where?: BlogPostMetaWhereInput;
-      orderBy?: BlogPostMetaOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
+  count: () => Promise<Long>;
 }
 
-export interface UserTrackMetaConnection {
-  pageInfo: PageInfo;
-  edges: UserTrackMetaEdge[];
-}
-
-export interface UserTrackMetaConnectionPromise
-  extends Promise<UserTrackMetaConnection>,
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserTrackMetaEdge>>() => T;
-  aggregate: <T = AggregateUserTrackMetaPromise>() => T;
-}
-
-export interface UserTrackMetaConnectionSubscription
-  extends Promise<AsyncIterator<UserTrackMetaConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserTrackMetaEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserTrackMetaSubscription>() => T;
-}
-
-export interface BlogPostSubscriptionPayload {
-  mutation: MutationType;
-  node: BlogPost;
-  updatedFields: String[];
-  previousValues: BlogPostPreviousValues;
-}
-
-export interface BlogPostSubscriptionPayloadPromise
-  extends Promise<BlogPostSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = BlogPostPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = BlogPostPreviousValuesPromise>() => T;
-}
-
-export interface BlogPostSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<BlogPostSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = BlogPostSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = BlogPostPreviousValuesSubscription>() => T;
-}
-
-export interface UserTrackEdge {
-  node: UserTrack;
-  cursor: String;
-}
-
-export interface UserTrackEdgePromise
-  extends Promise<UserTrackEdge>,
-    Fragmentable {
-  node: <T = UserTrackPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserTrackEdgeSubscription
-  extends Promise<AsyncIterator<UserTrackEdge>>,
-    Fragmentable {
-  node: <T = UserTrackSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface BlogPostPreviousValues {
-  id: ID_Output;
-  itemType?: String;
-  itemStatus?: String;
-  itemUrlSegment?: String;
-  itemMimeType?: String;
-  itemName: String;
-  itemContent: String;
-  itemDeleted?: Boolean;
-}
-
-export interface BlogPostPreviousValuesPromise
-  extends Promise<BlogPostPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  itemType: () => Promise<String>;
-  itemStatus: () => Promise<String>;
-  itemUrlSegment: () => Promise<String>;
-  itemMimeType: () => Promise<String>;
-  itemName: () => Promise<String>;
-  itemContent: () => Promise<String>;
-  itemDeleted: () => Promise<Boolean>;
-}
-
-export interface BlogPostPreviousValuesSubscription
-  extends Promise<AsyncIterator<BlogPostPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  itemType: () => Promise<AsyncIterator<String>>;
-  itemStatus: () => Promise<AsyncIterator<String>>;
-  itemUrlSegment: () => Promise<AsyncIterator<String>>;
-  itemMimeType: () => Promise<AsyncIterator<String>>;
-  itemName: () => Promise<AsyncIterator<String>>;
-  itemContent: () => Promise<AsyncIterator<String>>;
-  itemDeleted: () => Promise<AsyncIterator<Boolean>>;
-}
-
-export interface User {
-  id: ID_Output;
-  userType?: Int;
-  userEmail?: String;
-  userPassword?: String;
-  confirmHash?: String;
-  forgotHash?: String;
-  userConfirmed?: Int;
-  userDeleted?: Boolean;
-}
-
-export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  userType: () => Promise<Int>;
-  userEmail: () => Promise<String>;
-  userPassword: () => Promise<String>;
-  confirmHash: () => Promise<String>;
-  forgotHash: () => Promise<String>;
-  userConfirmed: () => Promise<Int>;
-  userDeleted: () => Promise<Boolean>;
-  userMeta: <T = FragmentableArray<UserMeta>>(
-    args?: {
-      where?: UserMetaWhereInput;
-      orderBy?: UserMetaOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  userType: () => Promise<AsyncIterator<Int>>;
-  userEmail: () => Promise<AsyncIterator<String>>;
-  userPassword: () => Promise<AsyncIterator<String>>;
-  confirmHash: () => Promise<AsyncIterator<String>>;
-  forgotHash: () => Promise<AsyncIterator<String>>;
-  userConfirmed: () => Promise<AsyncIterator<Int>>;
-  userDeleted: () => Promise<AsyncIterator<Boolean>>;
-  userMeta: <T = Promise<AsyncIterator<UserMetaSubscription>>>(
-    args?: {
-      where?: UserMetaWhereInput;
-      orderBy?: UserMetaOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => T;
-}
-
-export interface UserTrackConnection {
-  pageInfo: PageInfo;
-  edges: UserTrackEdge[];
-}
-
-export interface UserTrackConnectionPromise
-  extends Promise<UserTrackConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserTrackEdge>>() => T;
-  aggregate: <T = AggregateUserTrackPromise>() => T;
-}
-
-export interface UserTrackConnectionSubscription
-  extends Promise<AsyncIterator<UserTrackConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserTrackEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserTrackSubscription>() => T;
+  count: () => Promise<AsyncIterator<Long>>;
 }
 
 export interface UserTrackSubscriptionPayload {
@@ -4519,8 +4763,111 @@ export interface UserTrackSubscriptionPayloadSubscription
   previousValues: <T = UserTrackPreviousValuesSubscription>() => T;
 }
 
+export interface UserTrackMetaEdge {
+  node: UserTrackMeta;
+  cursor: String;
+}
+
+export interface UserTrackMetaEdgePromise
+  extends Promise<UserTrackMetaEdge>,
+    Fragmentable {
+  node: <T = UserTrackMetaPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserTrackMetaEdgeSubscription
+  extends Promise<AsyncIterator<UserTrackMetaEdge>>,
+    Fragmentable {
+  node: <T = UserTrackMetaSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserTrackMetaConnection {
+  pageInfo: PageInfo;
+  edges: UserTrackMetaEdge[];
+}
+
+export interface UserTrackMetaConnectionPromise
+  extends Promise<UserTrackMetaConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserTrackMetaEdge>>() => T;
+  aggregate: <T = AggregateUserTrackMetaPromise>() => T;
+}
+
+export interface UserTrackMetaConnectionSubscription
+  extends Promise<AsyncIterator<UserTrackMetaConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserTrackMetaEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserTrackMetaSubscription>() => T;
+}
+
+export interface AggregateUserTrack {
+  count: Int;
+}
+
+export interface AggregateUserTrackPromise
+  extends Promise<AggregateUserTrack>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserTrackSubscription
+  extends Promise<AsyncIterator<AggregateUserTrack>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserTrackConnection {
+  pageInfo: PageInfo;
+  edges: UserTrackEdge[];
+}
+
+export interface UserTrackConnectionPromise
+  extends Promise<UserTrackConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserTrackEdge>>() => T;
+  aggregate: <T = AggregateUserTrackPromise>() => T;
+}
+
+export interface UserTrackConnectionSubscription
+  extends Promise<AsyncIterator<UserTrackConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserTrackEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserTrackSubscription>() => T;
+}
+
+export interface BlogPostSubscriptionPayload {
+  mutation: MutationType;
+  node: BlogPost;
+  updatedFields: String[];
+  previousValues: BlogPostPreviousValues;
+}
+
+export interface BlogPostSubscriptionPayloadPromise
+  extends Promise<BlogPostSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = BlogPostPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = BlogPostPreviousValuesPromise>() => T;
+}
+
+export interface BlogPostSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<BlogPostSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = BlogPostSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = BlogPostPreviousValuesSubscription>() => T;
+}
+
 export interface UserTrackMeta {
   id: ID_Output;
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -4531,6 +4878,7 @@ export interface UserTrackMetaPromise
   extends Promise<UserTrackMeta>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   userTrack: <T = UserTrackPromise>() => T;
   metaType: () => Promise<String>;
   metaName: () => Promise<String>;
@@ -4542,6 +4890,7 @@ export interface UserTrackMetaSubscription
   extends Promise<AsyncIterator<UserTrackMeta>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   userTrack: <T = UserTrackSubscription>() => T;
   metaType: () => Promise<AsyncIterator<String>>;
   metaName: () => Promise<AsyncIterator<String>>;
@@ -4549,27 +4898,49 @@ export interface UserTrackMetaSubscription
   metaDeleted: () => Promise<AsyncIterator<Boolean>>;
 }
 
-export interface FileMetaEdge {
-  node: FileMeta;
-  cursor: String;
+export interface BlogPostPreviousValues {
+  id: ID_Output;
+  oldId?: String;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
 }
 
-export interface FileMetaEdgePromise
-  extends Promise<FileMetaEdge>,
+export interface BlogPostPreviousValuesPromise
+  extends Promise<BlogPostPreviousValues>,
     Fragmentable {
-  node: <T = FileMetaPromise>() => T;
-  cursor: () => Promise<String>;
+  id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
+  itemType: () => Promise<String>;
+  itemStatus: () => Promise<String>;
+  itemUrlSegment: () => Promise<String>;
+  itemMimeType: () => Promise<String>;
+  itemName: () => Promise<String>;
+  itemContent: () => Promise<String>;
+  itemDeleted: () => Promise<Boolean>;
 }
 
-export interface FileMetaEdgeSubscription
-  extends Promise<AsyncIterator<FileMetaEdge>>,
+export interface BlogPostPreviousValuesSubscription
+  extends Promise<AsyncIterator<BlogPostPreviousValues>>,
     Fragmentable {
-  node: <T = FileMetaSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
+  itemType: () => Promise<AsyncIterator<String>>;
+  itemStatus: () => Promise<AsyncIterator<String>>;
+  itemUrlSegment: () => Promise<AsyncIterator<String>>;
+  itemMimeType: () => Promise<AsyncIterator<String>>;
+  itemName: () => Promise<AsyncIterator<String>>;
+  itemContent: () => Promise<AsyncIterator<String>>;
+  itemDeleted: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface UserTrack {
   id: ID_Output;
+  oldId?: String;
   itemType?: String;
   itemStatus?: String;
   itemUrlSegment?: String;
@@ -4581,6 +4952,7 @@ export interface UserTrack {
 
 export interface UserTrackPromise extends Promise<UserTrack>, Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   user: <T = UserPromise>() => T;
   itemType: () => Promise<String>;
   itemStatus: () => Promise<String>;
@@ -4606,6 +4978,7 @@ export interface UserTrackSubscription
   extends Promise<AsyncIterator<UserTrack>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   user: <T = UserSubscription>() => T;
   itemType: () => Promise<AsyncIterator<String>>;
   itemStatus: () => Promise<AsyncIterator<String>>;
@@ -4625,6 +4998,25 @@ export interface UserTrackSubscription
       last?: Int;
     }
   ) => T;
+}
+
+export interface FileMetaEdge {
+  node: FileMeta;
+  cursor: String;
+}
+
+export interface FileMetaEdgePromise
+  extends Promise<FileMetaEdge>,
+    Fragmentable {
+  node: <T = FileMetaPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface FileMetaEdgeSubscription
+  extends Promise<AsyncIterator<FileMetaEdge>>,
+    Fragmentable {
+  node: <T = FileMetaSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserMetaEdge {
@@ -4689,6 +5081,7 @@ export interface AggregateUserFeedbackMetaSubscription
 
 export interface BlogPostMetaPreviousValues {
   id: ID_Output;
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -4699,6 +5092,7 @@ export interface BlogPostMetaPreviousValuesPromise
   extends Promise<BlogPostMetaPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   metaType: () => Promise<String>;
   metaName: () => Promise<String>;
   metaValue: () => Promise<String>;
@@ -4709,6 +5103,7 @@ export interface BlogPostMetaPreviousValuesSubscription
   extends Promise<AsyncIterator<BlogPostMetaPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   metaType: () => Promise<AsyncIterator<String>>;
   metaName: () => Promise<AsyncIterator<String>>;
   metaValue: () => Promise<AsyncIterator<String>>;
@@ -4828,6 +5223,7 @@ export interface UserTrackMetaSubscriptionPayloadSubscription
 
 export interface FilePreviousValues {
   id: ID_Output;
+  oldId?: String;
   itemType?: String;
   itemStatus?: String;
   itemUrlSegment?: String;
@@ -4841,6 +5237,7 @@ export interface FilePreviousValuesPromise
   extends Promise<FilePreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   itemType: () => Promise<String>;
   itemStatus: () => Promise<String>;
   itemUrlSegment: () => Promise<String>;
@@ -4854,6 +5251,7 @@ export interface FilePreviousValuesSubscription
   extends Promise<AsyncIterator<FilePreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   itemType: () => Promise<AsyncIterator<String>>;
   itemStatus: () => Promise<AsyncIterator<String>>;
   itemUrlSegment: () => Promise<AsyncIterator<String>>;
@@ -4959,6 +5357,7 @@ export interface UserConnectionSubscription
 
 export interface FileMetaPreviousValues {
   id: ID_Output;
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -4969,6 +5368,7 @@ export interface FileMetaPreviousValuesPromise
   extends Promise<FileMetaPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   metaType: () => Promise<String>;
   metaName: () => Promise<String>;
   metaValue: () => Promise<String>;
@@ -4979,6 +5379,7 @@ export interface FileMetaPreviousValuesSubscription
   extends Promise<AsyncIterator<FileMetaPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   metaType: () => Promise<AsyncIterator<String>>;
   metaName: () => Promise<AsyncIterator<String>>;
   metaValue: () => Promise<AsyncIterator<String>>;
@@ -5085,6 +5486,7 @@ export interface ReviewConnectionSubscription
 
 export interface ProfilePagePreviousValues {
   id: ID_Output;
+  oldId?: String;
   itemType?: String;
   itemStatus?: String;
   itemUrlSegment?: String;
@@ -5098,6 +5500,7 @@ export interface ProfilePagePreviousValuesPromise
   extends Promise<ProfilePagePreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   itemType: () => Promise<String>;
   itemStatus: () => Promise<String>;
   itemUrlSegment: () => Promise<String>;
@@ -5111,6 +5514,7 @@ export interface ProfilePagePreviousValuesSubscription
   extends Promise<AsyncIterator<ProfilePagePreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   itemType: () => Promise<AsyncIterator<String>>;
   itemStatus: () => Promise<AsyncIterator<String>>;
   itemUrlSegment: () => Promise<AsyncIterator<String>>;
@@ -5122,6 +5526,7 @@ export interface ProfilePagePreviousValuesSubscription
 
 export interface UserMeta {
   id: ID_Output;
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -5130,6 +5535,7 @@ export interface UserMeta {
 
 export interface UserMetaPromise extends Promise<UserMeta>, Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   user: <T = UserPromise>() => T;
   metaType: () => Promise<String>;
   metaName: () => Promise<String>;
@@ -5141,6 +5547,7 @@ export interface UserMetaSubscription
   extends Promise<AsyncIterator<UserMeta>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   user: <T = UserSubscription>() => T;
   metaType: () => Promise<AsyncIterator<String>>;
   metaName: () => Promise<AsyncIterator<String>>;
@@ -5233,6 +5640,7 @@ export interface ProfilePageMetaConnectionSubscription
 
 export interface ProfilePageMetaPreviousValues {
   id: ID_Output;
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -5243,6 +5651,7 @@ export interface ProfilePageMetaPreviousValuesPromise
   extends Promise<ProfilePageMetaPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   metaType: () => Promise<String>;
   metaName: () => Promise<String>;
   metaValue: () => Promise<String>;
@@ -5253,6 +5662,7 @@ export interface ProfilePageMetaPreviousValuesSubscription
   extends Promise<AsyncIterator<ProfilePageMetaPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   metaType: () => Promise<AsyncIterator<String>>;
   metaName: () => Promise<AsyncIterator<String>>;
   metaValue: () => Promise<AsyncIterator<String>>;
@@ -5280,6 +5690,7 @@ export interface ProfilePageEdgeSubscription
 
 export interface BlogPostMeta {
   id: ID_Output;
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -5290,6 +5701,7 @@ export interface BlogPostMetaPromise
   extends Promise<BlogPostMeta>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   blogPost: <T = BlogPostPromise>() => T;
   metaType: () => Promise<String>;
   metaName: () => Promise<String>;
@@ -5301,6 +5713,7 @@ export interface BlogPostMetaSubscription
   extends Promise<AsyncIterator<BlogPostMeta>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   blogPost: <T = BlogPostSubscription>() => T;
   metaType: () => Promise<AsyncIterator<String>>;
   metaName: () => Promise<AsyncIterator<String>>;
@@ -5310,6 +5723,7 @@ export interface BlogPostMetaSubscription
 
 export interface UserTrackPreviousValues {
   id: ID_Output;
+  oldId?: String;
   itemType?: String;
   itemStatus?: String;
   itemUrlSegment?: String;
@@ -5323,6 +5737,7 @@ export interface UserTrackPreviousValuesPromise
   extends Promise<UserTrackPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   itemType: () => Promise<String>;
   itemStatus: () => Promise<String>;
   itemUrlSegment: () => Promise<String>;
@@ -5336,6 +5751,7 @@ export interface UserTrackPreviousValuesSubscription
   extends Promise<AsyncIterator<UserTrackPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   itemType: () => Promise<AsyncIterator<String>>;
   itemStatus: () => Promise<AsyncIterator<String>>;
   itemUrlSegment: () => Promise<AsyncIterator<String>>;
@@ -5370,27 +5786,71 @@ export interface ReviewSubscriptionPayloadSubscription
   previousValues: <T = ReviewPreviousValuesSubscription>() => T;
 }
 
-export interface UserTrackMetaEdge {
-  node: UserTrackMeta;
-  cursor: String;
+export interface BlogPost {
+  id: ID_Output;
+  oldId?: String;
+  itemType?: String;
+  itemStatus?: String;
+  itemUrlSegment?: String;
+  itemMimeType?: String;
+  itemName: String;
+  itemContent: String;
+  itemDeleted?: Boolean;
 }
 
-export interface UserTrackMetaEdgePromise
-  extends Promise<UserTrackMetaEdge>,
-    Fragmentable {
-  node: <T = UserTrackMetaPromise>() => T;
-  cursor: () => Promise<String>;
+export interface BlogPostPromise extends Promise<BlogPost>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
+  user: <T = UserPromise>() => T;
+  itemType: () => Promise<String>;
+  itemStatus: () => Promise<String>;
+  itemUrlSegment: () => Promise<String>;
+  itemMimeType: () => Promise<String>;
+  itemName: () => Promise<String>;
+  itemContent: () => Promise<String>;
+  itemDeleted: () => Promise<Boolean>;
+  itemMeta: <T = FragmentableArray<BlogPostMeta>>(
+    args?: {
+      where?: BlogPostMetaWhereInput;
+      orderBy?: BlogPostMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
 }
 
-export interface UserTrackMetaEdgeSubscription
-  extends Promise<AsyncIterator<UserTrackMetaEdge>>,
+export interface BlogPostSubscription
+  extends Promise<AsyncIterator<BlogPost>>,
     Fragmentable {
-  node: <T = UserTrackMetaSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
+  user: <T = UserSubscription>() => T;
+  itemType: () => Promise<AsyncIterator<String>>;
+  itemStatus: () => Promise<AsyncIterator<String>>;
+  itemUrlSegment: () => Promise<AsyncIterator<String>>;
+  itemMimeType: () => Promise<AsyncIterator<String>>;
+  itemName: () => Promise<AsyncIterator<String>>;
+  itemContent: () => Promise<AsyncIterator<String>>;
+  itemDeleted: () => Promise<AsyncIterator<Boolean>>;
+  itemMeta: <T = Promise<AsyncIterator<BlogPostMetaSubscription>>>(
+    args?: {
+      where?: BlogPostMetaWhereInput;
+      orderBy?: BlogPostMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
 }
 
 export interface ReviewPreviousValues {
   id: ID_Output;
+  oldId?: String;
   itemType?: String;
   itemStatus?: String;
   itemUrlSegment?: String;
@@ -5404,6 +5864,7 @@ export interface ReviewPreviousValuesPromise
   extends Promise<ReviewPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   itemType: () => Promise<String>;
   itemStatus: () => Promise<String>;
   itemUrlSegment: () => Promise<String>;
@@ -5417,6 +5878,7 @@ export interface ReviewPreviousValuesSubscription
   extends Promise<AsyncIterator<ReviewPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   itemType: () => Promise<AsyncIterator<String>>;
   itemStatus: () => Promise<AsyncIterator<String>>;
   itemUrlSegment: () => Promise<AsyncIterator<String>>;
@@ -5444,6 +5906,7 @@ export interface AggregateUserMetaSubscription
 
 export interface FileMeta {
   id: ID_Output;
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -5452,6 +5915,7 @@ export interface FileMeta {
 
 export interface FileMetaPromise extends Promise<FileMeta>, Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   file: <T = FilePromise>() => T;
   metaType: () => Promise<String>;
   metaName: () => Promise<String>;
@@ -5463,6 +5927,7 @@ export interface FileMetaSubscription
   extends Promise<AsyncIterator<FileMeta>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   file: <T = FileSubscription>() => T;
   metaType: () => Promise<AsyncIterator<String>>;
   metaName: () => Promise<AsyncIterator<String>>;
@@ -5537,6 +6002,7 @@ export interface UserFeedbackConnectionSubscription
 
 export interface ReviewMetaPreviousValues {
   id: ID_Output;
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -5547,6 +6013,7 @@ export interface ReviewMetaPreviousValuesPromise
   extends Promise<ReviewMetaPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   metaType: () => Promise<String>;
   metaName: () => Promise<String>;
   metaValue: () => Promise<String>;
@@ -5557,6 +6024,7 @@ export interface ReviewMetaPreviousValuesSubscription
   extends Promise<AsyncIterator<ReviewMetaPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   metaType: () => Promise<AsyncIterator<String>>;
   metaName: () => Promise<AsyncIterator<String>>;
   metaValue: () => Promise<AsyncIterator<String>>;
@@ -5565,6 +6033,7 @@ export interface ReviewMetaPreviousValuesSubscription
 
 export interface UserFeedback {
   id: ID_Output;
+  oldId?: String;
   itemType?: String;
   itemStatus?: String;
   itemUrlSegment?: String;
@@ -5578,6 +6047,7 @@ export interface UserFeedbackPromise
   extends Promise<UserFeedback>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   user: <T = UserPromise>() => T;
   itemType: () => Promise<String>;
   itemStatus: () => Promise<String>;
@@ -5603,6 +6073,7 @@ export interface UserFeedbackSubscription
   extends Promise<AsyncIterator<UserFeedback>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   user: <T = UserSubscription>() => T;
   itemType: () => Promise<AsyncIterator<String>>;
   itemStatus: () => Promise<AsyncIterator<String>>;
@@ -5705,9 +6176,12 @@ export interface ReviewEdgeSubscription
 
 export interface UserPreviousValues {
   id: ID_Output;
+  oldId?: ID_Output;
   userType?: Int;
   userEmail?: String;
   userPassword?: String;
+  publicHash?: String;
+  privateHash?: String;
   confirmHash?: String;
   forgotHash?: String;
   userConfirmed?: Int;
@@ -5718,9 +6192,12 @@ export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<ID_Output>;
   userType: () => Promise<Int>;
   userEmail: () => Promise<String>;
   userPassword: () => Promise<String>;
+  publicHash: () => Promise<String>;
+  privateHash: () => Promise<String>;
   confirmHash: () => Promise<String>;
   forgotHash: () => Promise<String>;
   userConfirmed: () => Promise<Int>;
@@ -5731,9 +6208,12 @@ export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<ID_Output>>;
   userType: () => Promise<AsyncIterator<Int>>;
   userEmail: () => Promise<AsyncIterator<String>>;
   userPassword: () => Promise<AsyncIterator<String>>;
+  publicHash: () => Promise<AsyncIterator<String>>;
+  privateHash: () => Promise<AsyncIterator<String>>;
   confirmHash: () => Promise<AsyncIterator<String>>;
   forgotHash: () => Promise<AsyncIterator<String>>;
   userConfirmed: () => Promise<AsyncIterator<Int>>;
@@ -5742,6 +6222,7 @@ export interface UserPreviousValuesSubscription
 
 export interface Review {
   id: ID_Output;
+  oldId?: String;
   itemType?: String;
   itemStatus?: String;
   itemUrlSegment?: String;
@@ -5753,6 +6234,7 @@ export interface Review {
 
 export interface ReviewPromise extends Promise<Review>, Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   user: <T = UserPromise>() => T;
   itemType: () => Promise<String>;
   itemStatus: () => Promise<String>;
@@ -5778,6 +6260,7 @@ export interface ReviewSubscription
   extends Promise<AsyncIterator<Review>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   user: <T = UserSubscription>() => T;
   itemType: () => Promise<AsyncIterator<String>>;
   itemStatus: () => Promise<AsyncIterator<String>>;
@@ -5801,6 +6284,7 @@ export interface ReviewSubscription
 
 export interface File {
   id: ID_Output;
+  oldId?: String;
   itemType?: String;
   itemStatus?: String;
   itemUrlSegment?: String;
@@ -5812,6 +6296,7 @@ export interface File {
 
 export interface FilePromise extends Promise<File>, Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   user: <T = UserPromise>() => T;
   itemType: () => Promise<String>;
   itemStatus: () => Promise<String>;
@@ -5837,6 +6322,7 @@ export interface FileSubscription
   extends Promise<AsyncIterator<File>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   user: <T = UserSubscription>() => T;
   itemType: () => Promise<AsyncIterator<String>>;
   itemStatus: () => Promise<AsyncIterator<String>>;
@@ -5899,24 +6385,28 @@ export interface UserFeedbackSubscriptionPayloadSubscription
   previousValues: <T = UserFeedbackPreviousValuesSubscription>() => T;
 }
 
-export interface BatchPayload {
-  count: Long;
+export interface UserTrackEdge {
+  node: UserTrack;
+  cursor: String;
 }
 
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
+export interface UserTrackEdgePromise
+  extends Promise<UserTrackEdge>,
     Fragmentable {
-  count: () => Promise<Long>;
+  node: <T = UserTrackPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
+export interface UserTrackEdgeSubscription
+  extends Promise<AsyncIterator<UserTrackEdge>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
+  node: <T = UserTrackSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserFeedbackPreviousValues {
   id: ID_Output;
+  oldId?: String;
   itemType?: String;
   itemStatus?: String;
   itemUrlSegment?: String;
@@ -5930,6 +6420,7 @@ export interface UserFeedbackPreviousValuesPromise
   extends Promise<UserFeedbackPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   itemType: () => Promise<String>;
   itemStatus: () => Promise<String>;
   itemUrlSegment: () => Promise<String>;
@@ -5943,6 +6434,7 @@ export interface UserFeedbackPreviousValuesSubscription
   extends Promise<AsyncIterator<UserFeedbackPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   itemType: () => Promise<AsyncIterator<String>>;
   itemStatus: () => Promise<AsyncIterator<String>>;
   itemUrlSegment: () => Promise<AsyncIterator<String>>;
@@ -5991,6 +6483,7 @@ export interface AggregateBlogPostMetaSubscription
 
 export interface UserFeedbackMeta {
   id: ID_Output;
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -6001,6 +6494,7 @@ export interface UserFeedbackMetaPromise
   extends Promise<UserFeedbackMeta>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   userFeedback: <T = UserFeedbackPromise>() => T;
   metaType: () => Promise<String>;
   metaName: () => Promise<String>;
@@ -6012,6 +6506,7 @@ export interface UserFeedbackMetaSubscription
   extends Promise<AsyncIterator<UserFeedbackMeta>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   userFeedback: <T = UserFeedbackSubscription>() => T;
   metaType: () => Promise<AsyncIterator<String>>;
   metaName: () => Promise<AsyncIterator<String>>;
@@ -6067,6 +6562,7 @@ export interface ReviewMetaConnectionSubscription
 
 export interface UserFeedbackMetaPreviousValues {
   id: ID_Output;
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -6077,6 +6573,7 @@ export interface UserFeedbackMetaPreviousValuesPromise
   extends Promise<UserFeedbackMetaPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   metaType: () => Promise<String>;
   metaName: () => Promise<String>;
   metaValue: () => Promise<String>;
@@ -6087,6 +6584,7 @@ export interface UserFeedbackMetaPreviousValuesSubscription
   extends Promise<AsyncIterator<UserFeedbackMetaPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   metaType: () => Promise<AsyncIterator<String>>;
   metaName: () => Promise<AsyncIterator<String>>;
   metaValue: () => Promise<AsyncIterator<String>>;
@@ -6112,20 +6610,70 @@ export interface ProfilePageMetaEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateUserTrack {
-  count: Int;
+export interface User {
+  id: ID_Output;
+  oldId?: ID_Output;
+  userType?: Int;
+  userEmail?: String;
+  userPassword?: String;
+  publicHash?: String;
+  privateHash?: String;
+  confirmHash?: String;
+  forgotHash?: String;
+  userConfirmed?: Int;
+  userDeleted?: Boolean;
 }
 
-export interface AggregateUserTrackPromise
-  extends Promise<AggregateUserTrack>,
-    Fragmentable {
-  count: () => Promise<Int>;
+export interface UserPromise extends Promise<User>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  oldId: () => Promise<ID_Output>;
+  userType: () => Promise<Int>;
+  userEmail: () => Promise<String>;
+  userPassword: () => Promise<String>;
+  publicHash: () => Promise<String>;
+  privateHash: () => Promise<String>;
+  confirmHash: () => Promise<String>;
+  forgotHash: () => Promise<String>;
+  userConfirmed: () => Promise<Int>;
+  userDeleted: () => Promise<Boolean>;
+  userMeta: <T = FragmentableArray<UserMeta>>(
+    args?: {
+      where?: UserMetaWhereInput;
+      orderBy?: UserMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
 }
 
-export interface AggregateUserTrackSubscription
-  extends Promise<AsyncIterator<AggregateUserTrack>>,
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<ID_Output>>;
+  userType: () => Promise<AsyncIterator<Int>>;
+  userEmail: () => Promise<AsyncIterator<String>>;
+  userPassword: () => Promise<AsyncIterator<String>>;
+  publicHash: () => Promise<AsyncIterator<String>>;
+  privateHash: () => Promise<AsyncIterator<String>>;
+  confirmHash: () => Promise<AsyncIterator<String>>;
+  forgotHash: () => Promise<AsyncIterator<String>>;
+  userConfirmed: () => Promise<AsyncIterator<Int>>;
+  userDeleted: () => Promise<AsyncIterator<Boolean>>;
+  userMeta: <T = Promise<AsyncIterator<UserMetaSubscription>>>(
+    args?: {
+      where?: UserMetaWhereInput;
+      orderBy?: UserMetaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
 }
 
 export interface BlogPostMetaConnection {
@@ -6151,6 +6699,7 @@ export interface BlogPostMetaConnectionSubscription
 
 export interface UserMetaPreviousValues {
   id: ID_Output;
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -6161,6 +6710,7 @@ export interface UserMetaPreviousValuesPromise
   extends Promise<UserMetaPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   metaType: () => Promise<String>;
   metaName: () => Promise<String>;
   metaValue: () => Promise<String>;
@@ -6171,6 +6721,7 @@ export interface UserMetaPreviousValuesSubscription
   extends Promise<AsyncIterator<UserMetaPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   metaType: () => Promise<AsyncIterator<String>>;
   metaName: () => Promise<AsyncIterator<String>>;
   metaValue: () => Promise<AsyncIterator<String>>;
@@ -6260,6 +6811,7 @@ export interface ProfilePageConnectionSubscription
 
 export interface ReviewMeta {
   id: ID_Output;
+  oldId?: String;
   metaType?: String;
   metaName: String;
   metaValue: String;
@@ -6268,6 +6820,7 @@ export interface ReviewMeta {
 
 export interface ReviewMetaPromise extends Promise<ReviewMeta>, Fragmentable {
   id: () => Promise<ID_Output>;
+  oldId: () => Promise<String>;
   review: <T = ReviewPromise>() => T;
   metaType: () => Promise<String>;
   metaName: () => Promise<String>;
@@ -6279,6 +6832,7 @@ export interface ReviewMetaSubscription
   extends Promise<AsyncIterator<ReviewMeta>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  oldId: () => Promise<AsyncIterator<String>>;
   review: <T = ReviewSubscription>() => T;
   metaType: () => Promise<AsyncIterator<String>>;
   metaName: () => Promise<AsyncIterator<String>>;
@@ -6303,17 +6857,17 @@ export interface UserEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
+
 export type Long = string;
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
 export type Int = number;
-
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
 
 /*
 The `Boolean` scalar type represents `true` or `false`.

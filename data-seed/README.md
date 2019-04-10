@@ -1,0 +1,2 @@
+- Process each item table in logical order for correct connections
+- Process meta afterward to make correct connections
