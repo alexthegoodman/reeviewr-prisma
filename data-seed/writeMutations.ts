@@ -1,7 +1,7 @@
 const csv = require("csv-parser");
 const fs = require("fs");
 
-const dataName: string = "file";
+const dataName: string = "itemMeta";
 
 let startFile = "const MUTATIONS = [];";
 let endFile = `export default MUTATIONS as string[];`;
@@ -63,6 +63,7 @@ fs.createReadStream(`./data-seed/csv/${dataName}.csv`)
         case "itemMeta":
           dataRow = {
             oldId: row.metaId,
+            itemOldId: row.itemId,
             metaType: row.metaType,
             metaName: row.metaName,
             metaValue: escape(row.metaValue),

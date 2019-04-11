@@ -12,12 +12,13 @@ type User {
   userDeleted: Boolean @default(value: "false")
   userMeta: [UserMeta!]!
 
-  # userTracks
-  # userFeedbacks
-  # profilePages
-  # blogPosts
-  # reviews
-  # files
+  # convenience connections
+  userTracks: [UserTrack!]!
+  userFeedbacks: [UserFeedback!]!
+  profilePages: [ProfilePage!]!
+  blogPosts: [BlogPost!]!
+  reviews: [Review!]!
+  files: [File!]!
 }
 
 type UserMeta {
@@ -43,13 +44,14 @@ type UserTrack {
   itemDeleted: Boolean @default(value: "false")
   itemMeta: [UserTrackMeta!]!
 
-  # reviews
-  # files
+  reviews: [Review!]!
+  files: [File!]!
 }
 
 type UserTrackMeta {
   id: ID! @unique
   oldId: String @unique
+  itemOldId: String
   userTrack: UserTrack
   metaType: String
   metaName: String!
@@ -74,6 +76,7 @@ type UserFeedback {
 type UserFeedbackMeta {
   id: ID! @unique
   oldId: String @unique
+  itemOldId: String
   userFeedback: UserFeedback
   metaType: String
   metaName: String!
@@ -98,6 +101,7 @@ type ProfilePage {
 type ProfilePageMeta {
   id: ID! @unique
   oldId: String @unique
+  itemOldId: String
   profilePage: ProfilePage
   metaType: String
   metaName: String!
@@ -122,6 +126,7 @@ type BlogPost {
 type BlogPostMeta {
   id: ID! @unique
   oldId: String @unique
+  itemOldId: String
   blogPost: BlogPost
   metaType: String
   metaName: String!
@@ -142,12 +147,13 @@ type Review {
   itemDeleted: Boolean @default(value: "false")
   itemMeta: [ReviewMeta!]!
 
-  # userTrack
+  userTrack: UserTrack
 }
 
 type ReviewMeta {
   id: ID! @unique
   oldId: String @unique
+  itemOldId: String
   review: Review
   metaType: String
   metaName: String!
@@ -168,12 +174,13 @@ type File {
   itemDeleted: Boolean @default(value: "false")
   itemMeta: [FileMeta!]!
 
-  # userTrack
+  userTrack: UserTrack
 }
 
 type FileMeta {
   id: ID! @unique
   oldId: String @unique
+  itemOldId: String
   file: File
   metaType: String
   metaName: String!
