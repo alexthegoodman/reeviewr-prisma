@@ -11,6 +11,13 @@ type User {
   userConfirmed: Int
   userDeleted: Boolean @default(value: "false")
   userMeta: [UserMeta!]!
+
+  # userTracks
+  # userFeedbacks
+  # profilePages
+  # blogPosts
+  # reviews
+  # files
 }
 
 type UserMeta {
@@ -35,6 +42,9 @@ type UserTrack {
   itemContent: String!
   itemDeleted: Boolean @default(value: "false")
   itemMeta: [UserTrackMeta!]!
+
+  # reviews
+  # files
 }
 
 type UserTrackMeta {
@@ -131,6 +141,8 @@ type Review {
   itemContent: String!
   itemDeleted: Boolean @default(value: "false")
   itemMeta: [ReviewMeta!]!
+
+  # userTrack
 }
 
 type ReviewMeta {
@@ -155,6 +167,8 @@ type File {
   itemContent: String!
   itemDeleted: Boolean @default(value: "false")
   itemMeta: [FileMeta!]!
+
+  # userTrack
 }
 
 type FileMeta {

@@ -1,7 +1,7 @@
 const csv = require("csv-parser");
 const fs = require("fs");
 
-const dataName: string = "userFeedback";
+const dataName: string = "file";
 
 let startFile = "const MUTATIONS = [];";
 let endFile = `export default MUTATIONS as string[];`;
@@ -71,16 +71,16 @@ fs.createReadStream(`./data-seed/csv/${dataName}.csv`)
 
           switch (row.metaName) {
             case "attachedFile":
-              dataLabel = "createFile";
+              dataLabel = "createFileMeta";
               break;
             case "s3Info":
-              dataLabel = "createFile";
+              dataLabel = "createFileMeta";
               break;
             case "fileMetadata":
-              dataLabel = "createFile";
+              dataLabel = "createFileMeta";
               break;
             case "thumbnailId":
-              dataLabel = "createFile"; // conflict with blogPost meta
+              dataLabel = "createFileMeta"; // conflict with blogPost meta
               break;
             case "preTrackId":
               dataLabel = "createReviewMeta";
