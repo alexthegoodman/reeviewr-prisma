@@ -1,2 +1,3 @@
-- Process each item table in logical order for correct connections
-- Process meta afterward to make correct connections
+- add user with oldId of 0
+- writeMutations (for each csv), performMutations (auto loads), then writeAndPerformUpdates (with some file edits to do both sets)
+- may need to look into the files to complete the journey
