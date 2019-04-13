@@ -1,24 +1,13 @@
-import * as ErrorNotifier from "atomic-object/error-notifier";
-import * as Logger from "atomic-object/logger";
 import * as bodyParser from "body-parser";
-import * as AuthRoutes from "client/routes/authentication-routes";
 import * as compression from "compression";
 import * as config from "config";
 import * as express from "express";
 import { formatError, GraphQLError } from "graphql";
-import { executableSchema } from "graphql-api";
 import { graphiqlExpress, graphqlExpress } from "graphql-server-express";
 import { sortBy } from "lodash-es";
 import * as morgan from "morgan";
 import * as passport from "passport";
-import { SavedUser } from "records/user";
-import { migrateAndSeed } from "../../db/migrate-and-seed";
 import * as db from "../db";
-import { buildContext } from "./context";
-import { enforcePasswordIfSpecified } from "./middleware";
-import * as Authentication from "./authentication";
-
-ErrorNotifier.setup(config.get("rollbar.serverAccessToken"));
 
 const Arena = require("bull-arena");
 const knex = db.getConnection();
@@ -63,9 +52,9 @@ export function startServer() {
     );
   }
 
-  if (config.get("server.basicAuthPassword")) {
-    app.use(enforcePasswordIfSpecified(config.get("server.basicAuthPassword")));
-  }
+  // if (config.get("server.basicAuthPassword")) {
+  //   app.use(enforcePasswordIfSpecified(config.get("server.basicAuthPassword")));
+  // }
 
   // Gzip support
   app.use(compression());
@@ -96,27 +85,27 @@ export function startServer() {
     )
   );
 
-  app.get(AuthRoutes.USER_NOT_FOUND, (req, res) => {
-    res.sendFile(process.cwd() + "/dist/index.html");
-  });
+  // app.get(AuthRoutes.USER_NOT_FOUND, (req, res) => {
+  //   res.sendFile(process.cwd() + "/dist/index.html");
+  // });
 
-  // GraphQL
-  app.use(
-    "/graphql",
-    bodyParser.json(),
-    Authentication.createContext,
-    // Authentication.ensureAuthenticatedAndSetStatus,
-    graphqlExpress((req, res) => {
-      return {
-        schema: executableSchema,
-        context: req!.context,
-        formatError: (e: GraphQLError) => {
-          Logger.error(e);
-          return formatError(e);
-        },
-      };
-    })
-  );
+  // // GraphQL
+  // app.use(
+  //   "/graphql",
+  //   bodyParser.json(),
+  //   Authentication.createContext,
+  //   // Authentication.ensureAuthenticatedAndSetStatus,
+  //   graphqlExpress((req, res) => {
+  //     return {
+  //       schema: executableSchema,
+  //       context: req!.context,
+  //       formatError: (e: GraphQLError) => {
+  //         Logger.error(e);
+  //         return formatError(e);
+  //       },
+  //     };
+  //   })
+  // );
 
   if (config.get("server.graphiql")) {
     // GraphQL development web IDE
