@@ -15,7 +15,7 @@
     "heroku-postbuild": "yarn build && build-storybook -o dist/storybook",
     "heroku-release": "node dist/scripts/migrate-and-seed.js",
     "build:jsonschema": "node scripts/json-schema-types.js",
-    "build:graphql": "gql-gen -o",
+    "build:graphql": "prisma generate",
     "build:client": "webpack --config ./webpack/client.config.js",
     "build:server": "webpack --config ./webpack/server.config.js",
     "build:pre": "concurrently 'yarn build:jsonschema' 'yarn build:graphql'",
