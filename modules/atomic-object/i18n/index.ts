@@ -145,7 +145,7 @@ export class I18nProfile<TProps> {
     return self.with(k, args);
   }
   static withProfile<TP extends I18nProfile<PropsOf<TP>>>(
-    otherTp: TP
+    otherTp: I18nProfile<TP>
   ): I18nProfile<TP> {
     return otherTp;
   }

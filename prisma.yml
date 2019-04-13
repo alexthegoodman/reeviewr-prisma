@@ -3,6 +3,7 @@ datamodel:
   - datamodel.prisma
   # - datamodel2.prisma
 # secret: mysecret42 # ${env:PRISMA_SECRET}
+# managementApiSecret: ${env:PRISMA_MANAGEMENT_SECRET}
 
 generate:
   - generator: typescript-client

@@ -1,1 +1,0 @@
-const MUTATIONS = [];undefinedexport default MUTATIONS as string[];

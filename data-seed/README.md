@@ -1,3 +1,2 @@
-- add user with oldId of 0
-- writeMutations (for each csv), performMutations (auto loads), then writeAndPerformUpdates (with some file edits to do both sets)
-- may need to look into the files to complete the journey
+- see /reeviewr-data-seed/ to generate a new sql file from legacy csv files
+- or import the sql file included here on db:seed
