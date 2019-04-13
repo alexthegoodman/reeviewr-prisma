@@ -43,11 +43,11 @@ module.exports = {
     loader: "graphql-tag/loader",
   },
 
-  mjs: {
-    test: /\.mjs$/,
-    include: /node_modules/,
-    type: "javascript/auto",
-  },
+  // mjs: {
+  //   test: /\.mjs$/,
+  //   include: /node_modules/,
+  //   type: "javascript/auto",
+  // },
 
   scss: {
     test: /\.css$/,

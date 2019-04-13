@@ -7,7 +7,7 @@ datamodel:
 
 generate:
   - generator: typescript-client
-    output: ./generated/prisma-client/
+    output: ./__generated__/prisma-client/
   # - generator: graphql-schema
   #   output: ./generated/
 

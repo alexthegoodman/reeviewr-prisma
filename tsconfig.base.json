@@ -18,10 +18,11 @@
     "noUnusedParameters": false,
     "removeComments": true,
     "rootDir": ".",
+    "outDir": "./dist",
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "noImplicitAny": false
   },
-  "exclude": ["./dist", "./es"]
+  "exclude": ["./dist", "./es", "./data-seed"]
 }
