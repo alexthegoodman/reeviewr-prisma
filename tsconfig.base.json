@@ -22,7 +22,8 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "experimentalDecorators": true
   },
   "exclude": ["./dist", "./es", "./data-seed"]
 }

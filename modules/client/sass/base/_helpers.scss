@@ -1,0 +1,163 @@
+@mixin phone {
+  @media only screen and (max-width: $phone) {
+    @content;
+  }
+}
+
+@mixin mini-down {
+  @media only screen and (max-width: $mini - 1) {
+    @content;
+  }
+}
+
+@mixin tablet-down {
+  @media only screen and (max-width: $tablet - 1) {
+    @content;
+  }
+}
+
+@mixin middle-down {
+  @media only screen and (max-width: $middle - 1) {
+    @content;
+  }
+}
+
+@mixin desktop-down {
+  @media only screen and (max-width: $desktop - 1) {
+    @content;
+  }
+}
+
+@mixin max-down($max) {
+  @media only screen and (max-width: $max - 1) {
+    @content;
+  }
+}
+
+@mixin min-up($min) {
+  @media only screen and (min-width: $min + 1) {
+    @content;
+  }
+}
+
+@mixin respond-custom($selector, $val, $responsive: true) {
+  @media screen and ($selector: $val) {
+    @content;
+  }
+}
+
+@mixin respond-min-max($min, $max) {
+  @media only screen and (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+    height: 0;
+    line-height: 0;
+  }
+}
+
+@mixin hidden-text {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 200%;
+}
+
+@mixin ellipsis-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin placeholder-color($color) {
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+  &:-moz-placeholder {
+    color: $color;
+  }
+  &::-moz-placeholder {
+    color: $color;
+  }
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+}
+
+@mixin bg-gradient($color1, $color2) {
+  background: $color1;
+  background: -webkit-linear-gradient($color1, $color2);
+  background: -moz-linear-gradient($color1, $color2);
+  background: -ms-linear-gradient($color1, $color2);
+  background: -o-linear-gradient($color1, $color2);
+  background: linear-gradient($color1, $color2);
+
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#{$color1}, endColorstr=#{$color2});
+}
+
+@mixin border-arrow($color: #000, $size: 10px, $direction: "left") {
+  width: 0;
+  height: 0;
+
+  @if $direction == "top" {
+    border-right: $size solid transparent;
+    border-left: $size solid transparent;
+    border-bottom: $size solid $color;
+  } @else if $direction == "bottom" {
+    border-right: $size solid transparent;
+    border-left: $size solid transparent;
+    border-top: $size solid $color;
+  } @else if $direction == "left" {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+  } @else if $direction == "right" {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+  } @else if $direction == "topleft" {
+    border-top: 0 solid $color;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+  } @else if $direction == "topright" {
+    border-top: 0 solid $color;
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+  } @else if $direction == "bottomleft" {
+    border-top: $size solid transparent;
+    border-bottom: 0 solid $color;
+    border-left: $size solid $color;
+  } @else if $direction == "bottomright" {
+    border-top: $size solid transparent;
+    border-bottom: 0 solid $color;
+    border-right: $size solid $color;
+  }
+}
+
+@mixin inline-list {
+  @include clearfix;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  & > li {
+    float: left;
+  }
+}
+
+@mixin image-2x($image, $width: 100%, $height: 100%) {
+  @media (min--moz-device-pixel-ratio: 1.3),
+    (-o-min-device-pixel-ratio: 2.6/2),
+    (-webkit-min-device-pixel-ratio: 1.3),
+    (min-device-pixel-ratio: 1.3),
+    (min-resolution: 1.3dppx) {
+    background-image: url($image);
+    background-size: $width $height;
+  }
+}

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Forms/LoginForm Title One 1`] = `
+<section
+  className="form"
+>
+  <h6>
+    Login Forms 
+    Title One
+  </h6>
+</section>
+`;
+
+exports[`Storyshots Forms/LoginForm Title Two 1`] = `
+<section
+  className="form"
+>
+  <h6>
+    Login Forms 
+    Title Two
+  </h6>
+</section>
+`;

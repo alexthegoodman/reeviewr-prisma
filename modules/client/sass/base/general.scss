@@ -1,0 +1,64 @@
+body {
+  font-size: 14px;
+  font-family: $b_font;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: $grey;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: #000;
+  text-decoration: underline;
+  transition: all 0.2s;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+p {
+  line-height: 1.5em;
+  margin: 0;
+  font-family: $b_font;
+}
+
+ol,
+ul {
+  margin: 0;
+}
+
+li {
+  line-height: 1.5em;
+}
+
+sup {
+  vertical-align: top;
+  position: relative;
+  top: -0.4em;
+  font-size: 0.8em;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  line-height: 1em;
+  font-family: $h_font;
+}

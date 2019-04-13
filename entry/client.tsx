@@ -6,7 +6,7 @@ import * as React from "react";
 // import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 import * as ReactDom from "react-dom";
 // import { Router } from "react-router-dom";
-import { App } from "../modules/client";
+import RenderProvider from "../modules/client";
 
 // const history = createBrowserHistory();
 // history.listen((location, action) => {
@@ -40,11 +40,7 @@ const bootstrapClient = () => {
 
   // const graphqlClient = buildGraphqlClient(history);
 
-  const rootEl = <App />;
-  ReactDom.render(
-    (rootEl as any) as React.ReactElement<any>,
-    document.getElementById("app")
-  );
+  ReactDom.render(RenderProvider, document.getElementById("app"));
 };
 
 bootstrapClient();
