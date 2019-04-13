@@ -1,55 +1,27 @@
-import { ConnectedRouter } from "connected-react-router";
 import * as React from "react";
 import ErrorBoundary from "react-error-boundary";
-import { Provider } from "react-redux";
 
 import * as mixpanel from "mixpanel-browser";
 import { MixpanelProvider } from "react-mixpanel";
-mixpanel.init("10aaa568c26139b294dad351b69630b0");
+mixpanel.init(process.env.MIXPANEL_SECRET);
 
-import ErrorFallback from "./components/ErrorFallback/ErrorFallback";
-import DevTools from "./containers/DevTools/DevTools";
-import getRoutes from "./routes/routes";
+import ErrorFallback from "./components/pages/status/ErrorFallback/ErrorFallback";
 import { ErrorHandler } from "./services/ErrorHandler";
+import App from "./components/wrappers/App/App";
+const styles = require("./sass/style.scss");
 
-export default class RootProvider {
-  constructor() {}
+interface RootProviderProps {}
 
-  getProvider(store, history) {
-    /**
-     * General Providers
-     */
-    const rootProviders = (
-      <ErrorBoundary onError={ErrorHandler} FallbackComponent={ErrorFallback}>
-        <MixpanelProvider mixpanel={mixpanel}>
-          <ConnectedRouter history={history}>
-            {getRoutes(store)}
-          </ConnectedRouter>
-        </MixpanelProvider>
-      </ErrorBoundary>
-    );
+const RootProvider: React.FC<RootProviderProps> = props => {
+  // mixpanel.track("TEST EVENT: Initialize RootProvider");
 
-    /**
-     * Redux DevTools
-     */
-    let rootProvider;
-    if (process.env.__DEVTOOLS__) {
-      rootProvider = (
-        <Provider store={store} key="provider">
-          <div>
-            {rootProviders}
-            <DevTools />
-          </div>
-        </Provider>
-      );
-    } else {
-      rootProvider = (
-        <Provider store={store} key="provider">
-          <div>{rootProviders}</div>
-        </Provider>
-      );
-    }
+  return (
+    <ErrorBoundary onError={ErrorHandler} FallbackComponent={ErrorFallback}>
+      <MixpanelProvider mixpanel={mixpanel}>
+        <App />
+      </MixpanelProvider>
+    </ErrorBoundary>
+  );
+};
 
-    return rootProvider;
-  }
-}
+export default RootProvider;

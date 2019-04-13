@@ -1,6 +1,8 @@
 import * as React from "react";
 
-export default function NotFound() {
+import { NotFoundProps } from "./NotFound.d";
+
+const NotFound: React.FC<NotFoundProps> = () => {
   return (
     <div className="container">
       <h1>404</h1>
@@ -9,4 +11,6 @@ export default function NotFound() {
       </p>
     </div>
   );
-}
+};
+
+export default NotFound;

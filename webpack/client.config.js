@@ -101,6 +101,10 @@ module.exports = {
       // Expose Google Analytics ID to client
       "process.env.TRACKING_ID": JSON.stringify(process.env.TRACKING_ID),
 
+      "process.env.MIXPANEL_SECRET": JSON.stringify(
+        process.env.MIXPANEL_SECRET
+      ),
+
       "process.env.ROLLBAR_CLIENT_ACCESS_TOKEN": JSON.stringify(
         config.get("rollbar.clientAccessToken")
       ),
