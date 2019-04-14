@@ -1,6 +1,11 @@
 // import "client/bootstrap-mui"; // this must be the first import
 // import * as ErrorNotifier from "atomic-object/error-notifier";
 // import { createBrowserHistory } from "history";
+
+if (!process.env.BROWSER) {
+  global["window"] = {}; // Temporarily define window for server-side
+}
+
 import * as React from "react";
 // import { ApolloProvider } from "react-apollo";
 // import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";

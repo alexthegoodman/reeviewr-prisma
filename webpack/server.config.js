@@ -84,6 +84,8 @@ module.exports = {
     new webpack.DefinePlugin({
       __TEST__: "false",
       __DEV__: JSON.stringify(process.env.NODE_ENV !== "production"),
+      // SSR
+      "process.env.BROWSER": "false",
     }),
 
     // new webpack.debug.ProfilingPlugin({

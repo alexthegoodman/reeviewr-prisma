@@ -3,6 +3,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { HttpLink } from "apollo-link-http";
 import { onError } from "apollo-link-error";
 import { ApolloLink } from "apollo-link";
+import fetch from "cross-fetch";
 
 const client = new ApolloClient({
   link: ApolloLink.from([
@@ -18,6 +19,7 @@ const client = new ApolloClient({
     new HttpLink({
       uri: "http://localhost:4466/",
       // credentials: "same-origin",
+      fetch,
     }),
   ]),
   cache: new InMemoryCache(),

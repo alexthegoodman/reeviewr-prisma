@@ -92,6 +92,9 @@ module.exports = {
       __DEV__: JSON.stringify(process.env.NODE_ENV !== "production"),
       __TEST__: "false",
 
+      // SSR
+      "process.env.BROWSER": "true",
+
       // Allow checking of USE_FAKE_DATA in client (mainly for the big bad reset button)
       "process.env.USE_FAKE_DATA": JSON.stringify(process.env.USE_FAKE_DATA),
 

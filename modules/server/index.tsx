@@ -16,6 +16,23 @@ const enforce = require("express-sslify");
 const expressStaticGzip = require("express-static-gzip");
 const cookieSession = require("cookie-session");
 
+global["window"] = {};
+
+// import fetch from "node-fetch";
+import fetch from "cross-fetch";
+import * as React from "react";
+// import * as ReactDOM from "react-dom";
+import ReactDOMServer from "react-dom/server";
+import { ApolloProvider, getDataFromTree } from "react-apollo";
+import { ApolloClient } from "apollo-client";
+import { createHttpLink } from "apollo-link-http";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { AppProvider } from "../client/RootProvider";
+import { Router } from "react-navi";
+import routes from "../client/routes";
+import { createMemoryNavigation } from "navi";
+import { Html } from "../client/Html";
+
 let app = express();
 
 export const port = config.get<number>("server.port");
@@ -121,12 +138,64 @@ export function startServer() {
   app.use(expressStaticGzip("./dist/"));
   app.use(express.static("./dist/"));
 
+  // rendering code (see below)
+
+  console.info("start servr");
+
+  // app.get("/favicon.ico", (req, res) => res.status(204));
+
   // Serve index.html for all unknown URLs
   app.get(
-    "/*",
+    ["/", "/*"],
     // Authentication.ensureAuthenticatedAndRedirect,
     function(req, res) {
-      res.sendFile(process.cwd() + "/dist/index.html");
+      const client = new ApolloClient({
+        ssrMode: true,
+        // Remember that this is the interface the SSR server will use to connect to the
+        // API server, so we need to ensure it isn't firewalled, etc
+        link: createHttpLink({
+          uri: "http://localhost:4466/",
+          // credentials: "same-origin",
+          // headers: {
+          //   cookie: req.header("Cookie"),
+          // },
+          fetch,
+        }),
+        cache: new InMemoryCache(),
+      });
+      const context = {};
+      // https://frontarm.com/navi/en/reference/navigation/#creatememorynavigation
+      let navigation = createMemoryNavigation({
+        routes,
+        url: req.url,
+      });
+      // The client-side App will instead use <BrowserRouter>
+      const App = (
+        <ApolloProvider client={client}>
+          <Router routes={routes} navigation={navigation}>
+            <AppProvider />
+          </Router>
+        </ApolloProvider>
+      );
+
+      console.info("get data");
+      getDataFromTree(App).then(() => {
+        // We are ready to render for real
+        const content = ReactDOMServer.renderToString(App);
+        const initialState = client.extract();
+
+        const html = <Html content={content} state={initialState} />;
+
+        console.info("send response");
+
+        res.status(200);
+        res.send(
+          `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`
+        );
+        res.end();
+      });
+
+      // res.sendFile(process.cwd() + "/dist/index.html");
     }
   );
 

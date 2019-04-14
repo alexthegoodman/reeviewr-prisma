@@ -15,7 +15,7 @@ const routes = mount({
     view: <Home />,
   }),
   // "/products": lazy(() => import("./productsRoutes")), // TODO: set up code-splitting
-  "/tracks": route(async req => {
+  "/tracks": route(req => {
     return {
       title: "Tracks / Reeviewr",
       view: <Tracks />,

@@ -8,7 +8,7 @@ import {
   NotFoundBoundary,
   useNavigation,
 } from "react-navi";
-import BusyIndicator from "react-busy-indicator";
+// import BusyIndicator from "react-busy-indicator";
 
 import NotFound from "../../pages/status/NotFound/NotFound";
 import { useAppContext } from "../../../context";
@@ -33,14 +33,14 @@ const App: React.FC<AppProps> = ({ children }) => {
 
   return (
     <>
-      <BusyIndicator
+      {/* <BusyIndicator
         color="red"
         style={{}}
         className={"busyIndicator"}
         active={null}
         isBusy={!!loadingRoute}
         delayMs={200}
-      />
+      /> */}
       <h1>App</h1>
       <button onClick={toggleTrack}>Toggle Track</button>
       <Query

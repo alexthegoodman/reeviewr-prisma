@@ -14,11 +14,25 @@ import { ErrorHandler } from "./services/ErrorHandler";
 import { AppContextAPI } from "./context/AppContextAPI";
 import client from "./services/ApolloClient";
 
-const styles = require("./sass/style.scss");
+// const styles = require("./sass/style.scss");
 
 mixpanel.init(process.env.MIXPANEL_SECRET);
 
+interface AppProviderProps {}
+
 interface RootProviderProps {}
+
+export const AppProvider: React.FC<AppProviderProps> = props => {
+  return (
+    <AppContextAPI>
+      <App>
+        {/* <React.Suspense fallback={<span>Loading mechanics...</span>}> */}
+        <View />
+        {/* </React.Suspense> */}
+      </App>
+    </AppContextAPI>
+  );
+};
 
 const RootProvider: React.FC<RootProviderProps> = props => {
   // mixpanel.track("TEST EVENT: Initialize RootProvider");
@@ -27,15 +41,9 @@ const RootProvider: React.FC<RootProviderProps> = props => {
     <ErrorBoundary onError={ErrorHandler} FallbackComponent={ErrorFallback}>
       <MixpanelProvider mixpanel={mixpanel}>
         <ApolloProvider client={client}>
+          {/** TODO: Good spot for Layout if desire no rerender, consider best placement for context */}
           <Router routes={routes}>
-            {/** TODO: Good spot for Layout if desire no rerender, consider best placement for context */}
-            <AppContextAPI>
-              <App>
-                <React.Suspense fallback={<span>Loading mechanics...</span>}>
-                  <View />
-                </React.Suspense>
-              </App>
-            </AppContextAPI>
+            <AppProvider />
           </Router>
         </ApolloProvider>
       </MixpanelProvider>

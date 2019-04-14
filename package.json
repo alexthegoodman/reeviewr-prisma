@@ -40,7 +40,8 @@
     "test:integration": "cypress run",
     "docker:up": "docker-compose up -d",
     "gen:ui": "bash/gen_ui_component.sh",
-    "gen:page": "bash/gen_page_component.sh"
+    "gen:page": "bash/gen_page_component.sh",
+    "kill-list": "lsof -i :9229; lsof -i :9230"
   },
   "resolutions": {},
   "dependencies": {
@@ -120,6 +121,7 @@
     "morgan": "1.9.1",
     "mysql": "2.16.0",
     "navi": "^0.12.4",
+    "node-fetch": "^2.3.0",
     "node-sass": "^4.11.0",
     "passport": "0.4.0",
     "passport-local": "1.0.0",
@@ -131,7 +133,6 @@
     "react": "16.8",
     "react-apollo": "2.5.4",
     "react-async-component": "2.0.0",
-    "react-busy-indicator": "1.0.0",
     "react-dom": "16.8",
     "react-error-boundary": "^1.2.5",
     "react-helmet": "^5.2.0",
@@ -141,6 +142,7 @@
     "react-redux": "^7.0.2",
     "react-router": "5.0.0",
     "react-router-dom": "5.0.0",
+    "react-suspense-polyfill": "^2.0.1",
     "redux": "^4.0.1",
     "redux-devtools": "^3.5.0",
     "redux-devtools-dock-monitor": "^1.1.3",

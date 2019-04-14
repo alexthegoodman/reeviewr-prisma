@@ -1,7 +1,10 @@
 import * as React from "react";
 import { ErrorFallbackProps } from "./ErrorFallback.d";
 
-const ErrorFallback: React.FC<ErrorFallbackProps> = (error, componentStack) => {
+const ErrorFallback: React.FC<ErrorFallbackProps> = ({
+  error,
+  componentStack,
+}) => {
   return (
     <>
       <p>

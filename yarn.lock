@@ -13905,7 +13905,7 @@ node-fetch@^1.0.1:
     encoding "^0.1.11"
     is-stream "^1.0.1"
 
-node-fetch@^2.1.2, node-fetch@^2.2.0:
+node-fetch@^2.1.2, node-fetch@^2.2.0, node-fetch@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.3.0.tgz#1a1d940bbfb916a1d3e0219f037e89e71f8c5fa5"
   integrity sha512-MOd8pV3fxENbryESLgVIeaGKrdl+uaYhCSSVkjeOb/31/njTpcis5aWfdqgNlHIrKOLRbMnfPINPOML2CIFeXA==
@@ -16261,11 +16261,6 @@ react-base16-styling@^0.5.1:
     lodash.flow "^3.3.0"
     pure-color "^1.2.0"
 
-react-busy-indicator@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-busy-indicator/-/react-busy-indicator-1.0.0.tgz#3369617f50fba61f4fc776355682c878e7c9eb66"
-  integrity sha512-/3OdsHYAqZ9LsrTyjeVu/70yjCfJXmr2qdHuO4hdJ3I92saspXxAGvZzm+Go9luHGlAiKVVh7LykK6tjaXfRQA==
-
 react-clientside-effect@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-clientside-effect/-/react-clientside-effect-1.2.0.tgz#db823695f75e9616a5e4dd6d908e5ea627fb2516"
@@ -16585,6 +16580,11 @@ react-side-effect@^1.1.0:
   dependencies:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
+
+react-suspense-polyfill@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-suspense-polyfill/-/react-suspense-polyfill-2.0.1.tgz#6cd5219cdf8b4c4ae78261a782195219d40b5946"
+  integrity sha512-b6ldD8/OyslSYVxAXC5tKWcaECO/IAh+8V+MA+pVJvN9SAPEVuTMKUmhZK9SEx95XZThvn6WEGtq8f1+Ey5hFg==
 
 react-syntax-highlighter@^8.0.1:
   version "8.1.0"
