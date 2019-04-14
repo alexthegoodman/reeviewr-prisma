@@ -1,6 +1,5 @@
 # TODO:
 
-- Configure cypress
 - Configure Heroku and Heroku CI
 
 - bash script for new components
