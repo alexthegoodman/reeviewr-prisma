@@ -14,7 +14,7 @@ import { ErrorHandler } from "./services/ErrorHandler";
 import { AppContextAPI } from "./context/AppContextAPI";
 import client from "./services/ApolloClient";
 
-// const styles = require("./sass/style.scss");
+const styles = require("./sass/style.scss");
 
 mixpanel.init(process.env.MIXPANEL_SECRET);
 

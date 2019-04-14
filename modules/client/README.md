@@ -8,3 +8,9 @@
 # Notes:
 
 To deploy, push to specified Github branch
+
+# All Components
+
+- Ref
+- onClick
+- className

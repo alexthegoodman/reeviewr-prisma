@@ -1,0 +1,141 @@
+.noScroll {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.verticalCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.horizontalCenter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+main {
+  position: relative;
+}
+
+.background1 {
+  display: block;
+  position: absolute;
+  z-index: -15;
+  @include position(0, 0, 0, 0);
+  background: rgba($dark-gray1, 0.1);
+
+  .cover {
+    background: white;
+    display: block;
+    position: absolute;
+    @include position(0, 0, 0, auto);
+    width: 100%;
+    clip-path: ellipse(90% 50% at 100% 37%);
+  }
+}
+
+.fullWidth {
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @include desktopDown {
+    div.contain {
+      padding-right: $mobile;
+      padding-left: $mobile;
+      width: 100%;
+    }
+  }
+  @include tabletDown {
+    div.contain {
+      // > .headline {
+      // }
+    }
+  }
+
+  .contain {
+    margin: 0 auto;
+    width: $desktop;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    // > .headline {
+    // 	color: $dark-gray1;
+    // }
+  }
+}
+
+.splitWidth {
+  @extend .fullWidth;
+
+  .contain {
+    // display: flex;
+    // flex-direction: row;
+    //display: flex; // not good here // why?
+    display: table;
+
+    .left,
+    .right {
+      width: 50%;
+    }
+    .left {
+      float: left;
+    }
+    .right {
+      float: right;
+    }
+    .text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .headline {
+        margin-bottom: 15px;
+        color: $black;
+      }
+      p,
+      ul li,
+      ol li {
+        color: $dark-gray1;
+        display: block;
+        margin-bottom: 15px;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+      a {
+        margin-top: 15px;
+      }
+    }
+    .visual {
+    }
+  }
+}
+
+.centerContain {
+  display: table;
+  width: 100%;
+  height: 100%;
+
+  .center {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+.table {
+  display: table;
+  width: 100%;
+}
+
+.fitBackground {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

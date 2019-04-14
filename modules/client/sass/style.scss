@@ -1,15 +1,24 @@
+@import "../../../node_modules/normalize.css/normalize.css";
+@import "../../../node_modules/@blueprintjs/core/lib/scss/variables";
+@import "../../../node_modules/@blueprintjs/icons/lib/css/blueprint-icons.css";
+@import "../../../node_modules/@blueprintjs/core/src/blueprint";
+
 @import "vars";
 
-@import "base/reset";
-@import "base/general";
+// @import "base/reset";
+// @import "base/general";
 
 @import "base/helpers";
 @import "base/family";
 
 @import "common/common";
+@import "common/format";
 @import "common/forms";
 @import "common/icons";
 @import "common/text";
 
 @import "../components/layout/App/App";
+
 @import "../components/pages/status/NotFound/NotFound";
+
+@import "../components/ui/ArtistCard/ArtistCard";

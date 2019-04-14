@@ -11,7 +11,9 @@ $google: #e93f2e;
 $pinterest: #b81621;
 
 /* Colors */
-$grey: #d2d2d2;
+$gray-gradient1: linear-gradient(45deg, $dark-gray1 35%, $dark-gray3);
+$gray-gradient2: linear-gradient(45deg, $dark-gray2 35%, $dark-gray4);
+$gray-gradient3: linear-gradient(45deg, $dark-gray3 35%, $dark-gray5);
 
 /* Transitions */
 $long: 0.3s;
@@ -24,8 +26,10 @@ $small: 20px;
 $mobile: 15px;
 
 /* Shadows */
-$shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px;
+$shadow: 0 15px 40px 3px rgba(0, 0, 0, 0.3);
+$darkShadow: 0 15px 40px 3px rgba(0, 0, 0, 0.4);
+$bigShadow: 0 25px 50px 5px rgba(0, 0, 0, 0.35);
 
 /* Fonts */
-$h_font: serif;
-$b_font: sans-serif;
+$hFont: serif;
+$bFont: sans-serif;

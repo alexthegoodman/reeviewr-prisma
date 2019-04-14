@@ -1,4 +1,30 @@
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  padding: 0;
+  margin: 15px 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin-bottom: 7px;
+
+    &:last-of-type {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $black;
+  font-weight: 600;
 }

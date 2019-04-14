@@ -1,0 +1,91 @@
+.generalForm {
+  display: block;
+  width: 100%;
+
+  .formGroup {
+    display: block;
+    margin: 0;
+    padding: 0 0 15px 0;
+    width: 100%;
+
+    &.half {
+      float: left;
+      width: 48%;
+
+      &:nth-of-type(2n) {
+        margin-left: 4%;
+      }
+    }
+
+    label {
+      font-family: $bFont;
+      color: white;
+      font-weight: 400;
+    }
+
+    input,
+    textarea,
+    select {
+      display: block;
+      padding: 12px 15px;
+      width: 100%;
+      height: auto;
+      outline: none;
+      border: none;
+      border: 1px $dark-gray1 solid;
+      border-radius: 5px;
+      background: white;
+      box-shadow: none;
+      color: $dark-gray1;
+      font-size: 15px;
+      margin-top: 7px;
+
+      &:-webkit-autofill {
+        background-color: white !important;
+        -webkit-box-shadow: 0 0 0 50px white inset;
+
+        -webkit-text-fill-color: #333;
+      }
+    }
+
+    .option {
+      margin-bottom: 15px;
+
+      .checkbox {
+        width: 25px;
+        height: 25px;
+        background: white;
+        border-radius: 50%;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 5px;
+      }
+      label {
+        display: inline-block;
+        vertical-align: bottom;
+        position: relative;
+        top: -4px;
+      }
+    }
+
+    &.connectDown {
+      padding: 0;
+
+      input {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+    &.connectUp {
+      input {
+        border-top: none;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
