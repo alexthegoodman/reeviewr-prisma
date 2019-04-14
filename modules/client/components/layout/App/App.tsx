@@ -12,6 +12,8 @@ import BusyIndicator from "react-busy-indicator";
 
 import NotFound from "../../pages/status/NotFound/NotFound";
 import { useAppContext } from "../../../context";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
 
 const App: React.FC<AppProps> = ({ children }) => {
   let route = useCurrentRoute();
@@ -41,6 +43,40 @@ const App: React.FC<AppProps> = ({ children }) => {
       />
       <h1>App</h1>
       <button onClick={toggleTrack}>Toggle Track</button>
+      <Query
+        query={gql`
+          query userTrack {
+            userTracks(where: { itemName_contains: "computers" }) {
+              id
+              itemName
+              files {
+                itemName
+                itemMeta(where: { metaName: "attachedFile" }) {
+                  metaName
+                  metaValue
+                }
+              }
+              reviews {
+                user {
+                  oldId
+                  userEmail
+                }
+              }
+            }
+          }
+        `}
+      >
+        {({ loading, error, data }) => {
+          if (loading) return <p>Loading...</p>;
+          if (error) return <p>Error :(</p>;
+
+          return data.userTracks.map(({ id, itemName }) => (
+            <>
+              {id} {itemName}
+            </>
+          ));
+        }}
+      </Query>
       <NotFoundBoundary render={NotFound}>{children}</NotFoundBoundary>
     </>
   );
