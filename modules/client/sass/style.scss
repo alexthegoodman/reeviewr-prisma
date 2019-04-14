@@ -11,5 +11,5 @@
 @import "common/icons";
 @import "common/text";
 
-@import "../containers/App/App.scss";
-@import "../containers/NotFound/NotFound.scss";
+@import "../components/wrappers/App/App";
+@import "../components/pages/status/NotFound/NotFound";

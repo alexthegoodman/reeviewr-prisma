@@ -3,12 +3,14 @@ import ErrorBoundary from "react-error-boundary";
 
 import * as mixpanel from "mixpanel-browser";
 import { MixpanelProvider } from "react-mixpanel";
-mixpanel.init(process.env.MIXPANEL_SECRET);
 
 import ErrorFallback from "./components/pages/status/ErrorFallback/ErrorFallback";
 import { ErrorHandler } from "./services/ErrorHandler";
 import App from "./components/wrappers/App/App";
+
 const styles = require("./sass/style.scss");
+
+mixpanel.init(process.env.MIXPANEL_SECRET);
 
 interface RootProviderProps {}
 

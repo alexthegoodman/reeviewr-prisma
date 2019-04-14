@@ -6,6 +6,6 @@ const redis = require("db/redis");
 Enzyme.configure({ adapter: new Adapter() });
 
 afterAll(async () => {
-  await db.destroyConnection();
-  await redis.destroyConnection();
+  // await db.destroyConnection();
+  // await redis.destroyConnection();
 });
