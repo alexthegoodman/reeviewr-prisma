@@ -45,7 +45,8 @@
     "test:acceptance:build": "cross-env NODE_ENV=test yarn build",
     "test:acceptance:server": "NODE_ENV=test node dist/server.js > tests/acceptance/last-run.log",
     "test:acceptance:run": "while ! nc -z localhost 3002; do sleep 0.1; done; cross-env NODE_ENV=test jest -w1 -c ./acceptance.jestrc.json",
-    "docker:up": "docker-compose up -d"
+    "docker:up": "docker-compose up -d",
+    "gen:ui-component": "bash/gen_ui_component.sh"
   },
   "resolutions": {},
   "dependencies": {

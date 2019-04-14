@@ -1,10 +1,10 @@
 # TODO:
 
-- Config rework
-- Remove snapshots
 - Configure storybook and jest
 - Configure cypress
 - Configure Heroku and Heroku CI
+
+- bash script for new components
 
 - Hooks
 - Context
