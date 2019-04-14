@@ -43,7 +43,7 @@ const App: React.FC<AppProps> = ({ children }) => {
       /> */}
       <h1>App</h1>
       <button onClick={toggleTrack}>Toggle Track</button>
-      <Query
+      {/* <Query
         query={gql`
           query userTrack {
             userTracks(where: { itemName_contains: "computers" }) {
@@ -76,7 +76,7 @@ const App: React.FC<AppProps> = ({ children }) => {
             </>
           ));
         }}
-      </Query>
+      </Query> */}
       <NotFoundBoundary render={NotFound}>{children}</NotFoundBoundary>
     </>
   );
