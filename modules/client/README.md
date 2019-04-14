@@ -18,4 +18,4 @@
 
 # Notes:
 
-https://stackoverflow.com/questions/14593538/make-heroku-run-non-master-git-branch
+To deploy, push to specified Github branch

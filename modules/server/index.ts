@@ -32,12 +32,12 @@ export function startServer() {
     })
   );
 
-  app.use(
-    cookieSession({
-      name: "session",
-      secret: config.get<string>("server.secret"),
-    })
-  );
+  // app.use(
+  //   cookieSession({
+  //     name: "session",
+  //     secret: config.get<string>("server.secret"),
+  //   })
+  // );
 
   // Logging
   app.use(morgan("short"));
@@ -62,28 +62,28 @@ export function startServer() {
   // app.use(passport.initialize());
   // app.use(passport.session());
 
-  app.use(
-    "/arena",
-    new Arena(
-      {
-        queues: [
-          {
-            name: "main",
-            prefix: config.get("redis.prefix"),
-            hostId: "redis",
-            redis: config.get("redis.url"),
-          },
-        ],
-      },
-      {
-        // Make the arena dashboard become available at {my-site.com}/arena.
-        // basePath: "/arena",
+  // app.use(
+  //   "/arena",
+  //   new Arena(
+  //     {
+  //       queues: [
+  //         {
+  //           name: "main",
+  //           prefix: config.get("redis.prefix"),
+  //           hostId: "redis",
+  //           redis: config.get("redis.url"),
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       // Make the arena dashboard become available at {my-site.com}/arena.
+  //       // basePath: "/arena",
 
-        // Let express handle the listening.
-        disableListen: true,
-      }
-    )
-  );
+  //       // Let express handle the listening.
+  //       disableListen: true,
+  //     }
+  //   )
+  // );
 
   // app.get(AuthRoutes.USER_NOT_FOUND, (req, res) => {
   //   res.sendFile(process.cwd() + "/dist/index.html");
