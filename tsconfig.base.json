@@ -25,5 +25,6 @@
     "noImplicitAny": false,
     "experimentalDecorators": true
   },
-  "exclude": ["./dist", "./es", "./data-seed"]
+  "exclude": ["./dist", "./es", "./data-seed"],
+  "include": ["./node_modules/@types/jest"]
 }

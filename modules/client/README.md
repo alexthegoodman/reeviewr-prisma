@@ -1,6 +1,5 @@
 # TODO:
 
-- Configure storybook and jest
 - Configure cypress
 - Configure Heroku and Heroku CI
 

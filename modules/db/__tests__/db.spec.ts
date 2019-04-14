@@ -1,3 +1,8 @@
+/// <reference types="Jest" />
+
+import "jest";
+// import "jest-extended";
+
 import * as config from "config";
 
 describe("the database connection", () => {
