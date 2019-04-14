@@ -2364,7 +2364,7 @@
   resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-14.2.0.tgz#74e1da5f2a4a744ac6eb3ed57b48242ea9367202"
   integrity sha512-lELg5m6eBOmATWyCZl8qULEOvnPIUG6B443yXKj930glXIgwQirIBPp5rthP2amJW0YSzUg2s5sfgba4mRRCNw==
 
-"@types/history@*":
+"@types/history@*", "@types/history@^4.6.2":
   version "4.7.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.2.tgz#0e670ea254d559241b6eeb3894f8754991e73220"
   integrity sha512-ui3WwXmjTaY73fOQ3/m3nnajU/Orhi6cEu5rzX+BrAAJxa3eITXZ5ch9suPqtM03OWhAHhPSyBGCN4UKoxO20Q==
@@ -13774,6 +13774,13 @@ natural-orderby@^2.0.1:
   resolved "https://registry.yarnpkg.com/natural-orderby/-/natural-orderby-2.0.3.tgz#8623bc518ba162f8ff1cdb8941d74deb0fdcc016"
   integrity sha512-p7KTHxU0CUrcOXe62Zfrb5Z13nLvPhSWR/so3kFulUQU0sgUll2Z0LwpsLN351eOOD+hRGu/F1g+6xDfPeD++Q==
 
+navi@^0.12.4:
+  version "0.12.4"
+  resolved "https://registry.yarnpkg.com/navi/-/navi-0.12.4.tgz#bec3d03bb3fe643c80d4b7cd700e9a161eccf7bc"
+  integrity sha512-TjH8h+Ql2UceWV0+lX2wy9xSoazzPfwBSqlMA+vPeYGZGqZt1YYtzmwiw+Kh7zwIHM3hqiaY/AOnnpTQNDToqg==
+  dependencies:
+    history "^4.7.2"
+
 ndjson@^1.4.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/ndjson/-/ndjson-1.5.0.tgz#ae603b36b134bcec347b452422b0bf98d5832ec8"
@@ -16254,6 +16261,11 @@ react-base16-styling@^0.5.1:
     lodash.flow "^3.3.0"
     pure-color "^1.2.0"
 
+react-busy-indicator@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-busy-indicator/-/react-busy-indicator-1.0.0.tgz#3369617f50fba61f4fc776355682c878e7c9eb66"
+  integrity sha512-/3OdsHYAqZ9LsrTyjeVu/70yjCfJXmr2qdHuO4hdJ3I92saspXxAGvZzm+Go9luHGlAiKVVh7LykK6tjaXfRQA==
+
 react-clientside-effect@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-clientside-effect/-/react-clientside-effect-1.2.0.tgz#db823695f75e9616a5e4dd6d908e5ea627fb2516"
@@ -16468,6 +16480,14 @@ react-modal@^3.8.1:
     prop-types "^15.5.10"
     react-lifecycles-compat "^3.0.0"
     warning "^3.0.0"
+
+react-navi@^0.12.4:
+  version "0.12.4"
+  resolved "https://registry.yarnpkg.com/react-navi/-/react-navi-0.12.4.tgz#152d3d9314f3c9b304bdfc8649a3d0735dc64c7a"
+  integrity sha512-bAlHanQdpdIk4fcbxQqY12BgZHJA7l0SOQ40pvTHm8RfCVZo2bMFZemmXyixcy8buztasR/cKf6NzUcXv38omw==
+  dependencies:
+    "@types/history" "^4.6.2"
+    react-helmet "^5.2.0"
 
 react-popper-tooltip@^2.8.0:
   version "2.8.2"

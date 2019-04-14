@@ -1,10 +1,5 @@
 # TODO:
 
-- Configure Heroku and Heroku CI
-
-- bash script for new components
-
-- Hooks
 - Context
 - Navi
 - Apollo w/ Hooks and SSR
