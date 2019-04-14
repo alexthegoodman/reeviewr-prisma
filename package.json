@@ -12,8 +12,6 @@
   },
   "scripts": {
     "start": "nf start web=1,worker=1",
-    "heroku-postbuild": "yarn build && build-storybook -o dist/storybook",
-    "heroku-release": "node dist/scripts/migrate-and-seed.js",
     "build:jsonschema": "node scripts/json-schema-types.js",
     "build:graphql": "prisma generate",
     "build:client": "webpack --config ./webpack/client.config.js",

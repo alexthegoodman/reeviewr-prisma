@@ -1,17 +1,9 @@
-import "client/bootstrap-mui"; // this must be the first import
-import {
-  withTheme
-} from "../modules/client/storybook-decorators";
-const {
-  configure,
-  addDecorator
-} = require("@storybook/react");
-
-addDecorator(withTheme);
+import { configure } from "@storybook/react";
+// automatically import all files ending in *.stories.tsx
+const req = require.context("../modules/client", true, /\.stories\.tsx$/);
 
 function loadStories() {
-  require("../modules/client/stories.ts");
-  // You can require as many stories as you need.
+  req.keys().forEach(req);
 }
 
 configure(loadStories, module);
