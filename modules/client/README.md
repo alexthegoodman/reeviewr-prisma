@@ -1,7 +1,5 @@
 # TODO:
 
-- Context
-- Navi
 - Apollo w/ Hooks and SSR
 - Formik
 - React-Vis

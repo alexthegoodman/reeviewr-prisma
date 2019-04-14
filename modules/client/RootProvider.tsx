@@ -10,6 +10,7 @@ import routes from "./routes";
 
 import ErrorFallback from "./components/pages/status/ErrorFallback/ErrorFallback";
 import { ErrorHandler } from "./services/ErrorHandler";
+import { AppContextAPI } from "./context/AppContextAPI";
 
 const styles = require("./sass/style.scss");
 
@@ -24,12 +25,14 @@ const RootProvider: React.FC<RootProviderProps> = props => {
     <ErrorBoundary onError={ErrorHandler} FallbackComponent={ErrorFallback}>
       <MixpanelProvider mixpanel={mixpanel}>
         <Router routes={routes}>
-          {/** TODO: Good spot for Layout if desire no rerender */}
-          <App>
-            <React.Suspense fallback={<span>Loading mechanics...</span>}>
-              <View />
-            </React.Suspense>
-          </App>
+          {/** TODO: Good spot for Layout if desire no rerender, consider best placement for context */}
+          <AppContextAPI>
+            <App>
+              <React.Suspense fallback={<span>Loading mechanics...</span>}>
+                <View />
+              </React.Suspense>
+            </App>
+          </AppContextAPI>
         </Router>
       </MixpanelProvider>
     </ErrorBoundary>
