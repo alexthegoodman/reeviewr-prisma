@@ -10,10 +10,15 @@ describe("ProfileItem", () => {
   beforeEach(() => {
     wrapper = render(
       <TestProvider>
-        <ProfileItem />
+        <ProfileItem
+          imageUrl="https://via.placeholder.com/100"
+          name="Alex Woodman"
+        />
       </TestProvider>
     );
   });
 
-  it("", () => {});
+  it("Should render image and name", () => {});
+
+  it("Should run the callback when clicked", () => {});
 });

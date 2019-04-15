@@ -1,3 +1,17 @@
 .hidden {
   display: none;
 }
+
+.scaleClick {
+  transition: $long all;
+
+  &:hover {
+    transform: scale(1.02);
+    transition: $long all;
+  }
+
+  &:focus,
+  &:active {
+    transform: scale(0.98);
+  }
+}

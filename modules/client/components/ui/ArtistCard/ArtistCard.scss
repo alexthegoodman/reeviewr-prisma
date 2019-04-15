@@ -6,19 +6,16 @@
   box-shadow: $shadow;
   cursor: pointer;
   background: $gray-gradient3;
-  transition: $long all;
+  @extend .scaleClick;
 
   &:hover {
     box-shadow: $bigShadow;
-    transform: scale(1.02);
     background: linear-gradient($dark-gray3, $dark-gray3);
-    transition: $long all;
   }
 
   &:focus,
   &:active {
     box-shadow: $shadow;
-    transform: scale(0.98);
   }
 
   img {

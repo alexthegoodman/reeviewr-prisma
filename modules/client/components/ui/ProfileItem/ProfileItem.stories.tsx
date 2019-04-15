@@ -7,6 +7,9 @@ const stories = storiesOf("UI Components", module);
 
 stories.add("ProfileItem", () => (
   <TestProvider>
-    <ProfileItem />
+    <ProfileItem
+      imageUrl="https://via.placeholder.com/100"
+      name="Alex Woodman"
+    />
   </TestProvider>
 ));

@@ -15,6 +15,11 @@ $gray-gradient1: linear-gradient(45deg, $dark-gray1 35%, $dark-gray3);
 $gray-gradient2: linear-gradient(45deg, $dark-gray2 35%, $dark-gray4);
 $gray-gradient3: linear-gradient(45deg, $dark-gray3 35%, $dark-gray5);
 
+/** Brand **/
+$red: #df494a;
+$blue: #5bc1ed;
+$lightBlue: #8bdeff;
+
 /* Transitions */
 $long: 0.3s;
 $short: 0.1s;
@@ -31,5 +36,5 @@ $darkShadow: 0 15px 40px 3px rgba(0, 0, 0, 0.4);
 $bigShadow: 0 25px 50px 5px rgba(0, 0, 0, 0.35);
 
 /* Fonts */
-$hFont: serif;
-$bFont: sans-serif;
+$hFont: futura-pt, sans-serif;
+$bFont: futura-pt, sans-serif;

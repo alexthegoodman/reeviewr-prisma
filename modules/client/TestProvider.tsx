@@ -20,7 +20,7 @@ const TestProvider: React.FC<TestProviderProps> = ({ children }) => {
             display: "flex",
             flexDirection: "row",
             justifyContent: "center",
-            paddingTop: 50,
+            padding: 50,
           }}
         >
           {children}

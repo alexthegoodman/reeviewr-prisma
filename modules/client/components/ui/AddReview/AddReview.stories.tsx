@@ -7,6 +7,6 @@ const stories = storiesOf("UI Components", module);
 
 stories.add("AddReview", () => (
   <TestProvider>
-    <AddReview />
+    <AddReview imageUrl="https://via.placeholder.com/100" />
   </TestProvider>
 ));

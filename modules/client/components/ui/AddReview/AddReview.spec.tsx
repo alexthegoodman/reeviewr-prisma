@@ -10,10 +10,12 @@ describe("AddReview", () => {
   beforeEach(() => {
     wrapper = render(
       <TestProvider>
-        <AddReview />
+        <AddReview imageUrl="https://via.placeholder.com/100" />
       </TestProvider>
     );
   });
 
-  it("", () => {});
+  it("Should display the image provided", () => {});
+
+  it("Should run the callback when clicked", () => {});
 });
