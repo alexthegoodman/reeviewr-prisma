@@ -1,1 +1,12 @@
-/** Styles **/
+.trackWaveForm {
+  width: 100%;
+  border-radius: $radius2;
+  overflow: hidden;
+
+  .waveContainer {
+    display: flex;
+    flex-grow: 1;
+    height: 150px;
+    background: $gray1;
+  }
+}
