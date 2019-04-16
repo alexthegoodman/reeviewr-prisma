@@ -1,5 +1,8 @@
+import { ReactElement } from "react";
+
 export interface HeaderProps {
   ref?: React.Ref<any>;
   className?: string;
-  onClick?: (e: MouseEvent) => void;
+  leftElements?: ReactElement<any>;
+  rightElements?: ReactElement<any>;
 }

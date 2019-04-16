@@ -87,6 +87,7 @@
     "trailing-comma": false,
     "arrow-parens": false,
     "no-implicit-dependencies": [true, "dev"],
-    "no-submodule-imports": false
+    "no-submodule-imports": false,
+    "jsx-no-multiline-js": false
   }
 }

@@ -15,5 +15,5 @@ describe("Header", () => {
     );
   });
 
-  it("", () => {});
+  it("Render the left and right elements in the correct spots", () => {});
 });

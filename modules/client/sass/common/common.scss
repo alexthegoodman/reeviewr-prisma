@@ -15,3 +15,17 @@
     transform: scale(0.98);
   }
 }
+
+.textButton {
+  span {
+    color: white;
+    font-size: 1rem;
+    padding: 0 15px;
+    // text-transform: uppercase;
+    // font-weight: 600;
+  }
+}
+
+.headerItem {
+  height: $headerHeight;
+}
