@@ -2,7 +2,12 @@ import * as React from "react";
 
 import { GenComponentProps } from "./GenComponent.d";
 
-const GenComponent: React.FC<GenComponentProps> = () => {
+const GenComponent: React.FC<GenComponentProps> = ({
+  ref = null,
+  className = "",
+  onClick = null,
+}) => {
+  const clickHandler = e => onClick(e);
   return <></>;
 };
 

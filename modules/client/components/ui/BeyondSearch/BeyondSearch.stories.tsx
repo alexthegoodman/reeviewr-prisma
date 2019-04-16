@@ -7,6 +7,6 @@ const stories = storiesOf("UI Components", module);
 
 stories.add("BeyondSearch", () => (
   <TestProvider>
-    <BeyondSearch />
+    <BeyondSearch placeholder="Search tracks, artists, and reviews..." />
   </TestProvider>
 ));
