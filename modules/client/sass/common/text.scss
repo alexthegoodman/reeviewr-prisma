@@ -31,4 +31,14 @@ a {
   text-decoration: none;
   color: $black;
   font-weight: 600;
+  transition: $short all;
+
+  &:hover,
+  &:visited,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    color: $red;
+    transition: $short all;
+  }
 }

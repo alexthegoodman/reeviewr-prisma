@@ -7,6 +7,6 @@ const stories = storiesOf("UI Components", module);
 
 stories.add("TrackHeader", () => (
   <TestProvider>
-    <TrackHeader />
+    <TrackHeader trackTitle="All of the Lights" artistName="Regina Spektor" />
   </TestProvider>
 ));

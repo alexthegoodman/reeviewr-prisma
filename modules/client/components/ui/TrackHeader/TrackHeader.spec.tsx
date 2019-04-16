@@ -10,10 +10,12 @@ describe("TrackHeader", () => {
   beforeEach(() => {
     wrapper = render(
       <TestProvider>
-        <TrackHeader />
+        <TrackHeader trackTitle="Blue Boats" artistName="Regina Spektor" />
       </TestProvider>
     );
   });
 
-  it("", () => {});
+  it("Renders the provided title and name", () => {});
+
+  it("Runs the respective callback when title and name are clicked", () => {});
 });

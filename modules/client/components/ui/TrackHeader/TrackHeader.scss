@@ -1,1 +1,12 @@
-/** Styles **/
+.trackHeader {
+  @extend .verticalCenter;
+
+  a {
+    &.trackTitle {
+      font-size: 1.6rem;
+    }
+    &.artistName {
+      font-size: 1.1rem;
+    }
+  }
+}
