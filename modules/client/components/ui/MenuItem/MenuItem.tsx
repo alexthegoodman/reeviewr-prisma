@@ -8,7 +8,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
   className = "",
   active = false,
   labelElement = <></>,
-  onClick = null,
+  onClick = () => console.info("Click"),
   children = null,
 }) => {
   const clickHandler = e => onClick(e);

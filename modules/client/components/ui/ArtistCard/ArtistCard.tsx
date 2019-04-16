@@ -6,7 +6,7 @@ import { ArtistCardProps } from "./ArtistCard.d";
 const ArtistCard: React.FC<ArtistCardProps> = ({
   ref = null,
   className = "",
-  onClick = null,
+  onClick = () => console.info("Click"),
   imageUrl = "",
   artistTitle = "",
   reviewCount = 0,

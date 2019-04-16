@@ -1,1 +1,8 @@
-/** Styles **/
+.sidebar {
+  padding-top: $headerHeight;
+  background: $dark-gray3;
+}
+
+.sidebarMenu {
+  background: transparent;
+}

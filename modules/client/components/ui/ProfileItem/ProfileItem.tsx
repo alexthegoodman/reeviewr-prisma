@@ -6,7 +6,7 @@ import { Button, Text } from "@blueprintjs/core";
 const ProfileItem: React.FC<ProfileItemProps> = ({
   ref = null,
   className = "",
-  onClick = null,
+  onClick = () => console.info("Click"),
   imageUrl = "",
   name = "",
 }) => {

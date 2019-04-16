@@ -10,7 +10,7 @@ const Header: React.FC<HeaderProps> = ({
   rightElements = <></>,
 }) => {
   return (
-    <Navbar className={`header ${className}`}>
+    <Navbar className={`header ${className}`} fixedToTop={true}>
       <Navbar.Group align={Alignment.LEFT}>{leftElements}</Navbar.Group>
       <Navbar.Group align={Alignment.RIGHT}>{rightElements}</Navbar.Group>
     </Navbar>

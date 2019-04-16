@@ -6,7 +6,7 @@ import { InputGroup } from "@blueprintjs/core";
 const BeyondSearch: React.FC<BeyondSearchProps> = ({
   ref = null,
   className = "",
-  onClick = null,
+  onClick = () => console.info("Click"),
   inputRef = null,
   defaultValue = "",
   disabled = false,

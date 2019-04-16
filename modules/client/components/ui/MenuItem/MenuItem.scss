@@ -1,12 +1,12 @@
 .menuItem,
 .menuItem.bp3-menu-item {
-  padding: 0;
+  padding: 15px 35px;
   margin: 0;
   line-height: 30px;
+  position: relative;
 
   &.bp3-active {
     background: transparent;
-    position: relative;
 
     &:before {
       content: " ";
@@ -15,8 +15,8 @@
       background: $red;
       border-radius: 50%;
       position: absolute;
-      left: -20px;
-      top: 10px;
+      left: 15px;
+      top: 25px;
     }
 
     > .bp3-fill {

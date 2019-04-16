@@ -2,9 +2,14 @@
   padding: 0;
   height: $headerHeight;
   background: $dark-gray2;
+  z-index: 30;
 
   .bp3-navbar-group {
     @extend .horizontalCenter;
     height: $headerHeight;
+
+    &.bp3-align-left {
+      min-width: 70vw;
+    }
   }
 }
