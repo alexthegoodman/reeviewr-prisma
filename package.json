@@ -159,6 +159,7 @@
     "socket.io-client": "^2.2.0",
     "source-map-support": "0.5.12",
     "throng": "4.0.0",
+    "truncate": "^2.0.1",
     "ts-node": "8.0.3",
     "tsify": "^4.0.1",
     "tslint-react": "^4.0.0",

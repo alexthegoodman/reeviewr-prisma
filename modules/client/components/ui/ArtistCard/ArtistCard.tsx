@@ -15,7 +15,11 @@ const ArtistCard: React.FC<ArtistCardProps> = ({
   const clickHandler = e => onClick(e);
 
   return (
-    <Card className="artistCard" onClick={clickHandler}>
+    <Card
+      ref={ref}
+      className={`artistCard ${className}`}
+      onClick={clickHandler}
+    >
       <img src={imageUrl} alt={artistTitle} />
       <div className="cardInfo">
         <Text tagName="h5">{artistTitle}</Text>

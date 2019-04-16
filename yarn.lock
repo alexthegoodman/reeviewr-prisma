@@ -19245,6 +19245,11 @@ trough@^1.0.0:
   dependencies:
     glob "^7.1.2"
 
+truncate@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/truncate/-/truncate-2.0.1.tgz#dd1a6d15630515663d8475f6f24edf2f800ebb1b"
+  integrity sha1-3RptFWMFFWY9hHX28k7fL4AOuxs=
+
 tryer@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/tryer/-/tryer-1.0.1.tgz#f2c85406800b9b0f74c9f7465b81eaad241252f8"

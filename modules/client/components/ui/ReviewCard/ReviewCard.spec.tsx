@@ -10,7 +10,14 @@ describe("ReviewCard", () => {
   beforeEach(() => {
     wrapper = render(
       <TestProvider>
-        <ReviewCard />
+        <ReviewCard
+          artistTitle="Artist Title"
+          answerPreview="Aenean lacinia bibendum nulla sed consectetur. Nullam quis risus eget urna mollis ornare vel eu leo."
+          reviewerImageUrl="/src/"
+          reviewerAltText="Artist Name"
+          trackImageUrl="/src/"
+          trackAltText="Track Title"
+        />
       </TestProvider>
     );
   });

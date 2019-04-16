@@ -29,3 +29,24 @@
 .headerItem {
   height: $headerHeight;
 }
+
+.card {
+  @extend .verticalCenter;
+  max-width: 50vw;
+  min-width: 20vw;
+  border-radius: $radius3;
+  box-shadow: $shadow;
+  cursor: pointer;
+  background: $gray-gradient3;
+  @extend .scaleClick;
+
+  &:hover {
+    box-shadow: $bigShadow;
+    background: linear-gradient($dark-gray3, $dark-gray3);
+  }
+
+  &:focus,
+  &:active {
+    box-shadow: $shadow;
+  }
+}
