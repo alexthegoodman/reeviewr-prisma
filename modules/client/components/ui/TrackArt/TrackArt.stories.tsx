@@ -7,6 +7,9 @@ const stories = storiesOf("UI Components", module);
 
 stories.add("TrackArt", () => (
   <TestProvider>
-    <TrackArt />
+    <TrackArt
+      imageUrl="https://via.placeholder.com/400"
+      altText="Reeviewr Track"
+    />
   </TestProvider>
 ));

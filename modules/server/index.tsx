@@ -114,7 +114,7 @@ export function startServer() {
 
   // app.get(AuthRoutes.CREATE_USER) // handle auth
   // app.get(AuthRoutes.RESET_PASSWORD) // handle auth
-  // app.get(TrackRoutes.CREATE_TRACK) // generate waveform
+  // app.get(TrackRoutes.CREATE_TRACK) // generate waveform, resize images
 
   app.get(
     ["/", "/*"],

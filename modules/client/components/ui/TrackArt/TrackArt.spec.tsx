@@ -10,10 +10,10 @@ describe("TrackArt", () => {
   beforeEach(() => {
     wrapper = render(
       <TestProvider>
-        <TrackArt />
+        <TrackArt imageUrl="/src/" altText="Reeviewr Track" />
       </TestProvider>
     );
   });
 
-  it("", () => {});
+  it("Should render the provided image, alt text, and title text", () => {});
 });
