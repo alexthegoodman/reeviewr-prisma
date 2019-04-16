@@ -7,6 +7,11 @@ const stories = storiesOf("UI Components", module);
 
 stories.add("ReviewParticipants", () => (
   <TestProvider>
-    <ReviewParticipants />
+    <ReviewParticipants
+      reviewerImageUrl="https://via.placeholder.com/100"
+      reviewerAltText="Artist Name"
+      trackImageUrl="https://via.placeholder.com/100"
+      trackAltText="Track Title"
+    />
   </TestProvider>
 ));

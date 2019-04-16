@@ -10,7 +10,12 @@ describe("ReviewParticipants", () => {
   beforeEach(() => {
     wrapper = render(
       <TestProvider>
-        <ReviewParticipants />
+        <ReviewParticipants
+          reviewerImageUrl="/src/"
+          reviewerAltText="Artist Name"
+          trackImageUrl="/src/"
+          trackAltText="Track Title"
+        />
       </TestProvider>
     );
   });

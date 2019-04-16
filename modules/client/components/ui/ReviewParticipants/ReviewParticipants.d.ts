@@ -1,5 +1,8 @@
 export interface ReviewParticipantsProps {
   ref?: React.Ref<any>;
   className?: string;
-  onClick?: (e: MouseEvent) => void;
+  reviewerImageUrl: string;
+  reviewerAltText: string;
+  trackImageUrl: string;
+  trackAltText: string;
 }
