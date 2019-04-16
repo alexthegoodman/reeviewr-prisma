@@ -25,4 +25,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+// https://www.apollographql.com/docs/react/essentials/queries#refetching polling
+// if refetch is needed, https://www.apollographql.com/docs/react/essentials/queries#manual-query
+
 export default client;

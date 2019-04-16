@@ -15,5 +15,7 @@ describe("MenuItem", () => {
     );
   });
 
-  it("", () => {});
+  it("Should render the active colors in the active state and default colors in default state", () => {});
+
+  it("Should run the callback when clicked", () => {});
 });

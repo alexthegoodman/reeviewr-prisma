@@ -1,1 +1,33 @@
-/** Styles **/
+.menuItem,
+.menuItem.bp3-menu-item {
+  padding: 0;
+  margin: 0;
+  line-height: 30px;
+
+  &.bp3-active {
+    background: transparent;
+    position: relative;
+
+    &:before {
+      content: " ";
+      width: 6px;
+      height: 6px;
+      background: $red;
+      border-radius: 50%;
+      position: absolute;
+      left: -20px;
+      top: 10px;
+    }
+
+    > .bp3-fill {
+      color: $red;
+    }
+  }
+  > .bp3-fill {
+    margin: 0;
+    font-size: 1.1rem;
+    color: white;
+  }
+  .bp3-menu-item-label {
+  }
+}

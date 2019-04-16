@@ -106,45 +106,16 @@ export function startServer() {
   //   res.sendFile(process.cwd() + "/dist/index.html");
   // });
 
-  // // GraphQL
-  // app.use(
-  //   "/graphql",
-  //   bodyParser.json(),
-  //   Authentication.createContext,
-  //   // Authentication.ensureAuthenticatedAndSetStatus,
-  //   graphqlExpress((req, res) => {
-  //     return {
-  //       schema: executableSchema,
-  //       context: req!.context,
-  //       formatError: (e: GraphQLError) => {
-  //         Logger.error(e);
-  //         return formatError(e);
-  //       },
-  //     };
-  //   })
-  // );
-
-  if (config.get("server.graphiql")) {
-    // GraphQL development web IDE
-    app.use(
-      "/graphiql",
-      graphiqlExpress({
-        endpointURL: "/graphql",
-      })
-    );
-  }
-
   // Static assets
   app.use(expressStaticGzip("./dist/"));
   app.use(express.static("./dist/"));
 
-  // rendering code (see below)
+  console.info("start server");
 
-  console.info("start servr");
+  // app.get(AuthRoutes.CREATE_USER) // handle auth
+  // app.get(AuthRoutes.RESET_PASSWORD) // handle auth
+  // app.get(TrackRoutes.CREATE_TRACK) // generate waveform
 
-  // app.get("/favicon.ico", (req, res) => res.status(204));
-
-  // Serve index.html for all unknown URLs
   app.get(
     ["/", "/*"],
     // Authentication.ensureAuthenticatedAndRedirect,
@@ -163,13 +134,13 @@ export function startServer() {
         }),
         cache: new InMemoryCache(),
       });
-      const context = {};
+      // const context = {};
       // https://frontarm.com/navi/en/reference/navigation/#creatememorynavigation
       let navigation = createMemoryNavigation({
         routes,
         url: req.url,
       });
-      // The client-side App will instead use <BrowserRouter>
+
       const App = (
         <ApolloProvider client={client}>
           <Router routes={routes} navigation={navigation}>
@@ -180,7 +151,6 @@ export function startServer() {
 
       console.info("get data");
       getDataFromTree(App).then(() => {
-        // We are ready to render for real
         const content = ReactDOMServer.renderToString(App);
         const initialState = client.extract();
 
