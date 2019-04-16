@@ -1,12 +1,29 @@
 .track {
-  display: flex;
-  flex-direction: row;
   width: 100%;
 
-  .artContainer {
+  .trackInfo {
+    display: flex;
+    flex-direction: row;
+
+    .artContainer {
+    }
+    .infoContainer {
+      padding-left: 25px;
+      flex-grow: 1;
+    }
   }
-  .infoContainer {
-    padding-left: 25px;
-    flex-grow: 1;
+  .trackActions {
+    padding-left: 225px;
+    padding-top: 25px;
+
+    .reviewContainer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-column-gap: 25px;
+    }
+    .actionContainer {
+      @extend .horizontalCenter;
+      padding-top: 25px;
+    }
   }
 }

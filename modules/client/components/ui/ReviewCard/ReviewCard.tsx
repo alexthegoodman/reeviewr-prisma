@@ -17,7 +17,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
   trackAltText = "",
 }) => {
   const clickHandler = e => onClick(e);
-  answerPreview = truncate(answerPreview, 115);
+  answerPreview = truncate(answerPreview, 100);
   return (
     <Card
       ref={ref}

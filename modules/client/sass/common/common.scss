@@ -50,3 +50,13 @@
     box-shadow: $shadow;
   }
 }
+
+.allReviewsButton {
+  width: 300px;
+
+  span {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}
