@@ -4,7 +4,8 @@ import ErrorBoundary from "react-error-boundary";
 import * as mixpanel from "mixpanel-browser";
 import { MixpanelProvider } from "react-mixpanel";
 import { Router, View } from "react-navi";
-import { ApolloProvider } from "react-apollo";
+// import { ApolloProvider } from "react-apollo";
+import { ApolloProvider } from "react-apollo-hooks";
 
 import App from "./components/layout/App/App";
 import routes from "./routes";

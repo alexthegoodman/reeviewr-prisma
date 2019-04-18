@@ -1,8 +1,14 @@
-.sidebar {
+.sidebar,
+.sidebar.bp3-drawer.bp3-position-left {
   padding-top: $headerHeight;
   background: $dark-gray3;
+  width: 300px;
 }
 
 .sidebarMenu {
   background: transparent;
+}
+
+.desktopSidebarPortal {
+  z-index: -1;
 }

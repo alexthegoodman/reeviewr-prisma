@@ -3,6 +3,8 @@ import * as React from "react";
 import { TrackHeaderProps } from "./TrackHeader.d";
 import { Text } from "@blueprintjs/core";
 
+import he from "he";
+
 const TrackHeader: React.FC<TrackHeaderProps> = ({
   ref = null,
   className = "",
@@ -17,10 +19,10 @@ const TrackHeader: React.FC<TrackHeaderProps> = ({
   return (
     <section ref={ref} className={`trackHeader ${className}`}>
       <a className="trackTitle" onClick={trackClickHandler}>
-        {trackTitle}
+        {decodeURI(decodeURIComponent(he.decode(trackTitle)))}
       </a>
       <a className="artistName" onClick={artistClickHandler}>
-        {artistName}
+        {decodeURI(decodeURIComponent(artistName))}
       </a>
     </section>
   );

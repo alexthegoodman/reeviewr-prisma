@@ -12,19 +12,20 @@ const Sidebar: React.FC<SidebarProps> = ({
   onOpened = null,
   children,
 }) => {
-  let props = {
-    enforceFocus: false,
-    autoFocus: false,
-    hasBackdrop: false,
-    canEscapeKeyClose: false,
-    canOutsideClickClose: false,
-    isCloseButtonShown: false,
-    isOpen: true,
-    size: "300px",
-    transitionDuration: 0,
-  };
+  // let props = {
+  //   enforceFocus: false,
+  //   autoFocus: false,
+  //   hasBackdrop: false,
+  //   canEscapeKeyClose: false,
+  //   canOutsideClickClose: false,
+  //   isCloseButtonShown: false,
+  //   isOpen: true,
+  //   size: "300px",
+  //   transitionDuration: 0,
+  //   portalClassName: "desktopSidebarPortal",
+  // };
   if (mobile) {
-    props = {
+    let props = {
       enforceFocus: true,
       autoFocus: true,
       hasBackdrop: true,
@@ -34,18 +35,27 @@ const Sidebar: React.FC<SidebarProps> = ({
       isOpen: false,
       size: Drawer.SIZE_LARGE,
       transitionDuration: 500,
+      portalClassName: "",
     };
+    return (
+      <Drawer
+        className={`sidebar ${className}`}
+        onClosed={onClosed}
+        onOpened={onOpened}
+        position={Position.LEFT}
+        {...props}
+      >
+        {children}
+      </Drawer>
+    );
   }
+
   return (
-    <Drawer
-      className={`sidebar ${className}`}
-      onClosed={onClosed}
-      onOpened={onOpened}
-      position={Position.LEFT}
-      {...props}
+    <div
+      className={`sidebar bp3-drawer bp3-position-left sidebar bp3-overlay-content ${className}`}
     >
       {children}
-    </Drawer>
+    </div>
   );
 };
 

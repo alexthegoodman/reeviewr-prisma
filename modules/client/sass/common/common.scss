@@ -51,6 +51,10 @@
   }
 }
 
+.cardInRow {
+  margin-right: 25px;
+}
+
 .allReviewsButton {
   width: 300px;
 
@@ -58,5 +62,6 @@
     font-size: 1.2rem;
     text-transform: uppercase;
     font-weight: 600;
+    color: white;
   }
 }

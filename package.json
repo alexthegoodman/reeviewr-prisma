@@ -41,6 +41,7 @@
     "docker:up": "docker-compose up -d",
     "gen:ui": "bash/gen_ui_component.sh",
     "gen:page": "bash/gen_page_component.sh",
+    "gen:data": "bash/gen_data_component.sh",
     "kill-list": "lsof -i :9229; lsof -i :9230"
   },
   "resolutions": {},
@@ -113,6 +114,7 @@
     "graphql-server-express": "1.4.0",
     "graphql-tag": "2.10.1",
     "graphql-tools": "4.0.4",
+    "he": "^1.2.0",
     "ioredis": "4.9.0",
     "jest-extended": "^0.11.1",
     "json-stable-stringify": "1.0.1",

@@ -1,9 +1,8 @@
 .reviewCard {
   @extend .card;
+  max-width: 225px;
 
   .cardInfo {
-    max-width: 250px;
-
     h5 {
       font-size: 1.2rem;
     }

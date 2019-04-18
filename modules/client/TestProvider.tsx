@@ -1,8 +1,6 @@
 import * as React from "react";
 import ErrorBoundary from "react-error-boundary";
 
-import App from "./components/layout/App/App";
-
 import ErrorFallback from "./components/pages/status/ErrorFallback/ErrorFallback";
 import { ErrorHandler } from "./services/ErrorHandler";
 import { AppContextAPI } from "./context/AppContextAPI";
