@@ -66,7 +66,7 @@ module.exports = {
     }),
   ],
   module: {
-    rules: [loaders.typescript, loaders.graphql],
+    rules: [loaders.typescript, loaders.graphql, loaders.scss],
   },
 
   // https://github.com/TypeStrong/ts-loader#transpileonly-boolean-defaultfalseO

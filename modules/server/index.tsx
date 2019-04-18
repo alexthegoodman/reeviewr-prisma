@@ -32,6 +32,20 @@ import { Router } from "react-navi";
 import routes from "../client/routes";
 import { createMemoryNavigation } from "navi";
 import { Html } from "../client/Html";
+import {
+  AUTHENTICATE_USER,
+  CONFIRM_EMAIL,
+  CREATE_USER,
+  FORGOT_PASSWORD,
+  RESEND_EMAIL_CONFIRMATION,
+  CREATE_TRACK,
+} from "./routes";
+import { authenticate } from "./user/authenticate";
+import { confirmEmail } from "./user/confirm-email";
+import { createUser } from "./user/create-user";
+import { forgotPassword } from "./user/forgot-password";
+import { resendEmailConfirmation } from "./user/resend-email-confirmation";
+import { createTrack } from "./userTracks/create-track";
 
 let app = express();
 
@@ -112,62 +126,70 @@ export function startServer() {
 
   console.info("start server");
 
-  // app.get(AuthRoutes.CREATE_USER) // handle auth
-  // app.get(AuthRoutes.RESET_PASSWORD) // handle auth
-  // app.get(TrackRoutes.CREATE_TRACK) // generate waveform, resize images, limits
+  const apiVersion = "1.0";
 
+  // app.get(
+  //   ["/", "/*"],
+  //   // Authentication.ensureAuthenticatedAndRedirect,
+  //   function(req, res) {
+  //     const client = new ApolloClient({
+  //       ssrMode: true,
+  //       // Remember that this is the interface the SSR server will use to connect to the
+  //       // API server, so we need to ensure it isn't firewalled, etc
+  //       link: createHttpLink({
+  //         uri: "http://localhost:4466/",
+  //         // credentials: "same-origin",
+  //         // headers: {
+  //         //   cookie: req.header("Cookie"),
+  //         // },
+  //         fetch,
+  //       }),
+  //       cache: new InMemoryCache(),
+  //     });
+  //     // const context = {};
+  //     // https://frontarm.com/navi/en/reference/navigation/#creatememorynavigation
+  //     let navigation = createMemoryNavigation({
+  //       routes,
+  //       url: req.url,
+  //     });
+
+  //     const App = (
+  //       <ApolloProvider client={client}>
+  //         <Router routes={routes} navigation={navigation}>
+  //           <AppProvider />
+  //         </Router>
+  //       </ApolloProvider>
+  //     );
+
+  //     console.info("get data");
+  //     getDataFromTree(App).then(() => {
+  //       const content = ReactDOMServer.renderToString(App);
+  //       const initialState = client.extract();
+
+  //       const html = <Html content={content} state={initialState} />;
+
+  //       console.info("send response");
+
+  //       res.status(200);
+  //       res.send(
+  //         `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`
+  //       );
+  //       res.end();
+  //     });
+
+  //     // res.sendFile(process.cwd() + "/dist/index.html");
+  //   }
+  // );
+
+  app.get(`/${apiVersion}${AUTHENTICATE_USER}`, authenticate);
+  app.get(`/${apiVersion}${CONFIRM_EMAIL}`, confirmEmail);
+  app.get(`/${apiVersion}${CREATE_USER}`, createUser);
+  app.get(`/${apiVersion}${FORGOT_PASSWORD}`, forgotPassword);
   app.get(
-    ["/", "/*"],
-    // Authentication.ensureAuthenticatedAndRedirect,
-    function(req, res) {
-      const client = new ApolloClient({
-        ssrMode: true,
-        // Remember that this is the interface the SSR server will use to connect to the
-        // API server, so we need to ensure it isn't firewalled, etc
-        link: createHttpLink({
-          uri: "http://localhost:4466/",
-          // credentials: "same-origin",
-          // headers: {
-          //   cookie: req.header("Cookie"),
-          // },
-          fetch,
-        }),
-        cache: new InMemoryCache(),
-      });
-      // const context = {};
-      // https://frontarm.com/navi/en/reference/navigation/#creatememorynavigation
-      let navigation = createMemoryNavigation({
-        routes,
-        url: req.url,
-      });
-
-      const App = (
-        <ApolloProvider client={client}>
-          <Router routes={routes} navigation={navigation}>
-            <AppProvider />
-          </Router>
-        </ApolloProvider>
-      );
-
-      console.info("get data");
-      getDataFromTree(App).then(() => {
-        const content = ReactDOMServer.renderToString(App);
-        const initialState = client.extract();
-
-        const html = <Html content={content} state={initialState} />;
-
-        console.info("send response");
-
-        res.status(200);
-        res.send(
-          `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`
-        );
-        res.end();
-      });
-
-      // res.sendFile(process.cwd() + "/dist/index.html");
-    }
+    `/${apiVersion}/${RESEND_EMAIL_CONFIRMATION}`,
+    resendEmailConfirmation
   );
+  app.get(`/${apiVersion}/${CREATE_TRACK}`, createTrack);
 
   return app.listen(port, () => {
     console.log("up and running on port", port);
