@@ -7,18 +7,61 @@ import TrackDetail from "../components/pages/TrackDetail/TrackDetail";
 import Artists from "../components/pages/Artists/Artists";
 import ArtistDetail from "../components/pages/ArtistDetail/ArtistDetail";
 import Reviews from "../components/pages/Reviews/Reviews";
+import Login from "../components/pages/Login/Login";
+import SignUp from "../components/pages/SignUp/SignUp";
+import AuthNav from "../components/layout/AuthNav/AuthNav";
+import AppNav from "../components/layout/AppNav/AppNav";
+import Auth0Callback from "../components/pages/Auth0Callback/Auth0Callback";
 
 const routes = mount({
+  "/auth0-callback": route(req => {
+    return {
+      title: "Callback / Reeviewr",
+      view: (
+        <AuthNav>
+          <Auth0Callback />
+        </AuthNav>
+      ),
+    };
+  }),
+  "/login": route(req => {
+    return {
+      title: "Login / Reeviewr",
+      view: (
+        <AuthNav>
+          <Login />
+        </AuthNav>
+      ),
+    };
+  }),
+  "/sign-up": route(req => {
+    return {
+      title: "Sign Up / Reeviewr",
+      view: (
+        <AuthNav>
+          <SignUp />
+        </AuthNav>
+      ),
+    };
+  }),
   "/": route({
     title: "Home / Reeviewr",
     // getData: () => api.fetchProducts(), // TODO: consider integrating Apollo Client here
-    view: <Home />,
+    view: (
+      <AppNav>
+        <Home />
+      </AppNav>
+    ),
   }),
   // "/products": lazy(() => import("./productsRoutes")), // TODO: set up code-splitting
   "/tracks": route(req => {
     return {
       title: "Tracks / Reeviewr",
-      view: <Tracks />,
+      view: (
+        <AppNav>
+          <Tracks />
+        </AppNav>
+      ),
     };
   }),
   "/tracks/:trackId/:name": route(async req => {
@@ -26,13 +69,21 @@ const routes = mount({
 
     return {
       title: `${name} / Tracks / Reeviewr`,
-      view: <TrackDetail trackId={trackId} />,
+      view: (
+        <AppNav>
+          <TrackDetail trackId={trackId} />
+        </AppNav>
+      ),
     };
   }),
   "/artists": route(async req => {
     return {
       title: "Artists / Reeviewr",
-      view: <Artists />,
+      view: (
+        <AppNav>
+          <Artists />
+        </AppNav>
+      ),
     };
   }),
   "/artists/:artistId/:name": route(async req => {
@@ -40,13 +91,21 @@ const routes = mount({
 
     return {
       title: `${name} / Artists / Reeviewr`,
-      view: <ArtistDetail artistId={artistId} />,
+      view: (
+        <AppNav>
+          <ArtistDetail artistId={artistId} />
+        </AppNav>
+      ),
     };
   }),
   "/reviews": route(async req => {
     return {
       title: "Reviews / Reeviewr",
-      view: <Reviews />,
+      view: (
+        <AppNav>
+          <Reviews />
+        </AppNav>
+      ),
     };
   }),
 });

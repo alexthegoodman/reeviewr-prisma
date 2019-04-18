@@ -42,6 +42,7 @@
     "gen:ui": "bash/gen_ui_component.sh",
     "gen:page": "bash/gen_page_component.sh",
     "gen:data": "bash/gen_data_component.sh",
+    "gen:layout": "bash/gen_layout_component.sh",
     "kill-list": "lsof -i :9229; lsof -i :9230"
   },
   "resolutions": {},
@@ -88,6 +89,7 @@
     "apollo-link-http": "^1.5.14",
     "apollo-link-schema": "1.2.2",
     "apollo-link-state": "0.4.2",
+    "auth0-js": "^9.10.2",
     "axios": "^0.18.0",
     "body-parser": "1.18.3",
     "bull": "3.7.0",

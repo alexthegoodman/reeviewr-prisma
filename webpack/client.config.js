@@ -108,6 +108,11 @@ module.exports = {
         process.env.MIXPANEL_SECRET
       ),
 
+      "process.env.AUTH0_CLIENT_ID": JSON.stringify(
+        process.env.AUTH0_CLIENT_ID
+      ),
+      "process.env.AUTH0_DOMAIN": JSON.stringify(process.env.AUTH0_DOMAIN),
+
       "process.env.ROLLBAR_CLIENT_ACCESS_TOKEN": JSON.stringify(
         config.get("rollbar.clientAccessToken")
       ),
