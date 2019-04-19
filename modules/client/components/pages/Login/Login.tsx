@@ -1,37 +1,62 @@
 import * as React from "react";
 
-import { LoginProps } from "./Login.d";
-import { Text, Button } from "@blueprintjs/core";
-import Auth0 from "../../../services/Auth0";
+import { LoginProps, LoginFormValues } from "./Login.d";
+import { Text, Button, FormGroup, InputGroup } from "@blueprintjs/core";
+import { Formik, Form, FormikActions, FormikProps } from "formik";
+import * as Yup from "yup";
+
+import TextField from "../../ui/TextField/TextField";
 
 const Login: React.FC<LoginProps> = () => {
-  const auth0 = new Auth0();
-  const { isAuthenticated } = auth0;
-
-  const login = () => {
-    auth0.login();
-  };
-
-  const logout = () => {
-    auth0.logout();
-  };
-
-  React.useEffect(() => {
-    const { renewSession } = auth0;
-
-    if (localStorage.getItem("isLoggedIn") === "true") {
-      renewSession();
-    }
-  }, []);
+  const LoginSchema = Yup.object().shape({
+    email: Yup.string()
+      .min(4, "Too Short!")
+      .max(100, "Too Long!")
+      .email("Invalid email")
+      .required("Required"),
+    password: Yup.string()
+      .min(4, "Too Short!")
+      .max(100, "Too Long!")
+      .required("Required"),
+  });
 
   return (
     <>
-      <Text tagName="h1">Auth0 Implementation</Text>
-      {isAuthenticated ? (
-        <Button onClick={login}>Login</Button>
-      ) : (
-        <Button onClick={login}>Logout</Button>
-      )}
+      <Text tagName="h1">Login</Text>
+
+      <Formik
+        initialValues={{ email: "", password: "" }}
+        validationSchema={LoginSchema}
+        onSubmit={(
+          values: LoginFormValues,
+          actions: FormikActions<LoginFormValues>
+        ) => {
+          console.log({ values, actions });
+          // actions.setSubmitting(false);
+        }}
+        render={(formikBag: FormikProps<LoginFormValues>) => {
+          console.info(formikBag);
+          return (
+            <Form>
+              <TextField
+                label="Email"
+                fieldName="email"
+                fieldPlaceholder="Enter your email address"
+                fieldType="email"
+              />
+              <TextField
+                label="Password"
+                fieldName="password"
+                fieldPlaceholder="Enter your password"
+                fieldType="password"
+              />
+              <Button type="submit" disabled={formikBag.isSubmitting}>
+                Login
+              </Button>
+            </Form>
+          );
+        }}
+      />
     </>
   );
 };

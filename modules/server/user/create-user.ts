@@ -1,4 +1,5 @@
 import { prisma } from "../../../__generated__/prisma-client";
+import EmailService from "../utils/email";
 
 export const createUser = (req, res) => {
   try {
@@ -9,7 +10,15 @@ export const createUser = (req, res) => {
     // 1. Send email confirmation
     // 2. Create user as userConfirmed = 0, generate 4 UUIDs
 
+    const emailService = new EmailService();
+
     const newUser = {};
+
+    // const emailContent = [{
+    //   name: "",
+    //   content: ""
+    // }];
+    // emailService.sendEmail();
 
     res.status(200);
     res.send({ success: true, data: {} });

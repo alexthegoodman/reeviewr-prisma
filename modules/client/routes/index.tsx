@@ -14,16 +14,6 @@ import AppNav from "../components/layout/AppNav/AppNav";
 import Auth0Callback from "../components/pages/Auth0Callback/Auth0Callback";
 
 const routes = mount({
-  "/auth0-callback": route(req => {
-    return {
-      title: "Callback / Reeviewr",
-      view: (
-        <AuthNav>
-          <Auth0Callback />
-        </AuthNav>
-      ),
-    };
-  }),
   "/login": route(req => {
     return {
       title: "Login / Reeviewr",
