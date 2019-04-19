@@ -67,7 +67,19 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
           </>
         }
       />
-      {children}
+      <section
+        style={{
+          paddingLeft: 325,
+          paddingRight: 25,
+          paddingTop: 85,
+          background: "#3E4B58",
+          height: "100vh",
+          overflowY: "scroll",
+          overflowX: "hidden",
+        }}
+      >
+        {children}
+      </section>
     </App>
   );
 };

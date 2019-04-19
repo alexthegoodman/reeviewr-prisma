@@ -9,6 +9,7 @@ import {
   Button,
   FormGroup,
   InputGroup,
+  Card,
 } from "@blueprintjs/core";
 import { Formik, Form, FormikActions, FormikProps } from "formik";
 import TextField from "../../ui/TextField/TextField";
@@ -67,7 +68,7 @@ const SignUp: React.FC<SignUpProps> = () => {
   });
 
   return (
-    <>
+    <Card className="floatingForm">
       <Text tagName="h1">Sign Up</Text>
 
       <Formik
@@ -183,7 +184,7 @@ const SignUp: React.FC<SignUpProps> = () => {
           );
         }}
       />
-    </>
+    </Card>
   );
 };
 

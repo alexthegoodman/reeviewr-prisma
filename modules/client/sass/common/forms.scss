@@ -6,3 +6,59 @@
 button:focus {
   outline: rgba($red, 0.6) auto 2px;
 }
+
+.bp3-form-group {
+  .bp3-label {
+    font-size: 1.1rem;
+
+    span {
+      font-size: 0.9rem;
+    }
+  }
+  .bp3-form-content {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      font-size: 1rem;
+      height: 40px;
+      padding: 5px 10px;
+    }
+  }
+}
+
+.formButton {
+  border-radius: 50px;
+  background: $blue;
+  width: 80%;
+  margin: 0 auto;
+  border: none;
+  display: flex;
+
+  span {
+    color: white;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 7px 0;
+  }
+}
+
+.floatingForm {
+  width: 500px;
+  margin: 50px auto;
+  padding: 50px 35px;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }
+
+  button,
+  button.bp3-button:not([class*="bp3-intent-"]) {
+    @extend .formButton;
+  }
+}

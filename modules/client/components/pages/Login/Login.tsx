@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { LoginProps, LoginFormValues } from "./Login.d";
-import { Text, Button, FormGroup, InputGroup } from "@blueprintjs/core";
+import { Text, Button, FormGroup, InputGroup, Card } from "@blueprintjs/core";
 import { Formik, Form, FormikActions, FormikProps } from "formik";
 import * as Yup from "yup";
 
@@ -21,7 +21,7 @@ const Login: React.FC<LoginProps> = () => {
   });
 
   return (
-    <>
+    <Card className="floatingForm">
       <Text tagName="h1">Login</Text>
 
       <Formik
@@ -57,7 +57,7 @@ const Login: React.FC<LoginProps> = () => {
           );
         }}
       />
-    </>
+    </Card>
   );
 };
 
