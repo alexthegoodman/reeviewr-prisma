@@ -26,6 +26,21 @@ button:focus {
   }
 }
 
+.bp3-html-select .bp3-icon,
+.bp3-select .bp3-icon {
+  margin: 0;
+}
+
+.bp3-file-upload-input {
+  margin: 0;
+}
+
+textarea.bp3-input,
+textarea.bp3-input.bp3-large,
+textarea.bp3-input.bp3-small {
+  width: 100%;
+}
+
 .formButton {
   border-radius: 50px;
   background: $blue;

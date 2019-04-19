@@ -7,10 +7,10 @@ export interface SignUpFormValues {
   artistName: string;
   // firstName: string;
   // lastName: string;
-  userBio: string;
+  aboutArtist: string;
   profilePicture: string;
   favoriteGenre: string;
   gender: string;
   age: string;
-  explicit: string;
+  explicit: boolean;
 }

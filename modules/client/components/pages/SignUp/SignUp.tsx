@@ -14,25 +14,13 @@ import {
 import { Formik, Form, FormikActions, FormikProps } from "formik";
 import TextField from "../../ui/TextField/TextField";
 import * as Yup from "yup";
+import TextareaField from "../../ui/TextareaField/TextareaField";
+import UploadField from "../../ui/UploadField/UploadField";
+import SelectField from "../../ui/SelectField/SelectField";
+import { Genres, GenreList } from "../../../../defs/genres";
+import CheckboxField from "../../ui/CheckboxField/CheckboxField";
 
 const SignUp: React.FC<SignUpProps> = () => {
-  /* Step 1
-   * Email
-   * Password
-   * Password Confirm
-   * Step 2
-   * Artist Name
-   * First Name
-   * Last Name
-   * User Bio
-   * Profile Picture
-   * Step 3
-   * Favorite Genre
-   * Gender
-   * Age
-   * Do you enjoy explicit music and lyrics?
-   */
-
   const [navbarTabId, setNavbarTabId] = React.useState("credentials" as TabId);
 
   const handleTabChange = (navbarTabId: TabId) => {
@@ -59,12 +47,15 @@ const SignUp: React.FC<SignUpProps> = () => {
       .required("Required"),
     // firstName: Yup.string().required("Required"),
     // lastName: Yup.string().required("Required"),
-    userBio: Yup.string(),
+    aboutArtist: Yup.string(),
     profilePicture: Yup.string().required("Required"),
     favoriteGenre: Yup.string().required("Required"),
     gender: Yup.string().required("Required"),
-    age: Yup.number().required("Required"),
-    explicit: Yup.string(),
+    age: Yup.number()
+      .lessThan(100)
+      .moreThan(13)
+      .required("Required"),
+    explicit: Yup.boolean(),
   });
 
   return (
@@ -79,12 +70,12 @@ const SignUp: React.FC<SignUpProps> = () => {
           artistName: "",
           // firstName: string;
           // lastName: string;
-          userBio: "",
+          aboutArtist: "",
           profilePicture: "",
           favoriteGenre: "",
           gender: "",
           age: "",
-          explicit: "",
+          explicit: false,
         }}
         validationSchema={SignUpSchema}
         onSubmit={(
@@ -131,23 +122,19 @@ const SignUp: React.FC<SignUpProps> = () => {
               <TextField
                 label="Artist Name"
                 fieldName="artistName"
-                fieldPlaceholder="Enter your email address"
-                fieldType="artistName"
+                fieldPlaceholder="Enter your artist name"
+                fieldType="text"
               />
-              {/* <TextField
-                label="First Name"
-                fieldName="firstName"
-                fieldPlaceholder="Enter your email address"
-                fieldType="firstName"
+              <TextareaField
+                label="About Artist"
+                fieldName="aboutArtist"
+                fieldPlaceholder="Tell us about yourself"
               />
-              <TextField
-                label="Last Name"
-                fieldName="lastName"
-                fieldPlaceholder="Enter your email address"
-                fieldType="lastName"
-              /> */}
-              <h2>User Bio textarea</h2>
-              <h2>Profile Upload</h2>
+              <UploadField
+                label="Profile Image"
+                fieldName="profileImage"
+                helperText="Upload an image for the artist"
+              />
               <Button
                 onClick={() => handleTabChange("demographics")}
                 disabled={formikBag.isSubmitting}
@@ -159,10 +146,27 @@ const SignUp: React.FC<SignUpProps> = () => {
 
           const panel3 = (
             <>
-              <h2>Favorite Genre dropdown</h2>
-              <h2>Gender dropdown</h2>
-              <h2>Age number input</h2>
-              <h2>Explicit checkbox</h2>
+              <SelectField
+                label="Favorite Genre"
+                fieldName="favoriteGenre"
+                helperText="Pick your preferred genre"
+                options={GenreList}
+              />
+              <SelectField
+                label="Gender"
+                fieldName="gender"
+                options={["Male", "Female"]}
+              />
+              <TextField
+                label="Age"
+                fieldName="age"
+                fieldPlaceholder="Enter your age"
+                fieldType="number"
+              />
+              <CheckboxField
+                label="Do you enjoy explicit lyrics?"
+                fieldName="explicit"
+              />
               <Button type="submit" disabled={formikBag.isSubmitting}>
                 Finish
               </Button>

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { UploadFieldProps } from "./UploadField.d";
-import { InputGroup, FormGroup, FileInput } from "@blueprintjs/core";
+import { InputGroup, FormGroup, FileInput, Text } from "@blueprintjs/core";
 import { FieldProps, Field } from "formik";
 
 const UploadField: React.FC<UploadFieldProps> = ({
@@ -30,8 +30,18 @@ const UploadField: React.FC<UploadFieldProps> = ({
             className={className}
             text="Choose file..."
             // onInputChange={}
+            inputProps={{ id: fieldName, name: fieldName }}
             {...field}
           />
+          <Text tagName="p">
+            Selected File:{" "}
+            {field.value
+              ? field.value
+                  .split("\\")
+                  .slice(-1)
+                  .pop()
+              : ""}
+          </Text>
           {form.touched[fieldName] &&
             form.errors[fieldName] &&
             form.errors[fieldName]}

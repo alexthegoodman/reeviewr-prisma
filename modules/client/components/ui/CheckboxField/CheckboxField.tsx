@@ -14,8 +14,11 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
   fieldInfo = "",
 }) => {
   // const clickHandler = e => onClick(e);
-  const [isEnabled, setIsEnabled] = React.useState(false);
-  const handleEnabledChange = enabled => setIsEnabled(enabled);
+  // const [isEnabled, setIsEnabled] = React.useState(false);
+  // const handleEnabledChange = enabled => {
+  //   console.info(enabled);
+  //   setIsEnabled(enabled);
+  // };
   return (
     <Field
       ref={ref}
@@ -23,16 +26,13 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
       render={({ field, form }: FieldProps<any>) => (
         <FormGroup
           helperText={helperText}
-          label={label}
           labelFor={fieldName}
           labelInfo={fieldInfo}
         >
           <Checkbox
             id={fieldName}
             className={className}
-            checked={isEnabled}
             label={label}
-            onChange={handleEnabledChange}
             {...field}
           />
           {form.touched[fieldName] &&
