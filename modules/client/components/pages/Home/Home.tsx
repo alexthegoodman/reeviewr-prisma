@@ -9,6 +9,7 @@ import UserTrack from "../../data/UserTrack/UserTrack";
 
 import HorizontalScroll from "react-scroll-horizontal";
 import Legacy from "../../../services/Legacy";
+import ArtistCardData from "../../data/ArtistCardData/ArtistCardData";
 
 const Home: React.FC<HomeProps> = () => {
   const legacy = new Legacy();
@@ -43,69 +44,20 @@ const Home: React.FC<HomeProps> = () => {
 
   return (
     <>
-      <h1 style={{ color: "white" }}>Artists</h1>
+      {/** TODO: Announcements, Social Media embeds, content plugs, etc */}
+
       <HorizontalScroll
-        style={{ height: 225, overflow: "visible" }}
+        style={{ height: 225, overflow: "visible", margin: "25px 0 50px 0" }}
         reverseScroll={true}
       >
         {userData.users.map(user => {
-          let firstName = user.userMeta.filter(
-            meta => meta.metaName === "firstName"
-          );
-          let lastName = user.userMeta.filter(
-            meta => meta.metaName === "lastName"
-          );
-          let userArtistName = user.userMeta.filter(
-            meta => meta.metaName === "userArtistName"
-          );
-
-          firstName =
-            typeof firstName[0] !== "undefined"
-              ? firstName[0]["metaValue"]
-              : "";
-          lastName =
-            typeof lastName[0] !== "undefined" ? lastName[0]["metaValue"] : "";
-          userArtistName =
-            typeof userArtistName[0] !== "undefined"
-              ? userArtistName[0]["metaValue"]
-              : "";
-
-          console.info("user", user);
-
-          const profileImage = legacy.extractProfileImage(user);
-
-          const reviewCount = user.reviews.length;
-          const trackCount = user.userTracks.length;
-
-          // TODO: add new profileImage meta to user
-          // grab the first image attachedFile for legacy users, which may be cover art or hero image
-          // but prefer the new profileImage
-
-          return (
-            <ArtistCard
-              key={user.id}
-              className="cardInRow"
-              imageUrl={profileImage}
-              artistTitle={
-                userArtistName !== ""
-                  ? userArtistName
-                  : `${firstName} ${lastName}`
-              }
-              reviewCount={reviewCount}
-              trackCount={trackCount}
-              onClick={() => console.info("onClick")}
-            />
-          );
+          return <ArtistCardData key={user.id} user={user} />;
         })}
       </HorizontalScroll>
-
-      <h1 style={{ color: "white" }}>Tracks</h1>
 
       {tracksData.userTracks.map(track => {
         return <UserTrack key={track.id} track={track} />;
       })}
-      {/* <Button onClick={toggleTrack}>Toggle Track</Button>
-        <NotFoundBoundary render={NotFound}>{children}</NotFoundBoundary> */}
     </>
   );
 };
