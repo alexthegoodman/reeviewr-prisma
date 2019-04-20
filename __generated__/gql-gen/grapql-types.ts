@@ -7805,11 +7805,11 @@ export type UserTrackQuery = { __typename?: "Query" } & {
   >;
 };
 
-export type CoverImageQueryVariables = {
+export type FileQueryVariables = {
   oldId?: Maybe<Scalars["String"]>;
 };
 
-export type CoverImageQuery = { __typename?: "Query" } & {
+export type FileQuery = { __typename?: "Query" } & {
   file: Maybe<
     { __typename?: "File" } & Pick<File, "id" | "itemName" | "itemContent"> & {
         itemMeta: Maybe<

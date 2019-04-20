@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { UserTrackProps } from "./UserTrack.d";
 import { useQuery } from "react-apollo-hooks";
-import { COVER_IMAGE_QUERY } from "../../../graphql/queries/userTrack";
+import { FILE_QUERY } from "../../../graphql/queries/userTrack";
 import Track from "../../ui/Track/Track";
 import ReviewCard from "../../ui/ReviewCard/ReviewCard";
 import Strings from "../../../services/Strings";
@@ -27,6 +27,7 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
   // };
 
   const imageId = legacy.extractMetaValue(track.itemMeta, "artId");
+  const audioId = legacy.extractMetaValue(track.itemMeta, "audioId");
   const firstName = legacy.extractMetaValue(track.user.userMeta, "firstName");
   const lastName = legacy.extractMetaValue(track.user.userMeta, "lastName");
   const userArtistName = legacy.extractMetaValue(
@@ -40,7 +41,14 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
     data: imageData,
     error: imageError,
     loading: imageLoading,
-  } = useQuery(COVER_IMAGE_QUERY, { variables: { oldId: imageId } });
+  } = useQuery(FILE_QUERY, { variables: { oldId: imageId } });
+
+  // consider delaying this query until playback begins - we have at lesat 20 - 30 queries when loading Home as-is
+  const {
+    data: audioData,
+    error: audioError,
+    loading: audioLoading,
+  } = useQuery(FILE_QUERY, { variables: { oldId: audioId } });
 
   if (imageLoading) {
     return <div>Loading image...</div>;
@@ -49,7 +57,21 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
     return <div>Error on image! {imageError.message}</div>;
   }
 
+  if (audioLoading) {
+    return <div>Loading audio...</div>;
+  }
+  if (audioError) {
+    return <div>Error on audio! {audioError.message}</div>;
+  }
+
   const imageUrl = legacy.extractArtUrl(imageData, track);
+  const audioUrl = legacy.extractMetaValue(
+    audioData.file.itemMeta,
+    "s3Info",
+    process.env.V1_S3_URL
+  );
+
+  console.info("audioData", audioData);
 
   return (
     <Track
@@ -57,6 +79,7 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
       trackId={track.id}
       urlSegment={track.itemUrlSegment}
       imageUrl={imageUrl}
+      audioUrl={audioUrl}
       altText={altText}
       trackTitle={trackTitle}
       artistName={

@@ -4,7 +4,7 @@ import { ReviewCardDataProps } from "./ReviewCardData.d";
 import ReviewCard from "../../ui/ReviewCard/ReviewCard";
 import Legacy from "../../../services/Legacy";
 import Strings from "../../../services/Strings";
-import { COVER_IMAGE_QUERY } from "../../../graphql/queries/userTrack";
+import { FILE_QUERY } from "../../../graphql/queries/userTrack";
 import { useQuery } from "react-apollo-hooks";
 
 const ReviewCardData: React.FC<ReviewCardDataProps> = ({
@@ -25,7 +25,7 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
       data: imageData,
       error: imageError,
       loading: imageLoading,
-    } = useQuery(COVER_IMAGE_QUERY, { variables: { oldId: imageId } });
+    } = useQuery(FILE_QUERY, { variables: { oldId: imageId } });
 
     if (imageLoading) {
       return <div>Loading image...</div>;

@@ -109,6 +109,7 @@ module.exports = {
       ),
 
       "process.env.V1_S3_DIR": JSON.stringify(process.env.V1_S3_DIR),
+      "process.env.V1_S3_URL": JSON.stringify(process.env.V1_S3_URL),
 
       // "process.env.AUTH0_CLIENT_ID": JSON.stringify(
       //   process.env.AUTH0_CLIENT_ID
@@ -162,6 +163,10 @@ module.exports = {
       useTypescriptIncrementalApi: true,
     }),
 
+    new webpack.ProvidePlugin({
+      WaveSurfer: "wavesurfer.js",
+    }),
+
     ...(process.env.ANALYZE
       ? [new (require("webpack-bundle-analyzer")).BundleAnalyzerPlugin()]
       : []),
@@ -178,6 +183,7 @@ module.exports = {
     modules: [path.resolve(__dirname, "../modules"), "node_modules"],
     alias: {
       "@material-ui/core": "@material-ui/core/es",
+      wavesurfer: require.resolve("wavesurfer.js"),
     },
   },
 

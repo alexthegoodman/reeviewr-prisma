@@ -150,8 +150,8 @@ export const USER_TRACK_QUERY = gql`
   }
 `;
 
-export const COVER_IMAGE_QUERY = gql`
-  query coverImage($oldId: String) {
+export const FILE_QUERY = gql`
+  query file($oldId: String) {
     file(where: { oldId: $oldId }) {
       id
       itemName

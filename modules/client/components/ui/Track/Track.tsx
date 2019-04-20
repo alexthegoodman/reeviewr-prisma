@@ -15,6 +15,7 @@ const Track: React.FC<TrackProps> = ({
   trackId = null,
   urlSegment = "",
   imageUrl = "",
+  audioUrl = "",
   altText = "",
   trackTitle = "",
   artistName = "",
@@ -46,7 +47,7 @@ const Track: React.FC<TrackProps> = ({
             artistName={artistName}
             onTrackClick={navigateToTrack}
           />
-          <TrackWaveForm />
+          <TrackWaveForm audioUrl={audioUrl} />
           {/* <div className="reviewContainer">{children}</div> */}
         </div>
       </div>
