@@ -12,27 +12,32 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null }) => {
   const legacy = new Legacy();
   const strings = new Strings();
 
-  let imageId = track.itemMeta.filter(meta => meta.metaName === "artId");
+  // TODO: handle track playback
+  // const [{ currentTrack }, dispatch] = useAppContext();
+
+  // console.info("current track", currentTrack);
+
+  // const toggleTrack = () => {
+  //   dispatch({
+  //     type: "setCurrentTrack",
+  //     currentTrack: { playing: !currentTrack.playing },
+  //   });
+  // };
+
+  let imageId = legacy.extractMetaValue(
+    track.itemMeta.filter(meta => meta.metaName === "artId")
+  );
+  let firstName = legacy.extractMetaValue(
+    track.user.userMeta.filter(meta => meta.metaName === "firstName")
+  );
+  let lastName = legacy.extractMetaValue(
+    track.user.userMeta.filter(meta => meta.metaName === "lastName")
+  );
+  let userArtistName = legacy.extractMetaValue(
+    track.user.userMeta.filter(meta => meta.metaName === "userArtistName")
+  );
   let altText = track.itemName;
   let trackTitle = track.itemName;
-  let firstName = track.user.userMeta.filter(
-    meta => meta.metaName === "firstName"
-  );
-  let lastName = track.user.userMeta.filter(
-    meta => meta.metaName === "lastName"
-  );
-  let userArtistName = track.user.userMeta.filter(
-    meta => meta.metaName === "userArtistName"
-  );
-
-  imageId = typeof imageId[0] !== "undefined" ? imageId[0]["metaValue"] : "";
-  firstName =
-    typeof firstName[0] !== "undefined" ? firstName[0]["metaValue"] : "";
-  lastName = typeof lastName[0] !== "undefined" ? lastName[0]["metaValue"] : "";
-  userArtistName =
-    typeof userArtistName[0] !== "undefined"
-      ? userArtistName[0]["metaValue"]
-      : "";
 
   const {
     data: imageData,
@@ -50,30 +55,22 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null }) => {
   let imageUrl = null;
   if (imageData.file !== null) {
     // background-image: url(/uploads/2014/12/yophantom-pic-150x150.jpg)
-    imageUrl = imageData.file.itemMeta.filter(
-      meta => meta.metaName === "attachedFile"
+    imageUrl = legacy.extractMetaValue(
+      imageData.file.itemMeta.filter(meta => meta.metaName === "attachedFile"),
+      process.env.V1_S3_DIR
     );
-    imageUrl =
-      typeof imageUrl[0] !== "undefined"
-        ? process.env.V1_S3_DIR + imageUrl[0]["metaValue"]
-        : "";
   }
 
-  // console.info("imageData", imageData);
   // legacy soundcloud imports
   if (imageUrl === "" || imageUrl === null) {
-    let soundcloudArtUrl = track.itemMeta.filter(
-      meta => meta.metaName === "scArtUrl"
+    let soundcloudArtUrl = legacy.extractMetaValue(
+      track.itemMeta.filter(meta => meta.metaName === "scArtUrl"),
+      "",
+      true
     );
-
-    soundcloudArtUrl =
-      typeof soundcloudArtUrl[0] !== "undefined"
-        ? strings.decode(soundcloudArtUrl[0]["metaValue"])
-        : "";
 
     imageUrl = soundcloudArtUrl;
   }
-  // console.info("imageUrl", track.id, imageUrl);
   return (
     <Track
       className="userTrack"
@@ -85,38 +82,20 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null }) => {
       }
     >
       {track.reviews.map(review => {
-        let reviewFirstName = review.user.userMeta.filter(
-          meta => meta.metaName === "firstName"
+        let reviewFirstName = legacy.extractMetaValue(
+          review.user.userMeta.filter(meta => meta.metaName === "firstName")
         );
-        let reviewLastName = review.user.userMeta.filter(
-          meta => meta.metaName === "lastName"
+        let reviewLastName = legacy.extractMetaValue(
+          review.user.userMeta.filter(meta => meta.metaName === "lastName")
         );
-        let answerPreview = review.itemMeta.filter(
-          meta => meta.metaName === "questionAnswer1"
+        let answerPreview = legacy.extractMetaValue(
+          review.itemMeta.filter(meta => meta.metaName === "questionAnswer1")
         );
-        let reviewUserArtistName = review.user.userMeta.filter(
-          meta => meta.metaName === "userArtistName"
+        let reviewUserArtistName = legacy.extractMetaValue(
+          review.user.userMeta.filter(
+            meta => meta.metaName === "userArtistName"
+          )
         );
-
-        // console.info("review user", review.user, reviewerImageUrl);
-
-        reviewFirstName =
-          typeof reviewFirstName[0] !== "undefined"
-            ? reviewFirstName[0]["metaValue"]
-            : "";
-        reviewLastName =
-          typeof reviewLastName[0] !== "undefined"
-            ? reviewLastName[0]["metaValue"]
-            : "";
-        answerPreview =
-          typeof answerPreview[0] !== "undefined"
-            ? answerPreview[0]["metaValue"]
-            : "";
-
-        reviewUserArtistName =
-          typeof reviewUserArtistName[0] !== "undefined"
-            ? reviewUserArtistName[0]["metaValue"]
-            : "";
 
         const reviewerAltText = `${firstName} ${lastName}`;
         const trackImageUrl = imageUrl;

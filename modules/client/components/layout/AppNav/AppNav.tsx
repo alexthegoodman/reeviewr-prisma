@@ -25,22 +25,12 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
   let loadingRoute = useLoadingRoute();
   let navigation = useNavigation();
 
-  const [{ currentTrack }, dispatch] = useAppContext();
-
-  console.info("current track", currentTrack);
-
-  const toggleTrack = () => {
-    dispatch({
-      type: "setCurrentTrack",
-      currentTrack: { playing: !currentTrack.playing },
-    });
-  };
-
   return (
     <App>
       <Sidebar>
         <Menu className="sidebarMenu">
-          <MenuItem active={true}>Tracks</MenuItem>
+          <MenuItem active={true}>Home</MenuItem>
+          <MenuItem>Tracks</MenuItem>
           <MenuItem>Artists</MenuItem>
           <MenuItem>Reviews</MenuItem>
         </Menu>
@@ -67,19 +57,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
           </>
         }
       />
-      <section
-        style={{
-          paddingLeft: 325,
-          paddingRight: 25,
-          paddingTop: 85,
-          background: "#3E4B58",
-          height: "100vh",
-          overflowY: "scroll",
-          overflowX: "hidden",
-        }}
-      >
-        {children}
-      </section>
+      <section className="mainContent">{children}</section>
     </App>
   );
 };

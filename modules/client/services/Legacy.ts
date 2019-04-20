@@ -1,5 +1,11 @@
+import Strings from "./Strings";
+
 export default class Legacy {
-  constructor() {}
+  public strings;
+
+  constructor() {
+    this.strings = new Strings();
+  }
 
   extractProfileImage(user): string {
     let profileImageUrl = null;
@@ -47,5 +53,18 @@ export default class Legacy {
     }
 
     return profileImageUrl;
+  }
+
+  extractMetaValue(metaObj, prependValue = "", decode = false) {
+    metaObj =
+      typeof metaObj[0] !== "undefined"
+        ? prependValue + metaObj[0]["metaValue"]
+        : "";
+
+    if (decode) {
+      metaObj = this.strings.decode(metaObj);
+    }
+
+    return metaObj;
   }
 }

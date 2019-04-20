@@ -14,19 +14,15 @@ const ArtistCardData: React.FC<ArtistCardDataProps> = ({
 
   const clickHandler = e => onClick(e);
 
-  let firstName = user.userMeta.filter(meta => meta.metaName === "firstName");
-  let lastName = user.userMeta.filter(meta => meta.metaName === "lastName");
-  let userArtistName = user.userMeta.filter(
-    meta => meta.metaName === "userArtistName"
+  let firstName = legacy.extractMetaValue(
+    user.userMeta.filter(meta => meta.metaName === "firstName")
   );
-
-  firstName =
-    typeof firstName[0] !== "undefined" ? firstName[0]["metaValue"] : "";
-  lastName = typeof lastName[0] !== "undefined" ? lastName[0]["metaValue"] : "";
-  userArtistName =
-    typeof userArtistName[0] !== "undefined"
-      ? userArtistName[0]["metaValue"]
-      : "";
+  let lastName = legacy.extractMetaValue(
+    user.userMeta.filter(meta => meta.metaName === "lastName")
+  );
+  let userArtistName = legacy.extractMetaValue(
+    user.userMeta.filter(meta => meta.metaName === "userArtistName")
+  );
 
   console.info("user", user);
 

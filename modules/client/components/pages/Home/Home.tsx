@@ -12,13 +12,9 @@ import Legacy from "../../../services/Legacy";
 import ArtistCardData from "../../data/ArtistCardData/ArtistCardData";
 
 const Home: React.FC<HomeProps> = () => {
-  const legacy = new Legacy();
-
   const { data: userData, error: userError, loading: userLoading } = useQuery(
     USERS_QUERY
   );
-
-  console.info("userData", userData);
 
   const {
     data: tracksData,
@@ -40,7 +36,7 @@ const Home: React.FC<HomeProps> = () => {
     return <div>Error on tracks! {userError.message}</div>;
   }
 
-  console.info("tracksData", tracksData);
+  console.info("Home Data", userData, tracksData);
 
   return (
     <>
