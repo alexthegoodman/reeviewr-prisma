@@ -8,6 +8,7 @@ import ReviewCard from "../../ui/ReviewCard/ReviewCard";
 import Strings from "../../../services/Strings";
 import Legacy from "../../../services/Legacy";
 import ReviewCardData from "../ReviewCardData/ReviewCardData";
+import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 
 const UserTrack: React.FC<UserTrackProps> = ({ track = null }) => {
   const legacy = new Legacy();
@@ -53,6 +54,8 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null }) => {
   return (
     <Track
       className="userTrack"
+      trackId={track.id}
+      urlSegment={track.itemUrlSegment}
       imageUrl={imageUrl}
       altText={altText}
       trackTitle={trackTitle}

@@ -11,6 +11,8 @@ export const USER_TRACKS_QUERY = gql`
     ) {
       id
       itemName
+      itemContent
+      itemUrlSegment
       user {
         id
         userMeta {
@@ -27,6 +29,7 @@ export const USER_TRACKS_QUERY = gql`
       files {
         id
         itemName
+        itemContent
         itemMeta(where: { metaName: "attachedFile" }) {
           metaName
           metaValue
@@ -48,6 +51,7 @@ export const USER_TRACKS_QUERY = gql`
           files {
             id
             itemName
+            itemContent
             itemMeta {
               metaName
               metaValue
