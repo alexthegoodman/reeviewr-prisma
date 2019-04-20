@@ -152,6 +152,7 @@
     "react-redux": "^7.0.2",
     "react-router": "5.0.0",
     "react-router-dom": "5.0.0",
+    "react-scroll-horizontal": "^1.6.2",
     "react-suspense-polyfill": "^2.0.1",
     "redux": "^4.0.1",
     "redux-devtools": "^3.5.0",

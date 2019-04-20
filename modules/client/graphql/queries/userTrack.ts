@@ -2,7 +2,11 @@ import gql from "graphql-tag";
 
 export const USER_TRACKS_QUERY = gql`
   query userTrack {
-    userTracks(last: 10, where: { itemStatus: "publish" }) {
+    userTracks(
+      first: 10
+      orderBy: id_DESC
+      where: { itemStatus: "v2publish" }
+    ) {
       id
       itemName
       user {
@@ -39,6 +43,24 @@ export const USER_TRACKS_QUERY = gql`
           id
           oldId
           userEmail
+          files {
+            id
+            itemName
+            itemMeta {
+              metaName
+              metaValue
+            }
+          }
+          profilePages {
+            id
+            itemName
+            itemContent
+            itemMeta {
+              id
+              metaName
+              metaValue
+            }
+          }
           userMeta {
             id
             metaName

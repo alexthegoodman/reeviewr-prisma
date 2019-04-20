@@ -4,6 +4,7 @@ import { ReviewCardProps } from "./ReviewCard.d";
 import { Card, Text } from "@blueprintjs/core";
 import ReviewParticipants from "../ReviewParticipants/ReviewParticipants";
 import truncate from "truncate";
+import Strings from "../../../services/Strings";
 
 const ReviewCard: React.FC<ReviewCardProps> = ({
   ref = null,
@@ -16,8 +17,13 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
   trackImageUrl = "",
   trackAltText = "",
 }) => {
+  const strings = new Strings();
   const clickHandler = e => onClick(e);
-  answerPreview = truncate(decodeURI(decodeURIComponent(answerPreview)), 100);
+
+  console.info("artist title", artistTitle);
+  artistTitle = strings.decode(artistTitle);
+  answerPreview = truncate(strings.decode(answerPreview), 100);
+
   return (
     <Card
       ref={ref}

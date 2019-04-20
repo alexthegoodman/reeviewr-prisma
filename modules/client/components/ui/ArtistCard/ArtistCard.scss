@@ -1,5 +1,10 @@
 .artistCard {
   @extend .card;
+  min-width: 20vw;
+
+  // &:last-of-type {
+  //   margin-right: 50px;
+  // }
 
   img {
     display: block;

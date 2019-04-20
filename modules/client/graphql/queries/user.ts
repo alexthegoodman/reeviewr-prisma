@@ -1,11 +1,13 @@
 import gql from "graphql-tag";
 
+// TODO: tracks with v2publish-noimage as status may be included on artist page but not on Home page (there's 4)
+
 export const USERS_QUERY = gql`
   query users {
     users(
-      first: 10
+      first: 25
       where: {
-        userTracks_some: { id_not: "" }
+        userTracks_some: { id_not: "", itemStatus: "v2publish" }
         userMeta_some: { metaName: "firstName", metaValue_not: "" }
       }
     ) {
@@ -15,6 +17,10 @@ export const USERS_QUERY = gql`
         id
         itemName
         itemContent
+        itemMeta {
+          metaName
+          metaValue
+        }
       }
       profilePages {
         id
@@ -29,7 +35,7 @@ export const USERS_QUERY = gql`
       reviews {
         id
       }
-      userTracks {
+      userTracks(where: { id_not: "", itemStatus: "v2publish" }) {
         id
       }
       userMeta {

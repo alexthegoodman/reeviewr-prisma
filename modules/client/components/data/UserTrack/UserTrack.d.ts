@@ -1,5 +1,5 @@
-import { UserTrackPromise } from "../../../../../__generated__/prisma-client";
+import { UserTrack } from "../../../../../__generated__/prisma-client";
 
 export interface UserTrackProps {
-  track: UserTrackPromise;
+  track: any;
 }

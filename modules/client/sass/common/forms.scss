@@ -18,7 +18,8 @@ button:focus {
   .bp3-form-content {
     input[type="text"],
     input[type="email"],
-    input[type="password"] {
+    input[type="password"],
+    input[type="number"] {
       font-size: 1rem;
       height: 40px;
       padding: 5px 10px;

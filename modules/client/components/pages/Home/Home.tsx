@@ -7,7 +7,12 @@ import { USERS_QUERY } from "../../../graphql/queries/user";
 import { USER_TRACKS_QUERY } from "../../../graphql/queries/userTrack";
 import UserTrack from "../../data/UserTrack/UserTrack";
 
+import HorizontalScroll from "react-scroll-horizontal";
+import Legacy from "../../../services/Legacy";
+
 const Home: React.FC<HomeProps> = () => {
+  const legacy = new Legacy();
+
   const { data: userData, error: userError, loading: userLoading } = useQuery(
     USERS_QUERY
   );
@@ -39,19 +44,11 @@ const Home: React.FC<HomeProps> = () => {
   return (
     <>
       <h1 style={{ color: "white" }}>Artists</h1>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "nowrap",
-          // overflowX: "auto",
-          WebkitOverflowScrolling: "touch",
-          msOverflowStyle: "-ms-autohiding-scrollbar",
-        }}
+      <HorizontalScroll
+        style={{ height: 225, overflow: "visible" }}
+        reverseScroll={true}
       >
         {userData.users.map(user => {
-          let imageUrl = user.userMeta.filter(
-            meta => meta.metaName === "heroId"
-          );
           let firstName = user.userMeta.filter(
             meta => meta.metaName === "firstName"
           );
@@ -61,8 +58,7 @@ const Home: React.FC<HomeProps> = () => {
           let userArtistName = user.userMeta.filter(
             meta => meta.metaName === "userArtistName"
           );
-          imageUrl =
-            typeof imageUrl[0] !== "undefined" ? imageUrl[0]["metaValue"] : "";
+
           firstName =
             typeof firstName[0] !== "undefined"
               ? firstName[0]["metaValue"]
@@ -73,15 +69,23 @@ const Home: React.FC<HomeProps> = () => {
             typeof userArtistName[0] !== "undefined"
               ? userArtistName[0]["metaValue"]
               : "";
+
           console.info("user", user);
-          console.info("imageUrl", imageUrl);
+
+          const profileImage = legacy.extractProfileImage(user);
+
           const reviewCount = user.reviews.length;
           const trackCount = user.userTracks.length;
+
+          // TODO: add new profileImage meta to user
+          // grab the first image attachedFile for legacy users, which may be cover art or hero image
+          // but prefer the new profileImage
+
           return (
             <ArtistCard
               key={user.id}
               className="cardInRow"
-              imageUrl={imageUrl}
+              imageUrl={profileImage}
               artistTitle={
                 userArtistName !== ""
                   ? userArtistName
@@ -93,12 +97,12 @@ const Home: React.FC<HomeProps> = () => {
             />
           );
         })}
-      </div>
+      </HorizontalScroll>
 
       <h1 style={{ color: "white" }}>Tracks</h1>
 
       {tracksData.userTracks.map(track => {
-        return <UserTrack track={track} />;
+        return <UserTrack key={track.id} track={track} />;
       })}
       {/* <Button onClick={toggleTrack}>Toggle Track</Button>
         <NotFoundBoundary render={NotFound}>{children}</NotFoundBoundary> */}
