@@ -43,7 +43,8 @@
     "gen:page": "bash/gen_page_component.sh",
     "gen:data": "bash/gen_data_component.sh",
     "gen:layout": "bash/gen_layout_component.sh",
-    "kill-list": "lsof -i :9229; lsof -i :9230"
+    "kill-list": "lsof -i :9229; lsof -i :9230",
+    "gen:gql": "graphql-codegen --config codegen.yml"
   },
   "resolutions": {},
   "dependencies": {
@@ -53,6 +54,7 @@
     "@blueprintjs/datetime": "^3.9.0",
     "@blueprintjs/icons": "^3.8.0",
     "@blueprintjs/select": "^3.8.0",
+    "@graphql-codegen/introspection": "^1.1.0",
     "@material-ui/core": "3.9.3",
     "@material-ui/icons": "3.0.2",
     "@material-ui/styles": "3.0.0-alpha.10",
@@ -112,7 +114,7 @@
     "factory.ts": "0.4.5",
     "formik": "^1.5.2",
     "formik-material-ui": "0.0.16",
-    "graphql": "14.2.1",
+    "graphql": "^14.2.1",
     "graphql-server-express": "1.4.0",
     "graphql-tag": "2.10.1",
     "graphql-tools": "4.0.4",
@@ -175,6 +177,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
+    "@graphql-codegen/cli": "^1.1.0",
+    "@graphql-codegen/typescript": "1.1.0",
+    "@graphql-codegen/typescript-operations": "^1.1.0",
+    "@graphql-codegen/typescript-react-apollo": "1.1.0",
     "@storybook/addon-actions": "5.0.6",
     "@storybook/addon-viewport": "5.0.6",
     "@storybook/react": "5.0.6",
