@@ -12,6 +12,7 @@ const Tracks: React.FC<TracksProps> = () => {
     error: tracksError,
     loading: tracksLoading,
   } = useQuery(USER_TRACKS_QUERY);
+
   if (tracksLoading) {
     return <div>Loading tracks...</div>;
   }

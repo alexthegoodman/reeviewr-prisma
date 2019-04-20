@@ -8,9 +8,11 @@ describe("GraphCard", () => {
   let wrapper;
 
   beforeEach(() => {
+    const greenData = [{ x: "A", y: 10 }, { x: "B", y: 5 }, { x: "C", y: 15 }];
+
     wrapper = render(
       <TestProvider>
-        <GraphCard />
+        <GraphCard dataSet1={greenData} />
       </TestProvider>
     );
   });

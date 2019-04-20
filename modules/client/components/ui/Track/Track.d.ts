@@ -1,3 +1,5 @@
+import { ReactElement, ReactNode } from "react";
+
 export interface TrackProps {
   ref?: React.Ref<any>;
   className?: string;
@@ -8,4 +10,5 @@ export interface TrackProps {
   altText: string;
   trackTitle: string;
   artistName: string;
+  prependChildren: ReactNode;
 }

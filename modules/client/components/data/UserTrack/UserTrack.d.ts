@@ -1,5 +1,5 @@
-import { UserTrack } from "../../../../../__generated__/prisma-client";
+import { UserTrack } from "../../../../../__generated__/gql-gen/grapql-types";
 
 export interface UserTrackProps {
-  track: any;
+  track: UserTrack;
 }

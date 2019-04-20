@@ -20,7 +20,6 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
   const strings = new Strings();
   const clickHandler = e => onClick(e);
 
-  console.info("artist title", artistTitle);
   artistTitle = strings.decode(artistTitle);
   answerPreview = truncate(strings.decode(answerPreview), 100);
 

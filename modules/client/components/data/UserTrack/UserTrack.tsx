@@ -10,7 +10,7 @@ import Legacy from "../../../services/Legacy";
 import ReviewCardData from "../ReviewCardData/ReviewCardData";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 
-const UserTrack: React.FC<UserTrackProps> = ({ track = null }) => {
+const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
   const legacy = new Legacy();
   const strings = new Strings();
 
@@ -62,6 +62,7 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null }) => {
       artistName={
         userArtistName !== "" ? userArtistName : `${firstName} ${lastName}`
       }
+      prependChildren={children}
     >
       {track.reviews.map(review => {
         return (

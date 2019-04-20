@@ -18,6 +18,7 @@ const Track: React.FC<TrackProps> = ({
   altText = "",
   trackTitle = "",
   artistName = "",
+  prependChildren,
   children,
 }) => {
   let route = useCurrentRoute();
@@ -50,6 +51,7 @@ const Track: React.FC<TrackProps> = ({
         </div>
       </div>
       <div className="trackActions">
+        <div className="prependChildren">{prependChildren}</div>
         <div className="reviewContainer">{children}</div>
         <div className="actionContainer">
           <Button
