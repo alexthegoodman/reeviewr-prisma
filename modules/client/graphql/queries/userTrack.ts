@@ -1,5 +1,7 @@
 import gql from "graphql-tag";
 
+// TODO: create fragments (ex. review data on track on on own - except the userTrack prop on reviews is unique so maybe not)
+
 export const USER_TRACKS_QUERY = gql`
   query userTrack {
     userTracks(

@@ -55,6 +55,32 @@ export default class Legacy {
     return profileImageUrl;
   }
 
+  extractArtUrl(imageData, track) {
+    let imageUrl = null;
+    if (imageData.file !== null) {
+      // background-image: url(/uploads/2014/12/yophantom-pic-150x150.jpg)
+      imageUrl = this.extractMetaValue(
+        imageData.file.itemMeta,
+        "attachedFile",
+        process.env.V1_S3_DIR
+      );
+    }
+
+    // legacy soundcloud imports
+    if (imageUrl === "" || imageUrl === null) {
+      const soundcloudArtUrl = this.extractMetaValue(
+        track.itemMeta,
+        "scArtUrl",
+        "",
+        true
+      );
+
+      imageUrl = soundcloudArtUrl;
+    }
+
+    return imageUrl;
+  }
+
   extractMetaValue(allMeta, metaName, prependValue = "", decode = false) {
     let metaObj = allMeta.filter(meta => meta.metaName === metaName);
 

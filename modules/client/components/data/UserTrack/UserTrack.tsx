@@ -7,6 +7,7 @@ import Track from "../../ui/Track/Track";
 import ReviewCard from "../../ui/ReviewCard/ReviewCard";
 import Strings from "../../../services/Strings";
 import Legacy from "../../../services/Legacy";
+import ReviewCardData from "../ReviewCardData/ReviewCardData";
 
 const UserTrack: React.FC<UserTrackProps> = ({ track = null }) => {
   const legacy = new Legacy();
@@ -47,27 +48,8 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null }) => {
     return <div>Error on image! {imageError.message}</div>;
   }
 
-  let imageUrl = null;
-  if (imageData.file !== null) {
-    // background-image: url(/uploads/2014/12/yophantom-pic-150x150.jpg)
-    imageUrl = legacy.extractMetaValue(
-      imageData.file.itemMeta,
-      "attachedFile",
-      process.env.V1_S3_DIR
-    );
-  }
+  const imageUrl = legacy.extractArtUrl(imageData, track);
 
-  // legacy soundcloud imports
-  if (imageUrl === "" || imageUrl === null) {
-    const soundcloudArtUrl = legacy.extractMetaValue(
-      track.itemMeta,
-      "scArtUrl",
-      "",
-      true
-    );
-
-    imageUrl = soundcloudArtUrl;
-  }
   return (
     <Track
       className="userTrack"
@@ -79,42 +61,12 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null }) => {
       }
     >
       {track.reviews.map(review => {
-        const reviewFirstName = legacy.extractMetaValue(
-          review.user.userMeta,
-          "firstName"
-        );
-        const reviewLastName = legacy.extractMetaValue(
-          review.user.userMeta,
-          "lastName"
-        );
-        const answerPreview = legacy.extractMetaValue(
-          review.itemMeta,
-          "questionAnswer1"
-        );
-        const reviewUserArtistName = legacy.extractMetaValue(
-          review.user.userMeta,
-          "userArtistName"
-        );
-
-        const reviewerAltText = `${firstName} ${lastName}`;
-        const trackImageUrl = imageUrl;
-        const trackAltText = altText;
-        const reviewerImageUrl = legacy.extractProfileImage(review.user);
-
-        // console.info("review", review.id);
         return (
-          <ReviewCard
+          <ReviewCardData
             key={review.id}
-            artistTitle={
-              reviewUserArtistName !== ""
-                ? reviewUserArtistName
-                : `${reviewFirstName} ${reviewLastName}`
-            }
-            answerPreview={answerPreview}
-            reviewerImageUrl={reviewerImageUrl}
-            reviewerAltText={reviewerAltText}
-            trackImageUrl={trackImageUrl}
-            trackAltText={trackAltText}
+            review={review}
+            trackImageUrl={imageUrl}
+            trackAltText={altText}
           />
         );
       })}

@@ -33,7 +33,7 @@ const Home: React.FC<HomeProps> = () => {
     return <div>Loading tracks...</div>;
   }
   if (tracksError) {
-    return <div>Error on tracks! {userError.message}</div>;
+    return <div>Error on tracks! {tracksError.message}</div>;
   }
 
   console.info("Home Data", userData, tracksData);

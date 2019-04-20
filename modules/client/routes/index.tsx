@@ -11,7 +11,6 @@ import Login from "../components/pages/Login/Login";
 import SignUp from "../components/pages/SignUp/SignUp";
 import AuthNav from "../components/layout/AuthNav/AuthNav";
 import AppNav from "../components/layout/AppNav/AppNav";
-import Auth0Callback from "../components/pages/Auth0Callback/Auth0Callback";
 
 const routes = mount({
   "/login": route(req => {
@@ -54,7 +53,7 @@ const routes = mount({
       ),
     };
   }),
-  "/tracks/:trackId/:name": route(async req => {
+  "/tracks/:trackId/:name": route(req => {
     const { trackId, name } = req.params;
 
     return {
@@ -66,7 +65,7 @@ const routes = mount({
       ),
     };
   }),
-  "/artists": route(async req => {
+  "/artists": route(req => {
     return {
       title: "Artists / Reeviewr",
       view: (
@@ -76,7 +75,7 @@ const routes = mount({
       ),
     };
   }),
-  "/artists/:artistId/:name": route(async req => {
+  "/artists/:artistId/:name": route(req => {
     const { artistId, name } = req.params;
 
     return {
@@ -88,7 +87,7 @@ const routes = mount({
       ),
     };
   }),
-  "/reviews": route(async req => {
+  "/reviews": route(req => {
     return {
       title: "Reviews / Reeviewr",
       view: (

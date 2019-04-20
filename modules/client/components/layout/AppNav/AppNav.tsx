@@ -30,10 +30,30 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
       <Sidebar>
         <Button className="uploadButton">Upload</Button>
         <Menu className="sidebarMenu">
-          <MenuItem active={true}>Home</MenuItem>
-          <MenuItem>Tracks</MenuItem>
-          <MenuItem>Artists</MenuItem>
-          <MenuItem>Reviews</MenuItem>
+          <MenuItem
+            active={route.url.pathname === "/" ? true : false}
+            onClick={() => navigation.navigate("/")}
+          >
+            Home
+          </MenuItem>
+          <MenuItem
+            active={route.url.pathname === "/tracks" ? true : false}
+            onClick={() => navigation.navigate("/tracks")}
+          >
+            Tracks
+          </MenuItem>
+          <MenuItem
+            active={route.url.pathname === "/artists" ? true : false}
+            onClick={() => navigation.navigate("/artists")}
+          >
+            Artists
+          </MenuItem>
+          <MenuItem
+            active={route.url.pathname === "/reviews" ? true : false}
+            onClick={() => navigation.navigate("/reviews")}
+          >
+            Reviews
+          </MenuItem>
         </Menu>
       </Sidebar>
       <Header
