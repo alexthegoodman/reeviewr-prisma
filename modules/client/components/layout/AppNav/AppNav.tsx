@@ -28,6 +28,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
   return (
     <App>
       <Sidebar>
+        <Button className="uploadButton">Upload</Button>
         <Menu className="sidebarMenu">
           <MenuItem active={true}>Home</MenuItem>
           <MenuItem>Tracks</MenuItem>
@@ -38,11 +39,19 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
       <Header
         leftElements={
           <>
-            <ProfileItem
+            {/* <ProfileItem
               className="headerItem"
               imageUrl="https://via.placeholder.com/100"
               name="Regina Spektor"
-            />
+            /> */}
+            <section className="loggedOutActions">
+              <Button className="textButton headerItem" minimal={true}>
+                Log In
+              </Button>
+              <Button className="textButton headerItem" minimal={true}>
+                Sign Up
+              </Button>
+            </section>
             <BeyondSearch placeholder="Search tracks, artists, and reviews..." />
           </>
         }
@@ -51,8 +60,13 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
             <Button className="textButton headerItem" minimal={true}>
               How it Works
             </Button>
-            <Button className="textButton headerItem" minimal={true}>
-              About Reeviewr
+            <Button
+              className="textButton headerItem"
+              minimal={true}
+              rightIcon="caret-down"
+            >
+              More
+              {/** Terms, Blog, Social Media, About Us / Story, Contact Us, etc */}
             </Button>
           </>
         }

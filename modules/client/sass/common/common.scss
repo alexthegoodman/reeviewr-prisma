@@ -88,3 +88,29 @@
     color: white;
   }
 }
+
+.uploadButton,
+.uploadButton.bp3-button:not([class*="bp3-intent-"]) {
+  width: 100%;
+  background: $red;
+  border-radius: 0;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $darkRed;
+  }
+
+  span {
+    color: white;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+}
+
+.loggedOutActions {
+  min-width: $sidebarWidth;
+  @extend .horizontalCenter;
+}
