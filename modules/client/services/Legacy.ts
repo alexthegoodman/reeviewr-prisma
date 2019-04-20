@@ -55,7 +55,9 @@ export default class Legacy {
     return profileImageUrl;
   }
 
-  extractMetaValue(metaObj, prependValue = "", decode = false) {
+  extractMetaValue(allMeta, metaName, prependValue = "", decode = false) {
+    let metaObj = allMeta.filter(meta => meta.metaName === metaName);
+
     metaObj =
       typeof metaObj[0] !== "undefined"
         ? prependValue + metaObj[0]["metaValue"]

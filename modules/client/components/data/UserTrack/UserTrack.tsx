@@ -24,20 +24,15 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null }) => {
   //   });
   // };
 
-  let imageId = legacy.extractMetaValue(
-    track.itemMeta.filter(meta => meta.metaName === "artId")
+  const imageId = legacy.extractMetaValue(track.itemMeta, "artId");
+  const firstName = legacy.extractMetaValue(track.user.userMeta, "firstName");
+  const lastName = legacy.extractMetaValue(track.user.userMeta, "lastName");
+  const userArtistName = legacy.extractMetaValue(
+    track.user.userMeta,
+    "userArtistName"
   );
-  let firstName = legacy.extractMetaValue(
-    track.user.userMeta.filter(meta => meta.metaName === "firstName")
-  );
-  let lastName = legacy.extractMetaValue(
-    track.user.userMeta.filter(meta => meta.metaName === "lastName")
-  );
-  let userArtistName = legacy.extractMetaValue(
-    track.user.userMeta.filter(meta => meta.metaName === "userArtistName")
-  );
-  let altText = track.itemName;
-  let trackTitle = track.itemName;
+  const altText = track.itemName;
+  const trackTitle = track.itemName;
 
   const {
     data: imageData,
@@ -51,20 +46,22 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null }) => {
   if (imageError) {
     return <div>Error on image! {imageError.message}</div>;
   }
-  // console.info("imageData", imageData);
+
   let imageUrl = null;
   if (imageData.file !== null) {
     // background-image: url(/uploads/2014/12/yophantom-pic-150x150.jpg)
     imageUrl = legacy.extractMetaValue(
-      imageData.file.itemMeta.filter(meta => meta.metaName === "attachedFile"),
+      imageData.file.itemMeta,
+      "attachedFile",
       process.env.V1_S3_DIR
     );
   }
 
   // legacy soundcloud imports
   if (imageUrl === "" || imageUrl === null) {
-    let soundcloudArtUrl = legacy.extractMetaValue(
-      track.itemMeta.filter(meta => meta.metaName === "scArtUrl"),
+    const soundcloudArtUrl = legacy.extractMetaValue(
+      track.itemMeta,
+      "scArtUrl",
       "",
       true
     );
@@ -82,19 +79,21 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null }) => {
       }
     >
       {track.reviews.map(review => {
-        let reviewFirstName = legacy.extractMetaValue(
-          review.user.userMeta.filter(meta => meta.metaName === "firstName")
+        const reviewFirstName = legacy.extractMetaValue(
+          review.user.userMeta,
+          "firstName"
         );
-        let reviewLastName = legacy.extractMetaValue(
-          review.user.userMeta.filter(meta => meta.metaName === "lastName")
+        const reviewLastName = legacy.extractMetaValue(
+          review.user.userMeta,
+          "lastName"
         );
-        let answerPreview = legacy.extractMetaValue(
-          review.itemMeta.filter(meta => meta.metaName === "questionAnswer1")
+        const answerPreview = legacy.extractMetaValue(
+          review.itemMeta,
+          "questionAnswer1"
         );
-        let reviewUserArtistName = legacy.extractMetaValue(
-          review.user.userMeta.filter(
-            meta => meta.metaName === "userArtistName"
-          )
+        const reviewUserArtistName = legacy.extractMetaValue(
+          review.user.userMeta,
+          "userArtistName"
         );
 
         const reviewerAltText = `${firstName} ${lastName}`;
