@@ -7,6 +7,7 @@ const fs = require("fs");
 var HappyPack = require("happypack");
 var ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const os = require("os");
+const IconFontPlugin = require("icon-font-loader").Plugin;
 
 const scriptsDir = path.join(__dirname, "../entry/scripts");
 
@@ -66,7 +67,12 @@ module.exports = {
     }),
   ],
   module: {
-    rules: [loaders.typescript, loaders.graphql, loaders.scss],
+    rules: [
+      loaders.typescript,
+      loaders.graphql,
+      // loaders.fontLoader,
+      loaders.scss,
+    ].concat(loaders.allImagesAndFontsArray),
   },
 
   // https://github.com/TypeStrong/ts-loader#transpileonly-boolean-defaultfalseO
@@ -106,5 +112,7 @@ module.exports = {
       // https://github.com/Realytics/fork-ts-checker-webpack-plugin#options
       useTypescriptIncrementalApi: true,
     }),
+
+    // new IconFontPlugin(),
   ],
 };

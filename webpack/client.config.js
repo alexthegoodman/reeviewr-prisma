@@ -8,6 +8,7 @@ const CompressionPlugin = require("compression-webpack-plugin");
 const loaders = require("./loaders");
 var HappyPack = require("happypack");
 var ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const IconFontPlugin = require("icon-font-loader").Plugin;
 
 const os = require("os");
 const DEV_PORT = config.get("devServer.port");
@@ -166,6 +167,8 @@ module.exports = {
     new webpack.ProvidePlugin({
       WaveSurfer: "wavesurfer.js",
     }),
+
+    // new IconFontPlugin(),
 
     ...(process.env.ANALYZE
       ? [new (require("webpack-bundle-analyzer")).BundleAnalyzerPlugin()]

@@ -52,11 +52,21 @@ module.exports = {
   scss: {
     test: /\.scss$/,
     use: [
-      "style-loader", // creates style nodes from JS strings
+      // "style-loader", // creates style nodes from JS strings
       "css-loader", // translates CSS into CommonJS
       "sass-loader", // compiles Sass to CSS, using Node Sass by default
+      // "icon-font-loader",
     ],
   },
+
+  // see below
+  // fontLoader: {
+  //   test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+  //   loader: "url-loader",
+  //   options: {
+  //     limit: 10000,
+  //   },
+  // },
 
   css: {
     test: /\.css$/,

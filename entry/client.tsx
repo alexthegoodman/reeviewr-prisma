@@ -2,7 +2,8 @@
 // import * as ErrorNotifier from "atomic-object/error-notifier";
 // import { createBrowserHistory } from "history";
 
-if (!process.env.BROWSER) {
+if (!process.env.BROWSER || typeof window === "undefined") {
+  console.info("not browser");
   global["window"] = {}; // Temporarily define window for server-side
 }
 
