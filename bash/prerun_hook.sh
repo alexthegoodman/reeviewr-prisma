@@ -7,7 +7,7 @@ port: ${PORT}
 # managementApiSecret: ${MGMT_SECRET}
 databases:
   default:
-    connector: postgres
+    connector: mysql
     host: ${DB_HOST}
     port: ${DB_PORT}
     database: ${DB_NAME}

@@ -19,7 +19,8 @@
 
 # USER root
 
+# https://github.com/dpetrick/prisma-heroku
 ARG tag
 FROM prismagraphql/prisma:$tag
-# COPY ./prerun_hook.sh /app/prerun_hook.sh
+# COPY ./bash/prerun_hook.sh /app/prerun_hook.sh
 CMD /app/start.sh

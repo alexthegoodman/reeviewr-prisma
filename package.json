@@ -47,7 +47,7 @@
     "gen:gql": "graphql-codegen --config codegen.yml",
     "heroku:deploy": "git push heroku master",
     "prisma:deploy:local": "NODE_ENV=http://localhost:4466 prisma deploy",
-    "prisma:deploy:dev": "NODE_ENV=https://us1.prisma.sh/alex-woodman/reeviewr-prisma/dev prisma deploy",
+    "prisma:deploy:dev": "./bash/build.sh 1.30.0 reeviewr-prisma",
     "prisma:deploy:prod": "NODE_ENV=https://us1.prisma.sh/alex-woodman/reeviewr-prisma/prod prisma deploy"
   },
   "resolutions": {},
