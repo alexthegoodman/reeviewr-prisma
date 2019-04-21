@@ -39,7 +39,7 @@
     "test:unit:debug": "node --inspect-brk ./node_modules/.bin/jest --runInBand",
     "test:integration": "cypress run",
     "docker:up": "docker-compose up -d",
-    "kill-list": "lsof -i :9229; lsof -i :9230",
+    "kill-list": "lsof -i :9229; lsof -i :9230; lsof -i :3001",
     "gen:ui": "bash/gen_ui_component.sh",
     "gen:page": "bash/gen_page_component.sh",
     "gen:data": "bash/gen_data_component.sh",
@@ -47,8 +47,8 @@
     "gen:gql": "graphql-codegen --config codegen.yml",
     "heroku:deploy": "git push heroku master",
     "prisma:deploy:local": "NODE_ENV=http://localhost:4466 prisma deploy",
-    "prisma:deploy:dev": "./bash/build.sh 1.30.0 reeviewr-prisma",
-    "prisma:deploy:prod": "NODE_ENV=https://us1.prisma.sh/alex-woodman/reeviewr-prisma/prod prisma deploy"
+    "prisma:deploy:dev": "NODE_ENV=https://shrouded-plateau-27825.herokuapp.com prisma deploy",
+    "prisma:deploy:prod": "NODE_ENV=https://shrouded-plateau-27825.herokuapp.com prisma deploy"
   },
   "resolutions": {},
   "dependencies": {

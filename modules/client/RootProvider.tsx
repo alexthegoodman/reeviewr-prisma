@@ -19,6 +19,10 @@ const styles = require("./sass/style.scss");
 
 mixpanel.init(process.env.MIXPANEL_SECRET);
 
+if (typeof window === "undefined") {
+  window = {};
+}
+
 interface AppProviderProps {}
 
 interface RootProviderProps {}

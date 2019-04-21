@@ -128,58 +128,58 @@ export function startServer() {
 
   const apiVersion = "1.0";
 
-  // app.get(
-  //   ["/", "/*"],
-  //   // Authentication.ensureAuthenticatedAndRedirect,
-  //   function(req, res) {
-  //     const client = new ApolloClient({
-  //       ssrMode: true,
-  //       // Remember that this is the interface the SSR server will use to connect to the
-  //       // API server, so we need to ensure it isn't firewalled, etc
-  //       link: createHttpLink({
-  //         uri: "http://localhost:4466/",
-  //         // credentials: "same-origin",
-  //         // headers: {
-  //         //   cookie: req.header("Cookie"),
-  //         // },
-  //         fetch,
-  //       }),
-  //       cache: new InMemoryCache(),
-  //     });
-  //     // const context = {};
-  //     // https://frontarm.com/navi/en/reference/navigation/#creatememorynavigation
-  //     let navigation = createMemoryNavigation({
-  //       routes,
-  //       url: req.url,
-  //     });
+  app.get(
+    ["/", "/*"],
+    // Authentication.ensureAuthenticatedAndRedirect,
+    function(req, res) {
+      const client = new ApolloClient({
+        ssrMode: true,
+        // Remember that this is the interface the SSR server will use to connect to the
+        // API server, so we need to ensure it isn't firewalled, etc
+        link: createHttpLink({
+          uri: "http://localhost:4466/",
+          // credentials: "same-origin",
+          // headers: {
+          //   cookie: req.header("Cookie"),
+          // },
+          fetch,
+        }),
+        cache: new InMemoryCache(),
+      });
+      // const context = {};
+      // https://frontarm.com/navi/en/reference/navigation/#creatememorynavigation
+      let navigation = createMemoryNavigation({
+        routes,
+        url: req.url,
+      });
 
-  //     const App = (
-  //       <ApolloProvider client={client}>
-  //         <Router routes={routes} navigation={navigation}>
-  //           <AppProvider />
-  //         </Router>
-  //       </ApolloProvider>
-  //     );
+      const App = (
+        <ApolloProvider client={client}>
+          <Router routes={routes} navigation={navigation}>
+            <AppProvider />
+          </Router>
+        </ApolloProvider>
+      );
 
-  //     console.info("get data");
-  //     getDataFromTree(App).then(() => {
-  //       const content = ReactDOMServer.renderToString(App);
-  //       const initialState = client.extract();
+      console.info("get data");
+      getDataFromTree(App).then(() => {
+        const content = ReactDOMServer.renderToString(App);
+        const initialState = client.extract();
 
-  //       const html = <Html content={content} state={initialState} />;
+        const html = <Html content={content} state={initialState} />;
 
-  //       console.info("send response");
+        console.info("send response");
 
-  //       res.status(200);
-  //       res.send(
-  //         `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`
-  //       );
-  //       res.end();
-  //     });
+        res.status(200);
+        res.send(
+          `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`
+        );
+        res.end();
+      });
 
-  //     // res.sendFile(process.cwd() + "/dist/index.html");
-  //   }
-  // );
+      // res.sendFile(process.cwd() + "/dist/index.html");
+    }
+  );
 
   app.get(`/${apiVersion}${AUTHENTICATE_USER}`, authenticate);
   app.get(`/${apiVersion}${CONFIRM_EMAIL}`, confirmEmail);
