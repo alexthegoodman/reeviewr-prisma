@@ -65,12 +65,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
               name="Regina Spektor"
             /> */}
             <section className="loggedOutActions">
-              <Button className="textButton headerItem" minimal={true}>
-                Log In
-              </Button>
-              <Button className="textButton headerItem" minimal={true}>
-                Sign Up
-              </Button>
+              <img className="logo" src="/dist/img/logo-w.png" />
             </section>
             <BeyondSearch placeholder="Search tracks, artists, and reviews..." />
           </>
@@ -79,6 +74,12 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
           <>
             <Button className="textButton headerItem" minimal={true}>
               How it Works
+            </Button>
+            <Button className="textButton headerItem" minimal={true}>
+              Log In
+            </Button>
+            <Button className="textButton headerItem" minimal={true}>
+              Sign Up
             </Button>
             <Button
               className="textButton headerItem"
