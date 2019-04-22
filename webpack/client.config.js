@@ -180,8 +180,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: "[name].css",
-      chunkFilename: "[id].css",
+      filename: "client.css",
+      chunkFilename: "client.css",
     }),
 
     new CopyPlugin([
@@ -199,7 +199,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/",
-    filename: config.get("minify") ? "client.[chunkhash].js" : "client.js",
+    filename:
+      process.env.NODE_ENV === "development"
+        ? "client.[chunkhash].js"
+        : "client.js",
   },
 
   resolve: {
