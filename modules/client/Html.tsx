@@ -4,7 +4,7 @@ export const Html = ({ content, state }) => {
   return (
     <html>
       <head>
-        <link rel="stylesheet" href="/dist/server.css" />
+        <link rel="stylesheet" href="/server.css" />
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: content }} />
@@ -16,7 +16,7 @@ export const Html = ({ content, state }) => {
             )};`,
           }}
         />
-        <script type="text/javascript" src="/dist/client.js" />
+        <script type="text/javascript" src="/client.js" />
       </body>
     </html>
   );

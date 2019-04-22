@@ -128,7 +128,7 @@ export function startServer() {
 
   // Static assets
   // app.use(expressStaticGzip("./dist/"));
-  app.use("/dist", express.static("./dist/"));
+  app.use(express.static("./dist/"));
 
   console.info("start server");
 
