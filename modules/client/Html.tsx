@@ -7,7 +7,7 @@ export const Html = ({ content, state }) => {
         <link rel="stylesheet" href="http://localhost:3001/dist/server.css" />
       </head>
       <body>
-        <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
+        <div id="app" dangerouslySetInnerHTML={{ __html: content }} />
         <script
           dangerouslySetInnerHTML={{
             __html: `window.__APOLLO_STATE__=${JSON.stringify(state).replace(
