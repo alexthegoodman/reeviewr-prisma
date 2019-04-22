@@ -140,13 +140,17 @@ export function startServer() {
     "/*",
     // Authentication.ensureAuthenticatedAndRedirect,
     async (req, res) => {
+      let prismaUri = process.env.PRISMA_API_LOCAL;
+      if (process.env.NODE_ENV !== "development") {
+        prismaUri = process.env.PRISMA_API_PROD;
+      }
       // console.info("req 2", req);
       const client = new ApolloClient({
         ssrMode: true,
         // Remember that this is the interface the SSR server will use to connect to the
         // API server, so we need to ensure it isn't firewalled, etc
         link: createHttpLink({
-          uri: "http://localhost:4466/",
+          uri: prismaUri,
           // credentials: "same-origin",
           // headers: {
           //   cookie: req.header("Cookie"),

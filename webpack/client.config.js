@@ -113,6 +113,13 @@ module.exports = {
       "process.env.V1_S3_DIR": JSON.stringify(process.env.V1_S3_DIR),
       "process.env.V1_S3_URL": JSON.stringify(process.env.V1_S3_URL),
 
+      "process.env.PRISMA_API_LOCAL": JSON.stringify(
+        process.env.PRISMA_API_LOCAL
+      ),
+      "process.env.PRISMA_API_PROD": JSON.stringify(
+        process.env.PRISMA_API_PROD
+      ),
+
       // "process.env.AUTH0_CLIENT_ID": JSON.stringify(
       //   process.env.AUTH0_CLIENT_ID
       // ),

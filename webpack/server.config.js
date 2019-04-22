@@ -93,6 +93,12 @@ module.exports = {
       __DEV__: JSON.stringify(process.env.NODE_ENV !== "production"),
       // SSR
       "process.env.BROWSER": "false",
+      "process.env.PRISMA_API_LOCAL": JSON.stringify(
+        process.env.PRISMA_API_LOCAL
+      ),
+      "process.env.PRISMA_API_PROD": JSON.stringify(
+        process.env.PRISMA_API_PROD
+      ),
     }),
 
     // new webpack.debug.ProfilingPlugin({

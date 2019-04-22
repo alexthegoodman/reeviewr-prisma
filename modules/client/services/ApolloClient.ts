@@ -5,6 +5,11 @@ import { onError } from "apollo-link-error";
 import { ApolloLink } from "apollo-link";
 import fetch from "cross-fetch";
 
+let prismaUri = process.env.PRISMA_API_LOCAL;
+if (process.env.NODE_ENV !== "development") {
+  prismaUri = process.env.PRISMA_API_PROD;
+}
+
 const client = new ApolloClient({
   link: ApolloLink.from([
     onError(({ graphQLErrors, networkError }) => {
@@ -17,7 +22,7 @@ const client = new ApolloClient({
       if (networkError) console.log(`[Network error]: ${networkError}`);
     }),
     new HttpLink({
-      uri: "http://localhost:4466/",
+      uri: prismaUri,
       // credentials: "same-origin",
       fetch,
     }),
