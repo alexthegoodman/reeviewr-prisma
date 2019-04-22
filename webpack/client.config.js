@@ -10,6 +10,7 @@ var HappyPack = require("happypack");
 var ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const IconFontPlugin = require("icon-font-loader").Plugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 const os = require("os");
 const DEV_PORT = config.get("devServer.port");
@@ -182,6 +183,8 @@ module.exports = {
       filename: "[name].css",
       chunkFilename: "[id].css",
     }),
+
+    new CopyPlugin([{ from: "./entry/img/", to: "./img/" }]),
 
     // new IconFontPlugin(),
 
