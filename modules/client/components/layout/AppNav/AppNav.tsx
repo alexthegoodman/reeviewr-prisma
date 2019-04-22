@@ -65,7 +65,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
               name="Regina Spektor"
             /> */}
             <section className="loggedOutActions">
-              <img className="logo" src="/dist/img/logo-w.png" />
+              <img className="logo" src="/img/logo-w.png" />
             </section>
             <BeyondSearch placeholder="Search tracks, artists, and reviews..." />
           </>
