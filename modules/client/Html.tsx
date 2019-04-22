@@ -3,6 +3,9 @@ import * as React from "react";
 export const Html = ({ content, state }) => {
   return (
     <html>
+      <head>
+        <link rel="stylesheet" href="http://localhost:3001/dist/server.css" />
+      </head>
       <body>
         <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
         <script

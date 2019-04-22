@@ -22,7 +22,7 @@ global["window"] = {};
 import fetch from "cross-fetch";
 import * as React from "react";
 // import * as ReactDOM from "react-dom";
-import ReactDOMServer from "react-dom/server";
+import * as ReactDOMServer from "react-dom/server";
 import { ApolloProvider, getDataFromTree } from "react-apollo";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
@@ -46,10 +46,16 @@ import { createUser } from "./user/create-user";
 import { forgotPassword } from "./user/forgot-password";
 import { resendEmailConfirmation } from "./user/resend-email-confirmation";
 import { createTrack } from "./userTracks/create-track";
+import {
+  getMarkupFromTree,
+  ApolloProvider as ApolloHooksProvider,
+} from "react-apollo-hooks";
 
 let app = express();
 
 export const port = config.get<number>("server.port");
+export const apiHost = config.get<number>("server.apiHost");
+export const publicHost = config.get<number>("server.publicHost");
 
 export const enableDeveloperLogin = config.get<boolean>(
   "server.enableDeveloperLogin"
@@ -121,17 +127,20 @@ export function startServer() {
   // });
 
   // Static assets
-  app.use(expressStaticGzip("./dist/"));
-  app.use(express.static("./dist/"));
+  // app.use(expressStaticGzip("./dist/"));
+  app.use("/dist", express.static("./dist/"));
 
   console.info("start server");
 
   const apiVersion = "1.0";
 
+  // console.info("building");
+
   app.get(
-    ["/", "/*"],
+    "/*",
     // Authentication.ensureAuthenticatedAndRedirect,
-    function(req, res) {
+    async (req, res) => {
+      // console.info("req 2", req);
       const client = new ApolloClient({
         ssrMode: true,
         // Remember that this is the interface the SSR server will use to connect to the
@@ -153,45 +162,76 @@ export function startServer() {
         url: req.url,
       });
 
-      const App = (
-        <ApolloProvider client={client}>
-          <Router routes={routes} navigation={navigation}>
-            <AppProvider />
+      const App = () => (
+        <>
+          <Router navigation={navigation}>
+            <ApolloProvider client={client}>
+              <ApolloHooksProvider client={client}>
+                <AppProvider />
+              </ApolloHooksProvider>
+            </ApolloProvider>
           </Router>
-        </ApolloProvider>
+        </>
       );
 
+      // getDataFromTree(App).then(() => {
+      //   const content = ReactDOMServer.renderToString(App);
+      //   const initialState = client.extract();
+
+      //   const html = <Html content={content} state={initialState} />;
+
+      //   console.info("send response");
+
+      //   res.status(200);
+      //   res.send(
+      //     `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`
+      //   );
+      //   res.end();
+      // });
       console.info("get data");
-      getDataFromTree(App).then(() => {
-        const content = ReactDOMServer.renderToString(App);
-        const initialState = client.extract();
-
-        const html = <Html content={content} state={initialState} />;
-
-        console.info("send response");
-
-        res.status(200);
-        res.send(
-          `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`
-        );
-        res.end();
+      const rendered = await getMarkupFromTree({
+        renderFunction: ReactDOMServer.renderToString,
+        tree: <App />,
       });
 
+      console.info("render");
+      // const content = ReactDOMServer.renderToString(<App />);
+      const initialState = client.extract();
+
+      const html = <Html content={rendered} state={initialState} />;
+
+      console.info("send response");
+
+      res.status(200);
+      res.send(`<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`);
+      res.end();
       // res.sendFile(process.cwd() + "/dist/index.html");
     }
   );
 
-  app.get(`/${apiVersion}${AUTHENTICATE_USER}`, authenticate);
-  app.get(`/${apiVersion}${CONFIRM_EMAIL}`, confirmEmail);
-  app.get(`/${apiVersion}${CREATE_USER}`, createUser);
-  app.get(`/${apiVersion}${FORGOT_PASSWORD}`, forgotPassword);
-  app.get(
-    `/${apiVersion}/${RESEND_EMAIL_CONFIRMATION}`,
-    resendEmailConfirmation
-  );
-  app.get(`/${apiVersion}/${CREATE_TRACK}`, createTrack);
+  app.get(["", "/"], function(req, res) {
+    console.info("get req");
+    res.send({ hello: true });
+  });
+
+  // app.get(`/${apiVersion}${AUTHENTICATE_USER}`, authenticate);
+  // app.get(`/${apiVersion}${CONFIRM_EMAIL}`, confirmEmail);
+  // app.get(`/${apiVersion}${CREATE_USER}`, createUser);
+  // app.get(`/${apiVersion}${FORGOT_PASSWORD}`, forgotPassword);
+  // app.get(
+  //   `/${apiVersion}/${RESEND_EMAIL_CONFIRMATION}`,
+  //   resendEmailConfirmation
+  // );
+  // app.get(`/${apiVersion}/${CREATE_TRACK}`, createTrack);
 
   return app.listen(port, () => {
-    console.log("up and running on port", port);
+    console.log(
+      "up and running on port",
+      port,
+      "apiHost: ",
+      apiHost,
+      " publicHost: ",
+      publicHost
+    );
   });
 }

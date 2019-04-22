@@ -9,6 +9,7 @@ const loaders = require("./loaders");
 var HappyPack = require("happypack");
 var ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const IconFontPlugin = require("icon-font-loader").Plugin;
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const os = require("os");
 const DEV_PORT = config.get("devServer.port");
@@ -168,6 +169,13 @@ module.exports = {
       WaveSurfer: "wavesurfer.js",
     }),
 
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].css",
+      chunkFilename: "[id].css",
+    }),
+
     // new IconFontPlugin(),
 
     ...(process.env.ANALYZE
@@ -209,6 +217,7 @@ module.exports = {
       loaders.clientSideTypeScript,
       loaders.graphql,
       loaders.scss,
+      loaders.css,
     ].concat(loaders.allImagesAndFontsArray),
   },
   devServer: {

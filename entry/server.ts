@@ -1,4 +1,4 @@
-import { startServer } from "server";
+import { startServer } from "../modules/server";
 import * as throng from "throng";
 import * as config from "config";
 

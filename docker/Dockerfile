@@ -20,6 +20,7 @@
 # USER root
 
 # https://github.com/dpetrick/prisma-heroku
+# https://github.com/Radu-Raicea/Dockerized-Flask/wiki/%5BDocker%5D-Remove-all-Docker-volumes-to-delete-the-database
 ARG tag
 FROM prismagraphql/prisma:$tag
 # COPY ./bash/prerun_hook.sh /app/prerun_hook.sh

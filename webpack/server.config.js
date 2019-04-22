@@ -8,6 +8,7 @@ var HappyPack = require("happypack");
 var ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const os = require("os");
 const IconFontPlugin = require("icon-font-loader").Plugin;
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const scriptsDir = path.join(__dirname, "../entry/scripts");
 
@@ -112,7 +113,12 @@ module.exports = {
       // https://github.com/Realytics/fork-ts-checker-webpack-plugin#options
       useTypescriptIncrementalApi: true,
     }),
-
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].css",
+      chunkFilename: "[id].css",
+    }),
     // new IconFontPlugin(),
   ],
 };
