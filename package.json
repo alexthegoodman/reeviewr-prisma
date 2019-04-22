@@ -15,7 +15,7 @@
     "build:graphql": "prisma generate; yarn gen:gql",
     "build:client": "webpack --config ./webpack/client.config.js",
     "build:server": "webpack --config ./webpack/server.config.js",
-    "build:pre": "yarn build:graphql",
+    "build:pre": "yarn; yarn build:graphql",
     "build:app": "concurrently 'yarn build:client' 'yarn build:server'",
     "build": "yarn build:pre && yarn build:app",
     "build:production": "cross-env NODE_ENV=production yarn build",
