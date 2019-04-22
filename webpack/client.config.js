@@ -145,9 +145,9 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
 
     // Extract embedded css into a file
-    new ExtractTextPlugin(
-      config.get("minify") ? "[name].[chunkhash].css" : "[name].css"
-    ),
+    // new ExtractTextPlugin(
+    //   config.get("minify") ? "[name].[chunkhash].css" : "[name].css"
+    // ),
 
     // Show a nice progress bar on the console.
     new ProgressBarPlugin({
@@ -180,8 +180,14 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: "client.css",
-      chunkFilename: "client.css",
+      filename:
+        process.env.NODE_ENV === "development"
+          ? "[name].[chunkhash].css"
+          : "[name].css",
+      chunkFilename:
+        process.env.NODE_ENV === "development"
+          ? "[name].[chunkhash].css"
+          : "[name].css",
     }),
 
     new CopyPlugin([
