@@ -16,6 +16,10 @@ export const Html = ({ content, state }) => {
             )};`,
           }}
         />
+        <script
+          type="text/javascript"
+          src="http://localhost:3001/dist/client.js"
+        />
       </body>
     </html>
   );
