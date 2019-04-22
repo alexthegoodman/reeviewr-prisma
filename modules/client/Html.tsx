@@ -17,7 +17,11 @@ export const Html = ({ content, state }) => {
             )};`,
           }}
         />
-        <script type="text/javascript" src="/client.js" />
+        {process.env.NODE_ENV === "production" ? (
+          <script type="text/javascript" src="/client.js" />
+        ) : (
+          <></>
+        )}
       </body>
     </html>
   );

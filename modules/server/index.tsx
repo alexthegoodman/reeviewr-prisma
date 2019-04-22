@@ -137,7 +137,7 @@ export function startServer() {
   // console.info("building");
 
   app.get(
-    "/*",
+    "*",
     // Authentication.ensureAuthenticatedAndRedirect,
     async (req, res) => {
       let prismaUri = process.env.PRISMA_API_LOCAL;
@@ -213,10 +213,10 @@ export function startServer() {
     }
   );
 
-  app.get(["", "/"], function(req, res) {
-    console.info("get req");
-    res.send({ hello: true });
-  });
+  // app.get("["", "/"]", function(req, res) {
+  //   console.info("get req");
+  //   res.send({ hello: true });
+  // });
 
   // app.get(`/${apiVersion}${AUTHENTICATE_USER}`, authenticate);
   // app.get(`/${apiVersion}${CONFIRM_EMAIL}`, confirmEmail);
