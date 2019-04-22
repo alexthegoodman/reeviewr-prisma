@@ -3,6 +3,7 @@ import * as React from "react";
 import { ArtistCardDataProps } from "./ArtistCardData.d";
 import ArtistCard from "../../ui/ArtistCard/ArtistCard";
 import Legacy from "../../../services/Legacy";
+import { ImageSizes } from "../../../../defs/imageSizes";
 
 const ArtistCardData: React.FC<ArtistCardDataProps> = ({
   ref = null,
@@ -23,7 +24,10 @@ const ArtistCardData: React.FC<ArtistCardDataProps> = ({
 
   console.info("user", user);
 
-  const profileImage = legacy.extractProfileImage(user);
+  const profileImage = legacy.extractProfileImage(
+    user,
+    ImageSizes.ProfileImage
+  );
 
   const reviewCount = user.reviews.length;
   const trackCount = user.userTracks.length;

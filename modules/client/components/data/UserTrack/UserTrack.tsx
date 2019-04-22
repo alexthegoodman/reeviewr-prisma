@@ -9,6 +9,7 @@ import Strings from "../../../services/Strings";
 import Legacy from "../../../services/Legacy";
 import ReviewCardData from "../ReviewCardData/ReviewCardData";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
+import { ImageSizes } from "../../../../defs/imageSizes";
 
 const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
   const legacy = new Legacy();
@@ -64,7 +65,7 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
     return <div>Error on audio! {audioError.message}</div>;
   }
 
-  const imageUrl = legacy.extractArtUrl(imageData, track);
+  const imageUrl = legacy.extractArtUrl(imageData, track, ImageSizes.Medium);
   const audioUrl = legacy.extractMetaValue(
     audioData.file.itemMeta,
     "s3Info",

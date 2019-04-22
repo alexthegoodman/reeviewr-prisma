@@ -1,4 +1,4 @@
-// generate waveform, resize images, limits
+// generate waveform, resize images, limits, even size requirement on cover art size
 
 export const createTrack = (req, res) => {
   console.info(req);

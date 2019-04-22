@@ -6,6 +6,7 @@ import Legacy from "../../../services/Legacy";
 import Strings from "../../../services/Strings";
 import { FILE_QUERY } from "../../../graphql/queries/userTrack";
 import { useQuery } from "react-apollo-hooks";
+import { ImageSizes } from "../../../../defs/imageSizes";
 
 const ReviewCardData: React.FC<ReviewCardDataProps> = ({
   ref = null,
@@ -34,7 +35,7 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
       return <div>Error on image! {imageError.message}</div>;
     }
 
-    trackImageUrl = legacy.extractArtUrl(imageData, track);
+    trackImageUrl = legacy.extractArtUrl(imageData, track, ImageSizes.Medium);
     trackAltText = track.itemName;
   }
 
@@ -57,7 +58,10 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
   );
 
   const reviewerAltText = `${reviewFirstName} ${reviewLastName}`;
-  const reviewerImageUrl = legacy.extractProfileImage(review.user);
+  const reviewerImageUrl = legacy.extractProfileImage(
+    review.user,
+    ImageSizes.ProfileImage
+  );
 
   // console.info("review", review.id);
   return (

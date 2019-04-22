@@ -7,7 +7,7 @@ export default class Legacy {
     this.strings = new Strings();
   }
 
-  extractProfileImage(user): string {
+  extractProfileImage(user, imageSize = ""): string {
     let profileImageUrl = null;
 
     let profileImage = user.userMeta.filter(
@@ -39,6 +39,11 @@ export default class Legacy {
           typeof png[1] !== "undefined"
         ) {
           firstImage = attachedFile;
+
+          if (imageSize !== "") {
+            firstImage = firstImage.split(".");
+            firstImage = firstImage[0] + "-" + imageSize + "." + firstImage[1];
+          }
         }
       });
       profileImageUrl = firstImage;
@@ -55,15 +60,24 @@ export default class Legacy {
     return profileImageUrl;
   }
 
-  extractArtUrl(imageData, track) {
+  extractArtUrl(imageData, track, imageSize = "") {
     let imageUrl = null;
     if (imageData.file !== null) {
       // background-image: url(/uploads/2014/12/yophantom-pic-150x150.jpg)
-      imageUrl = this.extractMetaValue(
-        imageData.file.itemMeta,
-        "attachedFile",
-        process.env.V1_S3_DIR
-      );
+      imageUrl = this.extractMetaValue(imageData.file.itemMeta, "attachedFile");
+
+      if (imageSize !== "") {
+        imageUrl = imageUrl.split(".");
+        imageUrl =
+          process.env.V1_S3_DIR +
+          imageUrl[0] +
+          "-" +
+          imageSize +
+          "." +
+          imageUrl[1];
+      } else {
+        imageUrl = process.env.V1_S3_DIR + imageUrl;
+      }
     }
 
     // legacy soundcloud imports
@@ -76,6 +90,13 @@ export default class Legacy {
       );
 
       imageUrl = soundcloudArtUrl;
+
+      // TODO: are soundcloud art pieces resized?
+
+      // if (imageSize !== "") {
+      //   imageUrl = imageUrl.split(".");
+      //   imageUrl = process.env.V1_S3_DIR + imageUrl[0] + "-" + imageSize + "." + imageUrl[1];
+      // }
     }
 
     return imageUrl;
