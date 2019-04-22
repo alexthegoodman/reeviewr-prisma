@@ -51,6 +51,9 @@ import {
   ApolloProvider as ApolloHooksProvider,
 } from "react-apollo-hooks";
 
+var serveStatic = require("serve-static");
+var path = require("path");
+
 let app = express();
 
 export const port = config.get<number>("server.port");
@@ -128,7 +131,12 @@ export function startServer() {
 
   // Static assets
   // app.use(expressStaticGzip("./dist/"));
-  app.use(express.static("./dist/"));
+  app.use("/public", express.static("./dist/"));
+  // app.use(
+  //   serveStatic(path.join(__dirname, "dist"), {
+  //     index: false,
+  //   })
+  // );
 
   console.info("start server");
 
@@ -137,7 +145,7 @@ export function startServer() {
   // console.info("building");
 
   app.get(
-    "*",
+    "/*",
     // Authentication.ensureAuthenticatedAndRedirect,
     async (req, res) => {
       let prismaUri = process.env.PRISMA_API_LOCAL;

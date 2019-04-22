@@ -46,6 +46,8 @@ const bootstrapClient = () => {
 
   // const graphqlClient = buildGraphqlClient(history);
 
+  console.info("bootstrap client");
+
   ReactDom.render(<RootProvider />, document.getElementById("app"));
 };
 

@@ -4,8 +4,8 @@ export const Html = ({ content, state }) => {
   return (
     <html>
       <head>
-        <link rel="stylesheet" href="/server.css" />
-        {/* <link rel="icon" href="_/img/favicon.png"> */}
+        <link rel="stylesheet" href="/public/server.css" />
+        <link rel="icon" href="/public/favicon.ico" />
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: content }} />
@@ -17,11 +17,7 @@ export const Html = ({ content, state }) => {
             )};`,
           }}
         />
-        {process.env.NODE_ENV === "production" ? (
-          <script type="text/javascript" src="/client.js" />
-        ) : (
-          <></>
-        )}
+        <script type="text/javascript" src="/public/client.js" />
       </body>
     </html>
   );

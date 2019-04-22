@@ -180,14 +180,18 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
+      // filename:
+      //   process.env.NODE_ENV === "development"
+      //     ? "[name].[chunkhash].css"
+      //     : "[name].css",
+      // chunkFilename:
+      //   process.env.NODE_ENV === "development"
+      //     ? "[name].[chunkhash].css"
+      //     : "[name].css",
       filename:
-        process.env.NODE_ENV === "development"
-          ? "[name].[chunkhash].css"
-          : "[name].css",
+        process.env.NODE_ENV === "development" ? "[name].css" : "[name].css",
       chunkFilename:
-        process.env.NODE_ENV === "development"
-          ? "[name].[chunkhash].css"
-          : "[name].css",
+        process.env.NODE_ENV === "development" ? "[name].css" : "[name].css",
     }),
 
     new CopyPlugin([
