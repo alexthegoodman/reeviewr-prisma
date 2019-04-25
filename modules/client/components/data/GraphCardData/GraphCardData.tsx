@@ -2,39 +2,82 @@ import * as React from "react";
 
 import { GraphCardDataProps } from "./GraphCardData.d";
 import GraphCard from "../../ui/GraphCard/GraphCard";
+import Legacy from "../../../services/Legacy";
+import Strings from "../../../services/Strings";
 
 const GraphCardData: React.FC<GraphCardDataProps> = ({
   ref = null,
   className = "",
   onClick = e => console.info("Click"),
+  question = null,
 }) => {
+  const legacy = new Legacy();
+  const strings = new Strings();
+
   const clickHandler = e => onClick(e);
 
-  const wordFreq = str => {
-    const words = str.replace(/[.]/g, "").split(/\s/);
-    const freqMap = {};
-    words.forEach(w => {
-      if (!freqMap[w]) {
-        freqMap[w] = 0;
-      }
-      freqMap[w] += 1;
-    });
+  if (question != null) {
+    const {
+      type,
+      content: option0,
+      one: option1,
+      two: option2,
+      three: option3,
+      four: option4,
+      reviews,
+    } = question;
 
-    const graphMap = [];
-    Object.keys(freqMap).forEach((key, i) => {
-      graphMap[i] = { text: key, value: freqMap[key] };
-    });
+    let graphData = null;
+    let graphType = "";
 
-    return graphMap;
-  };
+    switch (type) {
+      case "written_response":
+        let completeResponse = "";
+        reviews.items.forEach((review, x) => {
+          completeResponse += strings.decode(review.answer);
+        });
 
-  const graphMap = wordFreq("I am the big the big bull.");
+        graphData = strings.wordFreq(
+          strings.removeCommonWords(completeResponse)
+        );
 
-  console.info(graphMap);
+        graphData.forEach((item, i) => {
+          if (item.text === "") {
+            graphData.splice(i, 1);
+          }
+        });
 
-  const graphType = "wordcloud";
+        graphType = "wordcloud";
 
-  return <GraphCard dataSet1={graphMap} graphType="wordcloud" />;
+        break;
+
+      case "rating":
+        // const greenData = [{ x: "A", y: 10 }, { x: "B", y: 5 }, { x: "C", y: 15 }];
+        graphData = [];
+        for (let i = 1; i <= 10; i++) {
+          console.info(reviews);
+          const matchReview = reviews.items.filter(
+            item => item.answer === `${i}`
+          );
+          graphData[graphData.length] = { x: i, y: matchReview.length };
+        }
+
+        console.info("graphdata", graphData);
+
+        graphType = "bar";
+
+        break;
+
+      case "mult_choice":
+        break;
+    }
+
+    if (graphData != null && graphType != "") {
+      return <GraphCard dataSet1={graphData} graphType={graphType} />;
+    } else {
+      return <>Building graph...</>;
+    }
+  }
 };
 
 export default GraphCardData;

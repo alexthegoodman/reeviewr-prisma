@@ -46,7 +46,7 @@ const GraphCard: React.FC<GraphCardProps> = ({
         graph = (
           <XYPlot
             xType="ordinal"
-            width={windowSize.innerWidth * 0.8}
+            width={windowSize.innerWidth * 0.5}
             height={500}
             xDistance={100}
           >
@@ -63,14 +63,14 @@ const GraphCard: React.FC<GraphCardProps> = ({
       break;
     case "wordcloud":
       graph = (
-        <div style={{ width: windowSize.innerWidth * 0.8, height: 400 }}>
+        <div style={{ width: windowSize.innerWidth * 0.6, height: 400 }}>
           <ReactWordcloud
             words={dataSet1}
             options={{
               rotations: false,
               enableTooltip: false,
-              colors: ["white"],
-              fontSizes: [20, 40, 60],
+              colors: ["#E5E5E5", "#B7B7B7", "#969696"],
+              fontSizes: [15, 25, 100],
             }}
           />
         </div>

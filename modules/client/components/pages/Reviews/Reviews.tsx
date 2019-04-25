@@ -26,9 +26,18 @@ const Reviews: React.FC<ReviewsProps> = () => {
   return (
     <>
       <h1>Reviews</h1>
-      {reviewsData.reviews.map(review => {
-        return <ReviewCardData key={review.id} review={review} />;
-      })}
+      <section
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr",
+          gridRowGap: 25,
+          gridColumnGap: 25,
+        }}
+      >
+        {reviewsData.reviews.map(review => {
+          return <ReviewCardData key={review.id} review={review} />;
+        })}
+      </section>
     </>
   );
 };

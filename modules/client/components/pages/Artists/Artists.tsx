@@ -21,9 +21,18 @@ const Artists: React.FC<ArtistsProps> = () => {
   return (
     <>
       <h1>Artists</h1>
-      {userData.users.map(user => {
-        return <ArtistCardData key={user.id} user={user} />;
-      })}
+      <section
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr",
+          gridRowGap: 25,
+          gridColumnGap: 25,
+        }}
+      >
+        {userData.users.map(user => {
+          return <ArtistCardData key={user.id} user={user} />;
+        })}
+      </section>
     </>
   );
 };

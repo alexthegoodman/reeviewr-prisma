@@ -116,4 +116,22 @@ export default class Legacy {
 
     return metaObj;
   }
+
+  extractMultipleMeta(
+    allMeta,
+    metaNameList,
+    prependValue = "",
+    decode = false
+  ) {
+    let metaList = {};
+    metaNameList.forEach(metaName => {
+      metaList[metaName] = this.extractMetaValue(
+        allMeta,
+        metaName,
+        prependValue,
+        decode
+      );
+    });
+    return metaList;
+  }
 }

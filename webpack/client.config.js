@@ -195,8 +195,8 @@ module.exports = {
     }),
 
     new CopyPlugin([
-      { from: "./entry/img/", to: "./img/" },
-      { from: "./entry/favicon.ico", to: "./favicon.ico" },
+      { from: "./entry/img/", to: "./public/img/" },
+      { from: "./entry/favicon.ico", to: "./public/favicon.ico" },
     ]),
 
     // new IconFontPlugin(),
