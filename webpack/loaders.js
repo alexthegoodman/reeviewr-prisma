@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   typescript: {
-    test: /\.tsx?/,
+    test: /\.(tsx?|jsx?)/,
     // exclude: /data-seed/,
     use: [
       {
@@ -22,7 +22,7 @@ module.exports = {
   },
 
   clientSideTypeScript: {
-    test: /\.tsx?/,
+    test: /\.(tsx?|jsx?)/,
     // exclude: /data-seed/,
     use: [
       {

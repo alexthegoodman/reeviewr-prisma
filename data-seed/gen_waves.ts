@@ -22,15 +22,15 @@ import * as cmd from "node-cmd";
 // const filename = "tmp/249710858";
 // const filename = "tmp/BRE@K-the-SLENCE";
 // const filename = "tmp/Doomed-demo";
-// const filename = "tmp/I-Dont-Feel-Down";
+const filename = "tmp/I-Dont-Feel-Down";
 // const filename = "tmp/Put-in-work-unedited";
-const filename = "tmp/DUMMY";
+// const filename = "tmp/DUMMY";
 
-cmd.run(
-  `audiowaveform -i ${filename}.mp3 -o ${filename}.dat --pixels-per-second 20 --bits 8`
-);
+// cmd.run(
+//   `audiowaveform -i ${filename}.mp3 -o ${filename}.dat --pixels-per-second 60 --bits 8`
+// );
 // cmd.run(`audiowaveform -i ${filename}.dat -o ${filename}.json`);
-// cmd.run(`python scale-json.py ${filename}.json`);
+cmd.run(`python scale-json.py ${filename}.json`);
 
 // const s3 = new S3({
 //   accessKeyId: "AKIAI4V6CMTZZYI4Y5QQ",

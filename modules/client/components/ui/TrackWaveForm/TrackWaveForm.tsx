@@ -7,7 +7,9 @@ if (typeof window === "undefined") {
 import WaveformData from "waveform-data";
 // import Peaks from "peaks.js";
 
-import Waveform from "react-audio-waveform";
+import Waveform from "../../../lib/react-audio-waveform-master/src";
+
+import * as d3 from "d3";
 
 // require("wavesurfer.js");
 // require("wavesurfer.js/dist/plugin/wavesurfer.timeline.min.js");
@@ -33,59 +35,103 @@ const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
   imageUrl = "",
 }) => {
   const canvasId = uuid.v4();
-  const datUrl = audioUrl.split(".mp3")[0] + ".dat";
+  const datUrl = audioUrl.split(".mp3")[0] + ".json";
   console.info("json", datUrl);
+  const [peaks, setPeaks] = React.useState(null);
 
-  fetch(datUrl)
-    .then(response => response.arrayBuffer())
-    .then(buffer => {
-      const waveform = WaveformData.create(buffer);
+  React.useEffect(() => {
+    // fetch(datUrl)
+    //   .then(response => response.arrayBuffer())
+    //   .then(buffer => {
+    //     console.info("buffer", buffer);
+    //     setPeaks(buffer);
+    //   });
 
-      console.log(waveform.duration);
-      const canvas = $("#" + canvasId)
-        .first()
-        .get(0);
-      const interpolateHeight = total_height => {
-        const amplitude = 256;
-        return size => total_height - ((size + 128) * total_height) / amplitude;
-      };
-
-      const y = interpolateHeight(canvas.height);
-      const ctx = canvas.getContext("2d");
-      ctx.beginPath();
-
-      // from 0 to 100
-      waveform.min.forEach((val, x) => {
-        ctx.lineTo(x + 0.5, y(val) + 0.5);
-      });
-
-      // then looping back from 100 to 0
-      waveform.max.reverse().forEach((val, x) => {
-        ctx.lineTo(waveform.offset_length - x + 0.5, y(val) + 0.5);
-      });
-
-      ctx.fillStyle = "#df494a";
-
-      ctx.closePath();
-      ctx.stroke();
-      ctx.fill();
+    $.getJSON(datUrl, function(json) {
+      console.log(json); // this will show the info it in firebug console
+      setPeaks(json.data);
     });
+  }, []);
+
+  // fetch(datUrl)
+  //   .then(response => response.arrayBuffer())
+  //   .then(buffer => {
+  //     var svg = d3
+  //       .select("body")
+  //       .append("svg")
+  //       .attr("width", 300)
+  //       .attr("height", 200);
+
+  //     const waveform = WaveformData.create(buffer);
+  //     // const layout = d3.select(this).select("svg");
+  //     const x = d3.scaleLinear();
+  //     const y = d3.scaleLinear();
+
+  //     const offsetX = 100;
+
+  //     x.domain([0, waveform.adapter.length]).rangeRound([0, 1024]);
+  //     y.domain([
+  //       d3.min(waveform.min) as any,
+  //       d3.max(waveform.max) as any,
+  //     ]).rangeRound([offsetX, -offsetX]);
+
+  //     var area = d3
+  //       .area()
+  //       .x((d, i) => x(i))
+  //       .y0((d, i) => y(waveform.min[i]))
+  //       .y1((d, i) => y(d as any));
+
+  //     svg
+  //       .select("path")
+  //       .datum(waveform.max)
+  //       .attr("transform", () => `translate(0, ${offsetX})`)
+  //       .attr("d", area);
+
+  //     // const waveform = WaveformData.create(buffer);
+
+  //     // console.log(waveform.duration);
+  //     // const canvas = $("#" + canvasId)
+  //     //   .first()
+  //     //   .get(0);
+  //     // const interpolateHeight = total_height => {
+  //     //   const amplitude = 256;
+  //     //   return size => total_height - ((size + 128) * total_height) / amplitude;
+  //     // };
+
+  //     // const y = interpolateHeight(canvas.height);
+  //     // const ctx = canvas.getContext("2d");
+  //     // ctx.beginPath();
+
+  //     // // from 0 to 100
+  //     // waveform.min.forEach((val, x) => {
+  //     //   ctx.lineTo(x + 0.5, y(val) + 0.5);
+  //     // });
+
+  //     // // then looping back from 100 to 0
+  //     // waveform.max.reverse().forEach((val, x) => {
+  //     //   ctx.lineTo(waveform.offset_length - x + 0.5, y(val) + 0.5);
+  //     // });
+
+  //     // ctx.fillStyle = "#df494a";
+
+  //     // ctx.closePath();
+  //     // ctx.stroke();
+  //     // ctx.fill();
+  //   });
 
   if (process.env.BROWSER) {
     return (
       <section ref={ref} className={`trackWaveForm ${className}`}>
         <div className="waveContainer">
-          <canvas id={canvasId} style={{ width: "100%", height: 150 }} />
-          {/* <Waveform
-            barWidth={2}
-            peaks={datUrl}
+          {/* <canvas id={canvasId} style={{ width: "100%", height: 150 }} /> */}
+          <Waveform
+            peaks={peaks}
+            barWidth={3}
             height={150}
-            pos={50}
-            duration={3536727601}
-            onClick={() => console.info("click")}
             color="#FFF"
-            progressGradientColors={[[1, "#888"], [1, "#aaa"]]}
-          /> */}
+            progressGradientColors={[[0, "#FFF"], [1, "#FFF"]]}
+            transitionDuration={300}
+          />
           {/** Use skeleton loader and wait for first pos change */}
           {/* <Wavesurfer
             audioFile={audioUrl}
