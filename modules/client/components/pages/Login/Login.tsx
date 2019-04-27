@@ -36,7 +36,7 @@ const Login: React.FC<LoginProps> = () => {
         ) => {
           console.log("values", { values, actions });
           // actions.setSubmitting(false);
-          authClient.login();
+          authClient.login(values);
         }}
         render={(formikBag: FormikProps<LoginFormValues>) => {
           return (

@@ -1,22 +1,17 @@
 import RestClient from "./RestClient";
 
 export default class AuthClient {
-  public restClient = null;
+  public restClient = new RestClient();
 
-  constructor() {
-    this.restClient = new RestClient();
-  }
+  constructor() {}
 
-  login() {
+  login(values) {
     try {
       return this.restClient
-        .exec("/user/authenticate")
-        .then(data => {
-          console.info(data);
-        })
-        .catch(err => {
-          // this.mixpanel
-          console.error("ERROR: ", err);
+        .execSuper("/user/authenticate", values, "POST")
+        .end((err, res) => {
+          console.info(err, res);
+          // Calling the end function will send the request
         });
     } catch (err) {
       console.error("ERROR: ", err);

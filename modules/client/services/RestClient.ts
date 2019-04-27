@@ -1,5 +1,6 @@
 // const methods = ['get', 'post', 'put', 'patch', 'del'];
 import fetch from "cross-fetch";
+import superagent from "superagent";
 
 // get endpoint in proper format
 function formatUrl(path, version = "1.0") {
@@ -53,5 +54,17 @@ export default class RestClient {
       const jsonData = data.json();
       return jsonData;
     });
+  }
+
+  execSuper(endpoint, params, method = "GET") {
+    if (method === "POST") {
+      return (
+        superagent
+          .post(formatUrl(endpoint))
+          .send(params) // sends a JSON post body
+          // .set('X-API-Key', 'foobar')
+          .set("accept", "json")
+      );
+    }
   }
 }

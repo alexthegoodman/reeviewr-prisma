@@ -1,4 +1,4 @@
-endpoint: ${env:NODE_ENV}
+endpoint: ${env:PRISMA_API}
 datamodel:
   - modules/prisma-api/datamodel.prisma
   # - datamodel2.prisma

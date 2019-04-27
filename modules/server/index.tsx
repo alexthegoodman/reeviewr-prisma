@@ -1,4 +1,3 @@
-import * as bodyParser from "body-parser";
 import * as compression from "compression";
 import * as config from "config";
 import * as express from "express";
@@ -6,8 +5,10 @@ import { formatError, GraphQLError } from "graphql";
 import { graphiqlExpress, graphqlExpress } from "graphql-server-express";
 import { sortBy } from "lodash-es";
 import * as morgan from "morgan";
-import * as passport from "passport";
 import * as db from "../db";
+import md5 from "md5";
+var passport = require("passport");
+var LocalStrategy = require("passport-local").Strategy;
 
 const Arena = require("bull-arena");
 const knex = db.getConnection();
@@ -15,6 +16,7 @@ const knexLogger = require("knex-logger");
 const enforce = require("express-sslify");
 const expressStaticGzip = require("express-static-gzip");
 const cookieSession = require("cookie-session");
+const bodyParser = require("body-parser");
 
 if (typeof window === "undefined") {
   global["window"] = {};
@@ -53,6 +55,10 @@ import {
   ApolloProvider as ApolloHooksProvider,
 } from "react-apollo-hooks";
 
+import cors from "cors";
+import { prisma } from "../../__generated__/prisma-client";
+import bcrypt from "bcrypt";
+
 var serveStatic = require("serve-static");
 var path = require("path");
 
@@ -66,20 +72,13 @@ export const enableDeveloperLogin = config.get<boolean>(
   "server.enableDeveloperLogin"
 );
 
-export function startServer() {
+export async function startServer() {
   app.use(bodyParser.json());
   app.use(
     bodyParser.urlencoded({
       extended: true,
     })
   );
-
-  // app.use(
-  //   cookieSession({
-  //     name: "session",
-  //     secret: config.get<string>("server.secret"),
-  //   })
-  // );
 
   // Logging
   app.use(morgan("short"));
@@ -94,57 +93,97 @@ export function startServer() {
     );
   }
 
-  // if (config.get("server.basicAuthPassword")) {
-  //   app.use(enforcePasswordIfSpecified(config.get("server.basicAuthPassword")));
-  // }
-
   // Gzip support
   app.use(compression());
 
-  // app.use(passport.initialize());
-  // app.use(passport.session());
+  var allowedOrigins = [
+    "http://localhost:3000",
+    "http://reeviewr.com",
+    "http://reeviewr-prisma.herokuapp.com",
+  ];
 
-  // app.use(
-  //   "/arena",
-  //   new Arena(
-  //     {
-  //       queues: [
-  //         {
-  //           name: "main",
-  //           prefix: config.get("redis.prefix"),
-  //           hostId: "redis",
-  //           redis: config.get("redis.url"),
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       // Make the arena dashboard become available at {my-site.com}/arena.
-  //       // basePath: "/arena",
+  app.use(
+    cors({
+      origin: function(origin, callback) {
+        // allow requests with no origin
+        // (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
 
-  //       // Let express handle the listening.
-  //       disableListen: true,
-  //     }
-  //   )
-  // );
+        if (allowedOrigins.indexOf(origin) === -1) {
+          var msg =
+            "The CORS policy for this site does not " +
+            "allow access from the specified Origin.";
+          return callback(new Error(msg), false);
+        }
 
-  // app.get(AuthRoutes.USER_NOT_FOUND, (req, res) => {
-  //   res.sendFile(process.cwd() + "/dist/index.html");
-  // });
+        return callback(null, true);
+      },
+    })
+  );
+
+  app.use(require("cookie-parser")());
+  app.use(bodyParser.json()); // support json encoded bodies
+  app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+  app.use(
+    require("express-session")({
+      secret: "keyboard cat",
+      resave: true,
+      saveUninitialized: true,
+    })
+  );
 
   // Static assets
   // app.use(expressStaticGzip("./dist/"));
   app.use("/public", express.static("./dist/"));
-  // app.use(
-  //   serveStatic(path.join(__dirname, "dist"), {
-  //     index: false,
-  //   })
-  // );
 
   console.info("start server");
 
-  const apiVersion = "1.0";
+  const apiVersion = "v1.0";
 
-  // console.info("building");
+  passport.use(
+    new LocalStrategy(
+      {
+        usernameField: "email", // define the parameter in req.body that passport can use as username and password
+        passwordField: "password",
+      },
+      async function(email: string, password: string, done) {
+        console.info(email, password);
+
+        let user = await prisma.user({ userEmail: email });
+
+        if (user !== null) {
+          const match = await bcrypt.compare(password, user.userPassword);
+          if (match) {
+            return done(null, true, { message: "Valid password." });
+          } else {
+            return done(null, false, { message: "Invalid password." });
+          }
+        } else {
+          return done(null, false, { message: "Invalid email." });
+        }
+      }
+    )
+  );
+
+  console.info("start get");
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+  console.info("api", `${apiVersion}${AUTHENTICATE_USER}`);
+  app.post(
+    `/${apiVersion}${AUTHENTICATE_USER}`,
+    // passport.authenticate("local"),
+    (req, res) => authenticate(req, res, passport)
+  );
+  app.post(`/${apiVersion}${CONFIRM_EMAIL}`, confirmEmail);
+  app.post(`/${apiVersion}${CREATE_USER}`, createUser);
+  app.post(`/${apiVersion}${FORGOT_PASSWORD}`, forgotPassword);
+  app.post(
+    `/${apiVersion}/${RESEND_EMAIL_CONFIRMATION}`,
+    resendEmailConfirmation
+  );
+  app.post(`/${apiVersion}/${CREATE_TRACK}`, createTrack);
 
   app.get(
     "/*",
@@ -154,6 +193,7 @@ export function startServer() {
       if (process.env.NODE_ENV !== "development") {
         prismaUri = process.env.PRISMA_API_PROD;
       }
+
       // console.info("req 2", req);
       const client = new ApolloClient({
         ssrMode: true,
@@ -169,6 +209,7 @@ export function startServer() {
         }),
         cache: new InMemoryCache(),
       });
+
       // const context = {};
       // https://frontarm.com/navi/en/reference/navigation/#creatememorynavigation
       let navigation = createMemoryNavigation({
@@ -222,21 +263,6 @@ export function startServer() {
       // res.sendFile(process.cwd() + "/dist/index.html");
     }
   );
-
-  // app.get("["", "/"]", function(req, res) {
-  //   console.info("get req");
-  //   res.send({ hello: true });
-  // });
-
-  // app.get(`/${apiVersion}${AUTHENTICATE_USER}`, authenticate);
-  // app.get(`/${apiVersion}${CONFIRM_EMAIL}`, confirmEmail);
-  // app.get(`/${apiVersion}${CREATE_USER}`, createUser);
-  // app.get(`/${apiVersion}${FORGOT_PASSWORD}`, forgotPassword);
-  // app.get(
-  //   `/${apiVersion}/${RESEND_EMAIL_CONFIRMATION}`,
-  //   resendEmailConfirmation
-  // );
-  // app.get(`/${apiVersion}/${CREATE_TRACK}`, createTrack);
 
   return app.listen(port, () => {
     console.log(
