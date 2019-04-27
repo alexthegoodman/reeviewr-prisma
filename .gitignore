@@ -97,3 +97,7 @@ junit.xml
 /modules/client/__tests__/__snapshots__/stories.test.ts.snap
 **/*.gen.ts
 **/*.gen.tsx
+
+*.mp3
+*.wav
+*.dat

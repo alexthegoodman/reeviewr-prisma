@@ -49,9 +49,11 @@ const GraphCard: React.FC<GraphCardProps> = ({
             width={windowSize.innerWidth * 0.5}
             height={500}
             xDistance={100}
+            color={"#E5E5E5"}
+            className={"graphCardBar"}
           >
-            <VerticalGridLines />
-            <HorizontalGridLines />
+            {/* <VerticalGridLines /> */}
+            {/* <HorizontalGridLines /> */}
             <XAxis />
             <YAxis />
             <VerticalBarSeries data={dataSet1} />

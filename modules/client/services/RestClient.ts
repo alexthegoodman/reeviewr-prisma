@@ -1,13 +1,15 @@
 // const methods = ['get', 'post', 'put', 'patch', 'del'];
+import fetch from "cross-fetch";
 
 // get endpoint in proper format
 function formatUrl(path, version = "1.0") {
-  const pathBase = "";
-  // if (process.env.__SERVER__) {
-  //   pathBase = "https://reeviewr-api.herokuapp.com";
-  // } else {
-  //   pathBase = "http://127.0.0.1:3030";
-  // }
+  let pathBase = "";
+
+  if (process.env.__SERVER__) {
+    pathBase = "https://reeviewr-prisma.herokuapp.com";
+  } else {
+    pathBase = "http://localhost:3001";
+  }
 
   const adjustedPath = path[0] !== "/" ? "/" + path : path;
 
@@ -17,7 +19,7 @@ function formatUrl(path, version = "1.0") {
 export default class RestClient {
   constructor() {}
 
-  get(endpoint, params, method = "GET") {
+  exec(endpoint, params, method = "GET") {
     const newHeaders = new Headers();
     newHeaders.append("Content-Type", "application/json");
 
@@ -35,13 +37,13 @@ export default class RestClient {
       fetchParams = {
         method,
         body: JSON.stringify(params),
-        headers: newHeaders
+        headers: newHeaders,
       };
     }
 
     const fullUrl = formatUrl(endpoint) + sendParams;
 
-    console.info("fetch", method, fullUrl, fetchParams);
+    console.info("FETCH ", method, fullUrl, fetchParams);
 
     return fetch(fullUrl, fetchParams).then(data => {
       if (!data.ok || data.status === 414) {

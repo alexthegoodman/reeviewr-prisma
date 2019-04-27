@@ -6,8 +6,11 @@ import { Formik, Form, FormikActions, FormikProps } from "formik";
 import * as Yup from "yup";
 
 import TextField from "../../ui/TextField/TextField";
+import AuthClient from "../../../services/AuthClient";
 
 const Login: React.FC<LoginProps> = () => {
+  const authClient = new AuthClient();
+
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
       .min(4, "Too Short!")
@@ -31,11 +34,11 @@ const Login: React.FC<LoginProps> = () => {
           values: LoginFormValues,
           actions: FormikActions<LoginFormValues>
         ) => {
-          console.log({ values, actions });
+          console.log("values", { values, actions });
           // actions.setSubmitting(false);
+          authClient.login();
         }}
         render={(formikBag: FormikProps<LoginFormValues>) => {
-          console.info(formikBag);
           return (
             <Form>
               <TextField

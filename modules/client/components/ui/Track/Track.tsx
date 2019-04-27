@@ -47,13 +47,13 @@ const Track: React.FC<TrackProps> = ({
             artistName={artistName}
             onTrackClick={navigateToTrack}
           />
-          <TrackWaveForm audioUrl={audioUrl} />
+          {/* <TrackWaveForm audioUrl={audioUrl} imageUrl={imageUrl} /> */}
           {/* <div className="reviewContainer">{children}</div> */}
+          <div className="prependChildren">{prependChildren}</div>
+          <div className="reviewContainer">{children}</div>
         </div>
       </div>
       <div className="trackActions">
-        <div className="prependChildren">{prependChildren}</div>
-        <div className="reviewContainer">{children}</div>
         <div className="actionContainer">
           <Button
             minimal={true}

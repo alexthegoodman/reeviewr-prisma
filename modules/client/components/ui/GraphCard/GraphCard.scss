@@ -1,3 +1,9 @@
 .graphCard {
   @extend .card;
 }
+
+.graphCardBar {
+  line {
+    stroke: #7c7c7c;
+  }
+}

@@ -16,7 +16,9 @@ const enforce = require("express-sslify");
 const expressStaticGzip = require("express-static-gzip");
 const cookieSession = require("cookie-session");
 
-global["window"] = {};
+if (typeof window === "undefined") {
+  global["window"] = {};
+}
 
 // import fetch from "node-fetch";
 import fetch from "cross-fetch";

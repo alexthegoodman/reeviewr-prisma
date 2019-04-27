@@ -25,3 +25,14 @@ ARG tag
 FROM prismagraphql/prisma:$tag
 # COPY ./bash/prerun_hook.sh /app/prerun_hook.sh
 CMD /app/start.sh
+
+
+# brew install cmake
+# brew install libsoundio
+# brew install libebur128
+# brew install chromaprint
+# brew install ffmpeg @ 3.4
+#
+#
+#
+#

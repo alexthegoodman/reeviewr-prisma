@@ -81,6 +81,8 @@ module.exports = {
     warningsFilter: /export .* was not found in/,
   },
 
+  target: "node",
+
   plugins: [
     new webpack.BannerPlugin({
       banner: 'require("source-map-support").install();',
