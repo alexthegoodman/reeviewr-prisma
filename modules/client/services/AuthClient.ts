@@ -5,26 +5,38 @@ export default class AuthClient {
 
   constructor() {}
 
-  login(values) {
+  makeRequest(endpoint, values, callback) {
     try {
-      return this.restClient
-        .execSuper("/user/authenticate", values, "POST")
-        .end((err, res) => {
-          console.info(err, res);
-          // Calling the end function will send the request
-        });
+      this.restClient.execSuper(endpoint, values, "POST").end((err, res) => {
+        console.info(err, res);
+        callback();
+      });
     } catch (err) {
-      console.error("ERROR: ", err);
+      console.error("ERROR 1001: ", err);
     }
   }
 
-  logout() {}
+  signup(values, callback) {
+    this.makeRequest("/user/create-user", values, callback);
+  }
 
-  signup() {}
+  resetPassword(values, callback) {
+    this.makeRequest("/user/reset-password", values, callback);
+  }
 
-  resetPassword() {}
+  resendEmailConfirmation(values, callback) {
+    this.makeRequest("/user/resend-email-confirmation", values, callback);
+  }
 
-  resendEmailConfirmation() {}
+  forgotPassword(values, callback) {
+    this.makeRequest("/user/forogt-password", values, callback);
+  }
 
-  forgotPassword() {}
+  login(values, callback) {
+    this.makeRequest("/user/authenticate", values, callback);
+  }
+
+  logout() {
+    // remove cookie and load home
+  }
 }

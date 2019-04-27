@@ -11,6 +11,8 @@ import Login from "../components/pages/Login/Login";
 import SignUp from "../components/pages/SignUp/SignUp";
 import AuthNav from "../components/layout/AuthNav/AuthNav";
 import AppNav from "../components/layout/AppNav/AppNav";
+import ForgotPassword from "../components/pages/ForgotPassword/ForgotPassword";
+import ResetPassword from "../components/pages/ResetPassword/ResetPassword";
 
 const routes = mount({
   "/login": route(req => {
@@ -29,6 +31,26 @@ const routes = mount({
       view: (
         <AuthNav>
           <SignUp />
+        </AuthNav>
+      ),
+    };
+  }),
+  "/forgot-password": route(req => {
+    return {
+      title: "Forgot Password / Reeviewr",
+      view: (
+        <AuthNav>
+          <ForgotPassword />
+        </AuthNav>
+      ),
+    };
+  }),
+  "/reset-password": route(req => {
+    return {
+      title: "Reset Password / Reeviewr",
+      view: (
+        <AuthNav>
+          <ResetPassword />
         </AuthNav>
       ),
     };

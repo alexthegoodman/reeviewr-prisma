@@ -1,24 +1,22 @@
 import * as React from "react";
 
-import { LoginProps, LoginFormValues } from "./Login.d";
+import { ResetPasswordProps, ResetPasswordValues } from "./ResetPassword.d";
 import { Text, Button, FormGroup, InputGroup, Card } from "@blueprintjs/core";
 import { Formik, Form, FormikActions, FormikProps } from "formik";
 import * as Yup from "yup";
 
 import TextField from "../../ui/TextField/TextField";
 import AuthClient from "../../../services/AuthClient";
-import { Link } from "react-navi";
 
-const Login: React.FC<LoginProps> = () => {
+const ResetPassword: React.FC<ResetPasswordProps> = () => {
   const authClient = new AuthClient();
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string()
+    password: Yup.string()
       .min(4, "Too Short!")
       .max(100, "Too Long!")
-      .email("Invalid email")
       .required("Required"),
-    password: Yup.string()
+    passwordConfirm: Yup.string()
       .min(4, "Too Short!")
       .max(100, "Too Long!")
       .required("Required"),
@@ -26,40 +24,39 @@ const Login: React.FC<LoginProps> = () => {
 
   return (
     <Card className="floatingForm">
-      <Text tagName="h1">Login</Text>
+      <Text tagName="h1">Reset Password</Text>
+      <Text tagName="p">You may reset your password below.</Text>
 
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ password: "", passwordConfirm: "" }}
         validationSchema={LoginSchema}
         onSubmit={(
-          values: LoginFormValues,
-          actions: FormikActions<LoginFormValues>
+          values: ResetPasswordValues,
+          actions: FormikActions<ResetPasswordValues>
         ) => {
           console.log("values", { values, actions });
-          authClient.login(values, () => {
+          authClient.forgotPassword(values, () => {
             actions.setSubmitting(false);
-            // redirect to home with new cookie
           });
         }}
-        render={(formikBag: FormikProps<LoginFormValues>) => {
+        render={(formikBag: FormikProps<ResetPasswordValues>) => {
           return (
             <Form>
-              <TextField
-                label="Email"
-                fieldName="email"
-                fieldPlaceholder="Enter your email address"
-                fieldType="email"
-              />
               <TextField
                 label="Password"
                 fieldName="password"
                 fieldPlaceholder="Enter your password"
                 fieldType="password"
               />
+              <TextField
+                label="Password Confirm"
+                fieldName="passwordConfirm"
+                fieldPlaceholder="Enter your password again"
+                fieldType="password"
+              />
               <Button type="submit" disabled={formikBag.isSubmitting}>
-                Login
+                Reset Password
               </Button>
-              <Link href="/forgot-password">Forgot Password?</Link>
             </Form>
           );
         }}
@@ -68,4 +65,4 @@ const Login: React.FC<LoginProps> = () => {
   );
 };
 
-export default Login;
+export default ResetPassword;

@@ -1,15 +1,14 @@
 import * as React from "react";
 
-import { LoginProps, LoginFormValues } from "./Login.d";
+import { ForgotPasswordProps, ForgotPasswordValues } from "./ForgotPassword.d";
 import { Text, Button, FormGroup, InputGroup, Card } from "@blueprintjs/core";
 import { Formik, Form, FormikActions, FormikProps } from "formik";
 import * as Yup from "yup";
 
 import TextField from "../../ui/TextField/TextField";
 import AuthClient from "../../../services/AuthClient";
-import { Link } from "react-navi";
 
-const Login: React.FC<LoginProps> = () => {
+const ForgotPassword: React.FC<ForgotPasswordProps> = () => {
   const authClient = new AuthClient();
 
   const LoginSchema = Yup.object().shape({
@@ -18,30 +17,29 @@ const Login: React.FC<LoginProps> = () => {
       .max(100, "Too Long!")
       .email("Invalid email")
       .required("Required"),
-    password: Yup.string()
-      .min(4, "Too Short!")
-      .max(100, "Too Long!")
-      .required("Required"),
   });
 
   return (
     <Card className="floatingForm">
-      <Text tagName="h1">Login</Text>
+      <Text tagName="h1">Forgot Password</Text>
+      <Text tagName="p">
+        Enter your email below to recieve an email containing instructions to
+        reset your password.
+      </Text>
 
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ email: "" }}
         validationSchema={LoginSchema}
         onSubmit={(
-          values: LoginFormValues,
-          actions: FormikActions<LoginFormValues>
+          values: ForgotPasswordValues,
+          actions: FormikActions<ForgotPasswordValues>
         ) => {
           console.log("values", { values, actions });
-          authClient.login(values, () => {
+          authClient.forgotPassword(values, () => {
             actions.setSubmitting(false);
-            // redirect to home with new cookie
           });
         }}
-        render={(formikBag: FormikProps<LoginFormValues>) => {
+        render={(formikBag: FormikProps<ForgotPasswordValues>) => {
           return (
             <Form>
               <TextField
@@ -50,16 +48,9 @@ const Login: React.FC<LoginProps> = () => {
                 fieldPlaceholder="Enter your email address"
                 fieldType="email"
               />
-              <TextField
-                label="Password"
-                fieldName="password"
-                fieldPlaceholder="Enter your password"
-                fieldType="password"
-              />
               <Button type="submit" disabled={formikBag.isSubmitting}>
-                Login
+                Submit
               </Button>
-              <Link href="/forgot-password">Forgot Password?</Link>
             </Form>
           );
         }}
@@ -68,4 +59,4 @@ const Login: React.FC<LoginProps> = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
