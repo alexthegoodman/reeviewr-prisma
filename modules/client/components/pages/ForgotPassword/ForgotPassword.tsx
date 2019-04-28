@@ -1,15 +1,27 @@
 import * as React from "react";
 
 import { ForgotPasswordProps, ForgotPasswordValues } from "./ForgotPassword.d";
-import { Text, Button, FormGroup, InputGroup, Card } from "@blueprintjs/core";
+import {
+  Text,
+  Button,
+  FormGroup,
+  InputGroup,
+  Card,
+  Alert,
+  Callout,
+} from "@blueprintjs/core";
 import { Formik, Form, FormikActions, FormikProps } from "formik";
 import * as Yup from "yup";
 
 import TextField from "../../ui/TextField/TextField";
 import AuthClient from "../../../services/AuthClient";
+import { ERROR_CODE } from "../../../../services/ERROR_CODE";
 
 const ForgotPassword: React.FC<ForgotPasswordProps> = () => {
   const authClient = new AuthClient();
+
+  const [cannotFindEmail, setCannotFindEmail] = React.useState(false);
+  const [emailSent, setEmailSent] = React.useState(false);
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -27,6 +39,22 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = () => {
         reset your password.
       </Text>
 
+      {cannotFindEmail ? (
+        <Callout title="Attention" intent="danger">
+          Cannot find email. Try signing up instead!
+        </Callout>
+      ) : (
+        <></>
+      )}
+
+      {emailSent ? (
+        <Callout title="Attention" intent="success">
+          An email has been sent to you to reset your password!
+        </Callout>
+      ) : (
+        <></>
+      )}
+
       <Formik
         initialValues={{ email: "" }}
         validationSchema={LoginSchema}
@@ -35,8 +63,25 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = () => {
           actions: FormikActions<ForgotPasswordValues>
         ) => {
           console.log("values", { values, actions });
-          authClient.forgotPassword(values, () => {
+          authClient.forgotPassword(values, (err, res) => {
+            if (err) {
+              console.info("here 1");
+              if (res.body.errorMessage === ERROR_CODE.C001) {
+                console.info("hero");
+                setCannotFindEmail(true);
+              } else {
+                setCannotFindEmail(false);
+              }
+              // if (res.body.errorMessage === ERROR_CODE.C002) {
+              // }
+            }
+            if (res.body.success) {
+              setEmailSent(true);
+            } else {
+              setEmailSent(false);
+            }
             actions.setSubmitting(false);
+            actions.resetForm();
           });
         }}
         render={(formikBag: FormikProps<ForgotPasswordValues>) => {

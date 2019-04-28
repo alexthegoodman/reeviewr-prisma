@@ -36,7 +36,7 @@ const Login: React.FC<LoginProps> = () => {
           actions: FormikActions<LoginFormValues>
         ) => {
           console.log("values", { values, actions });
-          authClient.login(values, () => {
+          authClient.login(values, (err, res) => {
             actions.setSubmitting(false);
             // redirect to home with new cookie
           });

@@ -8,8 +8,10 @@ export default class AuthClient {
   makeRequest(endpoint, values, callback) {
     try {
       this.restClient.execSuper(endpoint, values, "POST").end((err, res) => {
-        console.info(err, res);
-        callback();
+        if (err) {
+          console.error(err, res.body.errorMessage);
+        }
+        callback(err, res);
       });
     } catch (err) {
       console.error("ERROR 1001: ", err);
@@ -29,7 +31,7 @@ export default class AuthClient {
   }
 
   forgotPassword(values, callback) {
-    this.makeRequest("/user/forogt-password", values, callback);
+    this.makeRequest("/user/forgot-password", values, callback);
   }
 
   login(values, callback) {

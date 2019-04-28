@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { ReviewCardDataProps } from "./ReviewCardData.d";
 import ReviewCard from "../../ui/ReviewCard/ReviewCard";
-import Legacy from "../../../services/Legacy";
+import Legacy from "../../../../services/Legacy";
 import Strings from "../../../services/Strings";
 import { FILE_QUERY } from "../../../graphql/queries/userTrack";
 import { useQuery } from "react-apollo-hooks";

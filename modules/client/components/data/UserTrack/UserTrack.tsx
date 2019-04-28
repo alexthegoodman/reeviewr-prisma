@@ -6,7 +6,7 @@ import { FILE_QUERY } from "../../../graphql/queries/userTrack";
 import Track from "../../ui/Track/Track";
 import ReviewCard from "../../ui/ReviewCard/ReviewCard";
 import Strings from "../../../services/Strings";
-import Legacy from "../../../services/Legacy";
+import Legacy from "../../../../services/Legacy";
 import ReviewCardData from "../ReviewCardData/ReviewCardData";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 import { ImageSizes } from "../../../../defs/imageSizes";

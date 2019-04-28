@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { ArtistCardDataProps } from "./ArtistCardData.d";
 import ArtistCard from "../../ui/ArtistCard/ArtistCard";
-import Legacy from "../../../services/Legacy";
+import Legacy from "../../../../services/Legacy";
 import { ImageSizes } from "../../../../defs/imageSizes";
 
 const ArtistCardData: React.FC<ArtistCardDataProps> = ({

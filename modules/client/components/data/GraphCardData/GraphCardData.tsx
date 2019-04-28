@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { GraphCardDataProps } from "./GraphCardData.d";
 import GraphCard from "../../ui/GraphCard/GraphCard";
-import Legacy from "../../../services/Legacy";
+import Legacy from "../../../../services/Legacy";
 import Strings from "../../../services/Strings";
 
 const GraphCardData: React.FC<GraphCardDataProps> = ({

@@ -6,7 +6,7 @@ import { USER_TRACK_QUERY } from "../../../graphql/queries/userTrack";
 import { useQuery } from "react-apollo-hooks";
 import UserTrack from "../../data/UserTrack/UserTrack";
 import GraphCardData from "../../data/GraphCardData/GraphCardData";
-import Legacy from "../../../services/Legacy";
+import Legacy from "../../../../services/Legacy";
 import { Text } from "@blueprintjs/core";
 import Strings from "../../../services/Strings";
 

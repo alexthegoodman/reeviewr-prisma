@@ -1,4 +1,4 @@
-import Strings from "./Strings";
+import Strings from "../client/services/Strings";
 
 export default class Legacy {
   public strings;

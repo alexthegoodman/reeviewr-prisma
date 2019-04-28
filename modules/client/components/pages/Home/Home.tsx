@@ -8,7 +8,7 @@ import { USER_TRACKS_QUERY } from "../../../graphql/queries/userTrack";
 import UserTrack from "../../data/UserTrack/UserTrack";
 
 import HorizontalScroll from "react-scroll-horizontal";
-import Legacy from "../../../services/Legacy";
+import Legacy from "../../../../services/Legacy";
 import ArtistCardData from "../../data/ArtistCardData/ArtistCardData";
 
 const Home: React.FC<HomeProps> = () => {

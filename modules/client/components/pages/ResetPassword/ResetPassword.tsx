@@ -7,9 +7,18 @@ import * as Yup from "yup";
 
 import TextField from "../../ui/TextField/TextField";
 import AuthClient from "../../../services/AuthClient";
+import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
+import Utility from "../../../../services/Utility";
 
 const ResetPassword: React.FC<ResetPasswordProps> = () => {
   const authClient = new AuthClient();
+  const utilityService = new Utility();
+
+  let route = useCurrentRoute();
+  let loadingRoute = useLoadingRoute();
+  let navigation = useNavigation();
+
+  const { forgotHash } = route.lastChunk.request.params;
 
   const LoginSchema = Yup.object().shape({
     password: Yup.string()
@@ -22,47 +31,59 @@ const ResetPassword: React.FC<ResetPasswordProps> = () => {
       .required("Required"),
   });
 
-  return (
-    <Card className="floatingForm">
-      <Text tagName="h1">Reset Password</Text>
-      <Text tagName="p">You may reset your password below.</Text>
+  if (utilityService.isDefinedWithContent(forgotHash)) {
+    return (
+      <Card className="floatingForm">
+        <Text tagName="h1">Reset Password</Text>
+        <Text tagName="p">You may reset your password below.</Text>
 
-      <Formik
-        initialValues={{ password: "", passwordConfirm: "" }}
-        validationSchema={LoginSchema}
-        onSubmit={(
-          values: ResetPasswordValues,
-          actions: FormikActions<ResetPasswordValues>
-        ) => {
-          console.log("values", { values, actions });
-          authClient.forgotPassword(values, () => {
-            actions.setSubmitting(false);
-          });
-        }}
-        render={(formikBag: FormikProps<ResetPasswordValues>) => {
-          return (
-            <Form>
-              <TextField
-                label="Password"
-                fieldName="password"
-                fieldPlaceholder="Enter your password"
-                fieldType="password"
-              />
-              <TextField
-                label="Password Confirm"
-                fieldName="passwordConfirm"
-                fieldPlaceholder="Enter your password again"
-                fieldType="password"
-              />
-              <Button type="submit" disabled={formikBag.isSubmitting}>
-                Reset Password
-              </Button>
-            </Form>
-          );
-        }}
-      />
-    </Card>
-  );
+        <Formik
+          initialValues={{ password: "", passwordConfirm: "" }}
+          validationSchema={LoginSchema}
+          onSubmit={(
+            values: ResetPasswordValues,
+            actions: FormikActions<ResetPasswordValues>
+          ) => {
+            console.log("values", { values, actions });
+            authClient.forgotPassword(values, () => {
+              actions.setSubmitting(false);
+            });
+          }}
+          render={(formikBag: FormikProps<ResetPasswordValues>) => {
+            return (
+              <Form>
+                <TextField
+                  label="Password"
+                  fieldName="password"
+                  fieldPlaceholder="Enter your password"
+                  fieldType="password"
+                />
+                <TextField
+                  label="Password Confirm"
+                  fieldName="passwordConfirm"
+                  fieldPlaceholder="Enter your password again"
+                  fieldType="password"
+                />
+                <Button type="submit" disabled={formikBag.isSubmitting}>
+                  Reset Password
+                </Button>
+              </Form>
+            );
+          }}
+        />
+      </Card>
+    );
+  } else {
+    return (
+      <Card className="floatingForm">
+        <Text tagName="h1">Reset Password</Text>
+        <Text tagName="p">
+          You may not reset a password unless you use a special URL provided
+          only when you request it via Forgot Password.
+        </Text>
+      </Card>
+    );
+  }
 };
 
 export default ResetPassword;
