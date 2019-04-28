@@ -44,4 +44,10 @@ export default class Strings {
     );
     return str;
   }
+
+  convertToSlug(Text) {
+    return Text.toLowerCase()
+      .replace(/[^\w ]+/g, "")
+      .replace(/ +/g, "-");
+  }
 }

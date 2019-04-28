@@ -60,6 +60,7 @@ import cors from "cors";
 import { prisma } from "../../__generated__/prisma-client";
 import bcrypt from "bcrypt";
 import { resetPassword } from "./user/reset-password";
+import Utility from "../services/Utility";
 
 var serveStatic = require("serve-static");
 var path = require("path");
@@ -142,6 +143,8 @@ export async function startServer() {
 
   const apiVersion = "v1.0";
 
+  const utility = new Utility();
+
   passport.use(
     new LocalStrategy(
       {
@@ -153,10 +156,10 @@ export async function startServer() {
 
         let user = await prisma.user({ userEmail: email });
 
-        if (user !== null) {
+        if (utility.isDefinedWithContent(user)) {
           const match = await bcrypt.compare(password, user.userPassword);
           if (match) {
-            return done(null, true, { message: "Valid password." });
+            return done(null, user, { message: "Valid password." });
           } else {
             return done(null, false, { message: "Invalid password." });
           }

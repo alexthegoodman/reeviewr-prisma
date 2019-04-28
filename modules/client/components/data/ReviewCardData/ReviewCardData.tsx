@@ -7,6 +7,7 @@ import Strings from "../../../services/Strings";
 import { FILE_QUERY } from "../../../graphql/queries/userTrack";
 import { useQuery } from "react-apollo-hooks";
 import { ImageSizes } from "../../../../defs/imageSizes";
+import { Dialog } from "@blueprintjs/core";
 
 const ReviewCardData: React.FC<ReviewCardDataProps> = ({
   ref = null,
@@ -18,6 +19,8 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
 }) => {
   const legacy = new Legacy();
   const strings = new Strings();
+
+  const [modelOpen, setModelOpen] = React.useState(false);
 
   if (trackImageUrl === "") {
     const track = review.userTrack;
@@ -65,18 +68,30 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
 
   // console.info("review", review.id);
   return (
-    <ReviewCard
-      artistTitle={
-        reviewUserArtistName !== ""
-          ? reviewUserArtistName
-          : `${reviewFirstName} ${reviewLastName}`
-      }
-      answerPreview={answerPreview}
-      reviewerImageUrl={reviewerImageUrl}
-      reviewerAltText={reviewerAltText}
-      trackImageUrl={trackImageUrl}
-      trackAltText={trackAltText}
-    />
+    <>
+      <ReviewCard
+        artistTitle={
+          reviewUserArtistName !== ""
+            ? reviewUserArtistName
+            : `${reviewFirstName} ${reviewLastName}`
+        }
+        answerPreview={answerPreview}
+        reviewerImageUrl={reviewerImageUrl}
+        reviewerAltText={reviewerAltText}
+        trackImageUrl={trackImageUrl}
+        trackAltText={trackAltText}
+        onClick={() => setModelOpen(true)}
+      />
+      <Dialog
+        isOpen={modelOpen}
+        title={"Review Detail"}
+        canEscapeKeyClose={true}
+        canOutsideClickClose={true}
+        onClose={() => setModelOpen(false)}
+      >
+        <h1>{reviewUserArtistName}</h1>
+      </Dialog>
+    </>
   );
 };
 

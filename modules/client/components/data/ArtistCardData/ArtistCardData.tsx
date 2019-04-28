@@ -4,6 +4,9 @@ import { ArtistCardDataProps } from "./ArtistCardData.d";
 import ArtistCard from "../../ui/ArtistCard/ArtistCard";
 import Legacy from "../../../../services/Legacy";
 import { ImageSizes } from "../../../../defs/imageSizes";
+import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
+import urlencode from "urlencode";
+import Strings from "../../../services/Strings";
 
 const ArtistCardData: React.FC<ArtistCardDataProps> = ({
   ref = null,
@@ -12,6 +15,11 @@ const ArtistCardData: React.FC<ArtistCardDataProps> = ({
   user,
 }) => {
   const legacy = new Legacy();
+  const strings = new Strings();
+
+  let route = useCurrentRoute();
+  let loadingRoute = useLoadingRoute();
+  let navigation = useNavigation();
 
   const clickHandler = e => onClick(e);
 
@@ -45,7 +53,11 @@ const ArtistCardData: React.FC<ArtistCardDataProps> = ({
       }
       reviewCount={reviewCount}
       trackCount={trackCount}
-      onClick={() => console.info("onClick")}
+      onClick={() =>
+        navigation.navigate(
+          `/artists/${user.id}/${strings.convertToSlug(userArtistName)}`
+        )
+      }
     />
   );
 };

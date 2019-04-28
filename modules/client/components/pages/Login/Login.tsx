@@ -1,16 +1,28 @@
 import * as React from "react";
 
 import { LoginProps, LoginFormValues } from "./Login.d";
-import { Text, Button, FormGroup, InputGroup, Card } from "@blueprintjs/core";
+import {
+  Text,
+  Button,
+  FormGroup,
+  InputGroup,
+  Card,
+  Callout,
+} from "@blueprintjs/core";
 import { Formik, Form, FormikActions, FormikProps } from "formik";
 import * as Yup from "yup";
 
 import TextField from "../../ui/TextField/TextField";
 import AuthClient from "../../../services/AuthClient";
 import { Link } from "react-navi";
+import { ERROR_CODE } from "../../../../services/ERROR_CODE";
 
 const Login: React.FC<LoginProps> = () => {
   const authClient = new AuthClient();
+
+  const [userDoesNotExist, setUserDoesNotExist] = React.useState(false);
+  const [notValidType, setNotValidType] = React.useState(false);
+  const [emailNotConfirmed, setEmailNotConfirmed] = React.useState(false);
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -28,6 +40,30 @@ const Login: React.FC<LoginProps> = () => {
     <Card className="floatingForm">
       <Text tagName="h1">Login</Text>
 
+      {notValidType ? (
+        <Callout title="Attention" intent="danger">
+          Your user is not a valid type. Please contact support.
+        </Callout>
+      ) : (
+        <></>
+      )}
+
+      {emailNotConfirmed ? (
+        <Callout title="Attention" intent="danger">
+          Your email has yet to be confirmed. Please check your email!
+        </Callout>
+      ) : (
+        <></>
+      )}
+
+      {userDoesNotExist ? (
+        <Callout title="Attention" intent="warning">
+          Please try another email and password combination.
+        </Callout>
+      ) : (
+        <></>
+      )}
+
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={LoginSchema}
@@ -37,8 +73,28 @@ const Login: React.FC<LoginProps> = () => {
         ) => {
           console.log("values", { values, actions });
           authClient.login(values, (err, res) => {
-            actions.setSubmitting(false);
-            // redirect to home with new cookie
+            if (err) {
+              if (res.body.errorMessage === ERROR_CODE.C003) {
+                setUserDoesNotExist(true);
+              } else {
+                setUserDoesNotExist(false);
+              }
+              if (res.body.errorMessage === ERROR_CODE.C006) {
+                setNotValidType(true);
+              } else {
+                setNotValidType(false);
+              }
+              if (res.body.errorMessage === ERROR_CODE.C007) {
+                setEmailNotConfirmed(true);
+              } else {
+                setEmailNotConfirmed(false);
+              }
+            }
+            if (res.body.success) {
+              // redirect to Home
+              console.info("redirect home");
+            }
+            actions.resetForm();
           });
         }}
         render={(formikBag: FormikProps<LoginFormValues>) => {

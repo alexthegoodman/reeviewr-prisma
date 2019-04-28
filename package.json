@@ -260,6 +260,7 @@
     "typescript": "3.4.3",
     "typescript-tslint-plugin": "0.3.1",
     "url-loader": "1.1",
+    "urlencode": "^1.1.0",
     "uuid": "^3.3.2",
     "waveform-data": "^2.1.2",
     "wavesurfer.js": "1",

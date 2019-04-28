@@ -15,7 +15,7 @@ import { useAppContext } from "../../../context";
 import Header from "../../ui/Header/Header";
 import Sidebar from "../../ui/Sidebar/Sidebar";
 import MenuItem from "../../ui/MenuItem/MenuItem";
-import { Menu, Button } from "@blueprintjs/core";
+import { Menu, Button, Popover, Position } from "@blueprintjs/core";
 import ProfileItem from "../../ui/ProfileItem/ProfileItem";
 import BeyondSearch from "../../ui/BeyondSearch/BeyondSearch";
 import App from "../App/App";
@@ -72,23 +72,48 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
         }
         rightElements={
           <>
-            <Button className="textButton headerItem" minimal={true}>
+            <Button
+              className="textButton headerItem"
+              minimal={true}
+              onClick={() => console.info("start tour")}
+            >
               How it Works
-            </Button>
-            <Button className="textButton headerItem" minimal={true}>
-              Log In
-            </Button>
-            <Button className="textButton headerItem" minimal={true}>
-              Sign Up
             </Button>
             <Button
               className="textButton headerItem"
               minimal={true}
-              rightIcon="caret-down"
+              onClick={() => navigation.navigate("/login")}
             >
-              More
-              {/** Terms, Blog, Social Media, About Us / Story, Contact Us, etc */}
+              Log In
             </Button>
+            <Button
+              className="textButton headerItem"
+              minimal={true}
+              onClick={() => navigation.navigate("/sign-up")}
+            >
+              Sign Up
+            </Button>
+            <Popover
+              content={
+                <Menu className="dropdown">
+                  <MenuItem>Terms</MenuItem>
+                  <MenuItem>About Reeviewr</MenuItem>
+                  <MenuItem>Help</MenuItem>
+                  <MenuItem>Facebook</MenuItem>
+                  <MenuItem>Twitter</MenuItem>
+                </Menu>
+              }
+              position={Position.BOTTOM_LEFT}
+            >
+              <Button
+                className="textButton headerItem"
+                minimal={true}
+                rightIcon="caret-down"
+              >
+                More
+                {/** Terms, Blog, Social Media, About Us / Story, Contact Us, etc */}
+              </Button>
+            </Popover>
           </>
         }
       />

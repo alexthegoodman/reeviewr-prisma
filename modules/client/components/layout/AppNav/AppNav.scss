@@ -10,3 +10,24 @@
 
 .sidebarMenu {
 }
+
+.bp3-popover .bp3-popover-content .bp3-menu {
+  background: $dark-gray3;
+}
+
+.bp3-popover .bp3-popover-arrow-fill {
+  fill: $dark-gray3;
+}
+
+.dropdown {
+  li {
+    .menuItem {
+      padding: 10px 30px;
+
+      & > .bp3-fill {
+        font-size: 1rem;
+        font-weight: 300;
+      }
+    }
+  }
+}
