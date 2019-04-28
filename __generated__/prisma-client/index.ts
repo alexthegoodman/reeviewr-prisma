@@ -3298,6 +3298,10 @@ export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
   oldId?: ID_Input;
   userEmail?: String;
+  publicHash?: String;
+  privateHash?: String;
+  confirmHash?: String;
+  forgotHash?: String;
 }>;
 
 export interface ProfilePageMetaScalarWhereInput {

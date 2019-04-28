@@ -9,7 +9,10 @@ export default class AuthClient {
     try {
       this.restClient.execSuper(endpoint, values, "POST").end((err, res) => {
         if (err) {
-          console.error(err, res.body.errorMessage);
+          console.error(err);
+          if (res.body !== null) {
+            console.error(res.body.errorMessage);
+          }
         }
         callback(err, res);
       });

@@ -11,7 +11,7 @@ export default class EmailService {
     templateContent: object[]
   ) {
     try {
-      mandrill(
+      return mandrill(
         "/messages/send-template",
         {
           message: {

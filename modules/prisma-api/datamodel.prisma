@@ -4,10 +4,10 @@ type User {
   userType: Int
   userEmail: String @unique
   userPassword: String
-  publicHash: String
-  privateHash: String
-  confirmHash: String
-  forgotHash: String
+  publicHash: String @unique
+  privateHash: String @unique
+  confirmHash: String @unique
+  forgotHash: String @unique
   userConfirmed: Int
   userDeleted: Boolean @default(value: "false")
   userMeta: [UserMeta!]!

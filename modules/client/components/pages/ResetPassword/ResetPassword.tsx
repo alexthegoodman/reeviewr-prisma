@@ -1,7 +1,14 @@
 import * as React from "react";
 
 import { ResetPasswordProps, ResetPasswordValues } from "./ResetPassword.d";
-import { Text, Button, FormGroup, InputGroup, Card } from "@blueprintjs/core";
+import {
+  Text,
+  Button,
+  FormGroup,
+  InputGroup,
+  Card,
+  Callout,
+} from "@blueprintjs/core";
 import { Formik, Form, FormikActions, FormikProps } from "formik";
 import * as Yup from "yup";
 
@@ -20,15 +27,16 @@ const ResetPassword: React.FC<ResetPasswordProps> = () => {
 
   const { forgotHash } = route.lastChunk.request.params;
 
-  const LoginSchema = Yup.object().shape({
+  const [passwordReset, setPasswordReset] = React.useState(false);
+
+  const ResetPasswordSchema = Yup.object().shape({
     password: Yup.string()
       .min(4, "Too Short!")
       .max(100, "Too Long!")
       .required("Required"),
     passwordConfirm: Yup.string()
-      .min(4, "Too Short!")
-      .max(100, "Too Long!")
-      .required("Required"),
+      .required("Required")
+      .oneOf([Yup.ref("password"), null], "Passwords must match"),
   });
 
   if (utilityService.isDefinedWithContent(forgotHash)) {
@@ -37,16 +45,34 @@ const ResetPassword: React.FC<ResetPasswordProps> = () => {
         <Text tagName="h1">Reset Password</Text>
         <Text tagName="p">You may reset your password below.</Text>
 
+        {passwordReset ? (
+          <Callout title="Attention" intent="success">
+            Your password has been reset! Try logging in with your new password.
+          </Callout>
+        ) : (
+          <></>
+        )}
+
         <Formik
           initialValues={{ password: "", passwordConfirm: "" }}
-          validationSchema={LoginSchema}
+          validationSchema={ResetPasswordSchema}
           onSubmit={(
             values: ResetPasswordValues,
             actions: FormikActions<ResetPasswordValues>
           ) => {
             console.log("values", { values, actions });
-            authClient.forgotPassword(values, () => {
+            authClient.resetPassword({ ...values, forgotHash }, (err, res) => {
+              if (err) {
+                // if (res.body.errorMessage === ERROR_CODE.C002) {
+                // }
+              }
+              if (res.body.success) {
+                setPasswordReset(true);
+              } else {
+                setPasswordReset(false);
+              }
               actions.setSubmitting(false);
+              actions.resetForm();
             });
           }}
           render={(formikBag: FormikProps<ResetPasswordValues>) => {

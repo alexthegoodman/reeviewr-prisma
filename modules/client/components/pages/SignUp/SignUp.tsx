@@ -37,10 +37,9 @@ const SignUp: React.FC<SignUpProps> = () => {
       .min(4, "Too Short!")
       .max(100, "Too Long!")
       .required("Required"),
-    confirmPassword: Yup.string().oneOf(
-      [Yup.ref("password"), null],
-      "Passwords must match"
-    ),
+    confirmPassword: Yup.string()
+      .required("Required")
+      .oneOf([Yup.ref("password"), null], "Passwords must match"),
     artistName: Yup.string()
       .min(4, "Too Short!")
       .max(100, "Too Long!")

@@ -43,6 +43,7 @@ import {
   FORGOT_PASSWORD,
   RESEND_EMAIL_CONFIRMATION,
   CREATE_TRACK,
+  RESET_PASSWORD,
 } from "./routes";
 import { authenticate } from "./user/authenticate";
 import { confirmEmail } from "./user/confirm-email";
@@ -58,6 +59,7 @@ import {
 import cors from "cors";
 import { prisma } from "../../__generated__/prisma-client";
 import bcrypt from "bcrypt";
+import { resetPassword } from "./user/reset-password";
 
 var serveStatic = require("serve-static");
 var path = require("path");
@@ -179,6 +181,7 @@ export async function startServer() {
   app.post(`/${apiVersion}${CONFIRM_EMAIL}`, confirmEmail);
   app.post(`/${apiVersion}${CREATE_USER}`, createUser);
   app.post(`/${apiVersion}${FORGOT_PASSWORD}`, forgotPassword);
+  app.post(`/${apiVersion}${RESET_PASSWORD}`, resetPassword);
   app.post(
     `/${apiVersion}/${RESEND_EMAIL_CONFIRMATION}`,
     resendEmailConfirmation

@@ -27,6 +27,8 @@ export const forgotPassword = async (req, res) => {
         const userMeta = await prisma.userMeta({ oldId: user.oldId });
         // const firstName = legacy.extractMetaValue(userMeta, "firstName");
         let buttonText = "Click to Reset";
+
+        // TODO: send client-side error if email fails to send
         emailService.sendEmail(
           user.userEmail,
           user.userEmail,
@@ -40,16 +42,16 @@ export const forgotPassword = async (req, res) => {
             },
           ]
         );
+
+        res.status(200);
+        res.send({ success: true, data: {} });
+        res.end();
       } else {
         throw Error(ERROR_CODE.C001);
       }
     } else {
       throw Error(ERROR_CODE.C002);
     }
-
-    res.status(200);
-    res.send({ success: true, data: {} });
-    res.end();
   } catch (error) {
     // mixpanel.track('ERROR', { time: new Date() });
     console.error("ERROR ON:", req.method, req.url, req.params, req.query);

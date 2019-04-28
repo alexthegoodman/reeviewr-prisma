@@ -6430,5 +6430,9 @@ input UserWhereUniqueInput {
   id: ID
   oldId: ID
   userEmail: String
+  publicHash: String
+  privateHash: String
+  confirmHash: String
+  forgotHash: String
 }
 `
