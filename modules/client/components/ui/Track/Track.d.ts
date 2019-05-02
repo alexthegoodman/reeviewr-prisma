@@ -8,6 +8,7 @@ export interface TrackProps {
   urlSegment: string;
   imageUrl: string;
   audioUrl: string;
+  audioJson: JSON;
   altText: string;
   trackTitle: string;
   artistName: string;

@@ -8,4 +8,6 @@ export interface ReviewCardProps {
   reviewerAltText: string;
   trackImageUrl: string;
   trackAltText: string;
+  reviewerId: string;
+  trackId: string;
 }

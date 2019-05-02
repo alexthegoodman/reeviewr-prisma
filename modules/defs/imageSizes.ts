@@ -1,6 +1,6 @@
 export enum ImageSizes {
-  ProfileImage = "150x150",
-  Medium = "300x300",
-  Large = "480x480",
-  XLarge = "1000x1000",
+  ProfileImage = "w_150,h_150,c_crop",
+  Medium = "w_300,h_300,c_crop",
+  Large = "w_480,h_480,c_crop",
+  XLarge = "w_1000,h_1000,c_crop",
 }

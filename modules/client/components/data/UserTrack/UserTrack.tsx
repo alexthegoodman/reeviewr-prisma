@@ -10,10 +10,12 @@ import Legacy from "../../../../services/Legacy";
 import ReviewCardData from "../ReviewCardData/ReviewCardData";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 import { ImageSizes } from "../../../../defs/imageSizes";
+import Core from "../../../../services/Core";
 
 const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
   const legacy = new Legacy();
   const strings = new Strings();
+  const core = new Core();
 
   // TODO: handle track playback
   // const [{ currentTrack }, dispatch] = useAppContext();
@@ -27,8 +29,6 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
   //   });
   // };
 
-  const imageId = legacy.extractMetaValue(track.itemMeta, "artId");
-  const audioId = legacy.extractMetaValue(track.itemMeta, "audioId");
   const firstName = legacy.extractMetaValue(track.user.userMeta, "firstName");
   const lastName = legacy.extractMetaValue(track.user.userMeta, "lastName");
   const userArtistName = legacy.extractMetaValue(
@@ -38,41 +38,9 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
   const altText = track.itemName;
   const trackTitle = track.itemName;
 
-  const {
-    data: imageData,
-    error: imageError,
-    loading: imageLoading,
-  } = useQuery(FILE_QUERY, { variables: { oldId: imageId } });
-
-  // consider delaying this query until playback begins - we have at lesat 20 - 30 queries when loading Home as-is
-  const {
-    data: audioData,
-    error: audioError,
-    loading: audioLoading,
-  } = useQuery(FILE_QUERY, { variables: { oldId: audioId } });
-
-  if (imageLoading) {
-    return <div>Loading image...</div>;
-  }
-  if (imageError) {
-    return <div>Error on image! {imageError.message}</div>;
-  }
-
-  if (audioLoading) {
-    return <div>Loading audio...</div>;
-  }
-  if (audioError) {
-    return <div>Error on audio! {audioError.message}</div>;
-  }
-
-  const imageUrl = legacy.extractArtUrl(imageData, track, ImageSizes.Medium);
-  const audioUrl = legacy.extractMetaValue(
-    audioData.file.itemMeta,
-    "s3Info",
-    process.env.V1_S3_URL
-  );
-
-  console.info("audioData", audioData);
+  const imageUrl = core.extractCoverArt(track);
+  const audioFile = legacy.extractMetaValue(track.itemMeta, "audioFile");
+  const audioJson = legacy.extractMetaValue(track.itemMeta, "audioJson");
 
   return (
     <Track
@@ -80,7 +48,8 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
       trackId={track.id}
       urlSegment={track.itemUrlSegment}
       imageUrl={imageUrl}
-      audioUrl={audioUrl}
+      audioUrl={audioFile}
+      audioJson={audioJson}
       altText={altText}
       trackTitle={trackTitle}
       artistName={

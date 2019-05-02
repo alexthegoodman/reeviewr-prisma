@@ -10,8 +10,11 @@ import UserTrack from "../../data/UserTrack/UserTrack";
 import HorizontalScroll from "react-scroll-horizontal";
 import Legacy from "../../../../services/Legacy";
 import ArtistCardData from "../../data/ArtistCardData/ArtistCardData";
+import Utility from "../../../../services/Utility";
 
 const Home: React.FC<HomeProps> = () => {
+  const utility = new Utility();
+
   const { data: userData, error: userError, loading: userLoading } = useQuery(
     USERS_QUERY
   );
@@ -34,6 +37,13 @@ const Home: React.FC<HomeProps> = () => {
   }
   if (tracksError) {
     return <div>Error on tracks! {tracksError.message}</div>;
+  }
+
+  if (
+    !utility.isDefinedWithContent(userData.users) ||
+    !utility.isDefinedWithContent(tracksData.userTracks)
+  ) {
+    return <div>Mechanical work...</div>;
   }
 
   console.info("Home Data", userData, tracksData);

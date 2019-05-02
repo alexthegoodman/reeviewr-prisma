@@ -5,4 +5,7 @@ export interface TrackHeaderProps {
   onArtistClick?: (e: MouseEvent) => void;
   trackTitle: string;
   artistName: string;
+  duration: number;
+  genre: string;
+  trackId: string;
 }

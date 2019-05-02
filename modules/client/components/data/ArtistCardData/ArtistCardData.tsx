@@ -30,12 +30,12 @@ const ArtistCardData: React.FC<ArtistCardDataProps> = ({
     "userArtistName"
   );
 
-  console.info("user", user);
+  // const profileImage = legacy.extractProfileImage(
+  //   user,
+  //   ImageSizes.ProfileImage
+  // );
 
-  const profileImage = legacy.extractProfileImage(
-    user,
-    ImageSizes.ProfileImage
-  );
+  const profileImage = legacy.extractMetaValue(user.userMeta, "profileImage");
 
   const reviewCount = user.reviews.length;
   const trackCount = user.userTracks.length;

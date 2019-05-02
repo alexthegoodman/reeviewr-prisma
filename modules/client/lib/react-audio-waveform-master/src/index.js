@@ -38,7 +38,6 @@ class Waveform extends React.Component {
 
   componentDidMount = () => {
     this.resize();
-    console.info("waveform mount");
     // window.addEventListener("resize", this.resize);
   };
 

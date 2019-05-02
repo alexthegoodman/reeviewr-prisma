@@ -14,8 +14,10 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
   answerPreview = "",
   reviewerImageUrl = "",
   reviewerAltText = "",
+  reviewerId = null,
   trackImageUrl = "",
   trackAltText = "",
+  trackId = null,
 }) => {
   const strings = new Strings();
   const clickHandler = e => onClick(e);
@@ -32,8 +34,10 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
       <ReviewParticipants
         reviewerImageUrl={reviewerImageUrl}
         reviewerAltText={reviewerAltText}
+        reviewerId={reviewerId}
         trackImageUrl={trackImageUrl}
         trackAltText={trackAltText}
+        trackId={trackId}
       />
       <div className="cardInfo">
         <Text tagName="h5">{artistTitle}</Text>

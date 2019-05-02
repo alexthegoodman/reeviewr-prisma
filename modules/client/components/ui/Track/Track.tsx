@@ -16,6 +16,7 @@ const Track: React.FC<TrackProps> = ({
   urlSegment = "",
   imageUrl = "",
   audioUrl = "",
+  audioJson = null,
   altText = "",
   trackTitle = "",
   artistName = "",
@@ -45,9 +46,16 @@ const Track: React.FC<TrackProps> = ({
           <TrackHeader
             trackTitle={trackTitle}
             artistName={artistName}
+            duration={100}
+            genre={"Hip Hop"}
+            trackId={trackId}
             onTrackClick={navigateToTrack}
           />
-          <TrackWaveForm audioUrl={audioUrl} imageUrl={imageUrl} />
+          <TrackWaveForm
+            audioUrl={audioUrl}
+            audioJson={audioJson}
+            imageUrl={imageUrl}
+          />
         </div>
       </div>
       <div className="trackActions">

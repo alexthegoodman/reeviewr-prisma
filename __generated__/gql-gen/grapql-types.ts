@@ -7389,6 +7389,10 @@ export type UserWhereUniqueInput = {
   id?: Maybe<Scalars["ID"]>;
   oldId?: Maybe<Scalars["ID"]>;
   userEmail?: Maybe<Scalars["String"]>;
+  publicHash?: Maybe<Scalars["String"]>;
+  privateHash?: Maybe<Scalars["String"]>;
+  confirmHash?: Maybe<Scalars["String"]>;
+  forgotHash?: Maybe<Scalars["String"]>;
 };
 export type AllReviewsQueryVariables = {};
 

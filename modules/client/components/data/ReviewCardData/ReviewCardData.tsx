@@ -8,6 +8,9 @@ import { FILE_QUERY } from "../../../graphql/queries/userTrack";
 import { useQuery } from "react-apollo-hooks";
 import { ImageSizes } from "../../../../defs/imageSizes";
 import { Dialog } from "@blueprintjs/core";
+import Core from "../../../../services/Core";
+import { Image } from "cloudinary-react";
+import Utility from "../../../../services/Utility";
 
 const ReviewCardData: React.FC<ReviewCardDataProps> = ({
   ref = null,
@@ -19,26 +22,17 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
 }) => {
   const legacy = new Legacy();
   const strings = new Strings();
+  const core = new Core();
+  const utility = new Utility();
 
   const [modelOpen, setModelOpen] = React.useState(false);
-
-  if (trackImageUrl === "") {
+  let trackId = null;
+  if (trackImageUrl === "" && utility.isDefinedWithContent(review.userTrack)) {
     const track = review.userTrack;
-    const imageId = legacy.extractMetaValue(track.itemMeta, "artId");
-    const {
-      data: imageData,
-      error: imageError,
-      loading: imageLoading,
-    } = useQuery(FILE_QUERY, { variables: { oldId: imageId } });
+    trackId = review.userTrack.id;
 
-    if (imageLoading) {
-      return <div>Loading image...</div>;
-    }
-    if (imageError) {
-      return <div>Error on image! {imageError.message}</div>;
-    }
-
-    trackImageUrl = legacy.extractArtUrl(imageData, track, ImageSizes.Medium);
+    trackImageUrl = core.extractCoverArt(track);
+    console.info("url", trackImageUrl);
     trackAltText = track.itemName;
   }
 
@@ -61,10 +55,21 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
   );
 
   const reviewerAltText = `${reviewFirstName} ${reviewLastName}`;
-  const reviewerImageUrl = legacy.extractProfileImage(
-    review.user,
-    ImageSizes.ProfileImage
+  // const reviewerImageUrl = legacy.extractProfileImage(
+  //   review.user,
+  //   ImageSizes.ProfileImage
+  // );
+
+  let reviewerImageUrl = legacy.extractMetaValue(
+    review.user.userMeta,
+    "profileImage"
   );
+
+  if (reviewerImageUrl === "") {
+    reviewerImageUrl = "https://via.placeholder.com/100";
+  }
+
+  // reviewerImageUrl = core.extractImageOfSize(reviewerImageUrl, ImageSizes.ProfileImage);
 
   // console.info("review", review.id);
   return (
@@ -78,8 +83,10 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
         answerPreview={answerPreview}
         reviewerImageUrl={reviewerImageUrl}
         reviewerAltText={reviewerAltText}
+        reviewerId={review.user.id}
         trackImageUrl={trackImageUrl}
         trackAltText={trackAltText}
+        trackId={trackId}
         onClick={() => setModelOpen(true)}
       />
       <Dialog
