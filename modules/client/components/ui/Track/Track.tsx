@@ -7,6 +7,9 @@ import TrackArt from "../TrackArt/TrackArt";
 import AddReview from "../AddReview/AddReview";
 import { Button } from "@blueprintjs/core";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
+import LikeButton from "../LikeButton/LikeButton";
+import FollowButton from "../FollowButton/FollowButton";
+import ShareButton from "../ShareButton/ShareButton";
 
 const Track: React.FC<TrackProps> = ({
   ref = null,
@@ -41,6 +44,9 @@ const Track: React.FC<TrackProps> = ({
             altText={altText}
             onClick={navigateToTrack}
           />
+          <LikeButton />
+          <FollowButton />
+          <ShareButton />
         </div>
         <div className="infoContainer">
           <TrackHeader
@@ -56,11 +62,11 @@ const Track: React.FC<TrackProps> = ({
             audioJson={audioJson}
             imageUrl={imageUrl}
           />
+          <div className="prependChildren">{prependChildren}</div>
+          <div className="reviewContainer">{children}</div>
         </div>
       </div>
       <div className="trackActions">
-        <div className="prependChildren">{prependChildren}</div>
-        <div className="reviewContainer">{children}</div>
         <div className="actionContainer">
           <Button
             minimal={true}
