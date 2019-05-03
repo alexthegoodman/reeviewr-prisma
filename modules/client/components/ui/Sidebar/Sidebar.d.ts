@@ -5,4 +5,5 @@ export interface SidebarProps {
   mobile?: boolean;
   onClosed?: () => void;
   onOpened?: () => void;
+  type?: string;
 }

@@ -10,6 +10,20 @@ if (process.env.NODE_ENV !== "development") {
   prismaUri = process.env.PRISMA_API_PROD;
 }
 
+const defaultOptions = {
+  watchQuery: {
+    fetchPolicy: "cache-and-network" as "cache-and-network",
+    errorPolicy: "ignore" as "ignore",
+  },
+  query: {
+    fetchPolicy: "cache-and-network" as "cache-and-network",
+    errorPolicy: "all" as "all",
+  },
+  mutate: {
+    errorPolicy: "all" as "all",
+  },
+};
+
 const client = new ApolloClient({
   link: ApolloLink.from([
     onError(({ graphQLErrors, networkError }) => {
@@ -30,6 +44,7 @@ const client = new ApolloClient({
     }),
   ]),
   cache: new InMemoryCache(),
+  defaultOptions,
 });
 
 // https://www.apollographql.com/docs/react/essentials/queries#refetching polling

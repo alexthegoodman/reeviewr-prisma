@@ -10,6 +10,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   mobile = false,
   onClosed = null,
   onOpened = null,
+  type = "main",
   children,
 }) => {
   // let props = {
@@ -48,6 +49,10 @@ const Sidebar: React.FC<SidebarProps> = ({
         {children}
       </Drawer>
     );
+  }
+
+  if (type === "sub") {
+    className += "sub-sidebar";
   }
 
   return (

@@ -3,6 +3,13 @@
   padding-top: $headerHeight;
   background: $dark-gray3;
   width: 300px;
+
+  &.sub-sidebar {
+    left: $sidebarWidth;
+    background: $dark-gray4;
+    box-shadow: none;
+    // z-index: -1;
+  }
 }
 
 .sidebarMenu {

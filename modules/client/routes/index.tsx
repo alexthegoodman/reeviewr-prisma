@@ -13,6 +13,9 @@ import AuthNav from "../components/layout/AuthNav/AuthNav";
 import AppNav from "../components/layout/AppNav/AppNav";
 import ForgotPassword from "../components/pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../components/pages/ResetPassword/ResetPassword";
+import ProfileLikes from "../components/pages/ProfileLikes/ProfileLikes";
+import ProfileFollowing from "../components/pages/ProfileFollowing/ProfileFollowing";
+import ProfileFollowers from "../components/pages/ProfileFollowers/ProfileFollowers";
 
 const routes = mount({
   "/login": route(req => {
@@ -101,10 +104,46 @@ const routes = mount({
     const { artistId, name } = req.params;
 
     return {
-      title: `${name} / Artists / Reeviewr`,
+      title: `${name} / Artist / Reeviewr`,
       view: (
         <AppNav>
           <ArtistDetail artistId={artistId} />
+        </AppNav>
+      ),
+    };
+  }),
+  "/artists/:artistId/:name/likes": route(req => {
+    const { artistId, name } = req.params;
+
+    return {
+      title: `${name} / Artist Likes / Reeviewr`,
+      view: (
+        <AppNav>
+          <ProfileLikes artistId={artistId} />
+        </AppNav>
+      ),
+    };
+  }),
+  "/artists/:artistId/:name/following": route(req => {
+    const { artistId, name } = req.params;
+
+    return {
+      title: `${name} / Artist Following / Reeviewr`,
+      view: (
+        <AppNav>
+          <ProfileFollowing artistId={artistId} />
+        </AppNav>
+      ),
+    };
+  }),
+  "/artists/:artistId/:name/followers": route(req => {
+    const { artistId, name } = req.params;
+
+    return {
+      title: `${name} / Artist Followers / Reeviewr`,
+      view: (
+        <AppNav>
+          <ProfileFollowers artistId={artistId} />
         </AppNav>
       ),
     };
