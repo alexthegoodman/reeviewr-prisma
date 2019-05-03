@@ -31,6 +31,8 @@ const TrackHeader: React.FC<TrackHeaderProps> = ({
         <span>Duration: {duration}</span>
         <span>Genre: {genre}</span>
         <span>Track ID: {trackId}</span>
+        {/* Edit Track */}
+        {/* Delete Track */}
       </div>
     </section>
   );

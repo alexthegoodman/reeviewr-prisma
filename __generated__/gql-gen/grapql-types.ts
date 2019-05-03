@@ -7503,177 +7503,183 @@ export type AllReviewsQuery = { __typename?: "Query" } & {
   >;
 };
 
+export type UserFragmentFragment = { __typename?: "User" } & Pick<
+  User,
+  "id" | "userEmail"
+> & {
+    files: Maybe<
+      Array<
+        { __typename?: "File" } & Pick<
+          File,
+          "id" | "itemName" | "itemContent"
+        > & {
+            itemMeta: Maybe<
+              Array<
+                { __typename?: "FileMeta" } & Pick<
+                  FileMeta,
+                  "metaName" | "metaValue"
+                >
+              >
+            >;
+          }
+      >
+    >;
+    profilePages: Maybe<
+      Array<
+        { __typename?: "ProfilePage" } & Pick<
+          ProfilePage,
+          "id" | "itemName" | "itemContent"
+        > & {
+            itemMeta: Maybe<
+              Array<
+                { __typename?: "ProfilePageMeta" } & Pick<
+                  ProfilePageMeta,
+                  "id" | "metaName" | "metaValue"
+                >
+              >
+            >;
+          }
+      >
+    >;
+    reviews: Maybe<Array<{ __typename?: "Review" } & Pick<Review, "id">>>;
+    userTracks: Maybe<
+      Array<{ __typename?: "UserTrack" } & Pick<UserTrack, "id">>
+    >;
+    userMeta: Maybe<
+      Array<
+        { __typename?: "UserMeta" } & Pick<UserMeta, "metaName" | "metaValue">
+      >
+    >;
+  };
+
 export type UsersQueryVariables = {};
 
 export type UsersQuery = { __typename?: "Query" } & {
-  users: Array<
-    Maybe<
-      { __typename?: "User" } & Pick<User, "id" | "userEmail"> & {
-          files: Maybe<
+  users: Array<Maybe<{ __typename?: "User" } & UserFragmentFragment>>;
+};
+
+export type UserQueryVariables = {
+  id: Scalars["ID"];
+};
+
+export type UserQuery = { __typename?: "Query" } & {
+  user: Maybe<{ __typename?: "User" } & UserFragmentFragment>;
+};
+
+export type UserTrackFragmentFragment = { __typename?: "UserTrack" } & Pick<
+  UserTrack,
+  "id" | "itemName" | "itemContent" | "itemUrlSegment"
+> & {
+    user: Maybe<
+      { __typename?: "User" } & Pick<User, "id"> & {
+          userMeta: Maybe<
             Array<
-              { __typename?: "File" } & Pick<
-                File,
-                "id" | "itemName" | "itemContent"
-              > & {
-                  itemMeta: Maybe<
-                    Array<
-                      { __typename?: "FileMeta" } & Pick<
-                        FileMeta,
-                        "metaName" | "metaValue"
-                      >
-                    >
-                  >;
-                }
+              { __typename?: "UserMeta" } & Pick<
+                UserMeta,
+                "id" | "metaName" | "metaValue"
+              >
             >
           >;
-          profilePages: Maybe<
-            Array<
-              { __typename?: "ProfilePage" } & Pick<
-                ProfilePage,
-                "id" | "itemName" | "itemContent"
+        }
+    >;
+    itemMeta: Maybe<
+      Array<
+        { __typename?: "UserTrackMeta" } & Pick<
+          UserTrackMeta,
+          "id" | "metaName" | "metaValue"
+        >
+      >
+    >;
+    files: Maybe<
+      Array<
+        { __typename?: "File" } & Pick<
+          File,
+          "id" | "itemName" | "itemContent"
+        > & {
+            itemMeta: Maybe<
+              Array<
+                { __typename?: "FileMeta" } & Pick<
+                  FileMeta,
+                  "metaName" | "metaValue"
+                >
+              >
+            >;
+          }
+      >
+    >;
+    reviews: Maybe<
+      Array<
+        { __typename?: "Review" } & Pick<
+          Review,
+          "id" | "itemName" | "itemContent"
+        > & {
+            itemMeta: Maybe<
+              Array<
+                { __typename?: "ReviewMeta" } & Pick<
+                  ReviewMeta,
+                  "id" | "metaName" | "metaValue"
+                >
+              >
+            >;
+            user: Maybe<
+              { __typename?: "User" } & Pick<
+                User,
+                "id" | "oldId" | "userEmail"
               > & {
-                  itemMeta: Maybe<
+                  files: Maybe<
                     Array<
-                      { __typename?: "ProfilePageMeta" } & Pick<
-                        ProfilePageMeta,
+                      { __typename?: "File" } & Pick<
+                        File,
+                        "id" | "itemName" | "itemContent"
+                      > & {
+                          itemMeta: Maybe<
+                            Array<
+                              { __typename?: "FileMeta" } & Pick<
+                                FileMeta,
+                                "metaName" | "metaValue"
+                              >
+                            >
+                          >;
+                        }
+                    >
+                  >;
+                  profilePages: Maybe<
+                    Array<
+                      { __typename?: "ProfilePage" } & Pick<
+                        ProfilePage,
+                        "id" | "itemName" | "itemContent"
+                      > & {
+                          itemMeta: Maybe<
+                            Array<
+                              { __typename?: "ProfilePageMeta" } & Pick<
+                                ProfilePageMeta,
+                                "id" | "metaName" | "metaValue"
+                              >
+                            >
+                          >;
+                        }
+                    >
+                  >;
+                  userMeta: Maybe<
+                    Array<
+                      { __typename?: "UserMeta" } & Pick<
+                        UserMeta,
                         "id" | "metaName" | "metaValue"
                       >
                     >
                   >;
                 }
-            >
-          >;
-          reviews: Maybe<Array<{ __typename?: "Review" } & Pick<Review, "id">>>;
-          userTracks: Maybe<
-            Array<{ __typename?: "UserTrack" } & Pick<UserTrack, "id">>
-          >;
-          userMeta: Maybe<
-            Array<
-              { __typename?: "UserMeta" } & Pick<
-                UserMeta,
-                "metaName" | "metaValue"
-              >
-            >
-          >;
-        }
-    >
-  >;
-};
+            >;
+          }
+      >
+    >;
+  };
 
 export type UserTracksQueryVariables = {};
 
 export type UserTracksQuery = { __typename?: "Query" } & {
   userTracks: Array<
-    Maybe<
-      { __typename?: "UserTrack" } & Pick<
-        UserTrack,
-        "id" | "itemName" | "itemContent" | "itemUrlSegment"
-      > & {
-          user: Maybe<
-            { __typename?: "User" } & Pick<User, "id"> & {
-                userMeta: Maybe<
-                  Array<
-                    { __typename?: "UserMeta" } & Pick<
-                      UserMeta,
-                      "id" | "metaName" | "metaValue"
-                    >
-                  >
-                >;
-              }
-          >;
-          itemMeta: Maybe<
-            Array<
-              { __typename?: "UserTrackMeta" } & Pick<
-                UserTrackMeta,
-                "id" | "metaName" | "metaValue"
-              >
-            >
-          >;
-          files: Maybe<
-            Array<
-              { __typename?: "File" } & Pick<
-                File,
-                "id" | "itemName" | "itemContent"
-              > & {
-                  itemMeta: Maybe<
-                    Array<
-                      { __typename?: "FileMeta" } & Pick<
-                        FileMeta,
-                        "metaName" | "metaValue"
-                      >
-                    >
-                  >;
-                }
-            >
-          >;
-          reviews: Maybe<
-            Array<
-              { __typename?: "Review" } & Pick<
-                Review,
-                "id" | "itemName" | "itemContent"
-              > & {
-                  itemMeta: Maybe<
-                    Array<
-                      { __typename?: "ReviewMeta" } & Pick<
-                        ReviewMeta,
-                        "id" | "metaName" | "metaValue"
-                      >
-                    >
-                  >;
-                  user: Maybe<
-                    { __typename?: "User" } & Pick<
-                      User,
-                      "id" | "oldId" | "userEmail"
-                    > & {
-                        files: Maybe<
-                          Array<
-                            { __typename?: "File" } & Pick<
-                              File,
-                              "id" | "itemName" | "itemContent"
-                            > & {
-                                itemMeta: Maybe<
-                                  Array<
-                                    { __typename?: "FileMeta" } & Pick<
-                                      FileMeta,
-                                      "metaName" | "metaValue"
-                                    >
-                                  >
-                                >;
-                              }
-                          >
-                        >;
-                        profilePages: Maybe<
-                          Array<
-                            { __typename?: "ProfilePage" } & Pick<
-                              ProfilePage,
-                              "id" | "itemName" | "itemContent"
-                            > & {
-                                itemMeta: Maybe<
-                                  Array<
-                                    { __typename?: "ProfilePageMeta" } & Pick<
-                                      ProfilePageMeta,
-                                      "id" | "metaName" | "metaValue"
-                                    >
-                                  >
-                                >;
-                              }
-                          >
-                        >;
-                        userMeta: Maybe<
-                          Array<
-                            { __typename?: "UserMeta" } & Pick<
-                              UserMeta,
-                              "id" | "metaName" | "metaValue"
-                            >
-                          >
-                        >;
-                      }
-                  >;
-                }
-            >
-          >;
-        }
-    >
+    Maybe<{ __typename?: "UserTrack" } & UserTrackFragmentFragment>
   >;
 };
 
@@ -7682,115 +7688,16 @@ export type UserTrackQueryVariables = {
 };
 
 export type UserTrackQuery = { __typename?: "Query" } & {
-  userTrack: Maybe<
-    { __typename?: "UserTrack" } & Pick<
-      UserTrack,
-      "id" | "itemName" | "itemContent" | "itemUrlSegment"
-    > & {
-        user: Maybe<
-          { __typename?: "User" } & Pick<User, "id"> & {
-              userMeta: Maybe<
-                Array<
-                  { __typename?: "UserMeta" } & Pick<
-                    UserMeta,
-                    "id" | "metaName" | "metaValue"
-                  >
-                >
-              >;
-            }
-        >;
-        itemMeta: Maybe<
-          Array<
-            { __typename?: "UserTrackMeta" } & Pick<
-              UserTrackMeta,
-              "id" | "metaName" | "metaValue"
-            >
-          >
-        >;
-        files: Maybe<
-          Array<
-            { __typename?: "File" } & Pick<
-              File,
-              "id" | "itemName" | "itemContent"
-            > & {
-                itemMeta: Maybe<
-                  Array<
-                    { __typename?: "FileMeta" } & Pick<
-                      FileMeta,
-                      "metaName" | "metaValue"
-                    >
-                  >
-                >;
-              }
-          >
-        >;
-        reviews: Maybe<
-          Array<
-            { __typename?: "Review" } & Pick<
-              Review,
-              "id" | "itemName" | "itemContent"
-            > & {
-                itemMeta: Maybe<
-                  Array<
-                    { __typename?: "ReviewMeta" } & Pick<
-                      ReviewMeta,
-                      "id" | "metaName" | "metaValue"
-                    >
-                  >
-                >;
-                user: Maybe<
-                  { __typename?: "User" } & Pick<
-                    User,
-                    "id" | "oldId" | "userEmail"
-                  > & {
-                      files: Maybe<
-                        Array<
-                          { __typename?: "File" } & Pick<
-                            File,
-                            "id" | "itemName" | "itemContent"
-                          > & {
-                              itemMeta: Maybe<
-                                Array<
-                                  { __typename?: "FileMeta" } & Pick<
-                                    FileMeta,
-                                    "metaName" | "metaValue"
-                                  >
-                                >
-                              >;
-                            }
-                        >
-                      >;
-                      profilePages: Maybe<
-                        Array<
-                          { __typename?: "ProfilePage" } & Pick<
-                            ProfilePage,
-                            "id" | "itemName" | "itemContent"
-                          > & {
-                              itemMeta: Maybe<
-                                Array<
-                                  { __typename?: "ProfilePageMeta" } & Pick<
-                                    ProfilePageMeta,
-                                    "id" | "metaName" | "metaValue"
-                                  >
-                                >
-                              >;
-                            }
-                        >
-                      >;
-                      userMeta: Maybe<
-                        Array<
-                          { __typename?: "UserMeta" } & Pick<
-                            UserMeta,
-                            "id" | "metaName" | "metaValue"
-                          >
-                        >
-                      >;
-                    }
-                >;
-              }
-          >
-        >;
-      }
+  userTrack: Maybe<{ __typename?: "UserTrack" } & UserTrackFragmentFragment>;
+};
+
+export type ArtistTracksQueryVariables = {
+  artistId: Scalars["ID"];
+};
+
+export type ArtistTracksQuery = { __typename?: "Query" } & {
+  userTracks: Array<
+    Maybe<{ __typename?: "UserTrack" } & UserTrackFragmentFragment>
   >;
 };
 

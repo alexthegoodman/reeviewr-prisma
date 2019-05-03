@@ -31,6 +31,7 @@ const ProfileSidebar: React.FC<ProfileSidebarProps> = ({
       <Text tagName="h1" className="sidebarHeadline">
         {userArtistName}
       </Text>
+      {/* Edit Profile */}
       <Text
         tagName="h2"
         className="sidebarMeta"

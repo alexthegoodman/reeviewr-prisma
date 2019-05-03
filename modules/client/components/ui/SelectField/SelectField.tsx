@@ -3,6 +3,7 @@ import * as React from "react";
 import { SelectFieldProps } from "./SelectField.d";
 import { InputGroup, FormGroup, HTMLSelect } from "@blueprintjs/core";
 import { FieldProps, Field } from "formik";
+import ValidationNotice from "../ValidationNotice/ValidationNotice";
 
 const SelectField: React.FC<SelectFieldProps> = ({
   ref = null,
@@ -32,9 +33,11 @@ const SelectField: React.FC<SelectFieldProps> = ({
             options={options}
             {...field}
           />
-          {form.touched[fieldName] &&
-            form.errors[fieldName] &&
-            form.errors[fieldName]}
+          {form.touched[fieldName] && form.errors[fieldName] ? (
+            <ValidationNotice error={form.errors[fieldName]} />
+          ) : (
+            <></>
+          )}
         </FormGroup>
       )}
     />

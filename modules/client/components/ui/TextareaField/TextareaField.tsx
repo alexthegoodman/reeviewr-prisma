@@ -3,6 +3,7 @@ import * as React from "react";
 import { TextareaFieldProps } from "./TextareaField.d";
 import { InputGroup, FormGroup, TextArea } from "@blueprintjs/core";
 import { FieldProps, Field } from "formik";
+import ValidationNotice from "../ValidationNotice/ValidationNotice";
 
 const TextareaField: React.FC<TextareaFieldProps> = ({
   ref = null,
@@ -37,9 +38,11 @@ const TextareaField: React.FC<TextareaFieldProps> = ({
             // value={this.state.value}
             {...field}
           />
-          {form.touched[fieldName] &&
-            form.errors[fieldName] &&
-            form.errors[fieldName]}
+          {form.touched[fieldName] && form.errors[fieldName] ? (
+            <ValidationNotice error={form.errors[fieldName]} />
+          ) : (
+            <></>
+          )}
         </FormGroup>
       )}
     />

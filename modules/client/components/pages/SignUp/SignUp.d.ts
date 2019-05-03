@@ -9,6 +9,9 @@ export interface SignUpFormValues {
   // lastName: string;
   aboutArtist: string;
   profilePicture: string;
+  profilePictureType: string;
+  profilePictureSize: number;
+  profilePictureData: string;
   favoriteGenre: string;
   gender: string;
   age: string;

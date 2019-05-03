@@ -10,6 +10,7 @@ import {
   FormGroup,
   InputGroup,
   Card,
+  Callout,
 } from "@blueprintjs/core";
 import { Formik, Form, FormikActions, FormikProps } from "formik";
 import TextField from "../../ui/TextField/TextField";
@@ -19,9 +20,17 @@ import UploadField from "../../ui/UploadField/UploadField";
 import SelectField from "../../ui/SelectField/SelectField";
 import { Genres, GenreList } from "../../../../defs/genres";
 import CheckboxField from "../../ui/CheckboxField/CheckboxField";
+import AuthClient from "../../../services/AuthClient";
+import Utility from "../../../../services/Utility";
 
 const SignUp: React.FC<SignUpProps> = () => {
+  const authClient = new AuthClient();
+  const utility = new Utility();
+
   const [navbarTabId, setNavbarTabId] = React.useState("credentials" as TabId);
+  const [fileError, setFileError] = React.useState(false);
+  const [fileTypeError, setFileTypeError] = React.useState(false);
+  const [fileSizeError, setFileSizeError] = React.useState(false);
 
   const handleTabChange = (navbarTabId: TabId) => {
     setNavbarTabId(navbarTabId);
@@ -61,6 +70,30 @@ const SignUp: React.FC<SignUpProps> = () => {
     <Card className="floatingForm">
       <Text tagName="h1">Sign Up</Text>
 
+      {fileError ? (
+        <Callout title="Attention" intent="danger">
+          Your file has no name. Contact support.
+        </Callout>
+      ) : (
+        <></>
+      )}
+
+      {fileTypeError ? (
+        <Callout title="Attention" intent="danger">
+          Your file is not the correct type. Please upload PNG, JPG, or JPEG.
+        </Callout>
+      ) : (
+        <></>
+      )}
+
+      {fileSizeError ? (
+        <Callout title="Attention" intent="danger">
+          Your file is not the correct size. It must be below 10mb.
+        </Callout>
+      ) : (
+        <></>
+      )}
+
       <Formik
         initialValues={{
           email: "",
@@ -70,7 +103,10 @@ const SignUp: React.FC<SignUpProps> = () => {
           // firstName: string;
           // lastName: string;
           aboutArtist: "",
-          profilePicture: "",
+          profilePicture: null,
+          profilePictureType: "",
+          profilePictureSize: 0,
+          profilePictureData: null,
           favoriteGenre: "",
           gender: "",
           age: "",
@@ -81,12 +117,43 @@ const SignUp: React.FC<SignUpProps> = () => {
           values: SignUpFormValues,
           actions: FormikActions<SignUpFormValues>
         ) => {
-          console.log({ values, actions });
-          // actions.setSubmitting(false);
+          console.log("values", { values, actions });
+          if (utility.isDefinedWithContent(values.profilePicture)) {
+            if (
+              values.profilePictureType !== "image/jpeg" &&
+              values.profilePictureType !== "image/jpg" &&
+              values.profilePictureType !== "image/png"
+            ) {
+              setFileTypeError(true);
+            } else if (
+              values.profilePictureSize < 10 &&
+              values.profilePictureSize > 100000
+            ) {
+              setFileSizeError(true);
+            } else {
+              console.info("success", values);
+              authClient.signup(values, (err, res) => {
+                if (err) {
+                  console.error(err);
+                  // if (res.body.errorMessage === ERROR_CODE.C003) {
+                  //   setUserDoesNotExist(true);
+                  // } else {
+                  //   setUserDoesNotExist(false);
+                  // }
+                }
+                if (res.body.success) {
+                  // redirect to Home
+                  console.info("redirect thank you - go confirm your email");
+                }
+                actions.resetForm();
+              });
+            }
+          } else {
+            setFileError(true);
+          }
         }}
         render={(formikBag: FormikProps<SignUpFormValues>) => {
-          console.info(formikBag);
-
+          // console.info("formikbag", formikBag);
           const panel1 = (
             <>
               <TextField
@@ -130,8 +197,8 @@ const SignUp: React.FC<SignUpProps> = () => {
                 fieldPlaceholder="Tell us about yourself"
               />
               <UploadField
-                label="Profile Image"
-                fieldName="profileImage"
+                label="Profile Picture"
+                fieldName="profilePicture"
                 helperText="Upload an image for the artist"
               />
               <Button
@@ -149,12 +216,12 @@ const SignUp: React.FC<SignUpProps> = () => {
                 label="Favorite Genre"
                 fieldName="favoriteGenre"
                 helperText="Pick your preferred genre"
-                options={GenreList}
+                options={["Select", ...GenreList]}
               />
               <SelectField
                 label="Gender"
                 fieldName="gender"
-                options={["Male", "Female"]}
+                options={["Select", "Male", "Female"]}
               />
               <TextField
                 label="Age"
@@ -166,7 +233,11 @@ const SignUp: React.FC<SignUpProps> = () => {
                 label="Do you enjoy explicit lyrics?"
                 fieldName="explicit"
               />
-              <Button type="submit" disabled={formikBag.isSubmitting}>
+              <Button
+                type="submit"
+                disabled={formikBag.isSubmitting}
+                onClick={() => formikBag.submitForm()}
+              >
                 Finish
               </Button>
             </>

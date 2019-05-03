@@ -3,6 +3,7 @@ import * as React from "react";
 import { UploadFieldProps } from "./UploadField.d";
 import { InputGroup, FormGroup, FileInput, Text } from "@blueprintjs/core";
 import { FieldProps, Field } from "formik";
+import ValidationNotice from "../ValidationNotice/ValidationNotice";
 
 const UploadField: React.FC<UploadFieldProps> = ({
   ref = null,
@@ -30,8 +31,26 @@ const UploadField: React.FC<UploadFieldProps> = ({
             className={className}
             text="Choose file..."
             // onInputChange={}
-            inputProps={{ id: fieldName, name: fieldName }}
+            inputProps={{
+              id: fieldName,
+              name: fieldName,
+            }}
             {...field}
+            onChange={event => {
+              // const files = event.target["files"][0];
+              // console.info("file", event, files);
+              // form.setFieldValue(fieldName, files);
+              const file = event.target["files"][0];
+              const reader = new FileReader();
+              form.setFieldValue(fieldName, file.name);
+              form.setFieldValue(fieldName + "Size", file.size);
+              form.setFieldValue(fieldName + "Type", file.type);
+              reader.onload = function(item) {
+                form.setFieldValue(fieldName + "Data", item.target["result"]);
+              };
+
+              reader.readAsDataURL(file);
+            }}
           />
           <Text tagName="p">
             Selected File:{" "}
@@ -42,9 +61,11 @@ const UploadField: React.FC<UploadFieldProps> = ({
                   .pop()
               : ""}
           </Text>
-          {form.touched[fieldName] &&
-            form.errors[fieldName] &&
-            form.errors[fieldName]}
+          {form.touched[fieldName] && form.errors[fieldName] ? (
+            <ValidationNotice error={form.errors[fieldName]} />
+          ) : (
+            <></>
+          )}
         </FormGroup>
       )}
     />
