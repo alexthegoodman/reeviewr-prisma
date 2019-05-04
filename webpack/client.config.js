@@ -206,6 +206,10 @@ module.exports = {
       : []),
   ].concat(environmentPlugins),
 
+  // node: {
+  //   fs: "empty",
+  // },
+
   output: {
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/",

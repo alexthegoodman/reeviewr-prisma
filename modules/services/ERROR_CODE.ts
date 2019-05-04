@@ -6,4 +6,5 @@ export enum ERROR_CODE {
   C005 = "C005. Could not encrypt password",
   C006 = "C006. User not a valid type",
   C007 = "C007. User email not confirmed",
+  C008 = "C007. A user with this email already exists",
 }

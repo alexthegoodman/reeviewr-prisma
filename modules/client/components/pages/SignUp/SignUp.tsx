@@ -22,6 +22,7 @@ import { Genres, GenreList } from "../../../../defs/genres";
 import CheckboxField from "../../ui/CheckboxField/CheckboxField";
 import AuthClient from "../../../services/AuthClient";
 import Utility from "../../../../services/Utility";
+import { ERROR_CODE } from "../../../../services/ERROR_CODE";
 
 const SignUp: React.FC<SignUpProps> = () => {
   const authClient = new AuthClient();
@@ -31,6 +32,7 @@ const SignUp: React.FC<SignUpProps> = () => {
   const [fileError, setFileError] = React.useState(false);
   const [fileTypeError, setFileTypeError] = React.useState(false);
   const [fileSizeError, setFileSizeError] = React.useState(false);
+  const [userExists, setUserExists] = React.useState(false);
 
   const handleTabChange = (navbarTabId: TabId) => {
     setNavbarTabId(navbarTabId);
@@ -94,6 +96,14 @@ const SignUp: React.FC<SignUpProps> = () => {
         <></>
       )}
 
+      {userExists ? (
+        <Callout title="Attention" intent="danger">
+          A user with this email address already exists. Try signing in.
+        </Callout>
+      ) : (
+        <></>
+      )}
+
       <Formik
         initialValues={{
           email: "",
@@ -135,11 +145,11 @@ const SignUp: React.FC<SignUpProps> = () => {
               authClient.signup(values, (err, res) => {
                 if (err) {
                   console.error(err);
-                  // if (res.body.errorMessage === ERROR_CODE.C003) {
-                  //   setUserDoesNotExist(true);
-                  // } else {
-                  //   setUserDoesNotExist(false);
-                  // }
+                  if (res.body.errorMessage === ERROR_CODE.C008) {
+                    setUserExists(true);
+                  } else {
+                    setUserExists(false);
+                  }
                 }
                 if (res.body.success) {
                   // redirect to Home
@@ -236,7 +246,7 @@ const SignUp: React.FC<SignUpProps> = () => {
               <Button
                 type="submit"
                 disabled={formikBag.isSubmitting}
-                onClick={() => formikBag.submitForm()}
+                // onClick={() => formikBag.submitForm()}
               >
                 Finish
               </Button>
