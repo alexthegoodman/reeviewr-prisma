@@ -61,6 +61,7 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
         return (
           <ReviewCardData
             key={review.id}
+            track={track}
             review={review}
             trackImageUrl={imageUrl}
             trackAltText={altText}

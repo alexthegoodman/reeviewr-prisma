@@ -1,0 +1,43 @@
+.bp3-dialog {
+  background: $dark-gray5;
+
+  .bp3-dialog-header {
+    background: $dark-gray3;
+
+    .bp3-heading {
+      color: white;
+    }
+
+    .bp3-button {
+      span {
+        color: white;
+      }
+    }
+  }
+  .dialog-body {
+    padding: 25px;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span {
+      color: white;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: 1.1rem;
+    }
+    p,
+    span {
+      font-size: 1rem;
+    }
+  }
+}

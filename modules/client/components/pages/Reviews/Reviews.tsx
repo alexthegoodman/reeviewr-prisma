@@ -21,8 +21,6 @@ const Reviews: React.FC<ReviewsProps> = () => {
     return <div>Error on tracks! {reviewsError.message}</div>;
   }
 
-  console.info("Reviews Data", reviewsData);
-
   return (
     <>
       <h1>Reviews</h1>
