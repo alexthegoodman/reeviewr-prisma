@@ -16,6 +16,7 @@ import ResetPassword from "../components/pages/ResetPassword/ResetPassword";
 import ProfileLikes from "../components/pages/ProfileLikes/ProfileLikes";
 import ProfileFollowing from "../components/pages/ProfileFollowing/ProfileFollowing";
 import ProfileFollowers from "../components/pages/ProfileFollowers/ProfileFollowers";
+import UploadTrack from "../components/pages/UploadTrack/UploadTrack";
 
 const routes = mount({
   "/login": route(req => {
@@ -154,6 +155,16 @@ const routes = mount({
       view: (
         <AppNav>
           <Reviews />
+        </AppNav>
+      ),
+    };
+  }),
+  "/upload": route(req => {
+    return {
+      title: "Upload Track / Reeviewr",
+      view: (
+        <AppNav>
+          <UploadTrack />
         </AppNav>
       ),
     };

@@ -28,7 +28,12 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
   return (
     <App>
       <Sidebar>
-        <Button className="uploadButton">Upload</Button>
+        <Button
+          className="uploadButton"
+          onClick={() => navigation.navigate("/upload")}
+        >
+          Upload
+        </Button>
         <Menu className="sidebarMenu">
           <MenuItem
             active={route.url.pathname === "/" ? true : false}
