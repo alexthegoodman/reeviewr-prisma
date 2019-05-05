@@ -19,6 +19,7 @@ export const authenticate = async (req, res, passport) => {
       );
 
       const utility = new Utility();
+
       if (error) {
         throw Error(JSON.stringify(error));
       }
@@ -26,7 +27,16 @@ export const authenticate = async (req, res, passport) => {
       if (utility.isDefinedWithContent(user)) {
         if (user.userType === 0) {
           if (user.userConfirmed === 1) {
-            // set cookie
+            if (process.env.NODE_ENV === "development") {
+              res.cookie("reeviewrPrivateHash", user.privateHash, {
+                domain: "localhost",
+              });
+            } else {
+              res.cookie("reeviewrPrivateHash", user.privateHash, {
+                domain: "reeviewr.com",
+                secure: true,
+              });
+            }
 
             res.status(200);
             res.send({ success: true, data: {} });

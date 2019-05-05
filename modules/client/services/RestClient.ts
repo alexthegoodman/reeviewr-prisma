@@ -58,13 +58,11 @@ export default class RestClient {
 
   execSuper(endpoint, params, method = "GET") {
     if (method === "POST") {
-      return (
-        superagent
-          .post(formatUrl(endpoint))
-          .send(params) // sends a JSON post body
-          // .set('X-API-Key', 'foobar')
-          .set("accept", "json")
-      );
+      return superagent
+        .post(formatUrl(endpoint))
+        .send(params)
+        .withCredentials()
+        .set("accept", "json");
     }
   }
 }

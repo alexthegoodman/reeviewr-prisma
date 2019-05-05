@@ -91,8 +91,7 @@ const Login: React.FC<LoginProps> = () => {
               }
             }
             if (res.body.success) {
-              // redirect to Home
-              console.info("redirect home");
+              window.location.replace("/");
             }
             actions.resetForm();
           });
