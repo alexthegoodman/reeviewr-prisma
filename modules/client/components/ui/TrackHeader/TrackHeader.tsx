@@ -10,8 +10,8 @@ const TrackHeader: React.FC<TrackHeaderProps> = ({
   className = "",
   trackTitle = "",
   artistName = "",
-  duration = 0,
-  genre = "",
+  // duration = 0,
+  // genre = "",
   trackId = "",
   onTrackClick = e => console.info("Track click"),
   onArtistClick = e => console.info("Artist click"),
@@ -27,13 +27,6 @@ const TrackHeader: React.FC<TrackHeaderProps> = ({
       <a className="artistName" onClick={artistClickHandler}>
         {decodeURI(decodeURIComponent(artistName))}
       </a>
-      <div className="metaData">
-        <span>Duration: {duration}</span>
-        <span>Genre: {genre}</span>
-        <span>Track ID: {trackId}</span>
-        {/* Edit Track */}
-        {/* Delete Track */}
-      </div>
     </section>
   );
 };

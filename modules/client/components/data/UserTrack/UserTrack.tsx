@@ -11,11 +11,18 @@ import ReviewCardData from "../ReviewCardData/ReviewCardData";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 import { ImageSizes } from "../../../../defs/imageSizes";
 import Core from "../../../../services/Core";
+import { Button } from "@blueprintjs/core";
+import AddReview from "../../ui/AddReview/AddReview";
+import AddReviewData from "../AddReviewData/AddReviewData";
+import Utility from "../../../../services/Utility";
 
 const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
   const legacy = new Legacy();
   const strings = new Strings();
   const core = new Core();
+  const utility = new Utility();
+
+  let navigation = useNavigation();
 
   // TODO: handle track playback
   // const [{ currentTrack }, dispatch] = useAppContext();
@@ -41,6 +48,11 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
   const imageUrl = core.extractCoverArt(track);
   const audioFile = legacy.extractMetaValue(track.itemMeta, "audioFile");
   const audioJson = legacy.extractMetaValue(track.itemMeta, "audioJson");
+  const genre = legacy.extractMetaValue(track.itemMeta, "genre");
+  const scGenre = legacy.extractMetaValue(track.itemMeta, "scGenre");
+
+  const navigateToTrack = () =>
+    navigation.navigate(`/tracks/${track.id}/${track.itemUrlSegment}`);
 
   return (
     <Track
@@ -55,7 +67,30 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
       artistName={
         userArtistName !== "" ? userArtistName : `${firstName} ${lastName}`
       }
-      prependChildren={children}
+      prependChildren={
+        <>
+          <div className="metaData">
+            <span>Duration: 0</span>
+            <span>Genre: {strings.decode(genre)}</span>
+            <span>SC Genre: {strings.decode(scGenre)}</span>
+            {/* Edit Track */}
+            {/* Delete Track */}
+          </div>
+          {children}
+        </>
+      }
+      actionChildren={
+        <>
+          <Button
+            minimal={true}
+            className="allReviewsButton"
+            onClick={navigateToTrack}
+          >
+            All Reviews
+          </Button>
+          <AddReviewData imageUrl="https://via.placeholder.com/100" />
+        </>
+      }
     >
       {track.reviews.map(review => {
         return (

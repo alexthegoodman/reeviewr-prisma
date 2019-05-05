@@ -1,0 +1,14 @@
+.pageHeader {
+  display: flex;
+  flex-direction: row;
+
+  .left,
+  .right {
+    width: 50%;
+  }
+
+  .right {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

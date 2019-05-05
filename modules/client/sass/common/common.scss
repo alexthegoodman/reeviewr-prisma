@@ -30,7 +30,12 @@
   background: $darkBlue;
 }
 
-.textButton {
+.textButton,
+.textButton.bp3-button:not([class*="bp3-intent-"]) {
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+
   span {
     color: white;
     font-size: 1rem;

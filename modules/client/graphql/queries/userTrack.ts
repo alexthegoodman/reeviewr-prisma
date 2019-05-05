@@ -86,6 +86,22 @@ export const USER_TRACKS_QUERY = gql`
   ${UserTrackFragments.userTrack}
 `;
 
+export const USER_TRACKS_GENRE_QUERY = gql`
+  query userTracksGenre($genre: String) {
+    userTracks(
+      first: 10
+      orderBy: id_DESC
+      where: {
+        itemStatus: "v2publish"
+        itemMeta_some: { metaName: "genre", metaValue_contains: $genre }
+      }
+    ) {
+      ...UserTrackFragment
+    }
+  }
+  ${UserTrackFragments.userTrack}
+`;
+
 export const USER_TRACK_QUERY = gql`
   query userTrack($id: ID!) {
     userTrack(where: { id: $id }) {

@@ -25,9 +25,8 @@ const Track: React.FC<TrackProps> = ({
   artistName = "",
   prependChildren,
   children,
+  actionChildren,
 }) => {
-  let route = useCurrentRoute();
-  let loadingRoute = useLoadingRoute();
   let navigation = useNavigation();
 
   const navigateToTrack = () =>
@@ -52,8 +51,6 @@ const Track: React.FC<TrackProps> = ({
           <TrackHeader
             trackTitle={trackTitle}
             artistName={artistName}
-            duration={100}
-            genre={"Hip Hop"}
             trackId={trackId}
             onTrackClick={navigateToTrack}
           />
@@ -67,16 +64,7 @@ const Track: React.FC<TrackProps> = ({
         </div>
       </div>
       <div className="trackActions">
-        <div className="actionContainer">
-          <Button
-            minimal={true}
-            className="allReviewsButton"
-            onClick={navigateToTrack}
-          >
-            All Reviews
-          </Button>
-          <AddReview imageUrl="https://via.placeholder.com/100" />
-        </div>
+        <div className="actionContainer">{actionChildren}</div>
       </div>
     </section>
   );

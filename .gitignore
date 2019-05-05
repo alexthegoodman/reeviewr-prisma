@@ -103,3 +103,5 @@ junit.xml
 *.dat
 
 toxicrobin
+
+.sql
