@@ -58,8 +58,8 @@ export const USERS_QUERY = gql`
 `;
 
 export const USER_QUERY = gql`
-  query user($id: ID!) {
-    user(where: { id: $id }) {
+  query user($id: ID, $privateHash: String) {
+    user(where: { id: $id, privateHash: $privateHash }) {
       ...UserFragment
     }
   }

@@ -31,3 +31,34 @@
     }
   }
 }
+
+.footer {
+  position: absolute;
+  bottom: 25px;
+  padding: 0 25px;
+  opacity: 0.7;
+
+  span,
+  a {
+    color: white;
+    font-size: 0.9rem;
+    line-height: 1.1rem;
+    font-weight: 300;
+  }
+
+  span {
+    display: block;
+
+    img {
+      display: inline-block;
+      vertical-align: bottom;
+      margin-right: 7px;
+    }
+  }
+
+  a {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 7px;
+  }
+}

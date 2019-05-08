@@ -30,9 +30,7 @@
   background: $darkBlue;
 }
 
-.textButton,
-.textButton.bp3-button:not([class*="bp3-intent-"]) {
-  background: transparent;
+.button {
   background-image: none;
   box-shadow: none;
 
@@ -40,9 +38,23 @@
     color: white;
     font-size: 1rem;
     padding: 0 15px;
-    // text-transform: uppercase;
-    // font-weight: 600;
+    text-transform: uppercase;
+    font-weight: 600;
   }
+}
+
+.textButton,
+.textButton.bp3-button:not([class*="bp3-intent-"]) {
+  @extend .button;
+  background: transparent;
+}
+
+.actionButton,
+.actionButton.bp3-button:not([class*="bp3-intent-"]) {
+  @extend .button;
+  background: $red;
+  height: 40px;
+  border-radius: 50px;
 }
 
 .headerItem {

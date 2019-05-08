@@ -14,6 +14,7 @@ import ErrorFallback from "./components/pages/status/ErrorFallback/ErrorFallback
 import { ErrorHandler } from "./services/ErrorHandler";
 import { AppContextAPI } from "./context/AppContextAPI";
 import client from "./services/ApolloClient";
+import { CookiesProvider } from "react-cookie";
 
 const styles = require("./sass/style.scss");
 
@@ -43,9 +44,11 @@ const RootProvider: React.FC<RootProviderProps> = props => {
       <MixpanelProvider mixpanel={mixpanel}>
         <ApolloProvider client={client}>
           {/** TODO: Good spot for Layout if desire no rerender, consider best placement for context */}
-          <Router routes={routes}>
-            <AppProvider />
-          </Router>
+          <CookiesProvider>
+            <Router routes={routes}>
+              <AppProvider />
+            </Router>
+          </CookiesProvider>
         </ApolloProvider>
       </MixpanelProvider>
     </ErrorBoundary>

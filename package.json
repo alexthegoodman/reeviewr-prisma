@@ -221,6 +221,7 @@
     "react-async-component": "2.0.0",
     "react-audio-player": "^0.11.0",
     "react-audio-waveform": "^0.0.5",
+    "react-cookie": "^3.1.2",
     "react-dom": "16.8",
     "react-error-boundary": "^1.2.5",
     "react-helmet": "^5.2.0",
