@@ -15,6 +15,8 @@ const BeyondSearch: React.FC<BeyondSearchProps> = ({
   onChange = () => {},
   placeholder = "Search...",
 }) => {
+  const changeHandler = e => onChange(e.target.value);
+
   return (
     <InputGroup
       ref={ref}
@@ -27,7 +29,7 @@ const BeyondSearch: React.FC<BeyondSearchProps> = ({
       disabled={disabled}
       leftIcon={leftIcon}
       rightElement={rightElement}
-      onChange={onChange}
+      onChange={changeHandler}
       placeholder={placeholder}
     />
   );

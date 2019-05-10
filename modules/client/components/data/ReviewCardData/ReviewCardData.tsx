@@ -130,7 +130,10 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
         trackImageUrl={trackImageUrl}
         trackAltText={trackAltText}
         trackId={trackId}
-        onClick={() => setModelOpen(true)}
+        onClick={e => {
+          // clickHandler(e);
+          setModelOpen(true);
+        }}
       />
       {trackMetaList !== null ? (
         <Dialog

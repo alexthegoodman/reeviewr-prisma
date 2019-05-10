@@ -50,4 +50,11 @@ export default class Strings {
       .replace(/[^\w ]+/g, "")
       .replace(/ +/g, "-");
   }
+
+  createQueryString(params) {
+    var queryString = Object.keys(params)
+      .map(key => key + "=" + params[key])
+      .join("&");
+    return queryString;
+  }
 }

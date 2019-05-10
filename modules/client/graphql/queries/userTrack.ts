@@ -74,11 +74,11 @@ const UserTrackFragments = {
 };
 
 export const USER_TRACKS_QUERY = gql`
-  query userTracks {
+  query userTracks($search: String) {
     userTracks(
       first: 10
       orderBy: id_DESC
-      where: { itemStatus: "v2publish" }
+      where: { itemStatus: "v2publish", itemName_contains: $search }
     ) {
       ...UserTrackFragment
     }

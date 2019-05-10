@@ -5,7 +5,31 @@ export const ALL_REVIEWS_QUERY = gql`
     reviews(
       first: 100
       orderBy: id_ASC
-      where: { userTrack: { itemStatus: "v2publish" } }
+      where: {
+        userTrack: {
+          itemStatus: "v2publish"
+          # OR: [
+          #   {
+          #     itemMeta_some: {
+          #       metaName: "questionAnswer1"
+          #       metaValue_contains: $search
+          #     }
+          #   }
+          #   {
+          #     itemMeta_some: {
+          #       metaName: "questionAnswer2"
+          #       metaValue_contains: $search
+          #     }
+          #   }
+          #   {
+          #     itemMeta_some: {
+          #       metaName: "questionAnswer3"
+          #       metaValue_contains: $search
+          #     }
+          #   }
+          # ]
+        }
+      }
     ) {
       id
       itemName

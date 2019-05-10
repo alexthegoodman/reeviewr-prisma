@@ -24,6 +24,7 @@ import Utility from "../../../../services/Utility";
 import { USER_QUERY } from "../../../graphql/queries/user";
 import { useQuery } from "react-apollo-hooks";
 import Legacy from "../../../../services/Legacy";
+import BeyondSearchData from "../../data/BeyondSearchData/BeyondSearchData";
 
 const AppNav: React.FC<AppNavProps> = ({ children }) => {
   const utility = new Utility();
@@ -170,7 +171,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
             <section className="loggedOutActions">
               <img className="logo" src="/public/img/logo-w.png" />
             </section>
-            <BeyondSearch placeholder="Search tracks, artists, and reviews..." />
+            <BeyondSearchData />
           </>
         }
         rightElements={

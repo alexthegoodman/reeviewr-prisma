@@ -17,6 +17,7 @@ import ProfileLikes from "../components/pages/ProfileLikes/ProfileLikes";
 import ProfileFollowing from "../components/pages/ProfileFollowing/ProfileFollowing";
 import ProfileFollowers from "../components/pages/ProfileFollowers/ProfileFollowers";
 import UploadTrack from "../components/pages/UploadTrack/UploadTrack";
+import SearchResults from "../components/pages/SearchResults/SearchResults";
 
 const routes = mount({
   "/login": route(req => {
@@ -165,6 +166,16 @@ const routes = mount({
       view: (
         <AppNav>
           <UploadTrack />
+        </AppNav>
+      ),
+    };
+  }),
+  "/search": route(req => {
+    return {
+      title: "Search Results / Reeviewr",
+      view: (
+        <AppNav>
+          <SearchResults />
         </AppNav>
       ),
     };

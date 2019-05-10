@@ -1,0 +1,14 @@
+.grid {
+  display: grid;
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  &.col-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  &.col-4 {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

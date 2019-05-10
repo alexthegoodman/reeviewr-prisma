@@ -43,12 +43,20 @@ const UserFragments = {
 };
 
 export const USERS_QUERY = gql`
-  query users {
+  query users($search: String) {
     users(
       first: 25
       where: {
         userTracks_some: { id_not: "", itemStatus: "v2publish" }
-        userMeta_some: { metaName: "firstName", metaValue_not: "" }
+        AND: [
+          { userMeta_some: { metaName: "firstName", metaValue_not: "" } }
+          {
+            userMeta_some: {
+              metaName: "userArtistName"
+              metaValue_contains: $search
+            }
+          }
+        ]
       }
     ) {
       ...UserFragment

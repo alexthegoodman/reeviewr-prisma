@@ -46,18 +46,19 @@ const ArtistCardData: React.FC<ArtistCardDataProps> = ({
 
   return (
     <ArtistCard
-      className="cardInRow"
+      className={className}
       imageUrl={profileImage}
       artistTitle={
         userArtistName !== "" ? userArtistName : `${firstName} ${lastName}`
       }
       reviewCount={reviewCount}
       trackCount={trackCount}
-      onClick={() =>
+      onClick={e => {
         navigation.navigate(
           `/artists/${user.id}/${strings.convertToSlug(userArtistName)}`
-        )
-      }
+        );
+        clickHandler(e);
+      }}
     />
   );
 };

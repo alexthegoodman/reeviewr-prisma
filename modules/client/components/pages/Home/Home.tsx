@@ -57,7 +57,9 @@ const Home: React.FC<HomeProps> = () => {
         reverseScroll={true}
       >
         {userData.users.map(user => {
-          return <ArtistCardData key={user.id} user={user} />;
+          return (
+            <ArtistCardData key={user.id} className="cardInRow" user={user} />
+          );
         })}
       </HorizontalScroll>
 

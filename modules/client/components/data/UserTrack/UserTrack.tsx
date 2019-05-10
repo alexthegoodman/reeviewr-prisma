@@ -16,13 +16,19 @@ import AddReview from "../../ui/AddReview/AddReview";
 import AddReviewData from "../AddReviewData/AddReviewData";
 import Utility from "../../../../services/Utility";
 
-const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
+const UserTrack: React.FC<UserTrackProps> = ({
+  onClick = e => console.info("Click"),
+  track = null,
+  children,
+}) => {
   const legacy = new Legacy();
   const strings = new Strings();
   const core = new Core();
   const utility = new Utility();
 
   let navigation = useNavigation();
+
+  const clickHandler = e => onClick(e);
 
   // TODO: handle track playback
   // const [{ currentTrack }, dispatch] = useAppContext();
@@ -57,6 +63,7 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
   return (
     <Track
       className="userTrack"
+      onClick={clickHandler}
       trackId={track.id}
       urlSegment={track.itemUrlSegment}
       imageUrl={imageUrl}
