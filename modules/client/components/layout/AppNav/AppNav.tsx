@@ -154,13 +154,16 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
             <img src="https://img.shields.io/apm/l/vim-mode.svg" />
             Reeviewr is Open Source
           </Text>
-          <a target="_blank" href="">
+          <a target="_blank" href="https://www.facebook.com/reeviewr/">
             <img src="https://img.shields.io/badge/-Facebook-%23306199.svg" />
           </a>
-          <a target="_blank" href="">
+          <a target="_blank" href="https://twitter.com/reeviewr">
             <img src="https://img.shields.io/badge/-Twitter-%2326c4f1.svg" />
           </a>
-          <a target="_blank" href="">
+          <a
+            target="_blank"
+            href="https://www.youtube.com/channel/UCgHw8sLLekekCr_LjWZs9Cg"
+          >
             <img src="https://img.shields.io/badge/-YouTube-%23e21d17.svg" />
           </a>
         </footer>
