@@ -7559,7 +7559,8 @@ export type UsersQuery = { __typename?: "Query" } & {
 };
 
 export type UserQueryVariables = {
-  id: Scalars["ID"];
+  id?: Maybe<Scalars["ID"]>;
+  privateHash?: Maybe<Scalars["String"]>;
 };
 
 export type UserQuery = { __typename?: "Query" } & {
@@ -7678,6 +7679,16 @@ export type UserTrackFragmentFragment = { __typename?: "UserTrack" } & Pick<
 export type UserTracksQueryVariables = {};
 
 export type UserTracksQuery = { __typename?: "Query" } & {
+  userTracks: Array<
+    Maybe<{ __typename?: "UserTrack" } & UserTrackFragmentFragment>
+  >;
+};
+
+export type UserTracksGenreQueryVariables = {
+  genre?: Maybe<Scalars["String"]>;
+};
+
+export type UserTracksGenreQuery = { __typename?: "Query" } & {
   userTracks: Array<
     Maybe<{ __typename?: "UserTrack" } & UserTrackFragmentFragment>
   >;

@@ -1,8 +1,11 @@
+import { UserTrack } from "../../../../../__generated__/gql-gen/grapql-types";
+
 export interface AddReviewDataProps {
   ref?: React.Ref<any>;
   className?: string;
   onClick?: (e: MouseEvent) => void;
   imageUrl: string;
+  track: UserTrack;
 }
 
 export interface AddReviewFormValues {

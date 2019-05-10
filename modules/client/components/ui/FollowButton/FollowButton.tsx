@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { FollowButtonProps } from "./FollowButton.d";
-import { Button, Text } from "@blueprintjs/core";
+import { Button, Text, Icon } from "@blueprintjs/core";
 
 const FollowButton: React.FC<FollowButtonProps> = ({
   ref = null,
@@ -15,7 +15,9 @@ const FollowButton: React.FC<FollowButtonProps> = ({
       className={`trackButton followButton ${className}`}
       onClick={clickHandler}
     >
-      <Text tagName="span">Follow</Text>
+      <Text tagName="span">
+        <Icon icon="new-person" />Follow
+      </Text>
     </Button>
   );
 };

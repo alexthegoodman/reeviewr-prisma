@@ -1,0 +1,22 @@
+.bp3-tab {
+  &:hover,
+  &:focus,
+  &[aria-selected="true"],
+  &:not([aria-disabled="true"]):hover {
+    outline: 0;
+    color: $darkBlue;
+  }
+}
+
+.bp3-tab-indicator-wrapper .bp3-tab-indicator {
+  background: $darkBlue;
+}
+
+.lightTabs {
+  .bp3-tab {
+    color: white;
+  }
+  .bp3-tab-indicator-wrapper .bp3-tab-indicator {
+    background: white;
+  }
+}

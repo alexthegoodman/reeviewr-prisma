@@ -26,13 +26,19 @@ import AuthClient from "../../../services/AuthClient";
 import Utility from "../../../../services/Utility";
 import { ERROR_CODE } from "../../../../services/ERROR_CODE";
 import CreateQuestion from "../../ui/CreateQuestion/CreateQuestion";
+import AnswerQuestion from "../../ui/AnswerQuestion/AnswerQuestion";
+import Legacy from "../../../../services/Legacy";
+import Strings from "../../../services/Strings";
 
 const AddReviewData: React.FC<AddReviewDataProps> = ({
   ref = null,
   className = "",
   onClick = e => console.info("Click"),
   imageUrl = "",
+  track = null,
 }) => {
+  const strings = new Strings();
+  const legacy = new Legacy();
   const authClient = new AuthClient();
   const utility = new Utility();
 
@@ -44,6 +50,48 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
   const handleTabChange = (navbarTabId: TabId) => {
     setNavbarTabId(navbarTabId);
   };
+
+  let trackMetaList = null;
+  if (track !== null) {
+    trackMetaList = legacy.extractMultipleMeta(track.itemMeta, [
+      "questionCount",
+      "theOption",
+      "audioId",
+      "genre",
+      "artId",
+      "questionContent1",
+      "questionOne1",
+      "questionTwo1",
+      "questionThree1",
+      "questionFour1",
+      "questionContent2",
+      "questionOne2",
+      "questionTwo2",
+      "questionThree2",
+      "questionFour2",
+      "questionContent3",
+      "questionOne3",
+      "questionTwo3",
+      "questionThree3",
+      "questionFour3",
+      "paid",
+      "reviewCount",
+      "reviewedBy",
+    ]);
+  }
+
+  let questionType = [];
+  [1, 2, 3].forEach((num, i) => {
+    if (trackMetaList[`questionFour${num}`] !== "") {
+      questionType[i] = "multChoice";
+    } else if (trackMetaList[`questionOne${num}`] !== "") {
+      questionType[i] = "rating";
+    } else if (trackMetaList[`questionContent${num}`] !== "") {
+      questionType[i] = "essay";
+    }
+  });
+
+  console.info("meta list", questionType, trackMetaList, track.itemMeta);
 
   const AddReviewSchema = Yup.object().shape({
     questionAnswer1: Yup.string().required("Required"),
@@ -71,9 +119,9 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
           )} */}
           <Formik
             initialValues={{
-              questionAnswer1: "",
-              questionAnswer2: "",
-              questionAnswer3: "",
+              questionAnswer1: questionType[0] === "rating" ? 5 : "",
+              questionAnswer2: questionType[1] === "rating" ? 5 : "",
+              questionAnswer3: questionType[2] === "rating" ? 5 : "",
             }}
             validationSchema={AddReviewSchema}
             onSubmit={(
@@ -84,7 +132,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
               let error = false;
 
               if (!error) {
-                console.info("sucess", values);
+                console.info("success", values);
                 // authClient.signup(values, (err, res) => {
                 //   if (err) {
                 //     console.error(err);
@@ -106,50 +154,55 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
               // console.info("formikbag", formikBag);
               const panel1 = (
                 <>
-                  <Text tagName="h5">{}</Text>
-                  <TextField
-                    label="Answer"
-                    fieldName="questionAnswer1"
-                    fieldPlaceholder="Enter your answer"
-                    fieldType="text"
+                  <Text tagName="h5">
+                    {strings.decode(trackMetaList["questionContent1"])}
+                  </Text>
+                  <AnswerQuestion
+                    questionNumber="1"
+                    questionType={questionType[0]}
                   />
                   <Button
-                    onClick={() => handleTabChange("basic")}
+                    onClick={() => handleTabChange("question2")}
                     disabled={formikBag.isSubmitting}
+                    className="actionButton"
                   >
-                    Next Step
+                    Next Question
                   </Button>
                 </>
               );
 
               const panel2 = (
                 <>
-                  <TextField
-                    label="Track Title"
-                    fieldName="trackTitle"
-                    fieldPlaceholder="Enter the track name"
-                    fieldType="text"
+                  <Text tagName="h5">
+                    {strings.decode(trackMetaList["questionContent2"])}
+                  </Text>
+                  <AnswerQuestion
+                    questionNumber="2"
+                    questionType={questionType[1]}
                   />
                   <Button
-                    onClick={() => handleTabChange("basic")}
+                    onClick={() => handleTabChange("question3")}
                     disabled={formikBag.isSubmitting}
+                    className="actionButton"
                   >
-                    Next Step
+                    Next Question
                   </Button>
                 </>
               );
 
               const panel3 = (
                 <>
-                  <TextField
-                    label="Track Title"
-                    fieldName="trackTitle"
-                    fieldPlaceholder="Enter the track name"
-                    fieldType="text"
+                  <Text tagName="h5">
+                    {strings.decode(trackMetaList["questionContent3"])}
+                  </Text>
+                  <AnswerQuestion
+                    questionNumber="3"
+                    questionType={questionType[2]}
                   />
                   <Button
                     type="submit"
                     disabled={formikBag.isSubmitting}
+                    className="actionButton"
                     // onClick={() => formikBag.submitForm()}
                   >
                     Finish
@@ -163,6 +216,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                     id="AddReviewTabs"
                     onChange={handleTabChange}
                     selectedTabId={navbarTabId}
+                    className={`lightTabs`}
                   >
                     <Tab id="question1" title="Question 1" panel={panel1} />
                     <Tab id="question2" title="Question 2" panel={panel2} />

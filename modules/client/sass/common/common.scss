@@ -16,20 +16,6 @@
   }
 }
 
-.bp3-tab {
-  &:hover,
-  &:focus,
-  &[aria-selected="true"],
-  &:not([aria-disabled="true"]):hover {
-    outline: 0;
-    color: $darkBlue;
-  }
-}
-
-.bp3-tab-indicator-wrapper .bp3-tab-indicator {
-  background: $darkBlue;
-}
-
 .button {
   background-image: none;
   box-shadow: none;
@@ -55,6 +41,10 @@
   background: $red;
   height: 40px;
   border-radius: 50px;
+
+  .bp3-button-text {
+    margin: 0;
+  }
 }
 
 .headerItem {
@@ -157,7 +147,7 @@
     transition: all $short;
   }
 
-  span {
+  .bp3-button-text > span {
     display: block;
     color: white;
     text-align: center;
@@ -166,6 +156,18 @@
 
     text-transform: uppercase;
     font-weight: 600;
+
+    .bp3-icon {
+      position: relative;
+      color: white;
+      margin: 0px 8px 0 0;
+      top: -2px;
+      width: 14px;
+
+      svg {
+        position: relative;
+      }
+    }
   }
 }
 

@@ -88,7 +88,10 @@ const UserTrack: React.FC<UserTrackProps> = ({ track = null, children }) => {
           >
             All Reviews
           </Button>
-          <AddReviewData imageUrl="https://via.placeholder.com/100" />
+          <AddReviewData
+            track={track}
+            imageUrl="https://via.placeholder.com/100"
+          />
         </>
       }
     >

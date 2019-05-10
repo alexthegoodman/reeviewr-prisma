@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { ShareButtonProps } from "./ShareButton.d";
-import { Button, Text } from "@blueprintjs/core";
+import { Button, Text, Icon } from "@blueprintjs/core";
 
 const ShareButton: React.FC<ShareButtonProps> = ({
   ref = null,
@@ -15,7 +15,9 @@ const ShareButton: React.FC<ShareButtonProps> = ({
       className={`trackButton shareButton ${className}`}
       onClick={clickHandler}
     >
-      <Text tagName="span">Share</Text>
+      <Text tagName="span">
+        <Icon icon="share" />Share
+      </Text>
     </Button>
   );
 };

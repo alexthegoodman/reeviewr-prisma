@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { LikeButtonProps } from "./LikeButton.d";
-import { Button, Text } from "@blueprintjs/core";
+import { Button, Text, Icon } from "@blueprintjs/core";
 
 const LikeButton: React.FC<LikeButtonProps> = ({
   ref = null,
@@ -15,7 +15,10 @@ const LikeButton: React.FC<LikeButtonProps> = ({
       className={`trackButton likeButton ${className}`}
       onClick={clickHandler}
     >
-      <Text tagName="span">Like</Text>
+      <Text tagName="span">
+        <Icon icon="heart" />
+        Like
+      </Text>
     </Button>
   );
 };
