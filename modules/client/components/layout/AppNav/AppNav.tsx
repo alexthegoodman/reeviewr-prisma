@@ -25,6 +25,7 @@ import { USER_QUERY } from "../../../graphql/queries/user";
 import { useQuery } from "react-apollo-hooks";
 import Legacy from "../../../../services/Legacy";
 import BeyondSearchData from "../../data/BeyondSearchData/BeyondSearchData";
+import * as $ from "jquery";
 
 const AppNav: React.FC<AppNavProps> = ({ children }) => {
   const utility = new Utility();
@@ -33,6 +34,8 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
   const route = useCurrentRoute();
   const navigation = useNavigation();
   const [cookies] = useCookies(["reeviewrPrivateHash"]);
+
+  const [{ tour }, dispatch] = useAppContext();
 
   console.info("cookies", cookies["reeviewrPrivateHash"]);
 
@@ -182,7 +185,15 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
             <Button
               className="actionButton headerItem"
               minimal={true}
-              onClick={() => console.info("start tour")}
+              onClick={() => {
+                dispatch({
+                  type: "setTour",
+                  tour: { run: true },
+                });
+                setTimeout(() => {
+                  $(".react-joyride__beacon").trigger("click");
+                }, 250);
+              }}
             >
               How it Works
             </Button>
@@ -205,6 +216,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
           </>
         }
       />
+
       <section className="mainContent">{children}</section>
     </App>
   );

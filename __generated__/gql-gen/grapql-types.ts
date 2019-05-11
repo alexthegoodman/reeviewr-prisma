@@ -7552,7 +7552,9 @@ export type UserFragmentFragment = { __typename?: "User" } & Pick<
     >;
   };
 
-export type UsersQueryVariables = {};
+export type UsersQueryVariables = {
+  search?: Maybe<Scalars["String"]>;
+};
 
 export type UsersQuery = { __typename?: "Query" } & {
   users: Array<Maybe<{ __typename?: "User" } & UserFragmentFragment>>;
@@ -7676,7 +7678,9 @@ export type UserTrackFragmentFragment = { __typename?: "UserTrack" } & Pick<
     >;
   };
 
-export type UserTracksQueryVariables = {};
+export type UserTracksQueryVariables = {
+  search?: Maybe<Scalars["String"]>;
+};
 
 export type UserTracksQuery = { __typename?: "Query" } & {
   userTracks: Array<

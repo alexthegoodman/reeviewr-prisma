@@ -6,12 +6,18 @@ export interface IInitialAppState {
     playing: string;
     trackId: string;
   };
+  tour: {
+    run: true;
+  };
 }
 
 export const InitialAppState: Partial<IInitialAppState> = {
   currentTrack: {
     playing: null,
     trackId: null,
+  },
+  tour: {
+    run: true,
   },
 };
 
@@ -22,6 +28,12 @@ export const AppContextAPI = ({ children }) => {
         return {
           ...state,
           currentTrack: action.currentTrack,
+        };
+
+      case "setTour":
+        return {
+          ...state,
+          tour: action.tour,
         };
 
       default:

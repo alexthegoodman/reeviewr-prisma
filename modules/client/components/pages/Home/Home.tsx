@@ -11,9 +11,13 @@ import HorizontalScroll from "react-scroll-horizontal";
 import Legacy from "../../../../services/Legacy";
 import ArtistCardData from "../../data/ArtistCardData/ArtistCardData";
 import Utility from "../../../../services/Utility";
+import ReactJoyride from "react-joyride";
+import { useAppContext } from "../../../context";
 
 const Home: React.FC<HomeProps> = () => {
   const utility = new Utility();
+
+  const [{ tour }, dispatch] = useAppContext();
 
   const { data: userData, error: userError, loading: userLoading } = useQuery(
     USERS_QUERY
@@ -48,9 +52,40 @@ const Home: React.FC<HomeProps> = () => {
 
   console.info("Home Data", userData, tracksData);
 
+  const steps = [
+    {
+      target: ".joyrideArtist",
+      content: "You can find other artists on Reeviewr easily.",
+    },
+    {
+      target: ".joyrideReview",
+      content: "Discover music reviews tied to each Track.",
+    },
+  ];
+
   return (
     <>
       {/** TODO: Announcements, Social Media embeds, content plugs, etc */}
+
+      {typeof window !== "undefined" ? (
+        <ReactJoyride
+          steps={steps}
+          run={tour.run}
+          continuous={true}
+          showProgress={true}
+          callback={state => {
+            // console.info(state);
+            if (state.action === "reset") {
+              dispatch({
+                type: "setTour",
+                tour: { run: false },
+              });
+            }
+          }}
+        />
+      ) : (
+        <></>
+      )}
 
       <HorizontalScroll
         style={{ height: 225, overflow: "visible", margin: "25px 0 50px 0" }}
@@ -58,13 +93,19 @@ const Home: React.FC<HomeProps> = () => {
       >
         {userData.users.map(user => {
           return (
-            <ArtistCardData key={user.id} className="cardInRow" user={user} />
+            <div className="joyrideArtist">
+              <ArtistCardData key={user.id} className="cardInRow" user={user} />
+            </div>
           );
         })}
       </HorizontalScroll>
 
       {tracksData.userTracks.map(track => {
-        return <UserTrack key={track.id} track={track} />;
+        return (
+          <div className="joyrideTrack">
+            <UserTrack key={track.id} track={track} />
+          </div>
+        );
       })}
     </>
   );

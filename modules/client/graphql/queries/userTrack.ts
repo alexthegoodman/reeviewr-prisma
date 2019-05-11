@@ -77,7 +77,7 @@ export const USER_TRACKS_QUERY = gql`
   query userTracks($search: String) {
     userTracks(
       first: 10
-      orderBy: id_DESC
+      orderBy: createdAt_DESC
       where: { itemStatus: "v2publish", itemName_contains: $search }
     ) {
       ...UserTrackFragment
@@ -90,7 +90,7 @@ export const USER_TRACKS_GENRE_QUERY = gql`
   query userTracksGenre($genre: String) {
     userTracks(
       first: 10
-      orderBy: id_DESC
+      orderBy: createdAt_DESC
       where: {
         itemStatus: "v2publish"
         itemMeta_some: { metaName: "genre", metaValue_contains: $genre }
