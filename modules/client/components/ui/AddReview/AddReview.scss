@@ -16,6 +16,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    background: $dark-gray5;
     // border: 2px $red solid;
   }
   span {
@@ -27,5 +28,13 @@
     font-family: $bFont;
     font-weight: 600;
     color: white;
+
+    em {
+      opacity: 0.5;
+      font-style: normal;
+      margin-left: 15px;
+      display: inline-block;
+      vertical-align: top;
+    }
   }
 }

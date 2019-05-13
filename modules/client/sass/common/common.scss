@@ -115,6 +115,14 @@
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 1px;
+    text-align: center;
+
+    em {
+      display: block;
+      font-size: 0.9rem;
+      font-style: normal;
+      opacity: 0.7;
+    }
   }
 }
 

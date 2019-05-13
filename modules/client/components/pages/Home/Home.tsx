@@ -93,8 +93,8 @@ const Home: React.FC<HomeProps> = () => {
       >
         {userData.users.map(user => {
           return (
-            <div className="joyrideArtist">
-              <ArtistCardData key={user.id} className="cardInRow" user={user} />
+            <div className="joyrideArtist" key={user.id}>
+              <ArtistCardData className="cardInRow" user={user} />
             </div>
           );
         })}
@@ -102,8 +102,8 @@ const Home: React.FC<HomeProps> = () => {
 
       {tracksData.userTracks.map(track => {
         return (
-          <div className="joyrideTrack">
-            <UserTrack key={track.id} track={track} />
+          <div className="joyrideTrack" key={track.id}>
+            <UserTrack track={track} />
           </div>
         );
       })}

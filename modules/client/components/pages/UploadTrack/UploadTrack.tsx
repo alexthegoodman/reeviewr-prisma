@@ -24,10 +24,16 @@ import AuthClient from "../../../services/AuthClient";
 import Utility from "../../../../services/Utility";
 import { ERROR_CODE } from "../../../../services/ERROR_CODE";
 import CreateQuestion from "../../ui/CreateQuestion/CreateQuestion";
+import { useAppContext } from "../../../context";
+import { useCurrentRoute, useNavigation } from "react-navi";
 
 const UploadTrack: React.FC<UploadTrackProps> = () => {
   const authClient = new AuthClient();
   const utility = new Utility();
+
+  const [{ userData }, dispatch] = useAppContext();
+  const route = useCurrentRoute();
+  const navigation = useNavigation();
 
   const [navbarTabId, setNavbarTabId] = React.useState("credentials" as TabId);
 
@@ -50,18 +56,41 @@ const UploadTrack: React.FC<UploadTrackProps> = () => {
   // TODO: Special properties such as Require Longer Reviews, Ask to Share
 
   if (!startUpload) {
+    let cta = (
+      <>
+        <Text tagName="h1" className="headline">
+          Join In
+        </Text>
+        <Text tagName="h2" className="headline">
+          You must sign in to review songs and upload music.
+        </Text>
+        <Button
+          className="uploadButton"
+          onClick={() => navigation.navigate("/sign-up")}
+        >
+          Sign Up
+        </Button>
+      </>
+    );
+    if (userData !== null) {
+      cta = (
+        <>
+          <Text tagName="h1" className="headline">
+            Upload Track
+          </Text>
+          <Text tagName="h2" className="headline">
+            You have 10 points to spend. You can upload 3 songs.
+          </Text>
+          <Button className="uploadButton" onClick={() => setStartUpload(true)}>
+            Upload Now
+          </Button>
+        </>
+      );
+    }
     return (
       <section className="emptyState">
         <img src="/public/img/uploadEmpty.svg" />
-        <Text tagName="h1" className="headline">
-          Upload Track
-        </Text>
-        <Text tagName="h2" className="headline">
-          You have 10 points to spend. You can upload 3 songs.
-        </Text>
-        <Button className="uploadButton" onClick={() => setStartUpload(true)}>
-          Upload Now
-        </Button>
+        {cta}
       </section>
     );
   } else {

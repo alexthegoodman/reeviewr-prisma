@@ -29,12 +29,16 @@ import CreateQuestion from "../../ui/CreateQuestion/CreateQuestion";
 import AnswerQuestion from "../../ui/AnswerQuestion/AnswerQuestion";
 import Legacy from "../../../../services/Legacy";
 import Strings from "../../../services/Strings";
+import { useCookies } from "react-cookie";
+import { useCurrentRoute, useNavigation } from "react-navi";
+import { USER_QUERY } from "../../../graphql/queries/user";
+import { useQuery } from "react-apollo-hooks";
+import { useAppContext } from "../../../context";
 
 const AddReviewData: React.FC<AddReviewDataProps> = ({
   ref = null,
   className = "",
   onClick = e => console.info("Click"),
-  imageUrl = "",
   track = null,
 }) => {
   const strings = new Strings();
@@ -44,12 +48,32 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
 
   const clickHandler = e => onClick(e);
 
+  const route = useCurrentRoute();
+  const navigation = useNavigation();
+  const [{ userData }, dispatch] = useAppContext();
   const [navbarTabId, setNavbarTabId] = React.useState("question1" as TabId);
   const [modelOpen, setModelOpen] = React.useState(false);
+  const [cookies] = useCookies(["reeviewrPrivateHash"]);
 
   const handleTabChange = (navbarTabId: TabId) => {
     setNavbarTabId(navbarTabId);
   };
+
+  let addReview = <AddReview onClick={() => navigation.navigate("/sign-up")} />;
+
+  if (userData !== null) {
+    const userArtistName = legacy.extractMetaValue(
+      userData.user.userMeta,
+      "userArtistName"
+    );
+    const profileImage = legacy.extractMetaValue(
+      userData.user.userMeta,
+      "profileImage"
+    );
+    addReview = (
+      <AddReview imageUrl={profileImage} onClick={() => setModelOpen(true)} />
+    );
+  }
 
   let trackMetaList = null;
   if (track !== null) {
@@ -101,7 +125,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
 
   return (
     <>
-      <AddReview imageUrl={imageUrl} onClick={() => setModelOpen(true)} />
+      {addReview}
       <Dialog
         isOpen={modelOpen}
         title={"Review Track"}

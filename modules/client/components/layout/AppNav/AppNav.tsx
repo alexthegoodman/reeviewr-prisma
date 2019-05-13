@@ -34,9 +34,11 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
 
   const route = useCurrentRoute();
   const navigation = useNavigation();
-  const [cookies] = useCookies(["reeviewrPrivateHash"]);
+  const [cookies, setCookie, removeCookie] = useCookies([
+    "reeviewrPrivateHash",
+  ]);
 
-  const [{ tour }, dispatch] = useAppContext();
+  const [{ tour, userData }, dispatch] = useAppContext();
 
   console.info("cookies", cookies["reeviewrPrivateHash"]);
 
@@ -70,23 +72,12 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
   );
   let dropdownMenuItems = <></>;
 
-  if (utility.isDefinedWithContent(cookies["reeviewrPrivateHash"])) {
-    const { data: userData, error: userError, loading: userLoading } = useQuery(
-      USER_QUERY,
-      { variables: { privateHash: cookies["reeviewrPrivateHash"] } }
-    );
-    if (userLoading) {
-      return <div>Loading user...</div>;
-    }
-    if (userError) {
-      return <div>Error on user! {userError.message}</div>;
-    }
-    if (
-      Object.keys(userData).length === 0 ||
-      !utility.isDefinedWithContent(userData)
-    ) {
-      return <div>Void data error 401...</div>;
-    }
+  let pointCounter = <></>;
+  if (userData !== null) {
+    const logOut = () => {
+      removeCookie("reeviewrPrivateHash");
+      window.location.reload();
+    };
 
     const userArtistName = legacy.extractMetaValue(
       userData.user.userMeta,
@@ -96,6 +87,14 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
     const profileImage = legacy.extractMetaValue(
       userData.user.userMeta,
       "profileImage"
+    );
+
+    const points = legacy.extractMetaValue(userData.user.userMeta, "points");
+
+    pointCounter = (
+      <Text className="pointCounter" tagName="em">
+        You have {points} Points
+      </Text>
     );
 
     rightNav = <></>;
@@ -109,7 +108,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
     dropdownMenuItems = (
       <>
         <MenuItem>Settings</MenuItem>
-        <MenuItem>Log Out</MenuItem>
+        <MenuItem onClick={logOut}>Log Out</MenuItem>
       </>
     );
   }
@@ -117,6 +116,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
   return (
     <App>
       <Sidebar>
+        {pointCounter}
         <Button
           className="uploadButton"
           onClick={() => navigation.navigate("/upload")}
