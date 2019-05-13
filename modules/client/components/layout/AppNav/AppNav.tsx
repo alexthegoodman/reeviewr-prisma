@@ -7,6 +7,7 @@ import {
   useLoadingRoute,
   NotFoundBoundary,
   useNavigation,
+  Link,
 } from "react-navi";
 // import BusyIndicator from "react-busy-indicator";
 
@@ -174,8 +175,10 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
       <Header
         leftElements={
           <>
-            <section className="loggedOutActions">
-              <img className="logo" src="/public/img/logo-w.png" />
+            <section className="logoContainer">
+              <Link href="/">
+                <img className="logo" src="/public/img/logo-w.png" />
+              </Link>
             </section>
             <BeyondSearchData />
           </>
