@@ -237,6 +237,7 @@
     "react-scroll-horizontal": "^1.6.2",
     "react-suspense-polyfill": "^2.0.1",
     "react-test-renderer": "16.8",
+    "react-useinterval": "^1.0.1",
     "react-vis": "^1.11.7",
     "react-wavesurfer": "^0.8.6",
     "react-wordcloud": "^1.0.5",

@@ -11,6 +11,8 @@ import ReactAudioPlayer from "react-audio-player";
 import * as $ from "jquery";
 import uuid from "uuid";
 import { useAppContext } from "../../../context";
+import Utility from "../../../../services/Utility";
+import useInterval from "react-useinterval";
 
 const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
   ref = null,
@@ -20,9 +22,13 @@ const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
   audioJson = null,
   imageUrl = "",
 }) => {
+  const utility = new Utility();
+
   const [peaks, setPeaks] = React.useState(null);
   const audioPlayerRef = React.useRef(null);
+  const [trackSpot, setTrackSpot] = React.useState(0);
   const [{ audioManager }, dispatch] = useAppContext();
+  const track = audioManager.tracks[trackId];
 
   React.useEffect(() => {
     $.getJSON(audioJson, function(json) {
@@ -39,6 +45,17 @@ const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
     });
   }, []);
 
+  const increaseCount = () => {
+    if (utility.isDefinedWithContent(track)) {
+      if (track.playing) {
+        console.info("playing spot", trackSpot);
+        setTrackSpot(trackSpot + 1);
+      }
+    }
+  };
+
+  useInterval(increaseCount, 1000, null);
+
   if (process.env.BROWSER) {
     return (
       <section ref={ref} className={`trackWaveForm ${className}`}>
@@ -48,16 +65,25 @@ const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
             barWidth={3}
             height={150}
             color="#FFF"
-            progressGradientColors={[[0, "#FFF"], [1, "#FFF"]]}
-            transitionDuration={300}
+            progressGradientColors={[[0, "#df494a"], [1, "#df494a"]]}
+            transitionDuration={1000}
+            pos={trackSpot}
+            duration={
+              audioPlayerRef.current !== null &&
+              !isNaN(audioPlayerRef.current.audioEl.duration)
+                ? Math.floor(audioPlayerRef.current.audioEl.duration)
+                : 100
+            }
           />
           <ReactAudioPlayer
             ref={audioPlayerRef}
             style={{ display: "none" }}
             src={audioUrl}
             controls={false}
-            preload={false}
-            // onPlay={() => console.info("on play")}
+            preload="none"
+            // onPlay={() =>
+            //   console.info("on play", audioPlayerRef.current.audioEl.duration)
+            // }
             // volume
             // onAbort
             // onCanPlay
@@ -66,7 +92,6 @@ const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
             // onError
             // onListen
             // onPause
-            // onPlay
             // onSeeked
             // onVolumeChanged
           />

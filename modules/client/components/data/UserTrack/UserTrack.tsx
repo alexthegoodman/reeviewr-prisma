@@ -11,10 +11,11 @@ import ReviewCardData from "../ReviewCardData/ReviewCardData";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 import { ImageSizes } from "../../../../defs/imageSizes";
 import Core from "../../../../services/Core";
-import { Button } from "@blueprintjs/core";
+import { Button, Tag } from "@blueprintjs/core";
 import AddReview from "../../ui/AddReview/AddReview";
 import AddReviewData from "../AddReviewData/AddReviewData";
 import Utility from "../../../../services/Utility";
+import { useAppContext } from "../../../context";
 
 const UserTrack: React.FC<UserTrackProps> = ({
   onClick = e => console.info("Click"),
@@ -27,20 +28,10 @@ const UserTrack: React.FC<UserTrackProps> = ({
   const utility = new Utility();
 
   let navigation = useNavigation();
+  const [{ audioManager }, dispatch] = useAppContext();
+  const contextTrack = audioManager.tracks[track.id];
 
   const clickHandler = e => onClick(e);
-
-  // TODO: handle track playback
-  // const [{ currentTrack }, dispatch] = useAppContext();
-
-  // console.info("current track", currentTrack);
-
-  // const toggleTrack = () => {
-  //   dispatch({
-  //     type: "setCurrentTrack",
-  //     currentTrack: { playing: !currentTrack.playing },
-  //   });
-  // };
 
   const firstName = legacy.extractMetaValue(track.user.userMeta, "firstName");
   const lastName = legacy.extractMetaValue(track.user.userMeta, "lastName");
@@ -77,11 +68,14 @@ const UserTrack: React.FC<UserTrackProps> = ({
       prependChildren={
         <>
           <div className="metaData">
-            <span>Duration: 0</span>
-            <span>Genre: {strings.decode(genre)}</span>
-            <span>SC Genre: {strings.decode(scGenre)}</span>
-            {/* Edit Track */}
-            {/* Delete Track */}
+            <Tag round={true}>{}</Tag>
+            <Tag round={true}>
+              {strings.decode(genre) !== ""
+                ? strings.decode(genre)
+                : strings.decode(scGenre)}
+            </Tag>
+            {/* TODO: Edit Track */}
+            {/* TODO: Delete Track */}
           </div>
           {children}
         </>
