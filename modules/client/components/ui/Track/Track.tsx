@@ -55,6 +55,7 @@ const Track: React.FC<TrackProps> = ({
             onTrackClick={navigateToTrack}
           />
           <TrackWaveForm
+            trackId={trackId}
             audioUrl={audioUrl}
             audioJson={audioJson}
             imageUrl={imageUrl}

@@ -1,14 +1,38 @@
 .trackHeader {
-  @extend .verticalCenter;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
 
+  .trackHeaderInfo {
+    @extend .verticalCenter;
+    padding-left: 15px;
+  }
   a {
     color: white;
 
+    &.trackPlayBtn {
+      @extend .horizontalCenter;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: $red;
+
+      .bp3-icon {
+        margin: 11px 0;
+      }
+      svg {
+        width: 30px;
+        height: 30px;
+        fill: white;
+      }
+    }
     &.trackTitle {
       font-size: 1.6rem;
     }
     &.artistName {
-      font-size: 1.1rem;
+      font-size: 1rem;
+      text-transform: uppercase;
+      opacity: 0.8;
     }
   }
 }

@@ -15,6 +15,9 @@ export interface IInitialAppState {
     run: true;
   };
   userData: User;
+  audioManager: {
+    tracks: any;
+  };
 }
 
 export let InitialAppState: Partial<IInitialAppState> = {
@@ -26,6 +29,9 @@ export let InitialAppState: Partial<IInitialAppState> = {
     run: true,
   },
   userData: null,
+  audioManager: {
+    tracks: {},
+  },
 };
 
 export const AppContextAPI = ({ children }) => {
@@ -49,6 +55,18 @@ export const AppContextAPI = ({ children }) => {
         return {
           ...state,
           userData: action.userData,
+        };
+
+      case "setAudioTrack":
+        return {
+          ...state,
+          audioManager: {
+            ...state.audioManager,
+            tracks: {
+              ...state.audioManager.tracks,
+              [action.trackId]: action.trackData,
+            },
+          },
         };
 
       default:

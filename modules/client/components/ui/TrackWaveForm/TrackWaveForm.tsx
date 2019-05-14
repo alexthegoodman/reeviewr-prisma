@@ -10,19 +10,32 @@ import { TrackWaveFormProps } from "./TrackWaveForm.d";
 import ReactAudioPlayer from "react-audio-player";
 import * as $ from "jquery";
 import uuid from "uuid";
+import { useAppContext } from "../../../context";
 
 const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
   ref = null,
   className = "",
+  trackId = null,
   audioUrl = "",
   audioJson = null,
   imageUrl = "",
 }) => {
   const [peaks, setPeaks] = React.useState(null);
+  const audioPlayerRef = React.useRef(null);
+  const [{ audioManager }, dispatch] = useAppContext();
 
   React.useEffect(() => {
     $.getJSON(audioJson, function(json) {
       setPeaks(json.data);
+    });
+    // set ref into context with trackId
+    dispatch({
+      type: "setAudioTrack",
+      trackId,
+      trackData: {
+        audioPlayerRef,
+        playing: false,
+      },
     });
   }, []);
 
@@ -39,10 +52,23 @@ const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
             transitionDuration={300}
           />
           <ReactAudioPlayer
-            src={audioUrl}
-            controls
-            onPlay={() => console.info("on play")}
+            ref={audioPlayerRef}
             style={{ display: "none" }}
+            src={audioUrl}
+            controls={false}
+            preload={false}
+            // onPlay={() => console.info("on play")}
+            // volume
+            // onAbort
+            // onCanPlay
+            // onCanPlayThrough
+            // onEnded
+            // onError
+            // onListen
+            // onPause
+            // onPlay
+            // onSeeked
+            // onVolumeChanged
           />
         </div>
       </section>
