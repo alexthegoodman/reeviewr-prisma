@@ -66,15 +66,24 @@ const GraphCard: React.FC<GraphCardProps> = ({
     case "wordcloud":
       graph = (
         <div style={{ width: windowSize.innerWidth * 0.6, height: 400 }}>
-          <ReactWordcloud
-            words={dataSet1}
-            options={{
-              rotations: false,
-              enableTooltip: false,
-              colors: ["#E5E5E5", "#B7B7B7", "#969696"],
-              fontSizes: [15, 25, 100],
+          <div
+            style={{
+              position: "relative",
+              left: windowSize.innerWidth * -0.15,
+              top: -100,
             }}
-          />
+          >
+            <ReactWordcloud
+              words={dataSet1}
+              size={[windowSize.innerWidth * 0.9, 600]}
+              options={{
+                rotations: false,
+                enableTooltip: false,
+                colors: ["#E5E5E5", "#B7B7B7", "#969696"],
+                fontSizes: [15, 25, 100],
+              }}
+            />
+          </div>
         </div>
       );
       break;
