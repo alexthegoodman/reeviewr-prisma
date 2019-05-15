@@ -3,6 +3,9 @@
   max-width: 400px;
 
   .cardInfo {
+    position: relative;
+    padding-bottom: 65px;
+
     h5 {
       font-size: 1.2rem;
     }
@@ -11,6 +14,47 @@
       display: block;
       text-align: center;
       color: white;
+    }
+    p {
+      position: absolute;
+      opacity: 0;
+
+      &:first-of-type {
+        opacity: 1;
+      }
+
+      &.reviewAnswer-exit-done,
+      &.reviewAnswer-exit-done:first-of-type {
+        opacity: 0;
+        transition: all 500ms;
+      }
+      &.reviewAnswer-exit,
+      &.reviewAnswer-exit:first-of-type {
+        transform: translateY(-15px);
+        opacity: 0;
+        transition: all 500ms;
+      }
+      &.reviewAnswer-exit-active,
+      &.reviewAnswer-exit-active:first-of-type {
+        transform: translateY(15px);
+        opacity: 0;
+        transition: all 500ms;
+      }
+      &.reviewAnswer-enter-active:first-of-type,
+      &.reviewAnswer-enter-active,
+      &.reviewAnswer-enter:first-of-type,
+      &.reviewAnswer-enter {
+        transform: translateY(-15px);
+        opacity: 0;
+        transition: all 500ms;
+      }
+
+      &.reviewAnswer-enter-done:first-of-type,
+      &.reviewAnswer-enter-done {
+        transform: translateY(0px);
+        opacity: 1;
+        transition: all 500ms;
+      }
     }
   }
 }

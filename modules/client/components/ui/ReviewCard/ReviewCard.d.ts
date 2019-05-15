@@ -3,7 +3,8 @@ export interface ReviewCardProps {
   className?: string;
   onClick?: (e: MouseEvent) => void;
   artistTitle: string;
-  answerPreview: string;
+  // answerPreview: string;
+  reviewMetaList: any;
   reviewerImageUrl: string;
   reviewerAltText: string;
   trackImageUrl: string;

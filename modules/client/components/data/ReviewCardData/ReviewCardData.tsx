@@ -123,7 +123,7 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
             ? userMetaList["userArtistName"]
             : fullName
         }
-        answerPreview={reviewMetaList["questionAnswer1"]}
+        reviewMetaList={reviewMetaList}
         reviewerImageUrl={profileImage}
         reviewerAltText={fullName}
         reviewerId={review.user.id}
