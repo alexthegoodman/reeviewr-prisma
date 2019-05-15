@@ -13,6 +13,7 @@ import uuid from "uuid";
 import { useAppContext } from "../../../context";
 import Utility from "../../../../services/Utility";
 import useInterval from "react-useinterval";
+import Core from "../../../../services/Core";
 
 const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
   ref = null,
@@ -22,6 +23,7 @@ const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
   audioJson = null,
   imageUrl = "",
 }) => {
+  const core = new Core();
   const utility = new Utility();
 
   const [peaks, setPeaks] = React.useState(null);
@@ -34,7 +36,10 @@ const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
     $.getJSON(audioJson, function(json) {
       setPeaks(json.data);
     });
-    // set ref into context with trackId
+  }, []);
+
+  // set ref into context with trackId
+  const metaDataLoaded = () => {
     dispatch({
       type: "setAudioTrack",
       trackId,
@@ -43,7 +48,7 @@ const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
         playing: false,
       },
     });
-  }, []);
+  };
 
   const increaseCount = () => {
     if (utility.isDefinedWithContent(track)) {
@@ -68,25 +73,20 @@ const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
             progressGradientColors={[[0, "#df494a"], [1, "#df494a"]]}
             transitionDuration={1000}
             pos={trackSpot}
-            duration={
-              audioPlayerRef.current !== null &&
-              !isNaN(audioPlayerRef.current.audioEl.duration)
-                ? Math.floor(audioPlayerRef.current.audioEl.duration)
-                : 100
-            }
+            duration={core.getTrackDuration(audioPlayerRef)}
           />
           <ReactAudioPlayer
             ref={audioPlayerRef}
             style={{ display: "none" }}
             src={audioUrl}
             controls={false}
-            preload="none"
+            preload="metadata"
             // onPlay={() =>
             //   console.info("on play", audioPlayerRef.current.audioEl.duration)
             // }
             // volume
             // onAbort
-            // onCanPlay
+            onCanPlay={() => metaDataLoaded()}
             // onCanPlayThrough
             // onEnded
             // onError

@@ -1,5 +1,6 @@
 import Utility from "./Utility";
 import Legacy from "./Legacy";
+import * as moment from "moment";
 
 export default class Core {
   public utility;
@@ -75,5 +76,19 @@ export default class Core {
     }
 
     return imageUrl;
+  }
+
+  getTrackDuration(audioPlayerRef, transform = false) {
+    const duration =
+      audioPlayerRef.current !== null &&
+      !isNaN(audioPlayerRef.current.audioEl.duration)
+        ? Math.floor(audioPlayerRef.current.audioEl.duration)
+        : 1;
+
+    const transformedDuration = transform
+      ? moment.utc(duration * 1000).format("mm:ss")
+      : duration;
+
+    return transformedDuration;
   }
 }

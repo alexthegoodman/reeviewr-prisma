@@ -1,3 +1,16 @@
 .userTrack {
   margin-bottom: 50px;
+
+  .metaData {
+    margin-bottom: 15px;
+
+    .bp3-tag {
+      margin: 0 10px 0 0;
+
+      > span {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+    }
+  }
 }

@@ -31,6 +31,8 @@ const UserTrack: React.FC<UserTrackProps> = ({
   const [{ audioManager }, dispatch] = useAppContext();
   const contextTrack = audioManager.tracks[track.id];
 
+  console.info("contextTrack", contextTrack);
+
   const clickHandler = e => onClick(e);
 
   const firstName = legacy.extractMetaValue(track.user.userMeta, "firstName");
@@ -65,21 +67,26 @@ const UserTrack: React.FC<UserTrackProps> = ({
       artistName={
         userArtistName !== "" ? userArtistName : `${firstName} ${lastName}`
       }
-      prependChildren={
-        <>
-          <div className="metaData">
-            <Tag round={true}>{}</Tag>
-            <Tag round={true}>
-              {strings.decode(genre) !== ""
-                ? strings.decode(genre)
-                : strings.decode(scGenre)}
-            </Tag>
-            {/* TODO: Edit Track */}
-            {/* TODO: Delete Track */}
-          </div>
-          {children}
-        </>
+      headerChildren={
+        <div className="metaData">
+          <Tag round={true}>
+            {utility.isDefinedWithContent(contextTrack) &&
+            utility.isDefinedWithContent(contextTrack.audioPlayerRef) ? (
+              core.getTrackDuration(contextTrack.audioPlayerRef, true)
+            ) : (
+              <>N/A</>
+            )}
+          </Tag>
+          <Tag round={true}>
+            {strings.decode(genre) !== ""
+              ? strings.decode(genre)
+              : strings.decode(scGenre)}
+          </Tag>
+          {/* TODO: Edit Track */}
+          {/* TODO: Delete Track */}
+        </div>
       }
+      prependChildren={<>{children}</>}
       actionChildren={
         <>
           <Button

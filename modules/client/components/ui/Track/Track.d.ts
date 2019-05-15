@@ -14,4 +14,5 @@ export interface TrackProps {
   artistName: string;
   prependChildren: ReactNode;
   actionChildren: ReactNode;
+  headerChildren?: ReactNode;
 }

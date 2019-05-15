@@ -26,6 +26,7 @@ const Track: React.FC<TrackProps> = ({
   prependChildren,
   children,
   actionChildren,
+  headerChildren,
 }) => {
   let navigation = useNavigation();
 
@@ -54,6 +55,7 @@ const Track: React.FC<TrackProps> = ({
             trackId={trackId}
             onTrackClick={navigateToTrack}
           />
+          <div className="headerChildren">{headerChildren}</div>
           <TrackWaveForm
             trackId={trackId}
             audioUrl={audioUrl}
