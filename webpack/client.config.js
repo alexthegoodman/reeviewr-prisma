@@ -61,20 +61,20 @@ module.exports = {
     hot: false,
   },
 
-  optimization: config.get("minify")
-    ? {
-        splitChunks: {
-          chunks: "all",
-          // cacheGroups: {
-          //   commons: {
-          //     test: /[\\/]node_modules[\\/]/,
-          //     name: "vendors",
-          //     chunks: "all",
-          //   },
-          // },
-        },
-      }
-    : undefined,
+  // optimization: config.get("minify")
+  //   ? {
+  //       splitChunks: {
+  //         chunks: "all",
+  //         // cacheGroups: {
+  //         //   commons: {
+  //         //     test: /[\\/]node_modules[\\/]/,
+  //         //     name: "vendors",
+  //         //     chunks: "all",
+  //         //   },
+  //         // },
+  //       },
+  //     }
+  //   : undefined,
 
   performance: {
     assetFilter(filename) {

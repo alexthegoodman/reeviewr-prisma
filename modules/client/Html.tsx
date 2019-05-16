@@ -17,7 +17,7 @@ export const Html = ({ content, state }) => {
             )};`,
           }}
         />
-        <script src="/public/client.js" />
+        <script type="application/javascript" src="/public/client.js" />
       </body>
     </html>
   );
