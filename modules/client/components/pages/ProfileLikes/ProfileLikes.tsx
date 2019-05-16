@@ -33,7 +33,7 @@ const ProfileLikes: React.FC<ProfileLikesProps> = ({ artistId }) => {
       favs = decodeURIComponent(favs);
       favs = favs.split(", ");
     }
-    console.info("favs", favs);
+    // console.info("favs", favs);
   }
 
   const {
@@ -43,9 +43,9 @@ const ProfileLikes: React.FC<ProfileLikesProps> = ({ artistId }) => {
     refetch,
   } = useQuery(ARTIST_TRACKS_QUERY, { variables: { artistId: favs } });
 
-  console.info("User data", artistId, name, userData);
+  // console.info("User data", artistId, name, userData);
 
-  console.info("Tracks Data", artistId, tracksData, tracksLoading, tracksError);
+  // console.info("Tracks Data", artistId, tracksData, tracksLoading, tracksError);
 
   // track fetching is technically about ProfileNav which does the UserFetch
   if (userLoading) {

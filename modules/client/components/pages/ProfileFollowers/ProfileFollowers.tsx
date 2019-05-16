@@ -36,7 +36,7 @@ const ProfileFollowers: React.FC<ProfileFollowersProps> = ({ artistId }) => {
       followers = decodeURIComponent(followers);
       followers = followers.split(", ");
     }
-    console.info("followers", followers);
+    // console.info("followers", followers);
   }
 
   const {
@@ -46,9 +46,9 @@ const ProfileFollowers: React.FC<ProfileFollowersProps> = ({ artistId }) => {
     refetch,
   } = useQuery(ARTIST_TRACKS_QUERY, { variables: { artistId: followers } });
 
-  console.info("User data", artistId, name, userData);
+  // console.info("User data", artistId, name, userData);
 
-  console.info("Tracks Data", artistId, tracksData, tracksLoading, tracksError);
+  // console.info("Tracks Data", artistId, tracksData, tracksLoading, tracksError);
 
   // track fetching is technically about ProfileNav which does the UserFetch
   if (userLoading) {

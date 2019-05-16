@@ -117,7 +117,7 @@ const TrackDetail: React.FC<TrackDetailProps> = () => {
     ]);
 
     // assemble review aggregate categorized by question
-    console.info("reviewMetaList", reviewMetaList);
+    // console.info("reviewMetaList", reviewMetaList);
     for (let i = 0; i <= 2; i++) {
       questionData[i].type = reviewMetaList["questionType" + (i + 1)];
       questionData[i].reviews.type = reviewMetaList["questionType" + (i + 1)];
@@ -133,7 +133,7 @@ const TrackDetail: React.FC<TrackDetailProps> = () => {
     }
   });
 
-  console.info("questionData", questionData);
+  // console.info("questionData", questionData);
 
   return (
     <>

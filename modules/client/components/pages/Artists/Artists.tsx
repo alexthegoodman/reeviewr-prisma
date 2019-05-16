@@ -16,7 +16,7 @@ const Artists: React.FC<ArtistsProps> = () => {
     return <div>Error on users! {userError.message}</div>;
   }
 
-  console.info("Artists Data", userData);
+  // console.info("Artists Data", userData);
 
   return (
     <>

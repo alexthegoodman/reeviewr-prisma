@@ -241,7 +241,7 @@ const UploadTrack: React.FC<UploadTrackProps> = () => {
                 }
 
                 if (!error) {
-                  console.info("sucess", values);
+                  // console.info("sucess", values);
                   // authClient.signup(values, (err, res) => {
                   //   if (err) {
                   //     console.error(err);

@@ -115,7 +115,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
     }
   });
 
-  console.info("meta list", questionType, trackMetaList, track.itemMeta);
+  // console.info("meta list", questionType, trackMetaList, track.itemMeta);
 
   const AddReviewSchema = Yup.object().shape({
     questionAnswer1: Yup.string().required("Required"),

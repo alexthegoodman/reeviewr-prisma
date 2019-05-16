@@ -65,9 +65,9 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = () => {
           console.log("values", { values, actions });
           authClient.forgotPassword(values, (err, res) => {
             if (err) {
-              console.info("here 1");
+              // console.info("here 1");
               if (res.body.errorMessage === ERROR_CODE.C001) {
-                console.info("hero");
+                // console.info("hero");
                 setCannotFindEmail(true);
               } else {
                 setCannotFindEmail(false);

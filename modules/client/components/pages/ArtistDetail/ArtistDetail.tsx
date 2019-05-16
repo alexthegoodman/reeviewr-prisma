@@ -33,9 +33,9 @@ const ArtistDetail: React.FC<ArtistDetailProps> = ({ artistId }) => {
     { variables: { id: artistId } }
   );
 
-  console.info("User data", artistId, name, userData);
+  // console.info("User data", artistId, name, userData);
 
-  console.info("Tracks Data", artistId, tracksData, tracksLoading, tracksError);
+  // console.info("Tracks Data", artistId, tracksData, tracksLoading, tracksError);
 
   // track fetching is technically about ProfileNav which does the UserFetch
   if (tracksLoading) {

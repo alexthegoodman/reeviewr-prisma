@@ -53,7 +53,7 @@ const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
   const increaseCount = () => {
     if (utility.isDefinedWithContent(track)) {
       if (track.playing) {
-        console.info("playing spot", trackSpot);
+        // console.info("playing spot", trackSpot);
         setTrackSpot(trackSpot + 1);
       }
     }

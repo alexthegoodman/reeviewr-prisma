@@ -26,7 +26,7 @@ const SliderField: React.FC<SliderFieldProps> = ({
       ref={ref}
       name={fieldName}
       render={({ field, form }: FieldProps<any>) => {
-        console.info("field", field);
+        // console.info("field", field);
         return (
           <FormGroup
             helperText={helperText}
