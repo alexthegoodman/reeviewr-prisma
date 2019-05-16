@@ -62,13 +62,37 @@ const GraphCardData: React.FC<GraphCardDataProps> = ({
           graphData[graphData.length] = { x: i, y: matchReview.length };
         }
 
-        console.info("graphdata", graphData);
+        // console.info("graphdata", graphData);
 
         graphType = "bar";
 
         break;
 
       case "mult_choice":
+        graphData = [];
+        let multChoiceOptions = [option1, option2, option3, option4];
+        for (let key in multChoiceOptions) {
+          if (typeof multChoiceOptions[key] !== "undefined") {
+            console.info(
+              key,
+              multChoiceOptions,
+              `${parseInt(key) + 1}`,
+              reviews
+            );
+            const matchReview = reviews.items.filter(
+              item => item.answer === `${parseInt(key) + 1}`
+            );
+            graphData[graphData.length] = {
+              x: strings.decode(multChoiceOptions[key]),
+              y: matchReview.length,
+            };
+          }
+        }
+
+        console.info("graphdata", multChoiceOptions, reviews.items, graphData);
+
+        graphType = "bar";
+
         break;
     }
 
