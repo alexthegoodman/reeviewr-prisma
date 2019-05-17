@@ -101,6 +101,7 @@ junit.xml
 *.mp3
 *.wav
 *.dat
+tmp/
 
 toxicrobin
 

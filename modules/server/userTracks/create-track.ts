@@ -81,10 +81,10 @@ export const createTrack = async (req, res) => {
 
     if (utility.isDefinedWithContent(authUser)) {
       if (
-        core.getSizeBase64(coverArtData.length) < 10000000 &&
-        core.getSizeBase64(trackAudioData.length) < 10000000 &&
-        coverArtSize < 10000000 &&
-        trackAudioSize < 10000000
+        core.getSizeBase64(coverArtData.length) < 100000000 &&
+        core.getSizeBase64(trackAudioData.length) < 100000000 &&
+        coverArtSize < 100000000 &&
+        trackAudioSize < 100000000
       ) {
         const folder = core.getUploadDir();
         const public_id = core.getPublicId(coverArt);
