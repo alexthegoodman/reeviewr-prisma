@@ -1,6 +1,8 @@
 import Utility from "./Utility";
 import Legacy from "./Legacy";
 import * as moment from "moment";
+const uuid = require("uuid");
+const slugify = require("slugify");
 
 export default class Core {
   public utility;
@@ -90,5 +92,23 @@ export default class Core {
       : duration;
 
     return transformedDuration;
+  }
+
+  getUploadDir() {
+    const year = moment().format("YYYY");
+    const month = moment().format("MM");
+    const folder = `${year}/${month}/`;
+    return folder;
+  }
+
+  getSizeBase64(length) {
+    const size = length * (3 / 4);
+    return size;
+  }
+
+  getPublicId(name) {
+    const pieces = name.split(".");
+    const publicId = slugify(pieces[0]) + "-" + uuid.v4() + "." + pieces[1];
+    return publicId;
   }
 }

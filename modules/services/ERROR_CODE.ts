@@ -6,5 +6,6 @@ export enum ERROR_CODE {
   C005 = "C005. Could not encrypt password",
   C006 = "C006. User not a valid type",
   C007 = "C007. User email not confirmed",
-  C008 = "C007. A user with this email already exists",
+  C008 = "C008. A user with this email already exists",
+  B001 = "B001. The files provided are not the correct size",
 }

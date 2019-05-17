@@ -20,6 +20,34 @@ function formatUrl(path, version = "1.0") {
 export default class RestClient {
   constructor() {}
 
+  makeRequest(endpoint, values, callback) {
+    try {
+      this.execSuper(endpoint, values, "POST").end((err, res) => {
+        if (err) {
+          console.error(err);
+
+          if (res.body !== null) {
+            console.error(res.body.errorMessage);
+          }
+        }
+        callback(err, res);
+      });
+    } catch (err) {
+      console.error("ERROR 2001: ", err);
+    }
+  }
+
+  execSuper(endpoint, params, method = "GET") {
+    if (method === "POST") {
+      return superagent
+        .post(formatUrl(endpoint))
+        .send(params)
+        .withCredentials()
+        .set("accept", "json");
+    }
+  }
+
+  // exec currently unused
   exec(endpoint, params, method = "GET") {
     const newHeaders = new Headers();
     newHeaders.append("Content-Type", "application/json");
@@ -54,15 +82,5 @@ export default class RestClient {
       const jsonData = data.json();
       return jsonData;
     });
-  }
-
-  execSuper(endpoint, params, method = "GET") {
-    if (method === "POST") {
-      return superagent
-        .post(formatUrl(endpoint))
-        .send(params)
-        .withCredentials()
-        .set("accept", "json");
-    }
   }
 }

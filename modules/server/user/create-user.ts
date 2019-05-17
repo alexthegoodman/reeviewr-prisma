@@ -6,6 +6,7 @@ import Utility from "../../services/Utility";
 const uuid = require("uuid");
 const cloudinary = require("cloudinary").v2;
 import * as moment from "moment";
+import Core from "../../services/Core";
 
 cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -21,6 +22,7 @@ export const createUser = async (req, res) => {
     // 1. Send email confirmation
     // 2. Create user as userConfirmed = 0, generate 4 UUIDs
 
+    const core = new Core();
     const utility = new Utility();
     const emailService = new EmailService();
 
@@ -45,10 +47,8 @@ export const createUser = async (req, res) => {
     if (!utility.isDefinedWithContent(userExists)) {
       bcrypt.hash(password, 12, async (err, hash) => {
         if (utility.isDefinedWithContent(hash)) {
-          const year = moment().format("YYYY");
-          const month = moment().format("MM");
-          const folder = `${year}/${month}/`;
-          const public_id = profilePicture + "-" + uuid.v4();
+          const folder = core.getUploadDir();
+          const public_id = core.getPublicId(profilePicture);
 
           cloudinary.uploader.upload(
             profilePictureData,

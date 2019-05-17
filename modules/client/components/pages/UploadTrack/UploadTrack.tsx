@@ -26,16 +26,18 @@ import { ERROR_CODE } from "../../../../services/ERROR_CODE";
 import CreateQuestion from "../../ui/CreateQuestion/CreateQuestion";
 import { useAppContext } from "../../../context";
 import { useCurrentRoute, useNavigation } from "react-navi";
+import UserTrackClient from "../../../services/UserTrackClient";
 
 const UploadTrack: React.FC<UploadTrackProps> = () => {
   const authClient = new AuthClient();
+  const userTrackClient = new UserTrackClient();
   const utility = new Utility();
 
   const [{ userData }, dispatch] = useAppContext();
   const route = useCurrentRoute();
   const navigation = useNavigation();
 
-  const [navbarTabId, setNavbarTabId] = React.useState("credentials" as TabId);
+  const [navbarTabId, setNavbarTabId] = React.useState("basic" as TabId);
 
   const [coverArtError, setCoverArtError] = React.useState(false);
   const [coverArtTypeError, setCoverArtTypeError] = React.useState(false);
@@ -241,22 +243,25 @@ const UploadTrack: React.FC<UploadTrackProps> = () => {
                 }
 
                 if (!error) {
-                  // console.info("sucess", values);
-                  // authClient.signup(values, (err, res) => {
-                  //   if (err) {
-                  //     console.error(err);
-                  //     if (res.body.errorMessage === ERROR_CODE.C008) {
-                  //       setUserExists(true);
-                  //     } else {
-                  //       setUserExists(false);
-                  //     }
-                  //   }
-                  //   if (res.body.success) {
-                  //     // redirect to Home
-                  //     console.info("redirect thank you - go confirm your email");
-                  //   }
-                  //   actions.resetForm();
-                  // });
+                  console.info("success", values);
+                  userTrackClient.createTrack(values, (err, res) => {
+                    if (err) {
+                      console.error(err);
+                      actions.setSubmitting(false);
+                      // if (res.body.errorMessage === ERROR_CODE.C008) {
+                      //   setUserExists(true);
+                      // } else {
+                      //   setUserExists(false);
+                      // }
+                    }
+                    if (res.body !== null && res.body.success) {
+                      // TODO: show success toast and go to track page
+                      navigation.navigate("/");
+                      actions.resetForm();
+                    }
+                  });
+                } else {
+                  actions.setSubmitting(false);
                 }
               } else {
                 setTrackAudioError(true);
@@ -264,6 +269,7 @@ const UploadTrack: React.FC<UploadTrackProps> = () => {
             } else {
               setCoverArtError(true);
             }
+            actions.setSubmitting(false);
           }}
           render={(formikBag: FormikProps<UploadFormValues>) => {
             // console.info("formikbag", formikBag);
@@ -292,7 +298,7 @@ const UploadTrack: React.FC<UploadTrackProps> = () => {
                   helperText="Upload an MP3 or WAV file"
                 />
                 <Button
-                  onClick={() => handleTabChange("basic")}
+                  onClick={() => handleTabChange("questions")}
                   disabled={formikBag.isSubmitting}
                 >
                   Next Step
@@ -355,8 +361,8 @@ const UploadTrack: React.FC<UploadTrackProps> = () => {
                   onChange={handleTabChange}
                   selectedTabId={navbarTabId}
                 >
-                  <Tab id="credentials" title="Basic Info" panel={panel1} />
-                  <Tab id="basic" title="Questions" panel={panel2} />
+                  <Tab id="basic" title="Basic Info" panel={panel1} />
+                  <Tab id="questions" title="Questions" panel={panel2} />
                 </Tabs>
               </Form>
             );

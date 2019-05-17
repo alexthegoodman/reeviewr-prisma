@@ -76,9 +76,10 @@ export const enableDeveloperLogin = config.get<boolean>(
 );
 
 export async function startServer() {
-  app.use(bodyParser.json());
+  app.use(bodyParser.json({ limit: "50mb" }));
   app.use(
     bodyParser.urlencoded({
+      limit: "50mb",
       extended: true,
     })
   );
@@ -187,10 +188,10 @@ export async function startServer() {
   app.post(`/${apiVersion}${FORGOT_PASSWORD}`, forgotPassword);
   app.post(`/${apiVersion}${RESET_PASSWORD}`, resetPassword);
   app.post(
-    `/${apiVersion}/${RESEND_EMAIL_CONFIRMATION}`,
+    `/${apiVersion}${RESEND_EMAIL_CONFIRMATION}`,
     resendEmailConfirmation
   );
-  app.post(`/${apiVersion}/${CREATE_TRACK}`, createTrack);
+  app.post(`/${apiVersion}${CREATE_TRACK}`, createTrack);
 
   app.get(
     "/*",
