@@ -45,8 +45,8 @@ const ArtistDetail: React.FC<ArtistDetailProps> = ({ artistId }) => {
     return <div>Error on tracks! {tracksError.message}</div>;
   }
   if (
-    Object.keys(tracksData).length === 0 ||
-    !utility.isDefinedWithContent(tracksData)
+    !utility.isDefinedWithContent(tracksData) &&
+    !utility.isDefinedWithContent(tracksData.userTracks)
   ) {
     // TODO: why require this refetch? Stacked queries? Navigation hooks?
     // refetch();

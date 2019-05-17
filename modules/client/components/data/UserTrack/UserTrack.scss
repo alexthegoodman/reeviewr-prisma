@@ -6,11 +6,13 @@
 
     .bp3-tag {
       margin: 0 10px 0 0;
-
-      > span {
-        margin: 0;
-        font-size: 0.9rem;
-      }
     }
+  }
+}
+
+.bp3-tag {
+  > span {
+    margin: 0;
+    font-size: 0.9rem;
   }
 }

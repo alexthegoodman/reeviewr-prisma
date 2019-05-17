@@ -4,6 +4,7 @@ export interface ReviewCardProps {
   onClick?: (e: MouseEvent) => void;
   artistTitle: string;
   // answerPreview: string;
+  trackMetaList: any;
   reviewMetaList: any;
   reviewerImageUrl: string;
   reviewerAltText: string;

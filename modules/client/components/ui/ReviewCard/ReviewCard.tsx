@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { ReviewCardProps } from "./ReviewCard.d";
-import { Card, Text } from "@blueprintjs/core";
+import { Card, Text, Tag } from "@blueprintjs/core";
 import ReviewParticipants from "../ReviewParticipants/ReviewParticipants";
 import truncate from "truncate";
 import Strings from "../../../services/Strings";
@@ -14,6 +14,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
   className = "",
   onClick = e => console.info("Click"),
   artistTitle = "",
+  trackMetaList = {},
   reviewMetaList = {},
   reviewerImageUrl = "",
   reviewerAltText = "",
@@ -36,18 +37,47 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
   useInterval(increaseCount, Math.random() * 10000, null);
 
   artistTitle = strings.decode(artistTitle);
-  const answer1 = truncate(
-    strings.decode(reviewMetaList["questionAnswer1"]),
-    100
-  );
-  const answer2 = truncate(
-    strings.decode(reviewMetaList["questionAnswer2"]),
-    100
-  );
-  const answer3 = truncate(
-    strings.decode(reviewMetaList["questionAnswer3"]),
-    100
-  );
+
+  const decodeTruncate = text => truncate(strings.decode(text), 100);
+
+  const answer1 =
+    reviewMetaList["questionType1"] === "rating" ? (
+      <>
+        <Text>{decodeTruncate(trackMetaList["questionContent1"])}</Text>
+        <span className="ratingNum">
+          {decodeTruncate(reviewMetaList["questionAnswer1"])}/10
+        </span>
+        <Text>{decodeTruncate(trackMetaList["questionOne1"])}</Text>
+      </>
+    ) : (
+      decodeTruncate(reviewMetaList["questionAnswer1"])
+    );
+
+  const answer2 =
+    reviewMetaList["questionType2"] === "rating" ? (
+      <>
+        <Text>{decodeTruncate(trackMetaList["questionContent2"])}</Text>
+        <span className="ratingNum">
+          {decodeTruncate(reviewMetaList["questionAnswer2"])}/10
+        </span>
+        <Text>{decodeTruncate(trackMetaList["questionOne2"])}</Text>
+      </>
+    ) : (
+      decodeTruncate(reviewMetaList["questionAnswer2"])
+    );
+
+  const answer3 =
+    reviewMetaList["questionType3"] === "rating" ? (
+      <>
+        <Text>{decodeTruncate(trackMetaList["questionContent3"])}</Text>
+        <span className="ratingNum">
+          {decodeTruncate(reviewMetaList["questionAnswer3"])}/10
+        </span>
+        <Text>{decodeTruncate(trackMetaList["questionOne3"])}</Text>
+      </>
+    ) : (
+      decodeTruncate(reviewMetaList["questionAnswer3"])
+    );
 
   return (
     <Card
@@ -66,27 +96,81 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
       <div className="cardInfo">
         <Text tagName="h5">{artistTitle}</Text>
         {/* <Text tagName="p">Review #4</Text> */}
-        <CSSTransition
-          in={answer === 1 ? true : false}
-          timeout={500}
-          classNames="reviewAnswer"
-        >
-          <Text tagName="p">{answer1}</Text>
-        </CSSTransition>
-        <CSSTransition
-          in={answer === 2 ? true : false}
-          timeout={500}
-          classNames="reviewAnswer"
-        >
-          <Text tagName="p">{answer2}</Text>
-        </CSSTransition>
-        <CSSTransition
-          in={answer === 3 ? true : false}
-          timeout={500}
-          classNames="reviewAnswer"
-        >
-          <Text tagName="p">{answer3}</Text>
-        </CSSTransition>
+        {[1, 2, 3].map(node => {
+          let answerContent = <></>;
+          console.info("node", node, reviewMetaList[`questionType${node}`]);
+          switch (reviewMetaList[`questionType${node}`]) {
+            case "rating":
+              answerContent = (
+                <div className="rating">
+                  <Text className="ratingText leftText">
+                    {decodeTruncate(trackMetaList[`questionContent${node}`])}
+                  </Text>
+                  <Tag className="ratingNum" round={true}>
+                    {decodeTruncate(reviewMetaList[`questionAnswer${node}`])}/10
+                  </Tag>
+                  <Text className="ratingText rightText">
+                    {decodeTruncate(trackMetaList[`questionOne${node}`])}
+                  </Text>
+                </div>
+              );
+              break;
+
+            case "mult_choice":
+              const answerChoice = parseInt(
+                decodeTruncate(reviewMetaList[`questionAnswer${node}`])
+              );
+              let answerData;
+              if (answerChoice === 1) {
+                answerData = decodeTruncate(
+                  trackMetaList[`questionOne${node}`]
+                );
+              } else if (answerChoice === 2) {
+                answerData = decodeTruncate(
+                  trackMetaList[`questionTwo${node}`]
+                );
+              } else if (answerChoice === 3) {
+                answerData = decodeTruncate(
+                  trackMetaList[`questionThree${node}`]
+                );
+              } else if (answerChoice === 4) {
+                answerData = decodeTruncate(
+                  trackMetaList[`questionFour${node}`]
+                );
+              }
+              answerContent = (
+                <div className="mult_choice">
+                  <Text>
+                    {decodeTruncate(trackMetaList[`questionContent${node}`])}
+                  </Text>
+                  <Tag className="multChoiceChosen" round={true}>
+                    {answerData}
+                  </Tag>
+                </div>
+              );
+              break;
+
+            case "written_response":
+              answerContent = (
+                <div className="written_response">
+                  <Text>
+                    {decodeTruncate(reviewMetaList[`questionAnswer${node}`])}
+                  </Text>
+                </div>
+              );
+              break;
+          }
+
+          return (
+            <CSSTransition
+              in={answer === node ? true : false}
+              timeout={500}
+              classNames="reviewAnswer"
+            >
+              <Text tagName="p">{answerContent}</Text>
+            </CSSTransition>
+          );
+        })}
       </div>
     </Card>
   );

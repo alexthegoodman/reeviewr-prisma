@@ -103,8 +103,11 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
   ]);
 
   const reviewMetaList = legacy.extractMultipleMeta(review.itemMeta, [
+    "questionType1",
     "questionAnswer1",
+    "questionType2",
     "questionAnswer2",
+    "questionType3",
     "questionAnswer3",
   ]);
 
@@ -123,6 +126,7 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
             ? userMetaList["userArtistName"]
             : fullName
         }
+        trackMetaList={trackMetaList}
         reviewMetaList={reviewMetaList}
         reviewerImageUrl={profileImage}
         reviewerAltText={fullName}
