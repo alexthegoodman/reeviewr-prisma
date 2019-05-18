@@ -17,6 +17,7 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
   className = "",
   onClick = e => console.info("Click"),
   review,
+  node = 0,
   track = null,
   trackImageUrl = "",
   trackAltText = "",
@@ -126,6 +127,7 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
             ? userMetaList["userArtistName"]
             : fullName
         }
+        node={node + 1}
         trackMetaList={trackMetaList}
         reviewMetaList={reviewMetaList}
         reviewerImageUrl={profileImage}
@@ -158,7 +160,7 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
                 )}/10`;
               }
               return (
-                <div className={`question question${node}`}>
+                <div className={`question question${node}`} key={node}>
                   <Text tagName="h5">
                     {reviewMetaList[`questionType${node}`] === "rating" ? (
                       <Text>Rate the following from 1 to 10</Text>

@@ -7,14 +7,16 @@
     padding-bottom: 65px;
 
     .bp3-tag {
-      margin: 0 10px;
+      display: block;
+      margin: 0 auto;
+      width: max-content;
     }
 
-    .ratingText,
-    .ratingNum {
-      display: inline-block;
-      vertical-align: top;
-    }
+    // .ratingText,
+    // .ratingNum {
+    //   display: inline-block;
+    //   vertical-align: top;
+    // }
 
     h5 {
       font-size: 1.2rem;
@@ -25,10 +27,12 @@
       text-align: center;
       color: white;
       width: 100%;
+      margin: 0;
     }
-    p {
+    .answerContent {
       position: absolute;
       opacity: 0;
+      width: 100%;
 
       .mutl_choice {
         @extend .horizontalCenter;

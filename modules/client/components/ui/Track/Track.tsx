@@ -30,8 +30,9 @@ const Track: React.FC<TrackProps> = ({
 }) => {
   let navigation = useNavigation();
 
-  const navigateToTrack = () =>
-    navigation.navigate(`/tracks/${trackId}/${urlSegment}`);
+  const trackUrl = `/tracks/${trackId}/${urlSegment}`;
+
+  const navigateToTrack = () => navigation.navigate(trackUrl);
 
   const clickHandler = e => onClick(e);
 
@@ -46,7 +47,7 @@ const Track: React.FC<TrackProps> = ({
           />
           <LikeButton />
           <FollowButton />
-          <ShareButton />
+          <ShareButton url={"https://reeviewr.com" + trackUrl} />
         </div>
         <div className="infoContainer">
           <TrackHeader

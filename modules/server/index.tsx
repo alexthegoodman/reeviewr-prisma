@@ -64,6 +64,7 @@ import Utility from "../services/Utility";
 
 var serveStatic = require("serve-static");
 var path = require("path");
+const csp = require("helmet-csp");
 
 let app = express();
 
@@ -123,6 +124,35 @@ export async function startServer() {
 
         return callback(null, true);
       },
+    })
+  );
+
+  app.use((req, res, next) => {
+    res.header("Referrer-Policy", "no-referrer");
+    next();
+  });
+
+  app.use(
+    csp({
+      // Specify directives as normal.
+      directives: {
+        defaultSrc: ["'self'", "default.com"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: ["style.com"],
+        fontSrc: ["'self'", "fonts.com"],
+        imgSrc: ["img.com", "data:"],
+        sandbox: ["allow-forms", "allow-scripts"],
+        reportUri: "/report-violation",
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: true,
+        workerSrc: false, // This is not set.
+        frameAncestors: ["facebook.com"],
+      },
+      loose: false,
+      reportOnly: false,
+      setAllHeaders: false,
+      disableAndroid: false,
+      browserSniff: true,
     })
   );
 

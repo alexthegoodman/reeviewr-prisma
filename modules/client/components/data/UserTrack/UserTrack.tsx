@@ -100,10 +100,11 @@ const UserTrack: React.FC<UserTrackProps> = ({
         </>
       }
     >
-      {track.reviews.map(review => {
+      {track.reviews.map((review, i) => {
         return (
           <div className="joyrideReview" key={review.id}>
             <ReviewCardData
+              node={i}
               track={track}
               review={review}
               trackImageUrl={imageUrl}

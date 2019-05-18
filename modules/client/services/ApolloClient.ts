@@ -12,11 +12,11 @@ if (process.env.NODE_ENV !== "development") {
 
 const defaultOptions = {
   watchQuery: {
-    fetchPolicy: "cache-and-network" as "cache-and-network",
+    fetchPolicy: "cache-first" as "cache-first",
     errorPolicy: "ignore" as "ignore",
   },
   query: {
-    fetchPolicy: "cache-and-network" as "cache-and-network",
+    fetchPolicy: "cache-first" as "cache-first",
     errorPolicy: "all" as "all",
   },
   mutate: {

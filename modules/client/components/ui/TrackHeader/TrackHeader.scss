@@ -7,7 +7,7 @@
     @extend .verticalCenter;
     padding-left: 15px;
   }
-  a {
+  button {
     color: white;
 
     &.trackPlayBtn {
@@ -16,6 +16,9 @@
       height: 50px;
       border-radius: 50%;
       background: $red;
+      border: none;
+      outline: none;
+      box-shadow: none;
 
       .bp3-icon {
         margin: 11px 0;
@@ -26,6 +29,9 @@
         fill: white;
       }
     }
+  }
+  a {
+    color: white;
     &.trackTitle {
       font-size: 1.6rem;
     }
@@ -35,4 +41,9 @@
       opacity: 0.8;
     }
   }
+}
+
+.loadingDots {
+  color: white;
+  font-size: 2rem;
 }

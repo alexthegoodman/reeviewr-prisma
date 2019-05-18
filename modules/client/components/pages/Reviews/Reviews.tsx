@@ -30,8 +30,8 @@ const Reviews: React.FC<ReviewsProps> = () => {
           gridColumnGap: 25,
         }}
       >
-        {reviewsData.reviews.map(review => {
-          return <ReviewCardData key={review.id} review={review} />;
+        {reviewsData.reviews.map((review, i) => {
+          return <ReviewCardData key={review.id} node={i} review={review} />;
         })}
       </section>
     </>

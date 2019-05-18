@@ -44,12 +44,18 @@ const TrackHeader: React.FC<TrackHeaderProps> = ({
     <section ref={ref} className={`trackHeader ${className}`}>
       {utility.isDefinedWithContent(track) ? (
         <div className="trackHeaderCtrls">
-          <a className="trackPlayBtn" onClick={playBtnClickHandler}>
+          <button
+            className="trackPlayBtn"
+            disabled={track.audioPlayerRef.current === null}
+            onClick={playBtnClickHandler}
+          >
             {track.playing ? <Icon icon="pause" /> : <Icon icon="play" />}
-          </a>
+          </button>
         </div>
       ) : (
-        <></>
+        <Text tagName="p" className="loadingDots">
+          ...
+        </Text>
       )}
       <div className="trackHeaderInfo">
         <a className="trackTitle" onClick={trackClickHandler}>
