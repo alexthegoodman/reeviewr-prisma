@@ -148,30 +148,35 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
           onClose={() => setModelOpen(false)}
         >
           <section className="dialog-body">
-            <div className="question question1">
-              <Text tagName="h5">
-                {strings.decode(trackMetaList.questionContent1)}
-              </Text>
-              <Text tagName="p">
-                {strings.decode(reviewMetaList["questionAnswer1"])}
-              </Text>
-            </div>
-            <div className="question question2">
-              <Text tagName="h5">
-                {strings.decode(trackMetaList.questionContent2)}
-              </Text>
-              <Text tagName="p">
-                {strings.decode(reviewMetaList["questionAnswer2"])}
-              </Text>
-            </div>
-            <div className="question question3">
-              <Text tagName="h5">
-                {strings.decode(trackMetaList.questionContent3)}
-              </Text>
-              <Text tagName="p">
-                {strings.decode(reviewMetaList["questionAnswer3"])}
-              </Text>
-            </div>
+            {[1, 2, 3].map(node => {
+              let answer = strings.decode(
+                reviewMetaList[`questionAnswer${node}`]
+              );
+              if (reviewMetaList[`questionType${node}`] === "rating") {
+                answer = `${strings.decode(
+                  reviewMetaList[`questionAnswer${node}`]
+                )}/10`;
+              }
+              return (
+                <div className={`question question${node}`}>
+                  <Text tagName="h5">
+                    {reviewMetaList[`questionType${node}`] === "rating" ? (
+                      <Text>Rate the following from 1 to 10</Text>
+                    ) : (
+                      <></>
+                    )}
+                    <Text>
+                      {strings.decode(trackMetaList[`questionContent${node}`])}
+                    </Text>
+                    <Text>
+                      {strings.decode(trackMetaList[`questionOne${node}`])}
+                    </Text>
+                    {/* {strings.decode(trackMetaList[`questionTwo${node}`])} */}
+                  </Text>
+                  <Text tagName="p">{answer}</Text>
+                </div>
+              );
+            })}
           </section>
         </Dialog>
       ) : (

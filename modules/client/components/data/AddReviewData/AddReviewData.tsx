@@ -179,7 +179,13 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
               const panel1 = (
                 <>
                   <Text tagName="h5">
+                    {questionType[0] === "rating" ? (
+                      <Text>Rate the following from 1 to 10</Text>
+                    ) : (
+                      <></>
+                    )}
                     {strings.decode(trackMetaList["questionContent1"])}
+                    {strings.decode(trackMetaList["questionOne1"])}
                   </Text>
                   <AnswerQuestion
                     questionNumber="1"
@@ -198,7 +204,13 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
               const panel2 = (
                 <>
                   <Text tagName="h5">
+                    {questionType[1] === "rating" ? (
+                      <Text>Rate the following from 1 to 10</Text>
+                    ) : (
+                      <></>
+                    )}
                     {strings.decode(trackMetaList["questionContent2"])}
+                    {strings.decode(trackMetaList["questionOne2"])}
                   </Text>
                   <AnswerQuestion
                     questionNumber="2"
@@ -217,7 +229,13 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
               const panel3 = (
                 <>
                   <Text tagName="h5">
+                    {questionType[2] === "rating" ? (
+                      <Text>Rate the following from 1 to 10</Text>
+                    ) : (
+                      <></>
+                    )}
                     {strings.decode(trackMetaList["questionContent3"])}
+                    {strings.decode(trackMetaList["questionOne3"])}
                   </Text>
                   <AnswerQuestion
                     questionNumber="3"
