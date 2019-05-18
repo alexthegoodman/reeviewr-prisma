@@ -132,29 +132,29 @@ export async function startServer() {
     next();
   });
 
-  app.use(
-    csp({
-      // Specify directives as normal.
-      directives: {
-        // defaultSrc: ["'self'", "default.com"],
-        // scriptSrc: ["'self'", "'unsafe-inline'"],
-        // styleSrc: ["style.com"],
-        // fontSrc: ["'self'", "fonts.com"],
-        // imgSrc: ["img.com", "data:"],
-        // sandbox: ["allow-forms", "allow-scripts"],
-        // reportUri: "/report-violation",
-        // objectSrc: ["'none'"],
-        // upgradeInsecureRequests: true,
-        // workerSrc: false, // This is not set.
-        frameAncestors: ["facebook.com"],
-      },
-      // loose: false,
-      // reportOnly: false,
-      // setAllHeaders: false,
-      // disableAndroid: false,
-      // browserSniff: true,
-    })
-  );
+  // app.use(
+  //   csp({
+  //     // Specify directives as normal.
+  //     directives: {
+  //       // defaultSrc: ["'self'", "default.com"],
+  //       // scriptSrc: ["'self'", "'unsafe-inline'"],
+  //       // styleSrc: ["style.com"],
+  //       // fontSrc: ["'self'", "fonts.com"],
+  //       // imgSrc: ["img.com", "data:"],
+  //       // sandbox: ["allow-forms", "allow-scripts"],
+  //       // reportUri: "/report-violation",
+  //       // objectSrc: ["'none'"],
+  //       // upgradeInsecureRequests: true,
+  //       // workerSrc: false, // This is not set.
+  //       frameAncestors: ["facebook.com"],
+  //     },
+  //     // loose: false,
+  //     // reportOnly: false,
+  //     // setAllHeaders: false,
+  //     // disableAndroid: false,
+  //     // browserSniff: true,
+  //   })
+  // );
 
   app.use(require("cookie-parser")());
   app.use(bodyParser.json()); // support json encoded bodies
