@@ -5,6 +5,7 @@ export interface TrackProps {
   className?: string;
   onClick?: (e: MouseEvent) => void;
   trackId: string;
+  trackOldId: string;
   urlSegment: string;
   imageUrl: string;
   audioUrl: string;

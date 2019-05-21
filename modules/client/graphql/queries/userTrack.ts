@@ -5,6 +5,7 @@ const UserTrackFragments = {
   userTrack: gql`
     fragment UserTrackFragment on UserTrack {
       id
+      oldId
       itemName
       itemContent
       itemUrlSegment
@@ -48,6 +49,7 @@ const UserTrackFragments = {
             itemName
             itemContent
             itemMeta {
+              id
               metaName
               metaValue
             }

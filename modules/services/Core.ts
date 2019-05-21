@@ -111,4 +111,23 @@ export default class Core {
     const publicId = slugify(pieces[0]) + "-" + uuid.v4() + "." + pieces[1];
     return publicId;
   }
+
+  getFromCSV(items) {
+    let splitItems = null;
+    if (items !== "") {
+      splitItems = decodeURIComponent(items);
+      console.info("splitItems");
+      splitItems = splitItems.split(",");
+    }
+    return splitItems;
+  }
+
+  setAsCSV(splitItems) {
+    let items = null;
+    if (splitItems.length > 0) {
+      items = splitItems.join(",");
+      items = encodeURIComponent(splitItems);
+    }
+    return items;
+  }
 }

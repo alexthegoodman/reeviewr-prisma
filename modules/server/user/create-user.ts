@@ -70,6 +70,7 @@ export const createUser = async (req, res) => {
                     { metaName: "userGenderDemo", metaValue: `${gender}` },
                     { metaName: "userAgeDemo", metaValue: `${age}` },
                     { metaName: "userExplicitDemo", metaValue: `${explicit}` },
+                    // TODO: add default favs and followers
                   ],
                 },
                 userConfirmed: 0,

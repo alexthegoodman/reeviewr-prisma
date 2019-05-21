@@ -8,6 +8,7 @@ const UserFragments = {
   user: gql`
     fragment UserFragment on User {
       id
+      oldId
       userEmail
       files {
         id
@@ -35,6 +36,7 @@ const UserFragments = {
         id
       }
       userMeta {
+        id
         metaName
         metaValue
       }

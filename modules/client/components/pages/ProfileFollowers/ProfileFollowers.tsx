@@ -10,8 +10,10 @@ import Utility from "../../../../services/Utility";
 import { USER_QUERY } from "../../../graphql/queries/user";
 import Legacy from "../../../../services/Legacy";
 import { Text } from "@blueprintjs/core";
+import Core from "../../../../services/Core";
 
 const ProfileFollowers: React.FC<ProfileFollowersProps> = ({ artistId }) => {
+  const core = new Core();
   const legacy = new Legacy();
   const utility = new Utility();
 
@@ -32,10 +34,7 @@ const ProfileFollowers: React.FC<ProfileFollowersProps> = ({ artistId }) => {
       userData.user.userMeta,
       "followers"
     );
-    if (savedFollowers !== "") {
-      followers = decodeURIComponent(followers);
-      followers = followers.split(", ");
-    }
+    followers = core.getFromCSV(savedFollowers);
     // console.info("followers", followers);
   }
 

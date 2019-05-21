@@ -31,7 +31,7 @@ const UserTrack: React.FC<UserTrackProps> = ({
   const [{ audioManager }, dispatch] = useAppContext();
   const contextTrack = audioManager.tracks[track.id];
 
-  console.info("contextTrack", contextTrack);
+  // console.info("contextTrack", contextTrack);
 
   const clickHandler = e => onClick(e);
 
@@ -58,6 +58,7 @@ const UserTrack: React.FC<UserTrackProps> = ({
       className="userTrack"
       onClick={clickHandler}
       trackId={track.id}
+      trackOldId={track.oldId}
       urlSegment={track.itemUrlSegment}
       imageUrl={imageUrl}
       audioUrl={audioFile}

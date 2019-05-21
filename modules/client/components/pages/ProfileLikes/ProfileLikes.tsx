@@ -10,8 +10,10 @@ import Utility from "../../../../services/Utility";
 import { USER_QUERY } from "../../../graphql/queries/user";
 import { Text } from "@blueprintjs/core";
 import Legacy from "../../../../services/Legacy";
+import Core from "../../../../services/Core";
 
 const ProfileLikes: React.FC<ProfileLikesProps> = ({ artistId }) => {
+  const core = new Core();
   const legacy = new Legacy();
   const utility = new Utility();
 
@@ -29,10 +31,7 @@ const ProfileLikes: React.FC<ProfileLikesProps> = ({ artistId }) => {
   let favs = null;
   if (utility.isDefinedWithContent(userData.user)) {
     let savedFavs = legacy.extractMetaValue(userData.user.userMeta, "favs");
-    if (savedFavs !== "") {
-      favs = decodeURIComponent(favs);
-      favs = favs.split(", ");
-    }
+    favs = core.getFromCSV(savedFavs);
     // console.info("favs", favs);
   }
 
