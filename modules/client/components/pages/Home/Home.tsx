@@ -47,7 +47,7 @@ const Home: React.FC<HomeProps> = () => {
     !utility.isDefinedWithContent(userData.users) ||
     !utility.isDefinedWithContent(tracksData.userTracks)
   ) {
-    return <div>Mechanical work...</div>;
+    return <div>Mechanical work at home...</div>;
   }
 
   console.info("Home Data", userData, tracksData);

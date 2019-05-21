@@ -116,7 +116,6 @@ export default class Core {
     let splitItems = null;
     if (items !== "") {
       splitItems = decodeURIComponent(items);
-      console.info("splitItems");
       splitItems = splitItems.split(",");
     }
     return splitItems;
@@ -124,7 +123,7 @@ export default class Core {
 
   setAsCSV(splitItems) {
     let items = null;
-    if (splitItems.length > 0) {
+    if (splitItems !== null && splitItems.length > 0) {
       items = splitItems.join(",");
       items = encodeURIComponent(splitItems);
     }

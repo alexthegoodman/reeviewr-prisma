@@ -76,11 +76,13 @@ export const AppContextAPI = ({ children }) => {
 
   const [cookies] = useCookies(["reeviewrPrivateHash"]);
 
+  let currentState = <></>;
   if (utility.isDefinedWithContent(cookies["reeviewrPrivateHash"])) {
     const { data: userData, error: userError, loading: userLoading } = useQuery(
       USER_QUERY,
       { variables: { privateHash: cookies["reeviewrPrivateHash"] } }
     );
+
     if (userLoading) {
       return <div>Loading user...</div>;
     }
@@ -96,6 +98,8 @@ export const AppContextAPI = ({ children }) => {
 
     InitialAppState = { ...InitialAppState, userData };
   }
+
+  console.info("InitialAppState", InitialAppState);
 
   return (
     <AppContextProvider initialState={InitialAppState} reducer={reducer}>

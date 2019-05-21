@@ -120,8 +120,6 @@ export default class Legacy {
   extractMetaProp(allMeta, metaName, propName) {
     let metaObj = allMeta.filter(meta => meta.metaName === metaName);
 
-    console.info("prop", metaObj);
-
     metaObj = typeof metaObj[0] !== "undefined" ? metaObj[0][propName] : "";
 
     return metaObj;
