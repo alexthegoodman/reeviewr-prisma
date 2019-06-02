@@ -7394,6 +7394,20 @@ export type UserWhereUniqueInput = {
   confirmHash?: Maybe<Scalars["String"]>;
   forgotHash?: Maybe<Scalars["String"]>;
 };
+export type UpdateUserMetaMutationVariables = {
+  metaId?: Maybe<Scalars["ID"]>;
+  metaValue?: Maybe<Scalars["String"]>;
+};
+
+export type UpdateUserMetaMutation = { __typename?: "Mutation" } & {
+  updateUserMeta: Maybe<
+    { __typename?: "UserMeta" } & Pick<
+      UserMeta,
+      "id" | "metaName" | "metaValue"
+    >
+  >;
+};
+
 export type AllReviewsQueryVariables = {};
 
 export type AllReviewsQuery = { __typename?: "Query" } & {
@@ -7505,7 +7519,7 @@ export type AllReviewsQuery = { __typename?: "Query" } & {
 
 export type UserFragmentFragment = { __typename?: "User" } & Pick<
   User,
-  "id" | "userEmail"
+  "id" | "oldId" | "userEmail"
 > & {
     files: Maybe<
       Array<
@@ -7547,7 +7561,10 @@ export type UserFragmentFragment = { __typename?: "User" } & Pick<
     >;
     userMeta: Maybe<
       Array<
-        { __typename?: "UserMeta" } & Pick<UserMeta, "metaName" | "metaValue">
+        { __typename?: "UserMeta" } & Pick<
+          UserMeta,
+          "id" | "metaName" | "metaValue"
+        >
       >
     >;
   };
@@ -7571,7 +7588,7 @@ export type UserQuery = { __typename?: "Query" } & {
 
 export type UserTrackFragmentFragment = { __typename?: "UserTrack" } & Pick<
   UserTrack,
-  "id" | "itemName" | "itemContent" | "itemUrlSegment"
+  "id" | "oldId" | "itemName" | "itemContent" | "itemUrlSegment"
 > & {
     user: Maybe<
       { __typename?: "User" } & Pick<User, "id"> & {
@@ -7639,7 +7656,7 @@ export type UserTrackFragmentFragment = { __typename?: "UserTrack" } & Pick<
                             Array<
                               { __typename?: "FileMeta" } & Pick<
                                 FileMeta,
-                                "metaName" | "metaValue"
+                                "id" | "metaName" | "metaValue"
                               >
                             >
                           >;

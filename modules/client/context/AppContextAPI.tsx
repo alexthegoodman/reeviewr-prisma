@@ -74,32 +74,28 @@ export const AppContextAPI = ({ children }) => {
     }
   };
 
-  const [cookies] = useCookies(["reeviewrPrivateHash"]);
+  // load API data via AuthClient or another Client and client.query
 
-  let currentState = <></>;
-  if (utility.isDefinedWithContent(cookies["reeviewrPrivateHash"])) {
-    const { data: userData, error: userError, loading: userLoading } = useQuery(
-      USER_QUERY,
-      { variables: { privateHash: cookies["reeviewrPrivateHash"] } }
-    );
+  // if (utility.isDefinedWithContent(cookies["reeviewrPrivateHash"])) {
+  //   const { data: userData, error: userError, loading: userLoading } = useQuery(
+  //     USER_QUERY,
+  //     { variables: { privateHash: cookies["reeviewrPrivateHash"] } }
+  //   );
+  //   if (userLoading) {
+  //     return <div>Loading user...</div>;
+  //   }
+  //   if (userError) {
+  //     return <div>Error on user! {userError.message}</div>;
+  //   }
+  //   if (
+  //     Object.keys(userData).length === 0 ||
+  //     !utility.isDefinedWithContent(userData)
+  //   ) {
+  //     return <div>Void data error 401...</div>;
+  //   }
 
-    if (userLoading) {
-      return <div>Loading user...</div>;
-    }
-    if (userError) {
-      return <div>Error on user! {userError.message}</div>;
-    }
-    if (
-      Object.keys(userData).length === 0 ||
-      !utility.isDefinedWithContent(userData)
-    ) {
-      return <div>Void data error 401...</div>;
-    }
-
-    InitialAppState = { ...InitialAppState, userData };
-  }
-
-  console.info("InitialAppState", InitialAppState);
+  //   InitialAppState = { ...InitialAppState, userData };
+  // }
 
   return (
     <AppContextProvider initialState={InitialAppState} reducer={reducer}>

@@ -61,7 +61,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
 
   let addReview = <AddReview onClick={() => navigation.navigate("/sign-up")} />;
 
-  if (userData !== null) {
+  if (userData !== null && userData) {
     const userArtistName = legacy.extractMetaValue(
       userData.user.userMeta,
       "userArtistName"

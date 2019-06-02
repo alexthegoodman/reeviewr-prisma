@@ -73,7 +73,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
   let dropdownMenuItems = <></>;
 
   let pointCounter = <></>;
-  if (userData !== null) {
+  if (userData !== null && userData) {
     const logOut = () => {
       removeCookie("reeviewrPrivateHash");
       window.location.reload();
