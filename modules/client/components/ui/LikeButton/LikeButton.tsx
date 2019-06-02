@@ -54,30 +54,6 @@ const LikeButton: React.FC<LikeButtonProps> = ({
       await likeMutation({
         variables: { metaId: favId, metaValue: newFavs },
         refetchQueries: ["user", "users", "userTracks"],
-
-        // set up now that userData is out of context render function
-
-        // optimisticResponse is the return value data
-        // optimisticResponse: {
-        //   __typename: "Mutation",
-        //   updateUserMeta: {
-        //     id: favId,
-        //     __typename: "UserMeta",
-        //     metaValue: newFavs,
-        //   },
-        // },
-
-        // update actually updates the cache as if refreshed
-        // update: (proxy, { data: { trackLike } }) => {
-        //   // Read the data from our cache for this query.
-        //   const data = proxy.readQuery({ query: USER_QUERY });
-        //   // Write our data back to the cache with the new comment in it
-        //   console.info("uuser data", trackLike, data);
-        //   // proxy.writeQuery({ query: USER_QUERY, data: {
-        //   //   ...data,
-        //   //   comments: [...data.comments, submitComment]
-        //   // }});
-        // },
       });
 
       authClient.getUserData(dispatch);
