@@ -126,6 +126,19 @@ export const ARTIST_TRACKS_QUERY = gql`
   ${UserTrackFragments.userTrack}
 `;
 
+export const INDIVIDUAL_TRACKS_QUERY = gql`
+  query individualTracks($trackIds: [String!]) {
+    userTracks(
+      first: 10
+      orderBy: id_DESC
+      where: { oldId_in: $trackIds, itemStatus: "v2publish" }
+    ) {
+      ...UserTrackFragment
+    }
+  }
+  ${UserTrackFragments.userTrack}
+`;
+
 export const FILE_QUERY = gql`
   query file($oldId: String) {
     file(where: { oldId: $oldId }) {

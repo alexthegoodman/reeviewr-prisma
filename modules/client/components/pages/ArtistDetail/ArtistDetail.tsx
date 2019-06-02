@@ -11,6 +11,7 @@ import Legacy from "../../../../services/Legacy";
 import Core from "../../../../services/Core";
 import Utility from "../../../../services/Utility";
 import { USER_QUERY } from "../../../graphql/queries/user";
+import { Text } from "@blueprintjs/core";
 
 const ArtistDetail: React.FC<ArtistDetailProps> = ({ artistId }) => {
   const utility = new Utility();
@@ -63,6 +64,19 @@ const ArtistDetail: React.FC<ArtistDetailProps> = ({ artistId }) => {
     !utility.isDefinedWithContent(userData)
   ) {
     return <div>Void data error 10...</div>;
+  }
+
+  if (
+    !utility.isDefinedWithContent(tracksData.userTracks) ||
+    !utility.isDefinedWithContent(tracksData)
+  ) {
+    // TODO: why require this refetch? Stacked queries? Navigation hooks?
+    // refetch();
+    return (
+      <ProfileNav artistId={artistId} userData={userData}>
+        <Text tagName="h2">No tracks yet!</Text>
+      </ProfileNav>
+    );
   }
 
   return (

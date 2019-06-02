@@ -9,6 +9,7 @@ import { useAppContext } from "../../../context";
 import { useMutation } from "react-apollo-hooks";
 import { UPDATE_USER_META } from "../../../graphql/mutations/user";
 import { USER_QUERY } from "../../../graphql/queries/user";
+import AuthClient from "../../../services/AuthClient";
 
 const LikeButton: React.FC<LikeButtonProps> = ({
   ref = null,
@@ -19,10 +20,9 @@ const LikeButton: React.FC<LikeButtonProps> = ({
   const legacy = new Legacy();
   const utility = new Utility();
   const core = new Core();
+  const authClient = new AuthClient();
 
   const [{ userData }, dispatch] = useAppContext();
-
-  console.info("new user data?", userData);
 
   // const clickHandler = e => onClick(e);
 
@@ -42,7 +42,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
     }
   }
 
-  const clickHandler = () => {
+  const clickHandler = async () => {
     // favs[favs.length] = userData.user.oldId;  // these are MY favs, not Track favs
     if (favs === null) {
       favs = [];
@@ -51,9 +51,11 @@ const LikeButton: React.FC<LikeButtonProps> = ({
     const newFavs = core.setAsCSV(favs);
     if (newFavs !== null && trackOldId !== null) {
       console.info("like mutation", trackOldId, favId, newFavs);
-      likeMutation({
+      await likeMutation({
         variables: { metaId: favId, metaValue: newFavs },
         refetchQueries: ["user", "users", "userTracks"],
+
+        // set up now that userData is out of context render function
 
         // optimisticResponse is the return value data
         // optimisticResponse: {
@@ -77,6 +79,8 @@ const LikeButton: React.FC<LikeButtonProps> = ({
         //   // }});
         // },
       });
+
+      authClient.getUserData(dispatch);
     }
   };
 

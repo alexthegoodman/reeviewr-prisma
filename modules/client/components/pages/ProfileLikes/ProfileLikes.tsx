@@ -4,7 +4,10 @@ import { ProfileLikesProps } from "./ProfileLikes.d";
 import ProfileNav from "../../layout/ProfileNav/ProfileNav";
 import UserTrack from "../../data/UserTrack/UserTrack";
 import { UserTrack as IUserTrack } from "../../../../../__generated__/gql-gen/grapql-types";
-import { ARTIST_TRACKS_QUERY } from "../../../graphql/queries/userTrack";
+import {
+  ARTIST_TRACKS_QUERY,
+  INDIVIDUAL_TRACKS_QUERY,
+} from "../../../graphql/queries/userTrack";
 import { useQuery } from "react-apollo-hooks";
 import Utility from "../../../../services/Utility";
 import { USER_QUERY } from "../../../graphql/queries/user";
@@ -23,6 +26,8 @@ const ProfileLikes: React.FC<ProfileLikesProps> = ({ artistId }) => {
 
   // const { artistId, name } = route.lastChunk.request.params;
 
+  console.info("ProfileLikes", artistId);
+
   const { data: userData, error: userError, loading: userLoading } = useQuery(
     USER_QUERY,
     { variables: { id: artistId } }
@@ -32,7 +37,7 @@ const ProfileLikes: React.FC<ProfileLikesProps> = ({ artistId }) => {
   if (utility.isDefinedWithContent(userData.user)) {
     let savedFavs = legacy.extractMetaValue(userData.user.userMeta, "favs");
     favs = core.getFromCSV(savedFavs);
-    // console.info("favs", favs);
+    console.info("favs", favs);
   }
 
   const {
@@ -40,11 +45,11 @@ const ProfileLikes: React.FC<ProfileLikesProps> = ({ artistId }) => {
     error: tracksError,
     loading: tracksLoading,
     refetch,
-  } = useQuery(ARTIST_TRACKS_QUERY, { variables: { artistId: favs } });
+  } = useQuery(INDIVIDUAL_TRACKS_QUERY, { variables: { trackIds: favs } });
 
   // console.info("User data", artistId, name, userData);
 
-  // console.info("Tracks Data", artistId, tracksData, tracksLoading, tracksError);
+  console.info("Tracks Data", artistId, tracksData, tracksLoading, tracksError);
 
   // track fetching is technically about ProfileNav which does the UserFetch
   if (userLoading) {

@@ -27,10 +27,12 @@ import { useQuery } from "react-apollo-hooks";
 import Legacy from "../../../../services/Legacy";
 import BeyondSearchData from "../../data/BeyondSearchData/BeyondSearchData";
 import * as $ from "jquery";
+import Strings from "../../../services/Strings";
 
 const AppNav: React.FC<AppNavProps> = ({ children }) => {
   const utility = new Utility();
   const legacy = new Legacy();
+  const strings = new Strings();
 
   const route = useCurrentRoute();
   const navigation = useNavigation();
@@ -70,15 +72,20 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
       {/** Terms, Blog, Social Media, About Us / Story, Contact Us, etc */}
     </Button>
   );
-  let dropdownMenuItems = <></>;
+
+  let topLoggedInItems = <></>;
+  let bottomLoggedInItems = <></>;
+  let alwaysOnItems = (
+    <>
+      <MenuItem>About Reeviewr</MenuItem>
+      <MenuItem>Terms</MenuItem>
+      <MenuItem>Facebook</MenuItem>
+      <MenuItem>Twitter</MenuItem>
+    </>
+  );
 
   let pointCounter = <></>;
   if (userData !== null && userData) {
-    const logOut = () => {
-      removeCookie("reeviewrPrivateHash");
-      window.location.reload();
-    };
-
     const userArtistName = legacy.extractMetaValue(
       userData.user.userMeta,
       "userArtistName"
@@ -89,6 +96,19 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
       "profileImage"
     );
 
+    const logOut = () => {
+      removeCookie("reeviewrPrivateHash");
+      window.location.reload();
+    };
+
+    const goToProfile = () => {
+      console.info("userData", userData);
+      const profileUrl = `/artists/${userData.user.id}/${strings.convertToSlug(
+        userArtistName
+      )}`;
+      navigation.navigate(profileUrl);
+    };
+
     const points = legacy.extractMetaValue(userData.user.userMeta, "points");
 
     pointCounter = (
@@ -98,6 +118,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
     );
 
     rightNav = <></>;
+
     rightDropdown = (
       <ProfileItem
         className="headerItem"
@@ -105,7 +126,12 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
         name={userArtistName}
       />
     );
-    dropdownMenuItems = (
+    topLoggedInItems = (
+      <>
+        <MenuItem onClick={goToProfile}>Profile</MenuItem>
+      </>
+    );
+    bottomLoggedInItems = (
       <>
         <MenuItem>Settings</MenuItem>
         <MenuItem onClick={logOut}>Log Out</MenuItem>
@@ -204,12 +230,9 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
             <Popover
               content={
                 <Menu className="dropdown">
-                  {/* <MenuItem>Help</MenuItem> */}
-                  <MenuItem>About Reeviewr</MenuItem>
-                  <MenuItem>Terms</MenuItem>
-                  <MenuItem>Facebook</MenuItem>
-                  <MenuItem>Twitter</MenuItem>
-                  {dropdownMenuItems}
+                  {topLoggedInItems}
+                  {alwaysOnItems}
+                  {bottomLoggedInItems}
                 </Menu>
               }
               position={Position.BOTTOM_LEFT}
