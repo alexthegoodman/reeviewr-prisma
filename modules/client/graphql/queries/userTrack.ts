@@ -31,7 +31,7 @@ const UserTrackFragments = {
           metaValue
         }
       }
-      reviews(first: 3) {
+      reviews(first: 1000) {
         id
         itemName
         itemContent

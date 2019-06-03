@@ -96,96 +96,104 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
     ]);
   }
 
-  const userMetaList = legacy.extractMultipleMeta(review.user.userMeta, [
-    "firstName",
-    "lastName",
-    "userArtistName",
-    "profileImage",
-  ]);
+  if (review.user !== null) {
+    console.info("review.user", review);
 
-  const reviewMetaList = legacy.extractMultipleMeta(review.itemMeta, [
-    "questionType1",
-    "questionAnswer1",
-    "questionType2",
-    "questionAnswer2",
-    "questionType3",
-    "questionAnswer3",
-  ]);
+    const userMetaList = legacy.extractMultipleMeta(review.user.userMeta, [
+      "firstName",
+      "lastName",
+      "userArtistName",
+      "profileImage",
+    ]);
 
-  const fullName = `${userMetaList["firstName"]} ${userMetaList["lastName"]}`;
+    const reviewMetaList = legacy.extractMultipleMeta(review.itemMeta, [
+      "questionType1",
+      "questionAnswer1",
+      "questionType2",
+      "questionAnswer2",
+      "questionType3",
+      "questionAnswer3",
+    ]);
 
-  let profileImage = userMetaList["profileImage"];
-  if (profileImage === "") {
-    profileImage = "https://via.placeholder.com/100";
-  }
+    const fullName = `${userMetaList["firstName"]} ${userMetaList["lastName"]}`;
 
-  return (
-    <>
-      <ReviewCard
-        artistTitle={
-          userMetaList["userArtistName"] !== ""
-            ? userMetaList["userArtistName"]
-            : fullName
-        }
-        node={node + 1}
-        trackMetaList={trackMetaList}
-        reviewMetaList={reviewMetaList}
-        reviewerImageUrl={profileImage}
-        reviewerAltText={fullName}
-        reviewerId={review.user.id}
-        trackImageUrl={trackImageUrl}
-        trackAltText={trackAltText}
-        trackId={trackId}
-        onClick={e => {
-          // clickHandler(e);
-          setModelOpen(true);
-        }}
-      />
-      {trackMetaList !== null ? (
-        <Dialog
-          isOpen={modelOpen}
-          title={"Review Detail"}
-          canEscapeKeyClose={true}
-          canOutsideClickClose={true}
-          onClose={() => setModelOpen(false)}
-        >
-          <section className="dialog-body">
-            {[1, 2, 3].map(node => {
-              let answer = strings.decode(
-                reviewMetaList[`questionAnswer${node}`]
-              );
-              if (reviewMetaList[`questionType${node}`] === "rating") {
-                answer = `${strings.decode(
+    let profileImage = userMetaList["profileImage"];
+    if (profileImage === "") {
+      profileImage = "https://via.placeholder.com/100";
+    }
+
+    return (
+      <>
+        <ReviewCard
+          artistTitle={
+            userMetaList["userArtistName"] !== ""
+              ? userMetaList["userArtistName"]
+              : fullName
+          }
+          node={node + 1}
+          trackMetaList={trackMetaList}
+          reviewMetaList={reviewMetaList}
+          reviewerImageUrl={profileImage}
+          reviewerAltText={fullName}
+          reviewerId={review.user.id}
+          trackImageUrl={trackImageUrl}
+          trackAltText={trackAltText}
+          trackId={trackId}
+          onClick={e => {
+            // clickHandler(e);
+            setModelOpen(true);
+          }}
+        />
+        {trackMetaList !== null ? (
+          <Dialog
+            isOpen={modelOpen}
+            title={"Review Detail"}
+            canEscapeKeyClose={true}
+            canOutsideClickClose={true}
+            onClose={() => setModelOpen(false)}
+          >
+            <section className="dialog-body">
+              {[1, 2, 3].map(node => {
+                let answer = strings.decode(
                   reviewMetaList[`questionAnswer${node}`]
-                )}/10`;
-              }
-              return (
-                <div className={`question question${node}`} key={node}>
-                  <Text tagName="h5">
-                    {reviewMetaList[`questionType${node}`] === "rating" ? (
-                      <Text>Rate the following from 1 to 10</Text>
-                    ) : (
-                      <></>
-                    )}
-                    <Text>
-                      {strings.decode(trackMetaList[`questionContent${node}`])}
+                );
+                if (reviewMetaList[`questionType${node}`] === "rating") {
+                  answer = `${strings.decode(
+                    reviewMetaList[`questionAnswer${node}`]
+                  )}/10`;
+                }
+                return (
+                  <div className={`question question${node}`} key={node}>
+                    <Text tagName="h5">
+                      {reviewMetaList[`questionType${node}`] === "rating" ? (
+                        <Text>Rate the following from 1 to 10</Text>
+                      ) : (
+                        <></>
+                      )}
+                      <Text>
+                        {strings.decode(
+                          trackMetaList[`questionContent${node}`]
+                        )}
+                      </Text>
+                      <Text>
+                        {strings.decode(trackMetaList[`questionOne${node}`])}
+                      </Text>
+                      {/* {strings.decode(trackMetaList[`questionTwo${node}`])} */}
                     </Text>
-                    <Text>
-                      {strings.decode(trackMetaList[`questionOne${node}`])}
-                    </Text>
-                    {/* {strings.decode(trackMetaList[`questionTwo${node}`])} */}
-                  </Text>
-                  <Text tagName="p">{answer}</Text>
-                </div>
-              );
-            })}
-          </section>
-        </Dialog>
-      ) : (
-        <></>
-      )}
-    </>
-  );
+                    <Text tagName="p">{answer}</Text>
+                  </div>
+                );
+              })}
+            </section>
+          </Dialog>
+        ) : (
+          <></>
+        )}
+      </>
+    );
+  } else {
+    return <>Unloadable</>;
+  }
 };
 
 export default ReviewCardData;
