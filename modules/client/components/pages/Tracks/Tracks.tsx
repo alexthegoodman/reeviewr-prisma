@@ -53,11 +53,11 @@ const Tracks: React.FC<TracksProps> = () => {
   ) {
     menuText = selectedGenre;
     bodyContent = genreTracksData.userTracks.map((track: IUserTrack) => {
-      return <UserTrack key={track.id} track={track} />;
+      return <UserTrack key={track.id} track={track} reviewLimit={3} />;
     });
   } else if (utility.isDefinedWithContent(tracksData.userTracks)) {
     bodyContent = tracksData.userTracks.map((track: IUserTrack) => {
-      return <UserTrack key={track.id} track={track} />;
+      return <UserTrack key={track.id} track={track} reviewLimit={3} />;
     });
   }
 

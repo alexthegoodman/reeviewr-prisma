@@ -138,7 +138,7 @@ const TrackDetail: React.FC<TrackDetailProps> = () => {
   return (
     <>
       {/** TODO: Add Review button in red near top of page as well */}
-      <UserTrack track={trackData.userTrack}>
+      <UserTrack track={trackData.userTrack} reviewLimit={null}>
         {questionData.map((question, i) => {
           return (
             <section key={i}>

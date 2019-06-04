@@ -20,6 +20,7 @@ import { useAppContext } from "../../../context";
 const UserTrack: React.FC<UserTrackProps> = ({
   onClick = e => console.info("Click"),
   track = null,
+  reviewLimit = null,
   children,
 }) => {
   const legacy = new Legacy();
@@ -52,6 +53,8 @@ const UserTrack: React.FC<UserTrackProps> = ({
 
   const navigateToTrack = () =>
     navigation.navigate(`/tracks/${track.id}/${track.itemUrlSegment}`);
+
+  let reviewRenderCount = 0;
 
   return (
     <Track
@@ -102,17 +105,32 @@ const UserTrack: React.FC<UserTrackProps> = ({
       }
     >
       {track.reviews.map((review, i) => {
-        return (
-          <div className="joyrideReview" key={review.id}>
-            <ReviewCardData
-              node={i}
-              track={track}
-              review={review}
-              trackImageUrl={imageUrl}
-              trackAltText={altText}
-            />
-          </div>
-        );
+        if (
+          (reviewLimit !== null && reviewRenderCount < reviewLimit) ||
+          reviewLimit === null
+        ) {
+          const reviewMetaList = legacy.extractMultipleMeta(review.itemMeta, [
+            "questionAnswer1",
+            "questionAnswer2",
+            "questionAnswer3",
+          ]);
+
+          if (reviewMetaList["questionAnswer1"] !== "") {
+            reviewRenderCount++;
+
+            return (
+              <div className="joyrideReview" key={review.id}>
+                <ReviewCardData
+                  node={i}
+                  track={track}
+                  review={review}
+                  trackImageUrl={imageUrl}
+                  trackAltText={altText}
+                />
+              </div>
+            );
+          }
+        }
       })}
     </Track>
   );

@@ -16,7 +16,7 @@ const AnswerQuestion: React.FC<AnswerQuestionProps> = ({
   const clickHandler = e => onClick(e);
 
   switch (questionType) {
-    case "essay":
+    case "written_response":
       return (
         <>
           <TextareaField fieldName={`questionAnswer${questionNumber}`} />
@@ -30,7 +30,7 @@ const AnswerQuestion: React.FC<AnswerQuestionProps> = ({
         </>
       );
       break;
-    case "multChoice":
+    case "mult_choice":
       return (
         <>
           <RadioField

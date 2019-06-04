@@ -103,7 +103,7 @@ const Home: React.FC<HomeProps> = () => {
       {tracksData.userTracks.map(track => {
         return (
           <div className="joyrideTrack" key={track.id}>
-            <UserTrack track={track} />
+            <UserTrack track={track} reviewLimit={3} />
           </div>
         );
       })}

@@ -113,11 +113,11 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
     let questionType = [];
     [1, 2, 3].forEach((num, i) => {
       if (trackMetaList[`questionFour${num}`] !== "") {
-        questionType[i] = "multChoice";
+        questionType[i] = "mult_choice";
       } else if (trackMetaList[`questionOne${num}`] !== "") {
         questionType[i] = "rating";
       } else if (trackMetaList[`questionContent${num}`] !== "") {
-        questionType[i] = "essay";
+        questionType[i] = "written_response";
       }
     });
 
@@ -174,9 +174,15 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                       questionType1: questionType[0],
                       questionType2: questionType[1],
                       questionType3: questionType[2],
-                      questionAnswer1: `${values.questionAnswer1}`,
-                      questionAnswer2: `${values.questionAnswer2}`,
-                      questionAnswer3: `${values.questionAnswer3}`,
+                      questionAnswer1: encodeURIComponent(
+                        `${values.questionAnswer1}`
+                      ),
+                      questionAnswer2: encodeURIComponent(
+                        `${values.questionAnswer2}`
+                      ),
+                      questionAnswer3: encodeURIComponent(
+                        `${values.questionAnswer3}`
+                      ),
                       preUserGenderDemo: userMetaList["userFavGenre"],
                       preUserFavDemo: userMetaList["userGenderDemo"],
                       preUserExplicitDemo: userMetaList["userAgeDemo"],

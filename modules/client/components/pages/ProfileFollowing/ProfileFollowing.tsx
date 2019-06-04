@@ -86,7 +86,7 @@ const ProfileFollowing: React.FC<ProfileFollowingProps> = ({ artistId }) => {
   return (
     <ProfileNav artistId={artistId} userData={userData}>
       {tracksData.userTracks.map((track: IUserTrack) => {
-        return <UserTrack key={track.id} track={track} />;
+        return <UserTrack key={track.id} track={track} reviewLimit={3} />;
       })}
     </ProfileNav>
   );

@@ -145,7 +145,9 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
               {tracksData.userTracks.length > 0 ? (
                 <section>
                   {tracksData.userTracks.map(track => {
-                    return <UserTrack key={track.id} track={track} />;
+                    return (
+                      <UserTrack key={track.id} track={track} reviewLimit={3} />
+                    );
                   })}
                 </section>
               ) : (

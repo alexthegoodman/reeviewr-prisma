@@ -64,16 +64,24 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
         {/* <Text tagName="p">Review #4</Text> */}
         {[1, 2, 3].map(node => {
           let answerContent = <></>;
-          // console.info("node", node, reviewMetaList[`questionType${node}`]);
+          console.info("node", node, reviewMetaList[`questionType${node}`]);
           switch (reviewMetaList[`questionType${node}`]) {
             case "rating":
+              let rating = decodeTruncate(
+                reviewMetaList[`questionAnswer${node}`]
+              );
+              let fullRating = `${rating}/10`;
+              if (rating === "") {
+                fullRating = "No Answer";
+              }
+
               answerContent = (
                 <span className="rating">
                   <Text tagName="p" className="ratingText leftText">
                     {decodeTruncate(trackMetaList[`questionContent${node}`])}
                   </Text>
                   <Tag className="ratingNum" round={true}>
-                    {decodeTruncate(reviewMetaList[`questionAnswer${node}`])}/10
+                    {fullRating}
                   </Tag>
                   <Text tagName="p" className="ratingText rightText">
                     {decodeTruncate(trackMetaList[`questionOne${node}`])}
@@ -86,6 +94,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
               const answerChoice = parseInt(
                 decodeTruncate(reviewMetaList[`questionAnswer${node}`])
               );
+
               let answerData;
               if (answerChoice === 1) {
                 answerData = decodeTruncate(
@@ -104,6 +113,11 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
                   trackMetaList[`questionFour${node}`]
                 );
               }
+
+              if (answerData === "") {
+                answerData = "No Answer";
+              }
+
               answerContent = (
                 <span className="mult_choice">
                   <Text tagName="p">
@@ -117,11 +131,23 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
               break;
 
             case "written_response":
+              let answer = decodeTruncate(
+                reviewMetaList[`questionAnswer${node}`]
+              );
+              if (answer === "") {
+                answer = "No Answer";
+              }
               answerContent = (
                 <span className="written_response">
-                  <Text tagName="p">
-                    {decodeTruncate(reviewMetaList[`questionAnswer${node}`])}
-                  </Text>
+                  <Text tagName="p">{answer}</Text>
+                </span>
+              );
+              break;
+
+            default:
+              answerContent = (
+                <span className="noAnswer">
+                  <Text tagName="p">No Answer</Text>
                 </span>
               );
               break;
