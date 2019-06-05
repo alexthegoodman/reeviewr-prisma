@@ -4,13 +4,14 @@ import { ArtistsProps } from "./Artists.d";
 import ArtistCardData from "../../data/ArtistCardData/ArtistCardData";
 import { USERS_QUERY } from "../../../graphql/queries/user";
 import { useQuery } from "react-apollo-hooks";
+import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
 
 const Artists: React.FC<ArtistsProps> = () => {
   const { data: userData, error: userError, loading: userLoading } = useQuery(
     USERS_QUERY
   );
   if (userLoading) {
-    return <div>Loading users...</div>;
+    return <LoadingIndicator loadingText="Loading users..." />;
   }
   if (userError) {
     return <div>Error on users! {userError.message}</div>;

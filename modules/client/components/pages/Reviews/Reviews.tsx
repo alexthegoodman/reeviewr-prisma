@@ -4,6 +4,7 @@ import { ReviewsProps } from "./Reviews.d";
 import ReviewCardData from "../../data/ReviewCardData/ReviewCardData";
 import { ALL_REVIEWS_QUERY } from "../../../graphql/queries/review";
 import { useQuery } from "react-apollo-hooks";
+import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
 
 const Reviews: React.FC<ReviewsProps> = () => {
   const {
@@ -13,7 +14,7 @@ const Reviews: React.FC<ReviewsProps> = () => {
   } = useQuery(ALL_REVIEWS_QUERY);
 
   if (reviewsLoading) {
-    return <div>Loading tracks...</div>;
+    return <LoadingIndicator loadingText="Loading reviews..." />;
   }
   if (reviewsError) {
     return <div>Error on tracks! {reviewsError.message}</div>;

@@ -12,6 +12,7 @@ import UserTrack from "../../data/UserTrack/UserTrack";
 import ReviewCardData from "../../data/ReviewCardData/ReviewCardData";
 import Utility from "../../../../services/Utility";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
+import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
 
 const SearchResults: React.FC<SearchResultsProps> = () => {
   const utility = new Utility();
@@ -66,7 +67,7 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
     return (
       <>
         <section className="searchResults">
-          <div>Loading users...</div>
+          <LoadingIndicator loadingText="Loading users..." />
         </section>
       </>
     );
@@ -85,7 +86,7 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
     return (
       <>
         <section className="searchResults">
-          <div>Loading tracks...</div>
+          <LoadingIndicator loadingText="Loading tracks..." />
         </section>
       </>
     );

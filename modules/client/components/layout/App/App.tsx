@@ -4,6 +4,7 @@ import { hot } from "react-hot-loader";
 import { AppProps } from "./App.d";
 import AuthClient from "../../../services/AuthClient";
 import { useAppContext } from "../../../context";
+import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
 
 const App: React.FC<AppProps> = ({ children }) => {
   const authClient = new AuthClient();
@@ -12,7 +13,11 @@ const App: React.FC<AppProps> = ({ children }) => {
 
   if (userData === null) {
     authClient.getUserData(dispatch);
-    return <>Loading user data...</>;
+    return (
+      <>
+        <LoadingIndicator loadingText="Loading user data..." />
+      </>
+    );
   }
 
   return <>{children}</>;

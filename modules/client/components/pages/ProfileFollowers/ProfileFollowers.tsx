@@ -11,6 +11,7 @@ import { USER_QUERY } from "../../../graphql/queries/user";
 import Legacy from "../../../../services/Legacy";
 import { Text } from "@blueprintjs/core";
 import Core from "../../../../services/Core";
+import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
 
 const ProfileFollowers: React.FC<ProfileFollowersProps> = ({ artistId }) => {
   const core = new Core();
@@ -51,7 +52,7 @@ const ProfileFollowers: React.FC<ProfileFollowersProps> = ({ artistId }) => {
 
   // track fetching is technically about ProfileNav which does the UserFetch
   if (userLoading) {
-    return <div>Loading user...</div>;
+    return <LoadingIndicator loadingText="Loading user..." />;
   }
   if (userError) {
     return <div>Error on user! {userError.message}</div>;
@@ -64,7 +65,7 @@ const ProfileFollowers: React.FC<ProfileFollowersProps> = ({ artistId }) => {
   }
 
   if (tracksLoading) {
-    return <div>Loading tracks...</div>;
+    return <LoadingIndicator loadingText="Loading tracks..." />;
   }
   if (tracksError) {
     return <div>Error on tracks! {tracksError.message}</div>;

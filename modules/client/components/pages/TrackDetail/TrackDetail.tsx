@@ -9,6 +9,7 @@ import GraphCardData from "../../data/GraphCardData/GraphCardData";
 import Legacy from "../../../../services/Legacy";
 import { Text } from "@blueprintjs/core";
 import Strings from "../../../services/Strings";
+import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
 
 const TrackDetail: React.FC<TrackDetailProps> = () => {
   const strings = new Strings();
@@ -27,7 +28,7 @@ const TrackDetail: React.FC<TrackDetailProps> = () => {
   } = useQuery(USER_TRACK_QUERY, { variables: { id: trackId } });
 
   if (trackLoading) {
-    return <div>Loading track...</div>;
+    return <LoadingIndicator loadingText="Loading track..." />;
   }
   if (trackError) {
     return <div>Error on track! {trackError.message}</div>;

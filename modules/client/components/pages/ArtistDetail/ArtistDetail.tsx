@@ -12,6 +12,7 @@ import Core from "../../../../services/Core";
 import Utility from "../../../../services/Utility";
 import { USER_QUERY } from "../../../graphql/queries/user";
 import { Text } from "@blueprintjs/core";
+import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
 
 const ArtistDetail: React.FC<ArtistDetailProps> = ({ artistId }) => {
   const utility = new Utility();
@@ -40,7 +41,7 @@ const ArtistDetail: React.FC<ArtistDetailProps> = ({ artistId }) => {
 
   // track fetching is technically about ProfileNav which does the UserFetch
   if (tracksLoading) {
-    return <div>Loading tracks...</div>;
+    return <LoadingIndicator loadingText="Loading tracks..." />;
   }
   if (tracksError) {
     return <div>Error on tracks! {tracksError.message}</div>;
@@ -54,7 +55,7 @@ const ArtistDetail: React.FC<ArtistDetailProps> = ({ artistId }) => {
     return <div>Void data error 20...</div>;
   }
   if (userLoading) {
-    return <div>Loading user...</div>;
+    return <LoadingIndicator loadingText="Loading user..." />;
   }
   if (userError) {
     return <div>Error on user! {userError.message}</div>;

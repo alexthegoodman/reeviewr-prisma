@@ -13,6 +13,7 @@ import ArtistCardData from "../../data/ArtistCardData/ArtistCardData";
 import Utility from "../../../../services/Utility";
 import ReactJoyride from "react-joyride";
 import { useAppContext } from "../../../context";
+import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
 
 const Home: React.FC<HomeProps> = () => {
   const utility = new Utility();
@@ -30,14 +31,14 @@ const Home: React.FC<HomeProps> = () => {
   } = useQuery(USER_TRACKS_QUERY);
 
   if (userLoading) {
-    return <div>Loading users...</div>;
+    return <LoadingIndicator loadingText="Loading users..." />;
   }
   if (userError) {
     return <div>Error on users! {userError.message}</div>;
   }
 
   if (tracksLoading) {
-    return <div>Loading tracks...</div>;
+    return <LoadingIndicator loadingText="Loading tracks..." />;
   }
   if (tracksError) {
     return <div>Error on tracks! {tracksError.message}</div>;

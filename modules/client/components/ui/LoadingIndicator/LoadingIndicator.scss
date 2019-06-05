@@ -1,0 +1,14 @@
+.loadingContain {
+  width: 300px;
+  margin: 0 auto;
+
+  svg {
+    fill: $red;
+  }
+
+  span {
+    display: block;
+    text-align: center;
+    font-size: 1rem;
+  }
+}

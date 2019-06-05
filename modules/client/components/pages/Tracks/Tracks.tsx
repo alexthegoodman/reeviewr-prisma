@@ -13,6 +13,7 @@ import { GenreList } from "../../../../defs/genres";
 import MenuItem from "../../ui/MenuItem/MenuItem";
 import PageHeader from "../../ui/PageHeader/PageHeader";
 import Utility from "../../../../services/Utility";
+import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
 
 const Tracks: React.FC<TracksProps> = () => {
   const utility = new Utility();
@@ -36,13 +37,13 @@ const Tracks: React.FC<TracksProps> = () => {
 
   let bodyContent = <div>Processing...</div>;
   if (tracksLoading) {
-    bodyContent = <div>Loading tracks...</div>;
+    bodyContent = <LoadingIndicator loadingText="Loading tracks..." />;
   }
   if (tracksError) {
     bodyContent = <div>Error on tracks! {tracksError.message}</div>;
   }
   if (genreTracksLoading) {
-    bodyContent = <div>Loading genre tracks...</div>;
+    bodyContent = <LoadingIndicator loadingText="Loading generic tracks..." />;
   }
   if (genreTracksError) {
     bodyContent = <div>Error on genre tracks! {tracksError.message}</div>;
