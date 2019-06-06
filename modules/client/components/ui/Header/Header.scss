@@ -9,7 +9,42 @@
     height: $headerHeight;
 
     &.bp3-align-left {
-      min-width: 60vw;
+      width: 60vw;
+    }
+    &.bp3-align-right {
+      width: 40vw;
+    }
+  }
+
+  @include tabletDown {
+    height: 60px;
+
+    .bp3-navbar-group {
+      height: 60px;
+      padding: 0 $mobile;
+
+      &.bp3-align-left {
+        width: auto;
+      }
+      &.bp3-align-right {
+        width: auto;
+      }
+    }
+    .logoContainer {
+      min-width: 150px;
+
+      .logo {
+        display: block;
+        width: 150px;
+        height: auto;
+      }
+    }
+    .beyondSearch,
+    .beyondSearch.bp3-input-group.bp3-large {
+      display: none;
+    }
+    .actionButton {
+      display: none;
     }
   }
 }

@@ -6,9 +6,10 @@
   height: 100vh;
   overflow-y: scroll;
   overflow-x: hidden;
-}
 
-.sidebarMenu {
+  @include tabletDown {
+    padding: 60px $mobile 0 $mobile;
+  }
 }
 
 .bp3-popover .bp3-popover-content .bp3-menu {

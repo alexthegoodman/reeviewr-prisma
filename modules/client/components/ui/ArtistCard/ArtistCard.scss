@@ -31,4 +31,8 @@
       font-size: 0.8rem;
     }
   }
+
+  @include tabletDown {
+    min-width: 250px;
+  }
 }

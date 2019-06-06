@@ -57,7 +57,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <div
-      className={`sidebar bp3-drawer bp3-position-left sidebar bp3-overlay-content ${className}`}
+      className={`sidebar bp3-drawer bp3-position-left bp3-overlay-content ${className}`}
     >
       {children}
     </div>
