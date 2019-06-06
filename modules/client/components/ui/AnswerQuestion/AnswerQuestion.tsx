@@ -12,6 +12,7 @@ const AnswerQuestion: React.FC<AnswerQuestionProps> = ({
   onClick = e => console.info("Click"),
   questionNumber = "",
   questionType = "",
+  options = null,
 }) => {
   const clickHandler = e => onClick(e);
 
@@ -35,14 +36,15 @@ const AnswerQuestion: React.FC<AnswerQuestionProps> = ({
         <>
           <RadioField
             fieldName={`questionAnswer${questionNumber}`}
-            options={[]}
+            options={options}
           />
         </>
       );
       break;
+    default:
+      return <Text tagName="span">No question type provided</Text>;
+      break;
   }
-
-  return <Text tagName="span">Please select a question type</Text>;
 };
 
 export default AnswerQuestion;

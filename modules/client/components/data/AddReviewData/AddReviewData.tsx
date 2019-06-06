@@ -61,6 +61,8 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
     setNavbarTabId(navbarTabId);
   };
 
+  const [questionsBlankError, setQuestionsBlankError] = React.useState(false);
+
   let addReview = <AddReview onClick={() => navigation.navigate("/sign-up")} />;
 
   let userMetaList = null;
@@ -111,13 +113,37 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
     ]);
 
     let questionType = [];
+    let questionOptions = [];
     [1, 2, 3].forEach((num, i) => {
       if (trackMetaList[`questionFour${num}`] !== "") {
         questionType[i] = "mult_choice";
+        questionOptions[i] = [
+          {
+            label: strings.decode(trackMetaList[`questionOne${num}`]),
+            value: false,
+          },
+          {
+            label: strings.decode(trackMetaList[`questionTwo${num}`]),
+            value: false,
+          },
+          {
+            label: strings.decode(trackMetaList[`questionThree${num}`]),
+            value: false,
+          },
+          {
+            label: strings.decode(trackMetaList[`questionFour${num}`]),
+            value: false,
+          },
+        ];
       } else if (trackMetaList[`questionOne${num}`] !== "") {
         questionType[i] = "rating";
+        questionOptions[i] = [];
       } else if (trackMetaList[`questionContent${num}`] !== "") {
         questionType[i] = "written_response";
+        questionOptions[i] = [];
+      } else {
+        questionType[i] = "rating";
+        questionOptions[i] = [];
       }
     });
 
@@ -149,6 +175,14 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
           ) : (
             <></>
           )} */}
+            {questionsBlankError ? (
+              <Callout title="Attention" intent="danger">
+                You must answer all of the questions.
+              </Callout>
+            ) : (
+              <></>
+            )}
+
             <Formik
               initialValues={{
                 questionAnswer1: questionType[0] === "rating" ? 5 : "",
@@ -162,6 +196,16 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
               ) => {
                 console.log("values", { values, actions });
                 let error = false;
+
+                if (
+                  values.questionAnswer1 === "" ||
+                  values.questionAnswer2 === "" ||
+                  values.questionAnswer3 === ""
+                ) {
+                  setQuestionsBlankError(true);
+                } else {
+                  setQuestionsBlankError(false);
+                }
 
                 if (!error) {
                   console.info("success", values, track);
@@ -212,6 +256,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                     <AnswerQuestion
                       questionNumber="1"
                       questionType={questionType[0]}
+                      options={questionOptions[0]}
                     />
                     <Button
                       onClick={() => handleTabChange("question2")}
@@ -237,6 +282,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                     <AnswerQuestion
                       questionNumber="2"
                       questionType={questionType[1]}
+                      options={questionOptions[1]}
                     />
                     <Button
                       onClick={() => handleTabChange("question3")}
@@ -262,6 +308,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                     <AnswerQuestion
                       questionNumber="3"
                       questionType={questionType[2]}
+                      options={questionOptions[2]}
                     />
                     <Button
                       type="submit"

@@ -64,7 +64,6 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
         {/* <Text tagName="p">Review #4</Text> */}
         {[1, 2, 3].map(node => {
           let answerContent = <></>;
-          console.info("node", node, reviewMetaList[`questionType${node}`]);
           switch (reviewMetaList[`questionType${node}`]) {
             case "rating":
               let rating = decodeTruncate(

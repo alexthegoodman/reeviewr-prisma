@@ -4,4 +4,5 @@ export interface AnswerQuestionProps {
   onClick?: (e: MouseEvent) => void;
   questionNumber: string;
   questionType: string;
+  options: any[];
 }

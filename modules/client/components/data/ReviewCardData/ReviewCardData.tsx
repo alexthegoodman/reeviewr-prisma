@@ -97,8 +97,6 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
   }
 
   if (review.user !== null) {
-    console.info("review.user", review);
-
     const userMetaList = legacy.extractMultipleMeta(review.user.userMeta, [
       "firstName",
       "lastName",
@@ -154,7 +152,6 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
           >
             <section className="dialog-body">
               {[1, 2, 3].map(node => {
-                console.info("reviewMetaList", reviewMetaList);
                 let answer = strings.decode(
                   reviewMetaList[`questionAnswer${node}`]
                 );
@@ -164,7 +161,6 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
                   )}/10`;
                 }
 
-                console.info("answer", answer);
                 return (
                   <div className={`question question${node}`} key={node}>
                     <Text tagName="h5">
