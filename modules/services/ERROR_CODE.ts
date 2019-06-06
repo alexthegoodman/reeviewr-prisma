@@ -7,5 +7,7 @@ export enum ERROR_CODE {
   C006 = "C006. User not a valid type",
   C007 = "C007. User email not confirmed",
   C008 = "C008. A user with this email already exists",
+  C009 = "C009. No hash provided",
+  C010 = "C010. Cannot find user with associated hash",
   B001 = "B001. The files provided are not the correct size",
 }

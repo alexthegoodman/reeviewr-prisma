@@ -58,6 +58,10 @@ export default class AuthClient {
     this.restClient.makeRequest("/user/authenticate", values, callback);
   }
 
+  confirmEmail(values, callback) {
+    this.restClient.makeRequest("/user/confirm-email", values, callback);
+  }
+
   logout() {
     // remove cookie and load home
   }

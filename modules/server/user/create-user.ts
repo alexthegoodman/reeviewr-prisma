@@ -16,7 +16,7 @@ cloudinary.config({
 export const createUser = async (req, res) => {
   try {
     // mixpanel.track('User created', { time: new Date() });
-    console.info("CALL:", req.method, req.url, req.params, req.query, req.body);
+    console.info("CALL:", req.method, req.url, req.params, req.query);
 
     // Native Sign Up:
     // 1. Send email confirmation
@@ -87,6 +87,14 @@ export const createUser = async (req, res) => {
               let buttonText = "Confirm Email";
 
               // TODO: send client-side error if email fails to send
+              const host = req.get("host");
+              const confirmEmailUrl =
+                req.protocol +
+                "://" +
+                host +
+                "/confirm-email?confirmHash=" +
+                newUser.confirmHash;
+
               emailService.sendEmail(
                 newUser.userEmail,
                 newUser.userEmail,
@@ -94,8 +102,8 @@ export const createUser = async (req, res) => {
                 "confirm-email",
                 [
                   {
-                    name: "confirm-email",
-                    content: `<a class="btn" style="Margin:0;background:#5bc1ed;border:none;border-radius:50px;box-shadow:none;color:#fff;cursor:pointer;display:block;font-family:Helvetica Neue,Arial,sans-serif;font-size:15px;font-weight:600;height:auto;letter-spacing:.2px;line-height:18px;margin:0 auto 25px auto;max-width:360px;padding:11px 15px 12px 15px;text-align:center;text-decoration:none;text-transform:uppercase;width:80%">${buttonText}</a>`,
+                    name: "confirm-email-btn",
+                    content: `<a href="${confirmEmailUrl}" class="btn" style="Margin:0;background:#5bc1ed;border:none;border-radius:50px;box-shadow:none;color:#fff;cursor:pointer;display:block;font-family:Helvetica Neue,Arial,sans-serif;font-size:15px;font-weight:600;height:auto;letter-spacing:.2px;line-height:18px;margin:0 auto 25px auto;max-width:360px;padding:11px 15px 12px 15px;text-align:center;text-decoration:none;text-transform:uppercase;width:80%">${buttonText}</a>`,
                   },
                 ]
               );

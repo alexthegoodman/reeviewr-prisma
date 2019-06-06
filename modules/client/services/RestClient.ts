@@ -26,8 +26,10 @@ export default class RestClient {
         if (err) {
           console.error(err);
 
-          if (res.body !== null) {
-            console.error(res.body.errorMessage);
+          if (typeof res !== "undefined") {
+            if (res.body !== null) {
+              console.error(res.body.errorMessage);
+            }
           }
         }
         callback(err, res);

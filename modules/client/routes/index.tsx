@@ -18,6 +18,7 @@ import ProfileFollowing from "../components/pages/ProfileFollowing/ProfileFollow
 import ProfileFollowers from "../components/pages/ProfileFollowers/ProfileFollowers";
 import UploadTrack from "../components/pages/UploadTrack/UploadTrack";
 import SearchResults from "../components/pages/SearchResults/SearchResults";
+import ConfirmEmail from "../components/pages/ConfirmEmail/ConfirmEmail";
 
 const routes = mount({
   "/login": route(req => {
@@ -56,6 +57,16 @@ const routes = mount({
       view: (
         <AuthNav>
           <ResetPassword />
+        </AuthNav>
+      ),
+    };
+  }),
+  "/confirm-email": route(req => {
+    return {
+      title: "Confirm Email / Reeviewr",
+      view: (
+        <AuthNav>
+          <ConfirmEmail />
         </AuthNav>
       ),
     };

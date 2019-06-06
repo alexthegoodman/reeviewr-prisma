@@ -22,7 +22,7 @@ export default class EmailService {
                 name: toName,
               },
             ],
-            from_email: "admin@homscout.com",
+            from_email: "admin@reeviewr.com",
             from_name: "Reeviewr",
             subject,
           },
