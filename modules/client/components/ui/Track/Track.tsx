@@ -15,6 +15,7 @@ const Track: React.FC<TrackProps> = ({
   ref = null,
   className = "",
   onClick = e => console.info("Click"),
+  track = null,
   trackId = null,
   trackOldId = null,
   urlSegment = "",
@@ -47,7 +48,7 @@ const Track: React.FC<TrackProps> = ({
             onClick={navigateToTrack}
           />
           <LikeButton trackOldId={trackOldId} />
-          <FollowButton />
+          <FollowButton artist={track.user} />
           <ShareButton url={"https://reeviewr.com" + trackUrl} />
         </div>
         <div className="infoContainer">

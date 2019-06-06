@@ -60,6 +60,7 @@ const UserTrack: React.FC<UserTrackProps> = ({
     <Track
       className="userTrack"
       onClick={clickHandler}
+      track={track}
       trackId={track.id}
       trackOldId={track.oldId}
       urlSegment={track.itemUrlSegment}

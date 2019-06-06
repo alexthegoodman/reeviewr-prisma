@@ -1,5 +1,5 @@
-.faved,
-.faved.bp3-button:not([class*="bp3-intent-"]) {
+.selected,
+.selected.bp3-button:not([class*="bp3-intent-"]) {
   border-color: $red;
 
   .bp3-button-text > span {

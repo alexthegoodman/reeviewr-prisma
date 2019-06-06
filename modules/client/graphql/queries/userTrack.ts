@@ -11,6 +11,7 @@ const UserTrackFragments = {
       itemUrlSegment
       user {
         id
+        oldId
         userMeta {
           id
           metaName

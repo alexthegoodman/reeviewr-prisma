@@ -9,3 +9,23 @@ export const UPDATE_USER_META = gql`
     }
   }
 `;
+
+export const CREATE_USER_META = gql`
+  mutation createUserMeta(
+    $userId: ID!
+    $metaName: String!
+    $metaValue: String!
+  ) {
+    createUserMeta(
+      data: {
+        user: { connect: { id: $userId } }
+        metaName: $metaName
+        metaValue: $metaValue
+      }
+    ) {
+      id
+      metaName
+      metaValue
+    }
+  }
+`;
