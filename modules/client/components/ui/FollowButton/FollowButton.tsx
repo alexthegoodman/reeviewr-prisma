@@ -28,8 +28,6 @@ const FollowButton: React.FC<FollowButtonProps> = ({
   let navigation = useNavigation();
   const [{ userData }, dispatch] = useAppContext();
 
-  console.info("artst", artist);
-
   let following = null;
   let followingId = null;
   let savedFollowing = null;
@@ -69,14 +67,14 @@ const FollowButton: React.FC<FollowButtonProps> = ({
     followersMutation = useMutation(UPDATE_USER_META);
     createFollowersMutation = useMutation(CREATE_USER_META);
 
-    console.info(
-      "following",
-      followingId,
-      following,
-      "artist followers",
-      followersId,
-      followers
-    );
+    // console.info(
+    //   "following",
+    //   followingId,
+    //   following,
+    //   "artist followers",
+    //   followersId,
+    //   followers
+    // );
 
     if (
       following !== null &&
@@ -114,7 +112,7 @@ const FollowButton: React.FC<FollowButtonProps> = ({
         newFollowers !== null &&
         userData.user.id !== null
       ) {
-        console.info("followers mutation", newFollowers);
+        // console.info("followers mutation", newFollowers);
 
         // add to followers on artist
         await followersMutation({
@@ -122,7 +120,7 @@ const FollowButton: React.FC<FollowButtonProps> = ({
           refetchQueries: ["user", "users", "userTracks"],
         });
       } else if (newFollowers !== null && userData.user.id !== null) {
-        console.info("create followers mutation", newFollowers);
+        // console.info("create followers mutation", newFollowers);
 
         // add to followers on artist
         await createFollowersMutation({
@@ -140,7 +138,7 @@ const FollowButton: React.FC<FollowButtonProps> = ({
         newFollowing !== null &&
         artist.id !== null
       ) {
-        console.info("following mutation", newFollowing);
+        // console.info("following mutation", newFollowing);
 
         // add to following on current user
         await followingMutation({
@@ -148,7 +146,7 @@ const FollowButton: React.FC<FollowButtonProps> = ({
           refetchQueries: ["user", "users", "userTracks"],
         });
       } else if (newFollowing !== null && artist.id !== null) {
-        console.info("create following mutation", newFollowing);
+        // console.info("create following mutation", newFollowing);
 
         // add to following on current user
         await createFollowingMutation({

@@ -75,3 +75,12 @@ export const USER_QUERY = gql`
   }
   ${UserFragments.user}
 `;
+
+export const INDIVIDUAL_USERS_QUERY = gql`
+  query individualUsers($userIds: [ID!]) {
+    users(first: 10, orderBy: id_DESC, where: { oldId_in: $userIds }) {
+      ...UserFragment
+    }
+  }
+  ${UserFragments.user}
+`;

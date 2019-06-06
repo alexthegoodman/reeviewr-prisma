@@ -7,14 +7,20 @@ import { UserTrack as IUserTrack } from "../../../../../__generated__/gql-gen/gr
 import { ARTIST_TRACKS_QUERY } from "../../../graphql/queries/userTrack";
 import { useQuery } from "react-apollo-hooks";
 import Utility from "../../../../services/Utility";
-import { USER_QUERY } from "../../../graphql/queries/user";
+import {
+  USER_QUERY,
+  INDIVIDUAL_USERS_QUERY,
+} from "../../../graphql/queries/user";
 import Legacy from "../../../../services/Legacy";
 import { Text } from "@blueprintjs/core";
 import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
+import ArtistCardData from "../../data/ArtistCardData/ArtistCardData";
+import Core from "../../../../services/Core";
 
 const ProfileFollowing: React.FC<ProfileFollowingProps> = ({ artistId }) => {
   const legacy = new Legacy();
   const utility = new Utility();
+  const core = new Core();
 
   // let route = useCurrentRoute();
   // let loadingRoute = useLoadingRoute();
@@ -33,19 +39,16 @@ const ProfileFollowing: React.FC<ProfileFollowingProps> = ({ artistId }) => {
       userData.user.userMeta,
       "following"
     );
-    if (savedFollowing !== "") {
-      following = decodeURIComponent(following);
-      following = following.split(", ");
-    }
+    following = core.getFromCSV(savedFollowing);
     // console.info("following", following);
   }
 
   const {
-    data: tracksData,
-    error: tracksError,
-    loading: tracksLoading,
+    data: usersData,
+    error: usersError,
+    loading: usersLoading,
     refetch,
-  } = useQuery(ARTIST_TRACKS_QUERY, { variables: { artistId: following } });
+  } = useQuery(INDIVIDUAL_USERS_QUERY, { variables: { userIds: following } });
 
   // console.info("User data", artistId, name, userData);
 
@@ -65,15 +68,16 @@ const ProfileFollowing: React.FC<ProfileFollowingProps> = ({ artistId }) => {
     return <div>Void data error 10...</div>;
   }
 
-  if (tracksLoading) {
-    return <LoadingIndicator loadingText="Loading tracks..." />;
+  if (usersLoading) {
+    return <LoadingIndicator loadingText="Loading users..." />;
   }
-  if (tracksError) {
-    return <div>Error on tracks! {tracksError.message}</div>;
+  if (usersError) {
+    return <div>Error on tracks! {usersError.message}</div>;
   }
+  console.info("uuserdata", usersData);
   if (
-    !utility.isDefinedWithContent(tracksData.userTracks) ||
-    !utility.isDefinedWithContent(tracksData)
+    !utility.isDefinedWithContent(usersData.users) ||
+    !utility.isDefinedWithContent(usersData)
   ) {
     // TODO: why require this refetch? Stacked queries? Navigation hooks?
     // refetch();
@@ -86,9 +90,11 @@ const ProfileFollowing: React.FC<ProfileFollowingProps> = ({ artistId }) => {
 
   return (
     <ProfileNav artistId={artistId} userData={userData}>
-      {tracksData.userTracks.map((track: IUserTrack) => {
-        return <UserTrack key={track.id} track={track} reviewLimit={3} />;
-      })}
+      <section className="grid col-3">
+        {usersData.users.map(user => {
+          return <ArtistCardData key={user.id} user={user} />;
+        })}
+      </section>
     </ProfileNav>
   );
 };
