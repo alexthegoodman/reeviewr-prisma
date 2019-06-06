@@ -28,6 +28,7 @@ import Legacy from "../../../../services/Legacy";
 import BeyondSearchData from "../../data/BeyondSearchData/BeyondSearchData";
 import * as $ from "jquery";
 import Strings from "../../../services/Strings";
+import { Icon } from "@blueprintjs/core";
 
 const AppNav: React.FC<AppNavProps> = ({ children }) => {
   const utility = new Utility();
@@ -239,6 +240,13 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
             >
               {rightDropdown}
             </Popover>
+            <Button
+              className="actionButton headerItem hamburgerItem mobileItem"
+              minimal={true}
+              onClick={() => {}}
+            >
+              <Icon icon="menu" />
+            </Button>
           </>
         }
       />

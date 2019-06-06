@@ -16,6 +16,10 @@
     }
   }
 
+  .mobileItem {
+    display: none;
+  }
+
   @include tabletDown {
     height: 60px;
 
@@ -45,6 +49,33 @@
     }
     .actionButton {
       display: none;
+    }
+    .profileItem {
+      display: none;
+    }
+    .mobileItem {
+      display: block;
+    }
+    .hamburgerItem,
+    .hamburgerItem.bp3-button:not([class*="bp3-intent-"]) {
+      width: 40px;
+      padding: 0;
+      text-align: center;
+
+      .bp3-icon:first-child:last-child {
+        margin: 0;
+        position: relative;
+        top: -1px;
+      }
+
+      span,
+      .bp3-button-text {
+        padding: 0;
+
+        .bp3-icon {
+          padding: 0;
+        }
+      }
     }
   }
 }
