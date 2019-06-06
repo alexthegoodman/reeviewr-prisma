@@ -68,7 +68,7 @@ const Home: React.FC<HomeProps> = () => {
     <>
       {/** TODO: Announcements, Social Media embeds, content plugs, etc */}
 
-      {typeof window !== "undefined" ? (
+      {typeof window !== "undefined" && window.innerWidth > 768 ? (
         <ReactJoyride
           steps={steps}
           run={tour.run}

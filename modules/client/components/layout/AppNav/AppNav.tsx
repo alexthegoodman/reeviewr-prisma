@@ -28,7 +28,6 @@ import Legacy from "../../../../services/Legacy";
 import BeyondSearchData from "../../data/BeyondSearchData/BeyondSearchData";
 import * as $ from "jquery";
 import Strings from "../../../services/Strings";
-import { Icon } from "@blueprintjs/core";
 
 const AppNav: React.FC<AppNavProps> = ({ children }) => {
   const utility = new Utility();
@@ -42,6 +41,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
   ]);
 
   const [{ tour, userData }, dispatch] = useAppContext();
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   console.info("cookies", cookies["reeviewrPrivateHash"]);
 
@@ -142,7 +142,9 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
 
   return (
     <App>
-      <Sidebar>
+      <Sidebar
+        className={mobileMenuOpen ? "mobileMenuOpen" : "mobileMenuClosed"}
+      >
         {pointCounter}
         <Button
           className="uploadButton"
@@ -243,7 +245,9 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
             <Button
               className="actionButton headerItem hamburgerItem mobileItem"
               minimal={true}
-              onClick={() => {}}
+              onClick={() => {
+                setMobileMenuOpen(!mobileMenuOpen);
+              }}
             >
               <Icon icon="menu" />
             </Button>
