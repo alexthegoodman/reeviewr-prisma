@@ -6,7 +6,7 @@ export default class Strings {
       return decodeURI(decodeURIComponent(item));
     } catch (error) {
       // mixpanel
-      console.warn("WARNING", error);
+      // console.warn("WARNING", error);
       return item;
     }
   }

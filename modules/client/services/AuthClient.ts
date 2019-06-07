@@ -1,6 +1,6 @@
 import RestClient from "./RestClient";
 import client from "./ApolloClient";
-import { USER_QUERY } from "../graphql/queries/user";
+import USER_QUERY, { USER_PRIVATE_QUERY } from "../graphql/queries/user";
 import Cookies from "universal-cookie";
 import Utility from "../../services/Utility";
 
@@ -18,7 +18,7 @@ export default class AuthClient {
 
     if (this.utility.isDefinedWithContent(reeviewrPrivateHash)) {
       const { data: userData } = await client.query({
-        query: USER_QUERY,
+        query: USER_PRIVATE_QUERY,
         variables: { privateHash: reeviewrPrivateHash },
       });
       console.info("got user data", reeviewrPrivateHash, userData);

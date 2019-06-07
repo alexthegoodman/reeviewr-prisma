@@ -68,8 +68,17 @@ export const USERS_QUERY = gql`
 `;
 
 export const USER_QUERY = gql`
-  query user($id: ID, $privateHash: String) {
-    user(where: { id: $id, privateHash: $privateHash }) {
+  query user($id: ID) {
+    user(where: { id: $id }) {
+      ...UserFragment
+    }
+  }
+  ${UserFragments.user}
+`;
+
+export const USER_PRIVATE_QUERY = gql`
+  query privateUser($privateHash: String) {
+    user(where: { privateHash: $privateHash }) {
       ...UserFragment
     }
   }
