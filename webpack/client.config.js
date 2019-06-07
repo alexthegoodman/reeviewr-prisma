@@ -195,8 +195,9 @@ module.exports = {
     }),
 
     new CopyPlugin([
-      { from: "./entry/img/", to: "./public/img/" },
-      { from: "./entry/favicon.ico", to: "./public/favicon.ico" },
+      { from: "./entry/img/", to: "./img/" },
+      { from: "./entry/favicon.ico", to: "./favicon.ico" },
+      { from: "./entry/", to: "./public/" },
     ]),
 
     // new IconFontPlugin(),
@@ -252,6 +253,7 @@ module.exports = {
   },
   devServer: {
     publicPath: "/",
+    // contentBase: "/public",
     port: DEV_PORT,
     hot: false,
     historyApiFallback: true,

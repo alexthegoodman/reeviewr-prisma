@@ -7394,6 +7394,33 @@ export type UserWhereUniqueInput = {
   confirmHash?: Maybe<Scalars["String"]>;
   forgotHash?: Maybe<Scalars["String"]>;
 };
+export type AddReviewMutationVariables = {
+  userId: Scalars["ID"];
+  trackId: Scalars["ID"];
+  itemName: Scalars["String"];
+  questionType1: Scalars["String"];
+  questionType2: Scalars["String"];
+  questionType3: Scalars["String"];
+  questionAnswer1: Scalars["String"];
+  questionAnswer2: Scalars["String"];
+  questionAnswer3: Scalars["String"];
+  preUserGenderDemo: Scalars["String"];
+  preUserFavDemo: Scalars["String"];
+  preUserExplicitDemo: Scalars["String"];
+  preUserAgeDemo: Scalars["String"];
+  preTrackId: Scalars["String"];
+  preAuthorId: Scalars["String"];
+};
+
+export type AddReviewMutation = { __typename?: "Mutation" } & {
+  createReview: { __typename?: "Review" } & Pick<Review, "id" | "itemName"> & {
+      userTrack: Maybe<
+        { __typename?: "UserTrack" } & Pick<UserTrack, "id" | "itemName">
+      >;
+      user: Maybe<{ __typename?: "User" } & Pick<User, "id" | "userEmail">>;
+    };
+};
+
 export type UpdateUserMetaMutationVariables = {
   metaId?: Maybe<Scalars["ID"]>;
   metaValue?: Maybe<Scalars["String"]>;
@@ -7405,6 +7432,19 @@ export type UpdateUserMetaMutation = { __typename?: "Mutation" } & {
       UserMeta,
       "id" | "metaName" | "metaValue"
     >
+  >;
+};
+
+export type CreateUserMetaMutationVariables = {
+  userId: Scalars["ID"];
+  metaName: Scalars["String"];
+  metaValue: Scalars["String"];
+};
+
+export type CreateUserMetaMutation = { __typename?: "Mutation" } & {
+  createUserMeta: { __typename?: "UserMeta" } & Pick<
+    UserMeta,
+    "id" | "metaName" | "metaValue"
   >;
 };
 
@@ -7579,11 +7619,26 @@ export type UsersQuery = { __typename?: "Query" } & {
 
 export type UserQueryVariables = {
   id?: Maybe<Scalars["ID"]>;
-  privateHash?: Maybe<Scalars["String"]>;
 };
 
 export type UserQuery = { __typename?: "Query" } & {
   user: Maybe<{ __typename?: "User" } & UserFragmentFragment>;
+};
+
+export type PrivateUserQueryVariables = {
+  privateHash?: Maybe<Scalars["String"]>;
+};
+
+export type PrivateUserQuery = { __typename?: "Query" } & {
+  user: Maybe<{ __typename?: "User" } & UserFragmentFragment>;
+};
+
+export type IndividualUsersQueryVariables = {
+  userIds?: Maybe<Array<Scalars["ID"]>>;
+};
+
+export type IndividualUsersQuery = { __typename?: "Query" } & {
+  users: Array<Maybe<{ __typename?: "User" } & UserFragmentFragment>>;
 };
 
 export type UserTrackFragmentFragment = { __typename?: "UserTrack" } & Pick<
@@ -7591,7 +7646,7 @@ export type UserTrackFragmentFragment = { __typename?: "UserTrack" } & Pick<
   "id" | "oldId" | "itemName" | "itemContent" | "itemUrlSegment"
 > & {
     user: Maybe<
-      { __typename?: "User" } & Pick<User, "id"> & {
+      { __typename?: "User" } & Pick<User, "id" | "oldId"> & {
           userMeta: Maybe<
             Array<
               { __typename?: "UserMeta" } & Pick<
@@ -7728,6 +7783,16 @@ export type ArtistTracksQueryVariables = {
 };
 
 export type ArtistTracksQuery = { __typename?: "Query" } & {
+  userTracks: Array<
+    Maybe<{ __typename?: "UserTrack" } & UserTrackFragmentFragment>
+  >;
+};
+
+export type IndividualTracksQueryVariables = {
+  trackIds?: Maybe<Array<Scalars["String"]>>;
+};
+
+export type IndividualTracksQuery = { __typename?: "Query" } & {
   userTracks: Array<
     Maybe<{ __typename?: "UserTrack" } & UserTrackFragmentFragment>
   >;
