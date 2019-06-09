@@ -46,7 +46,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
   console.info("cookies", cookies["reeviewrPrivateHash"]);
 
   let rightNav = (
-    <>
+    <div className="modileHide">
       <Button
         className="textButton headerItem"
         minimal={true}
@@ -61,17 +61,19 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
       >
         Sign Up
       </Button>
-    </>
+    </div>
   );
   let rightDropdown = (
-    <Button
-      className="textButton headerItem"
-      minimal={true}
-      rightIcon="caret-down"
-    >
-      More
-      {/** Terms, Blog, Social Media, About Us / Story, Contact Us, etc */}
-    </Button>
+    <div className="modileHide">
+      <Button
+        className="textButton headerItem"
+        minimal={true}
+        rightIcon="caret-down"
+      >
+        More
+        {/** Terms, Blog, Social Media, About Us / Story, Contact Us, etc */}
+      </Button>
+    </div>
   );
 
   let topLoggedInItems = <></>;
@@ -140,66 +142,112 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
     );
   }
 
+  const navigate = (href, mobile = true) => {
+    navigation.navigate(href);
+    if (mobile) {
+      setMobileMenuOpen(false);
+    }
+  };
+
   return (
     <App>
       <Sidebar
         className={mobileMenuOpen ? "mobileMenuOpen" : "mobileMenuClosed"}
       >
-        {pointCounter}
-        <Button
-          className="uploadButton"
-          onClick={() => navigation.navigate("/upload")}
-        >
-          Upload
-        </Button>
-        <Menu className="sidebarMenu">
-          <MenuItem
-            active={route.url.pathname === "/" ? true : false}
-            onClick={() => navigation.navigate("/")}
+        <div className="mobileHide">
+          {pointCounter}
+          <Button
+            className="uploadButton"
+            onClick={() => navigation.navigate("/upload")}
           >
-            Home
-          </MenuItem>
-          <MenuItem
-            active={route.url.pathname === "/tracks" ? true : false}
-            onClick={() => navigation.navigate("/tracks")}
-          >
-            Tracks
-          </MenuItem>
-          <MenuItem
-            active={route.url.pathname === "/artists" ? true : false}
-            onClick={() => navigation.navigate("/artists")}
-          >
-            Artists
-          </MenuItem>
-          <MenuItem
-            active={route.url.pathname === "/reviews" ? true : false}
-            onClick={() => navigation.navigate("/reviews")}
-          >
-            Reviews
-          </MenuItem>
-        </Menu>
-        <footer className="footer">
-          <Text tagName="span">
-            <img src="https://img.shields.io/chrome-web-store/price/ogffaloegjglncjfehdfplabnoondfjo.svg" />
-            All Proceeds Donated
-          </Text>
-          <Text tagName="span">
-            <img src="https://img.shields.io/apm/l/vim-mode.svg" />
-            Reeviewr is Open Source
-          </Text>
-          <a target="_blank" href="https://www.facebook.com/reeviewr/">
-            <img src="https://img.shields.io/badge/-Facebook-%23306199.svg" />
-          </a>
-          <a target="_blank" href="https://twitter.com/reeviewr">
-            <img src="https://img.shields.io/badge/-Twitter-%2326c4f1.svg" />
-          </a>
-          <a
-            target="_blank"
-            href="https://www.youtube.com/channel/UCgHw8sLLekekCr_LjWZs9Cg"
-          >
-            <img src="https://img.shields.io/badge/-YouTube-%23e21d17.svg" />
-          </a>
-        </footer>
+            Upload
+          </Button>
+          <Menu className="sidebarMenu">
+            <MenuItem
+              active={route.url.pathname === "/" ? true : false}
+              onClick={() => navigation.navigate("/")}
+            >
+              Home
+            </MenuItem>
+            <MenuItem
+              active={route.url.pathname === "/tracks" ? true : false}
+              onClick={() => navigation.navigate("/tracks")}
+            >
+              Tracks
+            </MenuItem>
+            <MenuItem
+              active={route.url.pathname === "/artists" ? true : false}
+              onClick={() => navigation.navigate("/artists")}
+            >
+              Artists
+            </MenuItem>
+            <MenuItem
+              active={route.url.pathname === "/reviews" ? true : false}
+              onClick={() => navigation.navigate("/reviews")}
+            >
+              Reviews
+            </MenuItem>
+          </Menu>
+          <footer className="footer">
+            <Text tagName="span">
+              <img src="https://img.shields.io/chrome-web-store/price/ogffaloegjglncjfehdfplabnoondfjo.svg" />
+              All Proceeds Donated
+            </Text>
+            <Text tagName="span">
+              <img src="https://img.shields.io/apm/l/vim-mode.svg" />
+              Reeviewr is Open Source
+            </Text>
+            <a target="_blank" href="https://www.facebook.com/reeviewr/">
+              <img src="https://img.shields.io/badge/-Facebook-%23306199.svg" />
+            </a>
+            <a target="_blank" href="https://twitter.com/reeviewr">
+              <img src="https://img.shields.io/badge/-Twitter-%2326c4f1.svg" />
+            </a>
+            <a
+              target="_blank"
+              href="https://www.youtube.com/channel/UCgHw8sLLekekCr_LjWZs9Cg"
+            >
+              <img src="https://img.shields.io/badge/-YouTube-%23e21d17.svg" />
+            </a>
+          </footer>
+        </div>
+        <div className="mobileShow">
+          <Menu className="sidebarMenu">
+            <MenuItem
+              active={route.url.pathname === "/" ? true : false}
+              onClick={() => navigate("/", true)}
+            >
+              Home
+            </MenuItem>
+            <MenuItem
+              active={route.url.pathname === "/tracks" ? true : false}
+              onClick={() => navigate("/tracks", true)}
+            >
+              Tracks
+            </MenuItem>
+            <MenuItem
+              active={route.url.pathname === "/artists" ? true : false}
+              onClick={() => navigate("/artists", true)}
+            >
+              Artists
+            </MenuItem>
+            <MenuItem
+              active={route.url.pathname === "/reviews" ? true : false}
+              onClick={() => navigate("/reviews", true)}
+            >
+              Reviews
+            </MenuItem>
+            <MenuItem
+              active={route.url.pathname === "/upload" ? true : false}
+              onClick={() => navigate("/", true)}
+            >
+              Upload
+            </MenuItem>
+            {topLoggedInItems}
+            {alwaysOnItems}
+            {bottomLoggedInItems}
+          </Menu>
+        </div>
       </Sidebar>
       <Header
         leftElements={
@@ -209,48 +257,55 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                 <img className="logo" src="/public/img/logo-w.png" />
               </Link>
             </section>
-            <BeyondSearchData />
+            <div className="mobileHide">
+              <BeyondSearchData />
+            </div>
           </>
         }
         rightElements={
           <>
-            <Button
-              className="actionButton headerItem"
-              minimal={true}
-              onClick={() => {
-                dispatch({
-                  type: "setTour",
-                  tour: { run: true },
-                });
-                setTimeout(() => {
-                  $(".react-joyride__beacon").trigger("click");
-                }, 250);
-              }}
-            >
-              How it Works
-            </Button>
-            {rightNav}
-            <Popover
-              content={
-                <Menu className="dropdown">
-                  {topLoggedInItems}
-                  {alwaysOnItems}
-                  {bottomLoggedInItems}
-                </Menu>
-              }
-              position={Position.BOTTOM_LEFT}
-            >
-              {rightDropdown}
-            </Popover>
-            <Button
-              className="actionButton headerItem hamburgerItem mobileItem"
-              minimal={true}
-              onClick={() => {
-                setMobileMenuOpen(!mobileMenuOpen);
-              }}
-            >
-              <Icon icon="menu" />
-            </Button>
+            <div className="mobileHide">
+              <Button
+                className="actionButton headerItem"
+                minimal={true}
+                onClick={() => {
+                  dispatch({
+                    type: "setTour",
+                    tour: { run: true },
+                  });
+                  setTimeout(() => {
+                    $(".react-joyride__beacon").trigger("click");
+                  }, 250);
+                }}
+              >
+                How it Works
+              </Button>
+              {rightNav}
+              <Popover
+                content={
+                  <Menu className="dropdown">
+                    {topLoggedInItems}
+                    {alwaysOnItems}
+                    {bottomLoggedInItems}
+                  </Menu>
+                }
+                position={Position.BOTTOM_LEFT}
+              >
+                {rightDropdown}
+              </Popover>
+            </div>
+
+            <div className="mobileShow">
+              <Button
+                className="actionButton headerItem hamburgerItem"
+                minimal={true}
+                onClick={() => {
+                  setMobileMenuOpen(!mobileMenuOpen);
+                }}
+              >
+                <Icon icon="menu" />
+              </Button>
+            </div>
           </>
         }
       />

@@ -183,3 +183,17 @@
 .prependChildren {
   margin-top: 25px;
 }
+
+.mobileHide {
+  @include tabletDown {
+    display: none;
+  }
+}
+
+.mobileShow {
+  display: none;
+
+  @include tabletDown {
+    display: block;
+  }
+}

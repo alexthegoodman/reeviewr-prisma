@@ -16,10 +16,6 @@
     }
   }
 
-  .mobileItem {
-    display: none;
-  }
-
   @include tabletDown {
     height: 60px;
 
@@ -43,19 +39,17 @@
         height: auto;
       }
     }
-    .beyondSearch,
-    .beyondSearch.bp3-input-group.bp3-large {
-      display: none;
-    }
-    .actionButton {
-      display: none;
-    }
-    .profileItem {
-      display: none;
-    }
-    .mobileItem {
-      display: block;
-    }
+    // .beyondSearch,
+    // .beyondSearch.bp3-input-group.bp3-large {
+    //   display: none;
+    // }
+    // .actionButton {
+    //   display: none;
+    // }
+    // .profileItem {
+    //   display: none;
+    // }
+
     .hamburgerItem,
     .hamburgerItem.bp3-button:not([class*="bp3-intent-"]) {
       width: 40px;

@@ -72,3 +72,22 @@
   font-weight: 600;
   font-style: normal;
 }
+
+.mobileShow {
+  .sidebarMenu {
+    padding-top: 15px;
+
+    .menuItem.bp3-active,
+    .menuItem.bp3-menu-item {
+      padding: 5px 30px;
+
+      .bp3-fill {
+        font-size: 0.9rem;
+      }
+
+      &:before {
+        display: none;
+      }
+    }
+  }
+}

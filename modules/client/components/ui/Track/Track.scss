@@ -26,4 +26,36 @@
     @extend .horizontalCenter;
     padding-top: 25px;
   }
+
+  @include tabletDown {
+    .trackInfo {
+      .infoContainer {
+        padding: 0;
+      }
+    }
+    .reviewContainer {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-column-gap: 25px;
+      grid-row-gap: 25px;
+
+      .reviewCard {
+        display: none;
+
+        &:first-child {
+          display: block;
+        }
+      }
+    }
+    .trackActions {
+      padding-left: 0;
+    }
+    .actionContainer {
+      flex-direction: column;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
 }

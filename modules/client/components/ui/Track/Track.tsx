@@ -41,7 +41,7 @@ const Track: React.FC<TrackProps> = ({
   return (
     <section ref={ref} className={`track ${className}`}>
       <div className="trackInfo">
-        <div className="artContainer">
+        <div className="artContainer mobileHide">
           <TrackArt
             imageUrl={imageUrl}
             altText={altText}
