@@ -10,6 +10,8 @@ import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 import LikeButton from "../LikeButton/LikeButton";
 import FollowButton from "../FollowButton/FollowButton";
 import ShareButton from "../ShareButton/ShareButton";
+import Legacy from "../../../../services/Legacy";
+import Strings from "../../../services/Strings";
 
 const Track: React.FC<TrackProps> = ({
   ref = null,
@@ -30,11 +32,23 @@ const Track: React.FC<TrackProps> = ({
   actionChildren,
   headerChildren,
 }) => {
+  const legacy = new Legacy();
+  const strings = new Strings();
+
   let navigation = useNavigation();
 
   const trackUrl = `/tracks/${trackId}/${urlSegment}`;
-
   const navigateToTrack = () => navigation.navigate(trackUrl);
+
+  const userArtistName = legacy.extractMetaValue(
+    track.user.userMeta,
+    "userArtistName"
+  );
+
+  const artistUrl = `/artists/${track.user.id}/${strings.convertToSlug(
+    userArtistName
+  )}`;
+  const navigateToArtist = () => navigation.navigate(artistUrl);
 
   const clickHandler = e => onClick(e);
 
@@ -57,6 +71,7 @@ const Track: React.FC<TrackProps> = ({
             artistName={artistName}
             trackId={trackId}
             onTrackClick={navigateToTrack}
+            onArtistClick={navigateToArtist}
           />
           <div className="headerChildren">{headerChildren}</div>
           <TrackWaveForm

@@ -1,5 +1,6 @@
 .reviewParticipants {
   @extend .horizontalCenter;
+  margin-bottom: 7px;
 
   .left,
   .right {
@@ -24,6 +25,20 @@
       color: white;
     }
   }
-  .right {
+
+  @include tabletDown {
+    .left,
+    .right {
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    .center {
+      svg {
+        width: 15px;
+        height: 15px;
+      }
+    }
   }
 }

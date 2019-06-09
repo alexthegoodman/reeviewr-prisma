@@ -61,6 +61,13 @@ const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
 
   useInterval(increaseCount, 1000, null);
 
+  let waveHeight = 150;
+  if (typeof window !== "undefined") {
+    if (window.innerWidth < 768) {
+      waveHeight = 100;
+    }
+  }
+
   if (process.env.BROWSER) {
     return (
       <section ref={ref} className={`trackWaveForm ${className}`}>
@@ -68,7 +75,7 @@ const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
           <Waveform
             peaks={peaks}
             barWidth={3}
-            height={150}
+            height={waveHeight}
             color="#FFF"
             progressGradientColors={[[0, "#df494a"], [1, "#df494a"]]}
             transitionDuration={1000}

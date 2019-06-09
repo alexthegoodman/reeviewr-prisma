@@ -10,4 +10,10 @@
     height: 150px;
     background: $gray1;
   }
+
+  @include tabletDown {
+    .waveContainer {
+      height: 100px;
+    }
+  }
 }
