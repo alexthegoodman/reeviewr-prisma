@@ -1,1 +1,11 @@
-/** Styles **/
+.graphCardContain {
+  .headline {
+    font-size: 1.25rem;
+  }
+
+  @include tabletDown {
+    .headline {
+      font-size: 1rem;
+    }
+  }
+}

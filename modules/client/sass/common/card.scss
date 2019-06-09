@@ -31,6 +31,22 @@
     box-shadow: $shadow;
   }
 
+  &.noHover {
+    cursor: default;
+
+    &:hover {
+      transform: scale(1);
+      transition: $long all;
+      box-shadow: $shadow;
+      background: $gray-gradient3;
+    }
+
+    &:focus,
+    &:active {
+      transform: scale(1);
+    }
+  }
+
   @include tabletDown {
     padding: 15px;
   }

@@ -142,13 +142,17 @@ const TrackDetail: React.FC<TrackDetailProps> = () => {
       <UserTrack track={trackData.userTrack} reviewLimit={null}>
         {questionData.map((question, i) => {
           return (
-            <section key={i}>
-              <Text tagName={`h2`}>{strings.decode(question.content)}</Text>
+            <section className="graphCardContain" key={i}>
+              <Text tagName={`h2`} className="headline">
+                {strings.decode(question.content)}
+              </Text>
               <GraphCardData question={questionData[i]} />
             </section>
           );
         })}
-        <Text tagName={`h2`}>Individual Reviews</Text>
+        <Text tagName={`h2`} className="headline">
+          Individual Reviews
+        </Text>
       </UserTrack>
     </>
   );

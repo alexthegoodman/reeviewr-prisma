@@ -99,7 +99,7 @@ const Home: React.FC<HomeProps> = () => {
         style={{
           height: horizontalHeight,
           overflow: "visible",
-          margin: "25px 0 50px 0",
+          margin: "0 0 35px 0",
         }}
         reverseScroll={true}
       >

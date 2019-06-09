@@ -25,7 +25,23 @@ const GraphCard: React.FC<GraphCardProps> = ({
   dataSet2 = null,
   graphType = "bar",
 }) => {
+  // TODO: standardize as this updates vs window.innerWidth
   const windowSize = useWindowSize();
+
+  let xyPlotWidth = windowSize.innerWidth * 0.5;
+  let wordcloudWidth = windowSize.innerWidth * 0.9;
+  let wordcloudLeft = windowSize.innerWidth * -0.15;
+  let wordcloudTop = -100;
+  let xyPlotHeight = 500;
+  let wordcloudHeight = 600;
+  if (windowSize.innerWidth < 768) {
+    xyPlotWidth = windowSize.innerWidth * 0.8;
+    wordcloudWidth = windowSize.innerWidth;
+    xyPlotHeight = 400;
+    wordcloudHeight = 400;
+    wordcloudLeft = windowSize.innerWidth * -0.07;
+    wordcloudTop = 0;
+  }
 
   let graph;
   switch (graphType) {
@@ -46,8 +62,8 @@ const GraphCard: React.FC<GraphCardProps> = ({
         graph = (
           <XYPlot
             xType="ordinal"
-            width={windowSize.innerWidth * 0.5}
-            height={500}
+            width={xyPlotWidth}
+            height={xyPlotHeight}
             xDistance={100}
             color={"#E5E5E5"}
             className={"graphCardBar"}
@@ -69,13 +85,13 @@ const GraphCard: React.FC<GraphCardProps> = ({
           <div
             style={{
               position: "relative",
-              left: windowSize.innerWidth * -0.15,
-              top: -100,
+              left: wordcloudLeft,
+              top: wordcloudTop,
             }}
           >
             <ReactWordcloud
               words={dataSet1}
-              size={[windowSize.innerWidth * 0.9, 600]}
+              size={[wordcloudWidth, wordcloudHeight]}
               options={{
                 rotations: false,
                 enableTooltip: false,
@@ -93,7 +109,7 @@ const GraphCard: React.FC<GraphCardProps> = ({
   }
 
   return (
-    <Card ref={ref} className={`graphCard ${className}`}>
+    <Card ref={ref} className={`graphCard noHover ${className}`}>
       {graph}
     </Card>
   );

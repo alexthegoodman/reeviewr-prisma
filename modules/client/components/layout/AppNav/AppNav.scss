@@ -8,7 +8,7 @@
   overflow-x: hidden;
 
   @include tabletDown {
-    padding: 60px $mobile $mobile $mobile;
+    padding: (60px + $mobile) $mobile $mobile $mobile;
   }
 }
 
