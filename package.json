@@ -240,6 +240,7 @@
     "react-router-dom": "5.0.0",
     "react-scroll-horizontal": "^1.6.2",
     "react-share": "^3.0.0",
+    "react-social-icons": "^4.1.0",
     "react-suspense-polyfill": "^2.0.1",
     "react-test-renderer": "16.8",
     "react-transition-group": "^4.0.1",
