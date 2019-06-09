@@ -15,6 +15,14 @@ span {
   color: white;
 }
 
+.headline {
+  font-size: 3rem;
+
+  @include tabletDown {
+    font-size: 2rem;
+  }
+}
+
 ul,
 ol {
   padding: 0;

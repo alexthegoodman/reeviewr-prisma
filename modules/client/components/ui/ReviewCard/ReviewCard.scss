@@ -1,10 +1,11 @@
 .reviewCard {
   @extend .card;
-  max-width: 400px;
+  // max-width: 400px;
 
   .cardInfo {
     position: relative;
     padding-bottom: 65px;
+    overflow: hidden;
 
     .bp3-tag {
       display: block;
@@ -12,18 +13,11 @@
       width: max-content;
     }
 
-    // .ratingText,
-    // .ratingNum {
-    //   display: inline-block;
-    //   vertical-align: top;
-    // }
-
     h5 {
       font-size: 1.2rem;
     }
     h5,
     p {
-      // display: block;
       text-align: center;
       color: white;
       width: 100%;

@@ -14,7 +14,9 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   return (
     <section className={`pageHeader ${className}`}>
       <div className="left">
-        <Text tagName="h1">{title}</Text>
+        <Text tagName="h1" className="headline">
+          {title}
+        </Text>
       </div>
       <div className="right">{children}</div>
     </section>

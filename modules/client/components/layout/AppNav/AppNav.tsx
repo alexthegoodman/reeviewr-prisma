@@ -46,7 +46,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
   console.info("cookies", cookies["reeviewrPrivateHash"]);
 
   let rightNav = (
-    <div className="modileHide">
+    <>
       <Button
         className="textButton headerItem"
         minimal={true}
@@ -61,19 +61,17 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
       >
         Sign Up
       </Button>
-    </div>
+    </>
   );
   let rightDropdown = (
-    <div className="modileHide">
-      <Button
-        className="textButton headerItem"
-        minimal={true}
-        rightIcon="caret-down"
-      >
-        More
-        {/** Terms, Blog, Social Media, About Us / Story, Contact Us, etc */}
-      </Button>
-    </div>
+    <Button
+      className="textButton headerItem"
+      minimal={true}
+      rightIcon="caret-down"
+    >
+      More
+      {/** Terms, Blog, Social Media, About Us / Story, Contact Us, etc */}
+    </Button>
   );
 
   let topLoggedInItems = <></>;
@@ -239,13 +237,25 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
             </MenuItem>
             <MenuItem
               active={route.url.pathname === "/upload" ? true : false}
-              onClick={() => navigate("/", true)}
+              onClick={() => navigate("/upload", true)}
             >
               Upload
             </MenuItem>
             {topLoggedInItems}
             {alwaysOnItems}
             {bottomLoggedInItems}
+            <MenuItem
+              active={route.url.pathname === "/login" ? true : false}
+              onClick={() => navigate("/login", true)}
+            >
+              Login
+            </MenuItem>
+            <MenuItem
+              active={route.url.pathname === "/sign-up" ? true : false}
+              onClick={() => navigate("/sign-up", true)}
+            >
+              Sign Up
+            </MenuItem>
           </Menu>
         </div>
       </Sidebar>
@@ -257,7 +267,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                 <img className="logo" src="/public/img/logo-w.png" />
               </Link>
             </section>
-            <div className="mobileHide">
+            <div className="mobileHide w100">
               <BeyondSearchData />
             </div>
           </>

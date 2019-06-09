@@ -115,7 +115,9 @@ const UploadTrack: React.FC<UploadTrackProps> = () => {
 
     return (
       <Card className="floatingForm">
-        <Text tagName="h1">Upload Track</Text>
+        <Text tagName="h1" className="headline">
+          Upload Track
+        </Text>
 
         {coverArtError ? (
           <Callout title="Attention" intent="danger">

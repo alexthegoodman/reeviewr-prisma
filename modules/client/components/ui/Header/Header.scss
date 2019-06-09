@@ -10,9 +10,13 @@
 
     &.bp3-align-left {
       width: 60vw;
+      justify-content: flex-start;
+      max-width: calc(100vw - 550px);
     }
     &.bp3-align-right {
       width: 40vw;
+      justify-content: flex-end;
+      min-width: 550px;
     }
   }
 
@@ -25,9 +29,11 @@
 
       &.bp3-align-left {
         width: auto;
+        max-width: none;
       }
       &.bp3-align-right {
         width: auto;
+        min-width: auto;
       }
     }
     .logoContainer {
@@ -71,5 +77,14 @@
         }
       }
     }
+  }
+}
+
+.headerItem {
+  height: $headerHeight;
+
+  @include tabletDown {
+    height: 60px;
+    padding: 0;
   }
 }

@@ -33,7 +33,9 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = () => {
 
   return (
     <Card className="floatingForm">
-      <Text tagName="h1">Forgot Password</Text>
+      <Text tagName="h1" className="headline">
+        Forgot Password
+      </Text>
       <Text tagName="p">
         Enter your email below to recieve an email containing instructions to
         reset your password.

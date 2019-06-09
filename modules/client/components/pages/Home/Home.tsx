@@ -64,6 +64,13 @@ const Home: React.FC<HomeProps> = () => {
     },
   ];
 
+  let horizontalHeight = 225;
+  if (typeof window !== "undefined") {
+    if (window.innerWidth < 768) {
+      horizontalHeight = 165;
+    }
+  }
+
   return (
     <>
       {/** TODO: Announcements, Social Media embeds, content plugs, etc */}
@@ -89,7 +96,11 @@ const Home: React.FC<HomeProps> = () => {
       )}
 
       <HorizontalScroll
-        style={{ height: 225, overflow: "visible", margin: "25px 0 50px 0" }}
+        style={{
+          height: horizontalHeight,
+          overflow: "visible",
+          margin: "25px 0 50px 0",
+        }}
         reverseScroll={true}
       >
         {userData.users.map(user => {

@@ -6,4 +6,25 @@
   .headline {
     text-align: center;
   }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  @include tabletDown {
+    width: 100%;
+    padding-top: $mobile;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
 }

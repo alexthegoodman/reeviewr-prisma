@@ -78,4 +78,10 @@ textarea.bp3-input.bp3-small {
   button.bp3-button:not([class*="bp3-intent-"]) {
     @extend .formButton;
   }
+
+  @include tabletDown {
+    width: 100%;
+    padding: 30px $mobile;
+    margin: 35px auto;
+  }
 }

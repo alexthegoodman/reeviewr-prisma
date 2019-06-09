@@ -17,7 +17,6 @@ const AuthNav: React.FC<AuthNavProps> = ({ children }) => {
   return (
     <App>
       <Header
-        leftAlign={"flex-start"}
         leftElements={
           <>
             <Button

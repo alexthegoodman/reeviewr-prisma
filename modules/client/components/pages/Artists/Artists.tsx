@@ -21,7 +21,7 @@ const Artists: React.FC<ArtistsProps> = () => {
 
   return (
     <>
-      <h1>Artists</h1>
+      <h1 className="headline">Artists</h1>
       <section className="grid col-4">
         {userData.users.map(user => {
           return <ArtistCardData key={user.id} user={user} />;

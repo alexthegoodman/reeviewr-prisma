@@ -42,7 +42,9 @@ const ResetPassword: React.FC<ResetPasswordProps> = () => {
   if (utilityService.isDefinedWithContent(forgotHash)) {
     return (
       <Card className="floatingForm">
-        <Text tagName="h1">Reset Password</Text>
+        <Text tagName="h1" className="headline">
+          Reset Password
+        </Text>
         <Text tagName="p">You may reset your password below.</Text>
 
         {passwordReset ? (
@@ -102,7 +104,9 @@ const ResetPassword: React.FC<ResetPasswordProps> = () => {
   } else {
     return (
       <Card className="floatingForm">
-        <Text tagName="h1">Reset Password</Text>
+        <Text tagName="h1" className="headline">
+          Reset Password
+        </Text>
         <Text tagName="p">
           You may not reset a password unless you use a special URL provided
           only when you request it via Forgot Password.

@@ -38,7 +38,9 @@ const Login: React.FC<LoginProps> = () => {
 
   return (
     <Card className="floatingForm">
-      <Text tagName="h1">Login</Text>
+      <Text tagName="h1" className="headline">
+        Login
+      </Text>
 
       {notValidType ? (
         <Callout title="Attention" intent="danger">

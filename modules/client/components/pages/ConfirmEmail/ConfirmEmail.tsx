@@ -46,13 +46,17 @@ const ConfirmEmail: React.FC<ConfirmEmailProps> = () => {
         ) : (
           <></>
         )}
-        <Text tagName="h1">Confirming Email...</Text>
+        <Text tagName="h1" className="headline">
+          Confirming Email...
+        </Text>
       </Card>
     );
   } else {
     return (
       <Card className="floatingForm">
-        <Text tagName="h1">Waiting...</Text>
+        <Text tagName="h1" className="headline">
+          Waiting...
+        </Text>
       </Card>
     );
   }

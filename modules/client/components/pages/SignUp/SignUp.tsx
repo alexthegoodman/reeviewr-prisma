@@ -72,7 +72,9 @@ const SignUp: React.FC<SignUpProps> = () => {
   if (successfulSubmission) {
     return (
       <Card className="floatingForm">
-        <Text tagName="h1">Thank you</Text>
+        <Text tagName="h1" className="headline">
+          Thank you
+        </Text>
         <Text tagName="p">
           Welcome to Reeviewr! We're excited for you to begin taking part in our
           peer to peer community, and hope that you'll make new friends and
@@ -84,7 +86,9 @@ const SignUp: React.FC<SignUpProps> = () => {
   } else {
     return (
       <Card className="floatingForm">
-        <Text tagName="h1">Sign Up</Text>
+        <Text tagName="h1" className="headline">
+          Sign Up
+        </Text>
 
         {fileError ? (
           <Callout title="Attention" intent="danger">

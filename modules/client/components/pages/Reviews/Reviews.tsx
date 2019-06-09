@@ -22,7 +22,7 @@ const Reviews: React.FC<ReviewsProps> = () => {
 
   return (
     <>
-      <h1>Reviews</h1>
+      <h1 className="headline">Reviews</h1>
       <section
         style={{
           display: "grid",

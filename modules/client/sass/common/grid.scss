@@ -11,4 +11,18 @@
   &.col-4 {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+
+  @include tabletDown {
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    &.col-3 {
+      grid-template-columns: 1fr;
+    }
+    &.col-4 {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
 }

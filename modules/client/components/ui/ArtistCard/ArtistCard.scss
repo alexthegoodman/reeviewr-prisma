@@ -1,10 +1,5 @@
 .artistCard {
   @extend .card;
-  // min-width: 20vw;
-
-  // &:last-of-type {
-  //   margin-right: 50px;
-  // }
 
   img {
     display: block;
@@ -33,6 +28,22 @@
   }
 
   @include tabletDown {
-    min-width: 250px;
+    // min-width: 220px;
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+    .cardInfo {
+      h5 {
+        font-size: 0.9rem;
+        margin: 12px 0;
+      }
+      p,
+      span {
+        font-size: 0.7rem;
+        margin-bottom: 7px;
+      }
+    }
   }
 }
