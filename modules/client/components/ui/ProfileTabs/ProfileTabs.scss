@@ -1,1 +1,36 @@
-/** Styles **/
+.tabContainer {
+  .tabs {
+    display: flex;
+    flex-direction: row;
+    background: $dark-gray1;
+
+    li {
+      margin: 0;
+    }
+
+    .tabItem {
+      display: flex;
+      margin: 0;
+
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  @include tabletDown {
+    .tabs {
+      white-space: nowrap;
+      overflow: auto;
+
+      .tabItem {
+        padding: 0;
+
+        .bp3-fill {
+          font-size: 1rem;
+          padding: 15px 25px;
+        }
+      }
+    }
+  }
+}
