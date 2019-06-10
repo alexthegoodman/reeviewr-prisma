@@ -5,6 +5,7 @@ import { AppProps } from "./App.d";
 import AuthClient from "../../../services/AuthClient";
 import { useAppContext } from "../../../context";
 import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
+import FullStory from "react-fullstory";
 
 const App: React.FC<AppProps> = ({ children }) => {
   const authClient = new AuthClient();
@@ -15,6 +16,7 @@ const App: React.FC<AppProps> = ({ children }) => {
     authClient.getUserData(dispatch);
     return (
       <>
+        <FullStory org="KKJA5" />
         <LoadingIndicator loadingText="Loading user data..." />
       </>
     );
