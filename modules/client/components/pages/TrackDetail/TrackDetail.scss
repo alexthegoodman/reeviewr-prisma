@@ -3,6 +3,23 @@
     font-size: 1.25rem;
   }
 
+  .questionHeadline {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .questionNum {
+    display: block;
+    background: $red;
+    min-width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    margin: 7px 12px 0 7px;
+  }
+
   @include tabletDown {
     .headline {
       font-size: 1rem;

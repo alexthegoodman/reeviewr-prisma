@@ -140,10 +140,14 @@ const TrackDetail: React.FC<TrackDetailProps> = () => {
     <>
       {/** TODO: Add Review button in red near top of page as well */}
       <UserTrack track={trackData.userTrack} reviewLimit={null}>
+        <Text tagName="h1" className="headline">
+          Reviews
+        </Text>
         {questionData.map((question, i) => {
           return (
             <section className="graphCardContain" key={i}>
-              <Text tagName={`h2`} className="headline">
+              <Text tagName={`h2`} className="headline questionHeadline">
+                <span className="questionNum">{i + 1}</span>
                 {strings.decode(question.content)}
               </Text>
               <GraphCardData question={questionData[i]} />
