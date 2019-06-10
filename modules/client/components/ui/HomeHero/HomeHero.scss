@@ -1,0 +1,40 @@
+.homeHero {
+  width: 100%;
+  background: $dark-gray1;
+
+  .contain {
+    padding: 50px;
+
+    display: flex;
+    flex-direction: row;
+
+    .info {
+      width: 60%;
+    }
+
+    .feature {
+      width: 40%;
+      position: relative;
+
+      img {
+        position: absolute;
+        position: absolute;
+        width: 775px;
+        left: -80px;
+        top: -50px;
+      }
+    }
+
+    .headline {
+      margin-top: 0;
+    }
+    .headline,
+    p {
+      color: white;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.8rem;
+    }
+  }
+}

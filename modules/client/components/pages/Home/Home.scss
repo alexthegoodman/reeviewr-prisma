@@ -1,1 +1,16 @@
-/** Styles **/
+.seeMore {
+  display: block;
+  width: 150px;
+  // min-width: 220px;
+  min-height: 220px;
+  position: absolute;
+  transform: rotate(90deg);
+  left: 50px;
+  top: 195%;
+
+  a {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+  }
+}

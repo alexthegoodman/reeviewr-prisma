@@ -12,6 +12,24 @@
   }
 }
 
+.horizontalScroll {
+  .scaleClick {
+    width: max-content;
+    transform: rotate(90deg);
+    transform-origin: right top;
+
+    &:hover {
+      transform: rotate(90deg) scale(1.02);
+      transition: $long all;
+    }
+
+    &:focus,
+    &:active {
+      transform: rotate(90deg) scale(0.98);
+    }
+  }
+}
+
 .card {
   @extend .verticalCenter;
   max-width: 100vw;
@@ -58,6 +76,7 @@
 
   &.artistCard {
     min-width: 220px;
+    min-height: 220px;
   }
 }
 

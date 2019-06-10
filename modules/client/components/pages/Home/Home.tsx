@@ -14,6 +14,9 @@ import Utility from "../../../../services/Utility";
 import ReactJoyride from "react-joyride";
 import { useAppContext } from "../../../context";
 import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
+import { Text } from "@blueprintjs/core";
+import HomeHero from "../../ui/HomeHero/HomeHero";
+import { Link } from "react-navi";
 
 const Home: React.FC<HomeProps> = () => {
   const utility = new Utility();
@@ -95,22 +98,30 @@ const Home: React.FC<HomeProps> = () => {
         <></>
       )}
 
-      <HorizontalScroll
-        style={{
-          height: horizontalHeight,
-          overflow: "visible",
-          margin: "0 0 35px 0",
-        }}
-        reverseScroll={true}
-      >
-        {userData.users.map(user => {
-          return (
-            <div className="joyrideArtist" key={user.id}>
-              <ArtistCardData className="cardInRow" user={user} />
-            </div>
-          );
-        })}
-      </HorizontalScroll>
+      <HomeHero />
+
+      <Text tagName="h1" className="headline">
+        Artists
+      </Text>
+
+      <section className="horizontalScroll">
+        <div className="scrollContain">
+          {userData.users.map(user => {
+            return (
+              <div className="joyrideArtist" key={user.id}>
+                <ArtistCardData className="cardInRow" user={user} />
+              </div>
+            );
+          })}
+          {/* <div className="seeMore">
+            <Link href="/artists">See More Artists</Link>
+          </div> */}
+        </div>
+      </section>
+
+      <Text tagName="h2" className="headline">
+        Tracks
+      </Text>
 
       {tracksData.userTracks.map(track => {
         return (
