@@ -140,8 +140,17 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
     );
   }
 
-  const navigate = (href, mobile = true) => {
-    navigation.navigate(href);
+  const navigate = (href, mobile = true, loginCheck = false) => {
+    if (loginCheck) {
+      if (userData !== null && userData) {
+        navigation.navigate(href);
+      } else {
+        navigation.navigate("/sign-up");
+      }
+    } else {
+      navigation.navigate(href);
+    }
+
     if (mobile) {
       setMobileMenuOpen(false);
     }
@@ -156,7 +165,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
           {pointCounter}
           <Button
             className="uploadButton"
-            onClick={() => navigation.navigate("/upload")}
+            onClick={() => navigate("/upload", false, true)}
           >
             Upload
           </Button>
@@ -237,7 +246,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
             </MenuItem>
             <MenuItem
               active={route.url.pathname === "/upload" ? true : false}
-              onClick={() => navigate("/upload", true)}
+              onClick={() => navigate("/upload", true, true)}
             >
               Upload
             </MenuItem>
