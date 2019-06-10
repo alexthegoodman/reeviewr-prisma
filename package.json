@@ -234,6 +234,7 @@
     "react-helmet": "^5.2.0",
     "react-hot-loader": "^4.8.3",
     "react-joyride": "^2.0.5",
+    "react-messenger-customer-chat": "^0.7.2",
     "react-mixpanel": "^1.0.1",
     "react-navi": "^0.12.4",
     "react-redux": "^7.0.2",
