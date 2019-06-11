@@ -109,7 +109,7 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
     return (
       <>
         <section className="searchResults">
-          <div>Mechanical work...</div>
+          <Text tagName="h5">No results</Text>
         </section>
       </>
     );

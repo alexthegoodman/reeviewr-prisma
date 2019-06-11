@@ -5,10 +5,9 @@ import { ERROR_CODE } from "../../services/ERROR_CODE";
 // 1. access user via email and bcrypt(password)
 // 2. Check userType = 0 and userConfirmed = 1
 
-export const authenticate = async (req, res, passport) => {
+export const authenticate = async (req, res, passport, mixpanel) => {
   passport.authenticate("local", function(error, user, info) {
     try {
-      // mixpanel.track('User created', { time: new Date() });
       console.info(
         "CALL:",
         req.method,
@@ -38,6 +37,11 @@ export const authenticate = async (req, res, passport) => {
               });
             }
 
+            mixpanel.track("User authenticated", {
+              env: process.env.NODE_ENV,
+              time: new Date(),
+            });
+
             res.status(200);
             res.send({ success: true, data: {} });
             res.end();
@@ -51,7 +55,10 @@ export const authenticate = async (req, res, passport) => {
         throw Error(ERROR_CODE.C003);
       }
     } catch (error) {
-      // mixpanel.track('ERROR', { time: new Date() });
+      mixpanel.track("ERROR", {
+        errorMessage: error.message,
+        time: new Date(),
+      });
       console.error("ERROR ON:", req.method, req.url, req.params, req.query);
       console.error("ERROR DATA:", error);
       res.status(401);

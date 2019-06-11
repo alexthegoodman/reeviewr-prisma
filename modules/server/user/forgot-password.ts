@@ -7,9 +7,8 @@ import { ERROR_CODE } from "../../services/ERROR_CODE";
 // 1. Find user via email
 // 2. Send reset password email containing forgotHash
 
-export const forgotPassword = async (req, res) => {
+export const forgotPassword = async (req, res, mixpanel) => {
   try {
-    // mixpanel.track('User created', { time: new Date() });
     console.info("CALL:", req.method, req.url, req.params, req.body, req.query);
 
     const emailService = new EmailService();
@@ -50,6 +49,11 @@ export const forgotPassword = async (req, res) => {
           ]
         );
 
+        mixpanel.track("Forgot password", {
+          env: process.env.NODE_ENV,
+          time: new Date(),
+        });
+
         res.status(200);
         res.send({ success: true, data: {} });
         res.end();
@@ -60,7 +64,10 @@ export const forgotPassword = async (req, res) => {
       throw Error(ERROR_CODE.C002);
     }
   } catch (error) {
-    // mixpanel.track('ERROR', { time: new Date() });
+    mixpanel.track("ERROR", {
+      errorMessage: error.message,
+      time: new Date(),
+    });
     console.error("ERROR ON:", req.method, req.url, req.params, req.query);
     console.error("ERROR DATA:", error);
     res.status(401);

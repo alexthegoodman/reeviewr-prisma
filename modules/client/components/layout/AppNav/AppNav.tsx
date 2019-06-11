@@ -74,14 +74,37 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
     </Button>
   );
 
+  const openInNewTab = url => {
+    var win = window.open(url, "_blank");
+    win.focus();
+  };
+
   let topLoggedInItems = <></>;
   let bottomLoggedInItems = <></>;
   let alwaysOnItems = (
     <>
-      <MenuItem>About Reeviewr</MenuItem>
-      <MenuItem>Terms</MenuItem>
-      <MenuItem>Facebook</MenuItem>
-      <MenuItem>Twitter</MenuItem>
+      <MenuItem
+        onClick={() =>
+          openInNewTab("https://grandrapids.reeviewr.com/pages/about")
+        }
+      >
+        About Reeviewr
+      </MenuItem>
+      <MenuItem
+        onClick={() =>
+          openInNewTab("https://grandrapids.reeviewr.com/pages/terms")
+        }
+      >
+        Terms
+      </MenuItem>
+      <MenuItem
+        onClick={() => openInNewTab("https://www.facebook.com/reeviewr/")}
+      >
+        Facebook
+      </MenuItem>
+      <MenuItem onClick={() => openInNewTab("https://twitter.com/reeviewr")}>
+        Twitter
+      </MenuItem>
     </>
   );
 

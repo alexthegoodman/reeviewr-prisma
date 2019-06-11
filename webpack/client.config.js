@@ -111,6 +111,8 @@ module.exports = {
         process.env.MIXPANEL_SECRET
       ),
 
+      "process.env.SENTRY": JSON.stringify(process.env.SENTRY),
+
       "process.env.V1_S3_DIR": JSON.stringify(process.env.V1_S3_DIR),
       "process.env.V1_S3_URL": JSON.stringify(process.env.V1_S3_URL),
 
@@ -126,9 +128,9 @@ module.exports = {
       // ),
       // "process.env.AUTH0_DOMAIN": JSON.stringify(process.env.AUTH0_DOMAIN),
 
-      "process.env.ROLLBAR_CLIENT_ACCESS_TOKEN": JSON.stringify(
-        config.get("rollbar.clientAccessToken")
-      ),
+      // "process.env.ROLLBAR_CLIENT_ACCESS_TOKEN": JSON.stringify(
+      //   config.get("rollbar.clientAccessToken")
+      // ),
 
       "process.env.IDENTITY_PROVIDER_HOST": JSON.stringify(
         process.env.IDENTITY_PROVIDER_HOST

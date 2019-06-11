@@ -62,9 +62,10 @@ import bcrypt from "bcrypt";
 import { resetPassword } from "./user/reset-password";
 import Utility from "../services/Utility";
 
-var serveStatic = require("serve-static");
-var path = require("path");
+const serveStatic = require("serve-static");
+const path = require("path");
 const csp = require("helmet-csp");
+const Mixpanel = require("mixpanel");
 
 let app = express();
 
@@ -207,21 +208,32 @@ export async function startServer() {
   app.use(passport.initialize());
   app.use(passport.session());
 
+  const mixpanel = Mixpanel.init("3e76355b0e756ed9cf5a9f5037497225", {
+    protocol: "https",
+  });
+
   console.info("api", `${apiVersion}${AUTHENTICATE_USER}`);
   app.post(
     `/${apiVersion}${AUTHENTICATE_USER}`,
     // passport.authenticate("local"),
-    (req, res) => authenticate(req, res, passport)
+    (req, res) => authenticate(req, res, passport, mixpanel)
   );
-  app.post(`/${apiVersion}${CONFIRM_EMAIL}`, confirmEmail);
-  app.post(`/${apiVersion}${CREATE_USER}`, createUser);
-  app.post(`/${apiVersion}${FORGOT_PASSWORD}`, forgotPassword);
-  app.post(`/${apiVersion}${RESET_PASSWORD}`, resetPassword);
-  app.post(
-    `/${apiVersion}${RESEND_EMAIL_CONFIRMATION}`,
-    resendEmailConfirmation
+  app.post(`/${apiVersion}${CONFIRM_EMAIL}`, (req, res) =>
+    confirmEmail(req, res, mixpanel)
   );
-  app.post(`/${apiVersion}${CREATE_TRACK}`, createTrack);
+  app.post(`/${apiVersion}${CREATE_USER}`, (req, res) => createUser(req, res));
+  app.post(`/${apiVersion}${FORGOT_PASSWORD}`, (req, res) =>
+    forgotPassword(req, res, mixpanel)
+  );
+  app.post(`/${apiVersion}${RESET_PASSWORD}`, (req, res) =>
+    resetPassword(req, res, mixpanel)
+  );
+  app.post(`/${apiVersion}${RESEND_EMAIL_CONFIRMATION}`, (req, res) =>
+    resendEmailConfirmation(req, res, mixpanel)
+  );
+  app.post(`/${apiVersion}${CREATE_TRACK}`, (req, res) =>
+    createTrack(req, res, mixpanel)
+  );
 
   app.get(
     "/*",

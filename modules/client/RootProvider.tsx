@@ -15,10 +15,13 @@ import { ErrorHandler } from "./services/ErrorHandler";
 import { AppContextAPI } from "./context/AppContextAPI";
 import client from "./services/ApolloClient";
 import { CookiesProvider } from "react-cookie";
+import * as Sentry from "@sentry/browser";
 
 const styles = require("./sass/style.scss");
+console.info("process.env.SENTRY", process.env.SENTRY);
 
 mixpanel.init(process.env.MIXPANEL_SECRET);
+Sentry.init({ dsn: process.env.SENTRY });
 
 interface AppProviderProps {}
 

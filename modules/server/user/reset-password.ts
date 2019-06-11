@@ -9,9 +9,8 @@ import * as bcrypt from "bcrypt";
 // 1. Find user via forgotHash
 // 2. Set new md5(password) as provided
 
-export const resetPassword = async (req, res) => {
+export const resetPassword = async (req, res, mixpanel) => {
   try {
-    // mixpanel.track('User created', { time: new Date() });
     console.info("CALL:", req.method, req.url, req.params, req.body, req.query);
 
     const emailService = new EmailService();
@@ -29,6 +28,11 @@ export const resetPassword = async (req, res) => {
           });
 
           if (utility.isDefinedWithContent(updatedUser)) {
+            mixpanel.track("Reset password", {
+              env: process.env.NODE_ENV,
+              time: new Date(),
+            });
+
             res.status(200);
             res.send({ success: true, data: {} });
             res.end();
@@ -43,7 +47,10 @@ export const resetPassword = async (req, res) => {
       throw Error(ERROR_CODE.C003);
     }
   } catch (error) {
-    // mixpanel.track('ERROR', { time: new Date() });
+    mixpanel.track("ERROR", {
+      errorMessage: error.message,
+      time: new Date(),
+    });
     console.error("ERROR ON:", req.method, req.url, req.params, req.query);
     console.error("ERROR DATA:", error);
     res.status(401);

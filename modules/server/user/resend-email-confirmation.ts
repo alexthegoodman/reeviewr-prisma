@@ -1,6 +1,6 @@
 import { prisma } from "../../../__generated__/prisma-client";
 
-export const resendEmailConfirmation = (req, res) => {
+export const resendEmailConfirmation = (req, res, mixpanel) => {
   try {
     // mixpanel.track('User created', { time: new Date() });
     console.info("CALL:", req.method, req.url, req.params, req.query);
@@ -14,7 +14,10 @@ export const resendEmailConfirmation = (req, res) => {
     res.send({ success: true, data: {} });
     res.end();
   } catch (error) {
-    // mixpanel.track('ERROR', { time: new Date() });
+    mixpanel.track("ERROR", {
+      errorMessage: error.message,
+      time: new Date(),
+    });
     console.error("ERROR ON:", req.method, req.url, req.params, req.query);
     console.error("ERROR DATA:", error);
   }
