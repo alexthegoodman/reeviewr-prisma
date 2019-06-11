@@ -7,6 +7,7 @@ export const Html = ({ content, state }) => {
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+        <link rel="stylesheet" href="https://use.typekit.net/kod8qec.css" />
         <link rel="stylesheet" href="/public/server.css" />
         <link rel="icon" href="/public/favicon.ico" />
       </head>

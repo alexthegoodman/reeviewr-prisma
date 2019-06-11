@@ -9,7 +9,7 @@ export const authenticate = async (req, res, passport, mixpanel) => {
   passport.authenticate("local", function(error, user, info) {
     try {
       console.info(
-        "CALL:",
+        "CALL authenticate:",
         req.method,
         req.url,
         req.params,
@@ -26,13 +26,14 @@ export const authenticate = async (req, res, passport, mixpanel) => {
       if (utility.isDefinedWithContent(user)) {
         if (user.userType === 0) {
           if (user.userConfirmed === 1) {
+            const host = req.get("host");
             if (process.env.NODE_ENV === "development") {
               res.cookie("reeviewrPrivateHash", user.privateHash, {
                 domain: "localhost",
               });
             } else {
               res.cookie("reeviewrPrivateHash", user.privateHash, {
-                domain: "reeviewr.com",
+                domain: host,
                 secure: true,
               });
             }

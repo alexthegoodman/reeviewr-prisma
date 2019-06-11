@@ -16,7 +16,7 @@ export const createTrack = async (req, res, mixpanel) => {
   try {
     // mixpanel.track('User created', { time: new Date() });
     console.info(
-      "CALL:",
+      "CALL createTrack:",
       req.method,
       req.url,
       req.params,

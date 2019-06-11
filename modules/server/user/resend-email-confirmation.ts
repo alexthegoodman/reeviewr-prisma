@@ -3,7 +3,13 @@ import { prisma } from "../../../__generated__/prisma-client";
 export const resendEmailConfirmation = (req, res, mixpanel) => {
   try {
     // mixpanel.track('User created', { time: new Date() });
-    console.info("CALL:", req.method, req.url, req.params, req.query);
+    console.info(
+      "CALL resendEmailConfirmation:",
+      req.method,
+      req.url,
+      req.params,
+      req.query
+    );
 
     // const users = await prisma.users();
 

@@ -15,7 +15,13 @@ cloudinary.config({
 
 export const createUser = async (req, res, mixpanel) => {
   try {
-    console.info("CALL:", req.method, req.url, req.params, req.query);
+    console.info(
+      "CALL createUser:",
+      req.method,
+      req.url,
+      req.params,
+      req.query
+    );
 
     // Native Sign Up:
     // 1. Send email confirmation

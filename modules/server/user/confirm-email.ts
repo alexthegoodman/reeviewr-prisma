@@ -6,7 +6,14 @@ import Utility from "../../services/Utility";
 
 export const confirmEmail = async (req, res, mixpanel) => {
   try {
-    console.info("CALL:", req.method, req.url, req.params, req.body, req.query);
+    console.info(
+      "CALL confirmEmail:",
+      req.method,
+      req.url,
+      req.params,
+      req.body,
+      req.query
+    );
 
     const emailService = new EmailService();
     const legacy = new Legacy();
