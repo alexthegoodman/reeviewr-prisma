@@ -213,7 +213,7 @@ export async function startServer() {
   });
 
   console.info("api", `${apiVersion}${AUTHENTICATE_USER}`);
-  app.get(`/`, (req, res) => {
+  app.get(`/${apiVersion}`, (req, res) => {
     return res.json({ success: true });
   });
   app.post(
