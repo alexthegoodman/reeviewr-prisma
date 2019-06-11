@@ -213,6 +213,9 @@ export async function startServer() {
   });
 
   console.info("api", `${apiVersion}${AUTHENTICATE_USER}`);
+  app.get(`/`, (req, res) => {
+    return res.json({ success: true });
+  });
   app.post(
     `/${apiVersion}${AUTHENTICATE_USER}`,
     // passport.authenticate("local"),
