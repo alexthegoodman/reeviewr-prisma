@@ -10,7 +10,20 @@ function formatUrl(path, version = "1.0") {
 
   const adjustedPath = path[0] !== "/" ? "/" + path : path;
 
-  return pathBase + "/v" + version + adjustedPath;
+  const formattedUrl = pathBase + "/v" + version + adjustedPath;
+
+  console.info(
+    "path",
+    path,
+    "pathBase",
+    pathBase,
+    "version",
+    version,
+    "adjustedPath",
+    adjustedPath
+  );
+
+  return formattedUrl;
 }
 
 export default class RestClient {

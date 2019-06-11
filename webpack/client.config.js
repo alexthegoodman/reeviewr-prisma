@@ -98,6 +98,8 @@ module.exports = {
       // SSR
       "process.env.BROWSER": "true",
 
+      "process.env.SERVER_URL": JSON.stringify(process.env.SERVER_URL),
+
       // Allow checking of USE_FAKE_DATA in client (mainly for the big bad reset button)
       "process.env.USE_FAKE_DATA": JSON.stringify(process.env.USE_FAKE_DATA),
 
