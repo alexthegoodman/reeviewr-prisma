@@ -12,7 +12,7 @@ const uuid = require("uuid");
 const cloudinary = require("cloudinary").v2;
 const slugify = require("slugify");
 
-export const createTrack = async (req, res) => {
+export const createTrack = async (req, res, mixpanel) => {
   try {
     // mixpanel.track('User created', { time: new Date() });
     console.info(

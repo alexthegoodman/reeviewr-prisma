@@ -224,7 +224,9 @@ export async function startServer() {
   app.post(`/${apiVersion}${CONFIRM_EMAIL}`, (req, res) =>
     confirmEmail(req, res, mixpanel)
   );
-  app.post(`/${apiVersion}${CREATE_USER}`, (req, res) => createUser(req, res));
+  app.post(`/${apiVersion}${CREATE_USER}`, (req, res) =>
+    createUser(req, res, mixpanel)
+  );
   app.post(`/${apiVersion}${FORGOT_PASSWORD}`, (req, res) =>
     forgotPassword(req, res, mixpanel)
   );
