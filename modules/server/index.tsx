@@ -106,6 +106,8 @@ export async function startServer() {
     "http://localhost:3000",
     "http://reeviewr.com",
     "http://reeviewr-prisma.herokuapp.com",
+    "https://reeviewr.com",
+    "https://reeviewr-prisma.herokuapp.com",
   ];
 
   app.use(
