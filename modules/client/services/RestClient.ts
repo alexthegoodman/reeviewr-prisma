@@ -6,11 +6,7 @@ import superagent from "superagent";
 function formatUrl(path, version = "1.0") {
   let pathBase = "";
 
-  if (process.env.__SERVER__) {
-    pathBase = "https://reeviewr-prisma.herokuapp.com";
-  } else {
-    pathBase = "http://localhost:3001";
-  }
+  pathBase = process.env.SERVER_URL;
 
   const adjustedPath = path[0] !== "/" ? "/" + path : path;
 
