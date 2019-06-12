@@ -1,4 +1,5 @@
-endpoint: ${env:PRISMA_API}
+#endpoint: ${env:PRISMA_API}
+endpoint: http://159.89.239.84:4466
 #endpoint: http://159.89.239.84:4466
 datamodel:
   - modules/prisma-api/datamodel.prisma

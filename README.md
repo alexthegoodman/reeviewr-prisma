@@ -328,8 +328,12 @@ The project is configured to run in CircleCI (see .circleci/config.yml). It's po
 - https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
 - DigitalOcean root@159.89.239.84 las26950
 - DigitalOcean `ssh root@159.89.239.84` (p: las26950) (other p: c641a13879d3205c404dcfb3da) (db p: prisma)
-- https://gist.github.com/geraldvillorente/4c60e7fdb5562f443f16ad2bbe4235ce
-- http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm
+- execute mysql commands in docker container: https://gist.github.com/geraldvillorente/4c60e7fdb5562f443f16ad2bbe4235ce
+- mysql commands: http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm
 - transfer from local to remote: scp ~/Desktop/sql/2019/reeviewr/127.0.0.1default@default20190611.sql root@159.89.239.84:
 - from remote into docker container: docker cp 127.0.0.1default@default20190611.sql 226a8b84239e:/127.0.0.1default@default20190611.sql
 - Use Prisma Cloud to browse the data - it is hooked up even though this is hosted at Digital Ocean
+- https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-16-04
+- https://www.digitalocean.com/community/tutorials/how-to-install-an-ssl-certificate-from-a-commercial-certificate-authority
+- use admin@reeviewr-prisma.com simply for SSL verification
+- now available at https://reeviewr-prisma.com/default/default
