@@ -1,4 +1,5 @@
 endpoint: ${env:PRISMA_API}
+#endpoint: http://159.89.239.84:4466
 datamodel:
   - modules/prisma-api/datamodel.prisma
   # - datamodel2.prisma
@@ -8,8 +9,8 @@ datamodel:
 generate:
   - generator: typescript-client
     output: ./__generated__/prisma-client/
-  # - generator: graphql-schema
-  #   output: ./generated/
+  #- generator: graphql-schema
+  #  output: ./__generated__/schema.graphql
 
 hooks:
   post-deploy:

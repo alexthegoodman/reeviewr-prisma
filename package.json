@@ -46,8 +46,8 @@
     "gen:gql": "graphql-codegen --config codegen.yml",
     "heroku:deploy": "git push heroku master",
     "prisma:deploy:local": "PRISMA_API=http://localhost:4466 prisma deploy",
-    "prisma:deploy:dev": "PRISMA_API=https://shrouded-plateau-27825.herokuapp.com prisma deploy",
-    "prisma:deploy:prod": "PRISMA_API=https://shrouded-plateau-27825.herokuapp.com prisma deploy"
+    "prisma:deploy:dev": "PRISMA_API=http://159.89.239.84:4466/default/default/ PRISMA_MANAGEMENT_API_SECRET=my-secret prisma deploy",
+    "prisma:deploy:prod": "PRISMA_API=http://159.89.239.84:4466/default/default/ PRISMA_MANAGEMENT_API_SECRET=my-secret prisma deploy"
   },
   "resolutions": {},
   "dependencies": {

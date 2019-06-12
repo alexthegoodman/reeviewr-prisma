@@ -317,3 +317,19 @@ Database names:
 ## CI
 
 The project is configured to run in CircleCI (see .circleci/config.yml). It's possible to run [locally](https://circleci.com/docs/2.0/local-cli/) with `circleci local execute`. Warning: the tests may hang after completion if there aren't enough concurrent workers. Fix this by cranking up your cores in Docker or by specifying Jest's [--maxWorkers](https://jestjs.io/docs/en/cli.html#maxworkers-num). (We'd prefer not to _check in_ a maxWorkers setting; we want test concurrency to be elastic with the number of hardware threads available.)
+
+## Addt Notes
+
+### Prisma / Reeviewr Branch
+
+- Must access Prisma Cloud to deploy new Prisma schemas (or use the `prisma:deploy:prod` command and check in Cloud to verify)
+- Cannot upgrade past Prisma 1.23 unless you can overcome its big database schema change
+- If needed, you can refresh everything including the database by removing the containers, images, and volumes
+- https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
+- DigitalOcean root@159.89.239.84 las26950
+- DigitalOcean `ssh root@159.89.239.84` (p: las26950) (other p: c641a13879d3205c404dcfb3da) (db p: prisma)
+- https://gist.github.com/geraldvillorente/4c60e7fdb5562f443f16ad2bbe4235ce
+- http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm
+- transfer from local to remote: scp ~/Desktop/sql/2019/reeviewr/127.0.0.1default@default20190611.sql root@159.89.239.84:
+- from remote into docker container: docker cp 127.0.0.1default@default20190611.sql 226a8b84239e:/127.0.0.1default@default20190611.sql
+- Use Prisma Cloud to browse the data - it is hooked up even though this is hosted at Digital Ocean
