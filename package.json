@@ -51,6 +51,7 @@
   },
   "resolutions": {},
   "dependencies": {
+    "connect-wwwhisper": "*",
     "@atomic-object/lenses": "0.1.6",
     "@atomic-object/tscli": "0.1.1",
     "@babel/core": "^7.4.3",

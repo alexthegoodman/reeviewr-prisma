@@ -17,6 +17,7 @@ const enforce = require("express-sslify");
 const expressStaticGzip = require("express-static-gzip");
 const cookieSession = require("cookie-session");
 const bodyParser = require("body-parser");
+const wwwhisper = require("connect-wwwhisper");
 
 if (typeof window === "undefined") {
   global["window"] = {};
@@ -101,6 +102,9 @@ export async function startServer() {
 
   // Gzip support
   app.use(compression());
+
+  // Closed beta password protection
+  app.use(wwwhisper());
 
   var allowedOrigins = [
     "http://localhost:3000",
