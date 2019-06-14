@@ -27,11 +27,13 @@ import CreateQuestion from "../../ui/CreateQuestion/CreateQuestion";
 import { useAppContext } from "../../../context";
 import { useCurrentRoute, useNavigation } from "react-navi";
 import UserTrackClient from "../../../services/UserTrackClient";
+import Legacy from "../../../../services/Legacy";
 
 const UploadTrack: React.FC<UploadTrackProps> = () => {
   const authClient = new AuthClient();
   const userTrackClient = new UserTrackClient();
   const utility = new Utility();
+  const legacy = new Legacy();
 
   const [{ userData }, dispatch] = useAppContext();
   const route = useCurrentRoute();
@@ -52,6 +54,8 @@ const UploadTrack: React.FC<UploadTrackProps> = () => {
   const [questionType3, setQuestionType3] = React.useState("");
 
   const [startUpload, setStartUpload] = React.useState(false);
+
+  const points = legacy.extractMetaValue(userData.user.userMeta, "points");
 
   // TODO: Buy 3 points for 3 dollars
   // TODO: Import from SoundCloud
@@ -81,7 +85,8 @@ const UploadTrack: React.FC<UploadTrackProps> = () => {
             Upload Track
           </Text>
           <Text tagName="h2" className="headline">
-            You have 10 points to spend. You can upload 3 songs.
+            You have {points} points to spend. You can upload{" "}
+            {Math.floor(points / 3)} songs.
           </Text>
           <Button className="uploadButton" onClick={() => setStartUpload(true)}>
             Upload Now

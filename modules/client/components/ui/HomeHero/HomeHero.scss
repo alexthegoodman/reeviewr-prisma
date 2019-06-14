@@ -12,6 +12,16 @@
       width: 60%;
     }
 
+    ul {
+      list-style-type: circle;
+      padding-left: 20px;
+
+      li {
+        color: white;
+        font-size: 1.2rem;
+      }
+    }
+
     .feature {
       width: 40%;
       position: relative;
@@ -23,6 +33,10 @@
         left: -80px;
         top: -50px;
       }
+    }
+
+    h4 {
+      font-size: 1.8rem;
     }
 
     .headline {

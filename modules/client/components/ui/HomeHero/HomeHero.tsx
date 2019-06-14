@@ -16,27 +16,22 @@ const HomeHero: React.FC<HomeHeroProps> = ({
           <Text tagName="h3" className="headline">
             Welcome to Reeviewr
           </Text>
+          <Text tagName="h4" className="headline">
+            Exchange Music Reviews
+          </Text>
           <Text tagName="p">
-            Major platforms support major artists. Even on SoundCloud or
-            BandCamp, artists looking to grow are left alone in the face of
-            adversity.{" "}
+            Major platforms support major artists.{" "}
             <strong>
               Gaining listens, comments, and feedback on your music is a
               challenge.
             </strong>
           </Text>
-          <Text tagName="p">
-            Reeviewr is the antithesis of major. We are a small community,
-            dedicated to local artists, and because Reeviewr is only attractive
-            to local artists, it will always be that way.
-          </Text>
-          <Text tagName="p">
-            On Reeviewr, you must leave reviews in order to post your own music.
-          </Text>
-          <Text tagName="p">All participants gain feedback in return.</Text>
-          <Text tagName="p">
-            <strong>All music recieves the attention it deserves.</strong>
-          </Text>
+          <ul>
+            <li>You must leave reviews in order the post your own music</li>
+            <li>Reeviewr is a tight-knit community</li>
+            <li>All participants gain feedback in return</li>
+            <li>All music recieves the attention it deserves</li>
+          </ul>
         </div>
         <div className="feature">
           <img

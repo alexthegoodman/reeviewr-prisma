@@ -56,7 +56,7 @@ const ProfileFollowing: React.FC<ProfileFollowingProps> = ({ artistId }) => {
 
   // track fetching is technically about ProfileNav which does the UserFetch
   if (userLoading) {
-    return <LoadingIndicator loadingText="Loading users..." />;
+    return <LoadingIndicator loadingText="Loading artist..." />;
   }
   if (userError) {
     return <div>Error on user! {userError.message}</div>;
@@ -69,7 +69,7 @@ const ProfileFollowing: React.FC<ProfileFollowingProps> = ({ artistId }) => {
   }
 
   if (usersLoading) {
-    return <LoadingIndicator loadingText="Loading users..." />;
+    return <LoadingIndicator loadingText="Loading following..." />;
   }
   if (usersError) {
     return <div>Error on tracks! {usersError.message}</div>;

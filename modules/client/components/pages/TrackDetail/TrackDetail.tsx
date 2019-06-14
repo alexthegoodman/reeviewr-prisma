@@ -28,7 +28,7 @@ const TrackDetail: React.FC<TrackDetailProps> = () => {
   } = useQuery(USER_TRACK_QUERY, { variables: { id: trackId } });
 
   if (trackLoading) {
-    return <LoadingIndicator loadingText="Loading track..." />;
+    return <LoadingIndicator loadingText="Loading track info..." />;
   }
   if (trackError) {
     return <div>Error on track! {trackError.message}</div>;

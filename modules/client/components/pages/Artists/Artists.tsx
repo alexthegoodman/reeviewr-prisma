@@ -11,7 +11,7 @@ const Artists: React.FC<ArtistsProps> = () => {
     USERS_QUERY
   );
   if (userLoading) {
-    return <LoadingIndicator loadingText="Loading users..." />;
+    return <LoadingIndicator loadingText="Loading artists..." />;
   }
   if (userError) {
     return <div>Error on users! {userError.message}</div>;

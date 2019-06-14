@@ -43,7 +43,7 @@ const Tracks: React.FC<TracksProps> = () => {
     bodyContent = <div>Error on tracks! {tracksError.message}</div>;
   }
   if (genreTracksLoading) {
-    bodyContent = <LoadingIndicator loadingText="Loading generic tracks..." />;
+    bodyContent = <LoadingIndicator loadingText="Loading tracks..." />;
   }
   if (genreTracksError) {
     bodyContent = <div>Error on genre tracks! {tracksError.message}</div>;

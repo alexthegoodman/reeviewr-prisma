@@ -67,7 +67,7 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
     return (
       <>
         <section className="searchResults">
-          <LoadingIndicator loadingText="Loading users..." />
+          <LoadingIndicator loadingText="Loading artists..." />
         </section>
       </>
     );

@@ -310,7 +310,8 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
               <Button
                 className="actionButton headerItem"
                 minimal={true}
-                onClick={() => {
+                onClick={async () => {
+                  await navigation.navigate("/");
                   dispatch({
                     type: "setTour",
                     tour: { run: true },
