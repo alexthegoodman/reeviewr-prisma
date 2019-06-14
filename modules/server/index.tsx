@@ -104,7 +104,7 @@ export async function startServer() {
   app.use(compression());
 
   // Closed beta password protection
-  app.use(wwwhisper());
+  // app.use(wwwhisper());
 
   var allowedOrigins = [
     "http://localhost:3000",
