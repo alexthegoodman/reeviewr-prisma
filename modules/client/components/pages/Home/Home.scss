@@ -1,16 +1,37 @@
 .seeMore {
   display: block;
-  width: 150px;
+  // width: 25vw;
   // min-width: 220px;
   min-height: 220px;
-  position: absolute;
-  transform: rotate(90deg);
-  left: 50px;
-  top: 195%;
+  // position: absolute;
+  // transform: rotate(90deg);
+  // left: 50px;
+  // top: 195%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   a {
     color: white;
     font-size: 2rem;
-    text-align: center;
+    text-align: left;
+  }
+}
+
+.betaNotice,
+.bp3-callout.bp3-intent-danger.betaNotice {
+  background: $darkBlue;
+  margin-bottom: 25px;
+
+  > .bp3-icon:first-child,
+  .bp3-heading,
+  a,
+  p {
+    color: white;
+  }
+  a,
+  p {
+    font-size: 1rem;
+    margin: 0;
   }
 }

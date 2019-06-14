@@ -187,7 +187,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
         <div className="mobileHide">
           {pointCounter}
           <Button
-            className="uploadButton"
+            className="uploadButton joyrideUploadPage"
             onClick={() => navigate("/upload", false, true)}
           >
             Upload
@@ -200,18 +200,21 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
               Home
             </MenuItem>
             <MenuItem
+              className="joyrideTracksPage"
               active={route.url.pathname === "/tracks" ? true : false}
               onClick={() => navigation.navigate("/tracks")}
             >
               Tracks
             </MenuItem>
             <MenuItem
+              className="joyrideArtistsPage"
               active={route.url.pathname === "/artists" ? true : false}
               onClick={() => navigation.navigate("/artists")}
             >
               Artists
             </MenuItem>
             <MenuItem
+              className="joyrideReviewsPage"
               active={route.url.pathname === "/reviews" ? true : false}
               onClick={() => navigation.navigate("/reviews")}
             >

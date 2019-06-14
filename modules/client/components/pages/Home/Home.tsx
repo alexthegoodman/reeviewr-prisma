@@ -14,7 +14,7 @@ import Utility from "../../../../services/Utility";
 import ReactJoyride from "react-joyride";
 import { useAppContext } from "../../../context";
 import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
-import { Text } from "@blueprintjs/core";
+import { Text, Callout } from "@blueprintjs/core";
 import HomeHero from "../../ui/HomeHero/HomeHero";
 import { Link } from "react-navi";
 
@@ -58,13 +58,30 @@ const Home: React.FC<HomeProps> = () => {
 
   const steps = [
     {
-      target: ".joyrideArtist",
-      content: "You can find other artists on Reeviewr easily.",
+      target: ".joyrideTracksPage",
+      content: "Start by listening to some music and reviewing some songs.",
     },
     {
-      target: ".joyrideReview",
-      content: "Discover music reviews tied to each Track.",
+      target: ".joyrideArtistsPage",
+      content: "Then start following artists and liking your favorite songs.",
     },
+    {
+      target: ".joyrideReviewsPage",
+      content: "Browse all of the reviews and learn more about the community.",
+    },
+    {
+      target: ".joyrideUploadPage",
+      content: "After you earn 3 points, visit here to upload your music.",
+    },
+
+    // {
+    //   target: ".joyrideArtist",
+    //   content: "You can find other artists on Reeviewr easily.",
+    // },
+    // {
+    //   target: ".joyrideReview",
+    //   content: "Discover music reviews tied to each Track.",
+    // },
   ];
 
   let horizontalHeight = 225;
@@ -78,12 +95,21 @@ const Home: React.FC<HomeProps> = () => {
     <>
       {/** TODO: Announcements, Social Media embeds, content plugs, etc */}
 
+      <Callout title="Notice" intent="danger" className="betaNotice">
+        <Text tagName="p">
+          This is the Closed Beta. Features may not work as expected. Please
+          report feedback directly to{" "}
+          <a href="mailto:admin@reeviewr.com">admin@reeviewr.com</a>
+        </Text>
+      </Callout>
+
       {typeof window !== "undefined" && window.innerWidth > 768 ? (
         <ReactJoyride
           steps={steps}
           run={tour.run}
           continuous={true}
           showProgress={true}
+          showSkipButton={true}
           callback={state => {
             // console.info(state);
             if (state.action === "reset") {
@@ -104,20 +130,25 @@ const Home: React.FC<HomeProps> = () => {
         Artists
       </Text>
 
-      <section className="horizontalScroll">
-        <div className="scrollContain">
-          {userData.users.map(user => {
+      {/* <section className="horizontalScroll">
+        <div className="scrollContain"> */}
+      <div className="grid col-4">
+        {userData.users.map((user, i) => {
+          if (i < 3) {
             return (
               <div className="joyrideArtist" key={user.id}>
                 <ArtistCardData className="cardInRow" user={user} />
               </div>
             );
-          })}
-          {/* <div className="seeMore">
-            <Link href="/artists">See More Artists</Link>
-          </div> */}
+          }
+        })}
+        <div className="seeMore">
+          <Link href="/artists">See More Artists</Link>
         </div>
-      </section>
+      </div>
+
+      {/* </div>
+      </section> */}
 
       <Text tagName="h2" className="headline">
         Tracks
