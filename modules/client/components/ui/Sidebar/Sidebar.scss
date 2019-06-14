@@ -8,7 +8,7 @@
     left: $sidebarWidth;
     background: $dark-gray4;
     box-shadow: none;
-    // z-index: -1;
+    z-index: 1;
   }
 
   @include tabletDown {

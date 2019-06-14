@@ -27,7 +27,7 @@ const HomeHero: React.FC<HomeHeroProps> = ({
             </strong>
           </Text>
           <ul>
-            <li>You must leave reviews in order the post your own music</li>
+            <li>You must leave reviews in order to post your own music</li>
             <li>Reeviewr is a tight-knit community</li>
             <li>All participants gain feedback in return</li>
             <li>All music recieves the attention it deserves</li>

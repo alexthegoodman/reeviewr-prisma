@@ -24,6 +24,11 @@ const routes = mount({
   "/login": route(req => {
     return {
       title: "Login / Reeviewr",
+      head: (
+        <>
+          <link rel="canonical" href="https://reeviewr.com/login" />
+        </>
+      ),
       view: (
         <AuthNav>
           <Login />
@@ -34,6 +39,11 @@ const routes = mount({
   "/sign-up": route(req => {
     return {
       title: "Sign Up / Reeviewr",
+      head: (
+        <>
+          <link rel="canonical" href="https://reeviewr.com/sign-up" />
+        </>
+      ),
       view: (
         <AuthNav>
           <SignUp />
@@ -44,6 +54,11 @@ const routes = mount({
   "/forgot-password": route(req => {
     return {
       title: "Forgot Password / Reeviewr",
+      head: (
+        <>
+          <link rel="canonical" href="https://reeviewr.com/forgot-password" />
+        </>
+      ),
       view: (
         <AuthNav>
           <ForgotPassword />
@@ -54,6 +69,11 @@ const routes = mount({
   "/reset-password": route(req => {
     return {
       title: "Reset Password / Reeviewr",
+      head: (
+        <>
+          <link rel="canonical" href="https://reeviewr.com/reset-password" />
+        </>
+      ),
       view: (
         <AuthNav>
           <ResetPassword />
@@ -64,6 +84,11 @@ const routes = mount({
   "/confirm-email": route(req => {
     return {
       title: "Confirm Email / Reeviewr",
+      head: (
+        <>
+          <link rel="canonical" href="https://reeviewr.com/confirm-email" />
+        </>
+      ),
       view: (
         <AuthNav>
           <ConfirmEmail />
@@ -74,6 +99,11 @@ const routes = mount({
   "/": route({
     title: "Home / Reeviewr",
     // getData: () => api.fetchProducts(), // TODO: consider integrating Apollo Client here
+    head: (
+      <>
+        <link rel="canonical" href="https://reeviewr.com/" />
+      </>
+    ),
     view: (
       <AppNav>
         <Home />
@@ -84,6 +114,11 @@ const routes = mount({
   "/tracks": route(req => {
     return {
       title: "Tracks / Reeviewr",
+      head: (
+        <>
+          <link rel="canonical" href="https://reeviewr.com/tracks" />
+        </>
+      ),
       view: (
         <AppNav>
           <Tracks />
@@ -96,6 +131,14 @@ const routes = mount({
 
     return {
       title: `${name} / Tracks / Reeviewr`,
+      head: (
+        <>
+          <link
+            rel="canonical"
+            href={`https://reeviewr.com/tracks/${trackId}/${name}`}
+          />
+        </>
+      ),
       view: (
         <AppNav>
           <TrackDetail trackId={trackId} />
@@ -106,6 +149,11 @@ const routes = mount({
   "/artists": route(req => {
     return {
       title: "Artists / Reeviewr",
+      head: (
+        <>
+          <link rel="canonical" href={`https://reeviewr.com/artists`} />
+        </>
+      ),
       view: (
         <AppNav>
           <Artists />
@@ -118,6 +166,14 @@ const routes = mount({
 
     return {
       title: `${name} / Artist / Reeviewr`,
+      head: (
+        <>
+          <link
+            rel="canonical"
+            href={`https://reeviewr.com/artists/${artistId}/${name}`}
+          />
+        </>
+      ),
       view: (
         <AppNav>
           <ArtistDetail artistId={artistId} />
@@ -130,6 +186,14 @@ const routes = mount({
 
     return {
       title: `${name} / Artist Likes / Reeviewr`,
+      head: (
+        <>
+          <link
+            rel="canonical"
+            href={`https://reeviewr.com/artiists/${artistId}/${name}/likes`}
+          />
+        </>
+      ),
       view: (
         <AppNav>
           <ProfileLikes artistId={artistId} />
@@ -142,6 +206,14 @@ const routes = mount({
 
     return {
       title: `${name} / Artist Following / Reeviewr`,
+      head: (
+        <>
+          <link
+            rel="canonical"
+            href={`https://reeviewr.com/artiists/${artistId}/${name}/following`}
+          />
+        </>
+      ),
       view: (
         <AppNav>
           <ProfileFollowing artistId={artistId} />
@@ -154,6 +226,14 @@ const routes = mount({
 
     return {
       title: `${name} / Artist Followers / Reeviewr`,
+      head: (
+        <>
+          <link
+            rel="canonical"
+            href={`https://reeviewr.com/artiists/${artistId}/${name}/followers`}
+          />
+        </>
+      ),
       view: (
         <AppNav>
           <ProfileFollowers artistId={artistId} />
@@ -164,6 +244,11 @@ const routes = mount({
   "/reviews": route(req => {
     return {
       title: "Reviews / Reeviewr",
+      head: (
+        <>
+          <link rel="canonical" href={`https://reeviewr.com/reviews`} />
+        </>
+      ),
       view: (
         <AppNav>
           <Reviews />
@@ -174,6 +259,11 @@ const routes = mount({
   "/upload": route(req => {
     return {
       title: "Upload Track / Reeviewr",
+      head: (
+        <>
+          <link rel="canonical" href={`https://reeviewr.com/upload`} />
+        </>
+      ),
       view: (
         <AppNav>
           <UploadTrack />
@@ -184,6 +274,11 @@ const routes = mount({
   "/search": route(req => {
     return {
       title: "Search Results / Reeviewr",
+      head: (
+        <>
+          <link rel="canonical" href={`https://reeviewr.com/search`} />
+        </>
+      ),
       view: (
         <AppNav>
           <SearchResults />

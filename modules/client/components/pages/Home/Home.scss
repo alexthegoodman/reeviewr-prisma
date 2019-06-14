@@ -16,6 +16,12 @@
     font-size: 2rem;
     text-align: left;
   }
+
+  @include tabletDown {
+    a {
+      font-size: 1.6rem;
+    }
+  }
 }
 
 .betaNotice,
