@@ -18281,6 +18281,11 @@ react-fullstory@^1.1.0:
   resolved "https://registry.yarnpkg.com/react-fullstory/-/react-fullstory-1.1.0.tgz#ea117c63a08896ebc0856798e87dee290271f492"
   integrity sha512-2WSlOTHBPAwfqNjyYlULvWrlWrz+8QxJ+5z8RIZP2oWQ+4TaoJLJF1MSeAL4LI2Rs2/E24vnkEmYUjoUDL6bGw==
 
+react-gtm-module@^2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/react-gtm-module/-/react-gtm-module-2.0.7.tgz#1d1d085eddac36d522b56d45308ff4472ace09d6"
+  integrity sha512-QYnzQdRpN9qZIc/HaWnpmXUZ31ZsJ4BICp8Gb9VOAh4v5wtytXIrSvQdB7/dS9RgI9cuYN6KCl7NuqiNCPS+DA==
+
 react-helmet-async@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/react-helmet-async/-/react-helmet-async-0.2.0.tgz#d20d8725c1dcdcc95d54e281a1040af47c3abffa"

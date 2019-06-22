@@ -234,6 +234,7 @@
     "react-dom": "16.8",
     "react-error-boundary": "^1.2.5",
     "react-fullstory": "^1.1.0",
+    "react-gtm-module": "^2.0.7",
     "react-helmet": "^5.2.1",
     "react-hot-loader": "^4.8.3",
     "react-joyride": "^2.0.5",
