@@ -8,6 +8,7 @@ import RootProvider from "../modules/client/RootProvider";
 const bootstrapClient = () => {
   console.info("bootstrap client");
 
+  // TODO: add to ENV
   const tagManagerArgs = {
     gtmId: "GTM-KQD7SP",
   };
