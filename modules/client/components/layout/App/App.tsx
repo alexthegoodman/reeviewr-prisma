@@ -15,19 +15,26 @@ const App: React.FC<AppProps> = ({ children }) => {
 
   if (userData === null) {
     authClient.getUserData(dispatch);
+
+    // ATTN: This is not the place for analytics
+    // It merely shows when loading
     return (
       <>
-        <FullStory org="KKJA5" />
-        <MessengerCustomerChat
-          pageId="431860910314038"
-          appId="1534142523521486"
-        />
         <LoadingIndicator loadingText="Loading user data..." />
       </>
     );
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      <FullStory org="KKJA5" />
+      <MessengerCustomerChat
+        pageId="431860910314038"
+        appId="1534142523521486"
+      />
+      {children}
+    </>
+  );
 };
 
 export default hot(module)(App);
