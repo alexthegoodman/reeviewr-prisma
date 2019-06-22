@@ -39,6 +39,7 @@ export default class EmailService {
               templateName,
               JSON.stringify(err)
             );
+            // TODO: add mixpanel
           } else {
             console.info(
               "SUCCESS. sendEmail ",
@@ -53,6 +54,7 @@ export default class EmailService {
       );
     } catch (error) {
       console.error("MANDRILL ERROR", error);
+      // TODO: add mixpanel
     }
   }
 }
