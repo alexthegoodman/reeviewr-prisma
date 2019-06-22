@@ -51,6 +51,8 @@ export default class EmailService {
           }
         }
       );
-    } catch (error) {}
+    } catch (error) {
+      console.error("MANDRILL ERROR", error);
+    }
   }
 }
