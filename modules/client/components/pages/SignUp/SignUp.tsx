@@ -265,6 +265,7 @@ const SignUp: React.FC<SignUpProps> = () => {
                 <Button
                   type="submit"
                   disabled={formikBag.isSubmitting}
+                  loading={formikBag.isSubmitting}
                   // onClick={() => formikBag.submitForm()}
                 >
                   Finish

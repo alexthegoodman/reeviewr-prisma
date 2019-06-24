@@ -313,6 +313,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                     <Button
                       type="submit"
                       disabled={formikBag.isSubmitting}
+                      loading={formikBag.isSubmitting}
                       className="actionButton"
                       // onClick={() => formikBag.submitForm()}
                     >

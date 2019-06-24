@@ -113,7 +113,11 @@ const Login: React.FC<LoginProps> = () => {
                 fieldPlaceholder="Enter your password"
                 fieldType="password"
               />
-              <Button type="submit" disabled={formikBag.isSubmitting}>
+              <Button
+                type="submit"
+                disabled={formikBag.isSubmitting}
+                loading={formikBag.isSubmitting}
+              >
                 Login
               </Button>
               <Link href="/forgot-password">Forgot Password?</Link>

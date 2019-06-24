@@ -354,6 +354,7 @@ const UploadTrack: React.FC<UploadTrackProps> = () => {
                 <Button
                   type="submit"
                   disabled={formikBag.isSubmitting}
+                  loading={formikBag.isSubmitting}
                   // onClick={() => formikBag.submitForm()}
                 >
                   Finish
