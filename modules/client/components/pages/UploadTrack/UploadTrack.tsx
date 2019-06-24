@@ -55,7 +55,9 @@ const UploadTrack: React.FC<UploadTrackProps> = () => {
 
   const [startUpload, setStartUpload] = React.useState(false);
 
-  const points = legacy.extractMetaValue(userData.user.userMeta, "points");
+  const points = parseInt(
+    legacy.extractMetaValue(userData.user.userMeta, "points")
+  );
 
   // TODO: Buy 3 points for 3 dollars
   // TODO: Import from SoundCloud
@@ -86,11 +88,20 @@ const UploadTrack: React.FC<UploadTrackProps> = () => {
           </Text>
           <Text tagName="h2" className="headline">
             You have {points} points to spend. You can upload{" "}
-            {Math.floor(points / 3)} songs.
+            {points >= 3 ? Math.floor(points / 3) : 0} songs.
           </Text>
-          <Button className="uploadButton" onClick={() => setStartUpload(true)}>
-            Upload Now
-          </Button>
+          {points >= 3 ? (
+            <Button
+              className="uploadButton"
+              onClick={() => setStartUpload(true)}
+            >
+              Upload Now
+            </Button>
+          ) : (
+            <Text tagName="h2" className="headline">
+              You must review 3 songs to upload!
+            </Text>
+          )}
         </>
       );
     }

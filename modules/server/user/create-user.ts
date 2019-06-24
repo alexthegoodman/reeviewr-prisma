@@ -75,6 +75,7 @@ export const createUser = async (req, res, mixpanel) => {
                     { metaName: "userGenderDemo", metaValue: `${gender}` },
                     { metaName: "userAgeDemo", metaValue: `${age}` },
                     { metaName: "userExplicitDemo", metaValue: `${explicit}` },
+                    { metaName: "points", metaValue: `0` },
                     // TODO: add default favs and followers
                   ],
                 },

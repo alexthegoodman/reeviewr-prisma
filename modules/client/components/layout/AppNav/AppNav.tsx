@@ -122,7 +122,8 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
 
     const logOut = () => {
       removeCookie("reeviewrPrivateHash");
-      window.location.reload();
+      // window.location.reload();
+      window.location.href = window.location.origin;
     };
 
     const goToProfile = () => {
@@ -133,13 +134,23 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
       navigation.navigate(profileUrl);
     };
 
-    const points = legacy.extractMetaValue(userData.user.userMeta, "points");
-
-    pointCounter = (
-      <Text className="pointCounter" tagName="em">
-        You have {points} Points
-      </Text>
+    const points = parseInt(
+      legacy.extractMetaValue(userData.user.userMeta, "points")
     );
+
+    if (points > 0) {
+      pointCounter = (
+        <Text className="pointCounter" tagName="em">
+          You have {points} Points
+        </Text>
+      );
+    } else {
+      pointCounter = (
+        <Text className="pointCounter" tagName="em">
+          Review Music For Points
+        </Text>
+      );
+    }
 
     rightNav = <></>;
 

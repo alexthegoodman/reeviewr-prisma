@@ -156,6 +156,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
     });
 
     const addReviewMutation = useMutation(ADD_REVIEW);
+    const totalPointsMutation = useMutation(UPDATE_USER_META);
 
     return (
       <>
@@ -236,6 +237,39 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                     },
                     refetchQueries: ["userTracks", "userTrack"],
                   });
+
+                  let savedPoints = parseInt(
+                    legacy.extractMetaValue(userData.user.userMeta, "points")
+                  );
+                  let pointsId = legacy.extractMetaProp(
+                    userData.user.userMeta,
+                    "points",
+                    "id"
+                  );
+                  let totalPoints = savedPoints + 1;
+
+                  const {
+                    data: data2,
+                    errors: errors2,
+                  } = await totalPointsMutation({
+                    variables: {
+                      metaId: pointsId,
+                      metaValue: `${totalPoints}`,
+                    },
+                  });
+
+                  console.info(
+                    "total points",
+                    pointsId,
+                    totalPoints,
+                    data2,
+                    errors2
+                  );
+
+                  authClient.getUserData(dispatch);
+
+                  actions.resetForm();
+                  setModelOpen(false);
 
                   console.info("data", data, errors);
                 }
