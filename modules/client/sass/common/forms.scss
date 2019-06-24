@@ -70,13 +70,38 @@ textarea.bp3-input.bp3-small {
   h4,
   h5,
   h6 {
-    margin: 0;
-    color: $dark-gray1;
+    &.headline {
+      margin: 0;
+      color: $dark-gray1;
+    }
   }
 
   button,
   button.bp3-button:not([class*="bp3-intent-"]) {
     @extend .formButton;
+  }
+
+  &.noMargin {
+    margin: 0;
+    width: 100%;
+  }
+
+  &.whiteForm {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+      color: white;
+    }
+    label {
+      color: white;
+    }
+    .bp3-tab {
+      color: white;
+    }
   }
 
   @include tabletDown {

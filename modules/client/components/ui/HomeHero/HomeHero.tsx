@@ -1,7 +1,8 @@
 import * as React from "react";
 
 import { HomeHeroProps } from "./HomeHero.d";
-import { Text } from "@blueprintjs/core";
+import { Text, Card } from "@blueprintjs/core";
+import SignUpForm from "../../data/SignUpForm/SignUpForm";
 
 const HomeHero: React.FC<HomeHeroProps> = ({
   ref = null,
@@ -32,12 +33,38 @@ const HomeHero: React.FC<HomeHeroProps> = ({
             <li>All participants gain feedback in return</li>
             <li>All music recieves the attention it deserves</li>
           </ul>
+
+          <div
+            className="fb-page"
+            data-href="https://www.facebook.com/reeviewr/"
+            data-tabs=""
+            data-width=""
+            data-height=""
+            data-small-header="true"
+            data-adapt-container-width="true"
+            data-hide-cover="false"
+            data-show-facepile="true"
+          >
+            <blockquote
+              cite="https://www.facebook.com/reeviewr/"
+              className="fb-xfbml-parse-ignore"
+            >
+              <a href="https://www.facebook.com/reeviewr/">Reeviewr</a>
+            </blockquote>
+          </div>
         </div>
         <div className="feature">
-          <img
+          <Card className="floatingForm noMargin">
+            <Text tagName="h1" className="headline darkHeadline">
+              Sign Up
+            </Text>
+
+            <SignUpForm />
+          </Card>
+          {/* <img
             src="public/img/homeHero1.png"
             alt="Reeviewr artists playing musical instruments"
-          />
+          /> */}
         </div>
       </div>
     </section>
