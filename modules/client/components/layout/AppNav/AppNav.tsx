@@ -109,6 +109,22 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
   );
 
   let pointCounter = <></>;
+  let loggedOutItems = (
+    <>
+      <MenuItem
+        active={route.url.pathname === "/login" ? true : false}
+        onClick={() => navigate("/login", true)}
+      >
+        Login
+      </MenuItem>
+      <MenuItem
+        active={route.url.pathname === "/sign-up" ? true : false}
+        onClick={() => navigate("/sign-up", true)}
+      >
+        Sign Up
+      </MenuItem>
+    </>
+  );
   if (userData !== null && userData) {
     const userArtistName = legacy.extractMetaValue(
       userData.user.userMeta,
@@ -172,6 +188,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
         <MenuItem onClick={logOut}>Log Out</MenuItem>
       </>
     );
+    loggedOutItems = <></>;
   }
 
   const navigate = (href, mobile = true, loginCheck = false) => {
@@ -255,7 +272,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
             </a>
           </footer>
         </div>
-        <div className="mobileShow">
+        <div className="mobileShow overflowScroll">
           <Menu className="sidebarMenu">
             <MenuItem
               active={route.url.pathname === "/" ? true : false}
@@ -290,18 +307,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
             {topLoggedInItems}
             {alwaysOnItems}
             {bottomLoggedInItems}
-            <MenuItem
-              active={route.url.pathname === "/login" ? true : false}
-              onClick={() => navigate("/login", true)}
-            >
-              Login
-            </MenuItem>
-            <MenuItem
-              active={route.url.pathname === "/sign-up" ? true : false}
-              onClick={() => navigate("/sign-up", true)}
-            >
-              Sign Up
-            </MenuItem>
+            {loggedOutItems}
           </Menu>
         </div>
       </Sidebar>

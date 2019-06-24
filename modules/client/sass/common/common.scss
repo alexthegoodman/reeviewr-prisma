@@ -151,6 +151,11 @@
   width: 100%;
 }
 
+.overflowScroll {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
 .horizontalScroll {
   height: 345px;
   width: 100%;
