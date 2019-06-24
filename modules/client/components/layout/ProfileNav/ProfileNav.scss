@@ -3,6 +3,7 @@
   background: #3e4b58;
   // height: calc(100vh - ;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
 
   @include tabletDown {
