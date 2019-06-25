@@ -225,6 +225,7 @@ const UploadTrack: React.FC<UploadTrackProps> = () => {
             values: UploadFormValues,
             actions: FormikActions<UploadFormValues>
           ) => {
+            actions.setSubmitting(true);
             console.log("values", { values, actions });
             if (utility.isDefinedWithContent(values.coverArt)) {
               if (utility.isDefinedWithContent(values.coverArt)) {
