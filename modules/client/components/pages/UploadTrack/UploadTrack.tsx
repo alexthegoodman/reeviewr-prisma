@@ -288,7 +288,7 @@ const UploadTrack: React.FC<UploadTrackProps> = () => {
             } else {
               setCoverArtError(true);
             }
-            actions.setSubmitting(false);
+            // actions.setSubmitting(false);
           }}
           render={(formikBag: FormikProps<UploadFormValues>) => {
             // console.info("formikbag", formikBag);
