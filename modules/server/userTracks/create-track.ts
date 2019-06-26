@@ -150,6 +150,7 @@ export const createTrack = async (req, res, mixpanel) => {
                         }
 
                         let newTrack = await prisma.createUserTrack({
+                          oldId: uuid.v4(),
                           itemName: trackTitle,
                           user: { connect: { id: authUser.id } },
                           itemContent: "none",

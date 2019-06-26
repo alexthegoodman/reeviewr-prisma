@@ -81,6 +81,7 @@ export const createUser = async (req, res, mixpanel) => {
                 },
                 userConfirmed: 0,
                 userType: 0,
+                oldId: uuid.v4(),
                 forgotHash: uuid.v4(),
                 confirmHash: uuid.v4(),
                 publicHash: uuid.v4(),

@@ -76,7 +76,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
 
   if (successfulSubmission) {
     return (
-      <Card className="floatingForm">
+      <Card className="floatingForm darkForm">
         <Text tagName="h1" className="headline">
           Thank you
         </Text>
@@ -222,7 +222,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
                   fieldType="text"
                 />
                 <TextareaField
-                  label="About Artist"
+                  label="About Artist / Bio"
                   fieldName="aboutArtist"
                   fieldPlaceholder="Tell us about yourself"
                 />
@@ -254,7 +254,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
                   options={["Select", "Male", "Female"]}
                 />
                 <TextField
-                  label="Age"
+                  label="Age / How old are you?"
                   fieldName="age"
                   fieldPlaceholder="Enter your age"
                   fieldType="number"

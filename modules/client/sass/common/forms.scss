@@ -92,15 +92,35 @@ textarea.bp3-input.bp3-small {
     h3,
     h4,
     h5,
-    h6 {
+    h6,
+    p {
       margin: 0;
-      color: white;
+      color: white !important;
     }
     label {
-      color: white;
+      color: white !important;
     }
     .bp3-tab {
-      color: white;
+      color: white !important;
+    }
+  }
+
+  &.darkForm {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      margin: 0;
+      color: $dark-gray1 !important;
+    }
+    label {
+      color: $dark-gray1 !important;
+    }
+    .bp3-tab {
+      color: $dark-gray1 !important;
     }
   }
 
