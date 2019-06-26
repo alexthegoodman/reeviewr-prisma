@@ -162,6 +162,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
               } else {
                 console.info("success", values);
                 authClient.signup(values, (err, res) => {
+                  console.info("returned", err, res);
                   if (err) {
                     console.error(err);
                     if (res.body.errorMessage === ERROR_CODE.C008) {

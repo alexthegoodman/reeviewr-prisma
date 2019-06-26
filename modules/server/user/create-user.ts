@@ -7,6 +7,9 @@ const uuid = require("uuid");
 const cloudinary = require("cloudinary").v2;
 import * as moment from "moment";
 import Core from "../../services/Core";
+const Mailchimp = require("mailchimp-api-v3");
+
+const mailchimp = new Mailchimp(process.env.MAILCHIMP_API_KEY);
 
 cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -81,7 +84,7 @@ export const createUser = async (req, res, mixpanel) => {
                 },
                 userConfirmed: 0,
                 userType: 0,
-                oldId: uuid.v4(),
+                oldId: uuid.v4().substr(0, 6),
                 forgotHash: uuid.v4(),
                 confirmHash: uuid.v4(),
                 publicHash: uuid.v4(),
@@ -114,6 +117,11 @@ export const createUser = async (req, res, mixpanel) => {
                   },
                 ]
               );
+
+              await mailchimp.post("/lists/a4be7a94c5/members", {
+                email_address: email,
+                status: "subscribed",
+              });
 
               mixpanel.track("User created", {
                 env: process.env.NODE_ENV,

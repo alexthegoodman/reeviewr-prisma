@@ -195,6 +195,7 @@
     "lodash-es": "4.17.11",
     "lodash.groupby": "4.6.0",
     "lodash.keyby": "4.6.0",
+    "mailchimp-api-v3": "^1.13.0",
     "md5": "^2.2.1",
     "mini-css-extract-plugin": "^0.6.0",
     "mixpanel": "^0.10.2",
