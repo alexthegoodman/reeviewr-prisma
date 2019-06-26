@@ -1,14 +1,17 @@
 import Utility from "./Utility";
 import Legacy from "./Legacy";
 import * as moment from "moment";
+import Strings from "../client/services/Strings";
 const uuid = require("uuid");
 const slugify = require("slugify");
 
 export default class Core {
+  public strings;
   public utility;
   public legacy;
 
   constructor() {
+    this.strings = new Strings();
     this.utility = new Utility();
     this.legacy = new Legacy();
   }
@@ -108,7 +111,12 @@ export default class Core {
 
   getPublicId(name) {
     const pieces = name.split(".");
-    const publicId = slugify(pieces[0]) + "-" + uuid.v4() + "." + pieces[1];
+    const publicId =
+      encodeURIComponent(slugify(pieces[0])) +
+      "-" +
+      uuid.v4() +
+      "." +
+      pieces[1];
     return publicId;
   }
 
