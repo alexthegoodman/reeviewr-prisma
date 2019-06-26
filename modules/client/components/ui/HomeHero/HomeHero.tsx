@@ -3,13 +3,37 @@ import * as React from "react";
 import { HomeHeroProps } from "./HomeHero.d";
 import { Text, Card } from "@blueprintjs/core";
 import SignUpForm from "../../data/SignUpForm/SignUpForm";
+import { useAppContext } from "../../../context";
+import { useCookies } from "react-cookie";
 
 const HomeHero: React.FC<HomeHeroProps> = ({
   ref = null,
   className = "",
   onClick = e => console.info("Click"),
 }) => {
-  // const clickHandler = e => onClick(e);
+  const [cookies, setCookie, removeCookie] = useCookies([
+    "reeviewrPrivateHash",
+  ]);
+  const [{ tour, userData }, dispatch] = useAppContext();
+
+  let feature = (
+    <div className="feature">
+      <Card className="floatingForm noMargin">
+        <Text tagName="h1" className="headline darkHeadline">
+          Sign Up
+        </Text>
+
+        <SignUpForm />
+      </Card>
+      {/* <img
+    src="public/img/homeHero1.png"
+    alt="Reeviewr artists playing musical instruments"
+  /> */}
+    </div>
+  );
+  if (userData !== null && userData) {
+    feature = <></>;
+  }
   return (
     <section className="homeHero">
       <div className="contain">
@@ -53,19 +77,7 @@ const HomeHero: React.FC<HomeHeroProps> = ({
             </blockquote>
           </div>
         </div>
-        <div className="feature">
-          <Card className="floatingForm noMargin">
-            <Text tagName="h1" className="headline darkHeadline">
-              Sign Up
-            </Text>
-
-            <SignUpForm />
-          </Card>
-          {/* <img
-            src="public/img/homeHero1.png"
-            alt="Reeviewr artists playing musical instruments"
-          /> */}
-        </div>
+        {feature}
       </div>
     </section>
   );
