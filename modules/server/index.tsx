@@ -45,6 +45,7 @@ import {
   RESEND_EMAIL_CONFIRMATION,
   CREATE_TRACK,
   RESET_PASSWORD,
+  COMPLETE_PROFILE,
 } from "./routes";
 import { authenticate } from "./user/authenticate";
 import { confirmEmail } from "./user/confirm-email";
@@ -62,6 +63,7 @@ import { prisma } from "../../__generated__/prisma-client";
 import bcrypt from "bcrypt";
 import { resetPassword } from "./user/reset-password";
 import Utility from "../services/Utility";
+import { completeProfile } from "./user/complete-profile";
 
 const serveStatic = require("serve-static");
 const path = require("path");
@@ -216,6 +218,7 @@ export async function startServer() {
   app.use(passport.initialize());
   app.use(passport.session());
 
+  // TODO: fetch from ENV
   const mixpanel = Mixpanel.init("3e76355b0e756ed9cf5a9f5037497225", {
     protocol: "https",
   });
@@ -234,6 +237,9 @@ export async function startServer() {
   );
   app.post(`/${apiVersion}${CREATE_USER}`, (req, res) =>
     createUser(req, res, mixpanel)
+  );
+  app.post(`/${apiVersion}${COMPLETE_PROFILE}`, (req, res) =>
+    completeProfile(req, res, mixpanel)
   );
   app.post(`/${apiVersion}${FORGOT_PASSWORD}`, (req, res) =>
     forgotPassword(req, res, mixpanel)

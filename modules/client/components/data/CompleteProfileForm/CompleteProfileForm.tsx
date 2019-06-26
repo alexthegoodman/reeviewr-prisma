@@ -125,7 +125,7 @@ const CompleteProfileForm: React.FC<CompleteProfileFormProps> = ({
               setFileSizeError(true);
             } else {
               console.info("success", values);
-              authClient.signup(values, (err, res) => {
+              authClient.completeProfile(values, (err, res) => {
                 console.info("returned", err, res);
                 if (err) {
                   console.error(err);

@@ -34,8 +34,22 @@ export default class AuthClient {
     }
   }
 
+  // TODO: use route constants
   signup(values, callback) {
     this.restClient.makeRequest("/user/create-user", values, callback);
+  }
+
+  completeProfile(values, callback) {
+    const cookies = new Cookies();
+    const reeviewrPrivateHash = cookies.get("reeviewrPrivateHash");
+
+    if (this.utility.isDefinedWithContent(reeviewrPrivateHash)) {
+      this.restClient.makeRequest(
+        "/user/complete-profile",
+        { ...values, privateHash: reeviewrPrivateHash },
+        callback
+      );
+    }
   }
 
   resetPassword(values, callback) {

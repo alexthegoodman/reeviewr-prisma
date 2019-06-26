@@ -24,7 +24,7 @@ export const authenticate = async (req, res, passport, mixpanel) => {
       }
 
       if (utility.isDefinedWithContent(user)) {
-        if (user.userType === 0) {
+        if (user.userType === 0 || user.userType === 1) {
           if (user.userConfirmed === 1) {
             const host = req.get("host");
             if (process.env.NODE_ENV === "development") {
