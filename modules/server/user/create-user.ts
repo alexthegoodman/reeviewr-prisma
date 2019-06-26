@@ -118,7 +118,7 @@ export const createUser = async (req, res, mixpanel) => {
                 ]
               );
 
-              await mailchimp.post("/lists/a4be7a94c5/members", {
+              await mailchimp.put("/lists/a4be7a94c5/members", {
                 email_address: email,
                 status: "subscribed",
               });
