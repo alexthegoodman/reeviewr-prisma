@@ -161,6 +161,10 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
                   )}/10`;
                 }
 
+                if (reviewMetaList[`questionType${node}`] === "mult_choice") {
+                  answer = strings.decode(trackMetaList[`questionOne${node}`]);
+                }
+
                 return (
                   <div className={`question question${node}`} key={node}>
                     <Text tagName="h5">
@@ -169,17 +173,64 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
                       ) : (
                         <></>
                       )}
-                      <Text>
-                        {strings.decode(
-                          trackMetaList[`questionContent${node}`]
-                        )}
-                      </Text>
-                      <Text>
-                        {strings.decode(trackMetaList[`questionOne${node}`])}
-                      </Text>
-                      {/* {strings.decode(trackMetaList[`questionTwo${node}`])} */}
                     </Text>
-                    <Text tagName="p">{answer}</Text>
+                    <Text tagName="h6">
+                      {reviewMetaList[`questionType${node}`] === "rating" ? (
+                        <>
+                          <Text>
+                            1:{" "}
+                            {strings.decode(
+                              trackMetaList[`questionContent${node}`]
+                            )}
+                          </Text>
+                          <Text>
+                            10:{" "}
+                            {strings.decode(
+                              trackMetaList[`questionOne${node}`]
+                            )}
+                          </Text>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                      {reviewMetaList[`questionType${node}`] ===
+                      "mult_choice" ? (
+                        <>
+                          <Text>
+                            Question:{" "}
+                            {strings.decode(
+                              trackMetaList[`questionContent${node}`]
+                            )}
+                          </Text>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                      {reviewMetaList[`questionType${node}`] ===
+                      "written_response" ? (
+                        <>
+                          <Text>
+                            Question:{" "}
+                            {strings.decode(
+                              trackMetaList[`questionContent${node}`]
+                            )}
+                          </Text>
+                          <Text>
+                            {strings.decode(
+                              trackMetaList[`questionOne${node}`]
+                            )}
+                          </Text>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </Text>
+
+                    {answer !== "" ? (
+                      <Text tagName="p">Answer: {answer}</Text>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 );
               })}
