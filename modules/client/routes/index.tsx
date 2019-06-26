@@ -19,6 +19,7 @@ import ProfileFollowers from "../components/pages/ProfileFollowers/ProfileFollow
 import UploadTrack from "../components/pages/UploadTrack/UploadTrack";
 import SearchResults from "../components/pages/SearchResults/SearchResults";
 import ConfirmEmail from "../components/pages/ConfirmEmail/ConfirmEmail";
+import CompleteProfile from "../components/pages/CompleteProfile/CompleteProfile";
 
 const routes = mount({
   "/login": route(req => {
@@ -47,6 +48,21 @@ const routes = mount({
       view: (
         <AuthNav>
           <SignUp />
+        </AuthNav>
+      ),
+    };
+  }),
+  "/complete-profile": route(req => {
+    return {
+      title: "Complete Profile / Reeviewr",
+      head: (
+        <>
+          <link rel="canonical" href="https://reeviewr.com/complete-profile" />
+        </>
+      ),
+      view: (
+        <AuthNav>
+          <CompleteProfile />
         </AuthNav>
       ),
     };

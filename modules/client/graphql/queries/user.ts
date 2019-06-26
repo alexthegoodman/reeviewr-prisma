@@ -10,6 +10,7 @@ const UserFragments = {
       id
       oldId
       userEmail
+      userType
       files {
         id
         itemName

@@ -36,7 +36,7 @@ const CompleteProfileForm: React.FC<CompleteProfileFormProps> = ({
   const authClient = new AuthClient();
   const utility = new Utility();
 
-  const [navbarTabId, setNavbarTabId] = React.useState("credentials" as TabId);
+  const [navbarTabId, setNavbarTabId] = React.useState("basic" as TabId);
   const [fileError, setFileError] = React.useState(false);
   const [fileTypeError, setFileTypeError] = React.useState(false);
   const [fileSizeError, setFileSizeError] = React.useState(false);
