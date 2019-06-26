@@ -118,10 +118,14 @@ export const createUser = async (req, res, mixpanel) => {
                 ]
               );
 
-              await mailchimp.put("/lists/a4be7a94c5/members", {
-                email_address: email,
-                status: "subscribed",
-              });
+              // TODO: must first detect if in mailchimp list
+              // then add if not
+              // https://developer.mailchimp.com/documentation/mailchimp/reference/lists/members/#%20
+              // because put requires subscriber_hash
+              // await mailchimp.put("/lists/a4be7a94c5/members", {
+              //   email_address: email,
+              //   status: "subscribed",
+              // });
 
               mixpanel.track("User created", {
                 env: process.env.NODE_ENV,
