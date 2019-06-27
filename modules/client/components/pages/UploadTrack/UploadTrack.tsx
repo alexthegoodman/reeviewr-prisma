@@ -371,6 +371,16 @@ const UploadTrack: React.FC<UploadTrackProps> = () => {
                 >
                   Finish
                 </Button>
+                {formikBag.isSubmitting ? (
+                  <Callout style={{ marginTop: 25 }}>
+                    <Text tagName="span" className="textCenter darkHeadline">
+                      Your track is being processed... This may take a minute or
+                      so...
+                    </Text>
+                  </Callout>
+                ) : (
+                  <></>
+                )}
               </>
             );
 
