@@ -122,7 +122,7 @@ export const createTrack = async (req, res, mixpanel) => {
                     // exec("echo hello")
 
                     await exec(
-                      `audiowaveform -i tmp/${public_id_2} -o tmp/${public_id_2}.dat --pixels-per-second 5000 --bits 8`,
+                      `audiowaveform -i tmp/${public_id_2} -o tmp/${public_id_2}.dat --pixels-per-second 1000 --bits 8`,
                       { maxBuffer: 1024 * 5000 }
                     );
                     await exec(
