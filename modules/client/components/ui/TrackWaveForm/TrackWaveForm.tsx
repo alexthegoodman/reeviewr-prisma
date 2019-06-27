@@ -93,8 +93,8 @@ const TrackWaveForm: React.FC<TrackWaveFormProps> = ({
             // }
             // volume
             // onAbort
-            // onCanPlay={() => metaDataLoaded()}
-            onCanPlayThrough={() => metaDataLoaded()}
+            onCanPlay={() => metaDataLoaded()}
+            // onCanPlayThrough={() => metaDataLoaded()}
             // onEnded
             // onError
             // onListen
