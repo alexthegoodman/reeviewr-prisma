@@ -130,7 +130,7 @@ export const createTrack = async (req, res, mixpanel) => {
                     //   { maxBuffer: 1024 * 5000 }
                     // );
                     await exec(
-                      `audiowaveform -i tmp/${public_id_2} -o tmp/${public_id_2}.json --pixels-per-second 10000 --bits 16`,
+                      `audiowaveform -i tmp/${public_id_2} -o tmp/${public_id_2}.json --pixels-per-second 5000 --bits 16`,
                       { maxBuffer: 1024 * 5000 }
                     );
                     // not running
@@ -151,7 +151,7 @@ export const createTrack = async (req, res, mixpanel) => {
                       async function(error3, result3) {
                         console.info("result3", result3);
                         if (error3) {
-                          console.error("error3", error3);
+                          console.error("error upload json #3", error3);
                         }
 
                         let newTrack = await prisma.createUserTrack({
