@@ -112,7 +112,11 @@ export default class Core {
   getPublicId(name) {
     const pieces = name.split(".");
     const publicId =
-      encodeURIComponent(slugify(pieces[0])) +
+      encodeURIComponent(slugify(pieces[0]))
+        .replace(/\(/g, "%28")
+        .replace(/\)/g, "%29")
+        .replace(/\[/g, "%28")
+        .replace(/\]/g, "%29") +
       "-" +
       uuid.v4() +
       "." +
