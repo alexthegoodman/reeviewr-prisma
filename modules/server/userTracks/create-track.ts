@@ -121,16 +121,21 @@ export const createTrack = async (req, res, mixpanel) => {
                     // generate waveform
                     // exec("echo hello")
 
+                    // await exec(
+                    //   `audiowaveform -i tmp/${public_id_2} -o tmp/${public_id_2}.dat --pixels-per-second 100 --bits 16`,
+                    //   { maxBuffer: 1024 * 5000 }
+                    // );
+                    // await exec(
+                    //   `audiowaveform -i tmp/${public_id_2}.dat -o tmp/${public_id_2}.json`,
+                    //   { maxBuffer: 1024 * 5000 }
+                    // );
                     await exec(
-                      `audiowaveform -i tmp/${public_id_2} -o tmp/${public_id_2}.dat --pixels-per-second 60 --bits 8`,
+                      `audiowaveform -i tmp/${public_id_2} -o tmp/${public_id_2}.json --pixels-per-second 10000 --bits 16`,
                       { maxBuffer: 1024 * 5000 }
                     );
+                    // not running
                     await exec(
-                      `audiowaveform -i tmp/${public_id_2}.dat -o tmp/${public_id_2}.json`,
-                      { maxBuffer: 1024 * 5000 }
-                    );
-                    await exec(
-                      `python data-seed/scale-json.py tmp/${public_id_2}.json`,
+                      `python3 data-seed/scale-json.py tmp/${public_id_2}.json`,
                       {
                         maxBuffer: 1024 * 5000,
                       }

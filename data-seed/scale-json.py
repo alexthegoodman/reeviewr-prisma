@@ -24,3 +24,4 @@ file_content = json.dumps(json_content)
 
 with open(filename, "w") as f:
     f.write(file_content)
+    print("Peaks generated")
