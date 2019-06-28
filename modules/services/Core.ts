@@ -124,7 +124,7 @@ export default class Core {
       "-" +
       uuid.v4() +
       "." +
-      pieces[1];
+      pieces[pieces.length - 1];
     return publicId;
   }
 
