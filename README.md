@@ -26,6 +26,8 @@ Special thanks goes to Atomic Object for open sourcing a starter kit that was pr
 - Wait for all the bundles to finshing bundling
 - Open `localhost:3000` in your browser
 
+You wll be doing most work in /modules/client/, /modules/server/, and /cypress/.
+
 ## Technology Used
 
 - Prisma
