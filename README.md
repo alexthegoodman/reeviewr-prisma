@@ -43,5 +43,3 @@ Special thanks goes to Atomic Object for open sourcing a starter kit that was pr
 - https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
 - execute mysql commands in docker container: https://gist.github.com/geraldvillorente/4c60e7fdb5562f443f16ad2bbe4235ce
 - mysql commands: http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm
-- use admin@reeviewr-prisma.com simply for SSL verification
-- now available at https://reeviewr-prisma.com/default/default
