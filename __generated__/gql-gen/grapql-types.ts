@@ -7559,7 +7559,7 @@ export type AllReviewsQuery = { __typename?: "Query" } & {
 
 export type UserFragmentFragment = { __typename?: "User" } & Pick<
   User,
-  "id" | "oldId" | "userEmail"
+  "id" | "oldId" | "userEmail" | "userType"
 > & {
     files: Maybe<
       Array<
