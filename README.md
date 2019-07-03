@@ -28,6 +28,14 @@ Special thanks goes to Atomic Object for open sourcing a starter kit that was pr
 
 You wll be doing most work in /modules/client/, /modules/server/, and /cypress/.
 
+## Commands
+
+To ease creation of components, take advantage of these commands
+
+- `yarn gen:ui ComponentName`
+- `yarn gen:page PageName`
+- `yarn gen:data DataComponentName`
+
 ## Technology Used
 
 - Prisma
@@ -35,6 +43,7 @@ You wll be doing most work in /modules/client/, /modules/server/, and /cypress/.
 - Apollo
 - Context
 - Passport
+- Navi
 - Heroku to see Client
 - DigitalOcean to serve GraphQL API
 

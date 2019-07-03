@@ -18,12 +18,9 @@ import Sidebar from "../../ui/Sidebar/Sidebar";
 import MenuItem from "../../ui/MenuItem/MenuItem";
 import { Menu, Button, Popover, Position, Text, Icon } from "@blueprintjs/core";
 import ProfileItem from "../../ui/ProfileItem/ProfileItem";
-import BeyondSearch from "../../ui/BeyondSearch/BeyondSearch";
 import App from "../App/App";
 import { useCookies } from "react-cookie";
 import Utility from "../../../../services/Utility";
-import { USER_QUERY } from "../../../graphql/queries/user";
-import { useQuery } from "react-apollo-hooks";
 import Legacy from "../../../../services/Legacy";
 import BeyondSearchData from "../../data/BeyondSearchData/BeyondSearchData";
 import * as $ from "jquery";
@@ -247,6 +244,20 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
               onClick={() => navigation.navigate("/reviews")}
             >
               Reviews
+            </MenuItem>
+            <MenuItem
+              className="joyrideMessagesPage"
+              active={route.url.pathname === "/messages" ? true : false}
+              onClick={() => navigation.navigate("/messages")}
+            >
+              Messages
+            </MenuItem>
+            <MenuItem
+              className="joyrideNotificationsPage"
+              active={route.url.pathname === "/notifications" ? true : false}
+              onClick={() => navigation.navigate("/notifications")}
+            >
+              Notifications
             </MenuItem>
           </Menu>
           <footer className="footer">

@@ -20,6 +20,8 @@ import UploadTrack from "../components/pages/UploadTrack/UploadTrack";
 import SearchResults from "../components/pages/SearchResults/SearchResults";
 import ConfirmEmail from "../components/pages/ConfirmEmail/ConfirmEmail";
 import CompleteProfile from "../components/pages/CompleteProfile/CompleteProfile";
+import Messages from "../components/pages/Messages/Messages";
+import Notifications from "../components/pages/Notifications/Notifications";
 
 const routes = mount({
   "/login": route(req => {
@@ -298,6 +300,36 @@ const routes = mount({
       view: (
         <AppNav>
           <SearchResults />
+        </AppNav>
+      ),
+    };
+  }),
+  "/messages": route(req => {
+    return {
+      title: "Messages / Reeviewr",
+      head: (
+        <>
+          <link rel="canonical" href={`https://reeviewr.com/messages`} />
+        </>
+      ),
+      view: (
+        <AppNav>
+          <Messages />
+        </AppNav>
+      ),
+    };
+  }),
+  "/notifications": route(req => {
+    return {
+      title: "Notifications / Reeviewr",
+      head: (
+        <>
+          <link rel="canonical" href={`https://reeviewr.com/notifications`} />
+        </>
+      ),
+      view: (
+        <AppNav>
+          <Notifications />
         </AppNav>
       ),
     };
