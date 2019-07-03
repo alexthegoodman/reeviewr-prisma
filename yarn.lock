@@ -1880,6 +1880,11 @@
   resolved "https://registry.yarnpkg.com/@pika/types/-/types-0.3.16.tgz#9a8c612d878fc89b886a01865b105885d6fab235"
   integrity sha512-hM3WHhN4RxXRVVBijyYO4/B1DwT/9dFhemeDaplPsPVZEUumm3/PDo24VIFLJMrk68yio1lBby3X0IbGtPZClQ==
 
+"@pusher/chatkit-client@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@pusher/chatkit-client/-/chatkit-client-1.9.0.tgz#1d75b86251fd0bf51e56d787efa749c36c837b0e"
+  integrity sha512-VJbIYGkOJXdIBGJy7c68hoeQ0SAc94dZKEEjqviKVYvvG0eFCuiyRoIebnstgiuCPIVR9rW4Yk2Yk0F92p80gA==
+
 "@reach/router@^1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.2.1.tgz#34ae3541a5ac44fa7796e5506a5d7274a162be4e"
