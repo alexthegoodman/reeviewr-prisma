@@ -1,7 +1,5 @@
-export interface MessengerProps {
+export interface MessengerReplyProps {
   ref?: React.Ref<any>;
   className?: string;
   onClick?: (e: MouseEvent) => void;
-  chatkitUser: any;
-  selectedThread: any;
 }

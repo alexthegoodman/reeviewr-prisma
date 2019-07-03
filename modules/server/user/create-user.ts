@@ -5,8 +5,8 @@ import { ERROR_CODE } from "../../services/ERROR_CODE";
 import Utility from "../../services/Utility";
 const uuid = require("uuid");
 const cloudinary = require("cloudinary").v2;
-import * as moment from "moment";
 import Core from "../../services/Core";
+
 const Mailchimp = require("mailchimp-api-v3");
 
 const mailchimp = new Mailchimp(process.env.MAILCHIMP_API_KEY);

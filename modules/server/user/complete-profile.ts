@@ -8,6 +8,12 @@ const cloudinary = require("cloudinary").v2;
 import * as moment from "moment";
 import Core from "../../services/Core";
 const Mailchimp = require("mailchimp-api-v3");
+const Chatkit = require("@pusher/chatkit-server");
+
+const chatkit = new Chatkit.default({
+  instanceLocator: process.env.CHATKIT_INSTANCE,
+  key: process.env.CHATKIT_KEY,
+});
 
 const mailchimp = new Mailchimp(process.env.MAILCHIMP_API_KEY);
 
@@ -90,6 +96,16 @@ export const completeProfile = async (req, res, mixpanel) => {
               userEmail: authUser.userEmail,
             },
           });
+
+          try {
+            chatkit.createUser({
+              id: authUser.id,
+              name: artistName,
+              avatarURL: result.secure_url,
+            });
+          } catch (error) {
+            console.error("CHATKIT ERROR:", error);
+          }
 
           res.status(200);
           res.send({ success: true, data: {} });

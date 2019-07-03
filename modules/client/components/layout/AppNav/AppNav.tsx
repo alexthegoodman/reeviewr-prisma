@@ -248,14 +248,14 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
             <MenuItem
               className="joyrideMessagesPage"
               active={route.url.pathname === "/messages" ? true : false}
-              onClick={() => navigation.navigate("/messages")}
+              onClick={() => navigate("/messages", false, true)}
             >
               Messages
             </MenuItem>
             <MenuItem
               className="joyrideNotificationsPage"
               active={route.url.pathname === "/notifications" ? true : false}
-              onClick={() => navigation.navigate("/notifications")}
+              onClick={() => navigate("/notifications", false, true)}
             >
               Notifications
             </MenuItem>
