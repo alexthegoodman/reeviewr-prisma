@@ -16,6 +16,7 @@ const Messages: React.FC<MessagesProps> = () => {
   const [{ tour, userData }, dispatch] = useAppContext();
   const [chatkitUser, setChatkitUser] = React.useState(null);
   const [selectedThread, setSelectedThread] = React.useState(null);
+  const [emptyThread, setEmptyThead] = React.useState(false);
 
   const chatManager = new ChatManager({
     instanceLocator: "v1:us1:a9fd4cf4-b88b-401e-8c9a-019b95bccfa8",
@@ -46,33 +47,6 @@ const Messages: React.FC<MessagesProps> = () => {
 
         // set currentUser in context?
 
-        // create private room
-        // currentUser.createRoom({
-        //   name: 'general',
-        //   private: true,
-        //   addUserIds: ['craig', 'kate'],
-        //   customData: { foo: 42 },
-        // }).then(room => {
-        //   console.log(`Created room called ${room.name}`)
-        // })
-        // .catch(err => {
-        //   console.log(`Error creating room ${err}`)
-        // })
-
-        // fetch room messages
-        // currentUser.fetchMultipartMessages({
-        //   roomId: someRoomId,
-        //   initialId: 42,
-        //   direction: 'older',
-        //   limit: 10,
-        // })
-        //   .then(messages => {
-        //     // do something with the messages
-        //   })
-        //   .catch(err => {
-        //     console.log(`Error fetching messages: ${err}`)
-        //   })
-
         // subscribe to room
         // currentUser.subscribeToRoomMultipart({
         //   roomId: someRoomId,
@@ -82,18 +56,6 @@ const Messages: React.FC<MessagesProps> = () => {
         //     }
         //   },
         //   messageLimit: 10
-        // })
-
-        // send message
-        // currentUser.sendSimpleMessage({
-        //   roomId: myRoom.id,
-        //   text: "Hi there!",
-        // })
-        // .then(messageId => {
-        //   console.log(`Added message to ${myRoom.name}`)
-        // })
-        // .catch(err => {
-        //   console.log(`Error adding message to ${myRoom.name}: ${err}`)
         // })
 
         // typing indiciator
@@ -125,8 +87,13 @@ const Messages: React.FC<MessagesProps> = () => {
       <MessageThreads
         chatkitUser={chatkitUser}
         onSelectThread={setSelectedThread}
+        setEmptyThead={setEmptyThead}
       />
-      <Messenger chatkitUser={chatkitUser} selectedThread={selectedThread} />
+      <Messenger
+        chatkitUser={chatkitUser}
+        selectedThread={selectedThread}
+        emptyThread={emptyThread}
+      />
     </section>
   );
 };

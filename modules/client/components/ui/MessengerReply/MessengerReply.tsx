@@ -10,6 +10,8 @@ const MessengerReply: React.FC<MessengerReplyProps> = ({
   ref = null,
   className = "",
   onClick = e => console.info("Click"),
+  send = () => console.info("Send"),
+  sendDisabled = true,
 }) => {
   const utility = new Utility();
 
@@ -33,7 +35,9 @@ const MessengerReply: React.FC<MessengerReplyProps> = ({
             options: [], // try ["inline"]
           }}
         />
-        <Button className="actionButton">Send Message</Button>
+        <Button className="actionButton" onClick={send} disabled={sendDisabled}>
+          Send Message
+        </Button>
       </>
     );
   } else {

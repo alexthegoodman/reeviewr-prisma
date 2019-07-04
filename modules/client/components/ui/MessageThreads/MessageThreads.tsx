@@ -10,27 +10,34 @@ const MessageThreads: React.FC<MessageThreadsProps> = ({
   onClick = e => console.info("Click"),
   chatkitUser = null,
   onSelectThread = () => console.info("Select Thread"),
+  setEmptyThead = () => console.info("Open Empty Thread"),
 }) => {
   if (chatkitUser !== null) {
     return (
       <section className="messageThreads">
-        <Button className="actionButton">Start Thread</Button>
-        <div className="thread">
-          <div className="threadContain">
-            <div className="avatars">
-              <div className="avatar avatar1">
-                <img src="" alt="" title="" />
-              </div>
-              <div className="avatar avatar2">
-                <img src="" alt="" title="" />
+        <Button className="actionButton" onClick={() => setEmptyThead(true)}>
+          Start Thread
+        </Button>
+        {chatkitUser.rooms.map((room, i) => {
+          return (
+            <div className="thread" key={room.id}>
+              <div className="threadContain">
+                <div className="avatars">
+                  <div className="avatar avatar1">
+                    <img src="" alt="" title="" />
+                  </div>
+                  <div className="avatar avatar2">
+                    <img src="" alt="" title="" />
+                  </div>
+                </div>
+                <div className="members">
+                  <span className="member member1">Username 1</span>
+                  <span className="member member2">Username 2</span>
+                </div>
               </div>
             </div>
-            <div className="members">
-              <span className="member member1">Username 1</span>
-              <span className="member member2">Username 2</span>
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </section>
     );
   }

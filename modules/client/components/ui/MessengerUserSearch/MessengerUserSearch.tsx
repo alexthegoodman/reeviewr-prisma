@@ -15,6 +15,7 @@ const MessengerUserSearch: React.FC<MessengerUserSearchProps> = ({
   ref = null,
   className = "",
   onClick = e => console.info("Click"),
+  setSendDisabled = () => console.info("Send Send Disabled"),
 }) => {
   const legacy = new Legacy();
   const utility = new Utility();
@@ -47,6 +48,9 @@ const MessengerUserSearch: React.FC<MessengerUserSearchProps> = ({
       "profileImage",
     ]);
     selectedUserName = userMetaList["userArtistName"];
+    setSendDisabled(false);
+  } else {
+    setSendDisabled(true);
   }
 
   return (

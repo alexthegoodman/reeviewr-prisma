@@ -4,4 +4,5 @@ export interface MessengerProps {
   onClick?: (e: MouseEvent) => void;
   chatkitUser: any;
   selectedThread: any;
+  emptyThread: boolean;
 }
