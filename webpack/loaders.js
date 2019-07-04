@@ -72,33 +72,44 @@ module.exports = {
 
   css: {
     test: /\.css$/,
-    use: ExtractTextPlugin.extract({
-      fallback: "style-loader",
-      allChunks: true,
-      use: [
-        {
-          loader: "css-loader",
-        },
-        {
-          loader: "postcss-loader",
-          options: {
-            plugins: [
-              ...(config.get("minify")
-                ? [
-                    require("cssnano")({
-                      safe: true,
-                      sourcemap: true,
-                      autoprefixer: false,
-                    }),
-                  ]
-                : []),
-              require("autoprefixer"),
-            ],
-          },
-        },
-      ],
-    }),
+    use: [
+      "style-loader", // creates style nodes from JS strings
+      // MiniCssExtractPlugin.loader,
+      "css-loader", // translates CSS into CommonJS
+      // "sass-loader", // compiles Sass to CSS, using Node Sass by default
+      // "icon-font-loader",
+    ],
   },
+
+  // css: {
+  //   test: /\.css$/,
+  //   use: ExtractTextPlugin.extract({
+  //     fallback: "style-loader",
+  //     allChunks: true,
+  //     use: [
+  //       {
+  //         loader: "css-loader",
+  //       },
+  //       {
+  //         loader: "postcss-loader",
+  //         options: {
+  //           plugins: [
+  //             ...(config.get("minify")
+  //               ? [
+  //                   require("cssnano")({
+  //                     safe: true,
+  //                     sourcemap: true,
+  //                     autoprefixer: false,
+  //                   }),
+  //                 ]
+  //               : []),
+  //             require("autoprefixer"),
+  //           ],
+  //         },
+  //       },
+  //     ],
+  //   }),
+  // },
 
   allImagesAndFontsArray: [
     // cache bust images, but embed small ones as data URIs

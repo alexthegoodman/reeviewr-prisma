@@ -73,6 +73,7 @@ module.exports = {
       loaders.graphql,
       // loaders.fontLoader,
       loaders.scss,
+      loaders.css,
     ].concat(loaders.allImagesAndFontsArray),
   },
 

@@ -121,13 +121,13 @@ const Messages: React.FC<MessagesProps> = () => {
   }
 
   return (
-    <>
+    <section className="messages">
       <MessageThreads
         chatkitUser={chatkitUser}
         onSelectThread={setSelectedThread}
       />
       <Messenger chatkitUser={chatkitUser} selectedThread={selectedThread} />
-    </>
+    </section>
   );
 };
 

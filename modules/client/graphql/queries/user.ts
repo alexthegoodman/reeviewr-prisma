@@ -68,6 +68,23 @@ export const USERS_QUERY = gql`
   ${UserFragments.user}
 `;
 
+export const ALL_USERS_QUERY = gql`
+  query allUsers($search: String) {
+    users(
+      first: 25
+      where: {
+        userMeta_some: {
+          metaName: "userArtistName"
+          metaValue_contains: $search
+        }
+      }
+    ) {
+      ...UserFragment
+    }
+  }
+  ${UserFragments.user}
+`;
+
 export const USER_QUERY = gql`
   query user($id: ID) {
     user(where: { id: $id }) {

@@ -7617,6 +7617,14 @@ export type UsersQuery = { __typename?: "Query" } & {
   users: Array<Maybe<{ __typename?: "User" } & UserFragmentFragment>>;
 };
 
+export type AllUsersQueryVariables = {
+  search?: Maybe<Scalars["String"]>;
+};
+
+export type AllUsersQuery = { __typename?: "Query" } & {
+  users: Array<Maybe<{ __typename?: "User" } & UserFragmentFragment>>;
+};
+
 export type UserQueryVariables = {
   id?: Maybe<Scalars["ID"]>;
 };

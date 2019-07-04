@@ -1,5 +1,5 @@
 // @import url("https://use.typekit.net/kod8qec.css");
-
+@import "~react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 @import "~react-vis/dist/style";
 
 @import "../../../node_modules/normalize.css/normalize.css";
@@ -32,6 +32,7 @@
 @import "../components/pages/UploadTrack/UploadTrack";
 @import "../components/pages/TrackDetail/TrackDetail";
 @import "../components/pages/Home/Home";
+@import "../components/pages/Messages/Messages";
 
 @import "../components/data/UserTrack/UserTrack";
 @import "../components/data/BeyondSearchData/BeyondSearchData";
@@ -60,3 +61,5 @@
 @import "../components/ui/RadioField/RadioField";
 @import "../components/ui/ProfileTabs/ProfileTabs";
 @import "../components/ui/HomeHero/HomeHero";
+@import "../components/ui/MessageThreads/MessageThreads";
+@import "../components/ui/Messenger/Messenger";
