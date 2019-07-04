@@ -16,6 +16,7 @@ const MessengerUserSearch: React.FC<MessengerUserSearchProps> = ({
   className = "",
   onClick = e => console.info("Click"),
   setSendDisabled = () => console.info("Send Send Disabled"),
+  setSelectedUser = () => console.info("Set Selected User"),
 }) => {
   const legacy = new Legacy();
   const utility = new Utility();
@@ -24,7 +25,7 @@ const MessengerUserSearch: React.FC<MessengerUserSearchProps> = ({
   const clickHandler = e => onClick(e);
 
   const [searchValue, setSearchValue] = React.useState("");
-  const [selectedUser, setSelectedUser] = React.useState(null);
+
   const { data: userData, error: userError, loading: userLoading } = useQuery(
     ALL_USERS_QUERY,
     { variables: { search: searchValue } }
@@ -39,18 +40,6 @@ const MessengerUserSearch: React.FC<MessengerUserSearchProps> = ({
   }
   if (userError) {
     return <div>Error on users! {userError.message}</div>;
-  }
-
-  let selectedUserName = "";
-  if (selectedUser != null) {
-    let userMetaList = legacy.extractMultipleMeta(selectedUser.userMeta, [
-      "userArtistName",
-      "profileImage",
-    ]);
-    selectedUserName = userMetaList["userArtistName"];
-    setSendDisabled(false);
-  } else {
-    setSendDisabled(true);
   }
 
   return (
@@ -87,7 +76,6 @@ const MessengerUserSearch: React.FC<MessengerUserSearchProps> = ({
           setSearchValue(val);
         }}
       />
-      {selectedUserName}
       {loading}
     </>
   );

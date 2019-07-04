@@ -5,6 +5,7 @@ import Utility from "../../../../services/Utility";
 import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { Button } from "@blueprintjs/core";
+import { useAppContext } from "../../../context";
 
 const MessengerReply: React.FC<MessengerReplyProps> = ({
   ref = null,
@@ -12,11 +13,11 @@ const MessengerReply: React.FC<MessengerReplyProps> = ({
   onClick = e => console.info("Click"),
   send = () => console.info("Send"),
   sendDisabled = true,
+  selectedUser = null,
 }) => {
   const utility = new Utility();
 
-  const clickHandler = e => onClick(e);
-
+  const [{ userData }, dispatch] = useAppContext();
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty()
   );
@@ -35,7 +36,17 @@ const MessengerReply: React.FC<MessengerReplyProps> = ({
             options: [], // try ["inline"]
           }}
         />
-        <Button className="actionButton" onClick={send} disabled={sendDisabled}>
+        <Button
+          className="actionButton"
+          onClick={() =>
+            send(
+              null,
+              [userData.user.id, selectedUser.id],
+              editorState.getCurrentContent().getPlainText()
+            )
+          }
+          disabled={sendDisabled}
+        >
           Send Message
         </Button>
       </>

@@ -13,7 +13,7 @@ const Messages: React.FC<MessagesProps> = () => {
     "reeviewrPrivateHash",
   ]);
 
-  const [{ tour, userData }, dispatch] = useAppContext();
+  const [{ userData }, dispatch] = useAppContext();
   const [chatkitUser, setChatkitUser] = React.useState(null);
   const [selectedThread, setSelectedThread] = React.useState(null);
   const [emptyThread, setEmptyThead] = React.useState(false);

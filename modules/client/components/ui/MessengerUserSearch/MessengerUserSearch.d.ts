@@ -3,4 +3,5 @@ export interface MessengerUserSearchProps {
   className?: string;
   onClick?: (e: MouseEvent) => void;
   setSendDisabled: (a: boolean) => void;
+  setSelectedUser: (a: any) => void;
 }

@@ -6,6 +6,7 @@ import MessengerReply from "../MessengerReply/MessengerReply";
 import MessengerHistory from "../MessengerHistory/MessengerHistory";
 import { Message } from "react-chat-ui";
 import { Text, Callout } from "@blueprintjs/core";
+import Legacy from "../../../../services/Legacy";
 
 const Messenger: React.FC<MessengerProps> = ({
   ref = null,
@@ -15,10 +16,11 @@ const Messenger: React.FC<MessengerProps> = ({
   selectedThread = null,
   emptyThread = false,
 }) => {
-  const clickHandler = e => onClick(e);
+  const legacy = new Legacy();
 
   const [messages, setMessages] = React.useState(null);
   const [sendDisabled, setSendDisabled] = React.useState(true);
+  const [selectedUser, setSelectedUser] = React.useState(null);
 
   if (chatkitUser !== null && (selectedThread !== null || emptyThread)) {
     if (selectedThread !== null) {
@@ -39,12 +41,12 @@ const Messenger: React.FC<MessengerProps> = ({
         });
     }
 
-    const sendMessage = room => {
+    const sendMessage = (room, messageText) => {
       // send message
       chatkitUser
         .sendSimpleMessage({
           roomId: room.id,
-          text: "Hi there!",
+          text: messageText,
         })
         .then(messageId => {
           console.log(`Added message to ${room.name}`);
@@ -54,36 +56,60 @@ const Messenger: React.FC<MessengerProps> = ({
         });
     };
 
-    const sendMessageAndCreateRoom = (room = null) => {
+    const sendMessageAndCreateRoom = (
+      room = null,
+      userIds = [],
+      messageText = ""
+    ) => {
+      console.info("send", room, userIds, messageText);
       if (room === null) {
         // create private room
         chatkitUser
           .createRoom({
-            name: "general",
+            name: "privateMessage",
             private: true,
-            addUserIds: ["craig", "kate"],
-            customData: { foo: 42 },
+            addUserIds: userIds,
           })
           .then(chatkitRoom => {
             console.log(`Created room called ${chatkitRoom.name}`);
-            sendMessage(chatkitRoom);
+            sendMessage(chatkitRoom, messageText);
           })
           .catch(err => {
             console.log(`Error creating room ${err}`);
           });
       } else {
-        sendMessage(room);
+        sendMessage(room, messageText);
       }
     };
+
+    let selectedUserName = "";
+    if (selectedUser != null) {
+      let userMetaList = legacy.extractMultipleMeta(selectedUser.userMeta, [
+        "userArtistName",
+        "profileImage",
+      ]);
+      selectedUserName = userMetaList["userArtistName"];
+      if (sendDisabled) {
+        setSendDisabled(false);
+      }
+    } else {
+      if (!sendDisabled) {
+        setSendDisabled(true);
+      }
+    }
 
     return (
       <section className="messenger">
         <div className="messengerContain">
-          <MessengerUserSearch setSendDisabled={setSendDisabled} />
+          <MessengerUserSearch
+            setSelectedUser={setSelectedUser}
+            setSendDisabled={setSendDisabled}
+          />
           <MessengerHistory messages={messages} />
           <MessengerReply
             send={sendMessageAndCreateRoom}
             sendDisabled={sendDisabled}
+            selectedUser={selectedUser}
           />
         </div>
       </section>
