@@ -4,6 +4,7 @@ import { MessengerReplyProps } from "./MessengerReply.d";
 import Utility from "../../../../services/Utility";
 import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
+import { Button } from "@blueprintjs/core";
 
 const MessengerReply: React.FC<MessengerReplyProps> = ({
   ref = null,
@@ -19,14 +20,21 @@ const MessengerReply: React.FC<MessengerReplyProps> = ({
   );
 
   if (utility.isDefinedWithContent(document)) {
+    // this editor has support for Mentions and Hashtags if needed
     return (
-      <Editor
-        editorState={editorState}
-        toolbarClassName="toolbarClassName"
-        wrapperClassName="wrapperClassName"
-        editorClassName="editorClassName"
-        onEditorStateChange={setEditorState}
-      />
+      <>
+        <Editor
+          editorState={editorState}
+          toolbarClassName="draftToolbar replyToolbar"
+          wrapperClassName="draftWrapper replyWrapper"
+          editorClassName="draftEditor replyEditor"
+          onEditorStateChange={setEditorState}
+          toolbar={{
+            options: [], // try ["inline"]
+          }}
+        />
+        <Button className="actionButton">Send Message</Button>
+      </>
     );
   } else {
     return <>Loading editor...</>;

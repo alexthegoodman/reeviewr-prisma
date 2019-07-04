@@ -14,7 +14,7 @@ const MessageThreads: React.FC<MessageThreadsProps> = ({
   if (chatkitUser !== null) {
     return (
       <section className="messageThreads">
-        <Button className="btn messageBtn">Send Message</Button>
+        <Button className="actionButton">Start Thread</Button>
         <div className="thread">
           <div className="threadContain">
             <div className="avatars">
