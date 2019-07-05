@@ -114,11 +114,16 @@ const Messenger: React.FC<MessengerProps> = ({
             chatkitUser={chatkitUser}
             roomUsers={roomUsers}
           />
-          <MessengerHistory
-            messages={messages}
-            chatkitUser={chatkitUser}
-            chatkitRoomId={selectedThread}
-          />
+          {emptyThread ? (
+            <></>
+          ) : (
+            <MessengerHistory
+              messages={messages}
+              chatkitUser={chatkitUser}
+              chatkitRoomId={selectedThread}
+            />
+          )}
+
           <MessengerReply
             send={sendMessageAndCreateRoom}
             sendDisabled={sendDisabled}
@@ -130,7 +135,19 @@ const Messenger: React.FC<MessengerProps> = ({
       </section>
     );
   } else {
-    return <Callout>Select a thread or start a new one</Callout>;
+    return (
+      <section className="emptyState">
+        <img src="/public/img/uploadEmpty.svg" />
+        <>
+          <Text tagName="h1" className="headline">
+            Message a User
+          </Text>
+          <Text tagName="h2" className="headline">
+            Start a new thread to begin.
+          </Text>
+        </>
+      </section>
+    );
   }
 };
 

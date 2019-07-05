@@ -77,25 +77,31 @@ const Messages: React.FC<MessagesProps> = () => {
 
   if (chatkitUser !== null) {
     let i = 0;
-    for (let key in chatkitUser.rooms) {
-      if (chatkitUser.rooms.hasOwnProperty(key)) {
-        let id = chatkitUser.rooms[key].id;
-        chatkitUser
-          .subscribeToRoomMultipart({
-            roomId: id,
-            hooks: {
-              onMessage: message => {
-                updateMessages();
+    if (Object.keys(chatkitUser.rooms).length > 0) {
+      for (let key in chatkitUser.rooms) {
+        if (chatkitUser.rooms.hasOwnProperty(key)) {
+          let id = chatkitUser.rooms[key].id;
+          chatkitUser
+            .subscribeToRoomMultipart({
+              roomId: id,
+              hooks: {
+                onMessage: message => {
+                  updateMessages();
+                },
               },
-            },
-            messageLimit: 10,
-          })
-          .then(() => {
-            i++;
-            if (i === Object.keys(chatkitUser.rooms).length) {
-              setAllRoomsSubscribed(true);
-            }
-          });
+              messageLimit: 10,
+            })
+            .then(() => {
+              i++;
+              if (i === Object.keys(chatkitUser.rooms).length) {
+                setAllRoomsSubscribed(true);
+              }
+            });
+        }
+      }
+    } else {
+      if (!allRoomsSubscribed) {
+        setAllRoomsSubscribed(true);
       }
     }
   }
@@ -129,13 +135,14 @@ const Messages: React.FC<MessagesProps> = () => {
   return (
     <section className="messages">
       {!allRoomsSubscribed ? (
-        <Text>Subsribing...</Text>
+        <Text>Subscribing...</Text>
       ) : (
         <>
           <MessageThreads
             chatkitUser={chatkitUser}
             onSelectThread={setSelectedThread}
             setEmptyThead={setEmptyThead}
+            setSelectedThread={setSelectedThread}
             selectedThread={selectedThread}
             selectedUser={selectedUser}
             setSelectedUser={setSelectedUser}

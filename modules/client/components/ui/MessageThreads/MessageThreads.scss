@@ -1,6 +1,24 @@
 .messageThreads {
+  background: $dark-gray2;
+  margin: -30px 0 0 -35px;
+  height: calc(100vh - #{$headerHeight});
+
+  .actionButton {
+    margin: 25px;
+    width: calc(100% - 50px);
+  }
+
   .thread {
+    padding: 25px;
+    cursor: pointer;
+
+    &:hover {
+      background: $dark-gray3;
+    }
+
     &.selected {
+      background: $black;
+
       .threadContain {
         .members {
           .member {
@@ -10,14 +28,27 @@
       }
     }
     .threadContain {
+      display: flex;
+      flex-direction: row;
+
       .avatars {
+        display: flex;
+        flex-direction: row;
+
         .avatar {
           img {
+            display: block;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: $dark-gray4;
           }
         }
       }
       .members {
         .member {
+          font-size: 1rem;
+          color: white;
         }
       }
     }

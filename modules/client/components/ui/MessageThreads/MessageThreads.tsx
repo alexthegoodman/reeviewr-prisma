@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { MessageThreadsProps } from "./MessageThreads.d";
 import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
-import { Button } from "@blueprintjs/core";
+import { Button, Text } from "@blueprintjs/core";
 import { useAppContext } from "../../../context";
 import client from "../../../services/ApolloClient";
 import { USER_ID_QUERY } from "../../../graphql/queries/user";
@@ -16,6 +16,7 @@ const MessageThreads: React.FC<MessageThreadsProps> = ({
   onSelectThread = () => console.info("Select Thread"),
   setEmptyThead = () => console.info("Open Empty Thread"),
   selectedUser = null,
+  setSelectedThread = () => console.info("Set Selected Thread"),
   selectedThread = null,
   setSelectedUser = () => console.info("Set Selected User"),
   setSendDisabled = () => console.info("Send Send Disabled"),
@@ -32,7 +33,14 @@ const MessageThreads: React.FC<MessageThreadsProps> = ({
   if (chatkitUser !== null) {
     return (
       <section className="messageThreads">
-        <Button className="actionButton" onClick={() => setEmptyThead(true)}>
+        <Button
+          className="actionButton"
+          onClick={() => {
+            setEmptyThead(true);
+            setSelectedUser(null);
+            setSelectedThread(null);
+          }}
+        >
           Start Thread
         </Button>
         {chatkitUser.rooms.map((room, i) => {
@@ -61,6 +69,7 @@ const MessageThreads: React.FC<MessageThreadsProps> = ({
                 console.info("room", room, room.users);
 
                 onSelectThread(room.id);
+
                 setSendDisabled(false);
 
                 client
@@ -70,25 +79,26 @@ const MessageThreads: React.FC<MessageThreadsProps> = ({
                   })
                   .then(data => {
                     setSelectedUser(data.data.user);
+                    setEmptyThead(false);
                   });
               }}
             >
               <div className="threadContain">
                 <div className="avatars">
                   <div className="avatar avatar1">
-                    <img src="" alt="" title="" />
+                    <img src={userMetaList["profileImage"]} alt="" title="" />
                   </div>
                   <div className="avatar avatar2">
-                    <img src="" alt="" title="" />
+                    <img src={otherUser.avatarURL} alt="" title="" />
                   </div>
                 </div>
                 <div className="members">
-                  <span className="member member1">
+                  <Text tagName="p" className="member member1">
                     {userMetaList["userArtistName"]}
-                  </span>
-                  <span className="member member2">
+                  </Text>
+                  <Text tagName="p" className="member member2">
                     {otherUser !== null ? otherUser.name : ""}
-                  </span>
+                  </Text>
                 </div>
               </div>
             </div>
