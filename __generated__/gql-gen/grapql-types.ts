@@ -7641,6 +7641,14 @@ export type PrivateUserQuery = { __typename?: "Query" } & {
   user: Maybe<{ __typename?: "User" } & UserFragmentFragment>;
 };
 
+export type IdUserQueryVariables = {
+  id: Scalars["ID"];
+};
+
+export type IdUserQuery = { __typename?: "Query" } & {
+  user: Maybe<{ __typename?: "User" } & UserFragmentFragment>;
+};
+
 export type IndividualUsersQueryVariables = {
   userIds?: Maybe<Array<Scalars["ID"]>>;
 };

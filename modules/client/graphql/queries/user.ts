@@ -104,7 +104,7 @@ export const USER_PRIVATE_QUERY = gql`
 `;
 
 export const USER_ID_QUERY = gql`
-  query privateUser($id: ID!) {
+  query idUser($id: ID!) {
     user(where: { id: $id }) {
       ...UserFragment
     }

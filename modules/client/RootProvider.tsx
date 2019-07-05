@@ -18,10 +18,13 @@ import { CookiesProvider } from "react-cookie";
 import * as Sentry from "@sentry/browser";
 
 const styles = require("./sass/style.scss");
-console.info("process.env.SENTRY", process.env.SENTRY);
 
 mixpanel.init(process.env.MIXPANEL_SECRET);
-Sentry.init({ dsn: process.env.SENTRY });
+
+if (process.env.NODE_ENV !== "development") {
+  console.info("sentry enabled", process.env.SENTRY);
+  Sentry.init({ dsn: process.env.SENTRY });
+}
 
 interface AppProviderProps {}
 
