@@ -22,6 +22,15 @@ import ConfirmEmail from "../components/pages/ConfirmEmail/ConfirmEmail";
 import CompleteProfile from "../components/pages/CompleteProfile/CompleteProfile";
 import Messages from "../components/pages/Messages/Messages";
 import Notifications from "../components/pages/Notifications/Notifications";
+import Utility from "../../services/Utility";
+import Legacy from "../../services/Legacy";
+import Strings from "../services/Strings";
+import he from "he";
+
+const utility = new Utility();
+const legacy = new Legacy();
+const strings = new Strings();
+const changeCase = require("change-case");
 
 const routes = mount({
   "/login": route(req => {
@@ -148,7 +157,9 @@ const routes = mount({
     const { trackId, name } = req.params;
 
     return {
-      title: `${name} / Tracks / Reeviewr`,
+      title: `${strings.decode(
+        he.decode(changeCase.sentenceCase(name))
+      )} / Tracks / Reeviewr`,
       head: (
         <>
           <link
@@ -183,7 +194,7 @@ const routes = mount({
     const { artistId, name } = req.params;
 
     return {
-      title: `${name} / Artist / Reeviewr`,
+      title: `${strings.decode(name)} / Artist / Reeviewr`,
       head: (
         <>
           <link
@@ -203,7 +214,9 @@ const routes = mount({
     const { artistId, name } = req.params;
 
     return {
-      title: `${name} / Artist Likes / Reeviewr`,
+      title: `${strings.decode(
+        he.decode(changeCase.sentenceCase(name))
+      )} / Artist Likes / Reeviewr`,
       head: (
         <>
           <link
@@ -223,7 +236,9 @@ const routes = mount({
     const { artistId, name } = req.params;
 
     return {
-      title: `${name} / Artist Following / Reeviewr`,
+      title: `${strings.decode(
+        he.decode(changeCase.sentenceCase(name))
+      )} / Artist Following / Reeviewr`,
       head: (
         <>
           <link
@@ -243,7 +258,9 @@ const routes = mount({
     const { artistId, name } = req.params;
 
     return {
-      title: `${name} / Artist Followers / Reeviewr`,
+      title: `${strings.decode(
+        he.decode(changeCase.sentenceCase(name))
+      )} / Artist Followers / Reeviewr`,
       head: (
         <>
           <link
