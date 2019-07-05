@@ -17,50 +17,41 @@ const Messenger: React.FC<MessengerProps> = ({
   chatkitUser = null,
   selectedThread = null,
   emptyThread = false,
+  selectedUser = null,
+  sendDisabled = true,
+  setSendDisabled = () => console.info("Set Send Disabled"),
+  setSelectedUser = () => console.info("Set Selected User"),
+  messages = null,
+  setMessages = () => console.info("Set Messages"),
+  allRoomsSubscribed = false,
+  setAllRoomsSubscribed = () => console.info("Set All Rooms Subscribed"),
+  updateMessages = () => console.info("Update Messages"),
 }) => {
   const legacy = new Legacy();
   const utiility = new Utility();
 
-  const [messages, setMessages] = React.useState(null);
-  const [sendDisabled, setSendDisabled] = React.useState(true);
-  const [selectedUser, setSelectedUser] = React.useState(null);
-
   if (chatkitUser !== null && (selectedThread !== null || emptyThread)) {
     if (utiility.isDefinedWithContent(selectedThread)) {
-      // fetch room messages
-      chatkitUser
-        .fetchMultipartMessages({
-          roomId: selectedThread,
-          // initialId: 42,
-          direction: "older",
-          limit: 10,
-        })
-        .then(chatkitMessages => {
-          if (!_.isEqual(chatkitMessages, messages)) {
-            console.info("chatkitMessages", chatkitMessages);
-            setMessages(chatkitMessages);
-            setSendDisabled(false);
-          }
-        })
-        .catch(err => {
-          console.error(`Error fetching messages: ${err}`);
-          // TODO: show error callout
-        });
+      updateMessages();
     }
 
-    const sendMessage = (room, messageText) => {
-      // send message
-      chatkitUser
-        .sendSimpleMessage({
-          roomId: room.id,
-          text: messageText,
-        })
-        .then(messageId => {
-          console.log(`Added message to ${room.name}`);
-        })
-        .catch(err => {
-          console.log(`Error adding message to ${room.name}: ${err}`);
-        });
+    const sendMessage = (roomId, messageText) => {
+      if (roomId !== null) {
+        // send message
+        chatkitUser
+          .sendSimpleMessage({
+            roomId: roomId,
+            text: messageText,
+          })
+          .then(messageId => {
+            console.log(`Added message to ${roomId}`);
+          })
+          .catch(err => {
+            console.error(`Error adding message to ${roomId}: ${err}`);
+          });
+      } else {
+        console.error("Must have a room to send message");
+      }
     };
 
     const sendMessageAndCreateRoom = (
@@ -68,7 +59,6 @@ const Messenger: React.FC<MessengerProps> = ({
       userIds = [],
       messageText = ""
     ) => {
-      console.info("send", room, userIds, messageText);
       if (room === null) {
         // create private room
         chatkitUser
@@ -78,12 +68,10 @@ const Messenger: React.FC<MessengerProps> = ({
             addUserIds: userIds,
           })
           .then(chatkitRoom => {
-            console.log(`Created room called ${chatkitRoom.name}`);
-
             sendMessage(chatkitRoom, messageText);
           })
           .catch(err => {
-            console.log(`Error creating room ${err}`);
+            console.error(`Error creating room ${err}`);
           });
       } else {
         sendMessage(room, messageText);
@@ -102,18 +90,16 @@ const Messenger: React.FC<MessengerProps> = ({
       }
     } else {
       if (!sendDisabled) {
-        setSendDisabled(true);
+        // setSendDisabled(true);
       }
     }
 
-    var roomUsers = null;
+    let roomUsers = null;
+    let selectedRoom = null;
     chatkitUser.rooms.map((room, i) => {
       if (selectedThread === room.id) {
-        console.info("room", room.userStore.users);
         roomUsers = room.userStore.users;
-        // if (sendDisabled) {
-        //   setSendDisabled(false);
-        // }
+        selectedRoom = room;
       }
     });
 
@@ -121,6 +107,7 @@ const Messenger: React.FC<MessengerProps> = ({
       <section className="messenger">
         <div className="messengerContain">
           <MessengerUserSearch
+            selectedUser={selectedUser}
             setSelectedUser={setSelectedUser}
             setSendDisabled={setSendDisabled}
             selectedThread={selectedThread}
@@ -136,6 +123,7 @@ const Messenger: React.FC<MessengerProps> = ({
             send={sendMessageAndCreateRoom}
             sendDisabled={sendDisabled}
             selectedUser={selectedUser}
+            room={selectedRoom}
             roomUsers={roomUsers}
           />
         </div>

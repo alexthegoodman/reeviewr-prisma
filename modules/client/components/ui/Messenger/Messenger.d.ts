@@ -5,4 +5,13 @@ export interface MessengerProps {
   chatkitUser: any;
   selectedThread: any;
   emptyThread: boolean;
+  selectedUser: any;
+  sendDisabled: boolean;
+  setSendDisabled: any;
+  setSelectedUser: any;
+  messages: any;
+  setMessages: any;
+  allRoomsSubscribed: boolean;
+  setAllRoomsSubscribed: any;
+  updateMessages: any;
 }

@@ -4,7 +4,7 @@ import { MessengerReplyProps } from "./MessengerReply.d";
 import Utility from "../../../../services/Utility";
 import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import { Button } from "@blueprintjs/core";
+import { Button, Text } from "@blueprintjs/core";
 import { useAppContext } from "../../../context";
 
 const MessengerReply: React.FC<MessengerReplyProps> = ({
@@ -14,6 +14,7 @@ const MessengerReply: React.FC<MessengerReplyProps> = ({
   send = () => console.info("Send"),
   sendDisabled = true,
   selectedUser = null,
+  room = null,
   roomUsers = null,
 }) => {
   const utility = new Utility();
@@ -37,19 +38,24 @@ const MessengerReply: React.FC<MessengerReplyProps> = ({
             options: [], // try ["inline"]
           }}
         />
-        <Button
-          className="actionButton"
-          onClick={() =>
-            send(
-              null,
-              [userData.user.id, selectedUser.id],
-              editorState.getCurrentContent().getPlainText()
-            )
-          }
-          disabled={sendDisabled}
-        >
-          Send Message
-        </Button>
+        {selectedUser === null || userData.user === null ? (
+          <Text tagName="p">Pick a user to send to</Text>
+        ) : (
+          <Button
+            className="actionButton"
+            onClick={() => {
+              send(
+                typeof room !== "undefined" && room !== null ? room.id : null,
+                [userData.user.id, selectedUser.id],
+                editorState.getCurrentContent().getPlainText()
+              );
+              setEditorState(EditorState.createEmpty());
+            }}
+            disabled={sendDisabled}
+          >
+            Send Message
+          </Button>
+        )}
       </>
     );
   } else {

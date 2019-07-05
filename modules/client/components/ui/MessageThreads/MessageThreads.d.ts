@@ -6,4 +6,9 @@ export interface MessageThreadsProps {
   onSelectThread: (e: MouseEvent) => void;
   setEmptyThead: (a: boolean) => void;
   selectedThread: any;
+  selectedUser: any;
+  setSelectedUser: (a: any) => void;
+  setSendDisabled: (a: boolean) => void;
+  allRoomsSubscribed: boolean;
+  setAllRoomsSubscribed: any;
 }

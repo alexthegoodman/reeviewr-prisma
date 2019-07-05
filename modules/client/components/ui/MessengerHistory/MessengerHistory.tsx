@@ -21,45 +21,24 @@ const MessengerHistory: React.FC<MessengerHistoryProps> = ({
 
   // subscribe to room
   // TODO: avoiid resubscription
-  if (chatkitRoomId !== null) {
-    console.info("check", chatkitUser.roomSubscriptions);
-    // let subscribed = chatkitUser.roomSubscriptions.filter(
-    //   room => room.id === chatkitRoomId
-    // );
-    if (
-      Object.keys(chatkitUser.roomSubscriptions).length === 0 ||
-      !utility.isDefinedWithContent(
-        chatkitUser.roomSubscriptions[chatkitRoomId]
-      )
-    ) {
-      console.info(
-        "subscribe history",
-        chatkitUser,
-        chatkitUser.roomSubscriptions
-      );
-
-      chatkitUser.subscribeToRoomMultipart({
-        roomId: chatkitRoomId,
-        hooks: {
-          onMessage: message => {
-            console.info("received message", message);
-          },
-        },
-        messageLimit: 10,
-      });
-    }
-  }
 
   const isTyping = false;
-
-  console.info("messages", messages);
 
   if (messages !== null) {
     let messageArr = new Array();
 
     messages.forEach(message => {
+      const id = message.senderId;
+      let name = "";
+      for (let key in message.userStore.users) {
+        if (message.userStore.users[key].id === message.senderId) {
+          name = message.userStore.users[key].name;
+        }
+      }
+      console.info("message", message, id, name);
       messageArr[messageArr.length] = new Message({
         id: message.senderId,
+        senderName: name,
         message: message.parts[0].payload.content,
       });
     });
@@ -70,7 +49,7 @@ const MessengerHistory: React.FC<MessengerHistoryProps> = ({
           messages={messageArr} // Boolean: list of message objects
           isTyping={isTyping} // Boolean: is the recipient typing
           hasInputField={false} // Boolean: use our input, or use your own
-          showSenderName // show the name of the user who sent the message
+          showSenderName={true} // show the name of the user who sent the message
           bubblesCentered={false} //Boolean should the bubbles be centered in the feed?
           // JSON: Custom bubble styles
           bubbleStyles={{

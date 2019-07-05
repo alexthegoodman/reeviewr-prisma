@@ -15,6 +15,7 @@ const MessengerUserSearch: React.FC<MessengerUserSearchProps> = ({
   ref = null,
   className = "",
   onClick = e => console.info("Click"),
+  selectedUser = null,
   setSendDisabled = () => console.info("Send Send Disabled"),
   setSelectedUser = () => console.info("Set Selected User"),
   selectedThread = null,
@@ -45,10 +46,21 @@ const MessengerUserSearch: React.FC<MessengerUserSearchProps> = ({
     return <div>Error on users! {userError.message}</div>;
   }
 
+  let selectedUserName = "";
+  if (selectedUser !== null) {
+    let userMetaList = legacy.extractMultipleMeta(selectedUser.userMeta, [
+      "userArtistName",
+      "profileImage",
+    ]);
+    selectedUserName = userMetaList["userArtistName"];
+  }
+
   return (
     <>
       {roomUsers !== null ? (
-        <Text>Message Person</Text>
+        <Text tagName="h5" className="headline">
+          Message: {selectedUserName}
+        </Text>
       ) : (
         <>
           <Text>Find User to Message</Text>
