@@ -1,1 +1,25 @@
-/** Styles **/
+.messageThreads {
+  .thread {
+    &.selected {
+      .threadContain {
+        .members {
+          .member {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+    .threadContain {
+      .avatars {
+        .avatar {
+          img {
+          }
+        }
+      }
+      .members {
+        .member {
+        }
+      }
+    }
+  }
+}

@@ -5,4 +5,5 @@ export interface MessageThreadsProps {
   chatkitUser: any;
   onSelectThread: (e: MouseEvent) => void;
   setEmptyThead: (a: boolean) => void;
+  selectedThread: any;
 }

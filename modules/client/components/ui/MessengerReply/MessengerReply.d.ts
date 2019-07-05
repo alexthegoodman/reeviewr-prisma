@@ -5,4 +5,5 @@ export interface MessengerReplyProps {
   send: (room, userIds, text) => void;
   sendDisabled: boolean;
   selectedUser: any;
+  roomUsers: any;
 }

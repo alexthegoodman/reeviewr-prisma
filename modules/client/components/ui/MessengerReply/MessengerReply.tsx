@@ -14,6 +14,7 @@ const MessengerReply: React.FC<MessengerReplyProps> = ({
   send = () => console.info("Send"),
   sendDisabled = true,
   selectedUser = null,
+  roomUsers = null,
 }) => {
   const utility = new Utility();
 

@@ -45,19 +45,6 @@ const Messages: React.FC<MessagesProps> = () => {
 
         setChatkitUser(currentUser);
 
-        // set currentUser in context?
-
-        // subscribe to room
-        // currentUser.subscribeToRoomMultipart({
-        //   roomId: someRoomId,
-        //   hooks: {
-        //     onMessage: message => {
-        //       console.log("received message", message)
-        //     }
-        //   },
-        //   messageLimit: 10
-        // })
-
         // typing indiciator
         //     currentUser.isTypingIn({ roomId: someRoomId })
         // .then(() => {
@@ -82,12 +69,14 @@ const Messages: React.FC<MessagesProps> = () => {
       });
   }
 
+  console.info("checking here");
   return (
     <section className="messages">
       <MessageThreads
         chatkitUser={chatkitUser}
         onSelectThread={setSelectedThread}
         setEmptyThead={setEmptyThead}
+        selectedThread={selectedThread}
       />
       <Messenger
         chatkitUser={chatkitUser}

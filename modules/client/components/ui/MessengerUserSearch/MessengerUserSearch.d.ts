@@ -4,4 +4,7 @@ export interface MessengerUserSearchProps {
   onClick?: (e: MouseEvent) => void;
   setSendDisabled: (a: boolean) => void;
   setSelectedUser: (a: any) => void;
+  selectedThread: any;
+  chatkitUser: any;
+  roomUsers: any;
 }

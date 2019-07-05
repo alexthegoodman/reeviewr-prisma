@@ -22,6 +22,7 @@ Special thanks goes to Atomic Object for open sourcing a starter kit that was pr
 - Import the .sql file into the `default@default` database
 - Visit `http://localhost:443/` to verify that the Prisma / GraphQL Playground is functioning
 - Duplicate `.env.example` as `.env`
+- install audiowaveform on your machine
 - Run `yarn dev`
 - Wait for all the bundles to finshing bundling
 - Open `localhost:3000` in your browser

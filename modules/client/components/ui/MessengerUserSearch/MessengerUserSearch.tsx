@@ -17,6 +17,9 @@ const MessengerUserSearch: React.FC<MessengerUserSearchProps> = ({
   onClick = e => console.info("Click"),
   setSendDisabled = () => console.info("Send Send Disabled"),
   setSelectedUser = () => console.info("Set Selected User"),
+  selectedThread = null,
+  chatkitUser = null,
+  roomUsers = null,
 }) => {
   const legacy = new Legacy();
   const utility = new Utility();
@@ -44,38 +47,45 @@ const MessengerUserSearch: React.FC<MessengerUserSearchProps> = ({
 
   return (
     <>
-      <Text>Find User to Message</Text>
-      <Autocomplete
-        getItemValue={user => {
-          let userMetaList = legacy.extractMultipleMeta(user.userMeta, [
-            "userArtistName",
-            "profileImage",
-          ]);
-          setSelectedUser(user);
-          return strings.decode(userMetaList["userArtistName"]);
-        }}
-        items={users}
-        renderItem={(user, isHighlighted) => {
-          let userMetaList = legacy.extractMultipleMeta(user.userMeta, [
-            "userArtistName",
-            "profileImage",
-          ]);
+      {roomUsers !== null ? (
+        <Text>Message Person</Text>
+      ) : (
+        <>
+          <Text>Find User to Message</Text>
+          <Autocomplete
+            getItemValue={user => {
+              let userMetaList = legacy.extractMultipleMeta(user.userMeta, [
+                "userArtistName",
+                "profileImage",
+              ]);
+              setSelectedUser(user);
+              return strings.decode(userMetaList["userArtistName"]);
+            }}
+            items={users}
+            renderItem={(user, isHighlighted) => {
+              let userMetaList = legacy.extractMultipleMeta(user.userMeta, [
+                "userArtistName",
+                "profileImage",
+              ]);
 
-          return (
-            <div
-              key={user.id}
-              style={{ background: isHighlighted ? "lightgray" : "white" }}
-            >
-              {strings.decode(userMetaList["userArtistName"])}
-            </div>
-          );
-        }}
-        value={searchValue}
-        onChange={e => setSearchValue(e.target.value)}
-        onSelect={val => {
-          setSearchValue(val);
-        }}
-      />
+              return (
+                <div
+                  key={user.id}
+                  style={{ background: isHighlighted ? "lightgray" : "white" }}
+                >
+                  {strings.decode(userMetaList["userArtistName"])}
+                </div>
+              );
+            }}
+            value={searchValue}
+            onChange={e => setSearchValue(e.target.value)}
+            onSelect={val => {
+              setSearchValue(val);
+            }}
+          />
+        </>
+      )}
+
       {loading}
     </>
   );

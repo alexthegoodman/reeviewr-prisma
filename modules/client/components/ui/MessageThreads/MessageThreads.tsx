@@ -11,6 +11,7 @@ const MessageThreads: React.FC<MessageThreadsProps> = ({
   chatkitUser = null,
   onSelectThread = () => console.info("Select Thread"),
   setEmptyThead = () => console.info("Open Empty Thread"),
+  selectedThread = null,
 }) => {
   if (chatkitUser !== null) {
     return (
@@ -19,8 +20,15 @@ const MessageThreads: React.FC<MessageThreadsProps> = ({
           Start Thread
         </Button>
         {chatkitUser.rooms.map((room, i) => {
+          console.info("thread", chatkitUser.roomSubscriptions, room);
           return (
-            <div className="thread" key={room.id}>
+            <div
+              className={
+                selectedThread === room.id ? "thread selected" : "thread"
+              }
+              key={room.id}
+              onClick={() => onSelectThread(room.id)}
+            >
               <div className="threadContain">
                 <div className="avatars">
                   <div className="avatar avatar1">

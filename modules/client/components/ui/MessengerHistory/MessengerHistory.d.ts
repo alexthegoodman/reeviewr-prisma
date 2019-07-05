@@ -3,4 +3,6 @@ export interface MessengerHistoryProps {
   className?: string;
   onClick?: (e: MouseEvent) => void;
   messages: any;
+  chatkitUser: any;
+  chatkitRoomId: any;
 }
