@@ -1,3 +1,6 @@
+// https://github.com/prisma/prisma2/issues/42
+// https://github.com/prisma/lift/issues/38
+
 datasource db {
   provider = "mysql"
   url      = "mysql://root:root@127.0.0.1:3306/reeviewr-prisma2"
