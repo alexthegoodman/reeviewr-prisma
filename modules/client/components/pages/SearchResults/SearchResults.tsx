@@ -162,7 +162,9 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
           )}
         </section>
       ) : (
-        <Text>No search phrase entered</Text>
+        <Text tagName="h5" className="headline">
+          No search phrase entered
+        </Text>
       )}
     </>
   );

@@ -79,7 +79,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
     >
       <Text tagName="span">
         <Icon icon="heart" />
-        Like
+        {faved ? "Liked" : "Like"}
       </Text>
     </Button>
   );

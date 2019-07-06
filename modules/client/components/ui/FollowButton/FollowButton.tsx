@@ -174,7 +174,7 @@ const FollowButton: React.FC<FollowButtonProps> = ({
     >
       <Text tagName="span">
         <Icon icon="new-person" />
-        Follow
+        {followed ? "Followed" : "Follow"}
       </Text>
     </Button>
   );
