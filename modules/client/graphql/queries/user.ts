@@ -50,9 +50,9 @@ export const USERS_QUERY = gql`
     users(
       first: 25
       where: {
-        userTracks_some: { id_not: "", itemStatus: "v2publish" }
         AND: [
           # { userMeta_some: { metaName: "firstName", metaValue_not: "" } }
+          { userTracks_some: { id_not: "", itemStatus: "v2publish" } }
           {
             userMeta_some: {
               metaName: "userArtistName"

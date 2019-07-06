@@ -23,6 +23,8 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
 
   const { search } = route.lastChunk.request.params;
 
+  console.info("resules", encodeURIComponent(search));
+
   const { data: userData, error: userError, loading: userLoading } = useQuery(
     USERS_QUERY,
     { variables: { search: encodeURIComponent(search) } }
@@ -102,7 +104,7 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
   }
 
   if (
-    !utility.isDefinedWithContent(userData.users) ||
+    !utility.isDefinedWithContent(userData.users) &&
     !utility.isDefinedWithContent(tracksData.userTracks)
     // !utility.isDefinedWithContent(reviewsData.reviews)
   ) {
