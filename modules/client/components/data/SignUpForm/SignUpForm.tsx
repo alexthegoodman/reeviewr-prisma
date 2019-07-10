@@ -3,27 +3,28 @@ import * as React from "react";
 import { SignUpFormProps, SignUpFormValues } from "./SignUpForm.d";
 
 import {
-  Tabs,
-  Tab,
-  TabId,
-  Text,
   Button,
+  Callout,
+  Card,
   FormGroup,
   InputGroup,
-  Card,
-  Callout,
+  Tab,
+  TabId,
+  Tabs,
+  Text,
 } from "@blueprintjs/core";
-import { Formik, Form, FormikActions, FormikProps } from "formik";
-import TextField from "../../ui/TextField/TextField";
+import { Form, Formik, FormikActions, FormikProps } from "formik";
+import { Link } from "react-navi";
 import * as Yup from "yup";
-import TextareaField from "../../ui/TextareaField/TextareaField";
-import UploadField from "../../ui/UploadField/UploadField";
-import SelectField from "../../ui/SelectField/SelectField";
-import { Genres, GenreList } from "../../../../defs/genres";
-import CheckboxField from "../../ui/CheckboxField/CheckboxField";
-import AuthClient from "../../../services/AuthClient";
-import Utility from "../../../../services/Utility";
+import { GenreList, Genres } from "../../../../defs/genres";
 import { ERROR_CODE } from "../../../../services/ERROR_CODE";
+import Utility from "../../../../services/Utility";
+import AuthClient from "../../../services/AuthClient";
+import CheckboxField from "../../ui/CheckboxField/CheckboxField";
+import SelectField from "../../ui/SelectField/SelectField";
+import TextareaField from "../../ui/TextareaField/TextareaField";
+import TextField from "../../ui/TextField/TextField";
+import UploadField from "../../ui/UploadField/UploadField";
 
 const SignUpForm: React.FC<SignUpFormProps> = ({
   ref = null,
@@ -49,7 +50,13 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
     confirmPassword: Yup.string()
       .required("Required")
       .oneOf([Yup.ref("password"), null], "Passwords must match"),
+    agreeTerms: Yup.boolean().oneOf([true], "Must Accept Terms"),
   });
+
+  const openInNewTab = url => {
+    let win = window.open(url, "_blank");
+    win.focus();
+  };
 
   if (successfulSubmission) {
     return (
@@ -79,6 +86,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
             email: "",
             password: "",
             confirmPassword: "",
+            agreeTerms: false,
           }}
           validationSchema={SignUpSchema}
           onSubmit={(
@@ -128,6 +136,23 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
                     fieldName="confirmPassword"
                     fieldPlaceholder="Confirm your password"
                     fieldType="password"
+                  />
+                  <CheckboxField
+                    label={
+                      <>
+                        Agree to{" "}
+                        <Link
+                          onClick={() =>
+                            openInNewTab(
+                              "https://grandrapids.reeviewr.com/pages/terms"
+                            )
+                          }
+                        >
+                          Terms
+                        </Link>
+                      </>
+                    }
+                    fieldName="agreeTerms"
                   />
                   <Button
                     type="submit"
