@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { BeyondSearchProps } from "./BeyondSearch.d";
 import { InputGroup } from "@blueprintjs/core";
+import { BeyondSearchProps } from "./BeyondSearch.d";
 
 const BeyondSearch: React.FC<BeyondSearchProps> = ({
   ref = null,
@@ -9,6 +9,7 @@ const BeyondSearch: React.FC<BeyondSearchProps> = ({
   onClick = () => console.info("Click"),
   inputRef = null,
   defaultValue = "",
+  value = "",
   disabled = false,
   leftIcon = "search",
   rightElement = <></>,
@@ -31,6 +32,7 @@ const BeyondSearch: React.FC<BeyondSearchProps> = ({
       rightElement={rightElement}
       onChange={changeHandler}
       placeholder={placeholder}
+      value={value}
     />
   );
 };

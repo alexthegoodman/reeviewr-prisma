@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
 import { IconName, MaybeElement } from "@blueprintjs/core";
+import { ReactElement } from "react";
 
 export interface BeyondSearchProps {
   ref?: React.Ref<any>;
@@ -12,4 +12,5 @@ export interface BeyondSearchProps {
   rightElement?: ReactElement<any>;
   onChange?: (e) => void;
   placeholder?: string;
+  value?: string;
 }
