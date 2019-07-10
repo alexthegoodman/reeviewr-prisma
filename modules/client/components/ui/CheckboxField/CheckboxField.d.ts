@@ -3,7 +3,7 @@ export interface CheckboxFieldProps {
   className?: string;
   onClick?: (e: MouseEvent) => void;
   helperText?: string;
-  label?: string;
+  label?: any;
   fieldName: string;
   fieldInfo?: string;
 }

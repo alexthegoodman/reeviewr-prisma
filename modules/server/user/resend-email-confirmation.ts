@@ -21,6 +21,7 @@ export const resendEmailConfirmation = (req, res, mixpanel) => {
     res.end();
   } catch (error) {
     mixpanel.track("ERROR", {
+      env: process.env.NODE_ENV,
       errorMessage: error.message,
       time: new Date(),
     });

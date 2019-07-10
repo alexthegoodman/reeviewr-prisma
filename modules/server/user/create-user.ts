@@ -1,8 +1,8 @@
-import { prisma } from "../../../__generated__/prisma-client";
-import EmailService from "../utils/email";
 import bcrypt from "bcrypt";
+import { prisma } from "../../../__generated__/prisma-client";
 import { ERROR_CODE } from "../../services/ERROR_CODE";
 import Utility from "../../services/Utility";
+import EmailService from "../utils/email";
 const uuid = require("uuid");
 const cloudinary = require("cloudinary").v2;
 import Core from "../../services/Core";
@@ -36,14 +36,14 @@ export const createUser = async (req, res, mixpanel) => {
 
     const { email, password, confirmPassword } = req.body;
 
-    let userExists = await prisma.user({ userEmail: email });
+    const userExists = await prisma.user({ userEmail: email });
 
     console.info("userExists", userExists);
 
     if (!utility.isDefinedWithContent(userExists)) {
       bcrypt.hash(password, 12, async (err, hash) => {
         if (utility.isDefinedWithContent(hash)) {
-          let newUser = await prisma.createUser({
+          const newUser = await prisma.createUser({
             userEmail: email,
             userPassword: hash,
             userConfirmed: 0,
@@ -58,7 +58,7 @@ export const createUser = async (req, res, mixpanel) => {
 
           console.info("new user", newUser);
 
-          let buttonText = "Confirm Email";
+          const buttonText = "Confirm Email";
 
           // TODO: send client-side error if email fails to send
           const host = req.get("host");
@@ -111,6 +111,7 @@ export const createUser = async (req, res, mixpanel) => {
     }
   } catch (error) {
     mixpanel.track("ERROR", {
+      env: process.env.NODE_ENV,
       errorMessage: error.message,
       time: new Date(),
     });

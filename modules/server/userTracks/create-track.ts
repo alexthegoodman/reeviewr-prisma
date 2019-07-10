@@ -1,10 +1,10 @@
-import { ERROR_CODE } from "../../services/ERROR_CODE";
+import fs from "fs";
 import { prisma } from "../../../__generated__/prisma-client";
+import Core from "../../services/Core";
+import { ERROR_CODE } from "../../services/ERROR_CODE";
+import Legacy from "../../services/Legacy";
 import Utility from "../../services/Utility";
 import EmailService from "../utils/email";
-import Core from "../../services/Core";
-import fs from "fs";
-import Legacy from "../../services/Legacy";
 // import * as cmd from "node-cmd";
 const exec = require("child-process-promise").exec;
 const cmd = require("node-cmd-promise");
@@ -154,7 +154,7 @@ export const createTrack = async (req, res, mixpanel) => {
                           console.error("error upload json #3", error3);
                         }
 
-                        let newTrack = await prisma.createUserTrack({
+                        const newTrack = await prisma.createUserTrack({
                           oldId: uuid.v4().substr(0, 6),
                           itemName: trackTitle,
                           user: { connect: { id: authUser.id } },
@@ -334,7 +334,11 @@ export const createTrack = async (req, res, mixpanel) => {
       throw Error(ERROR_CODE.C008);
     }
   } catch (error) {
-    // mixpanel.track('ERROR', { time: new Date() });
+    mixpanel.track("ERROR", {
+      env: process.env.NODE_ENV,
+      errorMessage: error.message,
+      time: new Date(),
+    });
     console.error("ERROR ON:", req.method, req.url, req.params, req.query);
     console.error("ERROR DATA:", error);
     res.status(401);

@@ -19,6 +19,7 @@ import * as Yup from "yup";
 import { GenreList, Genres } from "../../../../defs/genres";
 import { ERROR_CODE } from "../../../../services/ERROR_CODE";
 import Utility from "../../../../services/Utility";
+import { useAppContext } from "../../../context";
 import AuthClient from "../../../services/AuthClient";
 import CheckboxField from "../../ui/CheckboxField/CheckboxField";
 import SelectField from "../../ui/SelectField/SelectField";
@@ -34,6 +35,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
   const authClient = new AuthClient();
   const utility = new Utility();
 
+  const [{ mixpanel }, dispatch] = useAppContext();
   const [userExists, setUserExists] = React.useState(false);
   const [successfulSubmission, setSuccessfulSubmission] = React.useState(false);
 
@@ -54,7 +56,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
   });
 
   const openInNewTab = url => {
-    let win = window.open(url, "_blank");
+    const win = window.open(url, "_blank");
     win.focus();
   };
 
@@ -93,9 +95,24 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
             values: SignUpFormValues,
             actions: FormikActions<SignUpFormValues>
           ) => {
-            console.log("values", { values, actions });
+            console.log(
+              "values",
+              { values, actions },
+              mixpanel,
+              mixpanel.track
+            );
+
+            mixpanel.track("Sign up form submission attempt", {
+              env: process.env.NODE_ENV,
+              time: new Date(),
+              data: {
+                values,
+              },
+            });
+
             authClient.signup(values, (err, res) => {
               console.info("returned", err, res);
+
               if (err) {
                 console.error(err);
                 if (res.body.errorMessage === ERROR_CODE.C008) {
@@ -142,6 +159,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
                       <>
                         Agree to{" "}
                         <Link
+                          href="#!"
                           onClick={() =>
                             openInNewTab(
                               "https://grandrapids.reeviewr.com/pages/terms"

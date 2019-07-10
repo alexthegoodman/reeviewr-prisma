@@ -1,8 +1,8 @@
-import { prisma } from "../../../__generated__/prisma-client";
-import EmailService from "../utils/email";
 import bcrypt from "bcrypt";
+import { prisma } from "../../../__generated__/prisma-client";
 import { ERROR_CODE } from "../../services/ERROR_CODE";
 import Utility from "../../services/Utility";
+import EmailService from "../utils/email";
 const uuid = require("uuid");
 const cloudinary = require("cloudinary").v2;
 import * as moment from "moment";
@@ -66,7 +66,7 @@ export const completeProfile = async (req, res, mixpanel) => {
         { public_id, folder, resource_type: "image" },
         async function(error, result) {
           console.log("result", error, result);
-          let updatedUser = await prisma.updateUser({
+          const updatedUser = await prisma.updateUser({
             where: { id: authUser.id },
             data: {
               userType: 0,
@@ -117,6 +117,7 @@ export const completeProfile = async (req, res, mixpanel) => {
     }
   } catch (error) {
     mixpanel.track("ERROR", {
+      env: process.env.NODE_ENV,
       errorMessage: error.message,
       time: new Date(),
     });

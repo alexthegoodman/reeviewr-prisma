@@ -1,8 +1,8 @@
 import { prisma } from "../../../__generated__/prisma-client";
 import { ERROR_CODE } from "../../services/ERROR_CODE";
-import EmailService from "../utils/email";
 import Legacy from "../../services/Legacy";
 import Utility from "../../services/Utility";
+import EmailService from "../utils/email";
 
 export const confirmEmail = async (req, res, mixpanel) => {
   try {
@@ -48,6 +48,7 @@ export const confirmEmail = async (req, res, mixpanel) => {
     }
   } catch (error) {
     mixpanel.track("ERROR", {
+      env: process.env.NODE_ENV,
       errorMessage: error.message,
       time: new Date(),
     });

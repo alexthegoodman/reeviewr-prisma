@@ -1,6 +1,6 @@
 import { prisma } from "../../../__generated__/prisma-client";
-import Utility from "../../services/Utility";
 import { ERROR_CODE } from "../../services/ERROR_CODE";
+import Utility from "../../services/Utility";
 
 // 1. access user via email and bcrypt(password)
 // 2. Check userType = 0 and userConfirmed = 1
@@ -57,6 +57,7 @@ export const authenticate = async (req, res, passport, mixpanel) => {
       }
     } catch (error) {
       mixpanel.track("ERROR", {
+        env: process.env.NODE_ENV,
         errorMessage: error.message,
         time: new Date(),
       });
