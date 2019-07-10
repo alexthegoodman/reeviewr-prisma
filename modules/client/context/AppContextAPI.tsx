@@ -1,9 +1,7 @@
 import * as React from "react";
+import { MixpanelConsumer } from "react-mixpanel";
 import { AppContextProvider } from ".";
 import { User } from "../../../__generated__/gql-gen/grapql-types";
-import { useCookies } from "react-cookie";
-import { useQuery } from "react-apollo-hooks";
-import { USER_QUERY } from "../graphql/queries/user";
 import Utility from "../../services/Utility";
 
 export interface IInitialAppState {
@@ -76,30 +74,16 @@ export const AppContextAPI = ({ children }) => {
 
   // load API data via AuthClient or another Client and client.query
 
-  // if (utility.isDefinedWithContent(cookies["reeviewrPrivateHash"])) {
-  //   const { data: userData, error: userError, loading: userLoading } = useQuery(
-  //     USER_QUERY,
-  //     { variables: { privateHash: cookies["reeviewrPrivateHash"] } }
-  //   );
-  //   if (userLoading) {
-  //     return <div>Loading user...</div>;
-  //   }
-  //   if (userError) {
-  //     return <div>Error on user! {userError.message}</div>;
-  //   }
-  //   if (
-  //     Object.keys(userData).length === 0 ||
-  //     !utility.isDefinedWithContent(userData)
-  //   ) {
-  //     return <div>Void data error 401...</div>;
-  //   }
-
-  //   InitialAppState = { ...InitialAppState, userData };
-  // }
-
   return (
-    <AppContextProvider initialState={InitialAppState} reducer={reducer}>
-      {children}
-    </AppContextProvider>
+    <MixpanelConsumer>
+      {mixpanel => (
+        <AppContextProvider
+          initialState={{ ...InitialAppState, mixpanel }}
+          reducer={reducer}
+        >
+          {children}
+        </AppContextProvider>
+      )}
+    </MixpanelConsumer>
   );
 };
