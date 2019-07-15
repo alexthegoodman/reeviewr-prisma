@@ -37,6 +37,13 @@ To ease creation of components, take advantage of these commands
 - `yarn gen:page PageName`
 - `yarn gen:data DataComponentName`
 
+## TODO
+
+- Write Jest tests
+- Write Cypress tests
+- Get all /ui/ components in Storybook
+  - Properly decouple /data/ components with /ui/ components where necessary
+
 ## Technology Used
 
 - Prisma
