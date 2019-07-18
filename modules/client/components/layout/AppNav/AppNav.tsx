@@ -2,14 +2,7 @@ import * as React from "react";
 
 import { AppNavProps } from "./AppNav.d";
 
-import {
-  Link,
-  NotFoundBoundary,
-  useCurrentRoute,
-  useLoadingRoute,
-  useNavigation,
-} from "react-navi";
-// import BusyIndicator from "react-busy-indicator";
+import { Link, useCurrentRoute, useNavigation } from "react-navi";
 
 import { useAppContext } from "../../../context";
 
@@ -209,120 +202,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
     <App>
       <Sidebar
         className={mobileMenuOpen ? "mobileMenuOpen" : "mobileMenuClosed"}
-      >
-        <div className="mobileHide">
-          {pointCounter}
-          <Button
-            className="uploadButton joyrideUploadPage"
-            onClick={() => navigate("/upload", false, true)}
-          >
-            Upload
-          </Button>
-          <Menu className="sidebarMenu">
-            <MenuItem
-              active={route.url.pathname === "/" ? true : false}
-              onClick={() => navigation.navigate("/")}
-            >
-              Home
-            </MenuItem>
-            <MenuItem
-              className="joyrideTracksPage"
-              active={route.url.pathname === "/tracks" ? true : false}
-              onClick={() => navigation.navigate("/tracks")}
-            >
-              Tracks
-            </MenuItem>
-            <MenuItem
-              className="joyrideArtistsPage"
-              active={route.url.pathname === "/artists" ? true : false}
-              onClick={() => navigation.navigate("/artists")}
-            >
-              Artists
-            </MenuItem>
-            <MenuItem
-              className="joyrideReviewsPage"
-              active={route.url.pathname === "/reviews" ? true : false}
-              onClick={() => navigation.navigate("/reviews")}
-            >
-              Reviews
-            </MenuItem>
-            <MenuItem
-              className="joyrideMessagesPage"
-              active={route.url.pathname === "/messages" ? true : false}
-              onClick={() => navigate("/messages", false, true)}
-            >
-              Messages
-            </MenuItem>
-            <MenuItem
-              className="joyrideNotificationsPage"
-              active={route.url.pathname === "/notifications" ? true : false}
-              onClick={() => navigate("/notifications", false, true)}
-            >
-              Notifications
-            </MenuItem>
-          </Menu>
-          <footer className="footer">
-            <Text tagName="span">
-              <img src="https://img.shields.io/chrome-web-store/price/ogffaloegjglncjfehdfplabnoondfjo.svg" />
-              All Proceeds Donated
-            </Text>
-            <Text tagName="span">
-              <img src="https://img.shields.io/apm/l/vim-mode.svg" />
-              Reeviewr is Open Source
-            </Text>
-            <a target="_blank" href="https://www.facebook.com/reeviewr/">
-              <img src="https://img.shields.io/badge/-Facebook-%23306199.svg" />
-            </a>
-            <a target="_blank" href="https://twitter.com/reeviewr">
-              <img src="https://img.shields.io/badge/-Twitter-%2326c4f1.svg" />
-            </a>
-            <a
-              target="_blank"
-              href="https://www.youtube.com/channel/UCgHw8sLLekekCr_LjWZs9Cg"
-            >
-              <img src="https://img.shields.io/badge/-YouTube-%23e21d17.svg" />
-            </a>
-          </footer>
-        </div>
-        <div className="mobileShow overflowScroll">
-          <Menu className="sidebarMenu">
-            <MenuItem
-              active={route.url.pathname === "/" ? true : false}
-              onClick={() => navigate("/", true)}
-            >
-              Home
-            </MenuItem>
-            <MenuItem
-              active={route.url.pathname === "/tracks" ? true : false}
-              onClick={() => navigate("/tracks", true)}
-            >
-              Tracks
-            </MenuItem>
-            <MenuItem
-              active={route.url.pathname === "/artists" ? true : false}
-              onClick={() => navigate("/artists", true)}
-            >
-              Artists
-            </MenuItem>
-            <MenuItem
-              active={route.url.pathname === "/reviews" ? true : false}
-              onClick={() => navigate("/reviews", true)}
-            >
-              Reviews
-            </MenuItem>
-            <MenuItem
-              active={route.url.pathname === "/upload" ? true : false}
-              onClick={() => navigate("/upload", true, true)}
-            >
-              Upload
-            </MenuItem>
-            {topLoggedInItems}
-            {alwaysOnItems}
-            {bottomLoggedInItems}
-            {loggedOutItems}
-          </Menu>
-        </div>
-      </Sidebar>
+      />
       <Header
         leftElements={
           <>
@@ -353,7 +233,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                   }, 250);
                 }}
               >
-                How it Works
+                ?
               </Button>
               {rightNav}
               <Popover
