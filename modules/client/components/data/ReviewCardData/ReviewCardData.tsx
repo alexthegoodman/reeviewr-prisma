@@ -1,16 +1,17 @@
 import * as React from "react";
 
-import { ReviewCardDataProps } from "./ReviewCardData.d";
-import ReviewCard from "../../ui/ReviewCard/ReviewCard";
-import Legacy from "../../../../services/Legacy";
-import Strings from "../../../services/Strings";
-import { FILE_QUERY } from "../../../graphql/queries/userTrack";
+import { Dialog, Text } from "@blueprintjs/core";
+import { Image } from "cloudinary-react";
 import { useQuery } from "react-apollo-hooks";
 import { ImageSizes } from "../../../../defs/imageSizes";
-import { Dialog, Text } from "@blueprintjs/core";
 import Core from "../../../../services/Core";
-import { Image } from "cloudinary-react";
+import Legacy from "../../../../services/Legacy";
 import Utility from "../../../../services/Utility";
+import { useAppContext } from "../../../context";
+import { FILE_QUERY } from "../../../graphql/queries/userTrack";
+import Strings from "../../../services/Strings";
+import ReviewCard from "../../ui/ReviewCard/ReviewCard";
+import { ReviewCardDataProps } from "./ReviewCardData.d";
 
 const ReviewCardData: React.FC<ReviewCardDataProps> = ({
   ref = null,
@@ -29,6 +30,7 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
 
   const clickHandler = e => onClick(e);
 
+  const [{ mixpanel }, dispatch] = useAppContext();
   const [modelOpen, setModelOpen] = React.useState(false);
 
   let trackId = null;
@@ -139,6 +141,10 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
           trackId={trackId}
           onClick={e => {
             // clickHandler(e);
+            mixpanel.track("Open review card modal", {
+              env: process.env.NODE_ENV,
+              time: new Date(),
+            });
             setModelOpen(true);
           }}
         />

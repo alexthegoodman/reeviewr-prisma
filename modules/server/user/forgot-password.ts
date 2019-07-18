@@ -1,8 +1,8 @@
 import { prisma } from "../../../__generated__/prisma-client";
-import EmailService from "../utils/email";
+import { ERROR_CODE } from "../../services/ERROR_CODE";
 import Legacy from "../../services/Legacy";
 import Utility from "../../services/Utility";
-import { ERROR_CODE } from "../../services/ERROR_CODE";
+import EmailService from "../utils/email";
 
 // 1. Find user via email
 // 2. Send reset password email containing forgotHash
@@ -32,7 +32,7 @@ export const forgotPassword = async (req, res, mixpanel) => {
       ) {
         // const userMeta = await prisma.userMeta({ oldId: user.oldId });
         // const firstName = legacy.extractMetaValue(userMeta, "firstName");
-        let buttonText = "Click to Reset";
+        const buttonText = "Click to Reset";
 
         const host = req.get("host");
         const forgotPasswordUrl =
@@ -72,6 +72,7 @@ export const forgotPassword = async (req, res, mixpanel) => {
     }
   } catch (error) {
     mixpanel.track("ERROR", {
+      env: process.env.NODE_ENV,
       errorMessage: error.message,
       time: new Date(),
     });

@@ -2,13 +2,14 @@ import * as React from "react";
 
 import { MessagesProps } from "./Messages.d";
 
+import { Text } from "@blueprintjs/core";
 import { ChatManager, TokenProvider } from "@pusher/chatkit-client";
+import * as _ from "lodash";
 import { useCookies } from "react-cookie";
 import { useAppContext } from "../../../context";
+import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
 import MessageThreads from "../../ui/MessageThreads/MessageThreads";
 import Messenger from "../../ui/Messenger/Messenger";
-import { Text } from "@blueprintjs/core";
-import * as _ from "lodash";
 
 const Messages: React.FC<MessagesProps> = () => {
   const [cookies, setCookie, removeCookie] = useCookies([
@@ -78,9 +79,9 @@ const Messages: React.FC<MessagesProps> = () => {
   if (chatkitUser !== null) {
     let i = 0;
     if (Object.keys(chatkitUser.rooms).length > 0) {
-      for (let key in chatkitUser.rooms) {
+      for (const key in chatkitUser.rooms) {
         if (chatkitUser.rooms.hasOwnProperty(key)) {
-          let id = chatkitUser.rooms[key].id;
+          const id = chatkitUser.rooms[key].id;
           chatkitUser
             .subscribeToRoomMultipart({
               roomId: id,
@@ -135,7 +136,7 @@ const Messages: React.FC<MessagesProps> = () => {
   return (
     <section className="messages">
       {!allRoomsSubscribed ? (
-        <Text>Subscribing...</Text>
+        <LoadingIndicator loadingText="Subscribing..." />
       ) : (
         <>
           <MessageThreads

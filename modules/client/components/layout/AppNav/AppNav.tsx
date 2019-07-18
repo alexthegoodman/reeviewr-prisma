@@ -3,28 +3,29 @@ import * as React from "react";
 import { AppNavProps } from "./AppNav.d";
 
 import {
+  Link,
+  NotFoundBoundary,
   useCurrentRoute,
   useLoadingRoute,
-  NotFoundBoundary,
   useNavigation,
-  Link,
 } from "react-navi";
 // import BusyIndicator from "react-busy-indicator";
 
 import { useAppContext } from "../../../context";
 
-import Header from "../../ui/Header/Header";
-import Sidebar from "../../ui/Sidebar/Sidebar";
-import MenuItem from "../../ui/MenuItem/MenuItem";
-import { Menu, Button, Popover, Position, Text, Icon } from "@blueprintjs/core";
-import ProfileItem from "../../ui/ProfileItem/ProfileItem";
-import App from "../App/App";
-import { useCookies } from "react-cookie";
-import Utility from "../../../../services/Utility";
-import Legacy from "../../../../services/Legacy";
-import BeyondSearchData from "../../data/BeyondSearchData/BeyondSearchData";
+import { Button, Icon, Menu, Popover, Position, Text } from "@blueprintjs/core";
 import * as $ from "jquery";
+import { useCookies } from "react-cookie";
+import Legacy from "../../../../services/Legacy";
+import Utility from "../../../../services/Utility";
 import Strings from "../../../services/Strings";
+import BeyondSearchData from "../../data/BeyondSearchData/BeyondSearchData";
+import ContentFooter from "../../ui/ContentFooter/ContentFooter";
+import Header from "../../ui/Header/Header";
+import MenuItem from "../../ui/MenuItem/MenuItem";
+import ProfileItem from "../../ui/ProfileItem/ProfileItem";
+import Sidebar from "../../ui/Sidebar/Sidebar";
+import App from "../App/App";
 
 const AppNav: React.FC<AppNavProps> = ({ children }) => {
   const utility = new Utility();
@@ -72,13 +73,13 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
   );
 
   const openInNewTab = url => {
-    var win = window.open(url, "_blank");
+    const win = window.open(url, "_blank");
     win.focus();
   };
 
   let topLoggedInItems = <></>;
   let bottomLoggedInItems = <></>;
-  let alwaysOnItems = (
+  const alwaysOnItems = (
     <>
       <MenuItem
         onClick={() =>
@@ -384,7 +385,11 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
         }
       />
 
-      <section className="mainContent">{children}</section>
+      <section className="mainContent">
+        <div className="contentBody">{children}</div>
+
+        <ContentFooter />
+      </section>
     </App>
   );
 };

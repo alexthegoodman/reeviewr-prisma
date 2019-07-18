@@ -1,12 +1,12 @@
 import * as React from "react";
 
-import { MessageThreadsProps } from "./MessageThreads.d";
-import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
 import { Button, Text } from "@blueprintjs/core";
-import { useAppContext } from "../../../context";
-import client from "../../../services/ApolloClient";
-import { USER_ID_QUERY } from "../../../graphql/queries/user";
 import Legacy from "../../../../services/Legacy";
+import { useAppContext } from "../../../context";
+import { USER_ID_QUERY } from "../../../graphql/queries/user";
+import client from "../../../services/ApolloClient";
+import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
+import { MessageThreadsProps } from "./MessageThreads.d";
 
 const MessageThreads: React.FC<MessageThreadsProps> = ({
   ref = null,
@@ -25,7 +25,7 @@ const MessageThreads: React.FC<MessageThreadsProps> = ({
 
   const [{ userData }, dispatch] = useAppContext();
 
-  let userMetaList = legacy.extractMultipleMeta(userData.user.userMeta, [
+  const userMetaList = legacy.extractMultipleMeta(userData.user.userMeta, [
     "userArtistName",
     "profileImage",
   ]);
@@ -45,7 +45,7 @@ const MessageThreads: React.FC<MessageThreadsProps> = ({
         </Button>
         {chatkitUser.rooms.map((room, i) => {
           let otherUser = null;
-          for (let id in room.users) {
+          for (const id in room.users) {
             if (id !== userData.user.id) {
               otherUser = room.users[id];
             }

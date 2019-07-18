@@ -1,36 +1,40 @@
 import * as React from "react";
 
-import { HomeProps } from "./Home.d";
-import ArtistCard from "../../ui/ArtistCard/ArtistCard";
 import { useQuery } from "react-apollo-hooks";
 import { USERS_QUERY } from "../../../graphql/queries/user";
 import { USER_TRACKS_QUERY } from "../../../graphql/queries/userTrack";
 import UserTrack from "../../data/UserTrack/UserTrack";
+import ArtistCard from "../../ui/ArtistCard/ArtistCard";
+import { HomeProps } from "./Home.d";
 
+import { Callout, Text } from "@blueprintjs/core";
+import ReactJoyride from "react-joyride";
+import { Link } from "react-navi";
 import HorizontalScroll from "react-scroll-horizontal";
 import Legacy from "../../../../services/Legacy";
-import ArtistCardData from "../../data/ArtistCardData/ArtistCardData";
 import Utility from "../../../../services/Utility";
-import ReactJoyride from "react-joyride";
 import { useAppContext } from "../../../context";
-import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
-import { Text, Callout } from "@blueprintjs/core";
+import ArtistCardData from "../../data/ArtistCardData/ArtistCardData";
 import HomeHero from "../../ui/HomeHero/HomeHero";
-import { Link } from "react-navi";
+import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
 
 const Home: React.FC<HomeProps> = () => {
   const utility = new Utility();
 
   const [{ tour }, dispatch] = useAppContext();
 
-  const { data: userData, error: userError, loading: userLoading } = useQuery(
-    USERS_QUERY
-  );
+  const {
+    data: userData,
+    error: userError,
+    loading: userLoading,
+    refetch: refetchUsers,
+  } = useQuery(USERS_QUERY);
 
   const {
     data: tracksData,
     error: tracksError,
     loading: tracksLoading,
+    refetch: refetchTracks,
   } = useQuery(USER_TRACKS_QUERY);
 
   if (userLoading) {
@@ -47,14 +51,19 @@ const Home: React.FC<HomeProps> = () => {
     return <div>Error on tracks! {tracksError.message}</div>;
   }
 
-  if (
-    !utility.isDefinedWithContent(userData.users) ||
-    !utility.isDefinedWithContent(tracksData.userTracks)
-  ) {
-    return <div>Mechanical work at home...</div>;
+  if (!utility.isDefinedWithContent(userData.users)) {
+    setTimeout(() => {
+      refetchUsers();
+    }, 2000);
+    return <div>Users data must be defined Code 301... Please wait...</div>;
   }
 
-  console.info("Home Data", userData, tracksData);
+  if (!utility.isDefinedWithContent(tracksData.userTracks)) {
+    setTimeout(() => {
+      refetchTracks();
+    }, 2000);
+    return <div>Tracks data must be defined Code 302... Please wait...</div>;
+  }
 
   const steps = [
     {

@@ -1,41 +1,41 @@
 import * as React from "react";
 
-import { AddReviewDataProps, AddReviewFormValues } from "./AddReviewData.d";
-import AddReview from "../../ui/AddReview/AddReview";
 import {
-  Tabs,
-  Tab,
-  TabId,
-  Text,
   Button,
+  Callout,
+  Card,
+  Dialog,
   FormGroup,
   InputGroup,
-  Card,
-  Callout,
-  Dialog,
+  Tab,
+  TabId,
+  Tabs,
+  Text,
 } from "@blueprintjs/core";
-import { Formik, Form, FormikActions, FormikProps } from "formik";
-import TextField from "../../ui/TextField/TextField";
-import * as Yup from "yup";
-import TextareaField from "../../ui/TextareaField/TextareaField";
-import UploadField from "../../ui/UploadField/UploadField";
-import SelectField from "../../ui/SelectField/SelectField";
-import { Genres, GenreList } from "../../../../defs/genres";
-import CheckboxField from "../../ui/CheckboxField/CheckboxField";
-import AuthClient from "../../../services/AuthClient";
-import Utility from "../../../../services/Utility";
-import { ERROR_CODE } from "../../../../services/ERROR_CODE";
-import CreateQuestion from "../../ui/CreateQuestion/CreateQuestion";
-import AnswerQuestion from "../../ui/AnswerQuestion/AnswerQuestion";
-import Legacy from "../../../../services/Legacy";
-import Strings from "../../../services/Strings";
+import { Form, Formik, FormikActions, FormikProps } from "formik";
+import { useMutation, useQuery } from "react-apollo-hooks";
 import { useCookies } from "react-cookie";
 import { useCurrentRoute, useNavigation } from "react-navi";
-import { USER_QUERY } from "../../../graphql/queries/user";
-import { useQuery, useMutation } from "react-apollo-hooks";
+import * as Yup from "yup";
+import { GenreList, Genres } from "../../../../defs/genres";
+import { ERROR_CODE } from "../../../../services/ERROR_CODE";
+import Legacy from "../../../../services/Legacy";
+import Utility from "../../../../services/Utility";
 import { useAppContext } from "../../../context";
-import { UPDATE_USER_META } from "../../../graphql/mutations/user";
 import { ADD_REVIEW } from "../../../graphql/mutations/review";
+import { UPDATE_USER_META } from "../../../graphql/mutations/user";
+import { USER_QUERY } from "../../../graphql/queries/user";
+import AuthClient from "../../../services/AuthClient";
+import Strings from "../../../services/Strings";
+import AddReview from "../../ui/AddReview/AddReview";
+import AnswerQuestion from "../../ui/AnswerQuestion/AnswerQuestion";
+import CheckboxField from "../../ui/CheckboxField/CheckboxField";
+import CreateQuestion from "../../ui/CreateQuestion/CreateQuestion";
+import SelectField from "../../ui/SelectField/SelectField";
+import TextareaField from "../../ui/TextareaField/TextareaField";
+import TextField from "../../ui/TextField/TextField";
+import UploadField from "../../ui/UploadField/UploadField";
+import { AddReviewDataProps, AddReviewFormValues } from "./AddReviewData.d";
 
 const AddReviewData: React.FC<AddReviewDataProps> = ({
   ref = null,
@@ -52,7 +52,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
 
   const route = useCurrentRoute();
   const navigation = useNavigation();
-  const [{ userData }, dispatch] = useAppContext();
+  const [{ userData, mixpanel }, dispatch] = useAppContext();
   const [navbarTabId, setNavbarTabId] = React.useState("question1" as TabId);
   const [modelOpen, setModelOpen] = React.useState(false);
   const [cookies] = useCookies(["reeviewrPrivateHash"]);
@@ -63,7 +63,15 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
 
   const [questionsBlankError, setQuestionsBlankError] = React.useState(false);
 
-  let addReview = <AddReview onClick={() => navigation.navigate("/sign-up")} />;
+  const goToSignUp = () => {
+    mixpanel.track("Open add review modal (signed out)", {
+      env: process.env.NODE_ENV,
+      time: new Date(),
+    });
+    navigation.navigate("/sign-up");
+  };
+
+  let addReview = <AddReview onClick={goToSignUp} />;
 
   let userMetaList = null;
   if (userData !== null && userData) {
@@ -76,10 +84,18 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
       "userExplicitDemo",
     ]);
 
+    const openReviewModel = () => {
+      mixpanel.track("Open add review modal (signed in)", {
+        env: process.env.NODE_ENV,
+        time: new Date(),
+      });
+      setModelOpen(true);
+    };
+
     addReview = (
       <AddReview
         imageUrl={userMetaList["profileImage"]}
-        onClick={() => setModelOpen(true)}
+        onClick={openReviewModel}
       />
     );
   }
@@ -112,8 +128,8 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
       "reviewedBy",
     ]);
 
-    let questionType = [];
-    let questionOptions = [];
+    const questionType = [];
+    const questionOptions = [];
     [1, 2, 3].forEach((num, i) => {
       if (trackMetaList[`questionFour${num}`] !== "") {
         questionType[i] = "mult_choice";
@@ -196,7 +212,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                 actions: FormikActions<AddReviewFormValues>
               ) => {
                 console.log("values", { values, actions });
-                let error = false;
+                const error = false;
 
                 if (
                   values.questionAnswer1 === "" ||
@@ -238,15 +254,15 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                     refetchQueries: ["userTracks", "userTrack"],
                   });
 
-                  let savedPoints = parseInt(
+                  const savedPoints = parseInt(
                     legacy.extractMetaValue(userData.user.userMeta, "points")
                   );
-                  let pointsId = legacy.extractMetaProp(
+                  const pointsId = legacy.extractMetaProp(
                     userData.user.userMeta,
                     "points",
                     "id"
                   );
-                  let totalPoints = savedPoints + 1;
+                  const totalPoints = savedPoints + 1;
 
                   const {
                     data: data2,

@@ -1,8 +1,9 @@
 import * as React from "react";
 
+import { Checkbox, FormGroup, InputGroup, Label } from "@blueprintjs/core";
+import { Field, FieldProps } from "formik";
+import ValidationNotice from "../ValidationNotice/ValidationNotice";
 import { CheckboxFieldProps } from "./CheckboxField.d";
-import { InputGroup, FormGroup, Label, Checkbox } from "@blueprintjs/core";
-import { FieldProps, Field } from "formik";
 
 const CheckboxField: React.FC<CheckboxFieldProps> = ({
   ref = null,
@@ -35,9 +36,11 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
             label={label}
             {...field}
           />
-          {form.touched[fieldName] &&
-            form.errors[fieldName] &&
-            form.errors[fieldName]}
+          {form.touched[fieldName] && form.errors[fieldName] ? (
+            <ValidationNotice error={form.errors[fieldName]} />
+          ) : (
+            <></>
+          )}
         </FormGroup>
       )}
     />

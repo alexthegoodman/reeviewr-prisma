@@ -1,8 +1,8 @@
 import { prisma } from "../../../__generated__/prisma-client";
-import EmailService from "../utils/email";
+import { ERROR_CODE } from "../../services/ERROR_CODE";
 import Legacy from "../../services/Legacy";
 import Utility from "../../services/Utility";
-import { ERROR_CODE } from "../../services/ERROR_CODE";
+import EmailService from "../utils/email";
 
 import * as bcrypt from "bcrypt";
 
@@ -55,6 +55,7 @@ export const resetPassword = async (req, res, mixpanel) => {
     }
   } catch (error) {
     mixpanel.track("ERROR", {
+      env: process.env.NODE_ENV,
       errorMessage: error.message,
       time: new Date(),
     });

@@ -1,8 +1,8 @@
-import RestClient from "./RestClient";
-import client from "./ApolloClient";
-import { USER_PRIVATE_QUERY } from "../graphql/queries/user";
 import Cookies from "universal-cookie";
 import Utility from "../../services/Utility";
+import { USER_PRIVATE_QUERY } from "../graphql/queries/user";
+import client from "./ApolloClient";
+import RestClient from "./RestClient";
 
 export default class AuthClient {
   public restClient = new RestClient();

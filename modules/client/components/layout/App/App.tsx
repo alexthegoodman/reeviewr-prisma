@@ -1,22 +1,22 @@
 import * as React from "react";
 import { hot } from "react-hot-loader";
 
-import { AppProps } from "./App.d";
-import AuthClient from "../../../services/AuthClient";
-import { useAppContext } from "../../../context";
-import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
 import FullStory from "react-fullstory";
 import MessengerCustomerChat from "react-messenger-customer-chat";
 import { useCurrentRoute, useNavigation } from "react-navi";
 import Utility from "../../../../services/Utility";
+import { useAppContext } from "../../../context";
+import AuthClient from "../../../services/AuthClient";
+import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
+import { AppProps } from "./App.d";
 
 const App: React.FC<AppProps> = ({ children }) => {
   const authClient = new AuthClient();
   const utility = new Utility();
 
   const [{ userData }, dispatch] = useAppContext();
-  let route = useCurrentRoute();
-  let navigation = useNavigation();
+  const route = useCurrentRoute();
+  const navigation = useNavigation();
 
   if (userData === null) {
     authClient.getUserData(dispatch);
@@ -29,8 +29,6 @@ const App: React.FC<AppProps> = ({ children }) => {
       </>
     );
   }
-
-  console.info("App route", userData, route);
 
   // global redirects
   if (

@@ -36,6 +36,15 @@ To ease creation of components, take advantage of these commands
 - `yarn gen:ui ComponentName`
 - `yarn gen:page PageName`
 - `yarn gen:data DataComponentName`
+- `yarn storybook` to browse all /ui/ components
+- `yarn test` to run Jest and Cypress tests
+
+## TODO
+
+- Write Jest tests
+- Write Cypress tests
+- Get all /ui/ components in Storybook
+  - Properly decouple /data/ components with /ui/ components where necessary
 
 ## Technology Used
 

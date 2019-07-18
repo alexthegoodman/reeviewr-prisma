@@ -1,12 +1,13 @@
 import * as React from "react";
 
-import { ArtistCardDataProps } from "./ArtistCardData.d";
-import ArtistCard from "../../ui/ArtistCard/ArtistCard";
-import Legacy from "../../../../services/Legacy";
-import { ImageSizes } from "../../../../defs/imageSizes";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 import urlencode from "urlencode";
+import { ImageSizes } from "../../../../defs/imageSizes";
+import Legacy from "../../../../services/Legacy";
+import { useAppContext } from "../../../context";
 import Strings from "../../../services/Strings";
+import ArtistCard from "../../ui/ArtistCard/ArtistCard";
+import { ArtistCardDataProps } from "./ArtistCardData.d";
 
 const ArtistCardData: React.FC<ArtistCardDataProps> = ({
   ref = null,
@@ -17,9 +18,11 @@ const ArtistCardData: React.FC<ArtistCardDataProps> = ({
   const legacy = new Legacy();
   const strings = new Strings();
 
-  let route = useCurrentRoute();
-  let loadingRoute = useLoadingRoute();
-  let navigation = useNavigation();
+  const [{ mixpanel }, dispatch] = useAppContext();
+
+  const route = useCurrentRoute();
+  const loadingRoute = useLoadingRoute();
+  const navigation = useNavigation();
 
   const clickHandler = e => onClick(e);
 
@@ -54,6 +57,10 @@ const ArtistCardData: React.FC<ArtistCardDataProps> = ({
       reviewCount={reviewCount}
       trackCount={trackCount}
       onClick={e => {
+        mixpanel.track("Navigate to artist", {
+          env: process.env.NODE_ENV,
+          time: new Date(),
+        });
         navigation.navigate(
           `/artists/${user.id}/${strings.convertToSlug(userArtistName)}`
         );
