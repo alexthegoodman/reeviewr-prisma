@@ -1,0 +1,100 @@
+.mainContent {
+  padding-left: 335px;
+  padding-right: 35px;
+  padding-top: 75px + 35px;
+  background: #3e4b58;
+  height: 100vh;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+
+  .contentBody {
+    min-height: calc(100vh - #{$headerHeight});
+  }
+
+  @include tabletDown {
+    padding: (60px + $mobile) $mobile $mobile $mobile;
+  }
+}
+
+.bp3-popover .bp3-popover-content .bp3-menu {
+  background: $dark-gray3;
+}
+
+.bp3-popover .bp3-popover-arrow-fill {
+  fill: $dark-gray3;
+}
+
+.dropdown {
+  li {
+    .menuItem {
+      padding: 10px 30px;
+
+      & > .bp3-fill {
+        font-size: 1rem;
+        font-weight: 300;
+      }
+    }
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 25px;
+  padding: 0 25px;
+  opacity: 0.7;
+
+  span,
+  a {
+    color: white;
+    font-size: 0.9rem;
+    line-height: 1.1rem;
+    font-weight: 300;
+  }
+
+  span {
+    display: block;
+
+    img {
+      display: inline-block;
+      vertical-align: bottom;
+      margin-right: 7px;
+    }
+  }
+
+  a {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 7px;
+  }
+}
+
+.pointCounter {
+  display: block;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 12px 0;
+  font-weight: 600;
+  font-style: normal;
+  background: $darkBlue;
+}
+
+.mobileShow {
+  .sidebarMenu {
+    padding-top: 15px;
+
+    .menuItem.bp3-active,
+    .menuItem.bp3-menu-item {
+      padding: 5px 30px;
+
+      .bp3-fill {
+        font-size: 0.9rem;
+      }
+
+      &:before {
+        display: none;
+      }
+    }
+  }
+}

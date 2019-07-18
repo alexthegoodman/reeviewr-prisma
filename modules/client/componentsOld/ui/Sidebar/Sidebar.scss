@@ -1,0 +1,44 @@
+.sidebar,
+.sidebar.bp3-drawer.bp3-position-left {
+  padding-top: $headerHeight;
+  background: $dark-gray3;
+  width: 300px;
+
+  &.sub-sidebar {
+    left: $sidebarWidth;
+    background: $dark-gray4;
+    box-shadow: none;
+    z-index: 1;
+  }
+
+  @include tabletDown {
+    padding-top: 60px;
+
+    &.sub-sidebar {
+      position: relative;
+      left: auto;
+      height: auto;
+      width: calc(100% + 40px);
+      margin: 0 -$mobile;
+      padding-top: 0;
+    }
+
+    &.mobileMenuOpen {
+      transform: translateX(0px);
+      transition: all $long;
+    }
+
+    &.mobileMenuClosed {
+      transform: translateX(-300px);
+      transition: all $long;
+    }
+  }
+}
+
+.sidebarMenu {
+  background: transparent;
+}
+
+.desktopSidebarPortal {
+  z-index: -1;
+}

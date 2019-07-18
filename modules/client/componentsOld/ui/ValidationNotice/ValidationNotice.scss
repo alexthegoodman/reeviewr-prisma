@@ -1,0 +1,15 @@
+.validationNotice {
+  border-radius: 3px;
+  width: max-content;
+
+  &.danger {
+    background: $red;
+  }
+
+  span {
+    color: white;
+    padding: 3px 6px;
+    display: block;
+    font-size: 0.9rem;
+  }
+}

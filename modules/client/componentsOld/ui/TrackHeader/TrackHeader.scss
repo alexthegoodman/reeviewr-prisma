@@ -1,0 +1,80 @@
+.trackHeader {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+
+  .trackHeaderInfo {
+    @extend .verticalCenter;
+    padding-left: 15px;
+  }
+  button {
+    color: white;
+
+    &.trackPlayBtn {
+      @extend .horizontalCenter;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: $red;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      cursor: pointer;
+
+      .bp3-icon {
+        margin: 11px 0;
+      }
+      svg {
+        width: 30px;
+        height: 30px;
+        fill: white;
+      }
+    }
+  }
+  a {
+    color: white;
+
+    &.trackTitle {
+      font-size: 1.6rem;
+    }
+    &.artistName {
+      font-size: 1rem;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    &:hover {
+      color: $red;
+    }
+  }
+
+  @include tabletDown {
+    button {
+      &.trackPlayBtn {
+        width: 40px;
+        height: 40px;
+
+        .bp3-icon {
+          margin: 7px 0;
+        }
+        svg {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+    a {
+      &.trackTitle {
+        font-size: 1.3rem;
+      }
+      &.artistName {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+.loadingDots {
+  color: white;
+  font-size: 2rem;
+}

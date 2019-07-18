@@ -1,0 +1,21 @@
+.pageHeader {
+  display: flex;
+  flex-direction: row;
+
+  .left {
+    width: 35%;
+  }
+
+  .right {
+    width: 65%;
+    display: flex;
+    justify-content: flex-end;
+
+    .bp3-popover-wrapper {
+      margin: 0;
+      .bp3-popover-target {
+        margin: 0;
+      }
+    }
+  }
+}

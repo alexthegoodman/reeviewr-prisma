@@ -1,0 +1,20 @@
+.searchResults {
+  position: absolute;
+  top: $headerHeight;
+  left: $sidebarWidth;
+  width: calc(100vw - #{$sidebarWidth});
+  height: calc(100vh - #{$headerHeight});
+  background: $dark-gray2;
+  padding: 50px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }
+}

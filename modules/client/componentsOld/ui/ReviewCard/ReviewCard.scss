@@ -1,0 +1,85 @@
+.reviewCard {
+  @extend .card;
+  // max-width: 400px;
+
+  .cardInfo {
+    position: relative;
+    padding-bottom: 65px;
+    overflow: hidden;
+
+    .bp3-tag {
+      display: block;
+      margin: 0 auto;
+      width: max-content;
+    }
+
+    h5 {
+      font-size: 1.2rem;
+    }
+    h5,
+    p {
+      text-align: center;
+      color: white;
+      width: 100%;
+      margin: 0;
+    }
+
+    @include tabletDown {
+      padding-bottom: 50px;
+
+      h5 {
+        font-size: 1rem;
+      }
+      p {
+        font-size: 0.8rem;
+      }
+    }
+
+    .answerContent {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+
+      .mutl_choice {
+        @extend .horizontalCenter;
+      }
+
+      &:first-of-type {
+        opacity: 1;
+      }
+
+      &.reviewAnswer-exit-done,
+      &.reviewAnswer-exit-done:first-of-type {
+        opacity: 0;
+        transition: all 500ms;
+      }
+      &.reviewAnswer-exit,
+      &.reviewAnswer-exit:first-of-type {
+        transform: translateY(-15px);
+        opacity: 0;
+        transition: all 500ms;
+      }
+      &.reviewAnswer-exit-active,
+      &.reviewAnswer-exit-active:first-of-type {
+        transform: translateY(15px);
+        opacity: 0;
+        transition: all 500ms;
+      }
+      &.reviewAnswer-enter-active:first-of-type,
+      &.reviewAnswer-enter-active,
+      &.reviewAnswer-enter:first-of-type,
+      &.reviewAnswer-enter {
+        transform: translateY(-15px);
+        opacity: 0;
+        transition: all 500ms;
+      }
+
+      &.reviewAnswer-enter-done:first-of-type,
+      &.reviewAnswer-enter-done {
+        transform: translateY(0px);
+        opacity: 1;
+        transition: all 500ms;
+      }
+    }
+  }
+}

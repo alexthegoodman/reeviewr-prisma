@@ -1,0 +1,63 @@
+.track {
+  width: 100%;
+
+  .trackInfo {
+    display: flex;
+    flex-direction: row;
+
+    .artContainer {
+    }
+    .infoContainer {
+      padding-left: 25px;
+      flex-grow: 1;
+    }
+  }
+  .trackActions {
+    padding-left: 225px;
+    padding-top: 25px;
+  }
+  .reviewContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 25px;
+    grid-row-gap: 25px;
+  }
+  .actionContainer {
+    @extend .horizontalCenter;
+    padding-top: 25px;
+  }
+
+  @include tabletDown {
+    .trackInfo {
+      .infoContainer {
+        padding: 0;
+      }
+    }
+    .reviewContainer {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-column-gap: 25px;
+      grid-row-gap: 25px;
+
+      .reviewCard {
+        display: none;
+
+        &:first-child {
+          display: block;
+        }
+      }
+    }
+    .trackActions {
+      padding-top: 0;
+      padding-left: 0;
+    }
+    .actionContainer {
+      padding-top: 10px;
+      flex-direction: column;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

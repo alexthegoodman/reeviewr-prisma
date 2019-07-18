@@ -1,0 +1,30 @@
+.beyondSearch,
+.beyondSearch.bp3-input-group.bp3-large {
+  width: 100%;
+
+  .bp3-icon {
+    margin: 18px;
+
+    svg {
+      width: 19px;
+      height: 19px;
+      color: white;
+    }
+  }
+  .bp3-input {
+    height: 55px;
+    line-height: 55px;
+    padding-left: 55px;
+    padding-right: 55px;
+    font-size: 1.2rem;
+    background: $dark-gray5;
+    color: white;
+    @include placeholderProperties(rgba(255, 255, 255, 0.8), 300);
+    min-width: 300px;
+  }
+
+  ::-webkit-search-cancel-button {
+    position: relative;
+    right: 20px;
+  }
+}
