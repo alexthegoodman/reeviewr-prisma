@@ -1,31 +1,32 @@
-import * as React from "react";
 import { lazy, mount, route } from "navi";
+import * as React from "react";
 
-import Home from "../components/pages/Home/Home";
-import Tracks from "../components/pages/Tracks/Tracks";
-import TrackDetail from "../components/pages/TrackDetail/TrackDetail";
-import Artists from "../components/pages/Artists/Artists";
-import ArtistDetail from "../components/pages/ArtistDetail/ArtistDetail";
-import Reviews from "../components/pages/Reviews/Reviews";
-import Login from "../components/pages/Login/Login";
-import SignUp from "../components/pages/SignUp/SignUp";
-import AuthNav from "../components/layout/AuthNav/AuthNav";
+import he from "he";
+import Legacy from "../../services/Legacy";
+import Utility from "../../services/Utility";
 import AppNav from "../components/layout/AppNav/AppNav";
-import ForgotPassword from "../components/pages/ForgotPassword/ForgotPassword";
-import ResetPassword from "../components/pages/ResetPassword/ResetPassword";
-import ProfileLikes from "../components/pages/ProfileLikes/ProfileLikes";
-import ProfileFollowing from "../components/pages/ProfileFollowing/ProfileFollowing";
-import ProfileFollowers from "../components/pages/ProfileFollowers/ProfileFollowers";
-import UploadTrack from "../components/pages/UploadTrack/UploadTrack";
-import SearchResults from "../components/pages/SearchResults/SearchResults";
-import ConfirmEmail from "../components/pages/ConfirmEmail/ConfirmEmail";
+import AuthNav from "../components/layout/AuthNav/AuthNav";
+import ArtistDetail from "../components/pages/ArtistDetail/ArtistDetail";
+import Artists from "../components/pages/Artists/Artists";
 import CompleteProfile from "../components/pages/CompleteProfile/CompleteProfile";
+import ConfirmEmail from "../components/pages/ConfirmEmail/ConfirmEmail";
+import ForgotPassword from "../components/pages/ForgotPassword/ForgotPassword";
+import Home from "../components/pages/Home/Home";
+import MailchimpPods070619 from "../components/pages/landing/MailchimpPods070619/MailchimpPods070619";
+import Login from "../components/pages/Login/Login";
 import Messages from "../components/pages/Messages/Messages";
 import Notifications from "../components/pages/Notifications/Notifications";
-import Utility from "../../services/Utility";
-import Legacy from "../../services/Legacy";
+import ProfileFollowers from "../components/pages/ProfileFollowers/ProfileFollowers";
+import ProfileFollowing from "../components/pages/ProfileFollowing/ProfileFollowing";
+import ProfileLikes from "../components/pages/ProfileLikes/ProfileLikes";
+import ResetPassword from "../components/pages/ResetPassword/ResetPassword";
+import Reviews from "../components/pages/Reviews/Reviews";
+import SearchResults from "../components/pages/SearchResults/SearchResults";
+import SignUp from "../components/pages/SignUp/SignUp";
+import TrackDetail from "../components/pages/TrackDetail/TrackDetail";
+import Tracks from "../components/pages/Tracks/Tracks";
+import UploadTrack from "../components/pages/UploadTrack/UploadTrack";
 import Strings from "../services/Strings";
-import he from "he";
 
 const utility = new Utility();
 const legacy = new Legacy();
@@ -349,6 +350,17 @@ const routes = mount({
           <Notifications />
         </AppNav>
       ),
+    };
+  }),
+  "/landing/pods-a": route(req => {
+    return {
+      title: "Reeviewr Pods",
+      head: (
+        <>
+          <title>Reeviewr Pods</title>
+        </>
+      ),
+      view: <MailchimpPods070619 />,
     };
   }),
 });

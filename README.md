@@ -29,6 +29,9 @@ Special thanks goes to Atomic Object for open sourcing a starter kit that was pr
 
 You wll be doing most work in /modules/client/, /modules/server/, and /cypress/.
 
+SSR will not function with `yarn dev` because webpack-dev-server is serving on port `3000`.
+TO test SSR functions, run `yarn build:production` and check port `3001`.
+
 ## Commands
 
 To ease creation of components, take advantage of these commands
@@ -41,10 +44,8 @@ To ease creation of components, take advantage of these commands
 
 ## TODO
 
-- Write Jest tests
 - Write Cypress tests
-- Get all /ui/ components in Storybook
-  - Properly decouple /data/ components with /ui/ components where necessary
+- Put components in categorical sub folders
 
 ## Technology Used
 

@@ -34,9 +34,7 @@ interface RootProviderProps {}
 export const AppProvider: React.FC<AppProviderProps> = props => {
   return (
     <AppContextAPI>
-      <App>
-        <View />
-      </App>
+      <View />
     </AppContextAPI>
   );
 };

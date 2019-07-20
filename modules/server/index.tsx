@@ -4,11 +4,11 @@ import * as express from "express";
 import { formatError, GraphQLError } from "graphql";
 import { graphiqlExpress, graphqlExpress } from "graphql-server-express";
 import { sortBy } from "lodash-es";
+import md5 from "md5";
 import * as morgan from "morgan";
 import * as db from "../db";
-import md5 from "md5";
-var passport = require("passport");
-var LocalStrategy = require("passport-local").Strategy;
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
 const Arena = require("bull-arena");
 const knex = db.getConnection();
@@ -24,28 +24,32 @@ if (typeof window === "undefined") {
 }
 
 // import fetch from "node-fetch";
-import fetch from "cross-fetch";
-import * as React from "react";
-// import * as ReactDOM from "react-dom";
-import * as ReactDOMServer from "react-dom/server";
-import { ApolloProvider, getDataFromTree } from "react-apollo";
+import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { AppProvider } from "../client/RootProvider";
-import { Router } from "react-navi";
-import routes from "../client/routes";
+import fetch from "cross-fetch";
 import { createMemoryNavigation } from "navi";
+import * as React from "react";
+import { ApolloProvider, getDataFromTree } from "react-apollo";
+import {
+  ApolloProvider as ApolloHooksProvider,
+  getMarkupFromTree,
+} from "react-apollo-hooks";
+// import * as ReactDOM from "react-dom";
+import * as ReactDOMServer from "react-dom/server";
+import { Router } from "react-navi";
 import { Html } from "../client/Html";
+import { AppProvider } from "../client/RootProvider";
+import routes from "../client/routes";
 import {
   AUTHENTICATE_USER,
+  COMPLETE_PROFILE,
   CONFIRM_EMAIL,
+  CREATE_TRACK,
   CREATE_USER,
   FORGOT_PASSWORD,
   RESEND_EMAIL_CONFIRMATION,
-  CREATE_TRACK,
   RESET_PASSWORD,
-  COMPLETE_PROFILE,
 } from "./routes";
 import { authenticate } from "./user/authenticate";
 import { confirmEmail } from "./user/confirm-email";
@@ -53,24 +57,20 @@ import { createUser } from "./user/create-user";
 import { forgotPassword } from "./user/forgot-password";
 import { resendEmailConfirmation } from "./user/resend-email-confirmation";
 import { createTrack } from "./userTracks/create-track";
-import {
-  getMarkupFromTree,
-  ApolloProvider as ApolloHooksProvider,
-} from "react-apollo-hooks";
 
+import bcrypt from "bcrypt";
 import cors from "cors";
 import { prisma } from "../../__generated__/prisma-client";
-import bcrypt from "bcrypt";
-import { resetPassword } from "./user/reset-password";
 import Utility from "../services/Utility";
 import { completeProfile } from "./user/complete-profile";
+import { resetPassword } from "./user/reset-password";
 
 const serveStatic = require("serve-static");
 const path = require("path");
 const csp = require("helmet-csp");
 const Mixpanel = require("mixpanel");
 
-let app = express();
+const app = express();
 
 export const port = config.get<number>("server.port");
 export const apiHost = config.get<number>("server.apiHost");
@@ -108,7 +108,7 @@ export async function startServer() {
   // Closed beta password protection
   // app.use(wwwhisper());
 
-  var allowedOrigins = [
+  const allowedOrigins = [
     "http://localhost:3000",
     "http://reeviewr.com",
     "http://reeviewr-prisma.herokuapp.com",
@@ -121,13 +121,13 @@ export async function startServer() {
   app.use(
     cors({
       credentials: true,
-      origin: function(origin, callback) {
+      origin(origin, callback) {
         // allow requests with no origin
         // (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
+        if (!origin) { return callback(null, true); }
 
         if (allowedOrigins.indexOf(origin) === -1) {
-          var msg =
+          const msg =
             "The CORS policy for this site does not " +
             "allow access from the specified Origin.";
           return callback(new Error(msg), false);
@@ -184,6 +184,7 @@ export async function startServer() {
 
   console.info("start server");
 
+  // add to ENV
   const apiVersion = "v1.0";
 
   const utility = new Utility();
@@ -197,7 +198,7 @@ export async function startServer() {
       async function(email: string, password: string, done) {
         console.info(email, password);
 
-        let user = await prisma.user({ userEmail: email });
+        const user = await prisma.user({ userEmail: email });
 
         if (utility.isDefinedWithContent(user)) {
           const match = await bcrypt.compare(password, user.userPassword);
@@ -281,7 +282,7 @@ export async function startServer() {
 
       // const context = {};
       // https://frontarm.com/navi/en/reference/navigation/#creatememorynavigation
-      let navigation = createMemoryNavigation({
+      const navigation = createMemoryNavigation({
         routes,
         url: req.url,
       });

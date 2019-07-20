@@ -1,6 +1,7 @@
 import * as React from "react";
 import { hot } from "react-hot-loader";
 
+import { useCookies } from "react-cookie";
 import { useCurrentRoute, useNavigation } from "react-navi";
 import Utility from "../../../../services/Utility";
 import { useAppContext } from "../../../context";
@@ -16,8 +17,17 @@ const App: React.FC<AppProps> = ({ children }) => {
   const route = useCurrentRoute();
   const navigation = useNavigation();
 
+  const [cookies, setCookie, removeCookie] = useCookies([
+    "reeviewrPrivateHash",
+    "reeviewrDarkMode",
+  ]);
+
   // Global Loading
-  if (userData === null) {
+  // Will users who are logged in be shown a loading symbol on SSR (with JS disabled)?
+  if (
+    userData === null &&
+    utility.isDefinedWithContent(cookies["reeviewrPrivateHash"])
+  ) {
     authClient.getUserData(dispatch);
 
     return (
