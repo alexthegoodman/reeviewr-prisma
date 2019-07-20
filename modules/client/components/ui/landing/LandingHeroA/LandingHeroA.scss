@@ -1,1 +1,49 @@
-/** Styles **/
+.landingHero {
+  position: relative;
+  min-height: 900px;
+
+  .backVisual {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url("/public/img/mailchimp1-small.jpg") center no-repeat;
+    background-size: cover;
+    width: 50vw;
+    height: 100%;
+  }
+  .contain {
+    width: $desktop;
+    margin: 0 auto;
+
+    .info {
+      padding-left: $desktop / 2;
+
+      .infoContain {
+        padding: 50px 0 0 50px;
+
+        .logo {
+          margin-bottom: 35px;
+        }
+
+        h1 strong {
+          font-family: "Playfair Display", serif;
+          color: $red;
+          font-size: 72px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 150%;
+          letter-spacing: normal;
+        }
+        p {
+          font-family: "Playfair Display", serif;
+          word-break: break-word;
+          flex-flow: column;
+          color: #2a2a2a;
+          font-size: 16px;
+          line-height: 150%;
+          text-align: left;
+        }
+      }
+    }
+  }
+}

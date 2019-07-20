@@ -73,17 +73,6 @@
   }
 }
 
-.logoContainer {
-  min-width: $sidebarWidth;
-  @extend .horizontalCenter;
-}
-
-.logo {
-  max-width: $sidebarWidth;
-  margin: 5px 15px 0px 0px;
-  height: 35px;
-}
-
 .trackButton,
 .trackButton.bp3-button:not([class*="bp3-intent-"]) {
   background: transparent;

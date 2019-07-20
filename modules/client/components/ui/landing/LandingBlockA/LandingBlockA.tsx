@@ -8,7 +8,25 @@ const LandingBlockA: React.FC<LandingBlockAProps> = ({
   onClick = e => console.info("Click"),
 }) => {
   const clickHandler = e => onClick(e);
-  return <>Block</>;
+  return (
+    <section className="landingBlock landingBlockA">
+      <div className="contain">
+        <div className="text">
+          <div className="textContain">
+            <h3>Grow your audience</h3>
+            <p>
+              Connect with the others who review your work and grow your
+              audience online. Network with like minded people and open the door
+              to new opportunities.
+            </p>
+          </div>
+        </div>
+        <div className="visual">
+          <img src="" />
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default LandingBlockA;

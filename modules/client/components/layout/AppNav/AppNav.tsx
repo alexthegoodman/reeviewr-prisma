@@ -23,6 +23,7 @@ import Strings from "../../../services/Strings";
 import BeyondSearchData from "../../data/BeyondSearchData/BeyondSearchData";
 import ContentFooter from "../../ui/ContentFooter/ContentFooter";
 import Header from "../../ui/Header/Header";
+import Logo from "../../ui/Logo/Logo";
 import MenuItem from "../../ui/MenuItem/MenuItem";
 import ProfileItem from "../../ui/ProfileItem/ProfileItem";
 import Sidebar from "../../ui/Sidebar/Sidebar";
@@ -76,87 +77,83 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
           cookies["reeviewrDarkMode"] === "true" ? "darkMode" : "lightMode"
         }`}
       >
-      <Sidebar
-        className={mobileMenuOpen ? "mobileMenuOpen" : "mobileMenuClosed"}
-      />
-      <Header
-        leftElements={
-          <>
-            <section className="logoContainer">
-              <Link href="/">
-                <img className="logo" src="/public/img/logo-w.png" />
-              </Link>
-            </section>
-            <div className="mobileHide w100">
-              <BeyondSearchData />
-            </div>
-          </>
-        }
-        rightElements={
-          <>
-            <div className="mobileHide">
-              <Button
-                className="actionButton headerItem"
-                minimal={true}
-                onClick={async () => {
-                  await navigation.navigate("/");
-                  dispatch({
-                    type: "setTour",
-                    tour: { run: true },
-                  });
-                  setTimeout(() => {
-                    $(".react-joyride__beacon").trigger("click");
-                  }, 250);
-                }}
-              >
-                ?
-              </Button>
-              <Popover
-                content={
-                  <Menu className="dropdown">
-                    <Switch
-                      label="Dark Mode"
-                      defaultChecked={darkMode}
-                      onChange={e => {
-                        setDarkMode(!darkMode);
-                        setCookie("reeviewrDarkMode", !darkMode);
-                      }}
-                      large={true}
-                    />
-                  </Menu>
-                }
-                position={Position.BOTTOM_LEFT}
-              >
+        <Sidebar
+          className={mobileMenuOpen ? "mobileMenuOpen" : "mobileMenuClosed"}
+        />
+        <Header
+          leftElements={
+            <>
+              <Logo />
+              <div className="mobileHide w100">
+                <BeyondSearchData />
+              </div>
+            </>
+          }
+          rightElements={
+            <>
+              <div className="mobileHide">
                 <Button
-                  className="textButton headerItem"
+                  className="actionButton headerItem"
                   minimal={true}
-                  rightIcon="caret-down"
+                  onClick={async () => {
+                    await navigation.navigate("/");
+                    dispatch({
+                      type: "setTour",
+                      tour: { run: true },
+                    });
+                    setTimeout(() => {
+                      $(".react-joyride__beacon").trigger("click");
+                    }, 250);
+                  }}
                 >
-                  Menu
+                  ?
                 </Button>
-              </Popover>
-            </div>
+                <Popover
+                  content={
+                    <Menu className="dropdown">
+                      <Switch
+                        label="Dark Mode"
+                        defaultChecked={darkMode}
+                        onChange={e => {
+                          setDarkMode(!darkMode);
+                          setCookie("reeviewrDarkMode", !darkMode);
+                        }}
+                        large={true}
+                      />
+                    </Menu>
+                  }
+                  position={Position.BOTTOM_LEFT}
+                >
+                  <Button
+                    className="textButton headerItem"
+                    minimal={true}
+                    rightIcon="caret-down"
+                  >
+                    Menu
+                  </Button>
+                </Popover>
+              </div>
 
-            <div className="mobileShow">
-              <Button
-                className="actionButton headerItem hamburgerItem"
-                minimal={true}
-                onClick={() => {
-                  setMobileMenuOpen(!mobileMenuOpen);
-                }}
-              >
-                <Icon icon="menu" />
-              </Button>
-            </div>
-          </>
-        }
-      />
+              <div className="mobileShow">
+                <Button
+                  className="actionButton headerItem hamburgerItem"
+                  minimal={true}
+                  onClick={() => {
+                    setMobileMenuOpen(!mobileMenuOpen);
+                  }}
+                >
+                  <Icon icon="menu" />
+                </Button>
+              </div>
+            </>
+          }
+        />
 
-      <section className="mainContent">
-        <div className="contentBody">{children}</div>
+        <section className="mainContent">
+          <div className="contentBody">{children}</div>
 
-        <ContentFooter />
-      </section>
+          <ContentFooter />
+        </section>
       </main>
     </App>
   );
