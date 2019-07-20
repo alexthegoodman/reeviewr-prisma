@@ -49,10 +49,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
       .min(4, "Too Short!")
       .max(100, "Too Long!")
       .required("Required"),
-    confirmPassword: Yup.string()
-      .required("Required")
-      .oneOf([Yup.ref("password"), null], "Passwords must match"),
-    agreeTerms: Yup.boolean().oneOf([true], "Must Accept Terms"),
+    // confirmPassword: Yup.string()
+    //   .required("Required")
+    //   .oneOf([Yup.ref("password"), null], "Passwords must match"),
+    // agreeTerms: Yup.boolean().oneOf([true], "Must Accept Terms"),
   });
 
   const openInNewTab = url => {
@@ -148,7 +148,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
                     fieldPlaceholder="Enter your password"
                     fieldType="password"
                   />
-                  <TextField
+                  {/* <TextField
                     label="Confirm Password"
                     fieldName="confirmPassword"
                     fieldPlaceholder="Confirm your password"
@@ -171,7 +171,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
                       </>
                     }
                     fieldName="agreeTerms"
-                  />
+                  /> */}
                   <Button
                     type="submit"
                     disabled={formikBag.isSubmitting}

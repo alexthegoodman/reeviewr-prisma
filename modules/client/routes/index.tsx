@@ -13,6 +13,7 @@ import ConfirmEmail from "../components/pages/ConfirmEmail/ConfirmEmail";
 import ForgotPassword from "../components/pages/ForgotPassword/ForgotPassword";
 import Home from "../components/pages/Home/Home";
 import MailchimpPods070619 from "../components/pages/landing/MailchimpPods070619/MailchimpPods070619";
+import MailchimpPods072019 from "../components/pages/landing/MailchimpPods072019/MailchimpPods072019";
 import Login from "../components/pages/Login/Login";
 import Messages from "../components/pages/Messages/Messages";
 import Notifications from "../components/pages/Notifications/Notifications";
@@ -361,6 +362,17 @@ const routes = mount({
         </>
       ),
       view: <MailchimpPods070619 />,
+    };
+  }),
+  "/landing/pods-b": route(req => {
+    return {
+      title: "Reeviewr Pods",
+      head: (
+        <>
+          <title>Reeviewr Pods</title>
+        </>
+      ),
+      view: <MailchimpPods072019 />,
     };
   }),
 });

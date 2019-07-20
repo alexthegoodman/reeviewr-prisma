@@ -1,18 +1,21 @@
 import * as React from "react";
 
+import SignUpForm from "../../../data/SignUpForm/SignUpForm";
 import LandingBlockA from "../../../ui/landing/LandingBlockA/LandingBlockA";
 import LandingFeaturesA from "../../../ui/landing/LandingFeaturesA/LandingFeaturesA";
 import LandingHeroA from "../../../ui/landing/LandingHeroA/LandingHeroA";
-import { MailchimpPods070619Props } from "./MailchimpPods070619.d";
+import { MailchimpPods072019Props } from "./MailchimpPods072019.d";
 
-const MailchimpPods070619: React.FC<MailchimpPods070619Props> = () => {
+const MailchimpPods072019: React.FC<MailchimpPods072019Props> = () => {
   return (
     <main>
       <style>
         @import
         url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900&display=swap');
       </style>
-      <LandingHeroA>Form</LandingHeroA>
+      <LandingHeroA>
+        <SignUpForm />
+      </LandingHeroA>
       <LandingFeaturesA
         features={[
           {
@@ -40,4 +43,4 @@ const MailchimpPods070619: React.FC<MailchimpPods070619Props> = () => {
   );
 };
 
-export default MailchimpPods070619;
+export default MailchimpPods072019;
