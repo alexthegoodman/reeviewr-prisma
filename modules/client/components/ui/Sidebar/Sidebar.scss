@@ -1,12 +1,12 @@
 .sidebar,
 .sidebar.bp3-drawer.bp3-position-left {
   padding-top: $headerHeight;
-  background: $dark-gray3;
+
   width: 300px;
 
   &.sub-sidebar {
     left: $sidebarWidth;
-    background: $dark-gray4;
+
     box-shadow: none;
     z-index: 1;
   }
@@ -41,4 +41,22 @@
 
 .desktopSidebarPortal {
   z-index: -1;
+}
+
+.darkMode .sidebar,
+.darkMode .sidebar.bp3-drawer.bp3-position-left {
+  background: $dark-gray3;
+
+  &.sub-sidebar {
+    background: $dark-gray4;
+  }
+}
+
+.lightMode .sidebar,
+.lightMode .sidebar.bp3-drawer.bp3-position-left {
+  background: $light-gray3;
+
+  &.sub-sidebar {
+    background: $light-gray4;
+  }
 }

@@ -1,5 +1,4 @@
 .contentFooter {
-  background: $dark-gray3;
   width: 100%;
   padding: 50px;
   margin: 0 -35px;
@@ -8,4 +7,12 @@
   @include tabletDown {
     margin-bottom: -20px;
   }
+}
+
+.darkMode .contentFooter {
+  background: $dark-gray3;
+}
+
+.lightMode .contentFooter {
+  background: $light-gray1;
 }

@@ -17,14 +17,29 @@
     padding-left: 55px;
     padding-right: 55px;
     font-size: 1.2rem;
-    background: $dark-gray5;
-    color: white;
-    @include placeholderProperties(rgba(255, 255, 255, 0.8), 300);
     min-width: 300px;
   }
 
   ::-webkit-search-cancel-button {
     position: relative;
     right: 20px;
+  }
+}
+
+.darkMode .beyondSearch,
+.darkMode .beyondSearch.bp3-input-group.bp3-large {
+  .bp3-input {
+    background: $dark-gray5;
+    color: white;
+    @include placeholderProperties(rgba(255, 255, 255, 0.8), 300);
+  }
+}
+
+.lightMode .beyondSearch,
+.lightMode .beyondSearch.bp3-input-group.bp3-large {
+  .bp3-input {
+    background: $light-gray5;
+    color: black;
+    @include placeholderProperties(rgba(0, 0, 0, 0.8), 300);
   }
 }

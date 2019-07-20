@@ -6,7 +6,15 @@ import { Link, useCurrentRoute, useNavigation } from "react-navi";
 
 import { useAppContext } from "../../../context";
 
-import { Button, Icon, Menu, Popover, Position, Text } from "@blueprintjs/core";
+import {
+  Button,
+  Icon,
+  Menu,
+  Popover,
+  Position,
+  Switch,
+  Text,
+} from "@blueprintjs/core";
 import * as $ from "jquery";
 import { useCookies } from "react-cookie";
 import Legacy from "../../../../services/Legacy";
@@ -29,158 +37,19 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
   const navigation = useNavigation();
   const [cookies, setCookie, removeCookie] = useCookies([
     "reeviewrPrivateHash",
+    "reeviewrDarkMode",
   ]);
 
-  const [{ tour, userData }, dispatch] = useAppContext();
+  // const [{ tour, userData }, dispatch] = useAppContext();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-
-  console.info("cookies", cookies["reeviewrPrivateHash"]);
-
-  let rightNav = (
-    <>
-      <Button
-        className="textButton headerItem"
-        minimal={true}
-        onClick={() => navigation.navigate("/login")}
-      >
-        Log In
-      </Button>
-      <Button
-        className="textButton headerItem"
-        minimal={true}
-        onClick={() => navigation.navigate("/sign-up")}
-      >
-        Sign Up
-      </Button>
-    </>
-  );
-  let rightDropdown = (
-    <Button
-      className="textButton headerItem"
-      minimal={true}
-      rightIcon="caret-down"
-    >
-      More
-      {/** Terms, Blog, Social Media, About Us / Story, Contact Us, etc */}
-    </Button>
+  const [darkMode, setDarkMode] = React.useState(
+    cookies["reeviewrDarkMode"] === "true" ? true : false
   );
 
   const openInNewTab = url => {
     const win = window.open(url, "_blank");
     win.focus();
   };
-
-  let topLoggedInItems = <></>;
-  let bottomLoggedInItems = <></>;
-  const alwaysOnItems = (
-    <>
-      <MenuItem
-        onClick={() =>
-          openInNewTab("https://grandrapids.reeviewr.com/pages/about")
-        }
-      >
-        About Reeviewr
-      </MenuItem>
-      <MenuItem
-        onClick={() =>
-          openInNewTab("https://grandrapids.reeviewr.com/pages/terms")
-        }
-      >
-        Terms
-      </MenuItem>
-      <MenuItem
-        onClick={() => openInNewTab("https://www.facebook.com/reeviewr/")}
-      >
-        Facebook
-      </MenuItem>
-      <MenuItem onClick={() => openInNewTab("https://twitter.com/reeviewr")}>
-        Twitter
-      </MenuItem>
-    </>
-  );
-
-  let pointCounter = <></>;
-  let loggedOutItems = (
-    <>
-      <MenuItem
-        active={route.url.pathname === "/login" ? true : false}
-        onClick={() => navigate("/login", true)}
-      >
-        Login
-      </MenuItem>
-      <MenuItem
-        active={route.url.pathname === "/sign-up" ? true : false}
-        onClick={() => navigate("/sign-up", true)}
-      >
-        Sign Up
-      </MenuItem>
-    </>
-  );
-  if (userData !== null && userData) {
-    const userArtistName = legacy.extractMetaValue(
-      userData.user.userMeta,
-      "userArtistName"
-    );
-
-    const profileImage = legacy.extractMetaValue(
-      userData.user.userMeta,
-      "profileImage"
-    );
-
-    const logOut = () => {
-      removeCookie("reeviewrPrivateHash");
-      // window.location.reload();
-      window.location.href = window.location.origin;
-    };
-
-    const goToProfile = () => {
-      console.info("userData", userData);
-      const profileUrl = `/artists/${userData.user.id}/${strings.convertToSlug(
-        userArtistName
-      )}`;
-      navigation.navigate(profileUrl);
-    };
-
-    const points = parseInt(
-      legacy.extractMetaValue(userData.user.userMeta, "points")
-    );
-
-    if (points > 0) {
-      pointCounter = (
-        <Text className="pointCounter" tagName="em">
-          You have {points} Points
-        </Text>
-      );
-    } else {
-      pointCounter = (
-        <Text className="pointCounter" tagName="em">
-          Review Music For Points
-        </Text>
-      );
-    }
-
-    rightNav = <></>;
-
-    rightDropdown = (
-      <ProfileItem
-        className="headerItem"
-        imageUrl={profileImage}
-        name={userArtistName}
-      />
-    );
-    topLoggedInItems = (
-      <>
-        <MenuItem onClick={goToProfile}>Profile</MenuItem>
-      </>
-    );
-    bottomLoggedInItems = (
-      <>
-        <MenuItem>Settings</MenuItem>
-        <MenuItem onClick={logOut}>Log Out</MenuItem>
-      </>
-    );
-    loggedOutItems = <></>;
-  }
 
   const navigate = (href, mobile = true, loginCheck = false) => {
     if (loginCheck) {
@@ -198,8 +67,15 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
     }
   };
 
+  // ATTN: show/hide nav links individually rather than in groups
+
   return (
     <App>
+      <main
+        className={`appContainer ${
+          cookies["reeviewrDarkMode"] === "true" ? "darkMode" : "lightMode"
+        }`}
+      >
       <Sidebar
         className={mobileMenuOpen ? "mobileMenuOpen" : "mobileMenuClosed"}
       />
@@ -235,18 +111,29 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
               >
                 ?
               </Button>
-              {rightNav}
               <Popover
                 content={
                   <Menu className="dropdown">
-                    {topLoggedInItems}
-                    {alwaysOnItems}
-                    {bottomLoggedInItems}
+                    <Switch
+                      label="Dark Mode"
+                      defaultChecked={darkMode}
+                      onChange={e => {
+                        setDarkMode(!darkMode);
+                        setCookie("reeviewrDarkMode", !darkMode);
+                      }}
+                      large={true}
+                    />
                   </Menu>
                 }
                 position={Position.BOTTOM_LEFT}
               >
-                {rightDropdown}
+                <Button
+                  className="textButton headerItem"
+                  minimal={true}
+                  rightIcon="caret-down"
+                >
+                  Menu
+                </Button>
               </Popover>
             </div>
 
@@ -270,6 +157,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
 
         <ContentFooter />
       </section>
+      </main>
     </App>
   );
 };

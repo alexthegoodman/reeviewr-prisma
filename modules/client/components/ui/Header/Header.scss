@@ -1,7 +1,6 @@
 .header {
   padding: 0;
   height: $headerHeight;
-  background: $dark-gray2;
   z-index: 30;
 
   .bp3-navbar-group {
@@ -45,16 +44,6 @@
         height: auto;
       }
     }
-    // .beyondSearch,
-    // .beyondSearch.bp3-input-group.bp3-large {
-    //   display: none;
-    // }
-    // .actionButton {
-    //   display: none;
-    // }
-    // .profileItem {
-    //   display: none;
-    // }
 
     .hamburgerItem,
     .hamburgerItem.bp3-button:not([class*="bp3-intent-"]) {
@@ -87,4 +76,12 @@
     height: 60px;
     padding: 0;
   }
+}
+
+.darkMode .header {
+  background: $dark-gray2;
+}
+
+.lightMode .header {
+  background: $light-gray2;
 }

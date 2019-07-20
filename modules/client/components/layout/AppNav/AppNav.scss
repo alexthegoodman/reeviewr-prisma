@@ -2,7 +2,6 @@
   padding-left: 335px;
   padding-right: 35px;
   padding-top: 75px + 35px;
-  background: #3e4b58;
   height: 100vh;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
@@ -17,12 +16,28 @@
   }
 }
 
-.bp3-popover .bp3-popover-content .bp3-menu {
+.darkMode .mainContent {
+  background: #3e4b58;
+}
+
+.lightMode .mainContent {
+  background: #e5e5e5;
+}
+
+.darkMode .bp3-popover .bp3-popover-content .bp3-menu {
   background: $dark-gray3;
 }
 
-.bp3-popover .bp3-popover-arrow-fill {
+.lightMode .bp3-popover .bp3-popover-content .bp3-menu {
+  background: $light-gray3;
+}
+
+.darkMode .bp3-popover .bp3-popover-arrow-fill {
   fill: $dark-gray3;
+}
+
+.lightMode .bp3-popover .bp3-popover-arrow-fill {
+  fill: $light-gray3;
 }
 
 .dropdown {
@@ -46,7 +61,6 @@
 
   span,
   a {
-    color: white;
     font-size: 0.9rem;
     line-height: 1.1rem;
     font-weight: 300;
@@ -69,16 +83,30 @@
   }
 }
 
-.pointCounter {
-  display: block;
-  color: white;
-  text-transform: uppercase;
-  text-align: center;
-  padding: 12px 0;
-  font-weight: 600;
-  font-style: normal;
-  background: $darkBlue;
+.darkMode .footer {
+  span,
+  a {
+    color: white;
+  }
 }
+
+.lightMode .footer {
+  span,
+  a {
+    color: black;
+  }
+}
+
+// .pointCounter {
+//   display: block;
+//   color: white;
+//   text-transform: uppercase;
+//   text-align: center;
+//   padding: 12px 0;
+//   font-weight: 600;
+//   font-style: normal;
+//   background: $darkBlue;
+// }
 
 .mobileShow {
   .sidebarMenu {
