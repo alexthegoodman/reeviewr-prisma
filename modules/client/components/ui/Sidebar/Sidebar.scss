@@ -43,6 +43,11 @@
 
 .sidebarMenu {
   background: transparent;
+  padding: 0;
+
+  li {
+    margin: 0;
+  }
 }
 
 .desktopSidebarPortal {

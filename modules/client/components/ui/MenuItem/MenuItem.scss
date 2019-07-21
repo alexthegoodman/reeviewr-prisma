@@ -1,32 +1,27 @@
 .menuItem,
 .menuItem.bp3-menu-item {
-  padding: 15px 50px;
+  padding: 11px 50px;
   margin: 0;
   line-height: 30px;
   position: relative;
 
   &.bp3-active {
-    background: transparent;
-
-    &:before {
-      content: " ";
-      width: 6px;
-      height: 6px;
-      background: $red;
-      border-radius: 50%;
-      position: absolute;
-      left: 25px;
-      top: 25px;
-    }
+    background: #eeeeee;
 
     > .bp3-fill {
-      color: $red;
+      color: $turquoise-blue;
     }
   }
   > .bp3-fill {
     margin: 0;
-    font-size: 1.1rem;
-    color: white;
+    font-size: 1rem;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 1.41px;
+    color: $dark-slate-blue;
+    line-height: 2rem;
   }
   .bp3-menu-item-label {
   }
