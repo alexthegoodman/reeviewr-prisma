@@ -11,6 +11,9 @@ const LandingBlockA: React.FC<LandingBlockAProps> = ({
   return (
     <section className="landingBlock landingBlockA">
       <div className="contain">
+        <div className="visual">
+          <img src="/public/img/mailchimp5-small.jpg" />
+        </div>
         <div className="text">
           <div className="textContain">
             <h3>Grow your audience</h3>
@@ -20,9 +23,6 @@ const LandingBlockA: React.FC<LandingBlockAProps> = ({
               to new opportunities.
             </p>
           </div>
-        </div>
-        <div className="visual">
-          <img src="/public/img/mailchimp5-small.jpg" />
         </div>
       </div>
     </section>

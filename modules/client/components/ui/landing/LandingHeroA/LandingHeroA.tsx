@@ -12,7 +12,6 @@ const LandingHeroA: React.FC<LandingHeroAProps> = ({
   const clickHandler = e => onClick(e);
   return (
     <section className="landingHero landingHeroA">
-      <div className="backVisual" />
       <div className="contain">
         <div className="info">
           <div className="infoContain">
@@ -34,6 +33,7 @@ const LandingHeroA: React.FC<LandingHeroAProps> = ({
           </div>
         </div>
       </div>
+      <div className="backVisual" />
     </section>
   );
 };

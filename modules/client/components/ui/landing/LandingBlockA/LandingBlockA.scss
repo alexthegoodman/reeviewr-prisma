@@ -5,12 +5,20 @@
     padding: 100px 0;
     width: $middle;
     margin: 0 auto;
-    display: flex;
-    flex-direction: row;
+    // display: flex;
+    // flex-direction: row;
+    display: table;
 
     .text,
     .visual {
       width: 50%;
+    }
+
+    .text {
+      float: left;
+    }
+    .visual {
+      float: right;
     }
 
     .text {
@@ -43,6 +51,34 @@
       img {
         display: block;
         max-width: 100%;
+      }
+    }
+  }
+  @include middleDown {
+    .contain {
+      width: 100%;
+      padding-left: $mobile;
+      padding-right: $mobile;
+    }
+  }
+  @include tabletDown {
+    .contain {
+      .text,
+      .visual {
+        float: none;
+        width: 100%;
+      }
+      .text {
+        .textContain {
+          h3 {
+            font-size: 30px !important;
+            line-height: 150% !important;
+          }
+          p {
+            font-size: 16px !important;
+            line-height: 150% !important;
+          }
+        }
       }
     }
   }

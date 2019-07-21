@@ -74,4 +74,49 @@
       }
     }
   }
+
+  @include middleDown {
+    .contain {
+      width: 100%;
+      padding-left: $mobile;
+      padding-right: $mobile;
+    }
+  }
+  @include maxDown(860px) {
+    .contain {
+      .info {
+        width: 100%;
+      }
+    }
+  }
+  @include tabletDown {
+    .contain {
+      .info {
+        h2 {
+          font-size: 30px !important;
+          line-height: 150% !important;
+        }
+        p {
+          font-size: 16px !important;
+          line-height: 150% !important;
+        }
+      }
+      .features {
+        display: block;
+
+        .feature {
+          margin-bottom: 25px;
+
+          span {
+            font-size: 20px !important;
+            line-height: 200% !important;
+          }
+          p {
+            font-size: 16px !important;
+            line-height: 150% !important;
+          }
+        }
+      }
+    }
+  }
 }
