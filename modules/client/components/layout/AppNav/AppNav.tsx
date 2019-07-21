@@ -21,6 +21,8 @@ import Legacy from "../../../../services/Legacy";
 import Utility from "../../../../services/Utility";
 import Strings from "../../../services/Strings";
 import BeyondSearchData from "../../data/BeyondSearchData/BeyondSearchData";
+import WhoToFollow from "../../data/WhoToFollow/WhoToFollow";
+import Advertisement from "../../ui/Advertisement/Advertisement";
 import ContentFooter from "../../ui/ContentFooter/ContentFooter";
 import Header from "../../ui/Header/Header";
 import Logo from "../../ui/Logo/Logo";
@@ -52,7 +54,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
     win.focus();
   };
 
-  const navigate = (href, mobile = true, loginCheck = false) => {
+  const navigate = (href, loginCheck = false) => {
     if (loginCheck) {
       if (userData !== null && userData) {
         navigation.navigate(href);
@@ -63,9 +65,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
       navigation.navigate(href);
     }
 
-    if (mobile) {
-      setMobileMenuOpen(false);
-    }
+    setMobileMenuOpen(false);
   };
 
   // ATTN: show/hide nav links individually rather than in groups
@@ -79,11 +79,37 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
       >
         <Sidebar
           className={mobileMenuOpen ? "mobileMenuOpen" : "mobileMenuClosed"}
-        />
+        >
+          <Logo white={false} />
+          <Button className="button createPostButton">Create Post</Button>
+          <Menu className="sidebarMenu">
+            <MenuItem
+              active={route.url.pathname === "/" ? true : false}
+              onClick={() => navigate("/")}
+            >
+              Your Feed
+            </MenuItem>
+            <MenuItem
+              className="joyrideTracksPage"
+              active={route.url.pathname === "/tracks" ? true : false}
+              onClick={() => navigate("/tracks")}
+            >
+              Joined Pods
+            </MenuItem>
+            <MenuItem
+              className="joyrideTracksPage"
+              active={route.url.pathname === "/tracks" ? true : false}
+              onClick={() => navigate("/tracks")}
+            >
+              Invite Friends
+            </MenuItem>
+          </Menu>
+          <WhoToFollow />
+          <Advertisement />
+        </Sidebar>
         <Header
           leftElements={
             <>
-              <Logo />
               <div className="mobileHide w100">
                 <BeyondSearchData />
               </div>

@@ -1,8 +1,14 @@
 .sidebar,
 .sidebar.bp3-drawer.bp3-position-left {
-  padding-top: $headerHeight;
+  // padding-top: $headerHeight;
+  z-index: 50;
+  box-shadow: none;
+  width: $sidebarWidth;
 
-  width: 300px;
+  .logo {
+    width: 100%;
+    padding: 26px 24px;
+  }
 
   &.sub-sidebar {
     left: $sidebarWidth;
@@ -54,7 +60,7 @@
 
 .lightMode .sidebar,
 .lightMode .sidebar.bp3-drawer.bp3-position-left {
-  background: $light-gray3;
+  background: $pale-grey;
 
   &.sub-sidebar {
     background: $light-gray4;

@@ -28,13 +28,19 @@ $blue: #5bc1ed;
 $lightBlue: #8bdeff;
 $darkBlue: #4eabd3;
 
+// TODO: compare with brand colors
+$dark-slate-blue: #243465;
+$light-slate-blue: rgba(#243465, 0.5);
+$pale-grey: #f8f8fa;
+$turquoise-blue: #05c0da;
+
 /* Transitions */
 $long: 0.3s;
 $short: 0.1s;
 
 /** Widths / Heights **/
 $headerHeight: 80px;
-$sidebarWidth: 300px;
+$sidebarWidth: 240px;
 
 /* Paddings */
 $large: 100px;
@@ -54,5 +60,7 @@ $darkShadow: 0 15px 40px 3px rgba(0, 0, 0, 0.4);
 $bigShadow: 0 25px 50px 5px rgba(0, 0, 0, 0.35);
 
 /* Fonts */
-$hFont: futura-pt, sans-serif;
-$bFont: futura-pt, sans-serif;
+// $hFont: futura-pt, sans-serif;
+// $bFont: futura-pt, sans-serif;
+$hFont: nunito-sans, sans-serif;
+$bFont: nunito-sans, sans-serif;
