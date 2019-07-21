@@ -10,66 +10,82 @@ export type Scalars = {
 };
 
 export type AggregateBlogPost = {
+  __typename?: "AggregateBlogPost";
   count: Scalars["Int"];
 };
 
 export type AggregateBlogPostMeta = {
+  __typename?: "AggregateBlogPostMeta";
   count: Scalars["Int"];
 };
 
 export type AggregateFile = {
+  __typename?: "AggregateFile";
   count: Scalars["Int"];
 };
 
 export type AggregateFileMeta = {
+  __typename?: "AggregateFileMeta";
   count: Scalars["Int"];
 };
 
 export type AggregateProfilePage = {
+  __typename?: "AggregateProfilePage";
   count: Scalars["Int"];
 };
 
 export type AggregateProfilePageMeta = {
+  __typename?: "AggregateProfilePageMeta";
   count: Scalars["Int"];
 };
 
 export type AggregateReview = {
+  __typename?: "AggregateReview";
   count: Scalars["Int"];
 };
 
 export type AggregateReviewMeta = {
+  __typename?: "AggregateReviewMeta";
   count: Scalars["Int"];
 };
 
 export type AggregateUser = {
+  __typename?: "AggregateUser";
   count: Scalars["Int"];
 };
 
 export type AggregateUserFeedback = {
+  __typename?: "AggregateUserFeedback";
   count: Scalars["Int"];
 };
 
 export type AggregateUserFeedbackMeta = {
+  __typename?: "AggregateUserFeedbackMeta";
   count: Scalars["Int"];
 };
 
 export type AggregateUserMeta = {
+  __typename?: "AggregateUserMeta";
   count: Scalars["Int"];
 };
 
 export type AggregateUserTrack = {
+  __typename?: "AggregateUserTrack";
   count: Scalars["Int"];
 };
 
 export type AggregateUserTrackMeta = {
+  __typename?: "AggregateUserTrackMeta";
   count: Scalars["Int"];
 };
 
 export type BatchPayload = {
+  __typename?: "BatchPayload";
   count: Scalars["Long"];
 };
 
 export type BlogPost = {
+  __typename?: "BlogPost";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   user?: Maybe<User>;
@@ -94,6 +110,7 @@ export type BlogPostItemMetaArgs = {
 };
 
 export type BlogPostConnection = {
+  __typename?: "BlogPostConnection";
   pageInfo: PageInfo;
   edges: Array<Maybe<BlogPostEdge>>;
   aggregate: AggregateBlogPost;
@@ -147,11 +164,13 @@ export type BlogPostCreateWithoutUserInput = {
 };
 
 export type BlogPostEdge = {
+  __typename?: "BlogPostEdge";
   node: BlogPost;
   cursor: Scalars["String"];
 };
 
 export type BlogPostMeta = {
+  __typename?: "BlogPostMeta";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemOldId?: Maybe<Scalars["String"]>;
@@ -163,6 +182,7 @@ export type BlogPostMeta = {
 };
 
 export type BlogPostMetaConnection = {
+  __typename?: "BlogPostMetaConnection";
   pageInfo: PageInfo;
   edges: Array<Maybe<BlogPostMetaEdge>>;
   aggregate: AggregateBlogPostMeta;
@@ -193,6 +213,7 @@ export type BlogPostMetaCreateWithoutBlogPostInput = {
 };
 
 export type BlogPostMetaEdge = {
+  __typename?: "BlogPostMetaEdge";
   node: BlogPostMeta;
   cursor: Scalars["String"];
 };
@@ -219,6 +240,7 @@ export enum BlogPostMetaOrderByInput {
 }
 
 export type BlogPostMetaPreviousValues = {
+  __typename?: "BlogPostMetaPreviousValues";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemOldId?: Maybe<Scalars["String"]>;
@@ -321,6 +343,7 @@ export type BlogPostMetaScalarWhereInput = {
 };
 
 export type BlogPostMetaSubscriptionPayload = {
+  __typename?: "BlogPostMetaSubscriptionPayload";
   mutation: MutationType;
   node?: Maybe<BlogPostMeta>;
   updatedFields?: Maybe<Array<Scalars["String"]>>;
@@ -526,6 +549,7 @@ export enum BlogPostOrderByInput {
 }
 
 export type BlogPostPreviousValues = {
+  __typename?: "BlogPostPreviousValues";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
@@ -658,6 +682,7 @@ export type BlogPostScalarWhereInput = {
 };
 
 export type BlogPostSubscriptionPayload = {
+  __typename?: "BlogPostSubscriptionPayload";
   mutation: MutationType;
   node?: Maybe<BlogPost>;
   updatedFields?: Maybe<Array<Scalars["String"]>>;
@@ -905,6 +930,7 @@ export type BlogPostWhereUniqueInput = {
 };
 
 export type File = {
+  __typename?: "File";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   user?: Maybe<User>;
@@ -930,6 +956,7 @@ export type FileItemMetaArgs = {
 };
 
 export type FileConnection = {
+  __typename?: "FileConnection";
   pageInfo: PageInfo;
   edges: Array<Maybe<FileEdge>>;
   aggregate: AggregateFile;
@@ -1004,11 +1031,13 @@ export type FileCreateWithoutUserTrackInput = {
 };
 
 export type FileEdge = {
+  __typename?: "FileEdge";
   node: File;
   cursor: Scalars["String"];
 };
 
 export type FileMeta = {
+  __typename?: "FileMeta";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemOldId?: Maybe<Scalars["String"]>;
@@ -1020,6 +1049,7 @@ export type FileMeta = {
 };
 
 export type FileMetaConnection = {
+  __typename?: "FileMetaConnection";
   pageInfo: PageInfo;
   edges: Array<Maybe<FileMetaEdge>>;
   aggregate: AggregateFileMeta;
@@ -1050,6 +1080,7 @@ export type FileMetaCreateWithoutFileInput = {
 };
 
 export type FileMetaEdge = {
+  __typename?: "FileMetaEdge";
   node: FileMeta;
   cursor: Scalars["String"];
 };
@@ -1076,6 +1107,7 @@ export enum FileMetaOrderByInput {
 }
 
 export type FileMetaPreviousValues = {
+  __typename?: "FileMetaPreviousValues";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemOldId?: Maybe<Scalars["String"]>;
@@ -1178,6 +1210,7 @@ export type FileMetaScalarWhereInput = {
 };
 
 export type FileMetaSubscriptionPayload = {
+  __typename?: "FileMetaSubscriptionPayload";
   mutation: MutationType;
   node?: Maybe<FileMeta>;
   updatedFields?: Maybe<Array<Scalars["String"]>>;
@@ -1383,6 +1416,7 @@ export enum FileOrderByInput {
 }
 
 export type FilePreviousValues = {
+  __typename?: "FilePreviousValues";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
@@ -1515,6 +1549,7 @@ export type FileScalarWhereInput = {
 };
 
 export type FileSubscriptionPayload = {
+  __typename?: "FileSubscriptionPayload";
   mutation: MutationType;
   node?: Maybe<File>;
   updatedFields?: Maybe<Array<Scalars["String"]>>;
@@ -1801,6 +1836,7 @@ export type FileWhereUniqueInput = {
 };
 
 export type Mutation = {
+  __typename?: "Mutation";
   createBlogPost: BlogPost;
   updateBlogPost?: Maybe<BlogPost>;
   updateManyBlogPosts: BatchPayload;
@@ -2290,6 +2326,7 @@ export type Node = {
 };
 
 export type PageInfo = {
+  __typename?: "PageInfo";
   hasNextPage: Scalars["Boolean"];
   hasPreviousPage: Scalars["Boolean"];
   startCursor?: Maybe<Scalars["String"]>;
@@ -2297,6 +2334,7 @@ export type PageInfo = {
 };
 
 export type ProfilePage = {
+  __typename?: "ProfilePage";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   user?: Maybe<User>;
@@ -2321,6 +2359,7 @@ export type ProfilePageItemMetaArgs = {
 };
 
 export type ProfilePageConnection = {
+  __typename?: "ProfilePageConnection";
   pageInfo: PageInfo;
   edges: Array<Maybe<ProfilePageEdge>>;
   aggregate: AggregateProfilePage;
@@ -2374,11 +2413,13 @@ export type ProfilePageCreateWithoutUserInput = {
 };
 
 export type ProfilePageEdge = {
+  __typename?: "ProfilePageEdge";
   node: ProfilePage;
   cursor: Scalars["String"];
 };
 
 export type ProfilePageMeta = {
+  __typename?: "ProfilePageMeta";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemOldId?: Maybe<Scalars["String"]>;
@@ -2390,6 +2431,7 @@ export type ProfilePageMeta = {
 };
 
 export type ProfilePageMetaConnection = {
+  __typename?: "ProfilePageMetaConnection";
   pageInfo: PageInfo;
   edges: Array<Maybe<ProfilePageMetaEdge>>;
   aggregate: AggregateProfilePageMeta;
@@ -2420,6 +2462,7 @@ export type ProfilePageMetaCreateWithoutProfilePageInput = {
 };
 
 export type ProfilePageMetaEdge = {
+  __typename?: "ProfilePageMetaEdge";
   node: ProfilePageMeta;
   cursor: Scalars["String"];
 };
@@ -2446,6 +2489,7 @@ export enum ProfilePageMetaOrderByInput {
 }
 
 export type ProfilePageMetaPreviousValues = {
+  __typename?: "ProfilePageMetaPreviousValues";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemOldId?: Maybe<Scalars["String"]>;
@@ -2548,6 +2592,7 @@ export type ProfilePageMetaScalarWhereInput = {
 };
 
 export type ProfilePageMetaSubscriptionPayload = {
+  __typename?: "ProfilePageMetaSubscriptionPayload";
   mutation: MutationType;
   node?: Maybe<ProfilePageMeta>;
   updatedFields?: Maybe<Array<Scalars["String"]>>;
@@ -2757,6 +2802,7 @@ export enum ProfilePageOrderByInput {
 }
 
 export type ProfilePagePreviousValues = {
+  __typename?: "ProfilePagePreviousValues";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
@@ -2889,6 +2935,7 @@ export type ProfilePageScalarWhereInput = {
 };
 
 export type ProfilePageSubscriptionPayload = {
+  __typename?: "ProfilePageSubscriptionPayload";
   mutation: MutationType;
   node?: Maybe<ProfilePage>;
   updatedFields?: Maybe<Array<Scalars["String"]>>;
@@ -3136,6 +3183,7 @@ export type ProfilePageWhereUniqueInput = {
 };
 
 export type Query = {
+  __typename?: "Query";
   blogPost?: Maybe<BlogPost>;
   blogPosts: Array<Maybe<BlogPost>>;
   blogPostsConnection: BlogPostConnection;
@@ -3522,6 +3570,7 @@ export type QueryNodeArgs = {
 };
 
 export type Review = {
+  __typename?: "Review";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   user?: Maybe<User>;
@@ -3547,6 +3596,7 @@ export type ReviewItemMetaArgs = {
 };
 
 export type ReviewConnection = {
+  __typename?: "ReviewConnection";
   pageInfo: PageInfo;
   edges: Array<Maybe<ReviewEdge>>;
   aggregate: AggregateReview;
@@ -3621,11 +3671,13 @@ export type ReviewCreateWithoutUserTrackInput = {
 };
 
 export type ReviewEdge = {
+  __typename?: "ReviewEdge";
   node: Review;
   cursor: Scalars["String"];
 };
 
 export type ReviewMeta = {
+  __typename?: "ReviewMeta";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemOldId?: Maybe<Scalars["String"]>;
@@ -3637,6 +3689,7 @@ export type ReviewMeta = {
 };
 
 export type ReviewMetaConnection = {
+  __typename?: "ReviewMetaConnection";
   pageInfo: PageInfo;
   edges: Array<Maybe<ReviewMetaEdge>>;
   aggregate: AggregateReviewMeta;
@@ -3667,6 +3720,7 @@ export type ReviewMetaCreateWithoutReviewInput = {
 };
 
 export type ReviewMetaEdge = {
+  __typename?: "ReviewMetaEdge";
   node: ReviewMeta;
   cursor: Scalars["String"];
 };
@@ -3693,6 +3747,7 @@ export enum ReviewMetaOrderByInput {
 }
 
 export type ReviewMetaPreviousValues = {
+  __typename?: "ReviewMetaPreviousValues";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemOldId?: Maybe<Scalars["String"]>;
@@ -3795,6 +3850,7 @@ export type ReviewMetaScalarWhereInput = {
 };
 
 export type ReviewMetaSubscriptionPayload = {
+  __typename?: "ReviewMetaSubscriptionPayload";
   mutation: MutationType;
   node?: Maybe<ReviewMeta>;
   updatedFields?: Maybe<Array<Scalars["String"]>>;
@@ -4000,6 +4056,7 @@ export enum ReviewOrderByInput {
 }
 
 export type ReviewPreviousValues = {
+  __typename?: "ReviewPreviousValues";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
@@ -4132,6 +4189,7 @@ export type ReviewScalarWhereInput = {
 };
 
 export type ReviewSubscriptionPayload = {
+  __typename?: "ReviewSubscriptionPayload";
   mutation: MutationType;
   node?: Maybe<Review>;
   updatedFields?: Maybe<Array<Scalars["String"]>>;
@@ -4418,6 +4476,7 @@ export type ReviewWhereUniqueInput = {
 };
 
 export type Subscription = {
+  __typename?: "Subscription";
   blogPost?: Maybe<BlogPostSubscriptionPayload>;
   blogPostMeta?: Maybe<BlogPostMetaSubscriptionPayload>;
   file?: Maybe<FileSubscriptionPayload>;
@@ -4491,6 +4550,7 @@ export type SubscriptionUserTrackMetaArgs = {
 };
 
 export type User = {
+  __typename?: "User";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["ID"]>;
   userType?: Maybe<Scalars["Int"]>;
@@ -4582,6 +4642,7 @@ export type UserFilesArgs = {
 };
 
 export type UserConnection = {
+  __typename?: "UserConnection";
   pageInfo: PageInfo;
   edges: Array<Maybe<UserEdge>>;
   aggregate: AggregateUser;
@@ -4776,11 +4837,13 @@ export type UserCreateWithoutUserTracksInput = {
 };
 
 export type UserEdge = {
+  __typename?: "UserEdge";
   node: User;
   cursor: Scalars["String"];
 };
 
 export type UserFeedback = {
+  __typename?: "UserFeedback";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   user?: Maybe<User>;
@@ -4805,6 +4868,7 @@ export type UserFeedbackItemMetaArgs = {
 };
 
 export type UserFeedbackConnection = {
+  __typename?: "UserFeedbackConnection";
   pageInfo: PageInfo;
   edges: Array<Maybe<UserFeedbackEdge>>;
   aggregate: AggregateUserFeedback;
@@ -4858,11 +4922,13 @@ export type UserFeedbackCreateWithoutUserInput = {
 };
 
 export type UserFeedbackEdge = {
+  __typename?: "UserFeedbackEdge";
   node: UserFeedback;
   cursor: Scalars["String"];
 };
 
 export type UserFeedbackMeta = {
+  __typename?: "UserFeedbackMeta";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemOldId?: Maybe<Scalars["String"]>;
@@ -4874,6 +4940,7 @@ export type UserFeedbackMeta = {
 };
 
 export type UserFeedbackMetaConnection = {
+  __typename?: "UserFeedbackMetaConnection";
   pageInfo: PageInfo;
   edges: Array<Maybe<UserFeedbackMetaEdge>>;
   aggregate: AggregateUserFeedbackMeta;
@@ -4904,6 +4971,7 @@ export type UserFeedbackMetaCreateWithoutUserFeedbackInput = {
 };
 
 export type UserFeedbackMetaEdge = {
+  __typename?: "UserFeedbackMetaEdge";
   node: UserFeedbackMeta;
   cursor: Scalars["String"];
 };
@@ -4930,6 +4998,7 @@ export enum UserFeedbackMetaOrderByInput {
 }
 
 export type UserFeedbackMetaPreviousValues = {
+  __typename?: "UserFeedbackMetaPreviousValues";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemOldId?: Maybe<Scalars["String"]>;
@@ -5032,6 +5101,7 @@ export type UserFeedbackMetaScalarWhereInput = {
 };
 
 export type UserFeedbackMetaSubscriptionPayload = {
+  __typename?: "UserFeedbackMetaSubscriptionPayload";
   mutation: MutationType;
   node?: Maybe<UserFeedbackMeta>;
   updatedFields?: Maybe<Array<Scalars["String"]>>;
@@ -5241,6 +5311,7 @@ export enum UserFeedbackOrderByInput {
 }
 
 export type UserFeedbackPreviousValues = {
+  __typename?: "UserFeedbackPreviousValues";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
@@ -5373,6 +5444,7 @@ export type UserFeedbackScalarWhereInput = {
 };
 
 export type UserFeedbackSubscriptionPayload = {
+  __typename?: "UserFeedbackSubscriptionPayload";
   mutation: MutationType;
   node?: Maybe<UserFeedback>;
   updatedFields?: Maybe<Array<Scalars["String"]>>;
@@ -5620,6 +5692,7 @@ export type UserFeedbackWhereUniqueInput = {
 };
 
 export type UserMeta = {
+  __typename?: "UserMeta";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   user?: Maybe<User>;
@@ -5630,6 +5703,7 @@ export type UserMeta = {
 };
 
 export type UserMetaConnection = {
+  __typename?: "UserMetaConnection";
   pageInfo: PageInfo;
   edges: Array<Maybe<UserMetaEdge>>;
   aggregate: AggregateUserMeta;
@@ -5658,6 +5732,7 @@ export type UserMetaCreateWithoutUserInput = {
 };
 
 export type UserMetaEdge = {
+  __typename?: "UserMetaEdge";
   node: UserMeta;
   cursor: Scalars["String"];
 };
@@ -5682,6 +5757,7 @@ export enum UserMetaOrderByInput {
 }
 
 export type UserMetaPreviousValues = {
+  __typename?: "UserMetaPreviousValues";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   metaType?: Maybe<Scalars["String"]>;
@@ -5769,6 +5845,7 @@ export type UserMetaScalarWhereInput = {
 };
 
 export type UserMetaSubscriptionPayload = {
+  __typename?: "UserMetaSubscriptionPayload";
   mutation: MutationType;
   node?: Maybe<UserMeta>;
   updatedFields?: Maybe<Array<Scalars["String"]>>;
@@ -5960,6 +6037,7 @@ export enum UserOrderByInput {
 }
 
 export type UserPreviousValues = {
+  __typename?: "UserPreviousValues";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["ID"]>;
   userType?: Maybe<Scalars["Int"]>;
@@ -5974,6 +6052,7 @@ export type UserPreviousValues = {
 };
 
 export type UserSubscriptionPayload = {
+  __typename?: "UserSubscriptionPayload";
   mutation: MutationType;
   node?: Maybe<User>;
   updatedFields?: Maybe<Array<Scalars["String"]>>;
@@ -5992,6 +6071,7 @@ export type UserSubscriptionWhereInput = {
 };
 
 export type UserTrack = {
+  __typename?: "UserTrack";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   user?: Maybe<User>;
@@ -6038,6 +6118,7 @@ export type UserTrackFilesArgs = {
 };
 
 export type UserTrackConnection = {
+  __typename?: "UserTrackConnection";
   pageInfo: PageInfo;
   edges: Array<Maybe<UserTrackEdge>>;
   aggregate: AggregateUserTrack;
@@ -6135,11 +6216,13 @@ export type UserTrackCreateWithoutUserInput = {
 };
 
 export type UserTrackEdge = {
+  __typename?: "UserTrackEdge";
   node: UserTrack;
   cursor: Scalars["String"];
 };
 
 export type UserTrackMeta = {
+  __typename?: "UserTrackMeta";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemOldId?: Maybe<Scalars["String"]>;
@@ -6151,6 +6234,7 @@ export type UserTrackMeta = {
 };
 
 export type UserTrackMetaConnection = {
+  __typename?: "UserTrackMetaConnection";
   pageInfo: PageInfo;
   edges: Array<Maybe<UserTrackMetaEdge>>;
   aggregate: AggregateUserTrackMeta;
@@ -6181,6 +6265,7 @@ export type UserTrackMetaCreateWithoutUserTrackInput = {
 };
 
 export type UserTrackMetaEdge = {
+  __typename?: "UserTrackMetaEdge";
   node: UserTrackMeta;
   cursor: Scalars["String"];
 };
@@ -6207,6 +6292,7 @@ export enum UserTrackMetaOrderByInput {
 }
 
 export type UserTrackMetaPreviousValues = {
+  __typename?: "UserTrackMetaPreviousValues";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemOldId?: Maybe<Scalars["String"]>;
@@ -6309,6 +6395,7 @@ export type UserTrackMetaScalarWhereInput = {
 };
 
 export type UserTrackMetaSubscriptionPayload = {
+  __typename?: "UserTrackMetaSubscriptionPayload";
   mutation: MutationType;
   node?: Maybe<UserTrackMeta>;
   updatedFields?: Maybe<Array<Scalars["String"]>>;
@@ -6518,6 +6605,7 @@ export enum UserTrackOrderByInput {
 }
 
 export type UserTrackPreviousValues = {
+  __typename?: "UserTrackPreviousValues";
   id: Scalars["ID"];
   oldId?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
@@ -6650,6 +6738,7 @@ export type UserTrackScalarWhereInput = {
 };
 
 export type UserTrackSubscriptionPayload = {
+  __typename?: "UserTrackSubscriptionPayload";
   mutation: MutationType;
   node?: Maybe<UserTrack>;
   updatedFields?: Maybe<Array<Scalars["String"]>>;
