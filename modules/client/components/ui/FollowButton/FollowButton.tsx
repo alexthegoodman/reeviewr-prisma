@@ -10,7 +10,9 @@ const FollowButton: React.FC<FollowButtonProps> = ({
   const clickHandler = e => onClick(e);
   return (
     <>
-      <a href="#!">Follow</a>
+      <a className="followButton" href="#!">
+        Follow
+      </a>
     </>
   );
 };

@@ -1,1 +1,16 @@
-/** Styles **/
+.followButton {
+  &:hover,
+  &:active,
+  &:focus,
+  &:visited,
+  & {
+    font-size: 0.8rem;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 1.08px;
+    color: $turquoise-blue;
+    text-decoration: underline;
+  }
+}
