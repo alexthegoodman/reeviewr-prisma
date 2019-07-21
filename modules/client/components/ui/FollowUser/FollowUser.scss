@@ -1,1 +1,38 @@
-/** Styles **/
+.followUser {
+  margin-bottom: 15px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .followUserContain {
+    display: flex;
+    flex-direction: row;
+
+    .visual {
+      margin-right: 15px;
+
+      img {
+        display: block;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+    }
+    .info {
+      display: flex;
+      flex-direction: column;
+
+      span {
+        font-size: 0.8rem;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: 1.15px;
+        color: $dark-slate-blue;
+        margin: 0;
+      }
+    }
+  }
+}

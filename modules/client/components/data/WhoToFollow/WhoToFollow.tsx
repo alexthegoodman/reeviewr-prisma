@@ -15,12 +15,32 @@ const WhoToFollow: React.FC<WhoToFollowProps> = ({
     <>
       <section className="whoToFollow">
         <div className="whoToFollowContain">
-          <Text tagName="span">Who to Follow</Text>
-          <FollowUser image="" name="Tom Hanks" userId="" />
-          <FollowUser image="" name="Tom Hanks" userId="" />
-          <FollowUser image="" name="Tom Hanks" userId="" />
-          <FollowUser image="" name="Tom Hanks" userId="" />
-          <Link href="/find-people/">More People</Link>
+          <Text className="whoToFollowTitle" tagName="span">
+            Who to Follow
+          </Text>
+          <FollowUser
+            image="/public/img/mailchimp1-small.jpg"
+            name="Tom Hanks"
+            userId=""
+          />
+          <FollowUser
+            image="/public/img/mailchimp1-small.jpg"
+            name="Tom Hanks"
+            userId=""
+          />
+          <FollowUser
+            image="/public/img/mailchimp1-small.jpg"
+            name="Tom Hanks"
+            userId=""
+          />
+          <FollowUser
+            image="/public/img/mailchimp1-small.jpg"
+            name="Tom Hanks"
+            userId=""
+          />
+          <Link className="morePeople" href="/find-people/">
+            More People
+          </Link>
         </div>
       </section>
     </>

@@ -1,1 +1,30 @@
-/** Styles **/
+.whoToFollow {
+  padding: 0 25px;
+
+  .whoToFollowContain {
+    .whoToFollowTitle {
+      display: block;
+      font-size: 1rem;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: 1.41px;
+      color: $light-slate-blue;
+      margin-bottom: 30px;
+    }
+    .morePeople {
+      display: block;
+      width: max-content;
+      margin: 22px auto 0 auto;
+      font-size: 13px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: 1.15px;
+      color: $dark-slate-blue;
+      text-decoration: underline;
+    }
+  }
+}
