@@ -1,1 +1,49 @@
-/** Styles **/
+.landingBlock {
+  background: #f6f6f6;
+
+  .contain {
+    padding: 100px 0;
+    width: $middle;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+
+    .text,
+    .visual {
+      width: 50%;
+    }
+
+    .text {
+      .textContain {
+        h3 {
+          margin: 0;
+          padding: 0;
+          color: #4a4a4a;
+          font-family: "Playfair Display", serif;
+          font-size: 48px;
+          font-style: normal;
+          font-weight: bold;
+          line-height: 125%;
+          letter-spacing: normal;
+          text-align: left;
+          margin-bottom: 50px;
+        }
+        p {
+          text-align: left;
+          padding: 0;
+          color: #686868;
+          font-family: "Playfair Display", serif;
+          font-size: 22px;
+          line-height: 150%;
+          padding-right: 25px;
+        }
+      }
+    }
+    .visual {
+      img {
+        display: block;
+        max-width: 100%;
+      }
+    }
+  }
+}

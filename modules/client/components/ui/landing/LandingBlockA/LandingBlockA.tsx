@@ -22,7 +22,7 @@ const LandingBlockA: React.FC<LandingBlockAProps> = ({
           </div>
         </div>
         <div className="visual">
-          <img src="" />
+          <img src="/public/img/mailchimp5-small.jpg" />
         </div>
       </div>
     </section>
