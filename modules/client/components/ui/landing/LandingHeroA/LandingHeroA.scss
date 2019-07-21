@@ -45,6 +45,78 @@
         }
       }
     }
+
+    form {
+      margin-top: 25px;
+
+      label {
+        display: block;
+        padding-bottom: 6px;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        color: rgb(42, 42, 42);
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 150%;
+      }
+      input {
+        font-size: 15px;
+        line-height: 18px;
+        font-weight: normal;
+        font-family: "Helvetica Neue", Arial, Helvetica, Verdana, sans-serif;
+        display: inline-block;
+        margin: 0 0 24px;
+        min-height: 36px;
+        min-width: 50px;
+        padding: 0 0.4em;
+        vertical-align: middle;
+        width: 100%;
+        background-color: #fff;
+        color: rgb(34, 34, 34);
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgb(34, 34, 34);
+        border-image: initial;
+        border-radius: 1px;
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      button {
+        cursor: pointer;
+        display: inline-block;
+        margin-right: 0;
+        overflow: hidden;
+        text-align: center;
+        text-transform: none;
+        vertical-align: middle;
+        white-space: normal;
+        height: auto;
+        min-height: 36px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 0%;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgb(42, 42, 42);
+        border-image: initial;
+        box-shadow: rgb(42, 42, 42) 8px 8px 1px 0px;
+        padding: 9px 27px;
+        float: left;
+        -webkit-appearance: none;
+        margin-top: 10px;
+
+        span {
+          font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+          color: rgb(42, 42, 42);
+          font-size: 16px;
+          font-weight: bold;
+          line-height: inherit;
+          letter-spacing: 0.01em;
+        }
+      }
+    }
   }
 
   @include desktopDown {

@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import MailchimpSubscribeForm from "../../../data/MailchimpSubscribeForm/MailchimpSubscribeForm";
 import LandingBlockA from "../../../ui/landing/LandingBlockA/LandingBlockA";
 import LandingFeaturesA from "../../../ui/landing/LandingFeaturesA/LandingFeaturesA";
 import LandingHeroA from "../../../ui/landing/LandingHeroA/LandingHeroA";
@@ -12,7 +13,9 @@ const MailchimpPods070619: React.FC<MailchimpPods070619Props> = () => {
         @import
         url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900&display=swap');
       </style>
-      <LandingHeroA>Form</LandingHeroA>
+      <LandingHeroA>
+        <MailchimpSubscribeForm />
+      </LandingHeroA>
       <LandingFeaturesA
         features={[
           {

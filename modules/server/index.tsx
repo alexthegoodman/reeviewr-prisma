@@ -48,6 +48,7 @@ import {
   CREATE_TRACK,
   CREATE_USER,
   FORGOT_PASSWORD,
+  MAILCHIMP_SUBSCRIBE,
   RESEND_EMAIL_CONFIRMATION,
   RESET_PASSWORD,
 } from "./routes";
@@ -62,6 +63,7 @@ import bcrypt from "bcrypt";
 import cors from "cors";
 import { prisma } from "../../__generated__/prisma-client";
 import Utility from "../services/Utility";
+import { mailchimpSubscribe } from "./integration/mailchimp-subscribe";
 import { completeProfile } from "./user/complete-profile";
 import { resetPassword } from "./user/reset-password";
 
@@ -124,7 +126,9 @@ export async function startServer() {
       origin(origin, callback) {
         // allow requests with no origin
         // (like mobile apps or curl requests)
-        if (!origin) { return callback(null, true); }
+        if (!origin) {
+          return callback(null, true);
+        }
 
         if (allowedOrigins.indexOf(origin) === -1) {
           const msg =
@@ -253,6 +257,9 @@ export async function startServer() {
   );
   app.post(`/${apiVersion}${CREATE_TRACK}`, (req, res) =>
     createTrack(req, res, mixpanel)
+  );
+  app.post(`/${apiVersion}${MAILCHIMP_SUBSCRIBE}`, (req, res) =>
+    mailchimpSubscribe(req, res, mixpanel)
   );
 
   app.get(
