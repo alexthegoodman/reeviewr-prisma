@@ -9,10 +9,6 @@ import { MailchimpPods070619Props } from "./MailchimpPods070619.d";
 const MailchimpPods070619: React.FC<MailchimpPods070619Props> = () => {
   return (
     <main>
-      <style>
-        @import
-        url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900&display=swap');
-      </style>
       <LandingHeroA>
         <MailchimpSubscribeForm />
       </LandingHeroA>
