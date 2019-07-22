@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { Button, Icon, Text } from "@blueprintjs/core";
+import { Link } from "react-navi";
 import { PostCardProps } from "./PostCard.d";
 
 const PostCard: React.FC<PostCardProps> = ({
@@ -8,7 +10,37 @@ const PostCard: React.FC<PostCardProps> = ({
   onClick = e => console.info("Click"),
 }) => {
   const clickHandler = e => onClick(e);
-  return <></>;
+  return (
+    <section className="postCard">
+      <div className="postCardContain">
+        <div className="visual">
+          <img src="" alt="" title="" />
+        </div>
+        <div className="info">
+          <div className="infoHeader">
+            <Text className="infoHeadline" tagName="span">
+              Can't Tell Me Nothin
+            </Text>
+            <Button className="moreButton" icon="more" />
+          </div>
+          <div className="infoInteractions">
+            <Link href="#!">
+              <Icon icon="comment" />
+              Add Review
+            </Link>
+            <Link href="#!">
+              <Icon icon="highlight" />
+              Add Annotation
+            </Link>
+            <Link href="#!">
+              <Icon icon="help" />
+              Ask Question
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default PostCard;
