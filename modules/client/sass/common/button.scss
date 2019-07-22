@@ -6,6 +6,12 @@
   background: $turquoise-blue;
   width: max-content;
 
+  .bp3-icon {
+    margin-right: 4px;
+
+    svg {
+    }
+  }
   span {
     text-transform: uppercase;
     font-size: 0.8rem;

@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { Icon } from "@blueprintjs/core";
 import { FollowButtonProps } from "./FollowButton.d";
 
 const FollowButton: React.FC<FollowButtonProps> = ({
@@ -11,6 +12,7 @@ const FollowButton: React.FC<FollowButtonProps> = ({
   return (
     <>
       <a className="followButton" href="#!">
+        <Icon icon="plus" />
         Follow
       </a>
     </>

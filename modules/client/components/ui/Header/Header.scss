@@ -87,23 +87,33 @@
   width: max-content;
   display: flex;
   flex-direction: row;
-  padding: 0;
+  padding: 0 20px;
 
   li {
     margin: 0;
 
     .menuItem,
     .menuItem.bp3-menu-item {
-      padding: 22px 50px;
+      padding: 22px 9px;
+      margin: 0 20px;
       border-radius: 0;
-      border-bottom: 3px transparent solid;
+      border-bottom: 4px transparent solid;
+
+      .bp3-fill {
+        letter-spacing: 1.24px;
+        font-size: 0.9rem;
+      }
 
       &.bp3-active {
-        border-bottom: 3px $turquoise-blue solid;
+        border-bottom: 4px $turquoise-blue solid;
+
+        .bp3-fill {
+          font-weight: bold;
+        }
       }
       &.bp3-active,
       &:hover {
-        background: $lightGrey;
+        background: transparent;
       }
     }
   }
