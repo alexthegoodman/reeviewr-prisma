@@ -11,13 +11,18 @@ import Artists from "../components/pages/Artists/Artists";
 import CompleteProfile from "../components/pages/CompleteProfile/CompleteProfile";
 import ConfirmEmail from "../components/pages/ConfirmEmail/ConfirmEmail";
 import Explore from "../components/pages/Explore/Explore";
+import FindPeople from "../components/pages/FindPeople/FindPeople";
 import ForgotPassword from "../components/pages/ForgotPassword/ForgotPassword";
 import Home from "../components/pages/Home/Home";
+import InviteFriends from "../components/pages/InviteFriends/InviteFriends";
+import JoinedPods from "../components/pages/JoinedPods/JoinedPods";
 import MailchimpPods070619 from "../components/pages/landing/MailchimpPods070619/MailchimpPods070619";
 import MailchimpPods072019 from "../components/pages/landing/MailchimpPods072019/MailchimpPods072019";
 import Login from "../components/pages/Login/Login";
 import Messages from "../components/pages/Messages/Messages";
 import Notifications from "../components/pages/Notifications/Notifications";
+import PodDetail from "../components/pages/PodDetail/PodDetail";
+import PostDetail from "../components/pages/PostDetail/PostDetail";
 import ProfileFollowers from "../components/pages/ProfileFollowers/ProfileFollowers";
 import ProfileFollowing from "../components/pages/ProfileFollowing/ProfileFollowing";
 import ProfileLikes from "../components/pages/ProfileLikes/ProfileLikes";
@@ -28,6 +33,7 @@ import SignUp from "../components/pages/SignUp/SignUp";
 import TrackDetail from "../components/pages/TrackDetail/TrackDetail";
 import Tracks from "../components/pages/Tracks/Tracks";
 import UploadTrack from "../components/pages/UploadTrack/UploadTrack";
+import YourFeed from "../components/pages/YourFeed/YourFeed";
 import Strings from "../services/Strings";
 
 const utility = new Utility();
@@ -127,7 +133,7 @@ const routes = mount({
     };
   }),
   "/": route({
-    title: "Home / Reeviewr",
+    title: "Explore / Reeviewr",
     // getData: () => api.fetchProducts(), // TODO: consider integrating Apollo Client here
     head: (
       <>
@@ -140,171 +146,102 @@ const routes = mount({
       </AppNav>
     ),
   }),
-  // "/products": lazy(() => import("./productsRoutes")), // TODO: set up code-splitting
-  "/tracks": route(req => {
-    return {
-      title: "Tracks / Reeviewr",
-      head: (
-        <>
-          <link rel="canonical" href="https://reeviewr.com/tracks" />
-        </>
-      ),
-      view: (
-        <AppNav>
-          <Tracks />
-        </AppNav>
-      ),
-    };
-  }),
-  "/tracks/:trackId/:name": route(req => {
-    const { trackId, name } = req.params;
+  "/pods/:podId/:slug": route(req => {
+    const { podId, slug } = req.params;
 
     return {
-      title: `${strings.decode(
-        he.decode(changeCase.sentenceCase(name))
-      )} / Tracks / Reeviewr`,
+      title: "Pod Detail / Reeviewr",
       head: (
         <>
           <link
             rel="canonical"
-            href={`https://reeviewr.com/tracks/${trackId}/${name}`}
+            href={`https://reeviewr.com/pods/${podId}/${slug}`}
           />
         </>
       ),
       view: (
         <AppNav>
-          <TrackDetail trackId={trackId} />
+          <PodDetail />
         </AppNav>
       ),
     };
   }),
-  "/artists": route(req => {
-    return {
-      title: "Artists / Reeviewr",
-      head: (
-        <>
-          <link rel="canonical" href={`https://reeviewr.com/artists`} />
-        </>
-      ),
-      view: (
-        <AppNav>
-          <Artists />
-        </AppNav>
-      ),
-    };
-  }),
-  "/artists/:artistId/:name": route(req => {
-    const { artistId, name } = req.params;
+  "/posts/:postId/:slug": route(req => {
+    const { postId, slug } = req.params;
 
     return {
-      title: `${strings.decode(name)} / Artist / Reeviewr`,
+      title: "Post Detail / Reeviewr",
       head: (
         <>
           <link
             rel="canonical"
-            href={`https://reeviewr.com/artists/${artistId}/${name}`}
+            href={`https://reeviewr.com/posts/${postId}/${slug}`}
           />
         </>
       ),
       view: (
         <AppNav>
-          <ArtistDetail artistId={artistId} />
+          <PostDetail />
         </AppNav>
       ),
     };
   }),
-  "/artists/:artistId/:name/likes": route(req => {
-    const { artistId, name } = req.params;
-
+  "/find-people": route(req => {
     return {
-      title: `${strings.decode(
-        he.decode(changeCase.sentenceCase(name))
-      )} / Artist Likes / Reeviewr`,
+      title: "Find People / Reeviewr",
       head: (
         <>
-          <link
-            rel="canonical"
-            href={`https://reeviewr.com/artiists/${artistId}/${name}/likes`}
-          />
+          <link rel="canonical" href={`https://reeviewr.com/find-people`} />
         </>
       ),
       view: (
         <AppNav>
-          <ProfileLikes artistId={artistId} />
+          <FindPeople />
         </AppNav>
       ),
     };
   }),
-  "/artists/:artistId/:name/following": route(req => {
-    const { artistId, name } = req.params;
-
+  "/invite-friends": route(req => {
     return {
-      title: `${strings.decode(
-        he.decode(changeCase.sentenceCase(name))
-      )} / Artist Following / Reeviewr`,
+      title: "Invite Friends / Reeviewr",
       head: (
         <>
-          <link
-            rel="canonical"
-            href={`https://reeviewr.com/artiists/${artistId}/${name}/following`}
-          />
+          <link rel="canonical" href={`https://reeviewr.com/invite-friends`} />
         </>
       ),
       view: (
         <AppNav>
-          <ProfileFollowing artistId={artistId} />
+          <InviteFriends />
         </AppNav>
       ),
     };
   }),
-  "/artists/:artistId/:name/followers": route(req => {
-    const { artistId, name } = req.params;
-
+  "/joined-pods": route(req => {
     return {
-      title: `${strings.decode(
-        he.decode(changeCase.sentenceCase(name))
-      )} / Artist Followers / Reeviewr`,
+      title: "Joined Pods / Reeviewr",
       head: (
         <>
-          <link
-            rel="canonical"
-            href={`https://reeviewr.com/artiists/${artistId}/${name}/followers`}
-          />
+          <link rel="canonical" href={`https://reeviewr.com/joined-pods`} />
         </>
       ),
       view: (
         <AppNav>
-          <ProfileFollowers artistId={artistId} />
+          <JoinedPods />
         </AppNav>
       ),
     };
   }),
-  "/reviews": route(req => {
+  "/feed": route(req => {
     return {
-      title: "Reviews / Reeviewr",
+      title: "Your Feed / Reeviewr",
       head: (
         <>
-          <link rel="canonical" href={`https://reeviewr.com/reviews`} />
+          <link rel="canonical" href={`https://reeviewr.com/feed`} />
         </>
       ),
       view: (
         <AppNav>
-          <Reviews />
-        </AppNav>
-      ),
-    };
-  }),
-  "/upload": route(req => {
-    return {
-      title: "Upload Track / Reeviewr",
-      head: (
-        <>
-          <link rel="canonical" href={`https://reeviewr.com/upload`} />
-        </>
-      ),
-      view: (
-        <AppNav>
-          <UploadTrack />
+          <YourFeed />
         </AppNav>
       ),
     };
@@ -376,6 +313,175 @@ const routes = mount({
       view: <MailchimpPods072019 />,
     };
   }),
+  // "/products": lazy(() => import("./productsRoutes")), // TODO: set up code-splitting
+  // "/tracks": route(req => {
+  //   return {
+  //     title: "Tracks / Reeviewr",
+  //     head: (
+  //       <>
+  //         <link rel="canonical" href="https://reeviewr.com/tracks" />
+  //       </>
+  //     ),
+  //     view: (
+  //       <AppNav>
+  //         <Tracks />
+  //       </AppNav>
+  //     ),
+  //   };
+  // }),
+  // "/tracks/:trackId/:name": route(req => {
+  //   const { trackId, name } = req.params;
+
+  //   return {
+  //     title: `${strings.decode(
+  //       he.decode(changeCase.sentenceCase(name))
+  //     )} / Tracks / Reeviewr`,
+  //     head: (
+  //       <>
+  //         <link
+  //           rel="canonical"
+  //           href={`https://reeviewr.com/tracks/${trackId}/${name}`}
+  //         />
+  //       </>
+  //     ),
+  //     view: (
+  //       <AppNav>
+  //         <TrackDetail trackId={trackId} />
+  //       </AppNav>
+  //     ),
+  //   };
+  // }),
+  // "/artists": route(req => {
+  //   return {
+  //     title: "Artists / Reeviewr",
+  //     head: (
+  //       <>
+  //         <link rel="canonical" href={`https://reeviewr.com/artists`} />
+  //       </>
+  //     ),
+  //     view: (
+  //       <AppNav>
+  //         <Artists />
+  //       </AppNav>
+  //     ),
+  //   };
+  // }),
+  // "/artists/:artistId/:name": route(req => {
+  //   const { artistId, name } = req.params;
+
+  //   return {
+  //     title: `${strings.decode(name)} / Artist / Reeviewr`,
+  //     head: (
+  //       <>
+  //         <link
+  //           rel="canonical"
+  //           href={`https://reeviewr.com/artists/${artistId}/${name}`}
+  //         />
+  //       </>
+  //     ),
+  //     view: (
+  //       <AppNav>
+  //         <ArtistDetail artistId={artistId} />
+  //       </AppNav>
+  //     ),
+  //   };
+  // }),
+  // "/artists/:artistId/:name/likes": route(req => {
+  //   const { artistId, name } = req.params;
+
+  //   return {
+  //     title: `${strings.decode(
+  //       he.decode(changeCase.sentenceCase(name))
+  //     )} / Artist Likes / Reeviewr`,
+  //     head: (
+  //       <>
+  //         <link
+  //           rel="canonical"
+  //           href={`https://reeviewr.com/artiists/${artistId}/${name}/likes`}
+  //         />
+  //       </>
+  //     ),
+  //     view: (
+  //       <AppNav>
+  //         <ProfileLikes artistId={artistId} />
+  //       </AppNav>
+  //     ),
+  //   };
+  // }),
+  // "/artists/:artistId/:name/following": route(req => {
+  //   const { artistId, name } = req.params;
+
+  //   return {
+  //     title: `${strings.decode(
+  //       he.decode(changeCase.sentenceCase(name))
+  //     )} / Artist Following / Reeviewr`,
+  //     head: (
+  //       <>
+  //         <link
+  //           rel="canonical"
+  //           href={`https://reeviewr.com/artiists/${artistId}/${name}/following`}
+  //         />
+  //       </>
+  //     ),
+  //     view: (
+  //       <AppNav>
+  //         <ProfileFollowing artistId={artistId} />
+  //       </AppNav>
+  //     ),
+  //   };
+  // }),
+  // "/artists/:artistId/:name/followers": route(req => {
+  //   const { artistId, name } = req.params;
+
+  //   return {
+  //     title: `${strings.decode(
+  //       he.decode(changeCase.sentenceCase(name))
+  //     )} / Artist Followers / Reeviewr`,
+  //     head: (
+  //       <>
+  //         <link
+  //           rel="canonical"
+  //           href={`https://reeviewr.com/artiists/${artistId}/${name}/followers`}
+  //         />
+  //       </>
+  //     ),
+  //     view: (
+  //       <AppNav>
+  //         <ProfileFollowers artistId={artistId} />
+  //       </AppNav>
+  //     ),
+  //   };
+  // }),
+  // "/reviews": route(req => {
+  //   return {
+  //     title: "Reviews / Reeviewr",
+  //     head: (
+  //       <>
+  //         <link rel="canonical" href={`https://reeviewr.com/reviews`} />
+  //       </>
+  //     ),
+  //     view: (
+  //       <AppNav>
+  //         <Reviews />
+  //       </AppNav>
+  //     ),
+  //   };
+  // }),
+  // "/upload": route(req => {
+  //   return {
+  //     title: "Upload Track / Reeviewr",
+  //     head: (
+  //       <>
+  //         <link rel="canonical" href={`https://reeviewr.com/upload`} />
+  //       </>
+  //     ),
+  //     view: (
+  //       <AppNav>
+  //         <UploadTrack />
+  //       </AppNav>
+  //     ),
+  //   };
+  // }),
 });
 
 export default routes;
