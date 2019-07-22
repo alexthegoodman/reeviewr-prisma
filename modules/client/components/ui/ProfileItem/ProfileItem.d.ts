@@ -4,4 +4,5 @@ export interface ProfileItemProps {
   onClick?: (e: MouseEvent) => void;
   imageUrl: string;
   name: string;
+  points: number;
 }

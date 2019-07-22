@@ -107,18 +107,68 @@
   }
 }
 
-.helpButton,
-.helpButton.bp3-button.bp3-minimal {
-  width: $headerHeight;
+.headerActionButton,
+.headerActionButton.bp3-button.bp3-minimal {
+  width: 50px;
+  position: relative;
 
   &:hover {
     background: $lightGrey;
   }
 
   .bp3-icon {
+    margin: 0;
+
     svg {
       height: 20px;
       width: 20px;
+    }
+  }
+  .bp3-button-text {
+    position: absolute;
+    top: 15px;
+    right: 2px;
+    margin: 0;
+
+    .buttonTag,
+    .buttonTag.bp3-tag {
+      display: block;
+      text-align: center;
+      min-width: 20px;
+      height: 20px;
+      padding-left: 0;
+      padding-right: 0;
+
+      > span {
+        font-size: 0.7rem;
+      }
+    }
+  }
+}
+
+.buttonTag,
+.buttonTag.bp3-tag {
+  margin: 0;
+}
+
+.darkMode {
+  .headerActionButton,
+  .headerActionButton.bp3-button.bp3-minimal {
+    .bp3-icon {
+      svg {
+        fill: white;
+      }
+    }
+  }
+}
+
+.lightMode {
+  .headerActionButton,
+  .headerActionButton.bp3-button.bp3-minimal {
+    .bp3-icon {
+      svg {
+        fill: $light-slate-blue;
+      }
     }
   }
 }

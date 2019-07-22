@@ -12,18 +12,76 @@
     @extend .horizontalCenter;
     margin: 0;
 
-    img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: $dark-gray5;
+    .visual {
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: $dark-gray5;
+      }
     }
-    span {
+    .info {
       @extend .verticalCenter;
       padding-left: 15px;
-      font-size: 1.1rem;
-      margin: 0;
-      color: white;
+
+      > span {
+        margin: 0;
+        text-align: left;
+      }
+      .name {
+        font-size: 0.9rem;
+        letter-spacing: 1.24px;
+
+        .bp3-icon {
+          margin-left: 4px;
+        }
+      }
+      .points {
+        font-size: 0.8rem;
+        letter-spacing: 1.06px;
+      }
+    }
+  }
+}
+
+.lightMode {
+  .profileItem,
+  .profileItem.bp3-button:not([class*="bp3-intent-"]) {
+    .bp3-button-text {
+      .info {
+        .name {
+          color: rgba($dark-slate-blue, 0.7);
+
+          .bp3-icon {
+            svg {
+              fill: rgba($dark-slate-blue, 0.7);
+            }
+          }
+        }
+        .points {
+          color: $dark-slate-blue;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+.darkMode {
+  .profileItem,
+  .profileItem.bp3-button:not([class*="bp3-intent-"]) {
+    .bp3-button-text {
+      .info {
+        > span {
+          color: white;
+
+          .bp3-icon {
+            svg {
+              fill: white;
+            }
+          }
+        }
+      }
     }
   }
 }

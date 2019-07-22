@@ -13,6 +13,7 @@ import {
   Popover,
   Position,
   Switch,
+  Tag,
   Text,
   Tooltip,
 } from "@blueprintjs/core";
@@ -44,11 +45,16 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
     "reeviewrDarkMode",
   ]);
 
-  // const [{ tour, userData }, dispatch] = useAppContext();
+  const [{ tour, userData }, dispatch] = useAppContext();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [darkMode, setDarkMode] = React.useState(
     cookies["reeviewrDarkMode"] === "true" ? true : false
   );
+
+  let loggedIn = false;
+  if (utility.isDefinedWithContent(userData)) {
+    loggedIn = true;
+  }
 
   const openInNewTab = url => {
     const win = window.open(url, "_blank");
@@ -147,7 +153,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
               <div className="mobileHide w100 row">
                 <Tooltip content="Take a Tour" position={Position.BOTTOM}>
                   <Button
-                    className="helpButton headerItem"
+                    className="helpButton headerActionButton headerItem"
                     minimal={true}
                     onClick={async () => {
                       await navigation.navigate("/");
@@ -162,6 +168,36 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                     icon="help"
                   />
                 </Tooltip>
+
+                <Popover>
+                  <Tooltip content="Notifications" position={Position.BOTTOM}>
+                    <Button
+                      className="notificationsButton headerActionButton headerItem"
+                      minimal={true}
+                      onClick={async () => {}}
+                      icon="notifications"
+                    >
+                      <Tag className="buttonTag" round={true} intent="danger">
+                        2
+                      </Tag>
+                    </Button>
+                  </Tooltip>
+
+                  <div className="popoverContent">Notifications</div>
+                </Popover>
+
+                <Popover>
+                  <Tooltip content="Messages" position={Position.BOTTOM}>
+                    <Button
+                      className="messagesButton headerActionButton headerItem"
+                      minimal={true}
+                      onClick={async () => {}}
+                      icon="envelope"
+                    />
+                  </Tooltip>
+
+                  <div className="popoverContent">Messages</div>
+                </Popover>
 
                 <Popover
                   content={
@@ -179,13 +215,22 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                   }
                   position={Position.BOTTOM_LEFT}
                 >
-                  <Button
-                    className="textButton headerItem"
-                    minimal={true}
-                    rightIcon="caret-down"
-                  >
-                    Menu
-                  </Button>
+                  {loggedIn ? (
+                    <ProfileItem
+                      className="headerItem"
+                      imageUrl={"/public/img/mailchimp2-small.jpg"}
+                      name={"Camelia Cuncoro"}
+                      points={1500}
+                    />
+                  ) : (
+                    <Button
+                      className="textButton headerItem"
+                      minimal={true}
+                      rightIcon="caret-down"
+                    >
+                      Menu
+                    </Button>
+                  )}
                 </Popover>
               </div>
 
