@@ -165,7 +165,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                         $(".react-joyride__beacon").trigger("click");
                       }, 250);
                     }}
-                    icon="help"
+                    icon="lifesaver"
                   />
                 </Tooltip>
 

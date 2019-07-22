@@ -10,6 +10,7 @@ import ArtistDetail from "../components/pages/ArtistDetail/ArtistDetail";
 import Artists from "../components/pages/Artists/Artists";
 import CompleteProfile from "../components/pages/CompleteProfile/CompleteProfile";
 import ConfirmEmail from "../components/pages/ConfirmEmail/ConfirmEmail";
+import Explore from "../components/pages/Explore/Explore";
 import ForgotPassword from "../components/pages/ForgotPassword/ForgotPassword";
 import Home from "../components/pages/Home/Home";
 import MailchimpPods070619 from "../components/pages/landing/MailchimpPods070619/MailchimpPods070619";
@@ -135,7 +136,7 @@ const routes = mount({
     ),
     view: (
       <AppNav>
-        <Home />
+        <Explore />
       </AppNav>
     ),
   }),
