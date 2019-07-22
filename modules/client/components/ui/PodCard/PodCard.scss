@@ -6,6 +6,9 @@
     padding: 25px 30px;
 
     .podCardHeader {
+      display: table;
+      width: 100%;
+
       .podCardHeadline {
         font-size: 16px;
         font-weight: 600;
@@ -16,11 +19,38 @@
         color: $dark-slate-blue;
       }
       .joinButton {
+        float: right;
       }
     }
     .podCardStats {
+      display: flex;
+      flex-direction: row;
+
+      .stat {
+        display: flex;
+        flex-direction: row;
+        margin-right: 40px;
+
+        .bp3-icon {
+          margin-right: 9px;
+        }
+
+        span {
+          font-size: 13px;
+          font-weight: 300;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: 1.15px;
+          color: rgba($dark-slate-blue, 0.6);
+        }
+      }
     }
     .podCardContent {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 14px;
+      margin-top: 40px;
     }
   }
 }

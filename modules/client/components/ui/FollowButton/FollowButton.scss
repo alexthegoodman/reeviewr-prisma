@@ -1,27 +1,2 @@
 .followButton {
-  &:hover,
-  &:active,
-  &:focus,
-  &:visited,
-  & {
-    font-size: 0.8rem;
-    font-weight: 300;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: 1.08px;
-    color: $turquoise-blue;
-    text-decoration: underline;
-
-    .bp3-icon {
-      svg {
-        fill: $turquoise-blue;
-        width: 12px;
-        height: 12px;
-        position: relative;
-        top: -2px;
-        margin-right: 3px;
-      }
-    }
-  }
 }

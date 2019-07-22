@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { Icon, Text } from "@blueprintjs/core";
+import { Link } from "react-navi";
 import { MiniPostCardProps } from "./MiniPostCard.d";
 
 const MiniPostCard: React.FC<MiniPostCardProps> = ({
@@ -19,7 +20,7 @@ const MiniPostCard: React.FC<MiniPostCardProps> = ({
           <Text className="miniPostCardTitle" tagName="span">
             Can't Tell Me Nothin
           </Text>
-          <div className="miniPostCardStats">
+          {/* <div className="miniPostCardStats">
             <div className="stat">
               <Icon icon="help" />
               <Text tagName="span">5</Text>
@@ -32,7 +33,10 @@ const MiniPostCard: React.FC<MiniPostCardProps> = ({
               <Icon icon="highlight" />
               <Text tagName="span">3</Text>
             </div>
-          </div>
+          </div> */}
+          <Link className="miniPostCardLink" href="post">
+            View Post
+          </Link>
         </div>
       </div>
     </section>

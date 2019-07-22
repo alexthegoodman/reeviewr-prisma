@@ -151,6 +151,27 @@
   margin: 0;
 }
 
+.joinButton,
+.joinButton.bp3-button:not([class*="bp3-intent-"]) {
+  border-radius: 3px;
+  border: solid 1px $turquoise-blue;
+  min-width: 90px;
+  box-shadow: none;
+  outline: none;
+
+  span {
+    font-size: 0.8rem;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 1.06px;
+    color: $turquoise-blue;
+    text-transform: uppercase;
+    margin: 0;
+  }
+}
+
 .darkMode {
   .headerActionButton,
   .headerActionButton.bp3-button.bp3-minimal {

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Button, Icon, Text } from "@blueprintjs/core";
+import { Button, Icon, Position, Text, Tooltip } from "@blueprintjs/core";
 import MiniPostCard from "../MiniPostCard/MiniPostCard";
 import { PodCardProps } from "./PodCard.d";
 
@@ -20,18 +20,24 @@ const PodCard: React.FC<PodCardProps> = ({
           <Button className="joinButton">Join</Button>
         </div>
         <div className="podCardStats">
-          <div className="stat">
-            <Icon icon="help" />
-            <Text tagName="span">25 Questions</Text>
-          </div>
-          <div className="stat">
-            <Icon icon="comment" />
-            <Text tagName="span">50 Reviews</Text>
-          </div>
-          <div className="stat">
-            <Icon icon="highlight" />
-            <Text tagName="span">12 Annotations</Text>
-          </div>
+          <Tooltip content="50 Reviews" position={Position.BOTTOM}>
+            <div className="stat">
+              <Icon icon="comment" />
+              <Text tagName="span">50</Text>
+            </div>
+          </Tooltip>
+          <Tooltip content="12 Annotations" position={Position.BOTTOM}>
+            <div className="stat">
+              <Icon icon="highlight" />
+              <Text tagName="span">12</Text>
+            </div>
+          </Tooltip>
+          <Tooltip content="25 Questions" position={Position.BOTTOM}>
+            <div className="stat">
+              <Icon icon="help" />
+              <Text tagName="span">25</Text>
+            </div>
+          </Tooltip>
         </div>
         <div className="podCardContent">
           <MiniPostCard />
