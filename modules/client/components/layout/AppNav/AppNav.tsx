@@ -98,16 +98,16 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
           <Menu className="sidebarMenu">
             <MenuItem
               className="joyrideYourFeedPage"
-              active={route.url.pathname === "/user/id/feed" ? true : false}
-              onClick={() => navigate("/user/id/feed")}
+              active={route.url.pathname === "/feed" ? true : false}
+              onClick={() => navigate("/feed")}
             >
               <Icon icon="property" />
               Your Feed
             </MenuItem>
             <MenuItem
               className="joyrideJoinedPodsPage"
-              active={route.url.pathname === "/user/id/pods" ? true : false}
-              onClick={() => navigate("/user/id/pods")}
+              active={route.url.pathname === "/joined-pods" ? true : false}
+              onClick={() => navigate("/joined-pods")}
             >
               <Icon icon="layout-grid" />
               Joined Pods
@@ -138,7 +138,9 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                   </MenuItem>
                   <MenuItem
                     className="joyrideFindPeoplePage"
-                    active={route.url.pathname === "/tracks" ? true : false}
+                    active={
+                      route.url.pathname === "/find-people" ? true : false
+                    }
                     onClick={() => navigate("/find-people")}
                   >
                     Find People
