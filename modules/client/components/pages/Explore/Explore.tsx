@@ -13,6 +13,16 @@ const Explore: React.FC<ExploreProps> = () => {
         <PodCard />
         <PodCard />
       </PodCategory>
+      <PodCategory title="Painting Pods">
+        <PodCard />
+        <PodCard />
+        <PodCard />
+      </PodCategory>
+      <PodCategory title="Video Pods">
+        <PodCard />
+        <PodCard />
+        <PodCard />
+      </PodCategory>
     </>
   );
 };

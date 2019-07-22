@@ -11,6 +11,7 @@ const PodCategory: React.FC<PodCategoryProps> = ({
   title = "Pods",
 }) => {
   const clickHandler = e => onClick(e);
+  // TODO: add See More link, as this would show only 3 music related pods
   return (
     <>
       <section className="podCategory">

@@ -1,1 +1,44 @@
-/** Styles **/
+.podCategory {
+  .podCategoryContain {
+    .podCategoryHeader {
+      h6 {
+        font-size: 18px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: 1.5px;
+        color: $light-slate-blue;
+      }
+    }
+    .podCategoryContent {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-column-gap: 13px;
+    }
+  }
+}
+
+.darkMode {
+  .podCategory {
+    .podCategoryContain {
+      .podCategoryHeader {
+        h6 {
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+.lightMode {
+  .podCategory {
+    .podCategoryContain {
+      .podCategoryHeader {
+        h6 {
+          color: $light-slate-blue;
+        }
+      }
+    }
+  }
+}
