@@ -14,6 +14,7 @@ import {
   Position,
   Switch,
   Text,
+  Tooltip,
 } from "@blueprintjs/core";
 import * as $ from "jquery";
 import { useCookies } from "react-cookie";
@@ -144,21 +145,24 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
           rightElements={
             <>
               <div className="mobileHide w100 row">
-                <Button
-                  className="helpButton headerItem"
-                  minimal={true}
-                  onClick={async () => {
-                    await navigation.navigate("/");
-                    dispatch({
-                      type: "setTour",
-                      tour: { run: true },
-                    });
-                    setTimeout(() => {
-                      $(".react-joyride__beacon").trigger("click");
-                    }, 250);
-                  }}
-                  icon="help"
-                />
+                <Tooltip content="Take a Tour" position={Position.BOTTOM}>
+                  <Button
+                    className="helpButton headerItem"
+                    minimal={true}
+                    onClick={async () => {
+                      await navigation.navigate("/");
+                      dispatch({
+                        type: "setTour",
+                        tour: { run: true },
+                      });
+                      setTimeout(() => {
+                        $(".react-joyride__beacon").trigger("click");
+                      }, 250);
+                    }}
+                    icon="help"
+                  />
+                </Tooltip>
+
                 <Popover
                   content={
                     <Menu className="dropdown">
