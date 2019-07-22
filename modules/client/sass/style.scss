@@ -9,6 +9,8 @@
 
 @import "vars";
 
+// @import "base/reset";
+// @import "base/general";
 @import "base/helpers";
 @import "base/family";
 
@@ -74,10 +76,11 @@
 @import "../components/ui/FollowButton/FollowButton";
 @import "../components/ui/FollowUser/FollowUser";
 @import "../components/ui/Advertisement/Advertisement";
-@import "../components/ui/PodCategory/PodCategory";
+@import "../components/ui/CategoryGrid/CategoryGrid";
 @import "../components/ui/PodCard/PodCard";
 @import "../components/ui/PostCard/PostCard";
 @import "../components/ui/MiniPostCard/MiniPostCard";
+@import "../components/ui/UserCard/UserCard";
 
 @import "../components/ui/landing/LandingHeroA/LandingHeroA";
 @import "../components/ui/landing/LandingFeaturesA/LandingFeaturesA";

@@ -1,28 +1,28 @@
 import * as React from "react";
 
 import { Text } from "@blueprintjs/core";
+import CategoryGrid from "../../ui/CategoryGrid/CategoryGrid";
 import PodCard from "../../ui/PodCard/PodCard";
-import PodCategory from "../../ui/PodCategory/PodCategory";
 import { ExploreProps } from "./Explore.d";
 
 const Explore: React.FC<ExploreProps> = () => {
   return (
     <>
-      <PodCategory title="Music Pods">
+      <CategoryGrid title="Music Pods">
         <PodCard />
         <PodCard />
         <PodCard />
-      </PodCategory>
-      <PodCategory title="Painting Pods">
+      </CategoryGrid>
+      <CategoryGrid title="Painting Pods">
         <PodCard />
         <PodCard />
         <PodCard />
-      </PodCategory>
-      <PodCategory title="Video Pods">
+      </CategoryGrid>
+      <CategoryGrid title="Video Pods">
         <PodCard />
         <PodCard />
         <PodCard />
-      </PodCategory>
+      </CategoryGrid>
     </>
   );
 };

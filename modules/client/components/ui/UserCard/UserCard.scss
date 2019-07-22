@@ -1,0 +1,62 @@
+.userCard {
+  border-radius: 5px;
+  background-color: #f4f5f7;
+
+  .userCardContain {
+    padding: 25px 30px;
+    display: flex;
+    flex-direction: row;
+
+    .visual {
+      margin-right: 25px;
+
+      img {
+        display: block;
+        width: 60px;
+        height: 60px;
+        background: $lightGrey;
+        border-radius: 50%;
+      }
+    }
+    .info {
+      .userName {
+        display: block;
+        font-size: 16px;
+        font-weight: 600;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: 1.33px;
+        color: $dark-slate-blue;
+        margin: 0 0 4px 0;
+      }
+
+      .userCardStats {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 4px;
+
+        .stat {
+          display: flex;
+          flex-direction: row;
+          margin-right: 40px;
+
+          .bp3-icon {
+            margin: 0 9px 0 0;
+          }
+
+          span {
+            font-size: 13px;
+            font-weight: 300;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: 1.15px;
+            color: rgba($dark-slate-blue, 0.6);
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}

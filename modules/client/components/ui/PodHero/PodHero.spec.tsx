@@ -1,16 +1,16 @@
 import * as React from "react";
 import { render } from "enzyme";
 
-import PodCategory from "./PodCategory";
+import PodHero from "./PodHero";
 import TestProvider from "../../modules/client/TestProvider";
 
-describe("PodCategory", () => {
+describe("PodHero", () => {
   let wrapper;
 
   beforeEach(() => {
     wrapper = render(
       <TestProvider>
-        <PodCategory />
+        <PodHero />
       </TestProvider>
     );
   });

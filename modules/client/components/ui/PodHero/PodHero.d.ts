@@ -1,6 +1,5 @@
-export interface PodCategoryProps {
+export interface PodHeroProps {
   ref?: React.Ref<any>;
   className?: string;
   onClick?: (e: MouseEvent) => void;
-  title: string;
 }

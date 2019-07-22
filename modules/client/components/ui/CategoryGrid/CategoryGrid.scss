@@ -1,8 +1,10 @@
-.podCategory {
+.categoryGrid {
   margin-bottom: 35px;
 
-  .podCategoryContain {
-    .podCategoryHeader {
+  .categoryGridContain {
+    .categoryGridHeader {
+      margin-bottom: 24px;
+
       h6 {
         font-size: 18px;
         font-weight: bold;
@@ -13,18 +15,19 @@
         color: $light-slate-blue;
       }
     }
-    .podCategoryContent {
+    .categoryGridContent {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       grid-column-gap: 13px;
+      grid-row-gap: 13px;
     }
   }
 }
 
 .darkMode {
-  .podCategory {
-    .podCategoryContain {
-      .podCategoryHeader {
+  .categoryGrid {
+    .categoryGridContain {
+      .categoryGridHeader {
         h6 {
           color: white;
         }
@@ -34,9 +37,9 @@
 }
 
 .lightMode {
-  .podCategory {
-    .podCategoryContain {
-      .podCategoryHeader {
+  .categoryGrid {
+    .categoryGridContain {
+      .categoryGridHeader {
         h6 {
           color: $light-slate-blue;
         }
