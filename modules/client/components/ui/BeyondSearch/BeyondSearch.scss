@@ -4,24 +4,25 @@
   margin: 0 auto;
 
   .bp3-icon {
-    margin: 18px;
+    margin: 30px;
 
     svg {
       width: 19px;
       height: 19px;
-      color: white;
     }
   }
   .bp3-input {
     height: $headerHeight;
     line-height: 55px;
-    padding-left: 55px;
+    padding-left: 65px;
     padding-right: 55px;
     min-width: 300px;
     border-radius: 0;
     font-size: 0.8rem;
     letter-spacing: 1.15px;
-    color: $light-slate-blue;
+    border: none;
+    outline: none;
+    box-shadow: none;
   }
 
   ::-webkit-search-cancel-button {
@@ -32,8 +33,13 @@
 
 .darkMode .beyondSearch,
 .darkMode .beyondSearch.bp3-input-group.bp3-large {
+  .bp3-icon {
+    svg {
+      color: white;
+    }
+  }
   .bp3-input {
-    background: $dark-gray5;
+    // background: $dark-gray5;
     color: white;
     @include placeholderProperties(rgba(255, 255, 255, 0.8), 300);
   }
@@ -41,9 +47,14 @@
 
 .lightMode .beyondSearch,
 .lightMode .beyondSearch.bp3-input-group.bp3-large {
+  .bp3-icon {
+    svg {
+      color: $light-slate-blue;
+    }
+  }
   .bp3-input {
-    background: $light-gray5;
+    // background: $light-gray5;
     color: black;
-    @include placeholderProperties(rgba(0, 0, 0, 0.8), 300);
+    @include placeholderProperties($light-slate-blue, 300);
   }
 }

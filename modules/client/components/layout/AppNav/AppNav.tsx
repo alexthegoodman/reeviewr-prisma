@@ -81,26 +81,36 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
           className={mobileMenuOpen ? "mobileMenuOpen" : "mobileMenuClosed"}
         >
           <Logo white={false} />
-          <Button className="button createPostButton">Create Post</Button>
+          <Button
+            className="button createButton"
+            onClick={() => navigate("/create")}
+            icon="plus"
+          >
+            Create Post
+          </Button>
           <Menu className="sidebarMenu">
             <MenuItem
-              active={route.url.pathname === "/" ? true : false}
-              onClick={() => navigate("/")}
+              className="joyrideYourFeedPage"
+              active={route.url.pathname === "/user/id/feed" ? true : false}
+              onClick={() => navigate("/user/id/feed")}
             >
+              <Icon icon="property" />
               Your Feed
             </MenuItem>
             <MenuItem
-              className="joyrideTracksPage"
-              active={route.url.pathname === "/tracks" ? true : false}
-              onClick={() => navigate("/tracks")}
+              className="joyrideJoinedPodsPage"
+              active={route.url.pathname === "/user/id/pods" ? true : false}
+              onClick={() => navigate("/user/id/pods")}
             >
+              <Icon icon="layout-grid" />
               Joined Pods
             </MenuItem>
             <MenuItem
-              className="joyrideTracksPage"
-              active={route.url.pathname === "/tracks" ? true : false}
-              onClick={() => navigate("/tracks")}
+              className="joyrideInviteFriendsPage"
+              active={route.url.pathname === "/invite-friends" ? true : false}
+              onClick={() => navigate("/invite-friends")}
             >
+              <Icon icon="new-person" />
               Invite Friends
             </MenuItem>
           </Menu>
@@ -110,16 +120,32 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
         <Header
           leftElements={
             <>
-              <div className="mobileHide w100">
+              <div className="mobileHide w100 row">
+                <Menu className="headerMenu">
+                  <MenuItem
+                    className="joyrideExplorePage"
+                    active={route.url.pathname === "/" ? true : false}
+                    onClick={() => navigate("/")}
+                  >
+                    Explore
+                  </MenuItem>
+                  <MenuItem
+                    className="joyrideFindPeoplePage"
+                    active={route.url.pathname === "/tracks" ? true : false}
+                    onClick={() => navigate("/find-people")}
+                  >
+                    Find People
+                  </MenuItem>
+                </Menu>
                 <BeyondSearchData />
               </div>
             </>
           }
           rightElements={
             <>
-              <div className="mobileHide">
+              <div className="mobileHide w100 row">
                 <Button
-                  className="actionButton headerItem"
+                  className="helpButton headerItem"
                   minimal={true}
                   onClick={async () => {
                     await navigation.navigate("/");
@@ -131,9 +157,8 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                       $(".react-joyride__beacon").trigger("click");
                     }, 250);
                   }}
-                >
-                  ?
-                </Button>
+                  icon="help"
+                />
                 <Popover
                   content={
                     <Menu className="dropdown">

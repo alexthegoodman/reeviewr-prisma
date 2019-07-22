@@ -26,6 +26,11 @@
   width: 100%;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
 .overflowScroll {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
@@ -62,4 +67,13 @@
   //   width: 100%;
   //   position: relative;
   // }
+}
+
+.bp3-popover-wrapper {
+  margin: 0;
+  height: 100%;
+
+  .bp3-popover-target {
+    margin: 0;
+  }
 }

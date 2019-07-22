@@ -1,22 +1,25 @@
+.headerWrapper {
+  background: rgba($dark-slate-blue, 0.15);
+  width: 100%;
+  height: $headerHeight + 1px;
+}
+
 .header {
   padding: 0;
   height: $headerHeight;
   z-index: 30;
   padding-left: $sidebarWidth;
+  box-shadow: none;
 
   .bp3-navbar-group {
     @extend .horizontalCenter;
     height: $headerHeight;
 
     &.bp3-align-left {
-      width: 60vw;
       justify-content: flex-start;
-      max-width: calc(100vw - 550px);
     }
     &.bp3-align-right {
-      width: 40vw;
       justify-content: flex-end;
-      min-width: 550px;
     }
   }
 
@@ -76,6 +79,33 @@
   @include tabletDown {
     height: 60px;
     padding: 0;
+  }
+}
+
+.headerMenu {
+  min-width: auto;
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+
+  li {
+    margin: 0;
+
+    .menuItem,
+    .menuItem.bp3-menu-item {
+      padding: 22px 50px;
+      border-radius: 0;
+      border-bottom: 3px transparent solid;
+
+      &.bp3-active {
+        border-bottom: 3px $turquoise-blue solid;
+      }
+      &.bp3-active,
+      &:hover {
+        background: $lightGrey;
+      }
+    }
   }
 }
 

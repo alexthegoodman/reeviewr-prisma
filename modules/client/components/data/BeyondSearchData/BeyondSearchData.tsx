@@ -48,7 +48,7 @@ const BeyondSearchData: React.FC<BeyondSearchDataProps> = ({
   return (
     <>
       <BeyondSearch
-        placeholder="Search tracks and artists..."
+        placeholder="Search something here"
         value={value}
         defaultValue={defaultValue}
         onChange={changeHandler}

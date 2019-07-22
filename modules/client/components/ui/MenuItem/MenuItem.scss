@@ -1,6 +1,6 @@
 .menuItem,
 .menuItem.bp3-menu-item {
-  padding: 11px 50px;
+  padding: 11px 30px;
   margin: 0;
   line-height: 30px;
   position: relative;
@@ -22,6 +22,12 @@
     letter-spacing: 1.41px;
     color: $dark-slate-blue;
     line-height: 2rem;
+
+    .bp3-icon {
+      margin: 0 15px 0 0;
+      position: relative;
+      top: -4px;
+    }
   }
   .bp3-menu-item-label {
   }

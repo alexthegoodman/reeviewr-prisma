@@ -1,7 +1,7 @@
 import * as React from "react";
 
+import { Alignment, Navbar } from "@blueprintjs/core";
 import { HeaderProps } from "./Header.d";
-import { Navbar, Alignment } from "@blueprintjs/core";
 
 const Header: React.FC<HeaderProps> = ({
   ref = null,
@@ -10,10 +10,12 @@ const Header: React.FC<HeaderProps> = ({
   rightElements = <></>,
 }) => {
   return (
-    <Navbar className={`header ${className}`} fixedToTop={true}>
-      <Navbar.Group align={Alignment.LEFT}>{leftElements}</Navbar.Group>
-      <Navbar.Group align={Alignment.RIGHT}>{rightElements}</Navbar.Group>
-    </Navbar>
+    <header className="headerWrapper">
+      <Navbar className={`header ${className}`} fixedToTop={true}>
+        <Navbar.Group align={Alignment.LEFT}>{leftElements}</Navbar.Group>
+        <Navbar.Group align={Alignment.RIGHT}>{rightElements}</Navbar.Group>
+      </Navbar>
+    </header>
   );
 };
 

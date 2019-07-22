@@ -2,11 +2,9 @@
 .button.bp3-button:not([class*="bp3-intent-"]) {
   background-image: none;
   box-shadow: none;
-  padding: 12px 40px;
   border-radius: 3px;
   background: $turquoise-blue;
   width: max-content;
-  margin: 70px auto;
 
   span {
     text-transform: uppercase;
@@ -25,6 +23,10 @@
 .textButton.bp3-button:not([class*="bp3-intent-"]) {
   @extend .button;
   background: transparent;
+
+  span {
+    color: $light-slate-blue;
+  }
 }
 
 .actionButton,
@@ -50,33 +52,10 @@
   }
 }
 
-.uploadButton,
-.uploadButton.bp3-button:not([class*="bp3-intent-"]) {
-  width: 100%;
-  background: $red;
-  border-radius: 0;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background: $darkRed;
-  }
-
-  span {
-    color: white;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-align: center;
-
-    em {
-      display: block;
-      font-size: 0.9rem;
-      font-style: normal;
-      opacity: 0.7;
-    }
-  }
+.createButton,
+.createButton.bp3-button:not([class*="bp3-intent-"]) {
+  padding: 12px 40px;
+  margin: 70px auto;
 }
 
 .trackButton,
@@ -118,6 +97,22 @@
       svg {
         position: relative;
       }
+    }
+  }
+}
+
+.helpButton,
+.helpButton.bp3-button.bp3-minimal {
+  width: $headerHeight;
+
+  &:hover {
+    background: $lightGrey;
+  }
+
+  .bp3-icon {
+    svg {
+      height: 20px;
+      width: 20px;
     }
   }
 }
