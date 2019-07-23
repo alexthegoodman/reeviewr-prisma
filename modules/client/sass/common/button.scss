@@ -172,6 +172,49 @@
   }
 }
 
+.joinButtonBig,
+.joinButtonBig.bp3-button:not([class*="bp3-intent-"]) {
+  border-radius: 3px;
+  background: $turquoise-blue;
+  min-width: 140px;
+  box-shadow: none;
+  outline: none;
+  height: 40px;
+
+  span {
+    font-size: 0.8rem;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 1.06px;
+    color: #ffffff;
+    text-transform: uppercase;
+  }
+}
+
+.filterButton,
+.filterButton.bp3-button:not([class*="bp3-intent-"]) {
+  border-radius: 3px;
+  background: transparent;
+  border: solid 1px #fcfcfd;
+  min-width: 125px;
+  box-shadow: none;
+  outline: none;
+  height: 40px;
+
+  span {
+    font-size: 0.8rem;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 1.06px;
+    color: #ffffff;
+    text-transform: uppercase;
+  }
+}
+
 .darkMode {
   .headerActionButton,
   .headerActionButton.bp3-button.bp3-minimal {

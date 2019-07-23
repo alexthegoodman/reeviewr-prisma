@@ -146,3 +146,29 @@ main {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+.postWrapper {
+  position: relative;
+  top: -40px;
+
+  &:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 40px;
+    right: -35px;
+    left: -35px;
+    bottom: -35px;
+    background: $lightGrey;
+    z-index: 1;
+  }
+
+  .postWrapperContain {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 14px;
+    grid-row-gap: 14px;
+  }
+}

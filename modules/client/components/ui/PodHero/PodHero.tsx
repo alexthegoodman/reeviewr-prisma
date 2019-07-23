@@ -7,6 +7,7 @@ const PodHero: React.FC<PodHeroProps> = ({
   ref = null,
   className = "",
   onClick = e => console.info("Click"),
+  showStats = true,
 }) => {
   const clickHandler = e => onClick(e);
   return (
@@ -14,20 +15,24 @@ const PodHero: React.FC<PodHeroProps> = ({
       <div className="podHeroContain">
         <div className="info">
           <Text tagName="h1">Your Feed</Text>
-          <div className="podHeroStats">
-            <div className="stat">
-              <Icon icon="comment" />
-              <Text tagName="span">50 Reviews</Text>
+          {showStats ? (
+            <div className="podHeroStats">
+              <div className="stat">
+                <Icon icon="comment" />
+                <Text tagName="span">50 Reviews</Text>
+              </div>
+              <div className="stat">
+                <Icon icon="highlight" />
+                <Text tagName="span">12 Annotations</Text>
+              </div>
+              <div className="stat">
+                <Icon icon="help" />
+                <Text tagName="span">25 Questions</Text>
+              </div>
             </div>
-            <div className="stat">
-              <Icon icon="highlight" />
-              <Text tagName="span">12 Annotations</Text>
-            </div>
-            <div className="stat">
-              <Icon icon="help" />
-              <Text tagName="span">25 Questions</Text>
-            </div>
-          </div>
+          ) : (
+            <> </>
+          )}
         </div>
         <div className="interact">
           <Button className="joinButtonBig">Join</Button>

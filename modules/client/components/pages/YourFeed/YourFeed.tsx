@@ -7,16 +7,18 @@ import { YourFeedProps } from "./YourFeed.d";
 const YourFeed: React.FC<YourFeedProps> = () => {
   return (
     <>
-      <PodHero />
+      <PodHero showStats={false} />
       <section className="postWrapper">
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
+        <div className="postWrapperContain">
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+        </div>
       </section>
     </>
   );
