@@ -23,6 +23,8 @@ import Legacy from "../../../../services/Legacy";
 import Utility from "../../../../services/Utility";
 import Strings from "../../../services/Strings";
 import BeyondSearchData from "../../data/BeyondSearchData/BeyondSearchData";
+import MessageMenu from "../../data/MessageMenu/MessageMenu";
+import NotificationMenu from "../../data/NotificationMenu/NotificationMenu";
 import WhoToFollow from "../../data/WhoToFollow/WhoToFollow";
 import Advertisement from "../../ui/Advertisement/Advertisement";
 import ContentFooter from "../../ui/ContentFooter/ContentFooter";
@@ -185,7 +187,9 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                     </Button>
                   </Tooltip>
 
-                  <div className="popoverContent">Notifications</div>
+                  <div className="popoverContent">
+                    <NotificationMenu />
+                  </div>
                 </Popover>
 
                 <Popover>
@@ -198,7 +202,9 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                     />
                   </Tooltip>
 
-                  <div className="popoverContent">Messages</div>
+                  <div className="popoverContent">
+                    <MessageMenu />
+                  </div>
                 </Popover>
 
                 <Popover
