@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { Icon, Text } from "@blueprintjs/core";
 import FollowButton from "../FollowButton/FollowButton";
+import MessageButton from "../MessageButton/MessageButton";
 import { UserCardProps } from "./UserCard.d";
 
 const UserCard: React.FC<UserCardProps> = ({
@@ -26,7 +27,10 @@ const UserCard: React.FC<UserCardProps> = ({
               <Text tagName="span">9 Posts</Text>
             </div>
           </div>
-          <FollowButton />
+          <div className="infoInteractions">
+            <FollowButton />
+            <MessageButton />
+          </div>
         </div>
       </div>
     </section>

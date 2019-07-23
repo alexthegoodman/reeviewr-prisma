@@ -57,6 +57,14 @@
           }
         }
       }
+      .infoInteractions {
+        display: flex;
+        flex-direction: row;
+
+        .followButton {
+          margin-right: 14px;
+        }
+      }
     }
   }
 }
