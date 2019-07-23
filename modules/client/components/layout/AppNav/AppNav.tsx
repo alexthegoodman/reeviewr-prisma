@@ -253,7 +253,6 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
 
         <section className="mainContent">
           <div className="contentBody">{children}</div>
-
           <ContentFooter />
         </section>
       </main>

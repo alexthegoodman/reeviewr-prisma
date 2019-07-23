@@ -2,13 +2,14 @@
   padding-left: $sidebarWidth + 35px;
   padding-right: 35px;
   padding-top: 35px;
-  height: 100vh;
+  height: calc(100vh - #{$headerHeight + 1px});
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
 
   .contentBody {
     min-height: calc(100vh - #{$headerHeight});
+    height: auto;
   }
 
   @include tabletDown {
