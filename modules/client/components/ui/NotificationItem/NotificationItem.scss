@@ -1,1 +1,43 @@
-/** Styles **/
+.notificationItem {
+  max-width: 300px;
+  border-bottom: 1px $lightGrey solid;
+
+  .notificationItemContain {
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+
+    .visual {
+      margin-right: 15px;
+
+      img {
+        display: block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+    }
+    .info {
+      display: flex;
+      flex-direction: column;
+
+      .message {
+        font-size: 0.8rem;
+        font-weight: 600;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: 1.33px;
+        color: $light-slate-blue;
+      }
+      a {
+      }
+    }
+  }
+}
+
+.darkMode {
+}
+
+.lightMode {
+}

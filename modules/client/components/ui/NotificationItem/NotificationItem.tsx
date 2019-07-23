@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { Text } from "@blueprintjs/core";
+import { Link } from "react-navi";
 import { NotificationItemProps } from "./NotificationItem.d";
 
 const NotificationItem: React.FC<NotificationItemProps> = ({
@@ -8,7 +10,21 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
   onClick = e => console.info("Click"),
 }) => {
   const clickHandler = e => onClick(e);
-  return <></>;
+  return (
+    <section className="notificationItem">
+      <div className="notificationItemContain">
+        <div className="visual">
+          <img src="/public/img/mailchimp3-small.jpg" />
+        </div>
+        <div className="info">
+          <Text className="message" tagName="span">
+            Marco Bulnes has reviewed your posts "Churning Users"
+          </Text>
+          <Link href="#!">View Review</Link>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default NotificationItem;
