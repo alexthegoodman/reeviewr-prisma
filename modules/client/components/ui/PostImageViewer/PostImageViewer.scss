@@ -1,1 +1,35 @@
-/** Styles **/
+.postImageViewer {
+  .postImageViewerContain {
+    .focusContent {
+      img {
+        display: block;
+        width: 100%;
+        background: $lightGrey;
+        border-radius: 5px;
+      }
+    }
+    .secondaryContent {
+      display: flex;
+      flex-direction: row;
+      margin-top: 8px;
+
+      .ctrls {
+        width: 90px;
+      }
+      .photoStrip {
+        width: calc(100% - 90px);
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-row-gap: 8px;
+        grid-column-gap: 8px;
+
+        img {
+          display: block;
+          width: 100%;
+          background: $lightGrey;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}

@@ -36,3 +36,21 @@
     }
   }
 }
+
+.large {
+  .followUserContain {
+    .visual {
+      margin-right: 9px;
+
+      img {
+        width: 35px;
+        height: 35px;
+      }
+    }
+    .info {
+      span {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

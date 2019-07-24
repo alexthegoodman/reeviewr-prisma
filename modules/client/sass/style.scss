@@ -36,6 +36,7 @@
 @import "../components/pages/TrackDetail/TrackDetail";
 @import "../components/pages/Home/Home";
 @import "../components/pages/Messages/Messages";
+@import "../components/pages/PostDetail/PostDetail";
 
 @import "../components/pages/landing/MailchimpPods070619/MailchimpPods070619";
 
@@ -85,6 +86,14 @@
 @import "../components/ui/UserCard/UserCard";
 @import "../components/ui/PodHero/PodHero";
 @import "../components/ui/NotificationItem/NotificationItem";
+@import "../components/ui/PostImageViewer/PostImageViewer";
+@import "../components/ui/PostMetaData/PostMetaData";
+@import "../components/ui/PostQuestions/PostQuestions";
+@import "../components/ui/PostReviews/PostReviews";
+@import "../components/ui/PostTextViewer/PostTextViewer";
+@import "../components/ui/PostVideoViewer/PostVideoViewer";
+@import "../components/ui/PostAudioViewer/PostAudioViewer";
+@import "../components/ui/PostAnnotations/PostAnnotations";
 
 @import "../components/ui/landing/LandingHeroA/LandingHeroA";
 @import "../components/ui/landing/LandingFeaturesA/LandingFeaturesA";

@@ -8,6 +8,7 @@ const FollowUser: React.FC<FollowUserProps> = ({
   ref = null,
   className = "",
   onClick = e => console.info("Click"),
+  size = "small",
   image = null,
   name = "",
   userId = null,
@@ -17,7 +18,7 @@ const FollowUser: React.FC<FollowUserProps> = ({
   const altText = `Follow ${name}`;
 
   return (
-    <div className="followUser">
+    <div className={`followUser ${size}`}>
       <div className="followUserContain">
         <div className="visual">
           <img src={image} alt={altText} title={altText} />

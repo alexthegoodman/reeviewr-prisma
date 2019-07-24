@@ -1,1 +1,14 @@
-/** Styles **/
+.postDetail {
+  .postDetailContain {
+    display: flex;
+    flex-direction: row;
+
+    .content {
+      width: 55%;
+      margin-right: 55px;
+    }
+    .interaction {
+      width: 45%;
+    }
+  }
+}

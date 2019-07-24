@@ -5,4 +5,5 @@ export interface FollowUserProps {
   image: string;
   name: string;
   userId: string;
+  size: string;
 }

@@ -1,23 +1,23 @@
 import * as React from "react";
 
-import { ShareButtonProps } from "./ShareButton.d";
-import { Button, Text, Icon } from "@blueprintjs/core";
+import { Button, Icon, Popover, Text } from "@blueprintjs/core";
 import {
+  EmailShareButton,
   FacebookShareButton,
   LinkedinShareButton,
-  TwitterShareButton,
   RedditShareButton,
   TumblrShareButton,
-  EmailShareButton,
+  TwitterShareButton,
 } from "react-share";
+import { ShareButtonProps } from "./ShareButton.d";
 
 import {
+  EmailIcon,
   FacebookIcon,
-  TwitterIcon,
   LinkedinIcon,
   RedditIcon,
   TumblrIcon,
-  EmailIcon,
+  TwitterIcon,
 } from "react-share";
 
 const ShareButton: React.FC<ShareButtonProps> = ({
@@ -29,37 +29,39 @@ const ShareButton: React.FC<ShareButtonProps> = ({
   const clickHandler = e => onClick(e);
 
   return (
-    <div className="shareButton">
-      <FacebookShareButton url={url} quote={`Check out this track on Reeviewr`}>
-        <FacebookIcon round={true} size={32} />
-      </FacebookShareButton>
-      <TwitterShareButton
-        url={url}
-        title="Check out this track on Reeviewr"
-        via=""
+    <Popover>
+      <Button
+        ref={ref}
+        className={`trackButton shareButton ${className}`}
+        onClick={clickHandler}
+        icon="share"
       >
-        <TwitterIcon round={true} size={32} />
-      </TwitterShareButton>
-      <EmailShareButton
-        url={url}
-        subject="Check out this track on Reeviewr"
-        body=""
-      >
-        <EmailIcon round={true} size={32} />
-      </EmailShareButton>
-    </div>
+        Share
+      </Button>
+      <div className="shareMenu">
+        <FacebookShareButton
+          url={url}
+          quote={`Check out this track on Reeviewr`}
+        >
+          <FacebookIcon round={true} size={32} />
+        </FacebookShareButton>
+        <TwitterShareButton
+          url={url}
+          title="Check out this track on Reeviewr"
+          via=""
+        >
+          <TwitterIcon round={true} size={32} />
+        </TwitterShareButton>
+        <EmailShareButton
+          url={url}
+          subject="Check out this track on Reeviewr"
+          body=""
+        >
+          <EmailIcon round={true} size={32} />
+        </EmailShareButton>
+      </div>
+    </Popover>
   );
-  // return (
-  //   <Button
-  //     ref={ref}
-  //     className={`trackButton shareButton ${className}`}
-  //     onClick={clickHandler}
-  //   >
-  //     <Text tagName="span">
-  //       <Icon icon="share" />Share
-  //     </Text>
-  //   </Button>
-  // );
 };
 
 export default ShareButton;
