@@ -8,7 +8,13 @@ const AnnotationItem: React.FC<AnnotationItemProps> = ({
   onClick = e => console.info("Click"),
 }) => {
   const clickHandler = e => onClick(e);
-  return <></>;
+  return (
+    <section className="annotationItem">
+      <div className="annotationItemContain">
+        <img src="" alt="" title="" />
+      </div>
+    </section>
+  );
 };
 
 export default AnnotationItem;
