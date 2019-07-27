@@ -1,5 +1,4 @@
 import fs from "fs";
-import { prisma } from "../../../__generated__/prisma-client";
 import Core from "../../services/Core";
 import { ERROR_CODE } from "../../services/ERROR_CODE";
 import Legacy from "../../services/Legacy";
@@ -12,7 +11,7 @@ const uuid = require("uuid");
 const cloudinary = require("cloudinary").v2;
 const slugify = require("slugify");
 
-export const createTrack = async (req, res, mixpanel) => {
+export const createTrack = async (req, res, mixpanel, photon) => {
   try {
     // mixpanel.track('User created', { time: new Date() });
     console.info(
@@ -74,8 +73,10 @@ export const createTrack = async (req, res, mixpanel) => {
       questionFour3,
     } = req.body;
 
-    const authUser = await prisma.user({ privateHash });
-    const authUserMeta = await prisma.user({ privateHash }).userMeta();
+    const authUser = await photon.users.findOne({ where: { privateHash } });
+    const authUserMeta = await photon.users
+      .findOne({ where: { privateHash } })
+      .userMeta();
 
     console.info("authUser", authUser);
 
@@ -154,125 +155,127 @@ export const createTrack = async (req, res, mixpanel) => {
                           console.error("error upload json #3", error3);
                         }
 
-                        const newTrack = await prisma.createUserTrack({
-                          oldId: uuid.v4().substr(0, 6),
-                          itemName: trackTitle,
-                          user: { connect: { id: authUser.id } },
-                          itemContent: "none",
-                          itemUrlSegment: slugify(trackTitle),
-                          itemType: "userTrack",
-                          itemStatus: "v2publish",
-                          itemMeta: {
-                            create: [
-                              {
-                                metaName: "audioFile",
-                                metaValue: `${result2.secure_url}`,
-                              },
-                              {
-                                metaName: "audioJson",
-                                metaValue: `${result3.secure_url}`,
-                              },
-                              {
-                                metaName: "coverArt",
-                                metaValue: `${result.secure_url}`,
-                              },
-                              {
-                                metaName: "questionCount",
-                                metaValue: `3`,
-                              },
-                              {
-                                metaName: "theOption",
-                                metaValue: `none`,
-                              },
-                              {
-                                metaName: "genre",
-                                metaValue: `${genre}`,
-                              },
-                              {
-                                metaName: "questionType1",
-                                metaValue: `${questionType1}`,
-                              },
-                              {
-                                metaName: "questionContent1",
-                                metaValue: `${questionContent1}`,
-                              },
-                              {
-                                metaName: "questionOne1",
-                                metaValue: `${questionOne1}`,
-                              },
-                              {
-                                metaName: "questionTwo1",
-                                metaValue: `${questionTwo1}`,
-                              },
-                              {
-                                metaName: "questionThree1",
-                                metaValue: `${questionThree1}`,
-                              },
-                              {
-                                metaName: "questionFour1",
-                                metaValue: `${questionFour1}`,
-                              },
-                              {
-                                metaName: "questionType2",
-                                metaValue: `${questionType2}`,
-                              },
-                              {
-                                metaName: "questionContent2",
-                                metaValue: `${questionContent2}`,
-                              },
-                              {
-                                metaName: "questionOne2",
-                                metaValue: `${questionOne2}`,
-                              },
-                              {
-                                metaName: "questionTwo2",
-                                metaValue: `${questionTwo2}`,
-                              },
-                              {
-                                metaName: "questionThree2",
-                                metaValue: `${questionThree2}`,
-                              },
-                              {
-                                metaName: "questionFour2",
-                                metaValue: `${questionFour2}`,
-                              },
-                              {
-                                metaName: "questionType3",
-                                metaValue: `${questionType3}`,
-                              },
-                              {
-                                metaName: "questionContent3",
-                                metaValue: `${questionContent3}`,
-                              },
-                              {
-                                metaName: "questionOne3",
-                                metaValue: `${questionOne3}`,
-                              },
-                              {
-                                metaName: "questionTwo3",
-                                metaValue: `${questionTwo3}`,
-                              },
-                              {
-                                metaName: "questionThree3",
-                                metaValue: `${questionThree3}`,
-                              },
-                              {
-                                metaName: "questionFour3",
-                                metaValue: `${questionFour3}`,
-                              },
-                              {
-                                metaName: "paid",
-                                metaValue: `0`,
-                              },
-                              {
-                                metaName: "reviewCount",
-                                metaValue: `0`,
-                              },
-                              {
-                                metaName: "reviewedBy",
-                                metaValue: ``,
-                              },
-                            ],
+                        const newTrack = await photon.posts.create({
+                          data: {
+                            oldId: uuid.v4().substr(0, 6),
+                            itemName: trackTitle,
+                            user: { connect: { id: authUser.id } },
+                            itemContent: "none",
+                            itemUrlSegment: slugify(trackTitle),
+                            itemType: "userTrack",
+                            itemStatus: "v2publish",
+                            itemMeta: {
+                              create: [
+                                {
+                                  metaName: "audioFile",
+                                  metaValue: `${result2.secure_url}`,
+                                },
+                                {
+                                  metaName: "audioJson",
+                                  metaValue: `${result3.secure_url}`,
+                                },
+                                {
+                                  metaName: "coverArt",
+                                  metaValue: `${result.secure_url}`,
+                                },
+                                {
+                                  metaName: "questionCount",
+                                  metaValue: `3`,
+                                },
+                                {
+                                  metaName: "theOption",
+                                  metaValue: `none`,
+                                },
+                                {
+                                  metaName: "genre",
+                                  metaValue: `${genre}`,
+                                },
+                                {
+                                  metaName: "questionType1",
+                                  metaValue: `${questionType1}`,
+                                },
+                                {
+                                  metaName: "questionContent1",
+                                  metaValue: `${questionContent1}`,
+                                },
+                                {
+                                  metaName: "questionOne1",
+                                  metaValue: `${questionOne1}`,
+                                },
+                                {
+                                  metaName: "questionTwo1",
+                                  metaValue: `${questionTwo1}`,
+                                },
+                                {
+                                  metaName: "questionThree1",
+                                  metaValue: `${questionThree1}`,
+                                },
+                                {
+                                  metaName: "questionFour1",
+                                  metaValue: `${questionFour1}`,
+                                },
+                                {
+                                  metaName: "questionType2",
+                                  metaValue: `${questionType2}`,
+                                },
+                                {
+                                  metaName: "questionContent2",
+                                  metaValue: `${questionContent2}`,
+                                },
+                                {
+                                  metaName: "questionOne2",
+                                  metaValue: `${questionOne2}`,
+                                },
+                                {
+                                  metaName: "questionTwo2",
+                                  metaValue: `${questionTwo2}`,
+                                },
+                                {
+                                  metaName: "questionThree2",
+                                  metaValue: `${questionThree2}`,
+                                },
+                                {
+                                  metaName: "questionFour2",
+                                  metaValue: `${questionFour2}`,
+                                },
+                                {
+                                  metaName: "questionType3",
+                                  metaValue: `${questionType3}`,
+                                },
+                                {
+                                  metaName: "questionContent3",
+                                  metaValue: `${questionContent3}`,
+                                },
+                                {
+                                  metaName: "questionOne3",
+                                  metaValue: `${questionOne3}`,
+                                },
+                                {
+                                  metaName: "questionTwo3",
+                                  metaValue: `${questionTwo3}`,
+                                },
+                                {
+                                  metaName: "questionThree3",
+                                  metaValue: `${questionThree3}`,
+                                },
+                                {
+                                  metaName: "questionFour3",
+                                  metaValue: `${questionFour3}`,
+                                },
+                                {
+                                  metaName: "paid",
+                                  metaValue: `0`,
+                                },
+                                {
+                                  metaName: "reviewCount",
+                                  metaValue: `0`,
+                                },
+                                {
+                                  metaName: "reviewedBy",
+                                  metaValue: ``,
+                                },
+                              ],
+                            },
                           },
                         });
 

@@ -1,5 +1,4 @@
 import bcrypt from "bcrypt";
-import { prisma } from "../../../__generated__/prisma-client";
 import { ERROR_CODE } from "../../services/ERROR_CODE";
 import Utility from "../../services/Utility";
 import EmailService from "../utils/email";
@@ -16,7 +15,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export const mailchimpSubscribe = async (req, res, mixpanel) => {
+export const mailchimpSubscribe = async (req, res, mixpanel, photon) => {
   try {
     console.info(
       "CALL mailchimpSubscribe:",

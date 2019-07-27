@@ -59,9 +59,10 @@ import { forgotPassword } from "./user/forgot-password";
 import { resendEmailConfirmation } from "./user/resend-email-confirmation";
 import { createTrack } from "./userTracks/create-track";
 
+// import { prisma } from "../../__generated__/prisma-client";
+import Photon from "@generated/photon";
 import bcrypt from "bcrypt";
 import cors from "cors";
-import { prisma } from "../../__generated__/prisma-client";
 import Utility from "../services/Utility";
 import { mailchimpSubscribe } from "./integration/mailchimp-subscribe";
 import { completeProfile } from "./user/complete-profile";
@@ -71,6 +72,7 @@ const serveStatic = require("serve-static");
 const path = require("path");
 const csp = require("helmet-csp");
 const Mixpanel = require("mixpanel");
+const photon = new Photon();
 
 const app = express();
 
@@ -83,6 +85,8 @@ export const enableDeveloperLogin = config.get<boolean>(
 );
 
 export async function startServer() {
+  await photon.connect();
+
   app.use(bodyParser.json({ limit: "50mb" }));
   app.use(
     bodyParser.urlencoded({
@@ -202,7 +206,9 @@ export async function startServer() {
       async function(email: string, password: string, done) {
         console.info(email, password);
 
-        const user = await prisma.user({ userEmail: email });
+        const user = await photon.users.findOne({
+          where: { userEmail: email },
+        });
 
         if (utility.isDefinedWithContent(user)) {
           const match = await bcrypt.compare(password, user.userPassword);
@@ -235,31 +241,31 @@ export async function startServer() {
   app.post(
     `/${apiVersion}${AUTHENTICATE_USER}`,
     // passport.authenticate("local"),
-    (req, res) => authenticate(req, res, passport, mixpanel)
+    (req, res) => authenticate(req, res, passport, mixpanel, photon)
   );
   app.post(`/${apiVersion}${CONFIRM_EMAIL}`, (req, res) =>
-    confirmEmail(req, res, mixpanel)
+    confirmEmail(req, res, mixpanel, photon)
   );
   app.post(`/${apiVersion}${CREATE_USER}`, (req, res) =>
-    createUser(req, res, mixpanel)
+    createUser(req, res, mixpanel, photon)
   );
   app.post(`/${apiVersion}${COMPLETE_PROFILE}`, (req, res) =>
-    completeProfile(req, res, mixpanel)
+    completeProfile(req, res, mixpanel, photon)
   );
   app.post(`/${apiVersion}${FORGOT_PASSWORD}`, (req, res) =>
-    forgotPassword(req, res, mixpanel)
+    forgotPassword(req, res, mixpanel, photon)
   );
   app.post(`/${apiVersion}${RESET_PASSWORD}`, (req, res) =>
-    resetPassword(req, res, mixpanel)
+    resetPassword(req, res, mixpanel, photon)
   );
   app.post(`/${apiVersion}${RESEND_EMAIL_CONFIRMATION}`, (req, res) =>
-    resendEmailConfirmation(req, res, mixpanel)
+    resendEmailConfirmation(req, res, mixpanel, photon)
   );
   app.post(`/${apiVersion}${CREATE_TRACK}`, (req, res) =>
-    createTrack(req, res, mixpanel)
+    createTrack(req, res, mixpanel, photon)
   );
   app.post(`/${apiVersion}${MAILCHIMP_SUBSCRIBE}`, (req, res) =>
-    mailchimpSubscribe(req, res, mixpanel)
+    mailchimpSubscribe(req, res, mixpanel, photon)
   );
 
   app.get(

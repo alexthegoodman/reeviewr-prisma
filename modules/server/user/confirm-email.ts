@@ -1,10 +1,9 @@
-import { prisma } from "../../../__generated__/prisma-client";
 import { ERROR_CODE } from "../../services/ERROR_CODE";
 import Legacy from "../../services/Legacy";
 import Utility from "../../services/Utility";
 import EmailService from "../utils/email";
 
-export const confirmEmail = async (req, res, mixpanel) => {
+export const confirmEmail = async (req, res, mixpanel, photon) => {
   try {
     console.info(
       "CALL confirmEmail:",
@@ -22,12 +21,12 @@ export const confirmEmail = async (req, res, mixpanel) => {
     const { confirmHash } = req.body;
 
     if (utility.isDefinedWithContent(confirmHash)) {
-      const user = await prisma.user({ confirmHash });
+      const user = await photon.users.findOne({ where: { confirmHash } });
       if (
         utility.isDefinedWithContent(user) &&
         utility.isDefinedWithContent(user.userEmail)
       ) {
-        await prisma.updateUser({
+        await photon.users.update({
           where: { id: user.id },
           data: { userConfirmed: 1 },
         });

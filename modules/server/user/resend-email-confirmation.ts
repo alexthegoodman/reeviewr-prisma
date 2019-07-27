@@ -1,6 +1,4 @@
-import { prisma } from "../../../__generated__/prisma-client";
-
-export const resendEmailConfirmation = (req, res, mixpanel) => {
+export const resendEmailConfirmation = (req, res, mixpanel, photon) => {
   try {
     // mixpanel.track('User created', { time: new Date() });
     console.info(

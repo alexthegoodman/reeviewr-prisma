@@ -1,5 +1,4 @@
 import bcrypt from "bcrypt";
-import { prisma } from "../../../__generated__/prisma-client";
 import { ERROR_CODE } from "../../services/ERROR_CODE";
 import Utility from "../../services/Utility";
 import EmailService from "../utils/email";
@@ -22,7 +21,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export const completeProfile = async (req, res, mixpanel) => {
+export const completeProfile = async (req, res, mixpanel, photon) => {
   try {
     console.info(
       "CALL completeProfile:",
@@ -52,8 +51,10 @@ export const completeProfile = async (req, res, mixpanel) => {
       explicit,
     } = req.body;
 
-    const authUser = await prisma.user({ privateHash });
-    const authUserMeta = await prisma.user({ privateHash }).userMeta();
+    const authUser = await photon.users.findOne({ where: { privateHash } });
+    const authUserMeta = await photon.users
+      .findOne({ where: { privateHash } })
+      .userMeta();
 
     console.info("authUser", authUser);
 
@@ -66,7 +67,7 @@ export const completeProfile = async (req, res, mixpanel) => {
         { public_id, folder, resource_type: "image" },
         async function(error, result) {
           console.log("result", error, result);
-          const updatedUser = await prisma.updateUser({
+          const updatedUser = await photon.users.update({
             where: { id: authUser.id },
             data: {
               userType: 0,

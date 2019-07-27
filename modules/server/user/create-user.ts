@@ -1,5 +1,4 @@
 import bcrypt from "bcrypt";
-import { prisma } from "../../../__generated__/prisma-client";
 import { ERROR_CODE } from "../../services/ERROR_CODE";
 import Utility from "../../services/Utility";
 import EmailService from "../utils/email";
@@ -16,7 +15,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export const createUser = async (req, res, mixpanel) => {
+export const createUser = async (req, res, mixpanel, photon) => {
   try {
     console.info(
       "CALL createUser:",
@@ -36,24 +35,28 @@ export const createUser = async (req, res, mixpanel) => {
 
     const { email, password, confirmPassword } = req.body;
 
-    const userExists = await prisma.user({ userEmail: email });
+    const userExists = await photon.users.findOne({
+      where: { userEmail: email },
+    });
 
     console.info("userExists", userExists);
 
     if (!utility.isDefinedWithContent(userExists)) {
       bcrypt.hash(password, 12, async (err, hash) => {
         if (utility.isDefinedWithContent(hash)) {
-          const newUser = await prisma.createUser({
-            userEmail: email,
-            userPassword: hash,
-            userConfirmed: 0,
-            userType: 1, // yet to complete profile
-            oldId: uuid.v4().substr(0, 6),
-            forgotHash: uuid.v4(),
-            confirmHash: uuid.v4(),
-            publicHash: uuid.v4(),
-            privateHash: uuid.v4(),
-            userDeleted: false,
+          const newUser = await photon.users.create({
+            data: {
+              userEmail: email,
+              userPassword: hash,
+              userConfirmed: 0,
+              userType: 1, // yet to complete profile
+              oldId: uuid.v4().substr(0, 6),
+              forgotHash: uuid.v4(),
+              confirmHash: uuid.v4(),
+              publicHash: uuid.v4(),
+              privateHash: uuid.v4(),
+              userDeleted: false,
+            },
           });
 
           console.info("new user", newUser);

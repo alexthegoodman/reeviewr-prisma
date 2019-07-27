@@ -1,11 +1,10 @@
-import { prisma } from "../../../__generated__/prisma-client";
 import { ERROR_CODE } from "../../services/ERROR_CODE";
 import Utility from "../../services/Utility";
 
 // 1. access user via email and bcrypt(password)
 // 2. Check userType = 0 and userConfirmed = 1
 
-export const authenticate = async (req, res, passport, mixpanel) => {
+export const authenticate = async (req, res, passport, mixpanel, photon) => {
   passport.authenticate("local", function(error, user, info) {
     try {
       console.info(

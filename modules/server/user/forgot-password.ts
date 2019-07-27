@@ -1,4 +1,3 @@
-import { prisma } from "../../../__generated__/prisma-client";
 import { ERROR_CODE } from "../../services/ERROR_CODE";
 import Legacy from "../../services/Legacy";
 import Utility from "../../services/Utility";
@@ -7,7 +6,7 @@ import EmailService from "../utils/email";
 // 1. Find user via email
 // 2. Send reset password email containing forgotHash
 
-export const forgotPassword = async (req, res, mixpanel) => {
+export const forgotPassword = async (req, res, mixpanel, photon) => {
   try {
     console.info(
       "CALL forgotPassword:",
@@ -25,7 +24,7 @@ export const forgotPassword = async (req, res, mixpanel) => {
     const { email } = req.body;
 
     if (utility.isDefinedWithContent(email)) {
-      const user = await prisma.user({ userEmail: email });
+      const user = await photon.users.findOne({ where: { userEmail: email } });
       if (
         utility.isDefinedWithContent(user) &&
         utility.isDefinedWithContent(user.userEmail)

@@ -1,4 +1,3 @@
-import { prisma } from "../../../__generated__/prisma-client";
 import { ERROR_CODE } from "../../services/ERROR_CODE";
 import Legacy from "../../services/Legacy";
 import Utility from "../../services/Utility";
@@ -9,7 +8,7 @@ import * as bcrypt from "bcrypt";
 // 1. Find user via forgotHash
 // 2. Set new md5(password) as provided
 
-export const resetPassword = async (req, res, mixpanel) => {
+export const resetPassword = async (req, res, mixpanel, photon) => {
   try {
     console.info(
       "CALL resetPassword:",
@@ -29,7 +28,7 @@ export const resetPassword = async (req, res, mixpanel) => {
     if (utility.isDefinedWithContent(forgotHash)) {
       bcrypt.hash(password, 12, async (err, hash) => {
         if (utility.isDefinedWithContent(hash)) {
-          const updatedUser = await prisma.updateUser({
+          const updatedUser = await photon.users.update({
             data: { userPassword: hash },
             where: { forgotHash },
           });
