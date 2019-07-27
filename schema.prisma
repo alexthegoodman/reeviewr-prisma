@@ -1,6 +1,10 @@
 datasource db {
-  provider = "mysql"
-  url      = "mysql://root:root@127.0.0.1:3306/reeviewr-prisma2"
+  provider = "postgresql"
+  url      = "postgresql://alex@localhost:5432/reeviewr-prisma2?schema=reeviewr-prisma-main"
+}
+
+generator photonjs {
+  provider = "photonjs"
 }
 
 model User {

@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "nf start web=1,worker=1",
-    "build:graphql": "prisma generate; yarn gen:gql",
+    "build:graphql": "prisma2 generate; yarn gen:gql",
     "build:client": "webpack --config ./webpack/client.config.js",
     "build:server": "webpack --config ./webpack/server.config.js",
     "build:pre": "yarn build:graphql",

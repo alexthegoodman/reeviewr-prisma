@@ -1,0 +1,76 @@
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://alex@localhost:5432/reeviewr-prisma2?schema=reeviewr-prisma-main"
+}
+
+
+model User {
+  id            Int        @id
+  userType      Int
+  userEmail     String     @unique
+  userPassword  String
+  publicHash    String     @unique
+  privateHash   String     @unique
+  confirmHash   String     @unique
+  forgotHash    String     @unique
+  userConfirmed Int
+  userDeleted   Boolean    @default(false)
+  userMeta      UserMeta[]
+  posts         Post[]
+  reviews       Review[]
+}
+
+model UserMeta {
+  id          Int     @id
+  user        User
+  metaType    String
+  metaName    String
+  metaValue   String
+  metaDeleted Boolean @default(false)
+}
+
+model Post {
+  id             Int        @id
+  user           User
+  itemType       String
+  itemStatus     String
+  itemUrlSegment String
+  itemMimeType   String
+  itemName       String
+  itemContent    String
+  itemDeleted    Boolean    @default(false)
+  itemMeta       PostMeta[]
+  reviews        Review[]
+}
+
+model PostMeta {
+  id          Int     @id
+  post        Post
+  metaType    String
+  metaName    String
+  metaValue   String
+  metaDeleted Boolean @default(false)
+}
+
+model Review {
+  id             Int          @id
+  user           User
+  itemType       String
+  itemStatus     String
+  itemUrlSegment String
+  itemMimeType   String
+  itemName       String
+  itemContent    String
+  itemDeleted    Boolean      @default(false)
+  itemMeta       ReviewMeta[]
+  post           Post
+}
+
+model ReviewMeta {
+  id          Int     @id
+  review      Review
+  metaType    String
+  metaName    String
+  metaValue   String
+  metaDeleted Boolean @default(false)
+}

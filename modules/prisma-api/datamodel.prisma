@@ -1,3 +1,6 @@
+// see project.prisma or the postgres implementation of prisma 2
+// this is prisma 1
+
 type User {
   id: ID! @unique
   oldId: ID @unique
