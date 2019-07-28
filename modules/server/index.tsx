@@ -317,7 +317,7 @@ export async function startServer() {
   app.use(passport.session());
 
   // TODO: fetch from ENV
-  const mixpanel = Mixpanel.init("3e76355b0e756ed9cf5a9f5037497225", {
+  const mixpanel = Mixpanel.init(process.env.SERVER_MIXPANEL_SECRET, {
     protocol: "https",
   });
 

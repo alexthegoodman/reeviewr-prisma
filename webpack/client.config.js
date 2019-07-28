@@ -125,6 +125,8 @@ module.exports = {
         process.env.PRISMA_API_PROD
       ),
 
+      "process.env.GTM": JSON.stringify(process.env.GTM),
+
       // "process.env.AUTH0_CLIENT_ID": JSON.stringify(
       //   process.env.AUTH0_CLIENT_ID
       // ),

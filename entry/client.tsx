@@ -10,7 +10,7 @@ const bootstrapClient = () => {
 
   // TODO: add to ENV
   const tagManagerArgs = {
-    gtmId: "GTM-KQD7SP",
+    gtmId: process.env.GTM,
   };
 
   TagManager.initialize(tagManagerArgs);
