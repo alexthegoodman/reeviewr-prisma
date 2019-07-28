@@ -28,6 +28,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import fetch from "cross-fetch";
+import { GraphQLServer } from "graphql-yoga";
 import { createMemoryNavigation } from "navi";
 import * as React from "react";
 import { ApolloProvider, getDataFromTree } from "react-apollo";
@@ -35,6 +36,7 @@ import {
   ApolloProvider as ApolloHooksProvider,
   getMarkupFromTree,
 } from "react-apollo-hooks";
+
 // import * as ReactDOM from "react-dom";
 import * as ReactDOMServer from "react-dom/server";
 import { Router } from "react-navi";
@@ -60,9 +62,13 @@ import { resendEmailConfirmation } from "./user/resend-email-confirmation";
 import { createTrack } from "./userTracks/create-track";
 
 // import { prisma } from "../../__generated__/prisma-client";
+import { nexusPrismaPlugin } from "@generated/nexus-prisma";
+import datamodelInfo from "@generated/nexus-prisma";
 import Photon from "@generated/photon";
+import { idArg, makeSchema, objectType } from "@prisma/nexus";
 import bcrypt from "bcrypt";
 import cors from "cors";
+import { makePrismaSchema } from "nexus-prisma";
 import Utility from "../services/Utility";
 import { mailchimpSubscribe } from "./integration/mailchimp-subscribe";
 import { completeProfile } from "./user/complete-profile";
@@ -72,7 +78,88 @@ const serveStatic = require("serve-static");
 const path = require("path");
 const csp = require("helmet-csp");
 const Mixpanel = require("mixpanel");
+
+const Query = objectType({
+  name: "Query",
+  definition(t) {
+    t.crud.findOneUser();
+    t.crud.findManyUser();
+  },
+});
+
+// Customize the "Mutation" building block
+const Mutation = objectType({
+  name: "Mutation",
+  definition(t) {
+    // Expose only the `createTodo` mutation (`updateTodo` and `deleteTodo` not exposed)
+    t.crud.createOneUser();
+  },
+});
+
+const User = objectType({
+  name: "User",
+  definition(t) {
+    t.model.id();
+    t.model.userType();
+    t.model.userEmail();
+    // t.model.userPassword();
+    t.model.publicHash();
+    t.model.privateHash();
+    t.model.confirmHash();
+    t.model.forgotHash();
+    t.model.userConfirmed();
+    t.model.userDeleted();
+    // t.model.userMeta();
+    // t.model.posts();
+    // t.model.reviews();
+  },
+});
+
 const photon = new Photon();
+
+const nexusPrisma = nexusPrismaPlugin({
+  photon: ctx => photon,
+});
+
+const schema = makeSchema({
+  types: [User, Query, Mutation, nexusPrisma],
+  outputs: {
+    schema: path.join(__dirname, "../__generated__/schema.graphql"),
+    typegen: path.join(__dirname, "../__generated__/nexus.ts"),
+  },
+  typegenAutoConfig: {
+    sources: [
+      {
+        source: "@generated/photon",
+        alias: "photon",
+      },
+      // {
+      //   source: path.join(__dirname, "types.ts"),
+      //   alias: "ctx",
+      // },
+    ],
+    // contextType: "ctx.Context",
+  },
+});
+
+// const schema = makePrismaSchema({
+//   types: [nexusPrisma],
+
+//   prisma: {
+//     client: photon,
+//     datamodelInfo,
+//   },
+
+//   // outputs: {
+//   //   schema: path.join(__dirname, "../__generated__/schema.graphql"),
+//   //   typegen: path.join(__dirname, "../__generated__/nexus.ts"),
+//   // }
+// });
+
+const graphqlServer = new GraphQLServer({
+  schema,
+  context: { photon },
+});
 
 const app = express();
 
@@ -347,14 +434,26 @@ export async function startServer() {
     }
   );
 
-  return app.listen(port, () => {
-    console.log(
-      "up and running on port",
-      port,
-      "apiHost: ",
-      apiHost,
-      " publicHost: ",
-      publicHost
+  try {
+    app.listen(port, () => {
+      console.log(
+        "REST API up and running on port",
+        port,
+        "apiHost: ",
+        apiHost,
+        " publicHost: ",
+        publicHost
+      );
+    });
+  } catch (e) {
+    console.error("ERROR", e);
+  }
+
+  try {
+    graphqlServer.start({ port: 4000, cors: { origin: allowedOrigins } }, () =>
+      console.log("GRAPHQL API is running on port 4000")
     );
-  });
+  } catch (e) {
+    console.error("ERROR", e);
+  }
 }

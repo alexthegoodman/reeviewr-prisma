@@ -8,39 +8,39 @@ const UserFragments = {
   user: gql`
     fragment UserFragment on User {
       id
-      oldId
+      # oldId
       userEmail
       userType
-      files {
-        id
-        itemName
-        itemContent
-        itemMeta {
-          metaName
-          metaValue
-        }
-      }
-      profilePages {
-        id
-        itemName
-        itemContent
-        itemMeta {
-          id
-          metaName
-          metaValue
-        }
-      }
-      reviews {
-        id
-      }
-      userTracks(where: { id_not: "", itemStatus: "v2publish" }) {
-        id
-      }
-      userMeta {
-        id
-        metaName
-        metaValue
-      }
+      # files {
+      #   id
+      #   itemName
+      #   itemContent
+      #   itemMeta {
+      #     metaName
+      #     metaValue
+      #   }
+      # }
+      # profilePages {
+      #   id
+      #   itemName
+      #   itemContent
+      #   itemMeta {
+      #     id
+      #     metaName
+      #     metaValue
+      #   }
+      # }
+      # reviews {
+      #   id
+      # }
+      # userTracks(where: { id_not: "", itemStatus: "v2publish" }) {
+      #   id
+      # }
+      # userMeta {
+      #   id
+      #   metaName
+      #   metaValue
+      # }
     }
   `,
 };
@@ -87,7 +87,7 @@ export const ALL_USERS_QUERY = gql`
 
 export const USER_QUERY = gql`
   query user($id: ID) {
-    user(where: { id: $id }) {
+    findOneUser(where: { id: $id }) {
       ...UserFragment
     }
   }

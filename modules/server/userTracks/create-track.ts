@@ -11,6 +11,8 @@ const uuid = require("uuid");
 const cloudinary = require("cloudinary").v2;
 const slugify = require("slugify");
 
+// TODO: legacy endpoint - swap out for createPost
+
 export const createTrack = async (req, res, mixpanel, photon) => {
   try {
     // mixpanel.track('User created', { time: new Date() });

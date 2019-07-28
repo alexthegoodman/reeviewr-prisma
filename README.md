@@ -60,8 +60,4 @@ To ease creation of components, take advantage of these commands
 
 ### Notes
 
-- Cannot upgrade past Prisma 1.23 unless you can overcome its big database schema change (Data Export feature in Prisma may allow mitigation)
-- If needed, you can refresh everything including the database by removing the containers, images, and volumes
-- https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
-- execute mysql commands in docker container: https://gist.github.com/geraldvillorente/4c60e7fdb5562f443f16ad2bbe4235ce
-- mysql commands: http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm
+- Utilizing Prisma 2 on Postgres database
