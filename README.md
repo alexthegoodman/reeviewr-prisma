@@ -2,30 +2,23 @@
 
 Special thanks goes to Atomic Object for open sourcing a starter kit that was preferable to my own.
 
+The project has since evolved into Prisma centric.
+
 # Set Up
 
 - Use a Linux machine. This will assure compatability.
 - Pull the repo https://github.com/alexthegoodman/reeviewr-prisma
-- Swtch to branch `feature/prisma`
-- Install all prerequesites. Including Node, Yarn, and Docker.
+- Swtch to branch `dev`
+- Install all prerequesites. Including Node and Yarn.
 - Install dependencies by running `yarn`.
-- `npm install -g prisma`
-- `sudo apt install docker-compose`
-- `sudo docker-compose up -d`
-- `yarn prisma:deploy:local`
-- Connect to the Docker MySQL database with
-  Host: 127.0.0.1
-  User: root
-  Pass: prisma
-  Make sure to connect to the `default@default` database / schema
-- Download the seed data from https://drive.google.com/open?id=1NZhm8HYch_1Jy1Q6eV_YGBAEGWCIgRAm
-- Import the .sql file into the `default@default` database
-- Visit `http://localhost:443/` to verify that the Prisma / GraphQL Playground is functioning
+- `npm install -g prisma2@latest`
+- Ask Alex how to load the seed data
 - Duplicate `.env.example` as `.env`
 - install audiowaveform on your machine
 - Run `yarn dev`
 - Wait for all the bundles to finshing bundling
-- Open `localhost:3000` in your browser
+- Visit `http://localhost:4000/` to verify that the Prisma / GraphQL Playground is functioning
+- Open `localhost:3000` in your browser to verify the web app is functioning
 
 You wll be doing most work in /modules/client/, /modules/server/, and /cypress/.
 
