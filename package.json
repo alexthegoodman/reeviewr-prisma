@@ -231,6 +231,7 @@
     "prettier": "1.18.2",
     "prisma": "1.23.0",
     "prisma-client-lib": "1.23.0",
+    "prisma2": "^2.0.0-preview-3",
     "progress-bar-webpack-plugin": "1.12.1",
     "promise-foreach": "1.0.23",
     "react": "16.8",
