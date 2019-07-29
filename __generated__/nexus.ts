@@ -18,11 +18,176 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  AnnotationCreateManyWithoutAnnotationsInput: { // input type
+    connect?: NexusGenInputs['AnnotationWhereUniqueInput'][] | null; // [AnnotationWhereUniqueInput!]
+    create?: NexusGenInputs['AnnotationCreateWithoutPostInput'][] | null; // [AnnotationCreateWithoutPostInput!]
+  }
+  AnnotationCreateWithoutPostInput: { // input type
+    itemContent: string; // String!
+    itemDeleted?: boolean | null; // Boolean
+    itemMeta?: NexusGenInputs['AnnotationMetaCreateManyWithoutItemMetaInput'] | null; // AnnotationMetaCreateManyWithoutItemMetaInput
+    itemMimeType: string; // String!
+    itemName: string; // String!
+    itemStatus: string; // String!
+    itemType: string; // String!
+    itemUrlSegment: string; // String!
+    user: NexusGenInputs['UserCreateOneWithoutUserInput']; // UserCreateOneWithoutUserInput!
+  }
+  AnnotationMetaCreateManyWithoutItemMetaInput: { // input type
+    connect?: NexusGenInputs['AnnotationMetaWhereUniqueInput'][] | null; // [AnnotationMetaWhereUniqueInput!]
+    create?: NexusGenInputs['AnnotationMetaCreateWithoutAnnotationInput'][] | null; // [AnnotationMetaCreateWithoutAnnotationInput!]
+  }
+  AnnotationMetaCreateWithoutAnnotationInput: { // input type
+    metaDeleted?: boolean | null; // Boolean
+    metaName: string; // String!
+    metaType: string; // String!
+    metaValue: string; // String!
+  }
+  AnnotationMetaWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  AnnotationWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  CategoryCreateManyWithoutCategoriesInput: { // input type
+    connect?: NexusGenInputs['CategoryWhereUniqueInput'][] | null; // [CategoryWhereUniqueInput!]
+    create?: NexusGenInputs['CategoryCreateWithoutPodInput'][] | null; // [CategoryCreateWithoutPodInput!]
+  }
+  CategoryCreateWithoutPodInput: { // input type
+    itemContent: string; // String!
+    itemName: string; // String!
+    itemStatus: string; // String!
+    itemType: string; // String!
+  }
+  CategoryWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  FavoriteCreateManyWithoutFavoritesInput: { // input type
+    connect?: NexusGenInputs['FavoriteWhereUniqueInput'][] | null; // [FavoriteWhereUniqueInput!]
+    create?: NexusGenInputs['FavoriteCreateWithoutUserInput'][] | null; // [FavoriteCreateWithoutUserInput!]
+  }
+  FavoriteCreateWithoutUserInput: { // input type
+    itemContent: string; // String!
+    itemName: string; // String!
+    itemStatus: string; // String!
+    itemType: string; // String!
+    post: NexusGenInputs['PostCreateOneWithoutPostInput']; // PostCreateOneWithoutPostInput!
+  }
+  FavoriteWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  MessageCreateOneWithoutMessageInput: { // input type
+    connect?: NexusGenInputs['MessageWhereUniqueInput'] | null; // MessageWhereUniqueInput
+    create?: NexusGenInputs['MessageCreateWithoutThreadInput'] | null; // MessageCreateWithoutThreadInput
+  }
+  MessageCreateWithoutThreadInput: { // input type
+    itemContent: string; // String!
+    itemDeleted?: boolean | null; // Boolean
+    itemMeta?: NexusGenInputs['MessageMetaCreateManyWithoutItemMetaInput'] | null; // MessageMetaCreateManyWithoutItemMetaInput
+    itemName: string; // String!
+    itemStatus: string; // String!
+    itemType: string; // String!
+    user: NexusGenInputs['UserCreateOneWithoutUserInput']; // UserCreateOneWithoutUserInput!
+  }
+  MessageMetaCreateManyWithoutItemMetaInput: { // input type
+    connect?: NexusGenInputs['MessageMetaWhereUniqueInput'][] | null; // [MessageMetaWhereUniqueInput!]
+    create?: NexusGenInputs['MessageMetaCreateWithoutMessageInput'][] | null; // [MessageMetaCreateWithoutMessageInput!]
+  }
+  MessageMetaCreateWithoutMessageInput: { // input type
+    metaDeleted?: boolean | null; // Boolean
+    metaName: string; // String!
+    metaType: string; // String!
+    metaValue: string; // String!
+  }
+  MessageMetaWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  MessageWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  NotificationCreateManyWithoutNotificationsInput: { // input type
+    connect?: NexusGenInputs['NotificationWhereUniqueInput'][] | null; // [NotificationWhereUniqueInput!]
+    create?: NexusGenInputs['NotificationCreateWithoutUserInput'][] | null; // [NotificationCreateWithoutUserInput!]
+  }
+  NotificationCreateOneWithoutNotificationInput: { // input type
+    connect?: NexusGenInputs['NotificationWhereUniqueInput'] | null; // NotificationWhereUniqueInput
+    create?: NexusGenInputs['NotificationCreateWithoutThreadInput'] | null; // NotificationCreateWithoutThreadInput
+  }
+  NotificationCreateWithoutThreadInput: { // input type
+    itemContent: string; // String!
+    itemDeleted?: boolean | null; // Boolean
+    itemMeta?: NexusGenInputs['NotificationMetaCreateManyWithoutItemMetaInput'] | null; // NotificationMetaCreateManyWithoutItemMetaInput
+    itemName: string; // String!
+    itemStatus: string; // String!
+    itemType: string; // String!
+    user: NexusGenInputs['UserCreateOneWithoutUserInput']; // UserCreateOneWithoutUserInput!
+  }
+  NotificationCreateWithoutUserInput: { // input type
+    itemContent: string; // String!
+    itemDeleted?: boolean | null; // Boolean
+    itemMeta?: NexusGenInputs['NotificationMetaCreateManyWithoutItemMetaInput'] | null; // NotificationMetaCreateManyWithoutItemMetaInput
+    itemName: string; // String!
+    itemStatus: string; // String!
+    itemType: string; // String!
+    thread: NexusGenInputs['ThreadCreateOneWithoutThreadInput']; // ThreadCreateOneWithoutThreadInput!
+  }
+  NotificationMetaCreateManyWithoutItemMetaInput: { // input type
+    connect?: NexusGenInputs['NotificationMetaWhereUniqueInput'][] | null; // [NotificationMetaWhereUniqueInput!]
+    create?: NexusGenInputs['NotificationMetaCreateWithoutNotificationInput'][] | null; // [NotificationMetaCreateWithoutNotificationInput!]
+  }
+  NotificationMetaCreateWithoutNotificationInput: { // input type
+    metaDeleted?: boolean | null; // Boolean
+    metaName: string; // String!
+    metaType: string; // String!
+    metaValue: string; // String!
+  }
+  NotificationMetaWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  NotificationWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  PodCreateOneWithoutPodInput: { // input type
+    connect?: NexusGenInputs['PodWhereUniqueInput'] | null; // PodWhereUniqueInput
+    create?: NexusGenInputs['PodCreateWithoutPostsInput'] | null; // PodCreateWithoutPostsInput
+  }
+  PodCreateWithoutPostsInput: { // input type
+    categories?: NexusGenInputs['CategoryCreateManyWithoutCategoriesInput'] | null; // CategoryCreateManyWithoutCategoriesInput
+    itemContent: string; // String!
+    itemDeleted?: boolean | null; // Boolean
+    itemMeta?: NexusGenInputs['PostMetaCreateManyWithoutItemMetaInput'] | null; // PostMetaCreateManyWithoutItemMetaInput
+    itemName: string; // String!
+    itemStatus: string; // String!
+    itemType: string; // String!
+    itemUrlSegment: string; // String!
+    user: NexusGenInputs['UserCreateOneWithoutUserInput']; // UserCreateOneWithoutUserInput!
+  }
+  PodMetaCreateOneWithoutPodMetaInput: { // input type
+    connect?: NexusGenInputs['PodMetaWhereUniqueInput'] | null; // PodMetaWhereUniqueInput
+    create?: NexusGenInputs['PodMetaCreateWithoutPostInput'] | null; // PodMetaCreateWithoutPostInput
+  }
+  PodMetaCreateWithoutPostInput: { // input type
+    metaDeleted?: boolean | null; // Boolean
+    metaName: string; // String!
+    metaType: string; // String!
+    metaValue: string; // String!
+  }
+  PodMetaWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  PodWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
   PostCreateManyWithoutPostsInput: { // input type
     connect?: NexusGenInputs['PostWhereUniqueInput'][] | null; // [PostWhereUniqueInput!]
     create?: NexusGenInputs['PostCreateWithoutUserInput'][] | null; // [PostCreateWithoutUserInput!]
   }
-  PostCreateWithoutUserInput: { // input type
+  PostCreateOneWithoutPostInput: { // input type
+    connect?: NexusGenInputs['PostWhereUniqueInput'] | null; // PostWhereUniqueInput
+    create?: NexusGenInputs['PostCreateWithoutFavoritesInput'] | null; // PostCreateWithoutFavoritesInput
+  }
+  PostCreateWithoutFavoritesInput: { // input type
+    annotations?: NexusGenInputs['AnnotationCreateManyWithoutAnnotationsInput'] | null; // AnnotationCreateManyWithoutAnnotationsInput
     itemContent: string; // String!
     itemDeleted?: boolean | null; // Boolean
     itemMeta?: NexusGenInputs['PostMetaCreateManyWithoutItemMetaInput'] | null; // PostMetaCreateManyWithoutItemMetaInput
@@ -31,7 +196,29 @@ export interface NexusGenInputs {
     itemStatus: string; // String!
     itemType: string; // String!
     itemUrlSegment: string; // String!
+    pod: NexusGenInputs['PodCreateOneWithoutPodInput']; // PodCreateOneWithoutPodInput!
+    podMeta?: NexusGenInputs['PodMetaCreateOneWithoutPodMetaInput'] | null; // PodMetaCreateOneWithoutPodMetaInput
+    questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
     reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
+    tags?: NexusGenInputs['TagCreateManyWithoutTagsInput'] | null; // TagCreateManyWithoutTagsInput
+    user: NexusGenInputs['UserCreateOneWithoutUserInput']; // UserCreateOneWithoutUserInput!
+  }
+  PostCreateWithoutUserInput: { // input type
+    annotations?: NexusGenInputs['AnnotationCreateManyWithoutAnnotationsInput'] | null; // AnnotationCreateManyWithoutAnnotationsInput
+    favorites?: NexusGenInputs['FavoriteCreateManyWithoutFavoritesInput'] | null; // FavoriteCreateManyWithoutFavoritesInput
+    itemContent: string; // String!
+    itemDeleted?: boolean | null; // Boolean
+    itemMeta?: NexusGenInputs['PostMetaCreateManyWithoutItemMetaInput'] | null; // PostMetaCreateManyWithoutItemMetaInput
+    itemMimeType: string; // String!
+    itemName: string; // String!
+    itemStatus: string; // String!
+    itemType: string; // String!
+    itemUrlSegment: string; // String!
+    pod: NexusGenInputs['PodCreateOneWithoutPodInput']; // PodCreateOneWithoutPodInput!
+    podMeta?: NexusGenInputs['PodMetaCreateOneWithoutPodMetaInput'] | null; // PodMetaCreateOneWithoutPodMetaInput
+    questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
+    reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
+    tags?: NexusGenInputs['TagCreateManyWithoutTagsInput'] | null; // TagCreateManyWithoutTagsInput
   }
   PostMetaCreateManyWithoutItemMetaInput: { // input type
     connect?: NexusGenInputs['PostMetaWhereUniqueInput'][] | null; // [PostMetaWhereUniqueInput!]
@@ -42,11 +229,43 @@ export interface NexusGenInputs {
     metaName: string; // String!
     metaType: string; // String!
     metaValue: string; // String!
+    pod?: NexusGenInputs['PodCreateOneWithoutPodInput'] | null; // PodCreateOneWithoutPodInput
   }
   PostMetaWhereUniqueInput: { // input type
     id?: number | null; // Int
   }
   PostWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  QuestionCreateManyWithoutQuestionsInput: { // input type
+    connect?: NexusGenInputs['QuestionWhereUniqueInput'][] | null; // [QuestionWhereUniqueInput!]
+    create?: NexusGenInputs['QuestionCreateWithoutPostInput'][] | null; // [QuestionCreateWithoutPostInput!]
+  }
+  QuestionCreateWithoutPostInput: { // input type
+    itemContent: string; // String!
+    itemDeleted?: boolean | null; // Boolean
+    itemMeta?: NexusGenInputs['QuestionMetaCreateManyWithoutItemMetaInput'] | null; // QuestionMetaCreateManyWithoutItemMetaInput
+    itemMimeType: string; // String!
+    itemName: string; // String!
+    itemStatus: string; // String!
+    itemType: string; // String!
+    itemUrlSegment: string; // String!
+    user: NexusGenInputs['UserCreateOneWithoutUserInput']; // UserCreateOneWithoutUserInput!
+  }
+  QuestionMetaCreateManyWithoutItemMetaInput: { // input type
+    connect?: NexusGenInputs['QuestionMetaWhereUniqueInput'][] | null; // [QuestionMetaWhereUniqueInput!]
+    create?: NexusGenInputs['QuestionMetaCreateWithoutQuestionInput'][] | null; // [QuestionMetaCreateWithoutQuestionInput!]
+  }
+  QuestionMetaCreateWithoutQuestionInput: { // input type
+    metaDeleted?: boolean | null; // Boolean
+    metaName: string; // String!
+    metaType: string; // String!
+    metaValue: string; // String!
+  }
+  QuestionMetaWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  QuestionWhereUniqueInput: { // input type
     id?: number | null; // Int
   }
   ReviewCreateManyWithoutReviewsInput: { // input type
@@ -80,13 +299,79 @@ export interface NexusGenInputs {
   ReviewWhereUniqueInput: { // input type
     id?: number | null; // Int
   }
+  TagCreateManyWithoutTagsInput: { // input type
+    connect?: NexusGenInputs['TagWhereUniqueInput'][] | null; // [TagWhereUniqueInput!]
+    create?: NexusGenInputs['TagCreateWithoutPostInput'][] | null; // [TagCreateWithoutPostInput!]
+  }
+  TagCreateWithoutPostInput: { // input type
+    itemContent: string; // String!
+    itemName: string; // String!
+    itemStatus: string; // String!
+    itemType: string; // String!
+  }
+  TagWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  ThreadCreateManyWithoutThreadsInput: { // input type
+    connect?: NexusGenInputs['ThreadWhereUniqueInput'][] | null; // [ThreadWhereUniqueInput!]
+    create?: NexusGenInputs['ThreadCreateWithoutUserInput'][] | null; // [ThreadCreateWithoutUserInput!]
+  }
+  ThreadCreateOneWithoutThreadInput: { // input type
+    connect?: NexusGenInputs['ThreadWhereUniqueInput'] | null; // ThreadWhereUniqueInput
+    create?: NexusGenInputs['ThreadCreateWithoutNotificationInput'] | null; // ThreadCreateWithoutNotificationInput
+  }
+  ThreadCreateWithoutNotificationInput: { // input type
+    itemContent: string; // String!
+    itemDeleted?: boolean | null; // Boolean
+    itemMeta?: NexusGenInputs['ThreadMetaCreateManyWithoutItemMetaInput'] | null; // ThreadMetaCreateManyWithoutItemMetaInput
+    itemName: string; // String!
+    itemStatus: string; // String!
+    itemType: string; // String!
+    message?: NexusGenInputs['MessageCreateOneWithoutMessageInput'] | null; // MessageCreateOneWithoutMessageInput
+    user: NexusGenInputs['UserCreateOneWithoutUserInput']; // UserCreateOneWithoutUserInput!
+  }
+  ThreadCreateWithoutUserInput: { // input type
+    itemContent: string; // String!
+    itemDeleted?: boolean | null; // Boolean
+    itemMeta?: NexusGenInputs['ThreadMetaCreateManyWithoutItemMetaInput'] | null; // ThreadMetaCreateManyWithoutItemMetaInput
+    itemName: string; // String!
+    itemStatus: string; // String!
+    itemType: string; // String!
+    message?: NexusGenInputs['MessageCreateOneWithoutMessageInput'] | null; // MessageCreateOneWithoutMessageInput
+    notification?: NexusGenInputs['NotificationCreateOneWithoutNotificationInput'] | null; // NotificationCreateOneWithoutNotificationInput
+  }
+  ThreadMetaCreateManyWithoutItemMetaInput: { // input type
+    connect?: NexusGenInputs['ThreadMetaWhereUniqueInput'][] | null; // [ThreadMetaWhereUniqueInput!]
+    create?: NexusGenInputs['ThreadMetaCreateWithoutThreadInput'][] | null; // [ThreadMetaCreateWithoutThreadInput!]
+  }
+  ThreadMetaCreateWithoutThreadInput: { // input type
+    metaDeleted?: boolean | null; // Boolean
+    metaName: string; // String!
+    metaType: string; // String!
+    metaValue: string; // String!
+  }
+  ThreadMetaWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  ThreadWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
   UserCreateInput: { // input type
+    annotations?: NexusGenInputs['AnnotationCreateManyWithoutAnnotationsInput'] | null; // AnnotationCreateManyWithoutAnnotationsInput
     confirmHash: string; // String!
+    favorites?: NexusGenInputs['FavoriteCreateManyWithoutFavoritesInput'] | null; // FavoriteCreateManyWithoutFavoritesInput
+    followers?: NexusGenInputs['UserCreateManyWithoutFollowersInput'] | null; // UserCreateManyWithoutFollowersInput
+    following?: NexusGenInputs['UserCreateManyWithoutFollowingInput'] | null; // UserCreateManyWithoutFollowingInput
     forgotHash: string; // String!
+    message?: NexusGenInputs['MessageCreateOneWithoutMessageInput'] | null; // MessageCreateOneWithoutMessageInput
+    notifications?: NexusGenInputs['NotificationCreateManyWithoutNotificationsInput'] | null; // NotificationCreateManyWithoutNotificationsInput
+    pod?: NexusGenInputs['PodCreateOneWithoutPodInput'] | null; // PodCreateOneWithoutPodInput
     posts?: NexusGenInputs['PostCreateManyWithoutPostsInput'] | null; // PostCreateManyWithoutPostsInput
     privateHash: string; // String!
     publicHash: string; // String!
+    questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
     reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
+    threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
     userConfirmed: number; // Int!
     userDeleted?: boolean | null; // Boolean
     userEmail: string; // String!
@@ -94,16 +379,77 @@ export interface NexusGenInputs {
     userPassword: string; // String!
     userType: number; // Int!
   }
+  UserCreateManyWithoutFollowersInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    create?: NexusGenInputs['UserCreateWithoutFollowingInput'][] | null; // [UserCreateWithoutFollowingInput!]
+  }
+  UserCreateManyWithoutFollowingInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'][] | null; // [UserWhereUniqueInput!]
+    create?: NexusGenInputs['UserCreateWithoutFollowersInput'][] | null; // [UserCreateWithoutFollowersInput!]
+  }
   UserCreateOneWithoutUserInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
-    create?: NexusGenInputs['UserCreateWithoutReviewsInput'] | null; // UserCreateWithoutReviewsInput
+    create?: NexusGenInputs['UserCreateWithoutPodInput'] | null; // UserCreateWithoutPodInput
   }
-  UserCreateWithoutReviewsInput: { // input type
+  UserCreateWithoutFollowersInput: { // input type
+    annotations?: NexusGenInputs['AnnotationCreateManyWithoutAnnotationsInput'] | null; // AnnotationCreateManyWithoutAnnotationsInput
     confirmHash: string; // String!
+    favorites?: NexusGenInputs['FavoriteCreateManyWithoutFavoritesInput'] | null; // FavoriteCreateManyWithoutFavoritesInput
+    following?: NexusGenInputs['UserCreateManyWithoutFollowingInput'] | null; // UserCreateManyWithoutFollowingInput
     forgotHash: string; // String!
+    message?: NexusGenInputs['MessageCreateOneWithoutMessageInput'] | null; // MessageCreateOneWithoutMessageInput
+    notifications?: NexusGenInputs['NotificationCreateManyWithoutNotificationsInput'] | null; // NotificationCreateManyWithoutNotificationsInput
+    pod?: NexusGenInputs['PodCreateOneWithoutPodInput'] | null; // PodCreateOneWithoutPodInput
     posts?: NexusGenInputs['PostCreateManyWithoutPostsInput'] | null; // PostCreateManyWithoutPostsInput
     privateHash: string; // String!
     publicHash: string; // String!
+    questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
+    reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
+    threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
+    userConfirmed: number; // Int!
+    userDeleted?: boolean | null; // Boolean
+    userEmail: string; // String!
+    userMeta?: NexusGenInputs['UserMetaCreateManyWithoutUserMetaInput'] | null; // UserMetaCreateManyWithoutUserMetaInput
+    userPassword: string; // String!
+    userType: number; // Int!
+  }
+  UserCreateWithoutFollowingInput: { // input type
+    annotations?: NexusGenInputs['AnnotationCreateManyWithoutAnnotationsInput'] | null; // AnnotationCreateManyWithoutAnnotationsInput
+    confirmHash: string; // String!
+    favorites?: NexusGenInputs['FavoriteCreateManyWithoutFavoritesInput'] | null; // FavoriteCreateManyWithoutFavoritesInput
+    followers?: NexusGenInputs['UserCreateManyWithoutFollowersInput'] | null; // UserCreateManyWithoutFollowersInput
+    forgotHash: string; // String!
+    message?: NexusGenInputs['MessageCreateOneWithoutMessageInput'] | null; // MessageCreateOneWithoutMessageInput
+    notifications?: NexusGenInputs['NotificationCreateManyWithoutNotificationsInput'] | null; // NotificationCreateManyWithoutNotificationsInput
+    pod?: NexusGenInputs['PodCreateOneWithoutPodInput'] | null; // PodCreateOneWithoutPodInput
+    posts?: NexusGenInputs['PostCreateManyWithoutPostsInput'] | null; // PostCreateManyWithoutPostsInput
+    privateHash: string; // String!
+    publicHash: string; // String!
+    questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
+    reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
+    threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
+    userConfirmed: number; // Int!
+    userDeleted?: boolean | null; // Boolean
+    userEmail: string; // String!
+    userMeta?: NexusGenInputs['UserMetaCreateManyWithoutUserMetaInput'] | null; // UserMetaCreateManyWithoutUserMetaInput
+    userPassword: string; // String!
+    userType: number; // Int!
+  }
+  UserCreateWithoutPodInput: { // input type
+    annotations?: NexusGenInputs['AnnotationCreateManyWithoutAnnotationsInput'] | null; // AnnotationCreateManyWithoutAnnotationsInput
+    confirmHash: string; // String!
+    favorites?: NexusGenInputs['FavoriteCreateManyWithoutFavoritesInput'] | null; // FavoriteCreateManyWithoutFavoritesInput
+    followers?: NexusGenInputs['UserCreateManyWithoutFollowersInput'] | null; // UserCreateManyWithoutFollowersInput
+    following?: NexusGenInputs['UserCreateManyWithoutFollowingInput'] | null; // UserCreateManyWithoutFollowingInput
+    forgotHash: string; // String!
+    message?: NexusGenInputs['MessageCreateOneWithoutMessageInput'] | null; // MessageCreateOneWithoutMessageInput
+    notifications?: NexusGenInputs['NotificationCreateManyWithoutNotificationsInput'] | null; // NotificationCreateManyWithoutNotificationsInput
+    posts?: NexusGenInputs['PostCreateManyWithoutPostsInput'] | null; // PostCreateManyWithoutPostsInput
+    privateHash: string; // String!
+    publicHash: string; // String!
+    questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
+    reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
+    threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
     userConfirmed: number; // Int!
     userDeleted?: boolean | null; // Boolean
     userEmail: string; // String!
@@ -146,24 +492,80 @@ export interface NexusGenRootTypes {
   Float: number;
   Boolean: boolean;
   ID: string;
+  DateTime: any;
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
+  AnnotationCreateManyWithoutAnnotationsInput: NexusGenInputs['AnnotationCreateManyWithoutAnnotationsInput'];
+  AnnotationCreateWithoutPostInput: NexusGenInputs['AnnotationCreateWithoutPostInput'];
+  AnnotationMetaCreateManyWithoutItemMetaInput: NexusGenInputs['AnnotationMetaCreateManyWithoutItemMetaInput'];
+  AnnotationMetaCreateWithoutAnnotationInput: NexusGenInputs['AnnotationMetaCreateWithoutAnnotationInput'];
+  AnnotationMetaWhereUniqueInput: NexusGenInputs['AnnotationMetaWhereUniqueInput'];
+  AnnotationWhereUniqueInput: NexusGenInputs['AnnotationWhereUniqueInput'];
+  CategoryCreateManyWithoutCategoriesInput: NexusGenInputs['CategoryCreateManyWithoutCategoriesInput'];
+  CategoryCreateWithoutPodInput: NexusGenInputs['CategoryCreateWithoutPodInput'];
+  CategoryWhereUniqueInput: NexusGenInputs['CategoryWhereUniqueInput'];
+  FavoriteCreateManyWithoutFavoritesInput: NexusGenInputs['FavoriteCreateManyWithoutFavoritesInput'];
+  FavoriteCreateWithoutUserInput: NexusGenInputs['FavoriteCreateWithoutUserInput'];
+  FavoriteWhereUniqueInput: NexusGenInputs['FavoriteWhereUniqueInput'];
+  MessageCreateOneWithoutMessageInput: NexusGenInputs['MessageCreateOneWithoutMessageInput'];
+  MessageCreateWithoutThreadInput: NexusGenInputs['MessageCreateWithoutThreadInput'];
+  MessageMetaCreateManyWithoutItemMetaInput: NexusGenInputs['MessageMetaCreateManyWithoutItemMetaInput'];
+  MessageMetaCreateWithoutMessageInput: NexusGenInputs['MessageMetaCreateWithoutMessageInput'];
+  MessageMetaWhereUniqueInput: NexusGenInputs['MessageMetaWhereUniqueInput'];
+  MessageWhereUniqueInput: NexusGenInputs['MessageWhereUniqueInput'];
+  NotificationCreateManyWithoutNotificationsInput: NexusGenInputs['NotificationCreateManyWithoutNotificationsInput'];
+  NotificationCreateOneWithoutNotificationInput: NexusGenInputs['NotificationCreateOneWithoutNotificationInput'];
+  NotificationCreateWithoutThreadInput: NexusGenInputs['NotificationCreateWithoutThreadInput'];
+  NotificationCreateWithoutUserInput: NexusGenInputs['NotificationCreateWithoutUserInput'];
+  NotificationMetaCreateManyWithoutItemMetaInput: NexusGenInputs['NotificationMetaCreateManyWithoutItemMetaInput'];
+  NotificationMetaCreateWithoutNotificationInput: NexusGenInputs['NotificationMetaCreateWithoutNotificationInput'];
+  NotificationMetaWhereUniqueInput: NexusGenInputs['NotificationMetaWhereUniqueInput'];
+  NotificationWhereUniqueInput: NexusGenInputs['NotificationWhereUniqueInput'];
+  PodCreateOneWithoutPodInput: NexusGenInputs['PodCreateOneWithoutPodInput'];
+  PodCreateWithoutPostsInput: NexusGenInputs['PodCreateWithoutPostsInput'];
+  PodMetaCreateOneWithoutPodMetaInput: NexusGenInputs['PodMetaCreateOneWithoutPodMetaInput'];
+  PodMetaCreateWithoutPostInput: NexusGenInputs['PodMetaCreateWithoutPostInput'];
+  PodMetaWhereUniqueInput: NexusGenInputs['PodMetaWhereUniqueInput'];
+  PodWhereUniqueInput: NexusGenInputs['PodWhereUniqueInput'];
   PostCreateManyWithoutPostsInput: NexusGenInputs['PostCreateManyWithoutPostsInput'];
+  PostCreateOneWithoutPostInput: NexusGenInputs['PostCreateOneWithoutPostInput'];
+  PostCreateWithoutFavoritesInput: NexusGenInputs['PostCreateWithoutFavoritesInput'];
   PostCreateWithoutUserInput: NexusGenInputs['PostCreateWithoutUserInput'];
   PostMetaCreateManyWithoutItemMetaInput: NexusGenInputs['PostMetaCreateManyWithoutItemMetaInput'];
   PostMetaCreateWithoutPostInput: NexusGenInputs['PostMetaCreateWithoutPostInput'];
   PostMetaWhereUniqueInput: NexusGenInputs['PostMetaWhereUniqueInput'];
   PostWhereUniqueInput: NexusGenInputs['PostWhereUniqueInput'];
+  QuestionCreateManyWithoutQuestionsInput: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'];
+  QuestionCreateWithoutPostInput: NexusGenInputs['QuestionCreateWithoutPostInput'];
+  QuestionMetaCreateManyWithoutItemMetaInput: NexusGenInputs['QuestionMetaCreateManyWithoutItemMetaInput'];
+  QuestionMetaCreateWithoutQuestionInput: NexusGenInputs['QuestionMetaCreateWithoutQuestionInput'];
+  QuestionMetaWhereUniqueInput: NexusGenInputs['QuestionMetaWhereUniqueInput'];
+  QuestionWhereUniqueInput: NexusGenInputs['QuestionWhereUniqueInput'];
   ReviewCreateManyWithoutReviewsInput: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'];
   ReviewCreateWithoutPostInput: NexusGenInputs['ReviewCreateWithoutPostInput'];
   ReviewMetaCreateManyWithoutItemMetaInput: NexusGenInputs['ReviewMetaCreateManyWithoutItemMetaInput'];
   ReviewMetaCreateWithoutReviewInput: NexusGenInputs['ReviewMetaCreateWithoutReviewInput'];
   ReviewMetaWhereUniqueInput: NexusGenInputs['ReviewMetaWhereUniqueInput'];
   ReviewWhereUniqueInput: NexusGenInputs['ReviewWhereUniqueInput'];
+  TagCreateManyWithoutTagsInput: NexusGenInputs['TagCreateManyWithoutTagsInput'];
+  TagCreateWithoutPostInput: NexusGenInputs['TagCreateWithoutPostInput'];
+  TagWhereUniqueInput: NexusGenInputs['TagWhereUniqueInput'];
+  ThreadCreateManyWithoutThreadsInput: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'];
+  ThreadCreateOneWithoutThreadInput: NexusGenInputs['ThreadCreateOneWithoutThreadInput'];
+  ThreadCreateWithoutNotificationInput: NexusGenInputs['ThreadCreateWithoutNotificationInput'];
+  ThreadCreateWithoutUserInput: NexusGenInputs['ThreadCreateWithoutUserInput'];
+  ThreadMetaCreateManyWithoutItemMetaInput: NexusGenInputs['ThreadMetaCreateManyWithoutItemMetaInput'];
+  ThreadMetaCreateWithoutThreadInput: NexusGenInputs['ThreadMetaCreateWithoutThreadInput'];
+  ThreadMetaWhereUniqueInput: NexusGenInputs['ThreadMetaWhereUniqueInput'];
+  ThreadWhereUniqueInput: NexusGenInputs['ThreadWhereUniqueInput'];
   UserCreateInput: NexusGenInputs['UserCreateInput'];
+  UserCreateManyWithoutFollowersInput: NexusGenInputs['UserCreateManyWithoutFollowersInput'];
+  UserCreateManyWithoutFollowingInput: NexusGenInputs['UserCreateManyWithoutFollowingInput'];
   UserCreateOneWithoutUserInput: NexusGenInputs['UserCreateOneWithoutUserInput'];
-  UserCreateWithoutReviewsInput: NexusGenInputs['UserCreateWithoutReviewsInput'];
+  UserCreateWithoutFollowersInput: NexusGenInputs['UserCreateWithoutFollowersInput'];
+  UserCreateWithoutFollowingInput: NexusGenInputs['UserCreateWithoutFollowingInput'];
+  UserCreateWithoutPodInput: NexusGenInputs['UserCreateWithoutPodInput'];
   UserMetaCreateManyWithoutUserMetaInput: NexusGenInputs['UserMetaCreateManyWithoutUserMetaInput'];
   UserMetaCreateWithoutUserInput: NexusGenInputs['UserMetaCreateWithoutUserInput'];
   UserMetaWhereUniqueInput: NexusGenInputs['UserMetaWhereUniqueInput'];
@@ -218,13 +620,13 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Mutation" | "Query" | "User";
 
-export type NexusGenInputNames = "PostCreateManyWithoutPostsInput" | "PostCreateWithoutUserInput" | "PostMetaCreateManyWithoutItemMetaInput" | "PostMetaCreateWithoutPostInput" | "PostMetaWhereUniqueInput" | "PostWhereUniqueInput" | "ReviewCreateManyWithoutReviewsInput" | "ReviewCreateWithoutPostInput" | "ReviewMetaCreateManyWithoutItemMetaInput" | "ReviewMetaCreateWithoutReviewInput" | "ReviewMetaWhereUniqueInput" | "ReviewWhereUniqueInput" | "UserCreateInput" | "UserCreateOneWithoutUserInput" | "UserCreateWithoutReviewsInput" | "UserMetaCreateManyWithoutUserMetaInput" | "UserMetaCreateWithoutUserInput" | "UserMetaWhereUniqueInput" | "UserWhereUniqueInput";
+export type NexusGenInputNames = "AnnotationCreateManyWithoutAnnotationsInput" | "AnnotationCreateWithoutPostInput" | "AnnotationMetaCreateManyWithoutItemMetaInput" | "AnnotationMetaCreateWithoutAnnotationInput" | "AnnotationMetaWhereUniqueInput" | "AnnotationWhereUniqueInput" | "CategoryCreateManyWithoutCategoriesInput" | "CategoryCreateWithoutPodInput" | "CategoryWhereUniqueInput" | "FavoriteCreateManyWithoutFavoritesInput" | "FavoriteCreateWithoutUserInput" | "FavoriteWhereUniqueInput" | "MessageCreateOneWithoutMessageInput" | "MessageCreateWithoutThreadInput" | "MessageMetaCreateManyWithoutItemMetaInput" | "MessageMetaCreateWithoutMessageInput" | "MessageMetaWhereUniqueInput" | "MessageWhereUniqueInput" | "NotificationCreateManyWithoutNotificationsInput" | "NotificationCreateOneWithoutNotificationInput" | "NotificationCreateWithoutThreadInput" | "NotificationCreateWithoutUserInput" | "NotificationMetaCreateManyWithoutItemMetaInput" | "NotificationMetaCreateWithoutNotificationInput" | "NotificationMetaWhereUniqueInput" | "NotificationWhereUniqueInput" | "PodCreateOneWithoutPodInput" | "PodCreateWithoutPostsInput" | "PodMetaCreateOneWithoutPodMetaInput" | "PodMetaCreateWithoutPostInput" | "PodMetaWhereUniqueInput" | "PodWhereUniqueInput" | "PostCreateManyWithoutPostsInput" | "PostCreateOneWithoutPostInput" | "PostCreateWithoutFavoritesInput" | "PostCreateWithoutUserInput" | "PostMetaCreateManyWithoutItemMetaInput" | "PostMetaCreateWithoutPostInput" | "PostMetaWhereUniqueInput" | "PostWhereUniqueInput" | "QuestionCreateManyWithoutQuestionsInput" | "QuestionCreateWithoutPostInput" | "QuestionMetaCreateManyWithoutItemMetaInput" | "QuestionMetaCreateWithoutQuestionInput" | "QuestionMetaWhereUniqueInput" | "QuestionWhereUniqueInput" | "ReviewCreateManyWithoutReviewsInput" | "ReviewCreateWithoutPostInput" | "ReviewMetaCreateManyWithoutItemMetaInput" | "ReviewMetaCreateWithoutReviewInput" | "ReviewMetaWhereUniqueInput" | "ReviewWhereUniqueInput" | "TagCreateManyWithoutTagsInput" | "TagCreateWithoutPostInput" | "TagWhereUniqueInput" | "ThreadCreateManyWithoutThreadsInput" | "ThreadCreateOneWithoutThreadInput" | "ThreadCreateWithoutNotificationInput" | "ThreadCreateWithoutUserInput" | "ThreadMetaCreateManyWithoutItemMetaInput" | "ThreadMetaCreateWithoutThreadInput" | "ThreadMetaWhereUniqueInput" | "ThreadWhereUniqueInput" | "UserCreateInput" | "UserCreateManyWithoutFollowersInput" | "UserCreateManyWithoutFollowingInput" | "UserCreateOneWithoutUserInput" | "UserCreateWithoutFollowersInput" | "UserCreateWithoutFollowingInput" | "UserCreateWithoutPodInput" | "UserMetaCreateManyWithoutUserMetaInput" | "UserMetaCreateWithoutUserInput" | "UserMetaWhereUniqueInput" | "UserWhereUniqueInput";
 
 export type NexusGenEnumNames = never;
 
 export type NexusGenInterfaceNames = never;
 
-export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String";
+export type NexusGenScalarNames = "Boolean" | "DateTime" | "Float" | "ID" | "Int" | "String";
 
 export type NexusGenUnionNames = never;
 

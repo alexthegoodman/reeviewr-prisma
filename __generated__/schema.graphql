@@ -2,8 +2,203 @@
 ### Do not make changes to this file directly
 
 
+input AnnotationCreateManyWithoutAnnotationsInput {
+  connect: [AnnotationWhereUniqueInput!]
+  create: [AnnotationCreateWithoutPostInput!]
+}
+
+input AnnotationCreateWithoutPostInput {
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: AnnotationMetaCreateManyWithoutItemMetaInput
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  user: UserCreateOneWithoutUserInput!
+}
+
+input AnnotationMetaCreateManyWithoutItemMetaInput {
+  connect: [AnnotationMetaWhereUniqueInput!]
+  create: [AnnotationMetaCreateWithoutAnnotationInput!]
+}
+
+input AnnotationMetaCreateWithoutAnnotationInput {
+  metaDeleted: Boolean
+  metaName: String!
+  metaType: String!
+  metaValue: String!
+}
+
+input AnnotationMetaWhereUniqueInput {
+  id: Int
+}
+
+input AnnotationWhereUniqueInput {
+  id: Int
+}
+
+input CategoryCreateManyWithoutCategoriesInput {
+  connect: [CategoryWhereUniqueInput!]
+  create: [CategoryCreateWithoutPodInput!]
+}
+
+input CategoryCreateWithoutPodInput {
+  itemContent: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+}
+
+input CategoryWhereUniqueInput {
+  id: Int
+}
+
+"""DateTime"""
+scalar DateTime
+
+input FavoriteCreateManyWithoutFavoritesInput {
+  connect: [FavoriteWhereUniqueInput!]
+  create: [FavoriteCreateWithoutUserInput!]
+}
+
+input FavoriteCreateWithoutUserInput {
+  itemContent: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  post: PostCreateOneWithoutPostInput!
+}
+
+input FavoriteWhereUniqueInput {
+  id: Int
+}
+
+input MessageCreateOneWithoutMessageInput {
+  connect: MessageWhereUniqueInput
+  create: MessageCreateWithoutThreadInput
+}
+
+input MessageCreateWithoutThreadInput {
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: MessageMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  user: UserCreateOneWithoutUserInput!
+}
+
+input MessageMetaCreateManyWithoutItemMetaInput {
+  connect: [MessageMetaWhereUniqueInput!]
+  create: [MessageMetaCreateWithoutMessageInput!]
+}
+
+input MessageMetaCreateWithoutMessageInput {
+  metaDeleted: Boolean
+  metaName: String!
+  metaType: String!
+  metaValue: String!
+}
+
+input MessageMetaWhereUniqueInput {
+  id: Int
+}
+
+input MessageWhereUniqueInput {
+  id: Int
+}
+
 type Mutation {
   createOneUser(data: UserCreateInput!): User!
+}
+
+input NotificationCreateManyWithoutNotificationsInput {
+  connect: [NotificationWhereUniqueInput!]
+  create: [NotificationCreateWithoutUserInput!]
+}
+
+input NotificationCreateOneWithoutNotificationInput {
+  connect: NotificationWhereUniqueInput
+  create: NotificationCreateWithoutThreadInput
+}
+
+input NotificationCreateWithoutThreadInput {
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: NotificationMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  user: UserCreateOneWithoutUserInput!
+}
+
+input NotificationCreateWithoutUserInput {
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: NotificationMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  thread: ThreadCreateOneWithoutThreadInput!
+}
+
+input NotificationMetaCreateManyWithoutItemMetaInput {
+  connect: [NotificationMetaWhereUniqueInput!]
+  create: [NotificationMetaCreateWithoutNotificationInput!]
+}
+
+input NotificationMetaCreateWithoutNotificationInput {
+  metaDeleted: Boolean
+  metaName: String!
+  metaType: String!
+  metaValue: String!
+}
+
+input NotificationMetaWhereUniqueInput {
+  id: Int
+}
+
+input NotificationWhereUniqueInput {
+  id: Int
+}
+
+input PodCreateOneWithoutPodInput {
+  connect: PodWhereUniqueInput
+  create: PodCreateWithoutPostsInput
+}
+
+input PodCreateWithoutPostsInput {
+  categories: CategoryCreateManyWithoutCategoriesInput
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: PostMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  user: UserCreateOneWithoutUserInput!
+}
+
+input PodMetaCreateOneWithoutPodMetaInput {
+  connect: PodMetaWhereUniqueInput
+  create: PodMetaCreateWithoutPostInput
+}
+
+input PodMetaCreateWithoutPostInput {
+  metaDeleted: Boolean
+  metaName: String!
+  metaType: String!
+  metaValue: String!
+}
+
+input PodMetaWhereUniqueInput {
+  id: Int
+}
+
+input PodWhereUniqueInput {
+  id: Int
 }
 
 input PostCreateManyWithoutPostsInput {
@@ -11,7 +206,13 @@ input PostCreateManyWithoutPostsInput {
   create: [PostCreateWithoutUserInput!]
 }
 
-input PostCreateWithoutUserInput {
+input PostCreateOneWithoutPostInput {
+  connect: PostWhereUniqueInput
+  create: PostCreateWithoutFavoritesInput
+}
+
+input PostCreateWithoutFavoritesInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
   itemContent: String!
   itemDeleted: Boolean
   itemMeta: PostMetaCreateManyWithoutItemMetaInput
@@ -20,7 +221,30 @@ input PostCreateWithoutUserInput {
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
+  pod: PodCreateOneWithoutPodInput!
+  podMeta: PodMetaCreateOneWithoutPodMetaInput
+  questions: QuestionCreateManyWithoutQuestionsInput
   reviews: ReviewCreateManyWithoutReviewsInput
+  tags: TagCreateManyWithoutTagsInput
+  user: UserCreateOneWithoutUserInput!
+}
+
+input PostCreateWithoutUserInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: PostMetaCreateManyWithoutItemMetaInput
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  pod: PodCreateOneWithoutPodInput!
+  podMeta: PodMetaCreateOneWithoutPodMetaInput
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
+  tags: TagCreateManyWithoutTagsInput
 }
 
 input PostMetaCreateManyWithoutItemMetaInput {
@@ -33,6 +257,7 @@ input PostMetaCreateWithoutPostInput {
   metaName: String!
   metaType: String!
   metaValue: String!
+  pod: PodCreateOneWithoutPodInput
 }
 
 input PostMetaWhereUniqueInput {
@@ -46,6 +271,43 @@ input PostWhereUniqueInput {
 type Query {
   findManyUser(after: String, before: String, first: Int, last: Int, skip: Int): [User!]
   findOneUser(where: UserWhereUniqueInput!): User
+}
+
+input QuestionCreateManyWithoutQuestionsInput {
+  connect: [QuestionWhereUniqueInput!]
+  create: [QuestionCreateWithoutPostInput!]
+}
+
+input QuestionCreateWithoutPostInput {
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: QuestionMetaCreateManyWithoutItemMetaInput
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  user: UserCreateOneWithoutUserInput!
+}
+
+input QuestionMetaCreateManyWithoutItemMetaInput {
+  connect: [QuestionMetaWhereUniqueInput!]
+  create: [QuestionMetaCreateWithoutQuestionInput!]
+}
+
+input QuestionMetaCreateWithoutQuestionInput {
+  metaDeleted: Boolean
+  metaName: String!
+  metaType: String!
+  metaValue: String!
+}
+
+input QuestionMetaWhereUniqueInput {
+  id: Int
+}
+
+input QuestionWhereUniqueInput {
+  id: Int
 }
 
 input ReviewCreateManyWithoutReviewsInput {
@@ -85,6 +347,74 @@ input ReviewWhereUniqueInput {
   id: Int
 }
 
+input TagCreateManyWithoutTagsInput {
+  connect: [TagWhereUniqueInput!]
+  create: [TagCreateWithoutPostInput!]
+}
+
+input TagCreateWithoutPostInput {
+  itemContent: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+}
+
+input TagWhereUniqueInput {
+  id: Int
+}
+
+input ThreadCreateManyWithoutThreadsInput {
+  connect: [ThreadWhereUniqueInput!]
+  create: [ThreadCreateWithoutUserInput!]
+}
+
+input ThreadCreateOneWithoutThreadInput {
+  connect: ThreadWhereUniqueInput
+  create: ThreadCreateWithoutNotificationInput
+}
+
+input ThreadCreateWithoutNotificationInput {
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: ThreadMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  message: MessageCreateOneWithoutMessageInput
+  user: UserCreateOneWithoutUserInput!
+}
+
+input ThreadCreateWithoutUserInput {
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: ThreadMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  message: MessageCreateOneWithoutMessageInput
+  notification: NotificationCreateOneWithoutNotificationInput
+}
+
+input ThreadMetaCreateManyWithoutItemMetaInput {
+  connect: [ThreadMetaWhereUniqueInput!]
+  create: [ThreadMetaCreateWithoutThreadInput!]
+}
+
+input ThreadMetaCreateWithoutThreadInput {
+  metaDeleted: Boolean
+  metaName: String!
+  metaType: String!
+  metaValue: String!
+}
+
+input ThreadMetaWhereUniqueInput {
+  id: Int
+}
+
+input ThreadWhereUniqueInput {
+  id: Int
+}
+
 type User {
   confirmHash: String!
   forgotHash: String!
@@ -98,12 +428,21 @@ type User {
 }
 
 input UserCreateInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
   confirmHash: String!
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  followers: UserCreateManyWithoutFollowersInput
+  following: UserCreateManyWithoutFollowingInput
   forgotHash: String!
+  message: MessageCreateOneWithoutMessageInput
+  notifications: NotificationCreateManyWithoutNotificationsInput
+  pod: PodCreateOneWithoutPodInput
   posts: PostCreateManyWithoutPostsInput
   privateHash: String!
   publicHash: String!
+  questions: QuestionCreateManyWithoutQuestionsInput
   reviews: ReviewCreateManyWithoutReviewsInput
+  threads: ThreadCreateManyWithoutThreadsInput
   userConfirmed: Int!
   userDeleted: Boolean
   userEmail: String!
@@ -112,17 +451,82 @@ input UserCreateInput {
   userType: Int!
 }
 
-input UserCreateOneWithoutUserInput {
-  connect: UserWhereUniqueInput
-  create: UserCreateWithoutReviewsInput
+input UserCreateManyWithoutFollowersInput {
+  connect: [UserWhereUniqueInput!]
+  create: [UserCreateWithoutFollowingInput!]
 }
 
-input UserCreateWithoutReviewsInput {
+input UserCreateManyWithoutFollowingInput {
+  connect: [UserWhereUniqueInput!]
+  create: [UserCreateWithoutFollowersInput!]
+}
+
+input UserCreateOneWithoutUserInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutPodInput
+}
+
+input UserCreateWithoutFollowersInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
   confirmHash: String!
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  following: UserCreateManyWithoutFollowingInput
   forgotHash: String!
+  message: MessageCreateOneWithoutMessageInput
+  notifications: NotificationCreateManyWithoutNotificationsInput
+  pod: PodCreateOneWithoutPodInput
   posts: PostCreateManyWithoutPostsInput
   privateHash: String!
   publicHash: String!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
+  threads: ThreadCreateManyWithoutThreadsInput
+  userConfirmed: Int!
+  userDeleted: Boolean
+  userEmail: String!
+  userMeta: UserMetaCreateManyWithoutUserMetaInput
+  userPassword: String!
+  userType: Int!
+}
+
+input UserCreateWithoutFollowingInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  confirmHash: String!
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  followers: UserCreateManyWithoutFollowersInput
+  forgotHash: String!
+  message: MessageCreateOneWithoutMessageInput
+  notifications: NotificationCreateManyWithoutNotificationsInput
+  pod: PodCreateOneWithoutPodInput
+  posts: PostCreateManyWithoutPostsInput
+  privateHash: String!
+  publicHash: String!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
+  threads: ThreadCreateManyWithoutThreadsInput
+  userConfirmed: Int!
+  userDeleted: Boolean
+  userEmail: String!
+  userMeta: UserMetaCreateManyWithoutUserMetaInput
+  userPassword: String!
+  userType: Int!
+}
+
+input UserCreateWithoutPodInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  confirmHash: String!
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  followers: UserCreateManyWithoutFollowersInput
+  following: UserCreateManyWithoutFollowingInput
+  forgotHash: String!
+  message: MessageCreateOneWithoutMessageInput
+  notifications: NotificationCreateManyWithoutNotificationsInput
+  posts: PostCreateManyWithoutPostsInput
+  privateHash: String!
+  publicHash: String!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
+  threads: ThreadCreateManyWithoutThreadsInput
   userConfirmed: Int!
   userDeleted: Boolean
   userEmail: String!
