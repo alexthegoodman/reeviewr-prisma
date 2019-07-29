@@ -2,6 +2,33 @@
 ### Do not make changes to this file directly
 
 
+type Annotation {
+  id: Int!
+  itemContent: String!
+  itemDeleted: Boolean!
+  itemMeta(after: String, before: String, first: Int, last: Int, skip: Int): [AnnotationMeta!]
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  post: Post!
+  user: User!
+}
+
+input AnnotationCreateInput {
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: AnnotationMetaCreateManyWithoutItemMetaInput
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  post: PostCreateOneWithoutPostInput!
+  user: UserCreateOneWithoutUserInput!
+}
+
 input AnnotationCreateManyWithoutAnnotationsInput {
   connect: [AnnotationWhereUniqueInput!]
   create: [AnnotationCreateWithoutPostInput!]
@@ -17,6 +44,15 @@ input AnnotationCreateWithoutPostInput {
   itemType: String!
   itemUrlSegment: String!
   user: UserCreateOneWithoutUserInput!
+}
+
+type AnnotationMeta {
+  annotation: Annotation!
+  id: Int!
+  metaDeleted: Boolean!
+  metaName: String!
+  metaType: String!
+  metaValue: String!
 }
 
 input AnnotationMetaCreateManyWithoutItemMetaInput {
@@ -39,6 +75,23 @@ input AnnotationWhereUniqueInput {
   id: Int
 }
 
+type Category {
+  id: Int!
+  itemContent: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  pod: Pod!
+}
+
+input CategoryCreateInput {
+  itemContent: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  pod: PodCreateOneWithoutPodInput!
+}
+
 input CategoryCreateManyWithoutCategoriesInput {
   connect: [CategoryWhereUniqueInput!]
   create: [CategoryCreateWithoutPodInput!]
@@ -58,6 +111,25 @@ input CategoryWhereUniqueInput {
 """DateTime"""
 scalar DateTime
 
+type Favorite {
+  id: Int!
+  itemContent: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  post: Post!
+  user: User!
+}
+
+input FavoriteCreateInput {
+  itemContent: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  post: PostCreateOneWithoutPostInput!
+  user: UserCreateOneWithoutUserInput!
+}
+
 input FavoriteCreateManyWithoutFavoritesInput {
   connect: [FavoriteWhereUniqueInput!]
   create: [FavoriteCreateWithoutUserInput!]
@@ -75,6 +147,29 @@ input FavoriteWhereUniqueInput {
   id: Int
 }
 
+type Message {
+  id: Int!
+  itemContent: String!
+  itemDeleted: Boolean!
+  itemMeta(after: String, before: String, first: Int, last: Int, skip: Int): [MessageMeta!]
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  thread: Thread!
+  user: User!
+}
+
+input MessageCreateInput {
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: MessageMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  thread: ThreadCreateOneWithoutThreadInput!
+  user: UserCreateOneWithoutUserInput!
+}
+
 input MessageCreateOneWithoutMessageInput {
   connect: MessageWhereUniqueInput
   create: MessageCreateWithoutThreadInput
@@ -88,6 +183,15 @@ input MessageCreateWithoutThreadInput {
   itemStatus: String!
   itemType: String!
   user: UserCreateOneWithoutUserInput!
+}
+
+type MessageMeta {
+  id: Int!
+  message: Message!
+  metaDeleted: Boolean!
+  metaName: String!
+  metaType: String!
+  metaValue: String!
 }
 
 input MessageMetaCreateManyWithoutItemMetaInput {
@@ -111,7 +215,41 @@ input MessageWhereUniqueInput {
 }
 
 type Mutation {
+  createOneAnnotation(data: AnnotationCreateInput!): Annotation!
+  createOneCategory(data: CategoryCreateInput!): Category!
+  createOneFavorite(data: FavoriteCreateInput!): Favorite!
+  createOneMessage(data: MessageCreateInput!): Message!
+  createOneNotification(data: NotificationCreateInput!): Notification!
+  createOnePod(data: PodCreateInput!): Pod!
+  createOnePost(data: PostCreateInput!): Post!
+  createOneQuestion(data: QuestionCreateInput!): Question!
+  createOneReview(data: ReviewCreateInput!): Review!
+  createOneTag(data: TagCreateInput!): Tag!
+  createOneThread(data: ThreadCreateInput!): Thread!
   createOneUser(data: UserCreateInput!): User!
+}
+
+type Notification {
+  id: Int!
+  itemContent: String!
+  itemDeleted: Boolean!
+  itemMeta(after: String, before: String, first: Int, last: Int, skip: Int): [NotificationMeta!]
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  thread: Thread!
+  user: User!
+}
+
+input NotificationCreateInput {
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: NotificationMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  thread: ThreadCreateOneWithoutThreadInput!
+  user: UserCreateOneWithoutUserInput!
 }
 
 input NotificationCreateManyWithoutNotificationsInput {
@@ -144,6 +282,15 @@ input NotificationCreateWithoutUserInput {
   thread: ThreadCreateOneWithoutThreadInput!
 }
 
+type NotificationMeta {
+  id: Int!
+  metaDeleted: Boolean!
+  metaName: String!
+  metaType: String!
+  metaValue: String!
+  notification: Notification!
+}
+
 input NotificationMetaCreateManyWithoutItemMetaInput {
   connect: [NotificationMetaWhereUniqueInput!]
   create: [NotificationMetaCreateWithoutNotificationInput!]
@@ -164,6 +311,34 @@ input NotificationWhereUniqueInput {
   id: Int
 }
 
+type Pod {
+  categories(after: String, before: String, first: Int, last: Int, skip: Int): [Category!]
+  id: Int!
+  itemContent: String!
+  itemDeleted: Boolean!
+  itemMeta(after: String, before: String, first: Int, last: Int, skip: Int): [PostMeta!]
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  posts(after: String, before: String, first: Int, last: Int, skip: Int): [Post!]
+  user: User!
+}
+
+input PodCreateInput {
+  categories: CategoryCreateManyWithoutCategoriesInput
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: PostMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  podMeta: PodMetaCreateOneWithoutPodMetaInput
+  posts: PostCreateManyWithoutPostsInput
+  user: UserCreateOneWithoutUserInput!
+}
+
 input PodCreateOneWithoutPodInput {
   connect: PodWhereUniqueInput
   create: PodCreateWithoutPostsInput
@@ -178,15 +353,25 @@ input PodCreateWithoutPostsInput {
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
+  podMeta: PodMetaCreateOneWithoutPodMetaInput
   user: UserCreateOneWithoutUserInput!
+}
+
+type PodMeta {
+  id: Int!
+  metaDeleted: Boolean!
+  metaName: String!
+  metaType: String!
+  metaValue: String!
+  pod: Pod!
 }
 
 input PodMetaCreateOneWithoutPodMetaInput {
   connect: PodMetaWhereUniqueInput
-  create: PodMetaCreateWithoutPostInput
+  create: PodMetaCreateWithoutPodInput
 }
 
-input PodMetaCreateWithoutPostInput {
+input PodMetaCreateWithoutPodInput {
   metaDeleted: Boolean
   metaName: String!
   metaType: String!
@@ -199,6 +384,43 @@ input PodMetaWhereUniqueInput {
 
 input PodWhereUniqueInput {
   id: Int
+}
+
+type Post {
+  annotations(after: String, before: String, first: Int, last: Int, skip: Int): [Annotation!]
+  favorites(after: String, before: String, first: Int, last: Int, skip: Int): [Favorite!]
+  id: Int!
+  itemContent: String!
+  itemDeleted: Boolean!
+  itemMeta(after: String, before: String, first: Int, last: Int, skip: Int): [PostMeta!]
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  pod: Pod!
+  questions(after: String, before: String, first: Int, last: Int, skip: Int): [Question!]
+  reviews(after: String, before: String, first: Int, last: Int, skip: Int): [Review!]
+  tags(after: String, before: String, first: Int, last: Int, skip: Int): [Tag!]
+  user: User!
+}
+
+input PostCreateInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: PostMetaCreateManyWithoutItemMetaInput
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  pod: PodCreateOneWithoutPodInput!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
+  tags: TagCreateManyWithoutTagsInput
+  user: UserCreateOneWithoutUserInput!
 }
 
 input PostCreateManyWithoutPostsInput {
@@ -222,7 +444,6 @@ input PostCreateWithoutFavoritesInput {
   itemType: String!
   itemUrlSegment: String!
   pod: PodCreateOneWithoutPodInput!
-  podMeta: PodMetaCreateOneWithoutPodMetaInput
   questions: QuestionCreateManyWithoutQuestionsInput
   reviews: ReviewCreateManyWithoutReviewsInput
   tags: TagCreateManyWithoutTagsInput
@@ -241,10 +462,18 @@ input PostCreateWithoutUserInput {
   itemType: String!
   itemUrlSegment: String!
   pod: PodCreateOneWithoutPodInput!
-  podMeta: PodMetaCreateOneWithoutPodMetaInput
   questions: QuestionCreateManyWithoutQuestionsInput
   reviews: ReviewCreateManyWithoutReviewsInput
   tags: TagCreateManyWithoutTagsInput
+}
+
+type PostMeta {
+  id: Int!
+  metaDeleted: Boolean!
+  metaName: String!
+  metaType: String!
+  metaValue: String!
+  post: Post!
 }
 
 input PostMetaCreateManyWithoutItemMetaInput {
@@ -269,8 +498,57 @@ input PostWhereUniqueInput {
 }
 
 type Query {
+  findManyAnnotation(after: String, before: String, first: Int, last: Int, skip: Int): [Annotation!]
+  findManyCategory(after: String, before: String, first: Int, last: Int, skip: Int): [Category!]
+  findManyFavorite(after: String, before: String, first: Int, last: Int, skip: Int): [Favorite!]
+  findManyMessage(after: String, before: String, first: Int, last: Int, skip: Int): [Message!]
+  findManyNotification(after: String, before: String, first: Int, last: Int, skip: Int): [Notification!]
+  findManyPod(after: String, before: String, first: Int, last: Int, skip: Int): [Pod!]
+  findManyPost(after: String, before: String, first: Int, last: Int, skip: Int): [Post!]
+  findManyQuestion(after: String, before: String, first: Int, last: Int, skip: Int): [Question!]
+  findManyReview(after: String, before: String, first: Int, last: Int, skip: Int): [Review!]
+  findManyTag(after: String, before: String, first: Int, last: Int, skip: Int): [Tag!]
+  findManyThread(after: String, before: String, first: Int, last: Int, skip: Int): [Thread!]
   findManyUser(after: String, before: String, first: Int, last: Int, skip: Int): [User!]
+  findOneAnnotation(where: AnnotationWhereUniqueInput!): Annotation
+  findOneCategory(where: CategoryWhereUniqueInput!): Category
+  findOneFavorite(where: FavoriteWhereUniqueInput!): Favorite
+  findOneMessage(where: MessageWhereUniqueInput!): Message
+  findOneNotification(where: NotificationWhereUniqueInput!): Notification
+  findOnePod(where: PodWhereUniqueInput!): Pod
+  findOnePost(where: PostWhereUniqueInput!): Post
+  findOneQuestion(where: QuestionWhereUniqueInput!): Question
+  findOneReview(where: ReviewWhereUniqueInput!): Review
+  findOneTag(where: TagWhereUniqueInput!): Tag
+  findOneThread(where: ThreadWhereUniqueInput!): Thread
   findOneUser(where: UserWhereUniqueInput!): User
+}
+
+type Question {
+  id: Int!
+  itemContent: String!
+  itemDeleted: Boolean!
+  itemMeta(after: String, before: String, first: Int, last: Int, skip: Int): [QuestionMeta!]
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  post: Post!
+  user: User!
+}
+
+input QuestionCreateInput {
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: QuestionMetaCreateManyWithoutItemMetaInput
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  post: PostCreateOneWithoutPostInput!
+  user: UserCreateOneWithoutUserInput!
 }
 
 input QuestionCreateManyWithoutQuestionsInput {
@@ -288,6 +566,15 @@ input QuestionCreateWithoutPostInput {
   itemType: String!
   itemUrlSegment: String!
   user: UserCreateOneWithoutUserInput!
+}
+
+type QuestionMeta {
+  id: Int!
+  metaDeleted: Boolean!
+  metaName: String!
+  metaType: String!
+  metaValue: String!
+  question: Question!
 }
 
 input QuestionMetaCreateManyWithoutItemMetaInput {
@@ -310,6 +597,33 @@ input QuestionWhereUniqueInput {
   id: Int
 }
 
+type Review {
+  id: Int!
+  itemContent: String!
+  itemDeleted: Boolean!
+  itemMeta(after: String, before: String, first: Int, last: Int, skip: Int): [ReviewMeta!]
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  post: Post!
+  user: User!
+}
+
+input ReviewCreateInput {
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: ReviewMetaCreateManyWithoutItemMetaInput
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  post: PostCreateOneWithoutPostInput!
+  user: UserCreateOneWithoutUserInput!
+}
+
 input ReviewCreateManyWithoutReviewsInput {
   connect: [ReviewWhereUniqueInput!]
   create: [ReviewCreateWithoutPostInput!]
@@ -325,6 +639,15 @@ input ReviewCreateWithoutPostInput {
   itemType: String!
   itemUrlSegment: String!
   user: UserCreateOneWithoutUserInput!
+}
+
+type ReviewMeta {
+  id: Int!
+  metaDeleted: Boolean!
+  metaName: String!
+  metaType: String!
+  metaValue: String!
+  review: Review!
 }
 
 input ReviewMetaCreateManyWithoutItemMetaInput {
@@ -347,6 +670,23 @@ input ReviewWhereUniqueInput {
   id: Int
 }
 
+type Tag {
+  id: Int!
+  itemContent: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  post: Post!
+}
+
+input TagCreateInput {
+  itemContent: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  post: PostCreateOneWithoutPostInput!
+}
+
 input TagCreateManyWithoutTagsInput {
   connect: [TagWhereUniqueInput!]
   create: [TagCreateWithoutPostInput!]
@@ -361,6 +701,29 @@ input TagCreateWithoutPostInput {
 
 input TagWhereUniqueInput {
   id: Int
+}
+
+type Thread {
+  id: Int!
+  itemContent: String!
+  itemDeleted: Boolean!
+  itemMeta(after: String, before: String, first: Int, last: Int, skip: Int): [ThreadMeta!]
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  user: User!
+}
+
+input ThreadCreateInput {
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: ThreadMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  message: MessageCreateOneWithoutMessageInput
+  notification: NotificationCreateOneWithoutNotificationInput
+  user: UserCreateOneWithoutUserInput!
 }
 
 input ThreadCreateManyWithoutThreadsInput {
@@ -395,6 +758,15 @@ input ThreadCreateWithoutUserInput {
   notification: NotificationCreateOneWithoutNotificationInput
 }
 
+type ThreadMeta {
+  id: Int!
+  metaDeleted: Boolean!
+  metaName: String!
+  metaType: String!
+  metaValue: String!
+  thread: Thread!
+}
+
 input ThreadMetaCreateManyWithoutItemMetaInput {
   connect: [ThreadMetaWhereUniqueInput!]
   create: [ThreadMetaCreateWithoutThreadInput!]
@@ -416,14 +788,24 @@ input ThreadWhereUniqueInput {
 }
 
 type User {
+  annotations(after: String, before: String, first: Int, last: Int, skip: Int): [Annotation!]
   confirmHash: String!
+  favorites(after: String, before: String, first: Int, last: Int, skip: Int): [Favorite!]
+  followers(after: String, before: String, first: Int, last: Int, skip: Int): [User!]
+  following(after: String, before: String, first: Int, last: Int, skip: Int): [User!]
   forgotHash: String!
   id: Int!
+  notifications(after: String, before: String, first: Int, last: Int, skip: Int): [Notification!]
+  posts(after: String, before: String, first: Int, last: Int, skip: Int): [Post!]
   privateHash: String!
   publicHash: String!
+  questions(after: String, before: String, first: Int, last: Int, skip: Int): [Question!]
+  reviews(after: String, before: String, first: Int, last: Int, skip: Int): [Review!]
+  threads(after: String, before: String, first: Int, last: Int, skip: Int): [Thread!]
   userConfirmed: Int!
   userDeleted: Boolean!
   userEmail: String!
+  userMeta(after: String, before: String, first: Int, last: Int, skip: Int): [UserMeta!]
   userType: Int!
 }
 
@@ -533,6 +915,15 @@ input UserCreateWithoutPodInput {
   userMeta: UserMetaCreateManyWithoutUserMetaInput
   userPassword: String!
   userType: Int!
+}
+
+type UserMeta {
+  id: Int!
+  metaDeleted: Boolean!
+  metaName: String!
+  metaType: String!
+  metaValue: String!
+  user: User!
 }
 
 input UserMetaCreateManyWithoutUserMetaInput {

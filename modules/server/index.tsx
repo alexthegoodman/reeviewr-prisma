@@ -70,6 +70,31 @@ import bcrypt from "bcrypt";
 import cors from "cors";
 import { makePrismaSchema } from "nexus-prisma";
 import Utility from "../services/Utility";
+import {
+  Annotation,
+  AnnotationMeta,
+  Category,
+  Favorite,
+  Message,
+  MessageMeta,
+  Notification,
+  NotificationMeta,
+  Pod,
+  PodMeta,
+  Post,
+  PostMeta,
+  Question,
+  QuestionMeta,
+  Review,
+  ReviewMeta,
+  Tag,
+  Thread,
+  ThreadMeta,
+  User,
+  UserMeta,
+} from "./graphql/models";
+import { Mutation } from "./graphql/mutation";
+import { Query } from "./graphql/query";
 import { mailchimpSubscribe } from "./integration/mailchimp-subscribe";
 import { completeProfile } from "./user/complete-profile";
 import { resetPassword } from "./user/reset-password";
@@ -79,50 +104,40 @@ const path = require("path");
 const csp = require("helmet-csp");
 const Mixpanel = require("mixpanel");
 
-const Query = objectType({
-  name: "Query",
-  definition(t) {
-    t.crud.findOneUser();
-    t.crud.findManyUser();
-  },
-});
-
-// Customize the "Mutation" building block
-const Mutation = objectType({
-  name: "Mutation",
-  definition(t) {
-    // Expose only the `createTodo` mutation (`updateTodo` and `deleteTodo` not exposed)
-    t.crud.createOneUser();
-  },
-});
-
-const User = objectType({
-  name: "User",
-  definition(t) {
-    t.model.id();
-    t.model.userType();
-    t.model.userEmail();
-    // t.model.userPassword();
-    t.model.publicHash();
-    t.model.privateHash();
-    t.model.confirmHash();
-    t.model.forgotHash();
-    t.model.userConfirmed();
-    t.model.userDeleted();
-    // t.model.userMeta();
-    // t.model.posts();
-    // t.model.reviews();
-  },
-});
-
 const photon = new Photon();
 
 const nexusPrisma = nexusPrismaPlugin({
   photon: ctx => photon,
 });
 
+// TODO: move to graphql/index.ts
 const schema = makeSchema({
-  types: [User, Query, Mutation, nexusPrisma],
+  types: [
+    User,
+    UserMeta,
+    Pod,
+    PodMeta,
+    Post,
+    PostMeta,
+    Review,
+    ReviewMeta,
+    Annotation,
+    AnnotationMeta,
+    Question,
+    QuestionMeta,
+    Thread,
+    ThreadMeta,
+    Message,
+    MessageMeta,
+    Notification,
+    NotificationMeta,
+    Favorite,
+    Tag,
+    Category,
+    Query,
+    Mutation,
+    nexusPrisma,
+  ],
   outputs: {
     schema: path.join(__dirname, "../__generated__/schema.graphql"),
     typegen: path.join(__dirname, "../__generated__/nexus.ts"),
@@ -133,28 +148,9 @@ const schema = makeSchema({
         source: "@generated/photon",
         alias: "photon",
       },
-      // {
-      //   source: path.join(__dirname, "types.ts"),
-      //   alias: "ctx",
-      // },
     ],
-    // contextType: "ctx.Context",
   },
 });
-
-// const schema = makePrismaSchema({
-//   types: [nexusPrisma],
-
-//   prisma: {
-//     client: photon,
-//     datamodelInfo,
-//   },
-
-//   // outputs: {
-//   //   schema: path.join(__dirname, "../__generated__/schema.graphql"),
-//   //   typegen: path.join(__dirname, "../__generated__/nexus.ts"),
-//   // }
-// });
 
 const graphqlServer = new GraphQLServer({
   schema,
@@ -399,20 +395,6 @@ export async function startServer() {
         </>
       );
 
-      // getDataFromTree(App).then(() => {
-      //   const content = ReactDOMServer.renderToString(App);
-      //   const initialState = client.extract();
-
-      //   const html = <Html content={content} state={initialState} />;
-
-      //   console.info("send response");
-
-      //   res.status(200);
-      //   res.send(
-      //     `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`
-      //   );
-      //   res.end();
-      // });
       console.info("get data");
       const rendered = await getMarkupFromTree({
         renderFunction: ReactDOMServer.renderToString,
