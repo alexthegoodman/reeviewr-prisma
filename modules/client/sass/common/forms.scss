@@ -63,6 +63,9 @@ textarea.bp3-input.bp3-small {
   width: 500px;
   margin: 50px auto;
   padding: 50px 35px;
+  box-shadow: none;
+  background-color: #f4f5f7;
+  border: none;
 
   h1,
   h2,
@@ -73,6 +76,9 @@ textarea.bp3-input.bp3-small {
     &.headline {
       margin: 0;
       color: $dark-gray1;
+      display: block;
+      text-align: center;
+      margin-bottom: 35px;
     }
   }
 

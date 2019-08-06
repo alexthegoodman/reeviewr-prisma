@@ -11,6 +11,10 @@
   padding-left: $sidebarWidth;
   box-shadow: none;
 
+  &.noLogo {
+    padding: 0;
+  }
+
   .bp3-navbar-group {
     @extend .horizontalCenter;
     height: $headerHeight;

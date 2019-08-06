@@ -173,39 +173,65 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                   />
                 </Tooltip>
 
-                <Popover>
-                  <Tooltip content="Notifications" position={Position.BOTTOM}>
-                    <Button
-                      className="notificationsButton headerActionButton headerItem"
-                      minimal={true}
-                      onClick={async () => {}}
-                      icon="notifications"
+                {loggedIn ? (
+                  <>
+                    <Popover>
+                      <Tooltip
+                        content="Notifications"
+                        position={Position.BOTTOM}
+                      >
+                        <Button
+                          className="notificationsButton headerActionButton headerItem"
+                          minimal={true}
+                          onClick={async () => {}}
+                          icon="notifications"
+                        >
+                          <Tag
+                            className="buttonTag"
+                            round={true}
+                            intent="danger"
+                          >
+                            2
+                          </Tag>
+                        </Button>
+                      </Tooltip>
+
+                      <div className="popoverContent">
+                        <NotificationMenu />
+                      </div>
+                    </Popover>
+
+                    <Popover>
+                      <Tooltip content="Messages" position={Position.BOTTOM}>
+                        <Button
+                          className="messagesButton headerActionButton headerItem"
+                          minimal={true}
+                          onClick={async () => {}}
+                          icon="envelope"
+                        />
+                      </Tooltip>
+
+                      <div className="popoverContent">
+                        <MessageMenu />
+                      </div>
+                    </Popover>
+                  </>
+                ) : (
+                  <Menu className="headerMenu">
+                    <MenuItem
+                      active={route.url.pathname === "/login" ? true : false}
+                      onClick={() => navigate("/login")}
                     >
-                      <Tag className="buttonTag" round={true} intent="danger">
-                        2
-                      </Tag>
-                    </Button>
-                  </Tooltip>
-
-                  <div className="popoverContent">
-                    <NotificationMenu />
-                  </div>
-                </Popover>
-
-                <Popover>
-                  <Tooltip content="Messages" position={Position.BOTTOM}>
-                    <Button
-                      className="messagesButton headerActionButton headerItem"
-                      minimal={true}
-                      onClick={async () => {}}
-                      icon="envelope"
-                    />
-                  </Tooltip>
-
-                  <div className="popoverContent">
-                    <MessageMenu />
-                  </div>
-                </Popover>
+                      Login
+                    </MenuItem>
+                    <MenuItem
+                      active={route.url.pathname === "/sign-up" ? true : false}
+                      onClick={() => navigate("/sign-up")}
+                    >
+                      Sign Up
+                    </MenuItem>
+                  </Menu>
+                )}
 
                 <Popover
                   content={

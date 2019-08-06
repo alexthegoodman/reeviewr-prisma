@@ -131,7 +131,9 @@ const Login: React.FC<LoginProps> = () => {
               >
                 Login
               </Button>
-              <Link href="/forgot-password">Forgot Password?</Link>
+              <div className="addtButtons">
+                <Link href="/forgot-password">Forgot Password?</Link>
+              </div>
             </Form>
           );
         }}

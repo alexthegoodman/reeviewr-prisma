@@ -1,22 +1,23 @@
 import * as React from "react";
 
-import { AuthNavProps } from "./AuthNav.d";
-import App from "../App/App";
 import { Button } from "@blueprintjs/core";
-import Header from "../../ui/Header/Header";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 import { useAppContext } from "../../../context";
+import Header from "../../ui/Header/Header";
+import App from "../App/App";
+import { AuthNavProps } from "./AuthNav.d";
 
 const AuthNav: React.FC<AuthNavProps> = ({ children }) => {
-  let route = useCurrentRoute();
-  let loadingRoute = useLoadingRoute();
-  let navigation = useNavigation();
+  const route = useCurrentRoute();
+  const loadingRoute = useLoadingRoute();
+  const navigation = useNavigation();
 
   const [{ currentTrack }, dispatch] = useAppContext();
 
   return (
     <App>
       <Header
+        className="noLogo"
         leftElements={
           <>
             <Button
@@ -24,7 +25,7 @@ const AuthNav: React.FC<AuthNavProps> = ({ children }) => {
               minimal={true}
               onClick={() => navigation.navigate("/")}
             >
-              Back to Browse
+              Back to Home
             </Button>
             <Button
               className="textButton headerItem"
@@ -48,9 +49,9 @@ const AuthNav: React.FC<AuthNavProps> = ({ children }) => {
         style={{
           paddingLeft: 25,
           paddingRight: 25,
-          paddingTop: 85,
-          background: "#3E4B58",
-          height: "100vh",
+          paddingTop: 25,
+          background: "#FFFFFF",
+          height: "calc(100vh - 81px)",
           overflowY: "scroll",
           overflowX: "hidden",
         }}
