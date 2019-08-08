@@ -1,9 +1,19 @@
 import * as React from "react";
 
+import { Card, Text } from "@blueprintjs/core";
+import CreatePostForm from "../../data/CreatePostForm/CreatePostForm";
 import { CreatePostProps } from "./CreatePost.d";
 
 const CreatePost: React.FC<CreatePostProps> = () => {
-  return <></>;
+  return (
+    <Card className="floatingForm">
+      <Text tagName="h1" className="headline">
+        Create Post
+      </Text>
+
+      <CreatePostForm />
+    </Card>
+  );
 };
 
 export default CreatePost;

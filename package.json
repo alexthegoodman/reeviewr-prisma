@@ -12,6 +12,7 @@
   },
   "scripts": {
     "start": "nf start web=1,worker=1",
+    "seed": "DATABASE_URL=postgresql://alex@localhost:5432/reeviewr-prisma2?schema=reeviewr-prisma-main ts-node seed/index.ts",
     "build:graphql": "prisma2 generate;",
     "build:client": "webpack --config ./webpack/client.config.js",
     "build:server": "webpack --config ./webpack/server.config.js",
@@ -45,9 +46,7 @@
     "gen:layout": "bash/gen_layout_component.sh",
     "gen:gql": "graphql-codegen --config codegen.yml",
     "heroku:deploy": "git push heroku master",
-    "prisma:deploy:local": "PRISMA_MANAGEMENT_API_SECRET=my-secret PRISMA_API=http://localhost:443 prisma deploy",
-    "prisma:deploy:dev": "PRISMA_API=http://159.89.239.84:4466/default/default/ PRISMA_MANAGEMENT_API_SECRET=my-secret prisma deploy",
-    "prisma:deploy:prod": "PRISMA_API=http://159.89.239.84:4466/default/default/ PRISMA_MANAGEMENT_API_SECRET=my-secret prisma deploy"
+    "prisma:migrate": "prisma2 lift save; prisma2 lift up;"
   },
   "resolutions": {},
   "dependencies": {
@@ -231,7 +230,7 @@
     "prettier": "1.18.2",
     "prisma": "1.23.0",
     "prisma-client-lib": "1.23.0",
-    "prisma2": "^2.0.0-preview-3",
+    "prisma2": "^2.0.0-preview-6.1",
     "progress-bar-webpack-plugin": "1.12.1",
     "promise-foreach": "1.0.23",
     "react": "16.8",
