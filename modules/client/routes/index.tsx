@@ -10,6 +10,8 @@ import ArtistDetail from "../components/pages/ArtistDetail/ArtistDetail";
 import Artists from "../components/pages/Artists/Artists";
 import CompleteProfile from "../components/pages/CompleteProfile/CompleteProfile";
 import ConfirmEmail from "../components/pages/ConfirmEmail/ConfirmEmail";
+import CreatePod from "../components/pages/CreatePod/CreatePod";
+import CreatePost from "../components/pages/CreatePost/CreatePost";
 import Explore from "../components/pages/Explore/Explore";
 import FindPeople from "../components/pages/FindPeople/FindPeople";
 import ForgotPassword from "../components/pages/ForgotPassword/ForgotPassword";
@@ -166,6 +168,21 @@ const routes = mount({
       ),
     };
   }),
+  "/pods/create": route(req => {
+    return {
+      title: "Create Pod / Reeviewr",
+      head: (
+        <>
+          <link rel="canonical" href={`https://reeviewr.com/pods/create`} />
+        </>
+      ),
+      view: (
+        <AppNav>
+          <CreatePod />
+        </AppNav>
+      ),
+    };
+  }),
   "/posts/:postId/:slug": route(req => {
     const { postId, slug } = req.params;
 
@@ -182,6 +199,21 @@ const routes = mount({
       view: (
         <AppNav>
           <PostDetail />
+        </AppNav>
+      ),
+    };
+  }),
+  "/posts/create": route(req => {
+    return {
+      title: "Create Post / Reeviewr",
+      head: (
+        <>
+          <link rel="canonical" href={`https://reeviewr.com/posts/create`} />
+        </>
+      ),
+      view: (
+        <AppNav>
+          <CreatePost />
         </AppNav>
       ),
     };

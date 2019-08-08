@@ -1,6 +1,8 @@
 import * as React from "react";
 
 import { Button, Text } from "@blueprintjs/core";
+import { useCurrentRoute, useNavigation } from "react-navi";
+import { useAppContext } from "../../../context";
 import { CategoryGridProps } from "./CategoryGrid.d";
 
 const CategoryGrid: React.FC<CategoryGridProps> = ({
@@ -10,7 +12,22 @@ const CategoryGrid: React.FC<CategoryGridProps> = ({
   children = null,
   title = "",
 }) => {
-  const clickHandler = e => onClick(e);
+  const route = useCurrentRoute();
+  const navigation = useNavigation();
+  const [{ tour, userData }, dispatch] = useAppContext();
+
+  const navigate = (href, loginCheck = false) => {
+    if (loginCheck) {
+      if (userData !== null && userData) {
+        navigation.navigate(href);
+      } else {
+        navigation.navigate("/sign-up");
+      }
+    } else {
+      navigation.navigate(href);
+    }
+  };
+
   return (
     <section className="categoryGrid">
       <div className="categoryGridContain">
@@ -18,7 +35,7 @@ const CategoryGrid: React.FC<CategoryGridProps> = ({
           <Text tagName="h6">{title}</Text>
           <Button
             className="button createPodButton"
-            onClick={() => console.info("create")}
+            onClick={() => navigate("/pods/create", true)}
           >
             Create Pod
           </Button>

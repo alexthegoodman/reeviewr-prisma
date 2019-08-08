@@ -93,7 +93,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
           <Logo white={false} />
           <Button
             className="button createButton"
-            onClick={() => navigate("/create")}
+            onClick={() => navigate("/posts/create", true)}
             icon="plus"
           >
             Create Post
@@ -102,7 +102,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
             <MenuItem
               className="joyrideYourFeedPage"
               active={route.url.pathname === "/feed" ? true : false}
-              onClick={() => navigate("/feed")}
+              onClick={() => navigate("/feed", true)}
             >
               <Icon icon="property" />
               Your Feed
@@ -110,7 +110,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
             <MenuItem
               className="joyrideJoinedPodsPage"
               active={route.url.pathname === "/joined-pods" ? true : false}
-              onClick={() => navigate("/joined-pods")}
+              onClick={() => navigate("/joined-pods", true)}
             >
               <Icon icon="layout-grid" />
               Joined Pods
@@ -118,7 +118,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
             <MenuItem
               className="joyrideInviteFriendsPage"
               active={route.url.pathname === "/invite-friends" ? true : false}
-              onClick={() => navigate("/invite-friends")}
+              onClick={() => navigate("/invite-friends", true)}
             >
               <Icon icon="new-person" />
               Invite Friends
