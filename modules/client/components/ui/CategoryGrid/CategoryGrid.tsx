@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Text } from "@blueprintjs/core";
+import { Button, Text } from "@blueprintjs/core";
 import { CategoryGridProps } from "./CategoryGrid.d";
 
 const CategoryGrid: React.FC<CategoryGridProps> = ({
@@ -16,6 +16,12 @@ const CategoryGrid: React.FC<CategoryGridProps> = ({
       <div className="categoryGridContain">
         <div className="categoryGridHeader">
           <Text tagName="h6">{title}</Text>
+          <Button
+            className="button createPodButton"
+            onClick={() => console.info("create")}
+          >
+            Create Pod
+          </Button>
         </div>
         <div className="categoryGridContent">{children}</div>
       </div>
