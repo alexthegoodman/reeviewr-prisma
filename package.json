@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "nf start web=1,worker=1",
-    "seed": "DATABASE_URL=postgresql://alex@localhost:5432/reeviewr-prisma2?schema=reeviewr-prisma-main ts-node seed/index.ts",
+    "seed": "DATABASE_URL=postgresql://alex:root@localhost:5432/reeviewr-prisma-main?schema=reeviewr-pods ts-node seed/index.ts",
     "build:graphql": "prisma2 generate;",
     "build:client": "webpack --config ./webpack/client.config.js",
     "build:server": "webpack --config ./webpack/server.config.js",
@@ -46,7 +46,8 @@
     "gen:layout": "bash/gen_layout_component.sh",
     "gen:gql": "graphql-codegen --config codegen.yml",
     "heroku:deploy": "git push heroku master",
-    "prisma:migrate": "prisma2 lift save; prisma2 lift up;"
+    "prisma:migrate": "DATABASE_URL=postgresql://alex:root@localhost:5432/reeviewr-prisma-main?schema=reeviewr-pods prisma2 lift save",
+    "prisma:apply": "prisma2 lift up"
   },
   "resolutions": {},
   "dependencies": {
