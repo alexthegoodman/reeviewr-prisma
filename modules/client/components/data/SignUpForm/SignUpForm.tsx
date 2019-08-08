@@ -37,7 +37,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
 
   const [{ mixpanel }, dispatch] = useAppContext();
   const [userExists, setUserExists] = React.useState(false);
-  const [successfulSubmission, setSuccessfulSubmission] = React.useState(false);
+  // const [successfulSubmission, setSuccessfulSubmission] = React.useState(false);
 
   const SignUpSchema = Yup.object().shape({
     email: Yup.string()
@@ -60,95 +60,91 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
     win.focus();
   };
 
-  if (successfulSubmission) {
-    return (
-      <Card className="floatingForm darkForm">
-        <Text tagName="h1" className="headline">
-          Thank you
-        </Text>
-        <Text tagName="p">
-          Welcome to Reeviewr! In order to continue, please check your email to
-          confirm your email address.
-        </Text>
-      </Card>
-    );
-  } else {
-    return (
-      <>
-        {userExists ? (
-          <Callout title="Attention" intent="danger">
-            A user with this email address already exists. Try signing in.
-          </Callout>
-        ) : (
-          <></>
-        )}
+  // if (successfulSubmission) {
+  //   return (
+  //     <Card className="floatingForm darkForm">
+  //       <Text tagName="h1" className="headline">
+  //         Thank you
+  //       </Text>
+  //       <Text tagName="p">
+  //         Welcome to Reeviewr! In order to continue, please check your email to
+  //         confirm your email address.
+  //       </Text>
+  //     </Card>
+  //   );
+  // } else {
+  return (
+    <>
+      {userExists ? (
+        <Callout title="Attention" intent="danger">
+          A user with this email address already exists. Try signing in.
+        </Callout>
+      ) : (
+        <></>
+      )}
 
-        <Formik
-          initialValues={{
-            email: "",
-            password: "",
-            confirmPassword: "",
-            agreeTerms: false,
-          }}
-          validationSchema={SignUpSchema}
-          onSubmit={(
-            values: SignUpFormValues,
-            actions: FormikActions<SignUpFormValues>
-          ) => {
-            console.log(
-              "values",
-              { values, actions },
-              mixpanel,
-              mixpanel.track
-            );
+      <Formik
+        initialValues={{
+          email: "",
+          password: "",
+          confirmPassword: "",
+          agreeTerms: false,
+        }}
+        validationSchema={SignUpSchema}
+        onSubmit={(
+          values: SignUpFormValues,
+          actions: FormikActions<SignUpFormValues>
+        ) => {
+          console.log("values", { values, actions }, mixpanel, mixpanel.track);
 
-            mixpanel.track("Sign up form submission attempt", {
-              env: process.env.NODE_ENV,
-              time: new Date(),
-              data: {
-                values,
-              },
-            });
+          mixpanel.track("Sign up form submission attempt", {
+            env: process.env.NODE_ENV,
+            time: new Date(),
+            data: {
+              values,
+            },
+          });
 
-            authClient.signup(values, (err, res) => {
-              console.info("returned", err, res);
+          authClient.signup(values, (err, res) => {
+            console.info("returned", err, res);
 
-              if (err) {
-                console.error(err);
-                if (res.body.errorMessage === ERROR_CODE.C008) {
-                  setUserExists(true);
-                } else {
-                  setUserExists(false);
-                }
+            if (err) {
+              console.error(err);
+              if (res.body.errorMessage === ERROR_CODE.C008) {
+                setUserExists(true);
+              } else {
+                setUserExists(false);
               }
-              if (res.body.success) {
-                // redirect to Home
-                console.info(
-                  "thank you - go confirm your email and complete your profile"
-                );
-                setSuccessfulSubmission(true);
-              }
-              actions.resetForm();
-            });
-          }}
-          render={(formikBag: FormikProps<SignUpFormValues>) => {
-            // console.info("formikbag", formikBag);
-            return (
-              <Form>
-                <>
-                  <TextField
-                    label="Email"
-                    fieldName="email"
-                    fieldPlaceholder="Enter your email address"
-                    fieldType="email"
-                  />
-                  <TextField
-                    label="Password"
-                    fieldName="password"
-                    fieldPlaceholder="Enter your password"
-                    fieldType="password"
-                  />
-                  {/* <TextField
+            }
+            if (res.body.success) {
+              // redirect to Home
+              console.info(
+                "thank you - go confirm your email and complete your profile"
+              );
+              // setSuccessfulSubmission(true);
+              window.location.href = window.location.origin;
+            }
+            actions.resetForm();
+          });
+        }}
+        render={(formikBag: FormikProps<SignUpFormValues>) => {
+          // console.info("formikbag", formikBag);
+          return (
+            <Form>
+              <>
+                <TextField
+                  label="Email"
+                  fieldName="email"
+                  fieldPlaceholder="Enter your email address"
+                  fieldType="email"
+                />
+                <TextField
+                  label="Password"
+                  fieldName="password"
+                  fieldPlaceholder="Enter your password"
+                  fieldType="password"
+                />
+                {/* <TextField
                     label="Confirm Password"
                     fieldName="confirmPassword"
                     fieldPlaceholder="Confirm your password"
@@ -172,22 +168,22 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
                     }
                     fieldName="agreeTerms"
                   /> */}
-                  <Button
-                    type="submit"
-                    disabled={formikBag.isSubmitting}
-                    loading={formikBag.isSubmitting}
-                    // onClick={() => formikBag.submitForm()}
-                  >
-                    Sign Up
-                  </Button>
-                </>
-              </Form>
-            );
-          }}
-        />
-      </>
-    );
-  }
+                <Button
+                  type="submit"
+                  disabled={formikBag.isSubmitting}
+                  loading={formikBag.isSubmitting}
+                  // onClick={() => formikBag.submitForm()}
+                >
+                  Sign Up
+                </Button>
+              </>
+            </Form>
+          );
+        }}
+      />
+    </>
+  );
+  // }
 };
 
 export default SignUpForm;

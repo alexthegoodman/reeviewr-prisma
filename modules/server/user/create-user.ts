@@ -3,17 +3,10 @@ import { ERROR_CODE } from "../../services/ERROR_CODE";
 import Utility from "../../services/Utility";
 import EmailService from "../utils/email";
 const uuid = require("uuid");
-const cloudinary = require("cloudinary").v2;
 import Core from "../../services/Core";
 
 const Mailchimp = require("mailchimp-api-v3");
-
 const mailchimp = new Mailchimp(process.env.MAILCHIMP_API_KEY);
-
-cloudinary.config({
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
 
 export const createUser = async (req, res, mixpanel, photon) => {
   try {
@@ -35,83 +28,103 @@ export const createUser = async (req, res, mixpanel, photon) => {
 
     const { email, password, confirmPassword } = req.body;
 
-    const userExists = await photon.users.findOne({
-      where: { userEmail: email },
-    });
+    photon.users
+      .findOne({
+        where: { userEmail: email },
+      })
+      .then(data => {
+        console.info("PHOTON DATA", data);
+        throw Error(ERROR_CODE.C008);
+      })
+      .catch(err => {
+        console.error("PHOTON ERROR", JSON.stringify(err.message));
+        if (
+          err.message ===
+          "Error in Photon: \nConnectorError(RecordDoesNotExist)"
+        ) {
+          bcrypt.hash(password, 12, async (err, hash) => {
+            if (utility.isDefinedWithContent(hash)) {
+              const privateHash = uuid.v4();
+              const newUser = await photon.users.create({
+                data: {
+                  userEmail: email,
+                  userPassword: hash,
+                  userConfirmed: 0,
+                  userType: 1, // yet to complete profile
+                  forgotHash: uuid.v4(),
+                  confirmHash: uuid.v4(),
+                  publicHash: uuid.v4(),
+                  privateHash,
+                  userDeleted: false,
+                },
+              });
 
-    console.info("userExists", userExists);
+              console.info("new user", newUser);
 
-    if (!utility.isDefinedWithContent(userExists)) {
-      bcrypt.hash(password, 12, async (err, hash) => {
-        if (utility.isDefinedWithContent(hash)) {
-          const newUser = await photon.users.create({
-            data: {
-              userEmail: email,
-              userPassword: hash,
-              userConfirmed: 0,
-              userType: 1, // yet to complete profile
-              oldId: uuid.v4().substr(0, 6),
-              forgotHash: uuid.v4(),
-              confirmHash: uuid.v4(),
-              publicHash: uuid.v4(),
-              privateHash: uuid.v4(),
-              userDeleted: false,
-            },
+              const buttonText = "Confirm Email";
+
+              // TODO: send client-side error if email fails to send
+              const host = req.get("host");
+              const confirmEmailUrl =
+                req.protocol +
+                "://" +
+                host +
+                "/confirm-email?confirmHash=" +
+                newUser.confirmHash;
+
+              emailService.sendEmail(
+                newUser.userEmail,
+                newUser.userEmail,
+                "Confirm Email",
+                "confirm-email",
+                [
+                  {
+                    name: "confirm-email-btn",
+                    content: `<a href="${confirmEmailUrl}" class="btn" style="Margin:0;background:#5bc1ed;border:none;border-radius:50px;box-shadow:none;color:#fff;cursor:pointer;display:block;font-family:Helvetica Neue,Arial,sans-serif;font-size:15px;font-weight:600;height:auto;letter-spacing:.2px;line-height:18px;margin:0 auto 25px auto;max-width:360px;padding:11px 15px 12px 15px;text-align:center;text-decoration:none;text-transform:uppercase;width:80%">${buttonText}</a>`,
+                  },
+                ]
+              );
+
+              try {
+                mailchimp.post("/lists/a4be7a94c5/members", {
+                  email_address: email,
+                  status: "subscribed",
+                });
+              } catch (error) {
+                console.error("MAILCHIMP ERROR:", error);
+              }
+
+              mixpanel.track("User created", {
+                env: process.env.NODE_ENV,
+                time: new Date(),
+                data: {
+                  userEmail: email,
+                },
+              });
+
+              // TODO: cookie on server
+              if (process.env.NODE_ENV === "development") {
+                res.cookie("reeviewrPrivateHash", privateHash, {
+                  domain: "localhost",
+                });
+              } else {
+                res.cookie("reeviewrPrivateHash", privateHash, {
+                  domain: host,
+                  secure: true,
+                });
+              }
+
+              res.status(200);
+              res.send({ success: true, data: { privateHash } });
+              res.end();
+            } else {
+              throw Error(ERROR_CODE.C005);
+            }
           });
-
-          console.info("new user", newUser);
-
-          const buttonText = "Confirm Email";
-
-          // TODO: send client-side error if email fails to send
-          const host = req.get("host");
-          const confirmEmailUrl =
-            req.protocol +
-            "://" +
-            host +
-            "/confirm-email?confirmHash=" +
-            newUser.confirmHash;
-
-          emailService.sendEmail(
-            newUser.userEmail,
-            newUser.userEmail,
-            "Confirm Email",
-            "confirm-email",
-            [
-              {
-                name: "confirm-email-btn",
-                content: `<a href="${confirmEmailUrl}" class="btn" style="Margin:0;background:#5bc1ed;border:none;border-radius:50px;box-shadow:none;color:#fff;cursor:pointer;display:block;font-family:Helvetica Neue,Arial,sans-serif;font-size:15px;font-weight:600;height:auto;letter-spacing:.2px;line-height:18px;margin:0 auto 25px auto;max-width:360px;padding:11px 15px 12px 15px;text-align:center;text-decoration:none;text-transform:uppercase;width:80%">${buttonText}</a>`,
-              },
-            ]
-          );
-
-          try {
-            mailchimp.post("/lists/a4be7a94c5/members", {
-              email_address: email,
-              status: "subscribed",
-            });
-          } catch (error) {
-            console.error("MAILCHIMP ERROR:", error);
-          }
-
-          mixpanel.track("User created", {
-            env: process.env.NODE_ENV,
-            time: new Date(),
-            data: {
-              userEmail: email,
-            },
-          });
-
-          res.status(200);
-          res.send({ success: true, data: {} });
-          res.end();
         } else {
-          throw Error(ERROR_CODE.C005);
+          throw new Error(err);
         }
       });
-    } else {
-      throw Error(ERROR_CODE.C008);
-    }
   } catch (error) {
     mixpanel.track("ERROR", {
       env: process.env.NODE_ENV,
