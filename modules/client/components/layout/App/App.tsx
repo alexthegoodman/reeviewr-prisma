@@ -30,6 +30,8 @@ const App: React.FC<AppProps> = ({ children }) => {
   ) {
     authClient.getUserData(dispatch);
 
+    console.info("user data", userData);
+
     return (
       <>
         <LoadingIndicator loadingText="Loading user data..." />
@@ -38,17 +40,17 @@ const App: React.FC<AppProps> = ({ children }) => {
   }
 
   // Global Redirects
-  if (
-    utility.isDefinedWithContent(userData) &&
-    utility.isDefinedWithContent(userData.user)
-  ) {
-    if (
-      userData.user.userType === 1 &&
-      route.url.pathname !== "/complete-profile"
-    ) {
-      navigation.navigate("/complete-profile");
-    }
-  }
+  // if (
+  //   utility.isDefinedWithContent(userData) &&
+  //   utility.isDefinedWithContent(userData.user)
+  // ) {
+  //   if (
+  //     userData.user.userType === 1 &&
+  //     route.url.pathname !== "/complete-profile"
+  //   ) {
+  //     navigation.navigate("/complete-profile");
+  //   }
+  // }
 
   // Global Analytics
   return <>{children}</>;

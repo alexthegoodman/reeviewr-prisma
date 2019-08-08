@@ -47,7 +47,7 @@ const UserFragments = {
 
 export const USERS_QUERY = gql`
   query users($search: String) {
-    users(
+    findManyUser(
       first: 25
       where: {
         AND: [
@@ -70,7 +70,7 @@ export const USERS_QUERY = gql`
 
 export const ALL_USERS_QUERY = gql`
   query allUsers($search: String) {
-    users(
+    findManyUser(
       first: 25
       where: {
         userMeta_some: {
@@ -86,7 +86,7 @@ export const ALL_USERS_QUERY = gql`
 `;
 
 export const USER_QUERY = gql`
-  query user($id: ID) {
+  query findUser($id: ID) {
     findOneUser(where: { id: $id }) {
       ...UserFragment
     }
@@ -96,7 +96,7 @@ export const USER_QUERY = gql`
 
 export const USER_PRIVATE_QUERY = gql`
   query privateUser($privateHash: String) {
-    user(where: { privateHash: $privateHash }) {
+    findOneUser(where: { privateHash: $privateHash }) {
       ...UserFragment
     }
   }
@@ -105,7 +105,7 @@ export const USER_PRIVATE_QUERY = gql`
 
 export const USER_ID_QUERY = gql`
   query idUser($id: ID!) {
-    user(where: { id: $id }) {
+    findOneUser(where: { id: $id }) {
       ...UserFragment
     }
   }
@@ -114,7 +114,7 @@ export const USER_ID_QUERY = gql`
 
 export const INDIVIDUAL_USERS_QUERY = gql`
   query individualUsers($userIds: [ID!]) {
-    users(first: 10, orderBy: id_DESC, where: { oldId_in: $userIds }) {
+    findManyUser(first: 10, orderBy: id_DESC, where: { oldId_in: $userIds }) {
       ...UserFragment
     }
   }

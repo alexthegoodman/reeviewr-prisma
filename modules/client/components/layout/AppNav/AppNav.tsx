@@ -17,6 +17,7 @@ import {
   Text,
   Tooltip,
 } from "@blueprintjs/core";
+import * as photon from "@generated/photon";
 import * as $ from "jquery";
 import { useCookies } from "react-cookie";
 import Legacy from "../../../../services/Legacy";
@@ -253,7 +254,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                     <ProfileItem
                       className="headerItem"
                       imageUrl={"/public/img/mailchimp2-small.jpg"}
-                      name={"Camelia Cuncoro"}
+                      name={userData.userEmail}
                       points={1500}
                     />
                   ) : (

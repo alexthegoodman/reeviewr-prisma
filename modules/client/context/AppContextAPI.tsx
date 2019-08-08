@@ -1,7 +1,7 @@
+import * as photon from "@generated/photon";
 import * as React from "react";
 import { MixpanelConsumer } from "react-mixpanel";
 import { AppContextProvider } from ".";
-import { User } from "../../../__generated__/gql-gen/grapql-types";
 import Utility from "../../services/Utility";
 
 export interface IInitialAppState {
@@ -12,7 +12,7 @@ export interface IInitialAppState {
   tour: {
     run: true;
   };
-  userData: User;
+  userData: photon.User;
   audioManager: {
     tracks: any;
   };

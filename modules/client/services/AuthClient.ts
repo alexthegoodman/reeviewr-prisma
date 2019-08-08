@@ -24,7 +24,7 @@ export default class AuthClient {
       console.info("got user data", reeviewrPrivateHash, userData);
       dispatch({
         type: "setUserData",
-        userData,
+        userData: userData.findOneUser,
       });
     } else {
       dispatch({
