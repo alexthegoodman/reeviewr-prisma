@@ -12,7 +12,8 @@ The project has since evolved into Prisma centric.
 - Install all prerequesites. Including Node and Yarn.
 - Install dependencies by running `yarn`.
 - `npm install -g prisma2@latest`
-- Ask Alex how to load the seed data
+- `yarn prisma:apply`
+- `yarn seed`
 - Duplicate `.env.example` as `.env` and get the needed values from Alex
 - install audiowaveform on your machine
 - Run `yarn dev`
