@@ -3,7 +3,4 @@
 # lift lockfile v1
 # Read more about conflict resolution here: TODO
 
-20190727193517-init
-20190728094146-ideal-datamodel
-20190729181120-pod-meta
-20190808150443-iids-to-cuids
+20190809182036-init
