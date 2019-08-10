@@ -19,7 +19,6 @@ const AutocompleteField: React.FC<AutocompleteFieldProps> = ({
   options = [],
   isMulti = false,
 }) => {
-  const [selectedOption, setSelectedOption] = React.useState(null);
   return (
     <Field
       ref={ref}
@@ -32,12 +31,14 @@ const AutocompleteField: React.FC<AutocompleteFieldProps> = ({
           labelInfo={fieldInfo}
         >
           <Select
-            value={selectedOption}
+            value={field.value}
             placeholder={fieldPlaceholder}
-            onChange={setSelectedOption}
+            onChange={value => {
+              form.setFieldValue(field.name, value);
+            }}
             options={options}
             isMulti={isMulti}
-            {...field}
+            // {...field}
           />
           {form.touched[fieldName] && form.errors[fieldName] ? (
             <ValidationNotice error={form.errors[fieldName]} />

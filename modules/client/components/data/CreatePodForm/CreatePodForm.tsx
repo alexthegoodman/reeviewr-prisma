@@ -54,6 +54,13 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
     ALL_CATEGORIES
   );
 
+  let categoryOptions = [];
+  if (!categoryLoading && utility.isDefinedWithContent(categoryData)) {
+    categoryOptions = categoryData.findManyCategory.map((category, i) => {
+      return { label: category.itemName, value: category.id };
+    });
+  }
+
   console.info("categoryData", categoryData);
 
   const CreatePodSchema = Yup.object().shape({
@@ -175,12 +182,12 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
                   fieldName="private"
                   helperText="Consider upgrading if you need more than 1 private pod"
                 />
-                {categoryData ? (
+                {!categoryLoading ? (
                   <AutocompleteField
                     label="Category"
                     fieldName="category"
                     helperText="Pick the best category for this pod"
-                    options={categoryData.findManyCategory}
+                    options={categoryOptions}
                     isMulti={false}
                   />
                 ) : (
