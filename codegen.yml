@@ -1,5 +1,5 @@
 overwrite: true
-schema: "./__generated__/prisma-client/prisma-schema.ts"
+schema: "./__generated__/schema.graphql"
 documents: "./modules/client/graphql/**/*.ts"
 generates:
   __generated__/gql-gen/grapql-types.ts:

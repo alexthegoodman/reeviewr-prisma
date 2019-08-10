@@ -8,82 +8,34 @@ const UserFragments = {
   user: gql`
     fragment UserFragment on User {
       id
-      # oldId
       userEmail
       userType
-      # files {
-      #   id
-      #   itemName
-      #   itemContent
-      #   itemMeta {
-      #     metaName
-      #     metaValue
-      #   }
-      # }
-      # profilePages {
-      #   id
-      #   itemName
-      #   itemContent
-      #   itemMeta {
-      #     id
-      #     metaName
-      #     metaValue
-      #   }
-      # }
-      # reviews {
-      #   id
-      # }
-      # userTracks(where: { id_not: "", itemStatus: "v2publish" }) {
-      #   id
-      # }
-      # userMeta {
-      #   id
-      #   metaName
-      #   metaValue
-      # }
     }
   `,
 };
 
-export const USERS_QUERY = gql`
-  query users($search: String) {
-    findManyUser(
-      first: 25
-      where: {
-        AND: [
-          # { userMeta_some: { metaName: "firstName", metaValue_not: "" } }
-          { userTracks_some: { id_not: "", itemStatus: "v2publish" } }
-          {
-            userMeta_some: {
-              metaName: "userArtistName"
-              metaValue_contains: $search
-            }
-          }
-        ]
-      }
-    ) {
-      ...UserFragment
-    }
-  }
-  ${UserFragments.user}
-`;
-
-export const ALL_USERS_QUERY = gql`
-  query allUsers($search: String) {
-    findManyUser(
-      first: 25
-      where: {
-        userMeta_some: {
-          metaName: "userArtistName"
-          metaValue_contains: $search
-        }
-      }
-    ) {
-      ...UserFragment
-    }
-  }
-  ${UserFragments.user}
-`;
+// export const USERS_QUERY = gql`
+//   query users($search: String) {
+//     findManyUser(
+//       first: 25
+//       where: {
+//         AND: [
+//           # { userMeta_some: { metaName: "firstName", metaValue_not: "" } }
+//           { userTracks_some: { id_not: "", itemStatus: "v2publish" } }
+//           {
+//             userMeta_some: {
+//               metaName: "userArtistName"
+//               metaValue_contains: $search
+//             }
+//           }
+//         ]
+//       }
+//     ) {
+//       ...UserFragment
+//     }
+//   }
+//   ${UserFragments.user}
+// `;
 
 export const USER_QUERY = gql`
   query findUser($id: ID) {
@@ -97,24 +49,6 @@ export const USER_QUERY = gql`
 export const USER_PRIVATE_QUERY = gql`
   query privateUser($privateHash: String) {
     findOneUser(where: { privateHash: $privateHash }) {
-      ...UserFragment
-    }
-  }
-  ${UserFragments.user}
-`;
-
-export const USER_ID_QUERY = gql`
-  query idUser($id: ID!) {
-    findOneUser(where: { id: $id }) {
-      ...UserFragment
-    }
-  }
-  ${UserFragments.user}
-`;
-
-export const INDIVIDUAL_USERS_QUERY = gql`
-  query individualUsers($userIds: [ID!]) {
-    findManyUser(first: 10, orderBy: id_DESC, where: { oldId_in: $userIds }) {
       ...UserFragment
     }
   }

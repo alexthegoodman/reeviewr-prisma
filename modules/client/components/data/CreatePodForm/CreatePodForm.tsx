@@ -13,14 +13,20 @@ import {
   Tabs,
   Text,
 } from "@blueprintjs/core";
+import { Category } from "@generated/photon";
 import { Form, Formik, FormikActions, FormikProps } from "formik";
+import { useQuery } from "react-apollo-hooks";
 import { Link } from "react-navi";
 import * as Yup from "yup";
+import { AllCategoriesQuery } from "../../../../../__generated__/gql-gen/grapql-types";
 import { GenreList, Genres } from "../../../../defs/genres";
 import { ERROR_CODE } from "../../../../services/ERROR_CODE";
 import Utility from "../../../../services/Utility";
 import { useAppContext } from "../../../context";
+import { ALL_CATEGORIES } from "../../../graphql/queries/category";
 import AuthClient from "../../../services/AuthClient";
+import ItemClient from "../../../services/ItemClient";
+import AutocompleteField from "../../ui/AutocompleteField/AutocompleteField";
 import CheckboxField from "../../ui/CheckboxField/CheckboxField";
 import SelectField from "../../ui/SelectField/SelectField";
 import TextareaField from "../../ui/TextareaField/TextareaField";
@@ -33,26 +39,36 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
   onClick = e => console.info("Click"),
 }) => {
   const authClient = new AuthClient();
+  const itemClient = new ItemClient();
   const utility = new Utility();
 
   const [{ mixpanel }, dispatch] = useAppContext();
   const [userExists, setUserExists] = React.useState(false);
   // const [successfulSubmission, setSuccessfulSubmission] = React.useState(false);
 
+  const {
+    data: categoryData,
+    error: categoryError,
+    loading: categoryLoading,
+  }: { data?: AllCategoriesQuery; loading?: any; error?: any } = useQuery(
+    ALL_CATEGORIES
+  );
+
+  console.info("categoryData", categoryData);
+
   const CreatePodSchema = Yup.object().shape({
-    email: Yup.string()
-      .min(4, "Too Short!")
-      .max(100, "Too Long!")
-      .email("Invalid email")
-      .required("Required"),
-    password: Yup.string()
+    name: Yup.string()
       .min(4, "Too Short!")
       .max(100, "Too Long!")
       .required("Required"),
-    // confirmPassword: Yup.string()
-    //   .required("Required")
-    //   .oneOf([Yup.ref("password"), null], "Passwords must match"),
-    // agreeTerms: Yup.boolean().oneOf([true], "Must Accept Terms"),
+    description: Yup.string()
+      .min(4, "Too Short!")
+      .max(500, "Too Long!")
+      .required("Required"),
+    banner: Yup.string().required("Required"),
+    postType: Yup.string().required("Required"),
+    private: Yup.boolean(),
+    category: Yup.string().required("Required"),
   });
 
   const openInNewTab = url => {
@@ -75,20 +91,22 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
   // } else {
   return (
     <>
-      {userExists ? (
+      {/* {userExists ? (
         <Callout title="Attention" intent="danger">
           A user with this email address already exists. Try signing in.
         </Callout>
       ) : (
         <></>
-      )}
+      )} */}
 
       <Formik
         initialValues={{
-          email: "",
-          password: "",
-          confirmPassword: "",
-          agreeTerms: false,
+          name: "",
+          description: "",
+          banner: "",
+          postType: "",
+          private: "",
+          category: "",
         }}
         validationSchema={CreatePodSchema}
         onSubmit={(
@@ -97,7 +115,7 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
         ) => {
           console.log("values", { values, actions }, mixpanel, mixpanel.track);
 
-          mixpanel.track("Sign up form submission attempt", {
+          mixpanel.track("Create pod form submission attempt", {
             env: process.env.NODE_ENV,
             time: new Date(),
             data: {
@@ -105,24 +123,22 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
             },
           });
 
-          authClient.createPod(values, (err, res) => {
+          itemClient.createPod(values, (err, res) => {
             console.info("returned", err, res);
 
             if (err) {
               console.error(err);
-              if (res.body.errorMessage === ERROR_CODE.C008) {
-                setUserExists(true);
-              } else {
-                setUserExists(false);
-              }
+              // if (res.body.errorMessage === ERROR_CODE.C008) {
+              //   setUserExists(true);
+              // } else {
+              //   setUserExists(false);
+              // }
             }
             if (res.body.success) {
               // redirect to Home
-              console.info(
-                "thank you - go confirm your email and complete your profile"
-              );
+              console.info("thank you - go to new pod");
               // setSuccessfulSubmission(true);
-              window.location.href = window.location.origin;
+              // window.location.href = window.location.origin;
             }
             actions.resetForm();
           });
@@ -150,16 +166,26 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
                 />
                 <SelectField
                   label="Post Type"
-                  fieldName="gender"
+                  fieldName="postType"
                   options={["Select", "Image", "Video", "Text", "Audio"]}
-                  helperText="What kinds of posts can people upload to this pod?"
+                  helperText="What kinds of posts can people upload to this pod? For example, image for paintings and audio for music."
                 />
                 <CheckboxField
                   label="Private"
                   fieldName="private"
                   helperText="Consider upgrading if you need more than 1 private pod"
                 />
-                Categories
+                {categoryData ? (
+                  <AutocompleteField
+                    label="Category"
+                    fieldName="category"
+                    helperText="Pick the best category for this pod"
+                    options={categoryData.findManyCategory}
+                    isMulti={false}
+                  />
+                ) : (
+                  <></>
+                )}
                 <Text tagName="p">Costs 5 Points</Text>
                 <Button
                   type="submit"

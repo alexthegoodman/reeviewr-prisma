@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "nf start web=1,worker=1",
-    "build:graphql": "DATABASE_URL=postgresql://alex@localhost:5432/reeviewr-prisma-main prisma2 generate;",
+    "build:graphql": "DATABASE_URL=postgresql://alex@localhost:5432/reeviewr-prisma-main prisma2 generate; yarn gen:gql;",
     "build:client": "webpack --config ./webpack/client.config.js",
     "build:server": "webpack --config ./webpack/server.config.js",
     "build:pre": "yarn build:graphql",
@@ -259,6 +259,7 @@
     "react-router": "5.0.1",
     "react-router-dom": "5.0.1",
     "react-scroll-horizontal": "1.6.2",
+    "react-select": "^3.0.4",
     "react-share": "3.0.0",
     "react-social-icons": "4.1.0",
     "react-suspense-polyfill": "2.0.1",

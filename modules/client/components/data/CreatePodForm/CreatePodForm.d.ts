@@ -5,8 +5,10 @@ export interface CreatePodFormProps {
 }
 
 export interface CreatePodFormValues {
-  email: string;
-  password: string;
-  confirmPassword: string;
-  agreeTerms: boolean;
+  name: string;
+  description: string;
+  banner: string;
+  postType: string;
+  private: string;
+  category: string;
 }
