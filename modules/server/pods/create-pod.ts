@@ -101,7 +101,7 @@ export const createPod = async (req, res, mixpanel, photon) => {
                       metaType: "default",
                     },
                     {
-                      metaName: "filename",
+                      metaName: "bannerFilename",
                       metaValue: `${filename}`,
                       metaType: "default",
                     },

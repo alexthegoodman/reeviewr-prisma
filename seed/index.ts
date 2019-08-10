@@ -92,7 +92,7 @@ async function main() {
             metaType: "default",
           },
           {
-            metaName: "filename",
+            metaName: "bannerFilename",
             metaValue: `me_circle.jpg`,
             metaType: "default",
           },
