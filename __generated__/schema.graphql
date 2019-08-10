@@ -358,7 +358,7 @@ type Pod {
   id: ID!
   itemContent: String!
   itemDeleted: Boolean!
-  itemMeta(after: String, before: String, first: Int, last: Int, skip: Int): [PostMeta!]
+  itemMeta(after: String, before: String, first: Int, last: Int, skip: Int): [PodMeta!]
   itemName: String!
   itemStatus: String!
   itemType: String!
@@ -373,12 +373,11 @@ input PodCreateInput {
   id: ID
   itemContent: String!
   itemDeleted: Boolean
-  itemMeta: PostMetaCreateManyWithoutItemMetaInput
+  itemMeta: PodMetaCreateManyWithoutItemMetaInput
   itemName: String!
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
-  podMeta: PodMetaCreateOneWithoutPodMetaInput
   posts: PostCreateManyWithoutPostsInput
   updatedAt: DateTime
   user: UserCreateOneWithoutUserInput!
@@ -386,28 +385,12 @@ input PodCreateInput {
 
 input PodCreateManyWithoutPodsInput {
   connect: [PodWhereUniqueInput!]
-  create: [PodCreateWithoutCategoriesInput!]
+  create: [PodCreateWithoutUserInput!]
 }
 
 input PodCreateOneWithoutPodInput {
   connect: PodWhereUniqueInput
   create: PodCreateWithoutPostsInput
-}
-
-input PodCreateWithoutCategoriesInput {
-  createdAt: DateTime
-  id: ID
-  itemContent: String!
-  itemDeleted: Boolean
-  itemMeta: PostMetaCreateManyWithoutItemMetaInput
-  itemName: String!
-  itemStatus: String!
-  itemType: String!
-  itemUrlSegment: String!
-  podMeta: PodMetaCreateOneWithoutPodMetaInput
-  posts: PostCreateManyWithoutPostsInput
-  updatedAt: DateTime
-  user: UserCreateOneWithoutUserInput!
 }
 
 input PodCreateWithoutPostsInput {
@@ -416,14 +399,28 @@ input PodCreateWithoutPostsInput {
   id: ID
   itemContent: String!
   itemDeleted: Boolean
-  itemMeta: PostMetaCreateManyWithoutItemMetaInput
+  itemMeta: PodMetaCreateManyWithoutItemMetaInput
   itemName: String!
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
-  podMeta: PodMetaCreateOneWithoutPodMetaInput
   updatedAt: DateTime
   user: UserCreateOneWithoutUserInput!
+}
+
+input PodCreateWithoutUserInput {
+  categories: CategoryCreateManyWithoutCategoriesInput
+  createdAt: DateTime
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: PodMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  posts: PostCreateManyWithoutPostsInput
+  updatedAt: DateTime
 }
 
 type PodMeta {
@@ -435,9 +432,9 @@ type PodMeta {
   pod: Pod!
 }
 
-input PodMetaCreateOneWithoutPodMetaInput {
-  connect: PodMetaWhereUniqueInput
-  create: PodMetaCreateWithoutPodInput
+input PodMetaCreateManyWithoutItemMetaInput {
+  connect: [PodMetaWhereUniqueInput!]
+  create: [PodMetaCreateWithoutPodInput!]
 }
 
 input PodMetaCreateWithoutPodInput {
@@ -569,7 +566,6 @@ input PostMetaCreateWithoutPostInput {
   metaName: String!
   metaType: String!
   metaValue: String!
-  pod: PodCreateOneWithoutPodInput
   updatedAt: DateTime
 }
 
@@ -940,7 +936,7 @@ input UserCreateInput {
   id: ID
   message: MessageCreateOneWithoutMessageInput
   notifications: NotificationCreateManyWithoutNotificationsInput
-  pod: PodCreateOneWithoutPodInput
+  pods: PodCreateManyWithoutPodsInput
   posts: PostCreateManyWithoutPostsInput
   privateHash: String!
   publicHash: String!
@@ -968,7 +964,7 @@ input UserCreateManyWithoutFollowingInput {
 
 input UserCreateOneWithoutUserInput {
   connect: UserWhereUniqueInput
-  create: UserCreateWithoutPodInput
+  create: UserCreateWithoutPodsInput
 }
 
 input UserCreateWithoutFollowersInput {
@@ -981,7 +977,7 @@ input UserCreateWithoutFollowersInput {
   id: ID
   message: MessageCreateOneWithoutMessageInput
   notifications: NotificationCreateManyWithoutNotificationsInput
-  pod: PodCreateOneWithoutPodInput
+  pods: PodCreateManyWithoutPodsInput
   posts: PostCreateManyWithoutPostsInput
   privateHash: String!
   publicHash: String!
@@ -1007,7 +1003,7 @@ input UserCreateWithoutFollowingInput {
   id: ID
   message: MessageCreateOneWithoutMessageInput
   notifications: NotificationCreateManyWithoutNotificationsInput
-  pod: PodCreateOneWithoutPodInput
+  pods: PodCreateManyWithoutPodsInput
   posts: PostCreateManyWithoutPostsInput
   privateHash: String!
   publicHash: String!
@@ -1023,7 +1019,7 @@ input UserCreateWithoutFollowingInput {
   userType: Int!
 }
 
-input UserCreateWithoutPodInput {
+input UserCreateWithoutPodsInput {
   annotations: AnnotationCreateManyWithoutAnnotationsInput
   confirmHash: String!
   createdAt: DateTime

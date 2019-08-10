@@ -1,9 +1,10 @@
-import Utility from "./Utility";
-import Legacy from "./Legacy";
 import * as moment from "moment";
 import Strings from "../client/services/Strings";
+import Legacy from "./Legacy";
+import Utility from "./Utility";
 const uuid = require("uuid");
 const slugify = require("slugify");
+const btoa = require("btoa");
 
 export default class Core {
   public strings;
@@ -16,28 +17,16 @@ export default class Core {
     this.legacy = new Legacy();
   }
 
-  // extractImageOfSize(fileUrl, imageSize) {
-  //   let finalUrl;
-
-  //   const jpg = fileUrl.split(".jpg");
-  //   const jpeg = fileUrl.split(".jpeg");
-  //   const png = fileUrl.split(".png");
-
-  //   if (
-  //     typeof jpg[1] !== "undefined" ||
-  //     typeof jpeg[1] !== "undefined" ||
-  //     typeof png[1] !== "undefined"
-  //   ) {
-  //     finalUrl = fileUrl;
-
-  //     if (imageSize !== "") {
-  //       finalUrl = fileUrl.split("/");
-  //       finalUrl = finalUrl[0] + "-" + imageSize + "." + finalUrl[1];
-  //     }
-  //   }
-
-  //   return finalUrl;
-  // }
+  // https://docs.aws.amazon.com/solutions/latest/serverless-image-handler/deployment.html
+  imagePath(bucket = "reeviewr-pods", filename = "", options = {}) {
+    const imageRequest = JSON.stringify({
+      bucket,
+      key: filename,
+      edits: options,
+    });
+    const url = `${process.env.CLOUDFRONT_URL}/${btoa(imageRequest)}`;
+    return url;
+  }
 
   publicIdFromUrl(url) {
     const parts = url.split("/");

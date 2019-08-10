@@ -25,7 +25,6 @@ model User {
   userMeta      UserMeta[]
 
   posts         Post[]
-  pods          Pod[]
   favorites     Favorite[]
   reviews       Review[]
   annotations   Annotation[]

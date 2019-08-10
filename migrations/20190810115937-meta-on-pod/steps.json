@@ -1,0 +1,43 @@
+{
+  "version": "0.1.26",
+  "steps": [
+    {
+      "stepType": "DeleteField",
+      "model": "Pod",
+      "name": "podMeta"
+    },
+    {
+      "stepType": "DeleteField",
+      "model": "PostMeta",
+      "name": "pod"
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Pod",
+      "name": "itemMeta",
+      "type": {
+        "Relation": {
+          "to": "PodMeta",
+          "to_fields": [],
+          "name": "PodToPodMeta",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "PodMeta",
+      "name": "pod",
+      "type": {
+        "Relation": {
+          "to": "Pod",
+          "to_fields": [
+            "id"
+          ],
+          "name": "PodToPodMeta",
+          "on_delete": "None"
+        }
+      }
+    }
+  ]
+}

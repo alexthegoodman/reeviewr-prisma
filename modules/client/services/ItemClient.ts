@@ -10,7 +10,23 @@ export default class ItemClient {
 
   constructor() {}
 
-  createPod(values, callback) {}
+  createPod(values, callback) {
+    const cookies = new Cookies();
+    const reeviewrPrivateHash = cookies.get("reeviewrPrivateHash");
+
+    console.info("create pod", reeviewrPrivateHash);
+
+    if (this.utility.isDefinedWithContent(reeviewrPrivateHash)) {
+      this.restClient.makeRequest(
+        "/pods/create/",
+        { privateHash: reeviewrPrivateHash, ...values },
+        callback
+      );
+    } else {
+      console.error("Only logged in users can create pods");
+      alert("Bad Error 4403");
+    }
+  }
 
   createPost(values, callback) {}
 }

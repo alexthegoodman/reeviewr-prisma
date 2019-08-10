@@ -9,6 +9,6 @@ export interface CreatePodFormValues {
   description: string;
   banner: string;
   postType: string;
-  private: string;
+  privatePod: string;
   category: string;
 }

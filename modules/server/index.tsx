@@ -47,7 +47,7 @@ import {
   AUTHENTICATE_USER,
   COMPLETE_PROFILE,
   CONFIRM_EMAIL,
-  CREATE_TRACK,
+  CREATE_POD,
   CREATE_USER,
   FORGOT_PASSWORD,
   MAILCHIMP_SUBSCRIBE,
@@ -96,6 +96,7 @@ import {
 import { Mutation } from "./graphql/mutation";
 import { Query } from "./graphql/query";
 import { mailchimpSubscribe } from "./integration/mailchimp-subscribe";
+import { createPod } from "./pods/create-pod";
 import { completeProfile } from "./user/complete-profile";
 import { resetPassword } from "./user/reset-password";
 
@@ -294,7 +295,7 @@ export async function startServer() {
           user = await photon.users.findOne({
             where: { userEmail: email },
           });
-        } catch(err) {
+        } catch (err) {
           console.error("PHOTON ERROR:", err);
         }
 
@@ -349,11 +350,11 @@ export async function startServer() {
   app.post(`/${apiVersion}${RESEND_EMAIL_CONFIRMATION}`, (req, res) =>
     resendEmailConfirmation(req, res, mixpanel, photon)
   );
-  app.post(`/${apiVersion}${CREATE_TRACK}`, (req, res) =>
-    createTrack(req, res, mixpanel, photon)
-  );
   app.post(`/${apiVersion}${MAILCHIMP_SUBSCRIBE}`, (req, res) =>
     mailchimpSubscribe(req, res, mixpanel, photon)
+  );
+  app.post(`/${apiVersion}${CREATE_POD}`, (req, res) =>
+    createPod(req, res, mixpanel, photon)
   );
 
   app.get(

@@ -74,7 +74,7 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
       .required("Required"),
     banner: Yup.string().required("Required"),
     postType: Yup.string().required("Required"),
-    private: Yup.boolean(),
+    privatePod: Yup.boolean(),
     category: Yup.string().required("Required"),
   });
 
@@ -112,7 +112,7 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
           description: "",
           banner: "",
           postType: "",
-          private: "",
+          privatePod: "",
           category: "",
         }}
         validationSchema={CreatePodSchema}
@@ -178,8 +178,8 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
                   helperText="What kinds of posts can people upload to this pod? For example, image for paintings and audio for music."
                 />
                 <CheckboxField
-                  label="Private"
-                  fieldName="private"
+                  label="Private Pod"
+                  fieldName="privatePod"
                   helperText="Consider upgrading if you need more than 1 private pod"
                 />
                 {!categoryLoading ? (
