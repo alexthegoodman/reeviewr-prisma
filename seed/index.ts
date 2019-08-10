@@ -4,6 +4,12 @@ import uuid = require("uuid");
 const photon = new Photon();
 
 async function clean() {
+  await photon.podMetas.deleteMany({
+    where: { id: { contains: "" } },
+  });
+  await photon.pods.deleteMany({
+    where: { id: { contains: "" } },
+  });
   await photon.users.deleteMany({
     where: { id: { contains: "" } },
   });
@@ -59,12 +65,50 @@ async function main() {
       itemStatus: "active",
     },
   });
+  const pod1 = await photon.pods.create({
+    data: {
+      user: { connect: { id: user1.id } },
+      itemType: "default",
+      itemStatus: "active",
+      itemUrlSegment: "pod-name",
+      itemName: "pod name",
+      itemContent: "",
+      itemDeleted: false,
+      itemMeta: {
+        create: [
+          {
+            metaName: "description",
+            metaValue: `need lorem ipsum package`,
+            metaType: "default",
+          },
+          {
+            metaName: "postType",
+            metaValue: `Image`,
+            metaType: "default",
+          },
+          {
+            metaName: "privatePod",
+            metaValue: ``,
+            metaType: "default",
+          },
+          {
+            metaName: "filename",
+            metaValue: `me_circle.jpg`,
+            metaType: "default",
+          },
+        ],
+      },
+      // posts: { connect: {} },
+      categories: { connect: { id: cat1.id } },
+    },
+  });
 }
 
 // delete
 clean()
   .catch(e => console.error(e))
   .finally(async () => {
+    console.info("cleaned");
     // reload
     main()
       .catch(e => console.error(e))
