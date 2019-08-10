@@ -114,6 +114,14 @@ export const createPod = async (req, res, mixpanel, photon) => {
 
             console.info("pod created");
 
+            mixpanel.track("Pod created", {
+              env: process.env.NODE_ENV,
+              time: new Date(),
+              data: {
+                name,
+              },
+            });
+
             res.status(200);
             res.send({ success: true, data: {} });
             res.end();
