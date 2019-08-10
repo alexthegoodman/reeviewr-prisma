@@ -289,9 +289,14 @@ export async function startServer() {
       async function(email: string, password: string, done) {
         console.info(email, password);
 
-        const user = await photon.users.findOne({
-          where: { userEmail: email },
-        });
+        let user = null;
+        try {
+          user = await photon.users.findOne({
+            where: { userEmail: email },
+          });
+        } catch(err) {
+          console.error("PHOTON ERROR:", err);
+        }
 
         if (utility.isDefinedWithContent(user)) {
           const match = await bcrypt.compare(password, user.userPassword);

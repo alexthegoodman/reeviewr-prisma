@@ -97,11 +97,11 @@ const Login: React.FC<LoginProps> = () => {
               } else {
                 setNotValidType(false);
               }
-              if (res.body.errorMessage === ERROR_CODE.C007) {
-                setEmailNotConfirmed(true);
-              } else {
-                setEmailNotConfirmed(false);
-              }
+              // if (res.body.errorMessage === ERROR_CODE.C007) {
+              //   setEmailNotConfirmed(true);
+              // } else {
+              //   setEmailNotConfirmed(false);
+              // }
             }
             if (res.body.success) {
               window.location.replace("/");

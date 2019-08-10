@@ -24,31 +24,31 @@ export const authenticate = async (req, res, passport, mixpanel, photon) => {
 
       if (utility.isDefinedWithContent(user)) {
         if (user.userType === 0 || user.userType === 1) {
-          if (user.userConfirmed === 1) {
-            // TODO: cookie on server
-            const host = req.get("host");
-            if (process.env.NODE_ENV === "development") {
-              res.cookie("reeviewrPrivateHash", user.privateHash, {
-                domain: "localhost",
-              });
-            } else {
-              res.cookie("reeviewrPrivateHash", user.privateHash, {
-                domain: host,
-                secure: true,
-              });
-            }
-
-            mixpanel.track("User authenticated", {
-              env: process.env.NODE_ENV,
-              time: new Date(),
+          // if (user.userConfirmed === 1) {
+          // TODO: cookie on server
+          const host = req.get("host");
+          if (process.env.NODE_ENV === "development") {
+            res.cookie("reeviewrPrivateHash", user.privateHash, {
+              domain: "localhost",
             });
-
-            res.status(200);
-            res.send({ success: true, data: {} });
-            res.end();
           } else {
-            throw Error(ERROR_CODE.C007);
+            res.cookie("reeviewrPrivateHash", user.privateHash, {
+              domain: host,
+              secure: true,
+            });
           }
+
+          mixpanel.track("User authenticated", {
+            env: process.env.NODE_ENV,
+            time: new Date(),
+          });
+
+          res.status(200);
+          res.send({ success: true, data: {} });
+          res.end();
+          // } else {
+          //   throw Error(ERROR_CODE.C007);
+          // }
         } else {
           throw Error(ERROR_CODE.C006);
         }
