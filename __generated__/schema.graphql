@@ -90,7 +90,7 @@ type Category {
   itemName: String!
   itemStatus: String!
   itemType: String!
-  pod: Pod!
+  pods(after: String, before: String, first: Int, last: Int, skip: Int): [Pod!]
 }
 
 input CategoryCreateInput {
@@ -100,16 +100,16 @@ input CategoryCreateInput {
   itemName: String!
   itemStatus: String!
   itemType: String!
-  pod: PodCreateOneWithoutPodInput!
+  pods: PodCreateManyWithoutPodsInput
   updatedAt: DateTime
 }
 
 input CategoryCreateManyWithoutCategoriesInput {
   connect: [CategoryWhereUniqueInput!]
-  create: [CategoryCreateWithoutPodInput!]
+  create: [CategoryCreateWithoutPodsInput!]
 }
 
-input CategoryCreateWithoutPodInput {
+input CategoryCreateWithoutPodsInput {
   createdAt: DateTime
   id: ID
   itemContent: String!
@@ -384,9 +384,30 @@ input PodCreateInput {
   user: UserCreateOneWithoutUserInput!
 }
 
+input PodCreateManyWithoutPodsInput {
+  connect: [PodWhereUniqueInput!]
+  create: [PodCreateWithoutCategoriesInput!]
+}
+
 input PodCreateOneWithoutPodInput {
   connect: PodWhereUniqueInput
   create: PodCreateWithoutPostsInput
+}
+
+input PodCreateWithoutCategoriesInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: PostMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  podMeta: PodMetaCreateOneWithoutPodMetaInput
+  posts: PostCreateManyWithoutPostsInput
+  updatedAt: DateTime
+  user: UserCreateOneWithoutUserInput!
 }
 
 input PodCreateWithoutPostsInput {
@@ -757,7 +778,7 @@ type Tag {
   itemName: String!
   itemStatus: String!
   itemType: String!
-  post: Post!
+  posts(after: String, before: String, first: Int, last: Int, skip: Int): [Post!]
 }
 
 input TagCreateInput {
@@ -767,16 +788,16 @@ input TagCreateInput {
   itemName: String!
   itemStatus: String!
   itemType: String!
-  post: PostCreateOneWithoutPostInput!
+  posts: PostCreateManyWithoutPostsInput
   updatedAt: DateTime
 }
 
 input TagCreateManyWithoutTagsInput {
   connect: [TagWhereUniqueInput!]
-  create: [TagCreateWithoutPostInput!]
+  create: [TagCreateWithoutPostsInput!]
 }
 
-input TagCreateWithoutPostInput {
+input TagCreateWithoutPostsInput {
   createdAt: DateTime
   id: ID
   itemContent: String!

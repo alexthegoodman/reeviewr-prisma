@@ -1,0 +1,79 @@
+{
+  "version": "0.1.26",
+  "steps": [
+    {
+      "stepType": "CreateField",
+      "model": "Tag",
+      "name": "posts",
+      "type": {
+        "Relation": {
+          "to": "Post",
+          "to_fields": [
+            "id"
+          ],
+          "name": "PostToTag",
+          "on_delete": "None"
+        }
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Category",
+      "name": "pods",
+      "type": {
+        "Relation": {
+          "to": "Pod",
+          "to_fields": [
+            "id"
+          ],
+          "name": "CategoryToPod",
+          "on_delete": "None"
+        }
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "DeleteField",
+      "model": "Tag",
+      "name": "post"
+    },
+    {
+      "stepType": "DeleteField",
+      "model": "Category",
+      "name": "pod"
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Pod",
+      "name": "categories",
+      "type": {
+        "Relation": {
+          "to": "Category",
+          "to_fields": [
+            "id"
+          ],
+          "name": "CategoryToPod",
+          "on_delete": "None"
+        }
+      }
+    },
+    {
+      "stepType": "UpdateField",
+      "model": "Post",
+      "name": "tags",
+      "type": {
+        "Relation": {
+          "to": "Tag",
+          "to_fields": [
+            "id"
+          ],
+          "name": "PostToTag",
+          "on_delete": "None"
+        }
+      }
+    }
+  ]
+}

@@ -3,6 +3,15 @@ import uuid = require("uuid");
 
 const photon = new Photon();
 
+async function clean() {
+  await photon.users.deleteMany({
+    where: { id: { contains: "" } },
+  });
+  await photon.categories.deleteMany({
+    where: { id: { contains: "" } },
+  });
+}
+
 async function main() {
   const user1 = await photon.users.create({
     data: {
@@ -19,7 +28,6 @@ async function main() {
       confirmHash: "1111",
     },
   });
-  console.info(user1);
   const user2 = await photon.users.create({
     data: {
       userEmail: "test-2@email.com",
@@ -35,11 +43,32 @@ async function main() {
       confirmHash: "1112",
     },
   });
-  console.info(user2);
+  const cat1 = await photon.categories.create({
+    data: {
+      itemName: "Music",
+      itemContent: "",
+      itemType: "default",
+      itemStatus: "active",
+    },
+  });
+  const cat2 = await photon.categories.create({
+    data: {
+      itemName: "Painting",
+      itemContent: "",
+      itemType: "default",
+      itemStatus: "active",
+    },
+  });
 }
 
-main()
+// delete
+clean()
   .catch(e => console.error(e))
   .finally(async () => {
-    await photon.disconnect();
+    // reload
+    main()
+      .catch(e => console.error(e))
+      .finally(async () => {
+        await photon.disconnect();
+      });
   });

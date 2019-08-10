@@ -289,7 +289,7 @@ export const Tag = objectType({
     t.model.itemStatus();
     t.model.itemName();
     t.model.itemContent();
-    t.model.post();
+    t.model.posts();
   },
 });
 
@@ -301,6 +301,6 @@ export const Category = objectType({
     t.model.itemStatus();
     t.model.itemName();
     t.model.itemContent();
-    t.model.pod();
+    t.model.pods();
   },
 });
