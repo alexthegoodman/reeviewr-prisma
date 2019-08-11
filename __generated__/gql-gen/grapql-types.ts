@@ -1525,6 +1525,14 @@ export type AllCategoriesQuery = { __typename?: "Query" } & {
   >;
 };
 
+export type AllPodsQueryVariables = {};
+
+export type AllPodsQuery = { __typename?: "Query" } & {
+  findManyPod: Maybe<
+    Array<{ __typename?: "Pod" } & Pick<Pod, "id" | "itemName">>
+  >;
+};
+
 export type UserFragmentFragment = { __typename?: "User" } & Pick<
   User,
   "id" | "userEmail" | "userType"

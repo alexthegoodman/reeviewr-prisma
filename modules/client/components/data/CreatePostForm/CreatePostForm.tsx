@@ -14,13 +14,17 @@ import {
   Text,
 } from "@blueprintjs/core";
 import { Form, Formik, FormikActions, FormikProps } from "formik";
+import { useQuery } from "react-apollo-hooks";
 import { Link } from "react-navi";
 import * as Yup from "yup";
+import { AllPodsQuery } from "../../../../../__generated__/gql-gen/grapql-types";
 import { GenreList, Genres } from "../../../../defs/genres";
 import { ERROR_CODE } from "../../../../services/ERROR_CODE";
 import Utility from "../../../../services/Utility";
 import { useAppContext } from "../../../context";
+import { ALL_PODS } from "../../../graphql/queries/pod";
 import AuthClient from "../../../services/AuthClient";
+import AutocompleteField from "../../ui/AutocompleteField/AutocompleteField";
 import CheckboxField from "../../ui/CheckboxField/CheckboxField";
 import SelectField from "../../ui/SelectField/SelectField";
 import TextareaField from "../../ui/TextareaField/TextareaField";
@@ -39,6 +43,19 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
   const [userExists, setUserExists] = React.useState(false);
   const [navbarTabId, setNavbarTabId] = React.useState("basic" as TabId);
   // const [successfulSubmission, setSuccessfulSubmission] = React.useState(false);
+
+  const {
+    data: podData,
+    error: podError,
+    loading: podLoading,
+  }: { data?: AllPodsQuery; loading?: any; error?: any } = useQuery(ALL_PODS);
+
+  let podOptions = [];
+  if (!podLoading && utility.isDefinedWithContent(podData)) {
+    podOptions = podData.findManyPod.map((pod, i) => {
+      return { label: pod.itemName, value: pod.id };
+    });
+  }
 
   const CreatePostSchema = Yup.object().shape({
     // email: Yup.string()
@@ -126,7 +143,21 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
         }}
         render={(formikBag: FormikProps<CreatePostFormValues>) => {
           // console.info("formikbag", formikBag);
-          const panel1 = <></>;
+          const panel1 = (
+            <>
+              {!podLoading ? (
+                <AutocompleteField
+                  label="Find your interest"
+                  fieldName="pod"
+                  helperText="Search for whatever you want feedback on"
+                  options={podOptions}
+                  isMulti={false}
+                />
+              ) : (
+                <></>
+              )}
+            </>
+          );
           const panel2 = <></>;
           return (
             <Form>
