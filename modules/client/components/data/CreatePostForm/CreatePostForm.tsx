@@ -37,27 +37,24 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
 
   const [{ mixpanel }, dispatch] = useAppContext();
   const [userExists, setUserExists] = React.useState(false);
+  const [navbarTabId, setNavbarTabId] = React.useState("basic" as TabId);
   // const [successfulSubmission, setSuccessfulSubmission] = React.useState(false);
 
   const CreatePostSchema = Yup.object().shape({
-    email: Yup.string()
-      .min(4, "Too Short!")
-      .max(100, "Too Long!")
-      .email("Invalid email")
-      .required("Required"),
-    password: Yup.string()
-      .min(4, "Too Short!")
-      .max(100, "Too Long!")
-      .required("Required"),
-    // confirmPassword: Yup.string()
-    //   .required("Required")
-    //   .oneOf([Yup.ref("password"), null], "Passwords must match"),
-    // agreeTerms: Yup.boolean().oneOf([true], "Must Accept Terms"),
+    // email: Yup.string()
+    //   .min(4, "Too Short!")
+    //   .max(100, "Too Long!")
+    //   .email("Invalid email")
+    //   .required("Required"),
   });
 
   const openInNewTab = url => {
     const win = window.open(url, "_blank");
     win.focus();
+  };
+
+  const handleTabChange = (navbarTabId: TabId) => {
+    setNavbarTabId(navbarTabId);
   };
 
   // if (successfulSubmission) {
@@ -75,13 +72,13 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
   // } else {
   return (
     <>
-      {userExists ? (
+      {/* {userExists ? (
         <Callout title="Attention" intent="danger">
           A user with this email address already exists. Try signing in.
         </Callout>
       ) : (
         <></>
-      )}
+      )} */}
 
       <Formik
         initialValues={{
@@ -105,30 +102,32 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
             },
           });
 
-          authClient.createPost(values, (err, res) => {
-            console.info("returned", err, res);
+          // authClient.createPost(values, (err, res) => {
+          //   console.info("returned", err, res);
 
-            if (err) {
-              console.error(err);
-              if (res.body.errorMessage === ERROR_CODE.C008) {
-                setUserExists(true);
-              } else {
-                setUserExists(false);
-              }
-            }
-            if (res.body.success) {
-              // redirect to Home
-              console.info(
-                "thank you - go confirm your email and complete your profile"
-              );
-              // setSuccessfulSubmission(true);
-              window.location.href = window.location.origin;
-            }
-            actions.resetForm();
-          });
+          //   if (err) {
+          //     console.error(err);
+          //     if (res.body.errorMessage === ERROR_CODE.C008) {
+          //       setUserExists(true);
+          //     } else {
+          //       setUserExists(false);
+          //     }
+          //   }
+          //   if (res.body.success) {
+          //     // redirect to Home
+          //     console.info(
+          //       "thank you - go confirm your email and complete your profile"
+          //     );
+          //     // setSuccessfulSubmission(true);
+          //     window.location.href = window.location.origin;
+          //   }
+          //   actions.resetForm();
+          // });
         }}
         render={(formikBag: FormikProps<CreatePostFormValues>) => {
           // console.info("formikbag", formikBag);
+          const panel1 = <></>;
+          const panel2 = <></>;
           return (
             <Form>
               <>
@@ -142,14 +141,14 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
                   Tab 2 Questions:
                   Same question builder as before
                 */}
-                <Button
-                  type="submit"
-                  disabled={formikBag.isSubmitting}
-                  loading={formikBag.isSubmitting}
-                  // onClick={() => formikBag.submitForm()}
+                <Tabs
+                  id="CreatePostTabs"
+                  onChange={handleTabChange}
+                  selectedTabId={navbarTabId}
                 >
-                  Sign Up
-                </Button>
+                  <Tab id="basic" title="Post Details" panel={panel1} />
+                  <Tab id="questions" title="Questions" panel={panel2} />
+                </Tabs>
               </>
             </Form>
           );
