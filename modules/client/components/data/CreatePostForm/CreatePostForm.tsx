@@ -132,42 +132,16 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
           return (
             <Form>
               <>
-                <TextField
-                  label="Email"
-                  fieldName="email"
-                  fieldPlaceholder="Enter your email address"
-                  fieldType="email"
-                />
-                <TextField
-                  label="Password"
-                  fieldName="password"
-                  fieldPlaceholder="Enter your password"
-                  fieldType="password"
-                />
-                {/* <TextField
-                    label="Confirm Password"
-                    fieldName="confirmPassword"
-                    fieldPlaceholder="Confirm your password"
-                    fieldType="password"
-                  />
-                  <CheckboxField
-                    label={
-                      <>
-                        Agree to{" "}
-                        <Link
-                          href="#!"
-                          onClick={() =>
-                            openInNewTab(
-                              "https://grandrapids.reeviewr.com/pages/terms"
-                            )
-                          }
-                        >
-                          Terms
-                        </Link>
-                      </>
-                    }
-                    fieldName="agreeTerms"
-                  /> */}
+                {/*
+                  Tab 1 Post Details:
+                  Find your interest
+                  Upload / Input (pod dependent)
+                  Title
+                  Description
+                  Tags
+                  Tab 2 Questions:
+                  Same question builder as before
+                */}
                 <Button
                   type="submit"
                   disabled={formikBag.isSubmitting}
