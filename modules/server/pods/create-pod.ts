@@ -74,7 +74,7 @@ export const createPod = async (req, res, mixpanel, photon) => {
             //   height: 200,
             // });
             // console.info("image uploaded", authUser.id, bannerUrl, filename);
-            await photon.pods.create({
+            const newPod = await photon.pods.create({
               data: {
                 user: { connect: { id: authUser.id } },
                 itemType: "default",
@@ -112,7 +112,7 @@ export const createPod = async (req, res, mixpanel, photon) => {
               },
             });
 
-            console.info("pod created");
+            console.info("pod created", newPod);
 
             mixpanel.track("Pod created", {
               env: process.env.NODE_ENV,
@@ -123,7 +123,7 @@ export const createPod = async (req, res, mixpanel, photon) => {
             });
 
             res.status(200);
-            res.send({ success: true, data: {} });
+            res.send({ success: true, data: { newPod } });
             res.end();
           })
           .catch(err => {

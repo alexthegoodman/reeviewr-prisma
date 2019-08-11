@@ -5,18 +5,21 @@ import Utility from "./Utility";
 const uuid = require("uuid");
 const slugify = require("slugify");
 import S3 from "aws-sdk/clients/s3";
+import Core from "./Core";
 const atob = require("atob");
 
 export default class AWSService {
   public strings;
   public utility;
   public legacy;
+  public core;
   public s3;
 
   constructor() {
     this.strings = new Strings();
     this.utility = new Utility();
     this.legacy = new Legacy();
+    this.core = new Core();
 
     this.s3 = new S3({
       accessKeyId: process.env.AWS_ACCESS_ID,
@@ -29,7 +32,8 @@ export default class AWSService {
       const dotIndex = filename.lastIndexOf(".");
       const ext = filename.substring(dotIndex);
       const title = filename.substring(0, dotIndex);
-      const key = title + ".jpg";
+      const filepath = this.core.getUploadDir();
+      const key = filepath + title + ".jpg";
 
       base64 = base64.split(",")[1];
 

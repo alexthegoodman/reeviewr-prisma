@@ -143,9 +143,13 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
             }
             if (res.body.success) {
               // redirect to Home
-              console.info("thank you - go to new pod");
+              console.info(
+                "thank you - go to new pod",
+                res.body.data.newPod.id
+              );
               // setSuccessfulSubmission(true);
-              // window.location.href = window.location.origin;
+              window.location.href =
+                window.location.origin + "/pods/" + res.body.data.newPod.id;
             }
             actions.resetForm();
           });
