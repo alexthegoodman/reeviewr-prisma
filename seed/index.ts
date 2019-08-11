@@ -16,6 +16,9 @@ async function clean() {
   await photon.categories.deleteMany({
     where: { id: { contains: "" } },
   });
+  await photon.tags.deleteMany({
+    where: { id: { contains: "" } },
+  });
 }
 
 async function main() {
@@ -60,6 +63,22 @@ async function main() {
   const cat2 = await photon.categories.create({
     data: {
       itemName: "Painting",
+      itemContent: "",
+      itemType: "default",
+      itemStatus: "active",
+    },
+  });
+  const tag1 = await photon.tags.create({
+    data: {
+      itemName: "2019",
+      itemContent: "",
+      itemType: "default",
+      itemStatus: "active",
+    },
+  });
+  const tag2 = await photon.tags.create({
+    data: {
+      itemName: "Space",
       itemContent: "",
       itemType: "default",
       itemStatus: "active",

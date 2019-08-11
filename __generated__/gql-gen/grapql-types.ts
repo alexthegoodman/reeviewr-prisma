@@ -1533,6 +1533,14 @@ export type AllPodsQuery = { __typename?: "Query" } & {
   >;
 };
 
+export type AllTagsQueryVariables = {};
+
+export type AllTagsQuery = { __typename?: "Query" } & {
+  findManyTag: Maybe<
+    Array<{ __typename?: "Tag" } & Pick<Tag, "id" | "itemName">>
+  >;
+};
+
 export type UserFragmentFragment = { __typename?: "User" } & Pick<
   User,
   "id" | "userEmail" | "userType"

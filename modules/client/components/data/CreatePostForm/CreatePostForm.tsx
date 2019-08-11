@@ -17,15 +17,20 @@ import { Form, Formik, FormikActions, FormikProps } from "formik";
 import { useQuery } from "react-apollo-hooks";
 import { Link } from "react-navi";
 import * as Yup from "yup";
-import { AllPodsQuery } from "../../../../../__generated__/gql-gen/grapql-types";
+import {
+  AllPodsQuery,
+  AllTagsQuery,
+} from "../../../../../__generated__/gql-gen/grapql-types";
 import { GenreList, Genres } from "../../../../defs/genres";
 import { ERROR_CODE } from "../../../../services/ERROR_CODE";
 import Utility from "../../../../services/Utility";
 import { useAppContext } from "../../../context";
 import { ALL_PODS } from "../../../graphql/queries/pod";
+import { ALL_TAGS } from "../../../graphql/queries/tag";
 import AuthClient from "../../../services/AuthClient";
 import AutocompleteField from "../../ui/AutocompleteField/AutocompleteField";
 import CheckboxField from "../../ui/CheckboxField/CheckboxField";
+import CreateQuestion from "../../ui/CreateQuestion/CreateQuestion";
 import SelectField from "../../ui/SelectField/SelectField";
 import TextareaField from "../../ui/TextareaField/TextareaField";
 import TextField from "../../ui/TextField/TextField";
@@ -56,6 +61,23 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
       return { label: pod.itemName, value: pod.id };
     });
   }
+
+  const {
+    data: tagData,
+    error: tagError,
+    loading: tagLoading,
+  }: { data?: AllTagsQuery; loading?: any; error?: any } = useQuery(ALL_TAGS);
+
+  let tagOptions = [];
+  if (!tagLoading && utility.isDefinedWithContent(tagData)) {
+    tagOptions = tagData.findManyTag.map((tag, i) => {
+      return { label: tag.itemName, value: tag.id };
+    });
+  }
+
+  const [questionType1, setQuestionType1] = React.useState("");
+  const [questionType2, setQuestionType2] = React.useState("");
+  const [questionType3, setQuestionType3] = React.useState("");
 
   const CreatePostSchema = Yup.object().shape({
     // email: Yup.string()
@@ -156,22 +178,83 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
               ) : (
                 <></>
               )}
+              {/* Upload Fields */}
+              <TextField
+                label="Post Title"
+                fieldName="title"
+                fieldPlaceholder=""
+                fieldType="text"
+              />
+              <TextareaField
+                label="Description"
+                fieldName="description"
+                fieldPlaceholder=""
+              />
+              {!tagLoading ? (
+                <AutocompleteField
+                  label="Add some tags"
+                  fieldName="tags"
+                  helperText="This will make your post easier to find"
+                  options={tagOptions}
+                  isMulti={true}
+                />
+              ) : (
+                <></>
+              )}
             </>
           );
-          const panel2 = <></>;
+          const panel2 = (
+            <>
+              <SelectField
+                label="Question Type 1"
+                fieldName="questionType1"
+                options={["Select", "Essay", "Rating", "Multiple Choice"]}
+                onChange={e => setQuestionType1(e.currentTarget["value"])}
+              />
+
+              <CreateQuestion questionNumber="1" questionType={questionType1} />
+
+              <SelectField
+                label="Question Type 2"
+                fieldName="questionType2"
+                options={["Select", "Essay", "Rating", "Multiple Choice"]}
+                onChange={e => setQuestionType2(e.currentTarget["value"])}
+              />
+
+              <CreateQuestion questionNumber="2" questionType={questionType2} />
+
+              <SelectField
+                label="Question Type 3"
+                fieldName="questionType3"
+                options={["Select", "Essay", "Rating", "Multiple Choice"]}
+                onChange={e => setQuestionType3(e.currentTarget["value"])}
+              />
+
+              <CreateQuestion questionNumber="3" questionType={questionType3} />
+
+              <Button
+                type="submit"
+                disabled={formikBag.isSubmitting}
+                loading={formikBag.isSubmitting}
+                // onClick={() => formikBag.submitForm()}
+              >
+                Finish
+              </Button>
+              {formikBag.isSubmitting ? (
+                <Callout style={{ marginTop: 25 }}>
+                  <Text tagName="span" className="textCenter darkHeadline">
+                    Your track is being processed... This may take a minute or
+                    so...
+                  </Text>
+                </Callout>
+              ) : (
+                <></>
+              )}
+            </>
+          );
           return (
             <Form>
               <>
-                {/*
-                  Tab 1 Post Details:
-                  Find your interest
-                  Upload / Input (pod dependent)
-                  Title
-                  Description
-                  Tags
-                  Tab 2 Questions:
-                  Same question builder as before
-                */}
                 <Tabs
                   id="CreatePostTabs"
                   onChange={handleTabChange}
