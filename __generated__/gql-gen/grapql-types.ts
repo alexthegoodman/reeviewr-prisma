@@ -1529,7 +1529,18 @@ export type AllPodsQueryVariables = {};
 
 export type AllPodsQuery = { __typename?: "Query" } & {
   findManyPod: Maybe<
-    Array<{ __typename?: "Pod" } & Pick<Pod, "id" | "itemName">>
+    Array<
+      { __typename?: "Pod" } & Pick<Pod, "id" | "itemName" | "itemContent"> & {
+          itemMeta: Maybe<
+            Array<
+              { __typename?: "PodMeta" } & Pick<
+                PodMeta,
+                "metaName" | "metaValue"
+              >
+            >
+          >;
+        }
+    >
   >;
 };
 

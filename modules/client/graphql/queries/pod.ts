@@ -5,6 +5,11 @@ export const ALL_PODS = gql`
     findManyPod {
       id
       itemName
+      itemContent
+      itemMeta {
+        metaName
+        metaValue
+      }
     }
   }
 `;

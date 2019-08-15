@@ -23,6 +23,7 @@ import {
 } from "../../../../../__generated__/gql-gen/grapql-types";
 import { GenreList, Genres } from "../../../../defs/genres";
 import { ERROR_CODE } from "../../../../services/ERROR_CODE";
+import Legacy from "../../../../services/Legacy";
 import Utility from "../../../../services/Utility";
 import { useAppContext } from "../../../context";
 import { ALL_PODS } from "../../../graphql/queries/pod";
@@ -44,11 +45,13 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
 }) => {
   const authClient = new AuthClient();
   const utility = new Utility();
+  const legacy = new Legacy();
 
   const [{ mixpanel }, dispatch] = useAppContext();
   const [userExists, setUserExists] = React.useState(false);
   const [navbarTabId, setNavbarTabId] = React.useState("basic" as TabId);
 
+  // pod / interests autocomplete
   const {
     data: podData,
     error: podError,
@@ -58,10 +61,12 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
   let podOptions = [];
   if (!podLoading && utility.isDefinedWithContent(podData)) {
     podOptions = podData.findManyPod.map((pod, i) => {
-      return { label: pod.itemName, value: pod.id };
+      const postType = legacy.extractMetaValue(pod.itemMeta, "postType");
+      return { label: pod.itemName, value: pod.id, postType };
     });
   }
 
+  // tags autocomplete
   const {
     data: tagData,
     error: tagError,
@@ -75,6 +80,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
     });
   }
 
+  // question types
   const [questionType1, setQuestionType1] = React.useState("");
   const [questionType2, setQuestionType2] = React.useState("");
   const [questionType3, setQuestionType3] = React.useState("");
@@ -87,28 +93,10 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
     //   .required("Required"),
   });
 
-  const openInNewTab = url => {
-    const win = window.open(url, "_blank");
-    win.focus();
-  };
-
   const handleTabChange = (navbarTabId: TabId) => {
     setNavbarTabId(navbarTabId);
   };
 
-  // if (successfulSubmission) {
-  //   return (
-  //     <Card className="floatingForm darkForm">
-  //       <Text tagName="h1" className="headline">
-  //         Thank you
-  //       </Text>
-  //       <Text tagName="p">
-  //         Welcome to Reeviewr! In order to continue, please check your email to
-  //         confirm your email address.
-  //       </Text>
-  //     </Card>
-  //   );
-  // } else {
   return (
     <>
       {/* {userExists ? (
@@ -121,10 +109,32 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
 
       <Formik
         initialValues={{
-          email: "",
-          password: "",
-          confirmPassword: "",
-          agreeTerms: false,
+          pod: null,
+          content: "",
+          title: "",
+          description: "",
+          tags: "",
+
+          questionType1: "",
+          questionContent1: "",
+          questionOne1: "",
+          questionTwo1: "",
+          questionThree1: "",
+          questionFour1: "",
+
+          questionType2: "",
+          questionContent2: "",
+          questionOne2: "",
+          questionTwo2: "",
+          questionThree2: "",
+          questionFour2: "",
+
+          questionType3: "",
+          questionContent3: "",
+          questionOne3: "",
+          questionTwo3: "",
+          questionThree3: "",
+          questionFour3: "",
         }}
         validationSchema={CreatePostSchema}
         onSubmit={(
@@ -164,7 +174,43 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
           // });
         }}
         render={(formikBag: FormikProps<CreatePostFormValues>) => {
-          // console.info("formikbag", formikBag);
+          let uploadField = <></>;
+          if (formikBag.values["pod"] !== null) {
+            const postType = formikBag.values["pod"]["postType"];
+            if (postType === "Text") {
+              uploadField = (
+                <QuillField
+                  label="Text"
+                  fieldName="content"
+                  helperText="This pod allows text only. Must be between 100 and 100,000 characters."
+                />
+              );
+            } else {
+              let helperText = "";
+              switch (postType) {
+                case "Image":
+                  helperText =
+                    "This pod allows images only. Must be under 10MB.";
+                  break;
+                case "Video":
+                  helperText =
+                    "This pod allows videos only. Must be under 10MB.";
+                  break;
+                case "Audio":
+                  helperText =
+                    "This pod allows audio only. Must be under 10MB.";
+                  break;
+              }
+              uploadField = (
+                <UploadField
+                  label={postType}
+                  fieldName="content"
+                  helperText={helperText}
+                />
+              );
+            }
+          }
+
           const panel1 = (
             <>
               {!podLoading ? (
@@ -178,16 +224,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
               ) : (
                 <></>
               )}
-              <UploadField
-                label="Image, Video, or Audio"
-                fieldName="content"
-                helperText="This pod allows images only. Must be under 10MB."
-              />
-              <QuillField
-                label="Text"
-                fieldName="content"
-                helperText="This pod allows text only. Must be between 100 and 100,000 characters."
-              />
+              {uploadField}
               <TextField
                 label="Post Title"
                 fieldName="title"
@@ -258,8 +295,8 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
               {formikBag.isSubmitting ? (
                 <Callout style={{ marginTop: 25 }}>
                   <Text tagName="span" className="textCenter darkHeadline">
-                    Your track is being processed... This may take a minute or
-                    so...
+                    Your post is being uploaded and processed... This may take a
+                    minute or so...
                   </Text>
                 </Callout>
               ) : (
@@ -285,7 +322,6 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
       />
     </>
   );
-  // }
 };
 
 export default CreatePostForm;
