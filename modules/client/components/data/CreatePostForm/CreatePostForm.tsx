@@ -86,11 +86,32 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
   const [questionType3, setQuestionType3] = React.useState("");
 
   const CreatePostSchema = Yup.object().shape({
-    // email: Yup.string()
-    //   .min(4, "Too Short!")
-    //   .max(100, "Too Long!")
-    //   .email("Invalid email")
-    //   .required("Required"),
+    pod: Yup.string().required("Required"),
+    content: Yup.string().required("Required"),
+    title: Yup.string()
+      .min(4, "Too Short!")
+      .max(200, "Too Long!")
+      .required("Required"),
+    description: Yup.string()
+      .min(4, "Too Short!")
+      .max(500, "Too Long!")
+      .required("Required"),
+    tags: Yup.string().required("Required"),
+    questionType1: Yup.string().required("Required"),
+    questionContent1: Yup.string()
+      .min(4, "Too Short!")
+      .max(300, "Too Long!")
+      .required("Required"),
+    questionType2: Yup.string().required("Required"),
+    questionContent2: Yup.string()
+      .min(4, "Too Short!")
+      .max(300, "Too Long!")
+      .required("Required"),
+    questionType3: Yup.string().required("Required"),
+    questionContent3: Yup.string()
+      .min(4, "Too Short!")
+      .max(300, "Too Long!")
+      .required("Required"),
   });
 
   const handleTabChange = (navbarTabId: TabId) => {
@@ -109,7 +130,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
 
       <Formik
         initialValues={{
-          pod: null,
+          pod: "",
           content: "",
           title: "",
           description: "",
@@ -175,7 +196,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
         }}
         render={(formikBag: FormikProps<CreatePostFormValues>) => {
           let uploadField = <></>;
-          if (formikBag.values["pod"] !== null) {
+          if (formikBag.values["pod"] !== "") {
             const postType = formikBag.values["pod"]["postType"];
             if (postType === "Text") {
               uploadField = (
