@@ -49,9 +49,9 @@ To ease creation of components, take advantage of these commands
 - Context
 - Passport
 - Navi
-- Heroku to see Client
-- DigitalOcean to serve GraphQL API
+- Heroku
 
 ### Notes
 
 - Utilizing Prisma 2 on Postgres database
+- https://alligator.io/nodejs/take-command-with-env-cmd/
