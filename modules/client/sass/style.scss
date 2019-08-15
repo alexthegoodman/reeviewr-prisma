@@ -1,5 +1,6 @@
 // @import url("https://use.typekit.net/kod8qec.css");
-@import "~react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+@import "~react-draft-wysiwyg/dist/react-draft-wysiwyg.css"; // Option 1
+@import "~react-quill/dist/quill.snow.css"; // Option 2
 @import "~react-vis/dist/style";
 
 @import "../../../node_modules/normalize.css/normalize.css";

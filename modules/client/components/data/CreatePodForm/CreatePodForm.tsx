@@ -28,6 +28,7 @@ import AuthClient from "../../../services/AuthClient";
 import ItemClient from "../../../services/ItemClient";
 import AutocompleteField from "../../ui/AutocompleteField/AutocompleteField";
 import CheckboxField from "../../ui/CheckboxField/CheckboxField";
+import QuillField from "../../ui/QuillField/QuillField";
 import SelectField from "../../ui/SelectField/SelectField";
 import TextareaField from "../../ui/TextareaField/TextareaField";
 import TextField from "../../ui/TextField/TextField";

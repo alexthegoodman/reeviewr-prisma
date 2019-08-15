@@ -31,6 +31,7 @@ import AuthClient from "../../../services/AuthClient";
 import AutocompleteField from "../../ui/AutocompleteField/AutocompleteField";
 import CheckboxField from "../../ui/CheckboxField/CheckboxField";
 import CreateQuestion from "../../ui/CreateQuestion/CreateQuestion";
+import QuillField from "../../ui/QuillField/QuillField";
 import SelectField from "../../ui/SelectField/SelectField";
 import TextareaField from "../../ui/TextareaField/TextareaField";
 import TextField from "../../ui/TextField/TextField";
@@ -47,7 +48,6 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
   const [{ mixpanel }, dispatch] = useAppContext();
   const [userExists, setUserExists] = React.useState(false);
   const [navbarTabId, setNavbarTabId] = React.useState("basic" as TabId);
-  // const [successfulSubmission, setSuccessfulSubmission] = React.useState(false);
 
   const {
     data: podData,
@@ -178,7 +178,16 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
               ) : (
                 <></>
               )}
-              {/* Upload Fields */}
+              <UploadField
+                label="Image, Video, or Audio"
+                fieldName="content"
+                helperText="This pod allows images only. Must be under 10MB."
+              />
+              <QuillField
+                label="Text"
+                fieldName="content"
+                helperText="This pod allows text only. Must be between 100 and 100,000 characters."
+              />
               <TextField
                 label="Post Title"
                 fieldName="title"
@@ -201,6 +210,12 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
               ) : (
                 <></>
               )}
+              <Button
+                onClick={() => handleTabChange("questions")}
+                disabled={formikBag.isSubmitting}
+              >
+                Next Step
+              </Button>
             </>
           );
           const panel2 = (

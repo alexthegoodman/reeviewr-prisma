@@ -6,7 +6,7 @@ import { CreatePostProps } from "./CreatePost.d";
 
 const CreatePost: React.FC<CreatePostProps> = () => {
   return (
-    <Card className="floatingForm">
+    <Card className="floatingForm" style={{ width: 800 }}>
       <Text tagName="h1" className="headline">
         Create Post
       </Text>
