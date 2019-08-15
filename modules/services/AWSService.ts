@@ -33,7 +33,7 @@ export default class AWSService {
       const ext = filename.substring(dotIndex);
       const title = filename.substring(0, dotIndex);
       const filepath = this.core.getUploadDir();
-      const key = filepath + title + ".jpg";
+      const key = filepath + title + "-" + uuid.v4() + ".jpg";
 
       base64 = base64.split(",")[1];
 

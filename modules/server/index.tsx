@@ -48,6 +48,7 @@ import {
   COMPLETE_PROFILE,
   CONFIRM_EMAIL,
   CREATE_POD,
+  CREATE_POST,
   CREATE_USER,
   FORGOT_PASSWORD,
   MAILCHIMP_SUBSCRIBE,
@@ -97,6 +98,7 @@ import { Mutation } from "./graphql/mutation";
 import { Query } from "./graphql/query";
 import { mailchimpSubscribe } from "./integration/mailchimp-subscribe";
 import { createPod } from "./pods/create-pod";
+import { createPost } from "./posts/create-post";
 import { completeProfile } from "./user/complete-profile";
 import { resetPassword } from "./user/reset-password";
 
@@ -355,6 +357,9 @@ export async function startServer() {
   );
   app.post(`/${apiVersion}${CREATE_POD}`, (req, res) =>
     createPod(req, res, mixpanel, photon)
+  );
+  app.post(`/${apiVersion}${CREATE_POST}`, (req, res) =>
+    createPost(req, res, mixpanel, photon)
   );
 
   app.get(

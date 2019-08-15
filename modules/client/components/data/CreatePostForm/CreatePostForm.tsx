@@ -29,6 +29,7 @@ import { useAppContext } from "../../../context";
 import { ALL_PODS } from "../../../graphql/queries/pod";
 import { ALL_TAGS } from "../../../graphql/queries/tag";
 import AuthClient from "../../../services/AuthClient";
+import ItemClient from "../../../services/ItemClient";
 import AutocompleteField from "../../ui/AutocompleteField/AutocompleteField";
 import CheckboxField from "../../ui/CheckboxField/CheckboxField";
 import CreateQuestion from "../../ui/CreateQuestion/CreateQuestion";
@@ -44,6 +45,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
   onClick = e => console.info("Click"),
 }) => {
   const authClient = new AuthClient();
+  const itemClient = new ItemClient();
   const utility = new Utility();
   const legacy = new Legacy();
 
@@ -172,27 +174,25 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
             },
           });
 
-          // authClient.createPost(values, (err, res) => {
-          //   console.info("returned", err, res);
+          itemClient.createPost(values, (err, res) => {
+            console.info("returned", err, res);
 
-          //   if (err) {
-          //     console.error(err);
-          //     if (res.body.errorMessage === ERROR_CODE.C008) {
-          //       setUserExists(true);
-          //     } else {
-          //       setUserExists(false);
-          //     }
-          //   }
-          //   if (res.body.success) {
-          //     // redirect to Home
-          //     console.info(
-          //       "thank you - go confirm your email and complete your profile"
-          //     );
-          //     // setSuccessfulSubmission(true);
-          //     window.location.href = window.location.origin;
-          //   }
-          //   actions.resetForm();
-          // });
+            if (err) {
+              console.error(err);
+              // if (res.body.errorMessage === ERROR_CODE.C008) {
+              //   setUserExists(true);
+              // } else {
+              //   setUserExists(false);
+              // }
+            }
+            if (res.body.success) {
+              // redirect to Home
+              console.info("thank you - go to post page");
+              // setSuccessfulSubmission(true);
+              // window.location.href = window.location.origin; // itemUrlSegment
+            }
+            actions.resetForm();
+          });
         }}
         render={(formikBag: FormikProps<CreatePostFormValues>) => {
           let uploadField = <></>;

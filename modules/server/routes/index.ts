@@ -7,5 +7,6 @@ export const RESET_PASSWORD = "/user/reset-password/";
 export const CONFIRM_EMAIL = "/user/confirm-email/";
 
 export const CREATE_POD = "/pods/create/";
+export const CREATE_POST = "/posts/create/";
 
 export const MAILCHIMP_SUBSCRIBE = "/integration/mailchimp-subscribe/";

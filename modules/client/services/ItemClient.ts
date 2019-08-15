@@ -28,5 +28,21 @@ export default class ItemClient {
     }
   }
 
-  createPost(values, callback) {}
+  createPost(values, callback) {
+    const cookies = new Cookies();
+    const reeviewrPrivateHash = cookies.get("reeviewrPrivateHash");
+
+    console.info("create post", reeviewrPrivateHash);
+
+    if (this.utility.isDefinedWithContent(reeviewrPrivateHash)) {
+      this.restClient.makeRequest(
+        "/posts/create/",
+        { privateHash: reeviewrPrivateHash, ...values },
+        callback
+      );
+    } else {
+      console.error("Only logged in users can create posts");
+      alert("Bad Error 4404");
+    }
+  }
 }
