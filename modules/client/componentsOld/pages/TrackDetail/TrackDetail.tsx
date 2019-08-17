@@ -3,7 +3,7 @@ import * as React from "react";
 import { TrackDetailProps, Question } from "./TrackDetail.d";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 import { USER_TRACK_QUERY } from "../../../graphql/queries/userTrack";
-import { useQuery } from "react-apollo-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import UserTrack from "../../data/UserTrack/UserTrack";
 import GraphCardData from "../../data/GraphCardData/GraphCardData";
 import Legacy from "../../../../services/Legacy";

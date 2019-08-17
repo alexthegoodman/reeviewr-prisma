@@ -31,11 +31,11 @@ import fetch from "cross-fetch";
 import { GraphQLServer } from "graphql-yoga";
 import { createMemoryNavigation } from "navi";
 import * as React from "react";
-import { ApolloProvider, getDataFromTree } from "react-apollo";
 import {
-  ApolloProvider as ApolloHooksProvider,
+  ApolloProvider,
+  getDataFromTree,
   getMarkupFromTree,
-} from "react-apollo-hooks";
+} from "react-apollo";
 
 // import * as ReactDOM from "react-dom";
 import * as ReactDOMServer from "react-dom/server";
@@ -60,7 +60,6 @@ import { confirmEmail } from "./user/confirm-email";
 import { createUser } from "./user/create-user";
 import { forgotPassword } from "./user/forgot-password";
 import { resendEmailConfirmation } from "./user/resend-email-confirmation";
-import { createTrack } from "./userTracks/create-track";
 
 // import { prisma } from "../../__generated__/prisma-client";
 import { nexusPrismaPlugin } from "@generated/nexus-prisma";
@@ -398,9 +397,7 @@ export async function startServer() {
         <>
           <Router navigation={navigation}>
             <ApolloProvider client={client}>
-              <ApolloHooksProvider client={client}>
-                <AppProvider />
-              </ApolloHooksProvider>
+              <AppProvider />
             </ApolloProvider>
           </Router>
         </>

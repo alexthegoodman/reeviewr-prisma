@@ -1,16 +1,16 @@
 import * as React from "react";
 
-import { LikeButtonProps } from "./LikeButton.d";
-import { Button, Text, Icon } from "@blueprintjs/core";
-import Utility from "../../../../services/Utility";
-import Legacy from "../../../../services/Legacy";
+import { useMutation } from "@apollo/react-hooks";
+import { Button, Icon, Text } from "@blueprintjs/core";
+import { useNavigation } from "react-navi";
 import Core from "../../../../services/Core";
+import Legacy from "../../../../services/Legacy";
+import Utility from "../../../../services/Utility";
 import { useAppContext } from "../../../context";
-import { useMutation } from "react-apollo-hooks";
 import { UPDATE_USER_META } from "../../../graphql/mutations/user";
 import { USER_QUERY } from "../../../graphql/queries/user";
 import AuthClient from "../../../services/AuthClient";
-import { useNavigation } from "react-navi";
+import { LikeButtonProps } from "./LikeButton.d";
 
 const LikeButton: React.FC<LikeButtonProps> = ({
   ref = null,
@@ -23,7 +23,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
   const core = new Core();
   const authClient = new AuthClient();
 
-  let navigation = useNavigation();
+  const navigation = useNavigation();
   const [{ userData }, dispatch] = useAppContext();
 
   // const clickHandler = e => onClick(e);

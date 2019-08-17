@@ -2,8 +2,7 @@ import * as React from "react";
 import ErrorBoundary from "react-error-boundary";
 
 import * as mixpanel from "mixpanel-browser";
-// import { ApolloProvider } from "react-apollo";
-import { ApolloProvider } from "react-apollo-hooks";
+import { ApolloProvider } from "react-apollo";
 import { MixpanelProvider } from "react-mixpanel";
 import { Router, View } from "react-navi";
 

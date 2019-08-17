@@ -1,7 +1,7 @@
 import * as React from "react";
 
+import { useMutation } from "@apollo/react-hooks";
 import { Button, Icon, Text } from "@blueprintjs/core";
-import { useMutation } from "react-apollo-hooks";
 import { useNavigation } from "react-navi";
 import Core from "../../../../services/Core";
 import Legacy from "../../../../services/Legacy";

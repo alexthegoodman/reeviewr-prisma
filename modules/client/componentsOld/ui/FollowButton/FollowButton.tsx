@@ -1,18 +1,18 @@
 import * as React from "react";
 
-import { FollowButtonProps } from "./FollowButton.d";
-import { Button, Text, Icon } from "@blueprintjs/core";
+import { useMutation } from "@apollo/react-hooks";
+import { Button, Icon, Text } from "@blueprintjs/core";
+import { useNavigation } from "react-navi";
+import Core from "../../../../services/Core";
 import Legacy from "../../../../services/Legacy";
 import Utility from "../../../../services/Utility";
-import Core from "../../../../services/Core";
 import { useAppContext } from "../../../context";
-import { useMutation } from "react-apollo-hooks";
 import {
-  UPDATE_USER_META,
   CREATE_USER_META,
+  UPDATE_USER_META,
 } from "../../../graphql/mutations/user";
 import AuthClient from "../../../services/AuthClient";
-import { useNavigation } from "react-navi";
+import { FollowButtonProps } from "./FollowButton.d";
 
 const FollowButton: React.FC<FollowButtonProps> = ({
   ref = null,
@@ -25,7 +25,7 @@ const FollowButton: React.FC<FollowButtonProps> = ({
   const core = new Core();
   const authClient = new AuthClient();
 
-  let navigation = useNavigation();
+  const navigation = useNavigation();
   const [{ userData }, dispatch] = useAppContext();
 
   let following = null;

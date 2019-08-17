@@ -1525,6 +1525,48 @@ export type AllCategoriesQuery = { __typename?: "Query" } & {
   >;
 };
 
+export type CategoriesPodsPostsQueryVariables = {};
+
+export type CategoriesPodsPostsQuery = { __typename?: "Query" } & {
+  findManyCategory: Maybe<
+    Array<
+      { __typename?: "Category" } & Pick<Category, "id" | "itemName"> & {
+          pods: Maybe<
+            Array<
+              { __typename?: "Pod" } & Pick<Pod, "id" | "itemName"> & {
+                  itemMeta: Maybe<
+                    Array<
+                      { __typename?: "PodMeta" } & Pick<
+                        PodMeta,
+                        "id" | "metaName" | "metaValue"
+                      >
+                    >
+                  >;
+                  posts: Maybe<
+                    Array<
+                      { __typename?: "Post" } & Pick<
+                        Post,
+                        "id" | "itemName"
+                      > & {
+                          itemMeta: Maybe<
+                            Array<
+                              { __typename?: "PostMeta" } & Pick<
+                                PostMeta,
+                                "id" | "metaName" | "metaValue"
+                              >
+                            >
+                          >;
+                        }
+                    >
+                  >;
+                }
+            >
+          >;
+        }
+    >
+  >;
+};
+
 export type AllPodsQueryVariables = {};
 
 export type AllPodsQuery = { __typename?: "Query" } & {

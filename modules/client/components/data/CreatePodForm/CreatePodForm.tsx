@@ -15,7 +15,7 @@ import {
 } from "@blueprintjs/core";
 import { Category } from "@generated/photon";
 import { Form, Formik, FormikActions, FormikProps } from "formik";
-import { useQuery } from "react-apollo-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import { Link } from "react-navi";
 import * as Yup from "yup";
 import { AllCategoriesQuery } from "../../../../../__generated__/gql-gen/grapql-types";

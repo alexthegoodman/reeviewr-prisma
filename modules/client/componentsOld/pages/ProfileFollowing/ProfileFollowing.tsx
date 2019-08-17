@@ -5,7 +5,7 @@ import ProfileNav from "../../layout/ProfileNav/ProfileNav";
 import UserTrack from "../../data/UserTrack/UserTrack";
 import { UserTrack as IUserTrack } from "../../../../../__generated__/gql-gen/grapql-types";
 import { ARTIST_TRACKS_QUERY } from "../../../graphql/queries/userTrack";
-import { useQuery } from "react-apollo-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import Utility from "../../../../services/Utility";
 import {
   USER_QUERY,

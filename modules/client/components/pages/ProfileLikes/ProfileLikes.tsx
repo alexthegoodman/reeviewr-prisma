@@ -8,7 +8,7 @@ import {
   ARTIST_TRACKS_QUERY,
   INDIVIDUAL_TRACKS_QUERY,
 } from "../../../graphql/queries/userTrack";
-import { useQuery } from "react-apollo-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import Utility from "../../../../services/Utility";
 import { USER_QUERY } from "../../../graphql/queries/user";
 import { Text } from "@blueprintjs/core";

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { useQuery } from "react-apollo-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import { USERS_QUERY } from "../../../graphql/queries/user";
 import { USER_TRACKS_QUERY } from "../../../graphql/queries/userTrack";
 import UserTrack from "../../data/UserTrack/UserTrack";

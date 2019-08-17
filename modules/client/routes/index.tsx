@@ -32,9 +32,6 @@ import ResetPassword from "../components/pages/ResetPassword/ResetPassword";
 import Reviews from "../components/pages/Reviews/Reviews";
 import SearchResults from "../components/pages/SearchResults/SearchResults";
 import SignUp from "../components/pages/SignUp/SignUp";
-import TrackDetail from "../components/pages/TrackDetail/TrackDetail";
-import Tracks from "../components/pages/Tracks/Tracks";
-import UploadTrack from "../components/pages/UploadTrack/UploadTrack";
 import YourFeed from "../components/pages/YourFeed/YourFeed";
 import Strings from "../services/Strings";
 

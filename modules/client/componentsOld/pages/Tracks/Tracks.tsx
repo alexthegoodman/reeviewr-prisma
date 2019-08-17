@@ -6,7 +6,7 @@ import {
   USER_TRACKS_QUERY,
   USER_TRACKS_GENRE_QUERY,
 } from "../../../graphql/queries/userTrack";
-import { useQuery } from "react-apollo-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import { UserTrack as IUserTrack } from "../../../../../__generated__/gql-gen/grapql-types";
 import { Popover, Menu, Position, Button } from "@blueprintjs/core";
 import { GenreList } from "../../../../defs/genres";

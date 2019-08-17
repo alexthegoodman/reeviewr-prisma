@@ -14,7 +14,7 @@ export const CATEGORIES_PODS_POSTS = gql`
     findManyCategory {
       id
       itemName
-      pods {
+      pods(first: 3) {
         id
         itemName
         itemMeta {
@@ -22,7 +22,7 @@ export const CATEGORIES_PODS_POSTS = gql`
           metaName
           metaValue
         }
-        posts {
+        posts(first: 2) {
           id
           itemName
           itemMeta {

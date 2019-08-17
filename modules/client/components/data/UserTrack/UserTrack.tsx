@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { UserTrackProps } from "./UserTrack.d";
-import { useQuery } from "react-apollo-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import { FILE_QUERY } from "../../../graphql/queries/userTrack";
 import Track from "../../ui/Track/Track";
 import ReviewCard from "../../ui/ReviewCard/ReviewCard";

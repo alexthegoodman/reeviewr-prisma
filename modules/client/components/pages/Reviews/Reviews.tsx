@@ -3,7 +3,7 @@ import * as React from "react";
 import { ReviewsProps } from "./Reviews.d";
 import ReviewCardData from "../../data/ReviewCardData/ReviewCardData";
 import { ALL_REVIEWS_QUERY } from "../../../graphql/queries/review";
-import { useQuery } from "react-apollo-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
 
 const Reviews: React.FC<ReviewsProps> = () => {

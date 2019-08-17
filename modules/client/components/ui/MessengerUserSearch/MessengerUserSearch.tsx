@@ -3,7 +3,7 @@ import * as React from "react";
 import { MessengerUserSearchProps } from "./MessengerUserSearch.d";
 
 import Autocomplete from "react-autocomplete";
-import { useQuery } from "react-apollo-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import { USERS_QUERY, ALL_USERS_QUERY } from "../../../graphql/queries/user";
 import Legacy from "../../../../services/Legacy";
 import Utility from "../../../../services/Utility";

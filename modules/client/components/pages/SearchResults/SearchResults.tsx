@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { SearchResultsProps } from "./SearchResults.d";
 import { USERS_QUERY } from "../../../graphql/queries/user";
-import { useQuery } from "react-apollo-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import { USER_TRACKS_QUERY } from "../../../graphql/queries/userTrack";
 import { ALL_REVIEWS_QUERY } from "../../../graphql/queries/review";
 import HorizontalScroll from "react-scroll-horizontal";

@@ -3,7 +3,7 @@ import * as React from "react";
 import { ArtistsProps } from "./Artists.d";
 import ArtistCardData from "../../data/ArtistCardData/ArtistCardData";
 import { USERS_QUERY } from "../../../graphql/queries/user";
-import { useQuery } from "react-apollo-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
 
 const Artists: React.FC<ArtistsProps> = () => {

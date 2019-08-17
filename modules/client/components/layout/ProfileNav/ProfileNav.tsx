@@ -5,7 +5,7 @@ import Sidebar from "../../ui/Sidebar/Sidebar";
 import { Button, Menu, Text } from "@blueprintjs/core";
 import MenuItem from "../../ui/MenuItem/MenuItem";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
-import { useQuery } from "react-apollo-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import { USER_QUERY } from "../../../graphql/queries/user";
 import Utility from "../../../../services/Utility";
 import ProfileTabs from "../../ui/ProfileTabs/ProfileTabs";

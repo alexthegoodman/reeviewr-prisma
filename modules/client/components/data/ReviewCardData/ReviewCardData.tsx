@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Dialog, Text } from "@blueprintjs/core";
 import { Image } from "cloudinary-react";
-import { useQuery } from "react-apollo-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import { ImageSizes } from "../../../../defs/imageSizes";
 import Core from "../../../../services/Core";
 import Legacy from "../../../../services/Legacy";

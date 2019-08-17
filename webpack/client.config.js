@@ -139,6 +139,7 @@ module.exports = {
       "process.env.IDENTITY_PROVIDER_HOST": JSON.stringify(
         process.env.IDENTITY_PROVIDER_HOST
       ),
+      "process.env.CLOUDFRONT_URL": JSON.stringify(process.env.CLOUDFRONT_URL),
     }),
 
     // Process index.html and insert script and stylesheet tags for us.
