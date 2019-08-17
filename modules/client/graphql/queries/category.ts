@@ -8,3 +8,30 @@ export const ALL_CATEGORIES = gql`
     }
   }
 `;
+
+export const CATEGORIES_PODS_POSTS = gql`
+  query categoriesPodsPosts {
+    findManyCategory {
+      id
+      itemName
+      pods {
+        id
+        itemName
+        itemMeta {
+          id
+          metaName
+          metaValue
+        }
+        posts {
+          id
+          itemName
+          itemMeta {
+            id
+            metaName
+            metaValue
+          }
+        }
+      }
+    }
+  }
+`;
