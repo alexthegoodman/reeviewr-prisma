@@ -17,8 +17,11 @@ const MiniPostCard: React.FC<MiniPostCardProps> = ({
 
   const filename = legacy.extractMetaValue(post.itemMeta, "contentFilename");
   const imageUrl = core.imagePath("reeviewr-pods", filename, {
-    width: 100,
-    height: 100,
+    resize: {
+      width: 200,
+      height: 200,
+      fit: "fill",
+    },
   });
 
   console.info("mini post card", filename, imageUrl);
