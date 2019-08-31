@@ -22,6 +22,10 @@ export const CATEGORIES_PODS_POSTS = gql`
           metaName
           metaValue
         }
+        members {
+          id
+          userEmail
+        }
         posts(first: 2) {
           id
           itemName

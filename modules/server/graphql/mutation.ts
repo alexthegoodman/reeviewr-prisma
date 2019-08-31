@@ -15,5 +15,18 @@ export const Mutation = objectType({
     t.crud.createOneFavorite();
     t.crud.createOneTag();
     t.crud.createOneCategory();
+
+    t.crud.updateOneUser();
+    t.crud.updateOnePod();
+    t.crud.updateOnePost();
+    t.crud.updateOneReview();
+    t.crud.updateOneAnnotation();
+    t.crud.updateOneQuestion();
+    t.crud.updateOneThread();
+    t.crud.updateOneMessage();
+    t.crud.updateOneNotification();
+    t.crud.updateOneFavorite();
+    t.crud.updateOneTag();
+    t.crud.updateOneCategory();
   },
 });

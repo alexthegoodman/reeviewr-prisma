@@ -14,6 +14,8 @@ export const User = objectType({
     t.model.userDeleted();
     t.model.userMeta();
 
+    t.model.pods();
+    t.model.memberOf();
     t.model.posts();
     t.model.favorites();
     t.model.reviews();
@@ -43,6 +45,7 @@ export const Pod = objectType({
   definition(t) {
     t.model.id();
     t.model.user();
+    t.model.members();
     t.model.itemType();
     t.model.itemStatus();
     t.model.itemUrlSegment();

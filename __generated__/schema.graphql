@@ -52,6 +52,21 @@ input AnnotationCreateWithoutPostInput {
   user: UserCreateOneWithoutUserInput!
 }
 
+input AnnotationCreateWithoutUserInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: AnnotationMetaCreateManyWithoutItemMetaInput
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  post: PostCreateOneWithoutPostInput!
+  updatedAt: DateTime
+}
+
 type AnnotationMeta {
   annotation: Annotation!
   id: ID!
@@ -76,12 +91,175 @@ input AnnotationMetaCreateWithoutAnnotationInput {
   updatedAt: DateTime
 }
 
+input AnnotationMetaUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input AnnotationMetaUpdateManyWithoutAnnotationInput {
+  connect: [AnnotationMetaWhereUniqueInput!]
+  create: [AnnotationMetaCreateWithoutAnnotationInput!]
+  delete: [AnnotationMetaWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneAnnotationWhereInput!]
+  disconnect: [AnnotationMetaWhereUniqueInput!]
+  set: [AnnotationMetaWhereUniqueInput!]
+  update: [AnnotationMetaUpdateWithWhereUniqueWithoutAnnotationInput!]
+  updateMany: [AnnotationMetaUpdateManyWithWhereNestedInput!]
+  upsert: [AnnotationMetaUpsertWithWhereUniqueWithoutAnnotationInput!]
+}
+
+input AnnotationMetaUpdateManyWithWhereNestedInput {
+  data: AnnotationMetaUpdateManyDataInput!
+  where: MutationUpdateOneAnnotationWhereInput!
+}
+
+input AnnotationMetaUpdateWithoutAnnotationDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input AnnotationMetaUpdateWithWhereUniqueWithoutAnnotationInput {
+  data: AnnotationMetaUpdateWithoutAnnotationDataInput!
+  where: AnnotationMetaWhereUniqueInput!
+}
+
+input AnnotationMetaUpsertWithWhereUniqueWithoutAnnotationInput {
+  create: AnnotationMetaCreateWithoutAnnotationInput!
+  update: AnnotationMetaUpdateWithoutAnnotationDataInput!
+  where: AnnotationMetaWhereUniqueInput!
+}
+
 input AnnotationMetaWhereUniqueInput {
   id: ID
 }
 
+input AnnotationUpdateInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: AnnotationMetaUpdateManyWithoutAnnotationInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  post: PostUpdateOneRequiredWithoutAnnotationsInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutAnnotationsInput
+}
+
+input AnnotationUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  updatedAt: DateTime
+}
+
+input AnnotationUpdateManyWithoutPostInput {
+  connect: [AnnotationWhereUniqueInput!]
+  create: [AnnotationCreateWithoutPostInput!]
+  delete: [AnnotationWhereUniqueInput!]
+  deleteMany: [MutationUpdateOnePostWhereInput!]
+  disconnect: [AnnotationWhereUniqueInput!]
+  set: [AnnotationWhereUniqueInput!]
+  update: [AnnotationUpdateWithWhereUniqueWithoutPostInput!]
+  updateMany: [AnnotationUpdateManyWithWhereNestedInput!]
+  upsert: [AnnotationUpsertWithWhereUniqueWithoutPostInput!]
+}
+
+input AnnotationUpdateManyWithoutUserInput {
+  connect: [AnnotationWhereUniqueInput!]
+  create: [AnnotationCreateWithoutUserInput!]
+  delete: [AnnotationWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneUserWhereInput!]
+  disconnect: [AnnotationWhereUniqueInput!]
+  set: [AnnotationWhereUniqueInput!]
+  update: [AnnotationUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [AnnotationUpdateManyWithWhereNestedInput!]
+  upsert: [AnnotationUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input AnnotationUpdateManyWithWhereNestedInput {
+  data: AnnotationUpdateManyDataInput!
+  where: MutationUpdateOneUserWhereInput!
+}
+
+input AnnotationUpdateWithoutPostDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: AnnotationMetaUpdateManyWithoutAnnotationInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutAnnotationsInput
+}
+
+input AnnotationUpdateWithoutUserDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: AnnotationMetaUpdateManyWithoutAnnotationInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  post: PostUpdateOneRequiredWithoutAnnotationsInput
+  updatedAt: DateTime
+}
+
+input AnnotationUpdateWithWhereUniqueWithoutPostInput {
+  data: AnnotationUpdateWithoutPostDataInput!
+  where: AnnotationWhereUniqueInput!
+}
+
+input AnnotationUpdateWithWhereUniqueWithoutUserInput {
+  data: AnnotationUpdateWithoutUserDataInput!
+  where: AnnotationWhereUniqueInput!
+}
+
+input AnnotationUpsertWithWhereUniqueWithoutPostInput {
+  create: AnnotationCreateWithoutPostInput!
+  update: AnnotationUpdateWithoutPostDataInput!
+  where: AnnotationWhereUniqueInput!
+}
+
+input AnnotationUpsertWithWhereUniqueWithoutUserInput {
+  create: AnnotationCreateWithoutUserInput!
+  update: AnnotationUpdateWithoutUserDataInput!
+  where: AnnotationWhereUniqueInput!
+}
+
 input AnnotationWhereUniqueInput {
   id: ID
+}
+
+input BooleanFilter {
+  equals: Boolean
+  not: Boolean
 }
 
 type Category {
@@ -119,6 +297,65 @@ input CategoryCreateWithoutPodsInput {
   updatedAt: DateTime
 }
 
+input CategoryUpdateInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  pods: PodUpdateManyWithoutCategoriesInput
+  updatedAt: DateTime
+}
+
+input CategoryUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  updatedAt: DateTime
+}
+
+input CategoryUpdateManyWithoutPodsInput {
+  connect: [CategoryWhereUniqueInput!]
+  create: [CategoryCreateWithoutPodsInput!]
+  delete: [CategoryWhereUniqueInput!]
+  deleteMany: [MutationUpdateOnePodWhereInput!]
+  disconnect: [CategoryWhereUniqueInput!]
+  set: [CategoryWhereUniqueInput!]
+  update: [CategoryUpdateWithWhereUniqueWithoutPodsInput!]
+  updateMany: [CategoryUpdateManyWithWhereNestedInput!]
+  upsert: [CategoryUpsertWithWhereUniqueWithoutPodsInput!]
+}
+
+input CategoryUpdateManyWithWhereNestedInput {
+  data: CategoryUpdateManyDataInput!
+  where: MutationUpdateOnePodWhereInput!
+}
+
+input CategoryUpdateWithoutPodsDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  updatedAt: DateTime
+}
+
+input CategoryUpdateWithWhereUniqueWithoutPodsInput {
+  data: CategoryUpdateWithoutPodsDataInput!
+  where: CategoryWhereUniqueInput!
+}
+
+input CategoryUpsertWithWhereUniqueWithoutPodsInput {
+  create: CategoryCreateWithoutPodsInput!
+  update: CategoryUpdateWithoutPodsDataInput!
+  where: CategoryWhereUniqueInput!
+}
+
 input CategoryWhereUniqueInput {
   id: ID
 }
@@ -153,6 +390,17 @@ input FavoriteCreateManyWithoutFavoritesInput {
   create: [FavoriteCreateWithoutUserInput!]
 }
 
+input FavoriteCreateWithoutPostInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  updatedAt: DateTime
+  user: UserCreateOneWithoutUserInput!
+}
+
 input FavoriteCreateWithoutUserInput {
   createdAt: DateTime
   id: ID
@@ -164,8 +412,114 @@ input FavoriteCreateWithoutUserInput {
   updatedAt: DateTime
 }
 
+input FavoriteUpdateInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  post: PostUpdateOneRequiredWithoutFavoritesInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutFavoritesInput
+}
+
+input FavoriteUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  updatedAt: DateTime
+}
+
+input FavoriteUpdateManyWithoutPostInput {
+  connect: [FavoriteWhereUniqueInput!]
+  create: [FavoriteCreateWithoutPostInput!]
+  delete: [FavoriteWhereUniqueInput!]
+  deleteMany: [MutationUpdateOnePostWhereInput!]
+  disconnect: [FavoriteWhereUniqueInput!]
+  set: [FavoriteWhereUniqueInput!]
+  update: [FavoriteUpdateWithWhereUniqueWithoutPostInput!]
+  updateMany: [FavoriteUpdateManyWithWhereNestedInput!]
+  upsert: [FavoriteUpsertWithWhereUniqueWithoutPostInput!]
+}
+
+input FavoriteUpdateManyWithoutUserInput {
+  connect: [FavoriteWhereUniqueInput!]
+  create: [FavoriteCreateWithoutUserInput!]
+  delete: [FavoriteWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneUserWhereInput!]
+  disconnect: [FavoriteWhereUniqueInput!]
+  set: [FavoriteWhereUniqueInput!]
+  update: [FavoriteUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [FavoriteUpdateManyWithWhereNestedInput!]
+  upsert: [FavoriteUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input FavoriteUpdateManyWithWhereNestedInput {
+  data: FavoriteUpdateManyDataInput!
+  where: MutationUpdateOneUserWhereInput!
+}
+
+input FavoriteUpdateWithoutPostDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutFavoritesInput
+}
+
+input FavoriteUpdateWithoutUserDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  post: PostUpdateOneRequiredWithoutFavoritesInput
+  updatedAt: DateTime
+}
+
+input FavoriteUpdateWithWhereUniqueWithoutPostInput {
+  data: FavoriteUpdateWithoutPostDataInput!
+  where: FavoriteWhereUniqueInput!
+}
+
+input FavoriteUpdateWithWhereUniqueWithoutUserInput {
+  data: FavoriteUpdateWithoutUserDataInput!
+  where: FavoriteWhereUniqueInput!
+}
+
+input FavoriteUpsertWithWhereUniqueWithoutPostInput {
+  create: FavoriteCreateWithoutPostInput!
+  update: FavoriteUpdateWithoutPostDataInput!
+  where: FavoriteWhereUniqueInput!
+}
+
+input FavoriteUpsertWithWhereUniqueWithoutUserInput {
+  create: FavoriteCreateWithoutUserInput!
+  update: FavoriteUpdateWithoutUserDataInput!
+  where: FavoriteWhereUniqueInput!
+}
+
 input FavoriteWhereUniqueInput {
   id: ID
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: Int
+  notIn: [Int!]
 }
 
 type Message {
@@ -212,6 +566,19 @@ input MessageCreateWithoutThreadInput {
   user: UserCreateOneWithoutUserInput!
 }
 
+input MessageCreateWithoutUserInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: MessageMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  thread: ThreadCreateOneWithoutThreadInput!
+  updatedAt: DateTime
+}
+
 type MessageMeta {
   id: ID!
   message: Message!
@@ -236,8 +603,124 @@ input MessageMetaCreateWithoutMessageInput {
   updatedAt: DateTime
 }
 
+input MessageMetaUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input MessageMetaUpdateManyWithoutMessageInput {
+  connect: [MessageMetaWhereUniqueInput!]
+  create: [MessageMetaCreateWithoutMessageInput!]
+  delete: [MessageMetaWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneMessageWhereInput!]
+  disconnect: [MessageMetaWhereUniqueInput!]
+  set: [MessageMetaWhereUniqueInput!]
+  update: [MessageMetaUpdateWithWhereUniqueWithoutMessageInput!]
+  updateMany: [MessageMetaUpdateManyWithWhereNestedInput!]
+  upsert: [MessageMetaUpsertWithWhereUniqueWithoutMessageInput!]
+}
+
+input MessageMetaUpdateManyWithWhereNestedInput {
+  data: MessageMetaUpdateManyDataInput!
+  where: MutationUpdateOneMessageWhereInput!
+}
+
+input MessageMetaUpdateWithoutMessageDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input MessageMetaUpdateWithWhereUniqueWithoutMessageInput {
+  data: MessageMetaUpdateWithoutMessageDataInput!
+  where: MessageMetaWhereUniqueInput!
+}
+
+input MessageMetaUpsertWithWhereUniqueWithoutMessageInput {
+  create: MessageMetaCreateWithoutMessageInput!
+  update: MessageMetaUpdateWithoutMessageDataInput!
+  where: MessageMetaWhereUniqueInput!
+}
+
 input MessageMetaWhereUniqueInput {
   id: ID
+}
+
+input MessageUpdateInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: MessageMetaUpdateManyWithoutMessageInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  thread: ThreadUpdateOneRequiredWithoutMessageInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutMessageInput
+}
+
+input MessageUpdateOneWithoutThreadInput {
+  connect: MessageWhereUniqueInput
+  create: MessageCreateWithoutThreadInput
+  delete: Boolean
+  disconnect: Boolean
+  update: MessageUpdateWithoutThreadDataInput
+  upsert: MessageUpsertWithoutThreadInput
+}
+
+input MessageUpdateOneWithoutUserInput {
+  connect: MessageWhereUniqueInput
+  create: MessageCreateWithoutUserInput
+  delete: Boolean
+  disconnect: Boolean
+  update: MessageUpdateWithoutUserDataInput
+  upsert: MessageUpsertWithoutUserInput
+}
+
+input MessageUpdateWithoutThreadDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: MessageMetaUpdateManyWithoutMessageInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutMessageInput
+}
+
+input MessageUpdateWithoutUserDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: MessageMetaUpdateManyWithoutMessageInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  thread: ThreadUpdateOneRequiredWithoutMessageInput
+  updatedAt: DateTime
+}
+
+input MessageUpsertWithoutThreadInput {
+  create: MessageCreateWithoutThreadInput!
+  update: MessageUpdateWithoutThreadDataInput!
+}
+
+input MessageUpsertWithoutUserInput {
+  create: MessageCreateWithoutUserInput!
+  update: MessageUpdateWithoutUserDataInput!
 }
 
 input MessageWhereUniqueInput {
@@ -257,6 +740,299 @@ type Mutation {
   createOneTag(data: TagCreateInput!): Tag!
   createOneThread(data: ThreadCreateInput!): Thread!
   createOneUser(data: UserCreateInput!): User!
+  updateOneAnnotation(data: AnnotationUpdateInput!, where: AnnotationWhereUniqueInput!): Annotation
+  updateOneCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category
+  updateOneFavorite(data: FavoriteUpdateInput!, where: FavoriteWhereUniqueInput!): Favorite
+  updateOneMessage(data: MessageUpdateInput!, where: MessageWhereUniqueInput!): Message
+  updateOneNotification(data: NotificationUpdateInput!, where: NotificationWhereUniqueInput!): Notification
+  updateOnePod(data: PodUpdateInput!, where: PodWhereUniqueInput!): Pod
+  updateOnePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
+  updateOneQuestion(data: QuestionUpdateInput!, where: QuestionWhereUniqueInput!): Question
+  updateOneReview(data: ReviewUpdateInput!, where: ReviewWhereUniqueInput!): Review
+  updateOneTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
+  updateOneThread(data: ThreadUpdateInput!, where: ThreadWhereUniqueInput!): Thread
+  updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+}
+
+input MutationUpdateOneAnnotationFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
+}
+
+input MutationUpdateOneAnnotationWhereInput {
+  AND: [MutationUpdateOneAnnotationWhereInput!]
+  createdAt: MutationUpdateOneAnnotationFilter
+  id: StringFilter
+  metaDeleted: BooleanFilter
+  metaName: StringFilter
+  metaType: StringFilter
+  metaValue: StringFilter
+  NOT: [MutationUpdateOneAnnotationWhereInput!]
+  OR: [MutationUpdateOneAnnotationWhereInput!]
+  updatedAt: MutationUpdateOneAnnotationFilter
+}
+
+input MutationUpdateOneCategoryFilter {
+  every: MutationUpdateOneCategoryWhereInput
+  none: MutationUpdateOneCategoryWhereInput
+  some: MutationUpdateOneCategoryWhereInput
+}
+
+input MutationUpdateOneCategoryWhereInput {
+  AND: [MutationUpdateOneCategoryWhereInput!]
+  categories: MutationUpdateOneCategoryFilter
+  createdAt: MutationUpdateOneCategoryFilter
+  id: StringFilter
+  itemContent: StringFilter
+  itemDeleted: BooleanFilter
+  itemMeta: MutationUpdateOneCategoryFilter
+  itemName: StringFilter
+  itemStatus: StringFilter
+  itemType: StringFilter
+  itemUrlSegment: StringFilter
+  members: MutationUpdateOneCategoryFilter
+  NOT: [MutationUpdateOneCategoryWhereInput!]
+  OR: [MutationUpdateOneCategoryWhereInput!]
+  posts: MutationUpdateOneCategoryFilter
+  updatedAt: MutationUpdateOneCategoryFilter
+}
+
+input MutationUpdateOneMessageFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
+}
+
+input MutationUpdateOneMessageWhereInput {
+  AND: [MutationUpdateOneMessageWhereInput!]
+  createdAt: MutationUpdateOneMessageFilter
+  id: StringFilter
+  metaDeleted: BooleanFilter
+  metaName: StringFilter
+  metaType: StringFilter
+  metaValue: StringFilter
+  NOT: [MutationUpdateOneMessageWhereInput!]
+  OR: [MutationUpdateOneMessageWhereInput!]
+  updatedAt: MutationUpdateOneMessageFilter
+}
+
+input MutationUpdateOneNotificationFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
+}
+
+input MutationUpdateOneNotificationWhereInput {
+  AND: [MutationUpdateOneNotificationWhereInput!]
+  createdAt: MutationUpdateOneNotificationFilter
+  id: StringFilter
+  metaDeleted: BooleanFilter
+  metaName: StringFilter
+  metaType: StringFilter
+  metaValue: StringFilter
+  NOT: [MutationUpdateOneNotificationWhereInput!]
+  OR: [MutationUpdateOneNotificationWhereInput!]
+  updatedAt: MutationUpdateOneNotificationFilter
+}
+
+input MutationUpdateOnePodFilter {
+  every: MutationUpdateOnePodWhereInput
+  none: MutationUpdateOnePodWhereInput
+  some: MutationUpdateOnePodWhereInput
+}
+
+input MutationUpdateOnePodWhereInput {
+  AND: [MutationUpdateOnePodWhereInput!]
+  annotations: MutationUpdateOnePodFilter
+  confirmHash: StringFilter
+  createdAt: MutationUpdateOnePodFilter
+  favorites: MutationUpdateOnePodFilter
+  followers: MutationUpdateOnePodFilter
+  following: MutationUpdateOnePodFilter
+  forgotHash: StringFilter
+  id: StringFilter
+  memberOf: MutationUpdateOnePodFilter
+  NOT: [MutationUpdateOnePodWhereInput!]
+  notifications: MutationUpdateOnePodFilter
+  OR: [MutationUpdateOnePodWhereInput!]
+  pods: MutationUpdateOnePodFilter
+  posts: MutationUpdateOnePodFilter
+  privateHash: StringFilter
+  publicHash: StringFilter
+  questions: MutationUpdateOnePodFilter
+  reviews: MutationUpdateOnePodFilter
+  threads: MutationUpdateOnePodFilter
+  updatedAt: MutationUpdateOnePodFilter
+  userConfirmed: IntFilter
+  userDeleted: BooleanFilter
+  userEmail: StringFilter
+  userMeta: MutationUpdateOnePodFilter
+  userPassword: StringFilter
+  userType: IntFilter
+}
+
+input MutationUpdateOnePostFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
+}
+
+input MutationUpdateOnePostWhereInput {
+  AND: [MutationUpdateOnePostWhereInput!]
+  createdAt: MutationUpdateOnePostFilter
+  id: StringFilter
+  metaDeleted: BooleanFilter
+  metaName: StringFilter
+  metaType: StringFilter
+  metaValue: StringFilter
+  NOT: [MutationUpdateOnePostWhereInput!]
+  OR: [MutationUpdateOnePostWhereInput!]
+  updatedAt: MutationUpdateOnePostFilter
+}
+
+input MutationUpdateOneQuestionFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
+}
+
+input MutationUpdateOneQuestionWhereInput {
+  AND: [MutationUpdateOneQuestionWhereInput!]
+  createdAt: MutationUpdateOneQuestionFilter
+  id: StringFilter
+  metaDeleted: BooleanFilter
+  metaName: StringFilter
+  metaType: StringFilter
+  metaValue: StringFilter
+  NOT: [MutationUpdateOneQuestionWhereInput!]
+  OR: [MutationUpdateOneQuestionWhereInput!]
+  updatedAt: MutationUpdateOneQuestionFilter
+}
+
+input MutationUpdateOneReviewFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
+}
+
+input MutationUpdateOneReviewWhereInput {
+  AND: [MutationUpdateOneReviewWhereInput!]
+  createdAt: MutationUpdateOneReviewFilter
+  id: StringFilter
+  metaDeleted: BooleanFilter
+  metaName: StringFilter
+  metaType: StringFilter
+  metaValue: StringFilter
+  NOT: [MutationUpdateOneReviewWhereInput!]
+  OR: [MutationUpdateOneReviewWhereInput!]
+  updatedAt: MutationUpdateOneReviewFilter
+}
+
+input MutationUpdateOneTagFilter {
+  every: MutationUpdateOneTagWhereInput
+  none: MutationUpdateOneTagWhereInput
+  some: MutationUpdateOneTagWhereInput
+}
+
+input MutationUpdateOneTagWhereInput {
+  AND: [MutationUpdateOneTagWhereInput!]
+  annotations: MutationUpdateOneTagFilter
+  createdAt: MutationUpdateOneTagFilter
+  favorites: MutationUpdateOneTagFilter
+  id: StringFilter
+  itemContent: StringFilter
+  itemDeleted: BooleanFilter
+  itemMeta: MutationUpdateOneTagFilter
+  itemMimeType: StringFilter
+  itemName: StringFilter
+  itemStatus: StringFilter
+  itemType: StringFilter
+  itemUrlSegment: StringFilter
+  NOT: [MutationUpdateOneTagWhereInput!]
+  OR: [MutationUpdateOneTagWhereInput!]
+  questions: MutationUpdateOneTagFilter
+  reviews: MutationUpdateOneTagFilter
+  tags: MutationUpdateOneTagFilter
+  updatedAt: MutationUpdateOneTagFilter
+}
+
+input MutationUpdateOneThreadFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
+}
+
+input MutationUpdateOneThreadWhereInput {
+  AND: [MutationUpdateOneThreadWhereInput!]
+  createdAt: MutationUpdateOneThreadFilter
+  id: StringFilter
+  metaDeleted: BooleanFilter
+  metaName: StringFilter
+  metaType: StringFilter
+  metaValue: StringFilter
+  NOT: [MutationUpdateOneThreadWhereInput!]
+  OR: [MutationUpdateOneThreadWhereInput!]
+  updatedAt: MutationUpdateOneThreadFilter
+}
+
+input MutationUpdateOneUserFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
+}
+
+input MutationUpdateOneUserWhereInput {
+  AND: [MutationUpdateOneUserWhereInput!]
+  createdAt: MutationUpdateOneUserFilter
+  id: StringFilter
+  metaDeleted: BooleanFilter
+  metaName: StringFilter
+  metaType: StringFilter
+  metaValue: StringFilter
+  NOT: [MutationUpdateOneUserWhereInput!]
+  OR: [MutationUpdateOneUserWhereInput!]
+  updatedAt: MutationUpdateOneUserFilter
 }
 
 type Notification {
@@ -345,8 +1121,149 @@ input NotificationMetaCreateWithoutNotificationInput {
   updatedAt: DateTime
 }
 
+input NotificationMetaUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input NotificationMetaUpdateManyWithoutNotificationInput {
+  connect: [NotificationMetaWhereUniqueInput!]
+  create: [NotificationMetaCreateWithoutNotificationInput!]
+  delete: [NotificationMetaWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneNotificationWhereInput!]
+  disconnect: [NotificationMetaWhereUniqueInput!]
+  set: [NotificationMetaWhereUniqueInput!]
+  update: [NotificationMetaUpdateWithWhereUniqueWithoutNotificationInput!]
+  updateMany: [NotificationMetaUpdateManyWithWhereNestedInput!]
+  upsert: [NotificationMetaUpsertWithWhereUniqueWithoutNotificationInput!]
+}
+
+input NotificationMetaUpdateManyWithWhereNestedInput {
+  data: NotificationMetaUpdateManyDataInput!
+  where: MutationUpdateOneNotificationWhereInput!
+}
+
+input NotificationMetaUpdateWithoutNotificationDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input NotificationMetaUpdateWithWhereUniqueWithoutNotificationInput {
+  data: NotificationMetaUpdateWithoutNotificationDataInput!
+  where: NotificationMetaWhereUniqueInput!
+}
+
+input NotificationMetaUpsertWithWhereUniqueWithoutNotificationInput {
+  create: NotificationMetaCreateWithoutNotificationInput!
+  update: NotificationMetaUpdateWithoutNotificationDataInput!
+  where: NotificationMetaWhereUniqueInput!
+}
+
 input NotificationMetaWhereUniqueInput {
   id: ID
+}
+
+input NotificationUpdateInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: NotificationMetaUpdateManyWithoutNotificationInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  thread: ThreadUpdateOneRequiredWithoutNotificationInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutNotificationsInput
+}
+
+input NotificationUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemName: String
+  itemStatus: String
+  itemType: String
+  updatedAt: DateTime
+}
+
+input NotificationUpdateManyWithoutUserInput {
+  connect: [NotificationWhereUniqueInput!]
+  create: [NotificationCreateWithoutUserInput!]
+  delete: [NotificationWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneUserWhereInput!]
+  disconnect: [NotificationWhereUniqueInput!]
+  set: [NotificationWhereUniqueInput!]
+  update: [NotificationUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [NotificationUpdateManyWithWhereNestedInput!]
+  upsert: [NotificationUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input NotificationUpdateManyWithWhereNestedInput {
+  data: NotificationUpdateManyDataInput!
+  where: MutationUpdateOneUserWhereInput!
+}
+
+input NotificationUpdateOneWithoutThreadInput {
+  connect: NotificationWhereUniqueInput
+  create: NotificationCreateWithoutThreadInput
+  delete: Boolean
+  disconnect: Boolean
+  update: NotificationUpdateWithoutThreadDataInput
+  upsert: NotificationUpsertWithoutThreadInput
+}
+
+input NotificationUpdateWithoutThreadDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: NotificationMetaUpdateManyWithoutNotificationInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutNotificationsInput
+}
+
+input NotificationUpdateWithoutUserDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: NotificationMetaUpdateManyWithoutNotificationInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  thread: ThreadUpdateOneRequiredWithoutNotificationInput
+  updatedAt: DateTime
+}
+
+input NotificationUpdateWithWhereUniqueWithoutUserInput {
+  data: NotificationUpdateWithoutUserDataInput!
+  where: NotificationWhereUniqueInput!
+}
+
+input NotificationUpsertWithoutThreadInput {
+  create: NotificationCreateWithoutThreadInput!
+  update: NotificationUpdateWithoutThreadDataInput!
+}
+
+input NotificationUpsertWithWhereUniqueWithoutUserInput {
+  create: NotificationCreateWithoutUserInput!
+  update: NotificationUpdateWithoutUserDataInput!
+  where: NotificationWhereUniqueInput!
 }
 
 input NotificationWhereUniqueInput {
@@ -363,6 +1280,7 @@ type Pod {
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
+  members(after: String, before: String, first: Int, last: Int, skip: Int): [User!]
   posts(after: String, before: String, first: Int, last: Int, skip: Int): [Post!]
   user: User!
 }
@@ -378,9 +1296,15 @@ input PodCreateInput {
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
+  members: UserCreateManyWithoutMembersInput
   posts: PostCreateManyWithoutPostsInput
   updatedAt: DateTime
   user: UserCreateOneWithoutUserInput!
+}
+
+input PodCreateManyWithoutMemberOfInput {
+  connect: [PodWhereUniqueInput!]
+  create: [PodCreateWithoutMembersInput!]
 }
 
 input PodCreateManyWithoutPodsInput {
@@ -391,6 +1315,38 @@ input PodCreateManyWithoutPodsInput {
 input PodCreateOneWithoutPodInput {
   connect: PodWhereUniqueInput
   create: PodCreateWithoutPostsInput
+}
+
+input PodCreateWithoutCategoriesInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: PodMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  members: UserCreateManyWithoutMembersInput
+  posts: PostCreateManyWithoutPostsInput
+  updatedAt: DateTime
+  user: UserCreateOneWithoutUserInput!
+}
+
+input PodCreateWithoutMembersInput {
+  categories: CategoryCreateManyWithoutCategoriesInput
+  createdAt: DateTime
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: PodMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  posts: PostCreateManyWithoutPostsInput
+  updatedAt: DateTime
+  user: UserCreateOneWithoutUserInput!
 }
 
 input PodCreateWithoutPostsInput {
@@ -404,6 +1360,7 @@ input PodCreateWithoutPostsInput {
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
+  members: UserCreateManyWithoutMembersInput
   updatedAt: DateTime
   user: UserCreateOneWithoutUserInput!
 }
@@ -419,6 +1376,7 @@ input PodCreateWithoutUserInput {
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
+  members: UserCreateManyWithoutMembersInput
   posts: PostCreateManyWithoutPostsInput
   updatedAt: DateTime
 }
@@ -447,8 +1405,235 @@ input PodMetaCreateWithoutPodInput {
   updatedAt: DateTime
 }
 
+input PodMetaUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input PodMetaUpdateManyWithoutPodInput {
+  connect: [PodMetaWhereUniqueInput!]
+  create: [PodMetaCreateWithoutPodInput!]
+  delete: [PodMetaWhereUniqueInput!]
+  deleteMany: [MutationUpdateOnePodWhereInput!]
+  disconnect: [PodMetaWhereUniqueInput!]
+  set: [PodMetaWhereUniqueInput!]
+  update: [PodMetaUpdateWithWhereUniqueWithoutPodInput!]
+  updateMany: [PodMetaUpdateManyWithWhereNestedInput!]
+  upsert: [PodMetaUpsertWithWhereUniqueWithoutPodInput!]
+}
+
+input PodMetaUpdateManyWithWhereNestedInput {
+  data: PodMetaUpdateManyDataInput!
+  where: MutationUpdateOnePodWhereInput!
+}
+
+input PodMetaUpdateWithoutPodDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input PodMetaUpdateWithWhereUniqueWithoutPodInput {
+  data: PodMetaUpdateWithoutPodDataInput!
+  where: PodMetaWhereUniqueInput!
+}
+
+input PodMetaUpsertWithWhereUniqueWithoutPodInput {
+  create: PodMetaCreateWithoutPodInput!
+  update: PodMetaUpdateWithoutPodDataInput!
+  where: PodMetaWhereUniqueInput!
+}
+
 input PodMetaWhereUniqueInput {
   id: ID
+}
+
+input PodUpdateInput {
+  categories: CategoryUpdateManyWithoutPodsInput
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: PodMetaUpdateManyWithoutPodInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  members: UserUpdateManyWithoutMemberOfInput
+  posts: PostUpdateManyWithoutPodInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutPodsInput
+}
+
+input PodUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  updatedAt: DateTime
+}
+
+input PodUpdateManyWithoutCategoriesInput {
+  connect: [PodWhereUniqueInput!]
+  create: [PodCreateWithoutCategoriesInput!]
+  delete: [PodWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneCategoryWhereInput!]
+  disconnect: [PodWhereUniqueInput!]
+  set: [PodWhereUniqueInput!]
+  update: [PodUpdateWithWhereUniqueWithoutCategoriesInput!]
+  updateMany: [PodUpdateManyWithWhereNestedInput!]
+  upsert: [PodUpsertWithWhereUniqueWithoutCategoriesInput!]
+}
+
+input PodUpdateManyWithoutMembersInput {
+  connect: [PodWhereUniqueInput!]
+  create: [PodCreateWithoutMembersInput!]
+  delete: [PodWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneUserWhereInput!]
+  disconnect: [PodWhereUniqueInput!]
+  set: [PodWhereUniqueInput!]
+  update: [PodUpdateWithWhereUniqueWithoutMembersInput!]
+  updateMany: [PodUpdateManyWithWhereNestedInput!]
+  upsert: [PodUpsertWithWhereUniqueWithoutMembersInput!]
+}
+
+input PodUpdateManyWithoutUserInput {
+  connect: [PodWhereUniqueInput!]
+  create: [PodCreateWithoutUserInput!]
+  delete: [PodWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneUserWhereInput!]
+  disconnect: [PodWhereUniqueInput!]
+  set: [PodWhereUniqueInput!]
+  update: [PodUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [PodUpdateManyWithWhereNestedInput!]
+  upsert: [PodUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input PodUpdateManyWithWhereNestedInput {
+  data: PodUpdateManyDataInput!
+  where: MutationUpdateOneUserWhereInput!
+}
+
+input PodUpdateOneRequiredWithoutPostsInput {
+  connect: PodWhereUniqueInput
+  create: PodCreateWithoutPostsInput
+  update: PodUpdateWithoutPostsDataInput
+  upsert: PodUpsertWithoutPostsInput
+}
+
+input PodUpdateWithoutCategoriesDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: PodMetaUpdateManyWithoutPodInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  members: UserUpdateManyWithoutMemberOfInput
+  posts: PostUpdateManyWithoutPodInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutPodsInput
+}
+
+input PodUpdateWithoutMembersDataInput {
+  categories: CategoryUpdateManyWithoutPodsInput
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: PodMetaUpdateManyWithoutPodInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  posts: PostUpdateManyWithoutPodInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutPodsInput
+}
+
+input PodUpdateWithoutPostsDataInput {
+  categories: CategoryUpdateManyWithoutPodsInput
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: PodMetaUpdateManyWithoutPodInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  members: UserUpdateManyWithoutMemberOfInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutPodsInput
+}
+
+input PodUpdateWithoutUserDataInput {
+  categories: CategoryUpdateManyWithoutPodsInput
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: PodMetaUpdateManyWithoutPodInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  members: UserUpdateManyWithoutMemberOfInput
+  posts: PostUpdateManyWithoutPodInput
+  updatedAt: DateTime
+}
+
+input PodUpdateWithWhereUniqueWithoutCategoriesInput {
+  data: PodUpdateWithoutCategoriesDataInput!
+  where: PodWhereUniqueInput!
+}
+
+input PodUpdateWithWhereUniqueWithoutMembersInput {
+  data: PodUpdateWithoutMembersDataInput!
+  where: PodWhereUniqueInput!
+}
+
+input PodUpdateWithWhereUniqueWithoutUserInput {
+  data: PodUpdateWithoutUserDataInput!
+  where: PodWhereUniqueInput!
+}
+
+input PodUpsertWithoutPostsInput {
+  create: PodCreateWithoutPostsInput!
+  update: PodUpdateWithoutPostsDataInput!
+}
+
+input PodUpsertWithWhereUniqueWithoutCategoriesInput {
+  create: PodCreateWithoutCategoriesInput!
+  update: PodUpdateWithoutCategoriesDataInput!
+  where: PodWhereUniqueInput!
+}
+
+input PodUpsertWithWhereUniqueWithoutMembersInput {
+  create: PodCreateWithoutMembersInput!
+  update: PodUpdateWithoutMembersDataInput!
+  where: PodWhereUniqueInput!
+}
+
+input PodUpsertWithWhereUniqueWithoutUserInput {
+  create: PodCreateWithoutUserInput!
+  update: PodUpdateWithoutUserDataInput!
+  where: PodWhereUniqueInput!
 }
 
 input PodWhereUniqueInput {
@@ -505,6 +1690,26 @@ input PostCreateOneWithoutPostInput {
   create: PostCreateWithoutFavoritesInput
 }
 
+input PostCreateWithoutAnnotationsInput {
+  createdAt: DateTime
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: PostMetaCreateManyWithoutItemMetaInput
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  pod: PodCreateOneWithoutPodInput!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
+  tags: TagCreateManyWithoutTagsInput
+  updatedAt: DateTime
+  user: UserCreateOneWithoutUserInput!
+}
+
 input PostCreateWithoutFavoritesInput {
   annotations: AnnotationCreateManyWithoutAnnotationsInput
   createdAt: DateTime
@@ -521,6 +1726,86 @@ input PostCreateWithoutFavoritesInput {
   questions: QuestionCreateManyWithoutQuestionsInput
   reviews: ReviewCreateManyWithoutReviewsInput
   tags: TagCreateManyWithoutTagsInput
+  updatedAt: DateTime
+  user: UserCreateOneWithoutUserInput!
+}
+
+input PostCreateWithoutPodInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  createdAt: DateTime
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: PostMetaCreateManyWithoutItemMetaInput
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
+  tags: TagCreateManyWithoutTagsInput
+  updatedAt: DateTime
+  user: UserCreateOneWithoutUserInput!
+}
+
+input PostCreateWithoutQuestionsInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  createdAt: DateTime
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: PostMetaCreateManyWithoutItemMetaInput
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  pod: PodCreateOneWithoutPodInput!
+  reviews: ReviewCreateManyWithoutReviewsInput
+  tags: TagCreateManyWithoutTagsInput
+  updatedAt: DateTime
+  user: UserCreateOneWithoutUserInput!
+}
+
+input PostCreateWithoutReviewsInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  createdAt: DateTime
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: PostMetaCreateManyWithoutItemMetaInput
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  pod: PodCreateOneWithoutPodInput!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  tags: TagCreateManyWithoutTagsInput
+  updatedAt: DateTime
+  user: UserCreateOneWithoutUserInput!
+}
+
+input PostCreateWithoutTagsInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  createdAt: DateTime
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: PostMetaCreateManyWithoutItemMetaInput
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  pod: PodCreateOneWithoutPodInput!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
   updatedAt: DateTime
   user: UserCreateOneWithoutUserInput!
 }
@@ -569,8 +1854,352 @@ input PostMetaCreateWithoutPostInput {
   updatedAt: DateTime
 }
 
+input PostMetaUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input PostMetaUpdateManyWithoutPostInput {
+  connect: [PostMetaWhereUniqueInput!]
+  create: [PostMetaCreateWithoutPostInput!]
+  delete: [PostMetaWhereUniqueInput!]
+  deleteMany: [MutationUpdateOnePostWhereInput!]
+  disconnect: [PostMetaWhereUniqueInput!]
+  set: [PostMetaWhereUniqueInput!]
+  update: [PostMetaUpdateWithWhereUniqueWithoutPostInput!]
+  updateMany: [PostMetaUpdateManyWithWhereNestedInput!]
+  upsert: [PostMetaUpsertWithWhereUniqueWithoutPostInput!]
+}
+
+input PostMetaUpdateManyWithWhereNestedInput {
+  data: PostMetaUpdateManyDataInput!
+  where: MutationUpdateOnePostWhereInput!
+}
+
+input PostMetaUpdateWithoutPostDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input PostMetaUpdateWithWhereUniqueWithoutPostInput {
+  data: PostMetaUpdateWithoutPostDataInput!
+  where: PostMetaWhereUniqueInput!
+}
+
+input PostMetaUpsertWithWhereUniqueWithoutPostInput {
+  create: PostMetaCreateWithoutPostInput!
+  update: PostMetaUpdateWithoutPostDataInput!
+  where: PostMetaWhereUniqueInput!
+}
+
 input PostMetaWhereUniqueInput {
   id: ID
+}
+
+input PostUpdateInput {
+  annotations: AnnotationUpdateManyWithoutPostInput
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutPostInput
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: PostMetaUpdateManyWithoutPostInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  pod: PodUpdateOneRequiredWithoutPostsInput
+  questions: QuestionUpdateManyWithoutPostInput
+  reviews: ReviewUpdateManyWithoutPostInput
+  tags: TagUpdateManyWithoutPostsInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutPostsInput
+}
+
+input PostUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  updatedAt: DateTime
+}
+
+input PostUpdateManyWithoutPodInput {
+  connect: [PostWhereUniqueInput!]
+  create: [PostCreateWithoutPodInput!]
+  delete: [PostWhereUniqueInput!]
+  deleteMany: [MutationUpdateOnePodWhereInput!]
+  disconnect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutPodInput!]
+  updateMany: [PostUpdateManyWithWhereNestedInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutPodInput!]
+}
+
+input PostUpdateManyWithoutTagsInput {
+  connect: [PostWhereUniqueInput!]
+  create: [PostCreateWithoutTagsInput!]
+  delete: [PostWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneTagWhereInput!]
+  disconnect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutTagsInput!]
+  updateMany: [PostUpdateManyWithWhereNestedInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutTagsInput!]
+}
+
+input PostUpdateManyWithoutUserInput {
+  connect: [PostWhereUniqueInput!]
+  create: [PostCreateWithoutUserInput!]
+  delete: [PostWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneUserWhereInput!]
+  disconnect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [PostUpdateManyWithWhereNestedInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input PostUpdateManyWithWhereNestedInput {
+  data: PostUpdateManyDataInput!
+  where: MutationUpdateOneUserWhereInput!
+}
+
+input PostUpdateOneRequiredWithoutAnnotationsInput {
+  connect: PostWhereUniqueInput
+  create: PostCreateWithoutAnnotationsInput
+  update: PostUpdateWithoutAnnotationsDataInput
+  upsert: PostUpsertWithoutAnnotationsInput
+}
+
+input PostUpdateOneRequiredWithoutFavoritesInput {
+  connect: PostWhereUniqueInput
+  create: PostCreateWithoutFavoritesInput
+  update: PostUpdateWithoutFavoritesDataInput
+  upsert: PostUpsertWithoutFavoritesInput
+}
+
+input PostUpdateOneRequiredWithoutQuestionsInput {
+  connect: PostWhereUniqueInput
+  create: PostCreateWithoutQuestionsInput
+  update: PostUpdateWithoutQuestionsDataInput
+  upsert: PostUpsertWithoutQuestionsInput
+}
+
+input PostUpdateOneRequiredWithoutReviewsInput {
+  connect: PostWhereUniqueInput
+  create: PostCreateWithoutReviewsInput
+  update: PostUpdateWithoutReviewsDataInput
+  upsert: PostUpsertWithoutReviewsInput
+}
+
+input PostUpdateWithoutAnnotationsDataInput {
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutPostInput
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: PostMetaUpdateManyWithoutPostInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  pod: PodUpdateOneRequiredWithoutPostsInput
+  questions: QuestionUpdateManyWithoutPostInput
+  reviews: ReviewUpdateManyWithoutPostInput
+  tags: TagUpdateManyWithoutPostsInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutPostsInput
+}
+
+input PostUpdateWithoutFavoritesDataInput {
+  annotations: AnnotationUpdateManyWithoutPostInput
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: PostMetaUpdateManyWithoutPostInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  pod: PodUpdateOneRequiredWithoutPostsInput
+  questions: QuestionUpdateManyWithoutPostInput
+  reviews: ReviewUpdateManyWithoutPostInput
+  tags: TagUpdateManyWithoutPostsInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutPostsInput
+}
+
+input PostUpdateWithoutPodDataInput {
+  annotations: AnnotationUpdateManyWithoutPostInput
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutPostInput
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: PostMetaUpdateManyWithoutPostInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  questions: QuestionUpdateManyWithoutPostInput
+  reviews: ReviewUpdateManyWithoutPostInput
+  tags: TagUpdateManyWithoutPostsInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutPostsInput
+}
+
+input PostUpdateWithoutQuestionsDataInput {
+  annotations: AnnotationUpdateManyWithoutPostInput
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutPostInput
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: PostMetaUpdateManyWithoutPostInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  pod: PodUpdateOneRequiredWithoutPostsInput
+  reviews: ReviewUpdateManyWithoutPostInput
+  tags: TagUpdateManyWithoutPostsInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutPostsInput
+}
+
+input PostUpdateWithoutReviewsDataInput {
+  annotations: AnnotationUpdateManyWithoutPostInput
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutPostInput
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: PostMetaUpdateManyWithoutPostInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  pod: PodUpdateOneRequiredWithoutPostsInput
+  questions: QuestionUpdateManyWithoutPostInput
+  tags: TagUpdateManyWithoutPostsInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutPostsInput
+}
+
+input PostUpdateWithoutTagsDataInput {
+  annotations: AnnotationUpdateManyWithoutPostInput
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutPostInput
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: PostMetaUpdateManyWithoutPostInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  pod: PodUpdateOneRequiredWithoutPostsInput
+  questions: QuestionUpdateManyWithoutPostInput
+  reviews: ReviewUpdateManyWithoutPostInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutPostsInput
+}
+
+input PostUpdateWithoutUserDataInput {
+  annotations: AnnotationUpdateManyWithoutPostInput
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutPostInput
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: PostMetaUpdateManyWithoutPostInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  pod: PodUpdateOneRequiredWithoutPostsInput
+  questions: QuestionUpdateManyWithoutPostInput
+  reviews: ReviewUpdateManyWithoutPostInput
+  tags: TagUpdateManyWithoutPostsInput
+  updatedAt: DateTime
+}
+
+input PostUpdateWithWhereUniqueWithoutPodInput {
+  data: PostUpdateWithoutPodDataInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostUpdateWithWhereUniqueWithoutTagsInput {
+  data: PostUpdateWithoutTagsDataInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostUpdateWithWhereUniqueWithoutUserInput {
+  data: PostUpdateWithoutUserDataInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostUpsertWithoutAnnotationsInput {
+  create: PostCreateWithoutAnnotationsInput!
+  update: PostUpdateWithoutAnnotationsDataInput!
+}
+
+input PostUpsertWithoutFavoritesInput {
+  create: PostCreateWithoutFavoritesInput!
+  update: PostUpdateWithoutFavoritesDataInput!
+}
+
+input PostUpsertWithoutQuestionsInput {
+  create: PostCreateWithoutQuestionsInput!
+  update: PostUpdateWithoutQuestionsDataInput!
+}
+
+input PostUpsertWithoutReviewsInput {
+  create: PostCreateWithoutReviewsInput!
+  update: PostUpdateWithoutReviewsDataInput!
+}
+
+input PostUpsertWithWhereUniqueWithoutPodInput {
+  create: PostCreateWithoutPodInput!
+  update: PostUpdateWithoutPodDataInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostUpsertWithWhereUniqueWithoutTagsInput {
+  create: PostCreateWithoutTagsInput!
+  update: PostUpdateWithoutTagsDataInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostUpsertWithWhereUniqueWithoutUserInput {
+  create: PostCreateWithoutUserInput!
+  update: PostUpdateWithoutUserDataInput!
+  where: PostWhereUniqueInput!
 }
 
 input PostWhereUniqueInput {
@@ -654,6 +2283,21 @@ input QuestionCreateWithoutPostInput {
   user: UserCreateOneWithoutUserInput!
 }
 
+input QuestionCreateWithoutUserInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: QuestionMetaCreateManyWithoutItemMetaInput
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  post: PostCreateOneWithoutPostInput!
+  updatedAt: DateTime
+}
+
 type QuestionMeta {
   id: ID!
   metaDeleted: Boolean!
@@ -678,8 +2322,166 @@ input QuestionMetaCreateWithoutQuestionInput {
   updatedAt: DateTime
 }
 
+input QuestionMetaUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input QuestionMetaUpdateManyWithoutQuestionInput {
+  connect: [QuestionMetaWhereUniqueInput!]
+  create: [QuestionMetaCreateWithoutQuestionInput!]
+  delete: [QuestionMetaWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneQuestionWhereInput!]
+  disconnect: [QuestionMetaWhereUniqueInput!]
+  set: [QuestionMetaWhereUniqueInput!]
+  update: [QuestionMetaUpdateWithWhereUniqueWithoutQuestionInput!]
+  updateMany: [QuestionMetaUpdateManyWithWhereNestedInput!]
+  upsert: [QuestionMetaUpsertWithWhereUniqueWithoutQuestionInput!]
+}
+
+input QuestionMetaUpdateManyWithWhereNestedInput {
+  data: QuestionMetaUpdateManyDataInput!
+  where: MutationUpdateOneQuestionWhereInput!
+}
+
+input QuestionMetaUpdateWithoutQuestionDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input QuestionMetaUpdateWithWhereUniqueWithoutQuestionInput {
+  data: QuestionMetaUpdateWithoutQuestionDataInput!
+  where: QuestionMetaWhereUniqueInput!
+}
+
+input QuestionMetaUpsertWithWhereUniqueWithoutQuestionInput {
+  create: QuestionMetaCreateWithoutQuestionInput!
+  update: QuestionMetaUpdateWithoutQuestionDataInput!
+  where: QuestionMetaWhereUniqueInput!
+}
+
 input QuestionMetaWhereUniqueInput {
   id: ID
+}
+
+input QuestionUpdateInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: QuestionMetaUpdateManyWithoutQuestionInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  post: PostUpdateOneRequiredWithoutQuestionsInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutQuestionsInput
+}
+
+input QuestionUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  updatedAt: DateTime
+}
+
+input QuestionUpdateManyWithoutPostInput {
+  connect: [QuestionWhereUniqueInput!]
+  create: [QuestionCreateWithoutPostInput!]
+  delete: [QuestionWhereUniqueInput!]
+  deleteMany: [MutationUpdateOnePostWhereInput!]
+  disconnect: [QuestionWhereUniqueInput!]
+  set: [QuestionWhereUniqueInput!]
+  update: [QuestionUpdateWithWhereUniqueWithoutPostInput!]
+  updateMany: [QuestionUpdateManyWithWhereNestedInput!]
+  upsert: [QuestionUpsertWithWhereUniqueWithoutPostInput!]
+}
+
+input QuestionUpdateManyWithoutUserInput {
+  connect: [QuestionWhereUniqueInput!]
+  create: [QuestionCreateWithoutUserInput!]
+  delete: [QuestionWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneUserWhereInput!]
+  disconnect: [QuestionWhereUniqueInput!]
+  set: [QuestionWhereUniqueInput!]
+  update: [QuestionUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [QuestionUpdateManyWithWhereNestedInput!]
+  upsert: [QuestionUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input QuestionUpdateManyWithWhereNestedInput {
+  data: QuestionUpdateManyDataInput!
+  where: MutationUpdateOneUserWhereInput!
+}
+
+input QuestionUpdateWithoutPostDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: QuestionMetaUpdateManyWithoutQuestionInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutQuestionsInput
+}
+
+input QuestionUpdateWithoutUserDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: QuestionMetaUpdateManyWithoutQuestionInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  post: PostUpdateOneRequiredWithoutQuestionsInput
+  updatedAt: DateTime
+}
+
+input QuestionUpdateWithWhereUniqueWithoutPostInput {
+  data: QuestionUpdateWithoutPostDataInput!
+  where: QuestionWhereUniqueInput!
+}
+
+input QuestionUpdateWithWhereUniqueWithoutUserInput {
+  data: QuestionUpdateWithoutUserDataInput!
+  where: QuestionWhereUniqueInput!
+}
+
+input QuestionUpsertWithWhereUniqueWithoutPostInput {
+  create: QuestionCreateWithoutPostInput!
+  update: QuestionUpdateWithoutPostDataInput!
+  where: QuestionWhereUniqueInput!
+}
+
+input QuestionUpsertWithWhereUniqueWithoutUserInput {
+  create: QuestionCreateWithoutUserInput!
+  update: QuestionUpdateWithoutUserDataInput!
+  where: QuestionWhereUniqueInput!
 }
 
 input QuestionWhereUniqueInput {
@@ -736,6 +2538,21 @@ input ReviewCreateWithoutPostInput {
   user: UserCreateOneWithoutUserInput!
 }
 
+input ReviewCreateWithoutUserInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: ReviewMetaCreateManyWithoutItemMetaInput
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  post: PostCreateOneWithoutPostInput!
+  updatedAt: DateTime
+}
+
 type ReviewMeta {
   id: ID!
   metaDeleted: Boolean!
@@ -760,12 +2577,184 @@ input ReviewMetaCreateWithoutReviewInput {
   updatedAt: DateTime
 }
 
+input ReviewMetaUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input ReviewMetaUpdateManyWithoutReviewInput {
+  connect: [ReviewMetaWhereUniqueInput!]
+  create: [ReviewMetaCreateWithoutReviewInput!]
+  delete: [ReviewMetaWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneReviewWhereInput!]
+  disconnect: [ReviewMetaWhereUniqueInput!]
+  set: [ReviewMetaWhereUniqueInput!]
+  update: [ReviewMetaUpdateWithWhereUniqueWithoutReviewInput!]
+  updateMany: [ReviewMetaUpdateManyWithWhereNestedInput!]
+  upsert: [ReviewMetaUpsertWithWhereUniqueWithoutReviewInput!]
+}
+
+input ReviewMetaUpdateManyWithWhereNestedInput {
+  data: ReviewMetaUpdateManyDataInput!
+  where: MutationUpdateOneReviewWhereInput!
+}
+
+input ReviewMetaUpdateWithoutReviewDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input ReviewMetaUpdateWithWhereUniqueWithoutReviewInput {
+  data: ReviewMetaUpdateWithoutReviewDataInput!
+  where: ReviewMetaWhereUniqueInput!
+}
+
+input ReviewMetaUpsertWithWhereUniqueWithoutReviewInput {
+  create: ReviewMetaCreateWithoutReviewInput!
+  update: ReviewMetaUpdateWithoutReviewDataInput!
+  where: ReviewMetaWhereUniqueInput!
+}
+
 input ReviewMetaWhereUniqueInput {
   id: ID
 }
 
+input ReviewUpdateInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: ReviewMetaUpdateManyWithoutReviewInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  post: PostUpdateOneRequiredWithoutReviewsInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutReviewsInput
+}
+
+input ReviewUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  updatedAt: DateTime
+}
+
+input ReviewUpdateManyWithoutPostInput {
+  connect: [ReviewWhereUniqueInput!]
+  create: [ReviewCreateWithoutPostInput!]
+  delete: [ReviewWhereUniqueInput!]
+  deleteMany: [MutationUpdateOnePostWhereInput!]
+  disconnect: [ReviewWhereUniqueInput!]
+  set: [ReviewWhereUniqueInput!]
+  update: [ReviewUpdateWithWhereUniqueWithoutPostInput!]
+  updateMany: [ReviewUpdateManyWithWhereNestedInput!]
+  upsert: [ReviewUpsertWithWhereUniqueWithoutPostInput!]
+}
+
+input ReviewUpdateManyWithoutUserInput {
+  connect: [ReviewWhereUniqueInput!]
+  create: [ReviewCreateWithoutUserInput!]
+  delete: [ReviewWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneUserWhereInput!]
+  disconnect: [ReviewWhereUniqueInput!]
+  set: [ReviewWhereUniqueInput!]
+  update: [ReviewUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [ReviewUpdateManyWithWhereNestedInput!]
+  upsert: [ReviewUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input ReviewUpdateManyWithWhereNestedInput {
+  data: ReviewUpdateManyDataInput!
+  where: MutationUpdateOneUserWhereInput!
+}
+
+input ReviewUpdateWithoutPostDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: ReviewMetaUpdateManyWithoutReviewInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutReviewsInput
+}
+
+input ReviewUpdateWithoutUserDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: ReviewMetaUpdateManyWithoutReviewInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  post: PostUpdateOneRequiredWithoutReviewsInput
+  updatedAt: DateTime
+}
+
+input ReviewUpdateWithWhereUniqueWithoutPostInput {
+  data: ReviewUpdateWithoutPostDataInput!
+  where: ReviewWhereUniqueInput!
+}
+
+input ReviewUpdateWithWhereUniqueWithoutUserInput {
+  data: ReviewUpdateWithoutUserDataInput!
+  where: ReviewWhereUniqueInput!
+}
+
+input ReviewUpsertWithWhereUniqueWithoutPostInput {
+  create: ReviewCreateWithoutPostInput!
+  update: ReviewUpdateWithoutPostDataInput!
+  where: ReviewWhereUniqueInput!
+}
+
+input ReviewUpsertWithWhereUniqueWithoutUserInput {
+  create: ReviewCreateWithoutUserInput!
+  update: ReviewUpdateWithoutUserDataInput!
+  where: ReviewWhereUniqueInput!
+}
+
 input ReviewWhereUniqueInput {
   id: ID
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: String
+  notIn: [String!]
+  startsWith: String
 }
 
 type Tag {
@@ -801,6 +2790,65 @@ input TagCreateWithoutPostsInput {
   itemStatus: String!
   itemType: String!
   updatedAt: DateTime
+}
+
+input TagUpdateInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  posts: PostUpdateManyWithoutTagsInput
+  updatedAt: DateTime
+}
+
+input TagUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  updatedAt: DateTime
+}
+
+input TagUpdateManyWithoutPostsInput {
+  connect: [TagWhereUniqueInput!]
+  create: [TagCreateWithoutPostsInput!]
+  delete: [TagWhereUniqueInput!]
+  deleteMany: [MutationUpdateOnePostWhereInput!]
+  disconnect: [TagWhereUniqueInput!]
+  set: [TagWhereUniqueInput!]
+  update: [TagUpdateWithWhereUniqueWithoutPostsInput!]
+  updateMany: [TagUpdateManyWithWhereNestedInput!]
+  upsert: [TagUpsertWithWhereUniqueWithoutPostsInput!]
+}
+
+input TagUpdateManyWithWhereNestedInput {
+  data: TagUpdateManyDataInput!
+  where: MutationUpdateOnePostWhereInput!
+}
+
+input TagUpdateWithoutPostsDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  updatedAt: DateTime
+}
+
+input TagUpdateWithWhereUniqueWithoutPostsInput {
+  data: TagUpdateWithoutPostsDataInput!
+  where: TagWhereUniqueInput!
+}
+
+input TagUpsertWithWhereUniqueWithoutPostsInput {
+  create: TagCreateWithoutPostsInput!
+  update: TagUpdateWithoutPostsDataInput!
+  where: TagWhereUniqueInput!
 }
 
 input TagWhereUniqueInput {
@@ -841,6 +2889,20 @@ input ThreadCreateManyWithoutThreadsInput {
 input ThreadCreateOneWithoutThreadInput {
   connect: ThreadWhereUniqueInput
   create: ThreadCreateWithoutNotificationInput
+}
+
+input ThreadCreateWithoutMessageInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: ThreadMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  notification: NotificationCreateOneWithoutNotificationInput
+  updatedAt: DateTime
+  user: UserCreateOneWithoutUserInput!
 }
 
 input ThreadCreateWithoutNotificationInput {
@@ -895,8 +2957,176 @@ input ThreadMetaCreateWithoutThreadInput {
   updatedAt: DateTime
 }
 
+input ThreadMetaUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input ThreadMetaUpdateManyWithoutThreadInput {
+  connect: [ThreadMetaWhereUniqueInput!]
+  create: [ThreadMetaCreateWithoutThreadInput!]
+  delete: [ThreadMetaWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneThreadWhereInput!]
+  disconnect: [ThreadMetaWhereUniqueInput!]
+  set: [ThreadMetaWhereUniqueInput!]
+  update: [ThreadMetaUpdateWithWhereUniqueWithoutThreadInput!]
+  updateMany: [ThreadMetaUpdateManyWithWhereNestedInput!]
+  upsert: [ThreadMetaUpsertWithWhereUniqueWithoutThreadInput!]
+}
+
+input ThreadMetaUpdateManyWithWhereNestedInput {
+  data: ThreadMetaUpdateManyDataInput!
+  where: MutationUpdateOneThreadWhereInput!
+}
+
+input ThreadMetaUpdateWithoutThreadDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input ThreadMetaUpdateWithWhereUniqueWithoutThreadInput {
+  data: ThreadMetaUpdateWithoutThreadDataInput!
+  where: ThreadMetaWhereUniqueInput!
+}
+
+input ThreadMetaUpsertWithWhereUniqueWithoutThreadInput {
+  create: ThreadMetaCreateWithoutThreadInput!
+  update: ThreadMetaUpdateWithoutThreadDataInput!
+  where: ThreadMetaWhereUniqueInput!
+}
+
 input ThreadMetaWhereUniqueInput {
   id: ID
+}
+
+input ThreadUpdateInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: ThreadMetaUpdateManyWithoutThreadInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  message: MessageUpdateOneWithoutThreadInput
+  notification: NotificationUpdateOneWithoutThreadInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutThreadsInput
+}
+
+input ThreadUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemName: String
+  itemStatus: String
+  itemType: String
+  updatedAt: DateTime
+}
+
+input ThreadUpdateManyWithoutUserInput {
+  connect: [ThreadWhereUniqueInput!]
+  create: [ThreadCreateWithoutUserInput!]
+  delete: [ThreadWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneUserWhereInput!]
+  disconnect: [ThreadWhereUniqueInput!]
+  set: [ThreadWhereUniqueInput!]
+  update: [ThreadUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [ThreadUpdateManyWithWhereNestedInput!]
+  upsert: [ThreadUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input ThreadUpdateManyWithWhereNestedInput {
+  data: ThreadUpdateManyDataInput!
+  where: MutationUpdateOneUserWhereInput!
+}
+
+input ThreadUpdateOneRequiredWithoutMessageInput {
+  connect: ThreadWhereUniqueInput
+  create: ThreadCreateWithoutMessageInput
+  update: ThreadUpdateWithoutMessageDataInput
+  upsert: ThreadUpsertWithoutMessageInput
+}
+
+input ThreadUpdateOneRequiredWithoutNotificationInput {
+  connect: ThreadWhereUniqueInput
+  create: ThreadCreateWithoutNotificationInput
+  update: ThreadUpdateWithoutNotificationDataInput
+  upsert: ThreadUpsertWithoutNotificationInput
+}
+
+input ThreadUpdateWithoutMessageDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: ThreadMetaUpdateManyWithoutThreadInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  notification: NotificationUpdateOneWithoutThreadInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutThreadsInput
+}
+
+input ThreadUpdateWithoutNotificationDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: ThreadMetaUpdateManyWithoutThreadInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  message: MessageUpdateOneWithoutThreadInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutThreadsInput
+}
+
+input ThreadUpdateWithoutUserDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: ThreadMetaUpdateManyWithoutThreadInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  message: MessageUpdateOneWithoutThreadInput
+  notification: NotificationUpdateOneWithoutThreadInput
+  updatedAt: DateTime
+}
+
+input ThreadUpdateWithWhereUniqueWithoutUserInput {
+  data: ThreadUpdateWithoutUserDataInput!
+  where: ThreadWhereUniqueInput!
+}
+
+input ThreadUpsertWithoutMessageInput {
+  create: ThreadCreateWithoutMessageInput!
+  update: ThreadUpdateWithoutMessageDataInput!
+}
+
+input ThreadUpsertWithoutNotificationInput {
+  create: ThreadCreateWithoutNotificationInput!
+  update: ThreadUpdateWithoutNotificationDataInput!
+}
+
+input ThreadUpsertWithWhereUniqueWithoutUserInput {
+  create: ThreadCreateWithoutUserInput!
+  update: ThreadUpdateWithoutUserDataInput!
+  where: ThreadWhereUniqueInput!
 }
 
 input ThreadWhereUniqueInput {
@@ -911,7 +3141,9 @@ type User {
   following(after: String, before: String, first: Int, last: Int, skip: Int): [User!]
   forgotHash: String!
   id: ID!
+  memberOf(after: String, before: String, first: Int, last: Int, skip: Int): [Pod!]
   notifications(after: String, before: String, first: Int, last: Int, skip: Int): [Notification!]
+  pods(after: String, before: String, first: Int, last: Int, skip: Int): [Pod!]
   posts(after: String, before: String, first: Int, last: Int, skip: Int): [Post!]
   privateHash: String!
   publicHash: String!
@@ -934,6 +3166,7 @@ input UserCreateInput {
   following: UserCreateManyWithoutFollowingInput
   forgotHash: String!
   id: ID
+  memberOf: PodCreateManyWithoutMemberOfInput
   message: MessageCreateOneWithoutMessageInput
   notifications: NotificationCreateManyWithoutNotificationsInput
   pods: PodCreateManyWithoutPodsInput
@@ -962,9 +3195,68 @@ input UserCreateManyWithoutFollowingInput {
   create: [UserCreateWithoutFollowersInput!]
 }
 
+input UserCreateManyWithoutMembersInput {
+  connect: [UserWhereUniqueInput!]
+  create: [UserCreateWithoutMemberOfInput!]
+}
+
 input UserCreateOneWithoutUserInput {
   connect: UserWhereUniqueInput
   create: UserCreateWithoutPodsInput
+}
+
+input UserCreateWithoutAnnotationsInput {
+  confirmHash: String!
+  createdAt: DateTime
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  followers: UserCreateManyWithoutFollowersInput
+  following: UserCreateManyWithoutFollowingInput
+  forgotHash: String!
+  id: ID
+  memberOf: PodCreateManyWithoutMemberOfInput
+  message: MessageCreateOneWithoutMessageInput
+  notifications: NotificationCreateManyWithoutNotificationsInput
+  pods: PodCreateManyWithoutPodsInput
+  posts: PostCreateManyWithoutPostsInput
+  privateHash: String!
+  publicHash: String!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
+  threads: ThreadCreateManyWithoutThreadsInput
+  updatedAt: DateTime
+  userConfirmed: Int!
+  userDeleted: Boolean
+  userEmail: String!
+  userMeta: UserMetaCreateManyWithoutUserMetaInput
+  userPassword: String!
+  userType: Int!
+}
+
+input UserCreateWithoutFavoritesInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  confirmHash: String!
+  createdAt: DateTime
+  followers: UserCreateManyWithoutFollowersInput
+  following: UserCreateManyWithoutFollowingInput
+  forgotHash: String!
+  id: ID
+  memberOf: PodCreateManyWithoutMemberOfInput
+  message: MessageCreateOneWithoutMessageInput
+  notifications: NotificationCreateManyWithoutNotificationsInput
+  pods: PodCreateManyWithoutPodsInput
+  posts: PostCreateManyWithoutPostsInput
+  privateHash: String!
+  publicHash: String!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
+  threads: ThreadCreateManyWithoutThreadsInput
+  updatedAt: DateTime
+  userConfirmed: Int!
+  userDeleted: Boolean
+  userEmail: String!
+  userMeta: UserMetaCreateManyWithoutUserMetaInput
+  userPassword: String!
+  userType: Int!
 }
 
 input UserCreateWithoutFollowersInput {
@@ -975,6 +3267,7 @@ input UserCreateWithoutFollowersInput {
   following: UserCreateManyWithoutFollowingInput
   forgotHash: String!
   id: ID
+  memberOf: PodCreateManyWithoutMemberOfInput
   message: MessageCreateOneWithoutMessageInput
   notifications: NotificationCreateManyWithoutNotificationsInput
   pods: PodCreateManyWithoutPodsInput
@@ -1001,8 +3294,90 @@ input UserCreateWithoutFollowingInput {
   followers: UserCreateManyWithoutFollowersInput
   forgotHash: String!
   id: ID
+  memberOf: PodCreateManyWithoutMemberOfInput
   message: MessageCreateOneWithoutMessageInput
   notifications: NotificationCreateManyWithoutNotificationsInput
+  pods: PodCreateManyWithoutPodsInput
+  posts: PostCreateManyWithoutPostsInput
+  privateHash: String!
+  publicHash: String!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
+  threads: ThreadCreateManyWithoutThreadsInput
+  updatedAt: DateTime
+  userConfirmed: Int!
+  userDeleted: Boolean
+  userEmail: String!
+  userMeta: UserMetaCreateManyWithoutUserMetaInput
+  userPassword: String!
+  userType: Int!
+}
+
+input UserCreateWithoutMemberOfInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  confirmHash: String!
+  createdAt: DateTime
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  followers: UserCreateManyWithoutFollowersInput
+  following: UserCreateManyWithoutFollowingInput
+  forgotHash: String!
+  id: ID
+  message: MessageCreateOneWithoutMessageInput
+  notifications: NotificationCreateManyWithoutNotificationsInput
+  pods: PodCreateManyWithoutPodsInput
+  posts: PostCreateManyWithoutPostsInput
+  privateHash: String!
+  publicHash: String!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
+  threads: ThreadCreateManyWithoutThreadsInput
+  updatedAt: DateTime
+  userConfirmed: Int!
+  userDeleted: Boolean
+  userEmail: String!
+  userMeta: UserMetaCreateManyWithoutUserMetaInput
+  userPassword: String!
+  userType: Int!
+}
+
+input UserCreateWithoutMessageInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  confirmHash: String!
+  createdAt: DateTime
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  followers: UserCreateManyWithoutFollowersInput
+  following: UserCreateManyWithoutFollowingInput
+  forgotHash: String!
+  id: ID
+  memberOf: PodCreateManyWithoutMemberOfInput
+  notifications: NotificationCreateManyWithoutNotificationsInput
+  pods: PodCreateManyWithoutPodsInput
+  posts: PostCreateManyWithoutPostsInput
+  privateHash: String!
+  publicHash: String!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
+  threads: ThreadCreateManyWithoutThreadsInput
+  updatedAt: DateTime
+  userConfirmed: Int!
+  userDeleted: Boolean
+  userEmail: String!
+  userMeta: UserMetaCreateManyWithoutUserMetaInput
+  userPassword: String!
+  userType: Int!
+}
+
+input UserCreateWithoutNotificationsInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  confirmHash: String!
+  createdAt: DateTime
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  followers: UserCreateManyWithoutFollowersInput
+  following: UserCreateManyWithoutFollowingInput
+  forgotHash: String!
+  id: ID
+  memberOf: PodCreateManyWithoutMemberOfInput
+  message: MessageCreateOneWithoutMessageInput
   pods: PodCreateManyWithoutPodsInput
   posts: PostCreateManyWithoutPostsInput
   privateHash: String!
@@ -1028,6 +3403,7 @@ input UserCreateWithoutPodsInput {
   following: UserCreateManyWithoutFollowingInput
   forgotHash: String!
   id: ID
+  memberOf: PodCreateManyWithoutMemberOfInput
   message: MessageCreateOneWithoutMessageInput
   notifications: NotificationCreateManyWithoutNotificationsInput
   posts: PostCreateManyWithoutPostsInput
@@ -1036,6 +3412,114 @@ input UserCreateWithoutPodsInput {
   questions: QuestionCreateManyWithoutQuestionsInput
   reviews: ReviewCreateManyWithoutReviewsInput
   threads: ThreadCreateManyWithoutThreadsInput
+  updatedAt: DateTime
+  userConfirmed: Int!
+  userDeleted: Boolean
+  userEmail: String!
+  userMeta: UserMetaCreateManyWithoutUserMetaInput
+  userPassword: String!
+  userType: Int!
+}
+
+input UserCreateWithoutPostsInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  confirmHash: String!
+  createdAt: DateTime
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  followers: UserCreateManyWithoutFollowersInput
+  following: UserCreateManyWithoutFollowingInput
+  forgotHash: String!
+  id: ID
+  memberOf: PodCreateManyWithoutMemberOfInput
+  message: MessageCreateOneWithoutMessageInput
+  notifications: NotificationCreateManyWithoutNotificationsInput
+  pods: PodCreateManyWithoutPodsInput
+  privateHash: String!
+  publicHash: String!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
+  threads: ThreadCreateManyWithoutThreadsInput
+  updatedAt: DateTime
+  userConfirmed: Int!
+  userDeleted: Boolean
+  userEmail: String!
+  userMeta: UserMetaCreateManyWithoutUserMetaInput
+  userPassword: String!
+  userType: Int!
+}
+
+input UserCreateWithoutQuestionsInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  confirmHash: String!
+  createdAt: DateTime
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  followers: UserCreateManyWithoutFollowersInput
+  following: UserCreateManyWithoutFollowingInput
+  forgotHash: String!
+  id: ID
+  memberOf: PodCreateManyWithoutMemberOfInput
+  message: MessageCreateOneWithoutMessageInput
+  notifications: NotificationCreateManyWithoutNotificationsInput
+  pods: PodCreateManyWithoutPodsInput
+  posts: PostCreateManyWithoutPostsInput
+  privateHash: String!
+  publicHash: String!
+  reviews: ReviewCreateManyWithoutReviewsInput
+  threads: ThreadCreateManyWithoutThreadsInput
+  updatedAt: DateTime
+  userConfirmed: Int!
+  userDeleted: Boolean
+  userEmail: String!
+  userMeta: UserMetaCreateManyWithoutUserMetaInput
+  userPassword: String!
+  userType: Int!
+}
+
+input UserCreateWithoutReviewsInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  confirmHash: String!
+  createdAt: DateTime
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  followers: UserCreateManyWithoutFollowersInput
+  following: UserCreateManyWithoutFollowingInput
+  forgotHash: String!
+  id: ID
+  memberOf: PodCreateManyWithoutMemberOfInput
+  message: MessageCreateOneWithoutMessageInput
+  notifications: NotificationCreateManyWithoutNotificationsInput
+  pods: PodCreateManyWithoutPodsInput
+  posts: PostCreateManyWithoutPostsInput
+  privateHash: String!
+  publicHash: String!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  threads: ThreadCreateManyWithoutThreadsInput
+  updatedAt: DateTime
+  userConfirmed: Int!
+  userDeleted: Boolean
+  userEmail: String!
+  userMeta: UserMetaCreateManyWithoutUserMetaInput
+  userPassword: String!
+  userType: Int!
+}
+
+input UserCreateWithoutThreadsInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  confirmHash: String!
+  createdAt: DateTime
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  followers: UserCreateManyWithoutFollowersInput
+  following: UserCreateManyWithoutFollowingInput
+  forgotHash: String!
+  id: ID
+  memberOf: PodCreateManyWithoutMemberOfInput
+  message: MessageCreateOneWithoutMessageInput
+  notifications: NotificationCreateManyWithoutNotificationsInput
+  pods: PodCreateManyWithoutPodsInput
+  posts: PostCreateManyWithoutPostsInput
+  privateHash: String!
+  publicHash: String!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
   updatedAt: DateTime
   userConfirmed: Int!
   userDeleted: Boolean
@@ -1069,8 +3553,605 @@ input UserMetaCreateWithoutUserInput {
   updatedAt: DateTime
 }
 
+input UserMetaUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input UserMetaUpdateManyWithoutUserInput {
+  connect: [UserMetaWhereUniqueInput!]
+  create: [UserMetaCreateWithoutUserInput!]
+  delete: [UserMetaWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneUserWhereInput!]
+  disconnect: [UserMetaWhereUniqueInput!]
+  set: [UserMetaWhereUniqueInput!]
+  update: [UserMetaUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [UserMetaUpdateManyWithWhereNestedInput!]
+  upsert: [UserMetaUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input UserMetaUpdateManyWithWhereNestedInput {
+  data: UserMetaUpdateManyDataInput!
+  where: MutationUpdateOneUserWhereInput!
+}
+
+input UserMetaUpdateWithoutUserDataInput {
+  createdAt: DateTime
+  id: ID
+  metaDeleted: Boolean
+  metaName: String
+  metaType: String
+  metaValue: String
+  updatedAt: DateTime
+}
+
+input UserMetaUpdateWithWhereUniqueWithoutUserInput {
+  data: UserMetaUpdateWithoutUserDataInput!
+  where: UserMetaWhereUniqueInput!
+}
+
+input UserMetaUpsertWithWhereUniqueWithoutUserInput {
+  create: UserMetaCreateWithoutUserInput!
+  update: UserMetaUpdateWithoutUserDataInput!
+  where: UserMetaWhereUniqueInput!
+}
+
 input UserMetaWhereUniqueInput {
   id: ID
+}
+
+input UserUpdateInput {
+  annotations: AnnotationUpdateManyWithoutUserInput
+  confirmHash: String
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutUserInput
+  followers: UserUpdateManyWithoutFollowingInput
+  following: UserUpdateManyWithoutFollowersInput
+  forgotHash: String
+  id: ID
+  memberOf: PodUpdateManyWithoutMembersInput
+  message: MessageUpdateOneWithoutUserInput
+  notifications: NotificationUpdateManyWithoutUserInput
+  pods: PodUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutUserInput
+  privateHash: String
+  publicHash: String
+  questions: QuestionUpdateManyWithoutUserInput
+  reviews: ReviewUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutUserInput
+  updatedAt: DateTime
+  userConfirmed: Int
+  userDeleted: Boolean
+  userEmail: String
+  userMeta: UserMetaUpdateManyWithoutUserInput
+  userPassword: String
+  userType: Int
+}
+
+input UserUpdateManyDataInput {
+  confirmHash: String
+  createdAt: DateTime
+  forgotHash: String
+  id: ID
+  privateHash: String
+  publicHash: String
+  updatedAt: DateTime
+  userConfirmed: Int
+  userDeleted: Boolean
+  userEmail: String
+  userPassword: String
+  userType: Int
+}
+
+input UserUpdateManyWithoutFollowersInput {
+  connect: [UserWhereUniqueInput!]
+  create: [UserCreateWithoutFollowersInput!]
+  delete: [UserWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneUserWhereInput!]
+  disconnect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutFollowersInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutFollowersInput!]
+}
+
+input UserUpdateManyWithoutFollowingInput {
+  connect: [UserWhereUniqueInput!]
+  create: [UserCreateWithoutFollowingInput!]
+  delete: [UserWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneUserWhereInput!]
+  disconnect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutFollowingInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutFollowingInput!]
+}
+
+input UserUpdateManyWithoutMemberOfInput {
+  connect: [UserWhereUniqueInput!]
+  create: [UserCreateWithoutMemberOfInput!]
+  delete: [UserWhereUniqueInput!]
+  deleteMany: [MutationUpdateOnePodWhereInput!]
+  disconnect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutMemberOfInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutMemberOfInput!]
+}
+
+input UserUpdateManyWithWhereNestedInput {
+  data: UserUpdateManyDataInput!
+  where: MutationUpdateOneUserWhereInput!
+}
+
+input UserUpdateOneRequiredWithoutAnnotationsInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutAnnotationsInput
+  update: UserUpdateWithoutAnnotationsDataInput
+  upsert: UserUpsertWithoutAnnotationsInput
+}
+
+input UserUpdateOneRequiredWithoutFavoritesInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutFavoritesInput
+  update: UserUpdateWithoutFavoritesDataInput
+  upsert: UserUpsertWithoutFavoritesInput
+}
+
+input UserUpdateOneRequiredWithoutMessageInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutMessageInput
+  update: UserUpdateWithoutMessageDataInput
+  upsert: UserUpsertWithoutMessageInput
+}
+
+input UserUpdateOneRequiredWithoutNotificationsInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutNotificationsInput
+  update: UserUpdateWithoutNotificationsDataInput
+  upsert: UserUpsertWithoutNotificationsInput
+}
+
+input UserUpdateOneRequiredWithoutPodsInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutPodsInput
+  update: UserUpdateWithoutPodsDataInput
+  upsert: UserUpsertWithoutPodsInput
+}
+
+input UserUpdateOneRequiredWithoutPostsInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutPostsInput
+  update: UserUpdateWithoutPostsDataInput
+  upsert: UserUpsertWithoutPostsInput
+}
+
+input UserUpdateOneRequiredWithoutQuestionsInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutQuestionsInput
+  update: UserUpdateWithoutQuestionsDataInput
+  upsert: UserUpsertWithoutQuestionsInput
+}
+
+input UserUpdateOneRequiredWithoutReviewsInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutReviewsInput
+  update: UserUpdateWithoutReviewsDataInput
+  upsert: UserUpsertWithoutReviewsInput
+}
+
+input UserUpdateOneRequiredWithoutThreadsInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutThreadsInput
+  update: UserUpdateWithoutThreadsDataInput
+  upsert: UserUpsertWithoutThreadsInput
+}
+
+input UserUpdateWithoutAnnotationsDataInput {
+  confirmHash: String
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutUserInput
+  followers: UserUpdateManyWithoutFollowingInput
+  following: UserUpdateManyWithoutFollowersInput
+  forgotHash: String
+  id: ID
+  memberOf: PodUpdateManyWithoutMembersInput
+  message: MessageUpdateOneWithoutUserInput
+  notifications: NotificationUpdateManyWithoutUserInput
+  pods: PodUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutUserInput
+  privateHash: String
+  publicHash: String
+  questions: QuestionUpdateManyWithoutUserInput
+  reviews: ReviewUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutUserInput
+  updatedAt: DateTime
+  userConfirmed: Int
+  userDeleted: Boolean
+  userEmail: String
+  userMeta: UserMetaUpdateManyWithoutUserInput
+  userPassword: String
+  userType: Int
+}
+
+input UserUpdateWithoutFavoritesDataInput {
+  annotations: AnnotationUpdateManyWithoutUserInput
+  confirmHash: String
+  createdAt: DateTime
+  followers: UserUpdateManyWithoutFollowingInput
+  following: UserUpdateManyWithoutFollowersInput
+  forgotHash: String
+  id: ID
+  memberOf: PodUpdateManyWithoutMembersInput
+  message: MessageUpdateOneWithoutUserInput
+  notifications: NotificationUpdateManyWithoutUserInput
+  pods: PodUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutUserInput
+  privateHash: String
+  publicHash: String
+  questions: QuestionUpdateManyWithoutUserInput
+  reviews: ReviewUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutUserInput
+  updatedAt: DateTime
+  userConfirmed: Int
+  userDeleted: Boolean
+  userEmail: String
+  userMeta: UserMetaUpdateManyWithoutUserInput
+  userPassword: String
+  userType: Int
+}
+
+input UserUpdateWithoutFollowersDataInput {
+  annotations: AnnotationUpdateManyWithoutUserInput
+  confirmHash: String
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutUserInput
+  following: UserUpdateManyWithoutFollowersInput
+  forgotHash: String
+  id: ID
+  memberOf: PodUpdateManyWithoutMembersInput
+  message: MessageUpdateOneWithoutUserInput
+  notifications: NotificationUpdateManyWithoutUserInput
+  pods: PodUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutUserInput
+  privateHash: String
+  publicHash: String
+  questions: QuestionUpdateManyWithoutUserInput
+  reviews: ReviewUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutUserInput
+  updatedAt: DateTime
+  userConfirmed: Int
+  userDeleted: Boolean
+  userEmail: String
+  userMeta: UserMetaUpdateManyWithoutUserInput
+  userPassword: String
+  userType: Int
+}
+
+input UserUpdateWithoutFollowingDataInput {
+  annotations: AnnotationUpdateManyWithoutUserInput
+  confirmHash: String
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutUserInput
+  followers: UserUpdateManyWithoutFollowingInput
+  forgotHash: String
+  id: ID
+  memberOf: PodUpdateManyWithoutMembersInput
+  message: MessageUpdateOneWithoutUserInput
+  notifications: NotificationUpdateManyWithoutUserInput
+  pods: PodUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutUserInput
+  privateHash: String
+  publicHash: String
+  questions: QuestionUpdateManyWithoutUserInput
+  reviews: ReviewUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutUserInput
+  updatedAt: DateTime
+  userConfirmed: Int
+  userDeleted: Boolean
+  userEmail: String
+  userMeta: UserMetaUpdateManyWithoutUserInput
+  userPassword: String
+  userType: Int
+}
+
+input UserUpdateWithoutMemberOfDataInput {
+  annotations: AnnotationUpdateManyWithoutUserInput
+  confirmHash: String
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutUserInput
+  followers: UserUpdateManyWithoutFollowingInput
+  following: UserUpdateManyWithoutFollowersInput
+  forgotHash: String
+  id: ID
+  message: MessageUpdateOneWithoutUserInput
+  notifications: NotificationUpdateManyWithoutUserInput
+  pods: PodUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutUserInput
+  privateHash: String
+  publicHash: String
+  questions: QuestionUpdateManyWithoutUserInput
+  reviews: ReviewUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutUserInput
+  updatedAt: DateTime
+  userConfirmed: Int
+  userDeleted: Boolean
+  userEmail: String
+  userMeta: UserMetaUpdateManyWithoutUserInput
+  userPassword: String
+  userType: Int
+}
+
+input UserUpdateWithoutMessageDataInput {
+  annotations: AnnotationUpdateManyWithoutUserInput
+  confirmHash: String
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutUserInput
+  followers: UserUpdateManyWithoutFollowingInput
+  following: UserUpdateManyWithoutFollowersInput
+  forgotHash: String
+  id: ID
+  memberOf: PodUpdateManyWithoutMembersInput
+  notifications: NotificationUpdateManyWithoutUserInput
+  pods: PodUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutUserInput
+  privateHash: String
+  publicHash: String
+  questions: QuestionUpdateManyWithoutUserInput
+  reviews: ReviewUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutUserInput
+  updatedAt: DateTime
+  userConfirmed: Int
+  userDeleted: Boolean
+  userEmail: String
+  userMeta: UserMetaUpdateManyWithoutUserInput
+  userPassword: String
+  userType: Int
+}
+
+input UserUpdateWithoutNotificationsDataInput {
+  annotations: AnnotationUpdateManyWithoutUserInput
+  confirmHash: String
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutUserInput
+  followers: UserUpdateManyWithoutFollowingInput
+  following: UserUpdateManyWithoutFollowersInput
+  forgotHash: String
+  id: ID
+  memberOf: PodUpdateManyWithoutMembersInput
+  message: MessageUpdateOneWithoutUserInput
+  pods: PodUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutUserInput
+  privateHash: String
+  publicHash: String
+  questions: QuestionUpdateManyWithoutUserInput
+  reviews: ReviewUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutUserInput
+  updatedAt: DateTime
+  userConfirmed: Int
+  userDeleted: Boolean
+  userEmail: String
+  userMeta: UserMetaUpdateManyWithoutUserInput
+  userPassword: String
+  userType: Int
+}
+
+input UserUpdateWithoutPodsDataInput {
+  annotations: AnnotationUpdateManyWithoutUserInput
+  confirmHash: String
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutUserInput
+  followers: UserUpdateManyWithoutFollowingInput
+  following: UserUpdateManyWithoutFollowersInput
+  forgotHash: String
+  id: ID
+  memberOf: PodUpdateManyWithoutMembersInput
+  message: MessageUpdateOneWithoutUserInput
+  notifications: NotificationUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutUserInput
+  privateHash: String
+  publicHash: String
+  questions: QuestionUpdateManyWithoutUserInput
+  reviews: ReviewUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutUserInput
+  updatedAt: DateTime
+  userConfirmed: Int
+  userDeleted: Boolean
+  userEmail: String
+  userMeta: UserMetaUpdateManyWithoutUserInput
+  userPassword: String
+  userType: Int
+}
+
+input UserUpdateWithoutPostsDataInput {
+  annotations: AnnotationUpdateManyWithoutUserInput
+  confirmHash: String
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutUserInput
+  followers: UserUpdateManyWithoutFollowingInput
+  following: UserUpdateManyWithoutFollowersInput
+  forgotHash: String
+  id: ID
+  memberOf: PodUpdateManyWithoutMembersInput
+  message: MessageUpdateOneWithoutUserInput
+  notifications: NotificationUpdateManyWithoutUserInput
+  pods: PodUpdateManyWithoutUserInput
+  privateHash: String
+  publicHash: String
+  questions: QuestionUpdateManyWithoutUserInput
+  reviews: ReviewUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutUserInput
+  updatedAt: DateTime
+  userConfirmed: Int
+  userDeleted: Boolean
+  userEmail: String
+  userMeta: UserMetaUpdateManyWithoutUserInput
+  userPassword: String
+  userType: Int
+}
+
+input UserUpdateWithoutQuestionsDataInput {
+  annotations: AnnotationUpdateManyWithoutUserInput
+  confirmHash: String
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutUserInput
+  followers: UserUpdateManyWithoutFollowingInput
+  following: UserUpdateManyWithoutFollowersInput
+  forgotHash: String
+  id: ID
+  memberOf: PodUpdateManyWithoutMembersInput
+  message: MessageUpdateOneWithoutUserInput
+  notifications: NotificationUpdateManyWithoutUserInput
+  pods: PodUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutUserInput
+  privateHash: String
+  publicHash: String
+  reviews: ReviewUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutUserInput
+  updatedAt: DateTime
+  userConfirmed: Int
+  userDeleted: Boolean
+  userEmail: String
+  userMeta: UserMetaUpdateManyWithoutUserInput
+  userPassword: String
+  userType: Int
+}
+
+input UserUpdateWithoutReviewsDataInput {
+  annotations: AnnotationUpdateManyWithoutUserInput
+  confirmHash: String
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutUserInput
+  followers: UserUpdateManyWithoutFollowingInput
+  following: UserUpdateManyWithoutFollowersInput
+  forgotHash: String
+  id: ID
+  memberOf: PodUpdateManyWithoutMembersInput
+  message: MessageUpdateOneWithoutUserInput
+  notifications: NotificationUpdateManyWithoutUserInput
+  pods: PodUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutUserInput
+  privateHash: String
+  publicHash: String
+  questions: QuestionUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutUserInput
+  updatedAt: DateTime
+  userConfirmed: Int
+  userDeleted: Boolean
+  userEmail: String
+  userMeta: UserMetaUpdateManyWithoutUserInput
+  userPassword: String
+  userType: Int
+}
+
+input UserUpdateWithoutThreadsDataInput {
+  annotations: AnnotationUpdateManyWithoutUserInput
+  confirmHash: String
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutUserInput
+  followers: UserUpdateManyWithoutFollowingInput
+  following: UserUpdateManyWithoutFollowersInput
+  forgotHash: String
+  id: ID
+  memberOf: PodUpdateManyWithoutMembersInput
+  message: MessageUpdateOneWithoutUserInput
+  notifications: NotificationUpdateManyWithoutUserInput
+  pods: PodUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutUserInput
+  privateHash: String
+  publicHash: String
+  questions: QuestionUpdateManyWithoutUserInput
+  reviews: ReviewUpdateManyWithoutUserInput
+  updatedAt: DateTime
+  userConfirmed: Int
+  userDeleted: Boolean
+  userEmail: String
+  userMeta: UserMetaUpdateManyWithoutUserInput
+  userPassword: String
+  userType: Int
+}
+
+input UserUpdateWithWhereUniqueWithoutFollowersInput {
+  data: UserUpdateWithoutFollowersDataInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserUpdateWithWhereUniqueWithoutFollowingInput {
+  data: UserUpdateWithoutFollowingDataInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserUpdateWithWhereUniqueWithoutMemberOfInput {
+  data: UserUpdateWithoutMemberOfDataInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserUpsertWithoutAnnotationsInput {
+  create: UserCreateWithoutAnnotationsInput!
+  update: UserUpdateWithoutAnnotationsDataInput!
+}
+
+input UserUpsertWithoutFavoritesInput {
+  create: UserCreateWithoutFavoritesInput!
+  update: UserUpdateWithoutFavoritesDataInput!
+}
+
+input UserUpsertWithoutMessageInput {
+  create: UserCreateWithoutMessageInput!
+  update: UserUpdateWithoutMessageDataInput!
+}
+
+input UserUpsertWithoutNotificationsInput {
+  create: UserCreateWithoutNotificationsInput!
+  update: UserUpdateWithoutNotificationsDataInput!
+}
+
+input UserUpsertWithoutPodsInput {
+  create: UserCreateWithoutPodsInput!
+  update: UserUpdateWithoutPodsDataInput!
+}
+
+input UserUpsertWithoutPostsInput {
+  create: UserCreateWithoutPostsInput!
+  update: UserUpdateWithoutPostsDataInput!
+}
+
+input UserUpsertWithoutQuestionsInput {
+  create: UserCreateWithoutQuestionsInput!
+  update: UserUpdateWithoutQuestionsDataInput!
+}
+
+input UserUpsertWithoutReviewsInput {
+  create: UserCreateWithoutReviewsInput!
+  update: UserUpdateWithoutReviewsDataInput!
+}
+
+input UserUpsertWithoutThreadsInput {
+  create: UserCreateWithoutThreadsInput!
+  update: UserUpdateWithoutThreadsDataInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutFollowersInput {
+  create: UserCreateWithoutFollowersInput!
+  update: UserUpdateWithoutFollowersDataInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutFollowingInput {
+  create: UserCreateWithoutFollowingInput!
+  update: UserUpdateWithoutFollowingDataInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutMemberOfInput {
+  create: UserCreateWithoutMemberOfInput!
+  update: UserUpdateWithoutMemberOfDataInput!
+  where: UserWhereUniqueInput!
 }
 
 input UserWhereUniqueInput {

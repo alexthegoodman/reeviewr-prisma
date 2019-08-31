@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { Button, Icon, Position, Text, Tooltip } from "@blueprintjs/core";
+import JoinButton from "../JoinButton/JoinButton";
 import MiniPostCard from "../MiniPostCard/MiniPostCard";
 import { PodCardProps } from "./PodCard.d";
 
@@ -17,7 +18,7 @@ const PodCard: React.FC<PodCardProps> = ({
           <Text className="podCardHeadline" tagName="span">
             {pod.itemName}
           </Text>
-          <Button className="joinButton">Join</Button>
+          <JoinButton podId={pod.id} podMembers={pod.members} />
         </div>
         <div className="podCardStats">
           <Tooltip content="50 Reviews" position={Position.BOTTOM}>

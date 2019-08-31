@@ -29,3 +29,25 @@ import gql from "graphql-tag";
 //     }
 //   }
 // `;
+
+export const JOIN_POD = gql`
+  mutation joinPod($userId: ID, $podId: ID) {
+    updateOneUser(
+      where: { id: $userId }
+      data: { memberOf: { connect: { id: $podId } } }
+    ) {
+      id
+    }
+  }
+`;
+
+export const LEAVE_POD = gql`
+  mutation leavePod($userId: ID, $podId: ID) {
+    updateOneUser(
+      where: { id: $userId }
+      data: { memberOf: { disconnect: { id: $podId } } }
+    ) {
+      id
+    }
+  }
+`;
