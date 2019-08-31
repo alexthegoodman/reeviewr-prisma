@@ -5,6 +5,7 @@ import { useCookies } from "react-cookie";
 import { USER_JOINED_PODS } from "../../../graphql/queries/user";
 import GraphQLData from "../../data/GraphQLData/GraphQLData";
 import CategoryGrid from "../../ui/CategoryGrid/CategoryGrid";
+import NoResults from "../../ui/NoResults/NoResults";
 import PodCard from "../../ui/PodCard/PodCard";
 import { JoinedPodsProps } from "./JoinedPods.d";
 
@@ -32,10 +33,7 @@ const JoinedPods: React.FC<JoinedPodsProps> = () => {
             })}
           </CategoryGrid>
         ) : (
-          <>
-            <Text tagName="h1">Wait!</Text>
-            <Text tagName="p">You have not joined any pods</Text>
-          </>
+          <NoResults />
         )}
       </GraphQLData>
     </>
