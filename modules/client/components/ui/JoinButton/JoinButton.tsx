@@ -36,7 +36,7 @@ const JoinButton: React.FC<JoinButtonProps> = ({
         userId: userData.id,
         podId,
       },
-      refetchQueries: ["categoriesPodsPosts"],
+      refetchQueries: ["categoriesPodsPosts", "userJoinedPods"],
     };
     if (podMember) {
       leavePod(payload);

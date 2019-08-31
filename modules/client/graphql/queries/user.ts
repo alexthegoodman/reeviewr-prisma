@@ -54,3 +54,34 @@ export const USER_PRIVATE_QUERY = gql`
   }
   ${UserFragments.user}
 `;
+
+export const USER_JOINED_PODS = gql`
+  query userJoinedPods($privateHash: String) {
+    findOneUser(where: { privateHash: $privateHash }) {
+      memberOf {
+        id
+        itemName
+        itemMeta {
+          id
+          metaName
+          metaValue
+        }
+        members {
+          id
+          userEmail
+        }
+        posts(first: 2) {
+          id
+          itemName
+          itemMeta {
+            id
+            metaName
+            metaValue
+          }
+        }
+      }
+      ...UserFragment
+    }
+  }
+  ${UserFragments.user}
+`;

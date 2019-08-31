@@ -13,6 +13,7 @@ const GraphQLData: React.FC<GraphQLDataProps> = ({
   QUERY = null,
   loadingText = "Loading...",
   onFinish = data => console.info("finish default", data),
+  variables = null,
 }) => {
   const utility = new Utility();
 
@@ -22,6 +23,7 @@ const GraphQLData: React.FC<GraphQLDataProps> = ({
     loading,
   }: { data?: any; loading?: any; error?: any } = useQuery(QUERY, {
     onCompleted: onFinish,
+    variables,
   });
 
   if (loading) {
