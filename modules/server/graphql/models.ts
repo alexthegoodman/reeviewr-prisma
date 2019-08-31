@@ -37,7 +37,7 @@ export const User = objectType({
 
         // posts with pods with members contain this user
         const posts = await ctx.photon.posts.findMany({
-          where: { pod: { members: { every: { privateHash } } } },
+          where: { pod: { members: { some: { privateHash } } } },
         });
 
         console.info("posts", posts);
