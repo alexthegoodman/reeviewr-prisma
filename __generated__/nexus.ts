@@ -4172,6 +4172,7 @@ export interface NexusGenFieldTypes {
     forgotHash: string; // String!
     id: string; // ID!
     memberOf: NexusGenRootTypes['Pod'][] | null; // [Pod!]
+    memberOfPosts: NexusGenRootTypes['Post'][] | null; // [Post!]
     notifications: NexusGenRootTypes['Notification'][] | null; // [Notification!]
     pods: NexusGenRootTypes['Pod'][] | null; // [Pod!]
     posts: NexusGenRootTypes['Post'][] | null; // [Post!]
@@ -4586,6 +4587,10 @@ export interface NexusGenArgTypes {
       first?: number | null; // Int
       last?: number | null; // Int
       skip?: number | null; // Int
+    }
+    memberOfPosts: { // args
+      id?: string | null; // ID
+      privateHash?: string | null; // String
     }
     notifications: { // args
       after?: string | null; // String

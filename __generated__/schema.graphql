@@ -3142,6 +3142,7 @@ type User {
   forgotHash: String!
   id: ID!
   memberOf(after: String, before: String, first: Int, last: Int, skip: Int): [Pod!]
+  memberOfPosts(id: ID, privateHash: String): [Post!]
   notifications(after: String, before: String, first: Int, last: Int, skip: Int): [Notification!]
   pods(after: String, before: String, first: Int, last: Int, skip: Int): [Pod!]
   posts(after: String, before: String, first: Int, last: Int, skip: Int): [Post!]

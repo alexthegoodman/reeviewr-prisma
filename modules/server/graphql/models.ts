@@ -1,4 +1,4 @@
-import { idArg, makeSchema, objectType } from "@prisma/nexus";
+import { idArg, makeSchema, objectType, stringArg } from "@prisma/nexus";
 
 export const User = objectType({
   name: "User",
@@ -25,6 +25,26 @@ export const User = objectType({
     t.model.notifications();
     t.model.following();
     t.model.followers();
+
+    // resolver example
+    // resolver is needed for certain kinds of deep queries
+    t.list.field("memberOfPosts", {
+      type: "Post",
+      args: { id: idArg(), privateHash: stringArg() },
+      nullable: true,
+      resolve: async (_, { id, privateHash }, ctx) => {
+        console.info("call", id, privateHash);
+
+        // posts with pods with members contain this user
+        const posts = await ctx.photon.posts.findMany({
+          where: { pod: { members: { every: { privateHash } } } },
+        });
+
+        console.info("posts", posts);
+
+        return posts;
+      },
+    });
   },
 });
 

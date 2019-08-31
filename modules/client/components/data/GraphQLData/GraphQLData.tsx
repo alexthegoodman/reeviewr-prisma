@@ -30,6 +30,7 @@ const GraphQLData: React.FC<GraphQLDataProps> = ({
     return <LoadingIndicator loadingText={loadingText} />;
   }
   if (error) {
+    console.error("GraphQLData ERROR:", error);
     return <div>Error! {error.message}</div>;
   }
   if (!utility.isDefinedWithContent(data)) {

@@ -9,6 +9,7 @@ const PostCard: React.FC<PostCardProps> = ({
   ref = null,
   className = "",
   onClick = e => console.info("Click"),
+  post = null,
 }) => {
   const clickHandler = e => onClick(e);
   return (
@@ -20,7 +21,7 @@ const PostCard: React.FC<PostCardProps> = ({
         <div className="info">
           <div className="infoHeader">
             <Text className="infoHeadline" tagName="span">
-              Can't Tell Me Nothin
+              {post.itemName}
             </Text>
             <Popover
               content={

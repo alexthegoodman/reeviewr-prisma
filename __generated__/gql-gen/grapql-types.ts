@@ -3573,6 +3573,7 @@ export type User = {
   forgotHash: Scalars["String"];
   id: Scalars["ID"];
   memberOf?: Maybe<Array<Pod>>;
+  memberOfPosts?: Maybe<Array<Post>>;
   notifications?: Maybe<Array<Notification>>;
   pods?: Maybe<Array<Pod>>;
   posts?: Maybe<Array<Post>>;
@@ -3626,6 +3627,10 @@ export type UserMemberOfArgs = {
   first?: Maybe<Scalars["Int"]>;
   last?: Maybe<Scalars["Int"]>;
   skip?: Maybe<Scalars["Int"]>;
+};
+
+export type UserMemberOfPostsArgs = {
+  privateHash?: Maybe<Scalars["String"]>;
 };
 
 export type UserNotificationsArgs = {
@@ -4699,6 +4704,15 @@ export type JoinPodMutation = { __typename?: "Mutation" } & {
   updateOneUser: Maybe<{ __typename?: "User" } & Pick<User, "id">>;
 };
 
+export type LeavePodMutationVariables = {
+  userId?: Maybe<Scalars["ID"]>;
+  podId?: Maybe<Scalars["ID"]>;
+};
+
+export type LeavePodMutation = { __typename?: "Mutation" } & {
+  updateOneUser: Maybe<{ __typename?: "User" } & Pick<User, "id">>;
+};
+
 export type AllCategoriesQueryVariables = {};
 
 export type AllCategoriesQuery = { __typename?: "Query" } & {
@@ -4800,4 +4814,71 @@ export type PrivateUserQueryVariables = {
 
 export type PrivateUserQuery = { __typename?: "Query" } & {
   findOneUser: Maybe<{ __typename?: "User" } & UserFragmentFragment>;
+};
+
+export type UserJoinedPodsQueryVariables = {
+  privateHash?: Maybe<Scalars["String"]>;
+};
+
+export type UserJoinedPodsQuery = { __typename?: "Query" } & {
+  findOneUser: Maybe<
+    { __typename?: "User" } & {
+      memberOf: Maybe<
+        Array<
+          { __typename?: "Pod" } & Pick<Pod, "id" | "itemName"> & {
+              itemMeta: Maybe<
+                Array<
+                  { __typename?: "PodMeta" } & Pick<
+                    PodMeta,
+                    "id" | "metaName" | "metaValue"
+                  >
+                >
+              >;
+              members: Maybe<
+                Array<{ __typename?: "User" } & Pick<User, "id" | "userEmail">>
+              >;
+              posts: Maybe<
+                Array<
+                  { __typename?: "Post" } & Pick<Post, "id" | "itemName"> & {
+                      itemMeta: Maybe<
+                        Array<
+                          { __typename?: "PostMeta" } & Pick<
+                            PostMeta,
+                            "id" | "metaName" | "metaValue"
+                          >
+                        >
+                      >;
+                    }
+                >
+              >;
+            }
+        >
+      >;
+    } & UserFragmentFragment
+  >;
+};
+
+export type JoinedPodsPostsQueryVariables = {
+  privateHash?: Maybe<Scalars["String"]>;
+};
+
+export type JoinedPodsPostsQuery = { __typename?: "Query" } & {
+  findOneUser: Maybe<
+    { __typename?: "User" } & {
+      memberOfPosts: Maybe<
+        Array<
+          { __typename?: "Post" } & Pick<Post, "id" | "itemName"> & {
+              itemMeta: Maybe<
+                Array<
+                  { __typename?: "PostMeta" } & Pick<
+                    PostMeta,
+                    "id" | "metaName" | "metaValue"
+                  >
+                >
+              >;
+            }
+        >
+      >;
+    }
+  >;
 };

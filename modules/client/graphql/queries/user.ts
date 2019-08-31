@@ -85,3 +85,21 @@ export const USER_JOINED_PODS = gql`
   }
   ${UserFragments.user}
 `;
+
+export const USER_JOINED_PODS_POSTS = gql`
+  query joinedPodsPosts($id: ID, $privateHash: String) {
+    findOneUser(where: { privateHash: $privateHash }) {
+      ...UserFragment
+      memberOfPosts(id: $id, privateHash: $privateHash) {
+        id
+        itemName
+        itemMeta {
+          id
+          metaName
+          metaValue
+        }
+      }
+    }
+  }
+  ${UserFragments.user}
+`;

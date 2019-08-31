@@ -95,6 +95,7 @@ import {
 } from "./graphql/models";
 import { Mutation } from "./graphql/mutation";
 import { Query } from "./graphql/query";
+import resolvers from "./graphql/resolvers";
 import { mailchimpSubscribe } from "./integration/mailchimp-subscribe";
 import { createPod } from "./pods/create-pod";
 import { createPost } from "./posts/create-post";
