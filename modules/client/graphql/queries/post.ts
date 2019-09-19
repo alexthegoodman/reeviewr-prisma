@@ -4,13 +4,13 @@ import gql from "graphql-tag";
 //       where: { pod: { members: { every: { privateHash } } } },
 //     });
 
-export const JOINED_PODS_POSTS = gql`
-  query joinedPodsPosts($privateHash: String) {
-    findManyPost(
-      where: { pod: { members: { every: { privateHash: $privateHash } } } }
-    ) {
-      id
-      itemName
-    }
-  }
-`;
+// export const JOINED_PODS_POSTS = gql`
+//   query joinedPodsPosts($privateHash: String) {
+//     findManyPost(
+//       where: { pod: { members: { every: { privateHash: $privateHash } } } }
+//     ) {
+//       id
+//       itemName
+//     }
+//   }
+// `;

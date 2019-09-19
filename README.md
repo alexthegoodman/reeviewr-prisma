@@ -17,6 +17,7 @@ The project has since evolved into Prisma centric.
 - Duplicate `.env.example` as `.env` and get the needed values from Alex
 - install audiowaveform on your machine
 - Run `yarn dev`
+- `yarn gen:gql` (to generate client-side types)
 - Wait for all the bundles to finshing bundling
 - Visit `http://localhost:4000/` to verify that the Prisma / GraphQL Playground is functioning
 - Open `localhost:3000` in your browser to verify the web app is functioning

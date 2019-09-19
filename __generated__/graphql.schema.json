@@ -2005,6 +2005,12 @@
             "description": null,
             "args": [
               {
+                "name": "id",
+                "description": null,
+                "type": { "kind": "SCALAR", "name": "ID", "ofType": null },
+                "defaultValue": null
+              },
+              {
                 "name": "privateHash",
                 "description": null,
                 "type": { "kind": "SCALAR", "name": "String", "ofType": null },

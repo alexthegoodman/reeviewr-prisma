@@ -3630,6 +3630,7 @@ export type UserMemberOfArgs = {
 };
 
 export type UserMemberOfPostsArgs = {
+  id?: Maybe<Scalars["ID"]>;
   privateHash?: Maybe<Scalars["String"]>;
 };
 
@@ -4859,6 +4860,7 @@ export type UserJoinedPodsQuery = { __typename?: "Query" } & {
 };
 
 export type JoinedPodsPostsQueryVariables = {
+  id?: Maybe<Scalars["ID"]>;
   privateHash?: Maybe<Scalars["String"]>;
 };
 
@@ -4879,6 +4881,6 @@ export type JoinedPodsPostsQuery = { __typename?: "Query" } & {
             }
         >
       >;
-    }
+    } & UserFragmentFragment
   >;
 };

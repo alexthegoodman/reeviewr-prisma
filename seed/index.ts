@@ -10,6 +10,9 @@ async function clean() {
   await photon.pods.deleteMany({
     where: { id: { contains: "" } },
   });
+  await photon.posts.deleteMany({
+    where: { id: { contains: "" } },
+  });
   await photon.users.deleteMany({
     where: { id: { contains: "" } },
   });
@@ -119,6 +122,131 @@ async function main() {
       },
       // posts: { connect: {} },
       categories: { connect: { id: cat1.id } },
+    },
+  });
+  const post1 = await photon.posts.create({
+    data: {
+      user: { connect: { id: user1.id } },
+      pod: { connect: { id: pod1.id } },
+      itemType: "default",
+      itemStatus: "active",
+      itemUrlSegment: "post-name",
+      itemMimeType: "image/jpg",
+      itemName: "post name",
+      itemContent: "",
+      itemDeleted: false,
+      itemMeta: {
+        create: [
+          {
+            metaName: "content",
+            metaValue: ``,
+            metaType: "default",
+          },
+          {
+            metaName: "contentFilename",
+            metaValue: ``,
+            metaType: "default",
+          },
+          {
+            metaName: "description",
+            metaValue: `lorem ipsum`,
+            metaType: "default",
+          },
+          {
+            metaName: "questionType1",
+            metaValue: `essay`,
+            metaType: "default",
+          },
+          {
+            metaName: "questionContent1",
+            metaValue: `question one`,
+            metaType: "default",
+          },
+          {
+            metaName: "questionOne1",
+            metaValue: ``,
+            metaType: "default",
+          },
+          {
+            metaName: "questionTwo1",
+            metaValue: ``,
+            metaType: "default",
+          },
+          {
+            metaName: "questionThree1",
+            metaValue: ``,
+            metaType: "default",
+          },
+          {
+            metaName: "questionFour1",
+            metaValue: ``,
+            metaType: "default",
+          },
+          {
+            metaName: "questionType2",
+            metaValue: `essay`,
+            metaType: "default",
+          },
+          {
+            metaName: "questionContent2",
+            metaValue: `question two`,
+            metaType: "default",
+          },
+          {
+            metaName: "questionOne2",
+            metaValue: ``,
+            metaType: "default",
+          },
+          {
+            metaName: "questionTwo2",
+            metaValue: ``,
+            metaType: "default",
+          },
+          {
+            metaName: "questionThree2",
+            metaValue: ``,
+            metaType: "default",
+          },
+          {
+            metaName: "questionFour2",
+            metaValue: ``,
+            metaType: "default",
+          },
+          {
+            metaName: "questionType3",
+            metaValue: `essay`,
+            metaType: "default",
+          },
+          {
+            metaName: "questionContent3",
+            metaValue: `question three`,
+            metaType: "default",
+          },
+          {
+            metaName: "questionOne3",
+            metaValue: ``,
+            metaType: "default",
+          },
+          {
+            metaName: "questionTwo3",
+            metaValue: ``,
+            metaType: "default",
+          },
+          {
+            metaName: "questionThree3",
+            metaValue: ``,
+            metaType: "default",
+          },
+          {
+            metaName: "questionFour3",
+            metaValue: ``,
+            metaType: "default",
+          },
+        ],
+      },
+      tags: {
+        connect: [{ id: tag1.id }],
+      },
     },
   });
 }

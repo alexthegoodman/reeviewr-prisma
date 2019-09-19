@@ -5,10 +5,9 @@ import { onError } from "apollo-link-error";
 import { HttpLink } from "apollo-link-http";
 import fetch from "cross-fetch";
 
-let prismaUri = process.env.PRISMA_API_LOCAL;
-if (process.env.NODE_ENV !== "development") {
-  prismaUri = process.env.PRISMA_API_PROD;
-}
+const prismaUri = process.env.PRISMA_API;
+
+console.info("prismaUri", prismaUri);
 
 const defaultOptions = {
   watchQuery: {
