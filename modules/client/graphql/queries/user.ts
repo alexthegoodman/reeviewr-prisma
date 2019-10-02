@@ -14,28 +14,32 @@ const UserFragments = {
   `,
 };
 
-// export const USERS_QUERY = gql`
-//   query users($search: String) {
-//     findManyUser(
-//       first: 25
-//       where: {
-//         AND: [
-//           # { userMeta_some: { metaName: "firstName", metaValue_not: "" } }
-//           { userTracks_some: { id_not: "", itemStatus: "v2publish" } }
-//           {
-//             userMeta_some: {
-//               metaName: "userArtistName"
-//               metaValue_contains: $search
-//             }
-//           }
-//         ]
-//       }
-//     ) {
-//       ...UserFragment
-//     }
+// export const USER_POSTS_QUERY = gql`
+//   query userPostsQuery($search: String) {
+//     findManyPosts
 //   }
-//   ${UserFragments.user}
 // `;
+
+export const USERS_QUERY = gql`
+  query users($search: String) {
+    findManyUser(
+      first: 25
+      where: {
+        AND: [
+          {
+            userMeta_some: {
+              metaName: "firstName"
+              metaValue_contains: $search
+            }
+          }
+        ]
+      }
+    ) {
+      ...UserFragment
+    }
+  }
+  ${UserFragments.user}
+`;
 
 export const USER_QUERY = gql`
   query findUser($id: ID) {
@@ -102,4 +106,15 @@ export const USER_JOINED_PODS_POSTS = gql`
     }
   }
   ${UserFragments.user}
+`;
+
+export const SEARCH_USER_META = gql`
+  query users($search: String) {
+    findManyUserMeta(where: { metaName: { equals: "firstName" }, metaValue: { contains: $search }  }) {
+      user {
+        id
+        userEmail
+      }
+    }
+  }
 `;

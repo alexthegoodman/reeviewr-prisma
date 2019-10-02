@@ -1,18 +1,19 @@
 import * as React from "react";
 
 import { SearchResultsProps } from "./SearchResults.d";
-import { USERS_QUERY } from "../../../graphql/queries/user";
 import { useQuery } from "@apollo/react-hooks";
-import { USER_TRACKS_QUERY } from "../../../graphql/queries/userTrack";
-import { ALL_REVIEWS_QUERY } from "../../../graphql/queries/review";
-import HorizontalScroll from "react-scroll-horizontal";
 import { Text } from "@blueprintjs/core";
 import ArtistCardData from "../../data/ArtistCardData/ArtistCardData";
 import UserTrack from "../../data/UserTrack/UserTrack";
-import ReviewCardData from "../../data/ReviewCardData/ReviewCardData";
 import Utility from "../../../../services/Utility";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
+import { USERS_QUERY, SEARCH_USER_META } from "../../../graphql/queries/user";
+import { POSTS_QUERY } from "../../../graphql/queries/post";
+import PostCard from "../../ui/PostCard/PostCard";
+import UserCard from "../../ui/UserCard/UserCard";
+import { SEARCH_PODS } from "../../../graphql/queries/pod";
+import PodCard from "../../ui/PodCard/PodCard";
 
 const SearchResults: React.FC<SearchResultsProps> = () => {
   const utility = new Utility();
@@ -23,57 +24,43 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
 
   const { search } = route.lastChunk.request.params;
 
-  console.info("resules", encodeURIComponent(search));
-
-  const { data: userData, error: userError, loading: userLoading } = useQuery(
-    USERS_QUERY,
+  const {
+    data: userData,
+    error: userError,
+    loading: userLoading
+  } = useQuery(
+    SEARCH_USER_META,
     { variables: { search: encodeURIComponent(search) } }
   );
 
   const {
-    data: tracksData,
-    error: tracksError,
-    loading: tracksLoading,
-  } = useQuery(USER_TRACKS_QUERY, {
-    variables: { search: encodeURIComponent(search) },
-  });
+    data: postsData,
+    error: postsError,
+    loading: postsLoading,
+  } = useQuery(
+    POSTS_QUERY,
+    { variables: { search: encodeURIComponent(search) } }
+  );
 
-  // const {
-  //   data: reviewsData,
-  //   error: reviewsError,
-  //   loading: reviewsLoading,
-  // } = useQuery(ALL_REVIEWS_QUERY, {
-  //   variables: { search: encodeURIComponent(search) },
-  // });
-
-  // if (reviewsLoading) {
-  //   return (
-  //     <>
-  //       <section className="searchResults">
-  //         <div>Loading tracks...</div>
-  //       </section>
-  //     </>
-  //   );
-  // }
-  // if (reviewsError) {
-  //   return (
-  //     <>
-  //       <section className="searchResults">
-  //         <div>Error on tracks! {reviewsError.message}</div>
-  //       </section>
-  //     </>
-  //   );
-  // }
+  const {
+    data: podsData,
+    error: podsError,
+    loading: podsLoading,
+  } = useQuery(
+    SEARCH_PODS,
+    { variables: { search: encodeURIComponent(search) } }
+  );
 
   if (userLoading) {
     return (
       <>
         <section className="searchResults">
-          <LoadingIndicator loadingText="Loading artists..." />
+          <LoadingIndicator loadingText="Loading people..." />
         </section>
       </>
     );
   }
+
   if (userError) {
     return (
       <>
@@ -84,29 +71,50 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
     );
   }
 
-  if (tracksLoading) {
+  if (postsLoading) {
     return (
       <>
         <section className="searchResults">
-          <LoadingIndicator loadingText="Loading tracks..." />
+          <LoadingIndicator loadingText="Loading posts..." />
         </section>
       </>
     );
   }
-  if (tracksError) {
+
+  if (postsError) {
     return (
       <>
         <section className="searchResults">
-          <div>Error on tracks! {tracksError.message}</div>
+          <div>Error on posts! {postsError.message}</div>
+        </section>
+      </>
+    );
+  }
+
+  if (podsLoading) {
+    return (
+      <>
+        <section className="searchResults">
+          <LoadingIndicator loadingText="Loading pods..." />
+        </section>
+      </>
+    );
+  }
+
+  if (podsError) {
+    return (
+      <>
+        <section className="searchResults">
+          <div>Error on pods! {podsError.message}</div>
         </section>
       </>
     );
   }
 
   if (
-    !utility.isDefinedWithContent(userData.users) &&
-    !utility.isDefinedWithContent(tracksData.userTracks)
-    // !utility.isDefinedWithContent(reviewsData.reviews)
+    !utility.isDefinedWithContent(userData.findManyUserMeta) &&
+    !utility.isDefinedWithContent(postsData.findManyPost) &&
+    !utility.isDefinedWithContent(podsData.findManyPod)
   ) {
     return (
       <>
@@ -121,51 +129,49 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
     <>
       {search !== "" ? (
         <section className="searchResults">
-          {!tracksLoading && !userLoading ? (
+          {!postsLoading && !userLoading && !podsLoading ? (
             <>
               <Text tagName="h1">Search Results</Text>
 
-              {userData.users.length > 0 ? (
+              {userData.findManyUserMeta.length > 0 ? (
                 <section className="grid col-4">
-                  {userData.users.map(user => {
-                    return <ArtistCardData key={user.id} user={user} />;
+                  {userData.findManyUserMeta.map(userMeta => {
+                    return <UserCard user={userMeta.user} />
                   })}
                 </section>
               ) : (
-                <></>
-              )}
+                  <></>
+                )}
 
-              {/* {reviewsData.reviews.length > 0 ? (
+              {postsData.findManyPost.length > 0 ? (
                 <section className="grid col-4">
-                  {reviewsData.reviews.map(review => {
-                    return <ReviewCardData key={review.id} review={review} />;
+                  {postsData.findManyPost.map(post => {
+                    return <PostCard post={post} />
                   })}
                 </section>
               ) : (
-                <></>
-              )} */}
+                  <></>
+                )}
 
-              {tracksData.userTracks.length > 0 ? (
-                <section>
-                  {tracksData.userTracks.map(track => {
-                    return (
-                      <UserTrack key={track.id} track={track} reviewLimit={3} />
-                    );
+              {podsData.findManyPod.length > 0 ? (
+                <section className="grid col-4">
+                  {podsData.findManyPod.map(pod => {
+                    return <PodCard pod={pod} />
                   })}
                 </section>
               ) : (
-                <></>
-              )}
+                  <></>
+                )}
             </>
           ) : (
-            <></>
-          )}
+              <></>
+            )}
         </section>
       ) : (
-        <Text tagName="h5" className="headline">
-          No search phrase entered
+          <Text tagName="h5" className="headline">
+            No search phrase entered
         </Text>
-      )}
+        )}
     </>
   );
 };

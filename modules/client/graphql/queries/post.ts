@@ -1,16 +1,18 @@
 import gql from "graphql-tag";
 
-// const posts = await ctx.photon.posts.findMany({
-//       where: { pod: { members: { every: { privateHash } } } },
-//     });
+export const POSTS_QUERY = gql`
+  query posts($search: String) {
+    findManyPost(where: { itemName: { contains: $search } }) {
+      id
+    }
+  }
+`;
 
-// export const JOINED_PODS_POSTS = gql`
-//   query joinedPodsPosts($privateHash: String) {
-//     findManyPost(
-//       where: { pod: { members: { every: { privateHash: $privateHash } } } }
-//     ) {
+// export const SEARCH_POSTS = gql`
+//   query posts($search: String) {
+//     findManyPostMeta(where: { itemName: $search }) {
 //       id
-//       itemName
+
 //     }
 //   }
 // `;
