@@ -6,13 +6,13 @@ import { graphiqlExpress, graphqlExpress } from "graphql-server-express";
 import { sortBy } from "lodash-es";
 import md5 from "md5";
 import * as morgan from "morgan";
-import * as db from "../db";
+// import * as db from "../db";
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
 const Arena = require("bull-arena");
-const knex = db.getConnection();
-const knexLogger = require("knex-logger");
+// const knex = db.getConnection();
+// const knexLogger = require("knex-logger");
 const enforce = require("express-sslify");
 const expressStaticGzip = require("express-static-gzip");
 const cookieSession = require("cookie-session");
@@ -183,7 +183,7 @@ export async function startServer() {
 
   // Logging
   app.use(morgan("short"));
-  app.use(knexLogger(knex));
+  // app.use(knexLogger(knex));
 
   // Force SSL.
   if (config.get("server.requireSsl")) {
@@ -289,7 +289,7 @@ export async function startServer() {
         usernameField: "email", // define the parameter in req.body that passport can use as username and password
         passwordField: "password",
       },
-      async function(email: string, password: string, done) {
+      async function (email: string, password: string, done) {
         console.info(email, password);
 
         let user = null;

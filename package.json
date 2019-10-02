@@ -7,9 +7,6 @@
     "last 2 versions",
     "IE 11"
   ],
-  "engines": {
-    "node": "10.x"
-  },
   "scripts": {
     "start": "nf start web=1,worker=1",
     "build:graphql": "dotenv prisma2 generate;",

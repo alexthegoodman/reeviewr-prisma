@@ -10,25 +10,25 @@ const os = require("os");
 const IconFontPlugin = require("icon-font-loader").Plugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const scriptsDir = path.join(__dirname, "../entry/scripts");
+// const scriptsDir = path.join(__dirname, "../entry/scripts");
 
-/** A map of of entry points for every file in scripts */
-const scriptEntry = fs
-  .readdirSync(scriptsDir)
-  .filter(f => /\.tsx?$/.test(f))
-  .filter(f => fs.statSync(path.join(scriptsDir, f)).isFile())
-  .reduce((o, f) => {
-    o[`scripts/${f.replace(/\.tsx?$/, "")}`] = path.resolve(
-      path.join(scriptsDir, f)
-    );
-    return o;
-  }, {});
+// /** A map of of entry points for every file in scripts */
+// const scriptEntry = fs
+//   .readdirSync(scriptsDir)
+//   .filter(f => /\.tsx?$/.test(f))
+//   .filter(f => fs.statSync(path.join(scriptsDir, f)).isFile())
+//   .reduce((o, f) => {
+//     o[`scripts/${f.replace(/\.tsx?$/, "")}`] = path.resolve(
+//       path.join(scriptsDir, f)
+//     );
+//     return o;
+//   }, {});
 
 const entry = Object.assign(
   {
     server: "./entry/server.ts",
   },
-  scriptEntry
+  // scriptEntry
 );
 console.log(entry);
 

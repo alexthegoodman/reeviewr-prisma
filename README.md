@@ -8,13 +8,15 @@ The project has since evolved into Prisma centric.
 
 - Use a Linux machine. This will assure compatability.
 - Pull the repo https://github.com/alexthegoodman/reeviewr-prisma
-- Swtch to branch `dev`
 - Install all prerequesites. Including Node and Yarn.
 - Install dependencies by running `yarn`.
+- Duplicate `.env.example` as `.env` and get the needed values from Alex
+- `npm install -g dotenv-cli`
 - `npm install -g prisma2@latest`
 - `yarn prisma:apply`
+- `yarn gen:gql`
+- `yarn build:graphql`
 - `yarn seed`
-- Duplicate `.env.example` as `.env` and get the needed values from Alex
 - install audiowaveform on your machine
 - Run `yarn dev`
 - `yarn gen:gql` (to generate client-side types)
