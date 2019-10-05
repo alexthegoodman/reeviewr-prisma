@@ -3,6 +3,9 @@ import * as React from "react";
 import { MixpanelConsumer } from "react-mixpanel";
 import { AppContextProvider } from ".";
 import Utility from "../../services/Utility";
+import { useQuery } from "react-apollo";
+import { GET_NOTIFICATIONS } from "../graphql/queries/notification";
+import { useCookies } from "react-cookie";
 
 export interface IInitialAppState {
   currentTrack: {
@@ -13,6 +16,7 @@ export interface IInitialAppState {
     run: true;
   };
   userData: photon.User;
+  notificationsData: photon.Notification[],
   audioManager: {
     tracks: any;
   };
@@ -72,13 +76,15 @@ export const AppContextAPI = ({ children }) => {
     }
   };
 
-  // load API data via AuthClient or another Client and client.query
-
   return (
     <MixpanelConsumer>
       {mixpanel => (
         <AppContextProvider
-          initialState={{ ...InitialAppState, mixpanel }}
+          initialState={{
+            ...InitialAppState,
+            // notificationsData,
+            mixpanel
+          }}
           reducer={reducer}
         >
           {children}

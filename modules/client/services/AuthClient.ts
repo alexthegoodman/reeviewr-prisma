@@ -8,20 +8,20 @@ export default class AuthClient {
   public restClient = new RestClient();
   public utility = new Utility();
 
-  constructor() {}
+  constructor() { }
 
   async getUserData(dispatch) {
     const cookies = new Cookies();
-    const reeviewrPrivateHash = cookies.get("reeviewrPrivateHash");
+    const reeviewrId = cookies.get("reeviewrId");
 
-    console.info("reeivewr private hash", reeviewrPrivateHash);
+    console.info("reeivewr private hash", reeviewrId);
 
-    if (this.utility.isDefinedWithContent(reeviewrPrivateHash)) {
+    if (this.utility.isDefinedWithContent(reeviewrId)) {
       const { data: userData } = await client.query({
         query: USER_PRIVATE_QUERY,
-        variables: { privateHash: reeviewrPrivateHash },
+        variables: { id: reeviewrId },
       });
-      console.info("got user data", reeviewrPrivateHash, userData);
+      console.info("got user data", reeviewrId, userData);
       dispatch({
         type: "setUserData",
         userData: userData.findOneUser,
@@ -41,12 +41,12 @@ export default class AuthClient {
 
   completeProfile(values, callback) {
     const cookies = new Cookies();
-    const reeviewrPrivateHash = cookies.get("reeviewrPrivateHash");
+    const reeviewrId = cookies.get("reeviewrId");
 
-    if (this.utility.isDefinedWithContent(reeviewrPrivateHash)) {
+    if (this.utility.isDefinedWithContent(reeviewrId)) {
       this.restClient.makeRequest(
         "/user/complete-profile",
-        { ...values, privateHash: reeviewrPrivateHash },
+        { ...values, id: reeviewrId },
         callback
       );
     }

@@ -104,11 +104,11 @@ export const createUser = async (req, res, mixpanel, photon) => {
 
             // TODO: cookie on server
             if (process.env.NODE_ENV === "development") {
-              res.cookie("reeviewrPrivateHash", privateHash, {
+              res.cookie("reeviewrId", privateHash, {
                 domain: "localhost",
               });
             } else {
-              res.cookie("reeviewrPrivateHash", privateHash, {
+              res.cookie("reeviewrId", privateHash, {
                 domain: host,
                 secure: true,
               });

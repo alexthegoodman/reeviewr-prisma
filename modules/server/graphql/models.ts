@@ -30,14 +30,14 @@ export const User = objectType({
     // resolver is needed for certain kinds of deep queries
     t.list.field("memberOfPosts", {
       type: "Post",
-      args: { id: idArg(), privateHash: stringArg() },
+      args: { userId: idArg(), postId: stringArg() },
       nullable: true,
-      resolve: async (_, { id, privateHash }, ctx) => {
-        console.info("call", id, privateHash);
+      resolve: async (_, { userId, postId }, ctx) => {
+        console.info("call", userId, postId);
 
         // posts with pods with members contain this user
         const posts = await ctx.photon.posts.findMany({
-          where: { pod: { members: { some: { privateHash } } } },
+          where: { pod: { members: { some: { id: userId } } } },
         });
 
         console.info("posts", posts);
@@ -275,7 +275,6 @@ export const Notification = objectType({
     t.model.itemContent();
     t.model.itemDeleted();
     t.model.itemMeta();
-    t.model.thread();
   },
 });
 

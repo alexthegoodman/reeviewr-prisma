@@ -1043,7 +1043,6 @@ type Notification {
   itemName: String!
   itemStatus: String!
   itemType: String!
-  thread: Thread!
   user: User!
 }
 
@@ -1056,7 +1055,6 @@ input NotificationCreateInput {
   itemName: String!
   itemStatus: String!
   itemType: String!
-  thread: ThreadCreateOneWithoutThreadInput!
   updatedAt: DateTime
   user: UserCreateOneWithoutUserInput!
 }
@@ -1064,24 +1062,6 @@ input NotificationCreateInput {
 input NotificationCreateManyWithoutNotificationsInput {
   connect: [NotificationWhereUniqueInput!]
   create: [NotificationCreateWithoutUserInput!]
-}
-
-input NotificationCreateOneWithoutNotificationInput {
-  connect: NotificationWhereUniqueInput
-  create: NotificationCreateWithoutThreadInput
-}
-
-input NotificationCreateWithoutThreadInput {
-  createdAt: DateTime
-  id: ID
-  itemContent: String!
-  itemDeleted: Boolean
-  itemMeta: NotificationMetaCreateManyWithoutItemMetaInput
-  itemName: String!
-  itemStatus: String!
-  itemType: String!
-  updatedAt: DateTime
-  user: UserCreateOneWithoutUserInput!
 }
 
 input NotificationCreateWithoutUserInput {
@@ -1093,7 +1073,6 @@ input NotificationCreateWithoutUserInput {
   itemName: String!
   itemStatus: String!
   itemType: String!
-  thread: ThreadCreateOneWithoutThreadInput!
   updatedAt: DateTime
 }
 
@@ -1182,7 +1161,6 @@ input NotificationUpdateInput {
   itemName: String
   itemStatus: String
   itemType: String
-  thread: ThreadUpdateOneRequiredWithoutNotificationInput
   updatedAt: DateTime
   user: UserUpdateOneRequiredWithoutNotificationsInput
 }
@@ -1215,28 +1193,6 @@ input NotificationUpdateManyWithWhereNestedInput {
   where: MutationUpdateOneUserWhereInput!
 }
 
-input NotificationUpdateOneWithoutThreadInput {
-  connect: NotificationWhereUniqueInput
-  create: NotificationCreateWithoutThreadInput
-  delete: Boolean
-  disconnect: Boolean
-  update: NotificationUpdateWithoutThreadDataInput
-  upsert: NotificationUpsertWithoutThreadInput
-}
-
-input NotificationUpdateWithoutThreadDataInput {
-  createdAt: DateTime
-  id: ID
-  itemContent: String
-  itemDeleted: Boolean
-  itemMeta: NotificationMetaUpdateManyWithoutNotificationInput
-  itemName: String
-  itemStatus: String
-  itemType: String
-  updatedAt: DateTime
-  user: UserUpdateOneRequiredWithoutNotificationsInput
-}
-
 input NotificationUpdateWithoutUserDataInput {
   createdAt: DateTime
   id: ID
@@ -1246,18 +1202,12 @@ input NotificationUpdateWithoutUserDataInput {
   itemName: String
   itemStatus: String
   itemType: String
-  thread: ThreadUpdateOneRequiredWithoutNotificationInput
   updatedAt: DateTime
 }
 
 input NotificationUpdateWithWhereUniqueWithoutUserInput {
   data: NotificationUpdateWithoutUserDataInput!
   where: NotificationWhereUniqueInput!
-}
-
-input NotificationUpsertWithoutThreadInput {
-  create: NotificationCreateWithoutThreadInput!
-  update: NotificationUpdateWithoutThreadDataInput!
 }
 
 input NotificationUpsertWithWhereUniqueWithoutUserInput {
@@ -2519,7 +2469,6 @@ input QueryFindManyNotificationWhereInput {
   itemType: StringFilter
   NOT: [QueryFindManyNotificationWhereInput!]
   OR: [QueryFindManyNotificationWhereInput!]
-  thread: QueryFindManyNotificationWhereInput
   updatedAt: QueryFindManyNotificationFilter
   user: QueryFindManyNotificationWhereInput
 }
@@ -2915,7 +2864,6 @@ input QueryFindManyThreadWhereInput {
   itemType: StringFilter
   message: QueryFindManyThreadWhereInput
   NOT: [QueryFindManyThreadWhereInput!]
-  notification: QueryFindManyThreadWhereInput
   OR: [QueryFindManyThreadWhereInput!]
   updatedAt: QueryFindManyThreadFilter
   user: QueryFindManyThreadWhereInput
@@ -3651,7 +3599,6 @@ input ThreadCreateInput {
   itemStatus: String!
   itemType: String!
   message: MessageCreateOneWithoutMessageInput
-  notification: NotificationCreateOneWithoutNotificationInput
   updatedAt: DateTime
   user: UserCreateOneWithoutUserInput!
 }
@@ -3663,7 +3610,7 @@ input ThreadCreateManyWithoutThreadsInput {
 
 input ThreadCreateOneWithoutThreadInput {
   connect: ThreadWhereUniqueInput
-  create: ThreadCreateWithoutNotificationInput
+  create: ThreadCreateWithoutMessageInput
 }
 
 input ThreadCreateWithoutMessageInput {
@@ -3675,21 +3622,6 @@ input ThreadCreateWithoutMessageInput {
   itemName: String!
   itemStatus: String!
   itemType: String!
-  notification: NotificationCreateOneWithoutNotificationInput
-  updatedAt: DateTime
-  user: UserCreateOneWithoutUserInput!
-}
-
-input ThreadCreateWithoutNotificationInput {
-  createdAt: DateTime
-  id: ID
-  itemContent: String!
-  itemDeleted: Boolean
-  itemMeta: ThreadMetaCreateManyWithoutItemMetaInput
-  itemName: String!
-  itemStatus: String!
-  itemType: String!
-  message: MessageCreateOneWithoutMessageInput
   updatedAt: DateTime
   user: UserCreateOneWithoutUserInput!
 }
@@ -3704,7 +3636,6 @@ input ThreadCreateWithoutUserInput {
   itemStatus: String!
   itemType: String!
   message: MessageCreateOneWithoutMessageInput
-  notification: NotificationCreateOneWithoutNotificationInput
   updatedAt: DateTime
 }
 
@@ -3794,7 +3725,6 @@ input ThreadUpdateInput {
   itemStatus: String
   itemType: String
   message: MessageUpdateOneWithoutThreadInput
-  notification: NotificationUpdateOneWithoutThreadInput
   updatedAt: DateTime
   user: UserUpdateOneRequiredWithoutThreadsInput
 }
@@ -3834,13 +3764,6 @@ input ThreadUpdateOneRequiredWithoutMessageInput {
   upsert: ThreadUpsertWithoutMessageInput
 }
 
-input ThreadUpdateOneRequiredWithoutNotificationInput {
-  connect: ThreadWhereUniqueInput
-  create: ThreadCreateWithoutNotificationInput
-  update: ThreadUpdateWithoutNotificationDataInput
-  upsert: ThreadUpsertWithoutNotificationInput
-}
-
 input ThreadUpdateWithoutMessageDataInput {
   createdAt: DateTime
   id: ID
@@ -3850,21 +3773,6 @@ input ThreadUpdateWithoutMessageDataInput {
   itemName: String
   itemStatus: String
   itemType: String
-  notification: NotificationUpdateOneWithoutThreadInput
-  updatedAt: DateTime
-  user: UserUpdateOneRequiredWithoutThreadsInput
-}
-
-input ThreadUpdateWithoutNotificationDataInput {
-  createdAt: DateTime
-  id: ID
-  itemContent: String
-  itemDeleted: Boolean
-  itemMeta: ThreadMetaUpdateManyWithoutThreadInput
-  itemName: String
-  itemStatus: String
-  itemType: String
-  message: MessageUpdateOneWithoutThreadInput
   updatedAt: DateTime
   user: UserUpdateOneRequiredWithoutThreadsInput
 }
@@ -3879,7 +3787,6 @@ input ThreadUpdateWithoutUserDataInput {
   itemStatus: String
   itemType: String
   message: MessageUpdateOneWithoutThreadInput
-  notification: NotificationUpdateOneWithoutThreadInput
   updatedAt: DateTime
 }
 
@@ -3891,11 +3798,6 @@ input ThreadUpdateWithWhereUniqueWithoutUserInput {
 input ThreadUpsertWithoutMessageInput {
   create: ThreadCreateWithoutMessageInput!
   update: ThreadUpdateWithoutMessageDataInput!
-}
-
-input ThreadUpsertWithoutNotificationInput {
-  create: ThreadCreateWithoutNotificationInput!
-  update: ThreadUpdateWithoutNotificationDataInput!
 }
 
 input ThreadUpsertWithWhereUniqueWithoutUserInput {
@@ -3917,7 +3819,7 @@ type User {
   forgotHash: String!
   id: ID!
   memberOf(after: String, before: String, first: Int, last: Int, skip: Int): [Pod!]
-  memberOfPosts(id: ID, privateHash: String): [Post!]
+  memberOfPosts(postId: String, userId: ID): [Post!]
   notifications(after: String, before: String, first: Int, last: Int, skip: Int): [Notification!]
   pods(after: String, before: String, first: Int, last: Int, skip: Int): [Pod!]
   posts(after: String, before: String, first: Int, last: Int, skip: Int): [Post!]

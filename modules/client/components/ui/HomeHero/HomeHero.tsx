@@ -12,7 +12,7 @@ const HomeHero: React.FC<HomeHeroProps> = ({
   onClick = e => console.info("Click"),
 }) => {
   const [cookies, setCookie, removeCookie] = useCookies([
-    "reeviewrPrivateHash",
+    "reeviewrId",
   ]);
   const [{ tour, userData }, dispatch] = useAppContext();
 

@@ -1,9 +1,16 @@
 import Photon from "@generated/photon";
 import uuid = require("uuid");
+import { NOTIFICATION_CODE } from "../modules/services/NOTIFICATION_CODE";
 
 const photon = new Photon();
 
 async function clean() {
+  await photon.notificationMetas.deleteMany({
+    where: { id: { contains: "" } },
+  });
+  await photon.notifications.deleteMany({
+    where: { id: { contains: "" } },
+  });
   await photon.podMetas.deleteMany({
     where: { id: { contains: "" } },
   });
@@ -35,7 +42,7 @@ async function main() {
         "$2a$12$QG3qjuizq4bb24Gl2hhhSegdv7XHpv0nJrc1Fw/920gOMNSzn80A.", // testing
       userType: 1,
       publicHash: "1111",
-      privateHash: "1111",
+      id: "1111",
       forgotHash: "1111",
       confirmHash: "1111",
     },
@@ -50,9 +57,37 @@ async function main() {
         "$2a$12$QG3qjuizq4bb24Gl2hhhSegdv7XHpv0nJrc1Fw/920gOMNSzn80A.", // testing
       userType: 1,
       publicHash: "1112",
-      privateHash: "1112",
+      id: "1112",
       forgotHash: "1112",
       confirmHash: "1112",
+    },
+  });
+  const notif1 = await photon.notifications.create({
+    data: {
+      user: { connect: { id: user1.id } },
+      itemName: NOTIFICATION_CODE.A001,
+      itemContent: "",
+      itemType: "default",
+      itemStatus: "active",
+      itemMeta: {
+        create: [
+          {
+            metaName: "sender",
+            metaValue: user1.id,
+            metaType: "active"
+          },
+          {
+            metaName: "receiver",
+            metaValue: user2.id,
+            metaType: "active"
+          },
+          {
+            metaName: "action",
+            metaValue: NOTIFICATION_CODE.A001,
+            metaType: "active"
+          }
+        ]
+      }
     },
   });
   const cat1 = await photon.categories.create({

@@ -8,18 +8,18 @@ export default class ItemClient {
   public restClient = new RestClient();
   public utility = new Utility();
 
-  constructor() {}
+  constructor() { }
 
   createPod(values, callback) {
     const cookies = new Cookies();
-    const reeviewrPrivateHash = cookies.get("reeviewrPrivateHash");
+    const reeviewrId = cookies.get("reeviewrId");
 
-    console.info("create pod", reeviewrPrivateHash);
+    console.info("create pod", reeviewrId);
 
-    if (this.utility.isDefinedWithContent(reeviewrPrivateHash)) {
+    if (this.utility.isDefinedWithContent(reeviewrId)) {
       this.restClient.makeRequest(
         "/pods/create/",
-        { privateHash: reeviewrPrivateHash, ...values },
+        { id: reeviewrId, ...values },
         callback
       );
     } else {
@@ -30,14 +30,14 @@ export default class ItemClient {
 
   createPost(values, callback) {
     const cookies = new Cookies();
-    const reeviewrPrivateHash = cookies.get("reeviewrPrivateHash");
+    const reeviewrId = cookies.get("reeviewrId");
 
-    console.info("create post", reeviewrPrivateHash);
+    console.info("create post", reeviewrId);
 
-    if (this.utility.isDefinedWithContent(reeviewrPrivateHash)) {
+    if (this.utility.isDefinedWithContent(reeviewrId)) {
       this.restClient.makeRequest(
         "/posts/create/",
-        { privateHash: reeviewrPrivateHash, ...values },
+        { id: reeviewrId, ...values },
         callback
       );
     } else {

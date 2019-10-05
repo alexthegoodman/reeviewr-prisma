@@ -51,8 +51,8 @@ export const USER_QUERY = gql`
 `;
 
 export const USER_PRIVATE_QUERY = gql`
-  query privateUser($privateHash: String) {
-    findOneUser(where: { privateHash: $privateHash }) {
+  query privateUser($id: ID) {
+    findOneUser(where: { id: $id }) {
       ...UserFragment
     }
   }
@@ -60,8 +60,8 @@ export const USER_PRIVATE_QUERY = gql`
 `;
 
 export const USER_JOINED_PODS = gql`
-  query userJoinedPods($privateHash: String) {
-    findOneUser(where: { privateHash: $privateHash }) {
+  query userJoinedPods($id: ID) {
+    findOneUser(where: { id: $id }) {
       memberOf {
         id
         itemName
@@ -91,10 +91,10 @@ export const USER_JOINED_PODS = gql`
 `;
 
 export const USER_JOINED_PODS_POSTS = gql`
-  query joinedPodsPosts($id: ID, $privateHash: String) {
-    findOneUser(where: { privateHash: $privateHash }) {
+  query joinedPodsPosts($userId: ID, $postId: ID) {
+    findOneUser(where: { id: $userId }) {
       ...UserFragment
-      memberOfPosts(id: $id, privateHash: $privateHash) {
+      memberOfPosts(id: $userId, id: $postId) {
         id
         itemName
         itemMeta {

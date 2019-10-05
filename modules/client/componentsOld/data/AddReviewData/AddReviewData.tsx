@@ -55,7 +55,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
   const [{ userData, mixpanel }, dispatch] = useAppContext();
   const [navbarTabId, setNavbarTabId] = React.useState("question1" as TabId);
   const [modelOpen, setModelOpen] = React.useState(false);
-  const [cookies] = useCookies(["reeviewrPrivateHash"]);
+  const [cookies] = useCookies(["reeviewrId"]);
 
   const handleTabChange = (navbarTabId: TabId) => {
     setNavbarTabId(navbarTabId);
@@ -197,8 +197,8 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                 You must answer all of the questions.
               </Callout>
             ) : (
-              <></>
-            )}
+                <></>
+              )}
 
             <Formik
               initialValues={{
@@ -298,8 +298,8 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                       {questionType[0] === "rating" ? (
                         <Text>Rate the following from 1 to 10</Text>
                       ) : (
-                        <></>
-                      )}
+                          <></>
+                        )}
                       {strings.decode(trackMetaList["questionContent1"])}
                       {strings.decode(trackMetaList["questionOne1"])}
                     </Text>
@@ -324,8 +324,8 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                       {questionType[1] === "rating" ? (
                         <Text>Rate the following from 1 to 10</Text>
                       ) : (
-                        <></>
-                      )}
+                          <></>
+                        )}
                       {strings.decode(trackMetaList["questionContent2"])}
                       {strings.decode(trackMetaList["questionOne2"])}
                     </Text>
@@ -350,8 +350,8 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                       {questionType[2] === "rating" ? (
                         <Text>Rate the following from 1 to 10</Text>
                       ) : (
-                        <></>
-                      )}
+                          <></>
+                        )}
                       {strings.decode(trackMetaList["questionContent3"])}
                       {strings.decode(trackMetaList["questionOne3"])}
                     </Text>
@@ -365,7 +365,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                       disabled={formikBag.isSubmitting}
                       loading={formikBag.isSubmitting}
                       className="actionButton"
-                      // onClick={() => formikBag.submitForm()}
+                    // onClick={() => formikBag.submitForm()}
                     >
                       Finish
                     </Button>

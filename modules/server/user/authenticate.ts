@@ -5,7 +5,7 @@ import Utility from "../../services/Utility";
 // 2. Check userType = 0 and userConfirmed = 1
 
 export const authenticate = async (req, res, passport, mixpanel, photon) => {
-  passport.authenticate("local", function(error, user, info) {
+  passport.authenticate("local", function (error, user, info) {
     try {
       console.info(
         "CALL authenticate:",
@@ -26,13 +26,15 @@ export const authenticate = async (req, res, passport, mixpanel, photon) => {
         if (user.userType === 0 || user.userType === 1) {
           // if (user.userConfirmed === 1) {
           // TODO: cookie on server
+
           const host = req.get("host");
           if (process.env.NODE_ENV === "development") {
-            res.cookie("reeviewrPrivateHash", user.privateHash, {
+            res.cookie("reeviewrId", user.id, {
               domain: "localhost",
             });
+            console.info("reeviewr cookie")
           } else {
-            res.cookie("reeviewrPrivateHash", user.privateHash, {
+            res.cookie("reeviewrId", user.id, {
               domain: host,
               secure: true,
             });

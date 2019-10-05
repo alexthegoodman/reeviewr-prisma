@@ -8,6 +8,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
   ref = null,
   className = "",
   onClick = e => console.info("Click"),
+  notification = null
 }) => {
   const clickHandler = e => onClick(e);
   return (
@@ -18,7 +19,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
         </div>
         <div className="info">
           <Text className="message" tagName="span">
-            Marco Bulnes has reviewed your posts "Churning Users"
+            {notification.itemName}
           </Text>
           <Link href="#!">View Review</Link>
         </div>

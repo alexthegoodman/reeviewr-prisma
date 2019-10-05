@@ -3577,7 +3577,7 @@ export type User = {
   notifications?: Maybe<Array<Notification>>;
   pods?: Maybe<Array<Pod>>;
   posts?: Maybe<Array<Post>>;
-  privateHash: Scalars["String"];
+  id: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<Array<Question>>;
   reviews?: Maybe<Array<Review>>;
@@ -3704,7 +3704,7 @@ export type UserCreateInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  privateHash: Scalars["String"];
+  id: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
@@ -3751,7 +3751,7 @@ export type UserCreateWithoutAnnotationsInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  privateHash: Scalars["String"];
+  id: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
@@ -3778,7 +3778,7 @@ export type UserCreateWithoutFavoritesInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  privateHash: Scalars["String"];
+  id: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
@@ -3805,7 +3805,7 @@ export type UserCreateWithoutFollowersInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  privateHash: Scalars["String"];
+  id: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
@@ -3832,7 +3832,7 @@ export type UserCreateWithoutFollowingInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  privateHash: Scalars["String"];
+  id: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
@@ -3859,7 +3859,7 @@ export type UserCreateWithoutMemberOfInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  privateHash: Scalars["String"];
+  id: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
@@ -3886,7 +3886,7 @@ export type UserCreateWithoutMessageInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  privateHash: Scalars["String"];
+  id: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
@@ -3913,7 +3913,7 @@ export type UserCreateWithoutNotificationsInput = {
   message?: Maybe<MessageCreateOneWithoutMessageInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  privateHash: Scalars["String"];
+  id: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
@@ -3940,7 +3940,7 @@ export type UserCreateWithoutPodsInput = {
   message?: Maybe<MessageCreateOneWithoutMessageInput>;
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  privateHash: Scalars["String"];
+  id: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
@@ -3967,7 +3967,7 @@ export type UserCreateWithoutPostsInput = {
   message?: Maybe<MessageCreateOneWithoutMessageInput>;
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
-  privateHash: Scalars["String"];
+  id: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
@@ -3995,7 +3995,7 @@ export type UserCreateWithoutQuestionsInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  privateHash: Scalars["String"];
+  id: Scalars["String"];
   publicHash: Scalars["String"];
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
   threads?: Maybe<ThreadCreateManyWithoutThreadsInput>;
@@ -4022,7 +4022,7 @@ export type UserCreateWithoutReviewsInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  privateHash: Scalars["String"];
+  id: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   threads?: Maybe<ThreadCreateManyWithoutThreadsInput>;
@@ -4049,7 +4049,7 @@ export type UserCreateWithoutThreadsInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  privateHash: Scalars["String"];
+  id: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;

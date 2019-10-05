@@ -8,6 +8,8 @@ import { useAppContext } from "../../../context";
 import AuthClient from "../../../services/AuthClient";
 import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
 import { AppProps } from "./App.d";
+import { useQuery } from "react-apollo";
+import { GET_NOTIFICATIONS } from "../../../graphql/queries/notification";
 
 const App: React.FC<AppProps> = ({ children }) => {
   const authClient = new AuthClient();
@@ -18,7 +20,7 @@ const App: React.FC<AppProps> = ({ children }) => {
   const navigation = useNavigation();
 
   const [cookies, setCookie, removeCookie] = useCookies([
-    "reeviewrPrivateHash",
+    "reeviewrId",
     "reeviewrDarkMode",
   ]);
 
@@ -26,7 +28,7 @@ const App: React.FC<AppProps> = ({ children }) => {
   // Will users who are logged in be shown a loading symbol on SSR (with JS disabled)?
   if (
     userData === null &&
-    utility.isDefinedWithContent(cookies["reeviewrPrivateHash"])
+    utility.isDefinedWithContent(cookies["reeviewrId"])
   ) {
     authClient.getUserData(dispatch);
 

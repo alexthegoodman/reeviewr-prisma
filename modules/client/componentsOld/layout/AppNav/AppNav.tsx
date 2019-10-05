@@ -35,13 +35,13 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
   const route = useCurrentRoute();
   const navigation = useNavigation();
   const [cookies, setCookie, removeCookie] = useCookies([
-    "reeviewrPrivateHash",
+    "reeviewrId",
   ]);
 
   const [{ tour, userData }, dispatch] = useAppContext();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
-  console.info("cookies", cookies["reeviewrPrivateHash"]);
+  console.info("cookies", cookies["reeviewrId"]);
 
   let rightNav = (
     <>
@@ -135,7 +135,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
     );
 
     const logOut = () => {
-      removeCookie("reeviewrPrivateHash");
+      removeCookie("reeviewrId");
       // window.location.reload();
       window.location.href = window.location.origin;
     };
