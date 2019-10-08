@@ -870,12 +870,12 @@ export interface NexusGenInputs {
     itemName: string; // String!
     itemStatus: string; // String!
     itemType: string; // String!
-    pod: NexusGenInputs['PodCreateOneWithoutPodInput']; // PodCreateOneWithoutPodInput!
-    post: NexusGenInputs['PostCreateOneWithoutPostInput']; // PostCreateOneWithoutPostInput!
+    pod?: NexusGenInputs['PodCreateOneWithoutPodInput'] | null; // PodCreateOneWithoutPodInput
+    post?: NexusGenInputs['PostCreateOneWithoutPostInput'] | null; // PostCreateOneWithoutPostInput
     receiver: NexusGenInputs['UserCreateOneWithoutReceiverInput']; // UserCreateOneWithoutReceiverInput!
     sender: NexusGenInputs['UserCreateOneWithoutSenderInput']; // UserCreateOneWithoutSenderInput!
     updatedAt?: any | null; // DateTime
-    user: NexusGenInputs['UserCreateOneWithoutUserInput']; // UserCreateOneWithoutUserInput!
+    user?: NexusGenInputs['UserCreateOneWithoutUserInput'] | null; // UserCreateOneWithoutUserInput
   }
   NotificationCreateManyWithoutNotificationsInput: { // input type
     connect?: NexusGenInputs['NotificationWhereUniqueInput'][] | null; // [NotificationWhereUniqueInput!]
@@ -902,11 +902,11 @@ export interface NexusGenInputs {
     itemName: string; // String!
     itemStatus: string; // String!
     itemType: string; // String!
-    post: NexusGenInputs['PostCreateOneWithoutPostInput']; // PostCreateOneWithoutPostInput!
+    post?: NexusGenInputs['PostCreateOneWithoutPostInput'] | null; // PostCreateOneWithoutPostInput
     receiver: NexusGenInputs['UserCreateOneWithoutReceiverInput']; // UserCreateOneWithoutReceiverInput!
     sender: NexusGenInputs['UserCreateOneWithoutSenderInput']; // UserCreateOneWithoutSenderInput!
     updatedAt?: any | null; // DateTime
-    user: NexusGenInputs['UserCreateOneWithoutUserInput']; // UserCreateOneWithoutUserInput!
+    user?: NexusGenInputs['UserCreateOneWithoutUserInput'] | null; // UserCreateOneWithoutUserInput
   }
   NotificationCreateWithoutPostInput: { // input type
     createdAt?: any | null; // DateTime
@@ -917,11 +917,11 @@ export interface NexusGenInputs {
     itemName: string; // String!
     itemStatus: string; // String!
     itemType: string; // String!
-    pod: NexusGenInputs['PodCreateOneWithoutPodInput']; // PodCreateOneWithoutPodInput!
+    pod?: NexusGenInputs['PodCreateOneWithoutPodInput'] | null; // PodCreateOneWithoutPodInput
     receiver: NexusGenInputs['UserCreateOneWithoutReceiverInput']; // UserCreateOneWithoutReceiverInput!
     sender: NexusGenInputs['UserCreateOneWithoutSenderInput']; // UserCreateOneWithoutSenderInput!
     updatedAt?: any | null; // DateTime
-    user: NexusGenInputs['UserCreateOneWithoutUserInput']; // UserCreateOneWithoutUserInput!
+    user?: NexusGenInputs['UserCreateOneWithoutUserInput'] | null; // UserCreateOneWithoutUserInput
   }
   NotificationCreateWithoutReceiverInput: { // input type
     createdAt?: any | null; // DateTime
@@ -932,11 +932,11 @@ export interface NexusGenInputs {
     itemName: string; // String!
     itemStatus: string; // String!
     itemType: string; // String!
-    pod: NexusGenInputs['PodCreateOneWithoutPodInput']; // PodCreateOneWithoutPodInput!
-    post: NexusGenInputs['PostCreateOneWithoutPostInput']; // PostCreateOneWithoutPostInput!
+    pod?: NexusGenInputs['PodCreateOneWithoutPodInput'] | null; // PodCreateOneWithoutPodInput
+    post?: NexusGenInputs['PostCreateOneWithoutPostInput'] | null; // PostCreateOneWithoutPostInput
     sender: NexusGenInputs['UserCreateOneWithoutSenderInput']; // UserCreateOneWithoutSenderInput!
     updatedAt?: any | null; // DateTime
-    user: NexusGenInputs['UserCreateOneWithoutUserInput']; // UserCreateOneWithoutUserInput!
+    user?: NexusGenInputs['UserCreateOneWithoutUserInput'] | null; // UserCreateOneWithoutUserInput
   }
   NotificationCreateWithoutSenderInput: { // input type
     createdAt?: any | null; // DateTime
@@ -947,11 +947,11 @@ export interface NexusGenInputs {
     itemName: string; // String!
     itemStatus: string; // String!
     itemType: string; // String!
-    pod: NexusGenInputs['PodCreateOneWithoutPodInput']; // PodCreateOneWithoutPodInput!
-    post: NexusGenInputs['PostCreateOneWithoutPostInput']; // PostCreateOneWithoutPostInput!
+    pod?: NexusGenInputs['PodCreateOneWithoutPodInput'] | null; // PodCreateOneWithoutPodInput
+    post?: NexusGenInputs['PostCreateOneWithoutPostInput'] | null; // PostCreateOneWithoutPostInput
     receiver: NexusGenInputs['UserCreateOneWithoutReceiverInput']; // UserCreateOneWithoutReceiverInput!
     updatedAt?: any | null; // DateTime
-    user: NexusGenInputs['UserCreateOneWithoutUserInput']; // UserCreateOneWithoutUserInput!
+    user?: NexusGenInputs['UserCreateOneWithoutUserInput'] | null; // UserCreateOneWithoutUserInput
   }
   NotificationCreateWithoutUserInput: { // input type
     createdAt?: any | null; // DateTime
@@ -962,8 +962,8 @@ export interface NexusGenInputs {
     itemName: string; // String!
     itemStatus: string; // String!
     itemType: string; // String!
-    pod: NexusGenInputs['PodCreateOneWithoutPodInput']; // PodCreateOneWithoutPodInput!
-    post: NexusGenInputs['PostCreateOneWithoutPostInput']; // PostCreateOneWithoutPostInput!
+    pod?: NexusGenInputs['PodCreateOneWithoutPodInput'] | null; // PodCreateOneWithoutPodInput
+    post?: NexusGenInputs['PostCreateOneWithoutPostInput'] | null; // PostCreateOneWithoutPostInput
     receiver: NexusGenInputs['UserCreateOneWithoutReceiverInput']; // UserCreateOneWithoutReceiverInput!
     sender: NexusGenInputs['UserCreateOneWithoutSenderInput']; // UserCreateOneWithoutSenderInput!
     updatedAt?: any | null; // DateTime
@@ -1035,12 +1035,12 @@ export interface NexusGenInputs {
     itemName?: string | null; // String
     itemStatus?: string | null; // String
     itemType?: string | null; // String
-    pod?: NexusGenInputs['PodUpdateOneRequiredWithoutNotificationInput'] | null; // PodUpdateOneRequiredWithoutNotificationInput
-    post?: NexusGenInputs['PostUpdateOneRequiredWithoutNotificationInput'] | null; // PostUpdateOneRequiredWithoutNotificationInput
+    pod?: NexusGenInputs['PodUpdateOneWithoutNotificationInput'] | null; // PodUpdateOneWithoutNotificationInput
+    post?: NexusGenInputs['PostUpdateOneWithoutNotificationInput'] | null; // PostUpdateOneWithoutNotificationInput
     receiver?: NexusGenInputs['UserUpdateOneRequiredWithoutRecievedNotificationsInput'] | null; // UserUpdateOneRequiredWithoutRecievedNotificationsInput
     sender?: NexusGenInputs['UserUpdateOneRequiredWithoutSentNotificationsInput'] | null; // UserUpdateOneRequiredWithoutSentNotificationsInput
     updatedAt?: any | null; // DateTime
-    user?: NexusGenInputs['UserUpdateOneRequiredWithoutNotificationsInput'] | null; // UserUpdateOneRequiredWithoutNotificationsInput
+    user?: NexusGenInputs['UserUpdateOneWithoutNotificationsInput'] | null; // UserUpdateOneWithoutNotificationsInput
   }
   NotificationUpdateManyDataInput: { // input type
     createdAt?: any | null; // DateTime
@@ -1067,18 +1067,6 @@ export interface NexusGenInputs {
     updateMany?: NexusGenInputs['NotificationUpdateManyWithWhereNestedInput'][] | null; // [NotificationUpdateManyWithWhereNestedInput!]
     upsert?: NexusGenInputs['NotificationUpsertWithWhereUniqueWithoutUserInput'][] | null; // [NotificationUpsertWithWhereUniqueWithoutUserInput!]
   }
-  NotificationUpdateOneRequiredWithoutReceiverInput: { // input type
-    connect?: NexusGenInputs['NotificationWhereUniqueInput'] | null; // NotificationWhereUniqueInput
-    create?: NexusGenInputs['NotificationCreateWithoutReceiverInput'] | null; // NotificationCreateWithoutReceiverInput
-    update?: NexusGenInputs['NotificationUpdateWithoutReceiverDataInput'] | null; // NotificationUpdateWithoutReceiverDataInput
-    upsert?: NexusGenInputs['NotificationUpsertWithoutReceiverInput'] | null; // NotificationUpsertWithoutReceiverInput
-  }
-  NotificationUpdateOneRequiredWithoutSenderInput: { // input type
-    connect?: NexusGenInputs['NotificationWhereUniqueInput'] | null; // NotificationWhereUniqueInput
-    create?: NexusGenInputs['NotificationCreateWithoutSenderInput'] | null; // NotificationCreateWithoutSenderInput
-    update?: NexusGenInputs['NotificationUpdateWithoutSenderDataInput'] | null; // NotificationUpdateWithoutSenderDataInput
-    upsert?: NexusGenInputs['NotificationUpsertWithoutSenderInput'] | null; // NotificationUpsertWithoutSenderInput
-  }
   NotificationUpdateOneWithoutPodInput: { // input type
     connect?: NexusGenInputs['NotificationWhereUniqueInput'] | null; // NotificationWhereUniqueInput
     create?: NexusGenInputs['NotificationCreateWithoutPodInput'] | null; // NotificationCreateWithoutPodInput
@@ -1095,6 +1083,22 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['NotificationUpdateWithoutPostDataInput'] | null; // NotificationUpdateWithoutPostDataInput
     upsert?: NexusGenInputs['NotificationUpsertWithoutPostInput'] | null; // NotificationUpsertWithoutPostInput
   }
+  NotificationUpdateOneWithoutReceiverInput: { // input type
+    connect?: NexusGenInputs['NotificationWhereUniqueInput'] | null; // NotificationWhereUniqueInput
+    create?: NexusGenInputs['NotificationCreateWithoutReceiverInput'] | null; // NotificationCreateWithoutReceiverInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['NotificationUpdateWithoutReceiverDataInput'] | null; // NotificationUpdateWithoutReceiverDataInput
+    upsert?: NexusGenInputs['NotificationUpsertWithoutReceiverInput'] | null; // NotificationUpsertWithoutReceiverInput
+  }
+  NotificationUpdateOneWithoutSenderInput: { // input type
+    connect?: NexusGenInputs['NotificationWhereUniqueInput'] | null; // NotificationWhereUniqueInput
+    create?: NexusGenInputs['NotificationCreateWithoutSenderInput'] | null; // NotificationCreateWithoutSenderInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['NotificationUpdateWithoutSenderDataInput'] | null; // NotificationUpdateWithoutSenderDataInput
+    upsert?: NexusGenInputs['NotificationUpsertWithoutSenderInput'] | null; // NotificationUpsertWithoutSenderInput
+  }
   NotificationUpdateWithWhereUniqueWithoutUserInput: { // input type
     data: NexusGenInputs['NotificationUpdateWithoutUserDataInput']; // NotificationUpdateWithoutUserDataInput!
     where: NexusGenInputs['NotificationWhereUniqueInput']; // NotificationWhereUniqueInput!
@@ -1108,11 +1112,11 @@ export interface NexusGenInputs {
     itemName?: string | null; // String
     itemStatus?: string | null; // String
     itemType?: string | null; // String
-    post?: NexusGenInputs['PostUpdateOneRequiredWithoutNotificationInput'] | null; // PostUpdateOneRequiredWithoutNotificationInput
+    post?: NexusGenInputs['PostUpdateOneWithoutNotificationInput'] | null; // PostUpdateOneWithoutNotificationInput
     receiver?: NexusGenInputs['UserUpdateOneRequiredWithoutRecievedNotificationsInput'] | null; // UserUpdateOneRequiredWithoutRecievedNotificationsInput
     sender?: NexusGenInputs['UserUpdateOneRequiredWithoutSentNotificationsInput'] | null; // UserUpdateOneRequiredWithoutSentNotificationsInput
     updatedAt?: any | null; // DateTime
-    user?: NexusGenInputs['UserUpdateOneRequiredWithoutNotificationsInput'] | null; // UserUpdateOneRequiredWithoutNotificationsInput
+    user?: NexusGenInputs['UserUpdateOneWithoutNotificationsInput'] | null; // UserUpdateOneWithoutNotificationsInput
   }
   NotificationUpdateWithoutPostDataInput: { // input type
     createdAt?: any | null; // DateTime
@@ -1123,11 +1127,11 @@ export interface NexusGenInputs {
     itemName?: string | null; // String
     itemStatus?: string | null; // String
     itemType?: string | null; // String
-    pod?: NexusGenInputs['PodUpdateOneRequiredWithoutNotificationInput'] | null; // PodUpdateOneRequiredWithoutNotificationInput
+    pod?: NexusGenInputs['PodUpdateOneWithoutNotificationInput'] | null; // PodUpdateOneWithoutNotificationInput
     receiver?: NexusGenInputs['UserUpdateOneRequiredWithoutRecievedNotificationsInput'] | null; // UserUpdateOneRequiredWithoutRecievedNotificationsInput
     sender?: NexusGenInputs['UserUpdateOneRequiredWithoutSentNotificationsInput'] | null; // UserUpdateOneRequiredWithoutSentNotificationsInput
     updatedAt?: any | null; // DateTime
-    user?: NexusGenInputs['UserUpdateOneRequiredWithoutNotificationsInput'] | null; // UserUpdateOneRequiredWithoutNotificationsInput
+    user?: NexusGenInputs['UserUpdateOneWithoutNotificationsInput'] | null; // UserUpdateOneWithoutNotificationsInput
   }
   NotificationUpdateWithoutReceiverDataInput: { // input type
     createdAt?: any | null; // DateTime
@@ -1138,11 +1142,11 @@ export interface NexusGenInputs {
     itemName?: string | null; // String
     itemStatus?: string | null; // String
     itemType?: string | null; // String
-    pod?: NexusGenInputs['PodUpdateOneRequiredWithoutNotificationInput'] | null; // PodUpdateOneRequiredWithoutNotificationInput
-    post?: NexusGenInputs['PostUpdateOneRequiredWithoutNotificationInput'] | null; // PostUpdateOneRequiredWithoutNotificationInput
+    pod?: NexusGenInputs['PodUpdateOneWithoutNotificationInput'] | null; // PodUpdateOneWithoutNotificationInput
+    post?: NexusGenInputs['PostUpdateOneWithoutNotificationInput'] | null; // PostUpdateOneWithoutNotificationInput
     sender?: NexusGenInputs['UserUpdateOneRequiredWithoutSentNotificationsInput'] | null; // UserUpdateOneRequiredWithoutSentNotificationsInput
     updatedAt?: any | null; // DateTime
-    user?: NexusGenInputs['UserUpdateOneRequiredWithoutNotificationsInput'] | null; // UserUpdateOneRequiredWithoutNotificationsInput
+    user?: NexusGenInputs['UserUpdateOneWithoutNotificationsInput'] | null; // UserUpdateOneWithoutNotificationsInput
   }
   NotificationUpdateWithoutSenderDataInput: { // input type
     createdAt?: any | null; // DateTime
@@ -1153,11 +1157,11 @@ export interface NexusGenInputs {
     itemName?: string | null; // String
     itemStatus?: string | null; // String
     itemType?: string | null; // String
-    pod?: NexusGenInputs['PodUpdateOneRequiredWithoutNotificationInput'] | null; // PodUpdateOneRequiredWithoutNotificationInput
-    post?: NexusGenInputs['PostUpdateOneRequiredWithoutNotificationInput'] | null; // PostUpdateOneRequiredWithoutNotificationInput
+    pod?: NexusGenInputs['PodUpdateOneWithoutNotificationInput'] | null; // PodUpdateOneWithoutNotificationInput
+    post?: NexusGenInputs['PostUpdateOneWithoutNotificationInput'] | null; // PostUpdateOneWithoutNotificationInput
     receiver?: NexusGenInputs['UserUpdateOneRequiredWithoutRecievedNotificationsInput'] | null; // UserUpdateOneRequiredWithoutRecievedNotificationsInput
     updatedAt?: any | null; // DateTime
-    user?: NexusGenInputs['UserUpdateOneRequiredWithoutNotificationsInput'] | null; // UserUpdateOneRequiredWithoutNotificationsInput
+    user?: NexusGenInputs['UserUpdateOneWithoutNotificationsInput'] | null; // UserUpdateOneWithoutNotificationsInput
   }
   NotificationUpdateWithoutUserDataInput: { // input type
     createdAt?: any | null; // DateTime
@@ -1168,8 +1172,8 @@ export interface NexusGenInputs {
     itemName?: string | null; // String
     itemStatus?: string | null; // String
     itemType?: string | null; // String
-    pod?: NexusGenInputs['PodUpdateOneRequiredWithoutNotificationInput'] | null; // PodUpdateOneRequiredWithoutNotificationInput
-    post?: NexusGenInputs['PostUpdateOneRequiredWithoutNotificationInput'] | null; // PostUpdateOneRequiredWithoutNotificationInput
+    pod?: NexusGenInputs['PodUpdateOneWithoutNotificationInput'] | null; // PodUpdateOneWithoutNotificationInput
+    post?: NexusGenInputs['PostUpdateOneWithoutNotificationInput'] | null; // PostUpdateOneWithoutNotificationInput
     receiver?: NexusGenInputs['UserUpdateOneRequiredWithoutRecievedNotificationsInput'] | null; // UserUpdateOneRequiredWithoutRecievedNotificationsInput
     sender?: NexusGenInputs['UserUpdateOneRequiredWithoutSentNotificationsInput'] | null; // UserUpdateOneRequiredWithoutSentNotificationsInput
     updatedAt?: any | null; // DateTime
@@ -1430,17 +1434,19 @@ export interface NexusGenInputs {
     updateMany?: NexusGenInputs['PodUpdateManyWithWhereNestedInput'][] | null; // [PodUpdateManyWithWhereNestedInput!]
     upsert?: NexusGenInputs['PodUpsertWithWhereUniqueWithoutUserInput'][] | null; // [PodUpsertWithWhereUniqueWithoutUserInput!]
   }
-  PodUpdateOneRequiredWithoutNotificationInput: { // input type
-    connect?: NexusGenInputs['PodWhereUniqueInput'] | null; // PodWhereUniqueInput
-    create?: NexusGenInputs['PodCreateWithoutNotificationInput'] | null; // PodCreateWithoutNotificationInput
-    update?: NexusGenInputs['PodUpdateWithoutNotificationDataInput'] | null; // PodUpdateWithoutNotificationDataInput
-    upsert?: NexusGenInputs['PodUpsertWithoutNotificationInput'] | null; // PodUpsertWithoutNotificationInput
-  }
   PodUpdateOneRequiredWithoutPostsInput: { // input type
     connect?: NexusGenInputs['PodWhereUniqueInput'] | null; // PodWhereUniqueInput
     create?: NexusGenInputs['PodCreateWithoutPostsInput'] | null; // PodCreateWithoutPostsInput
     update?: NexusGenInputs['PodUpdateWithoutPostsDataInput'] | null; // PodUpdateWithoutPostsDataInput
     upsert?: NexusGenInputs['PodUpsertWithoutPostsInput'] | null; // PodUpsertWithoutPostsInput
+  }
+  PodUpdateOneWithoutNotificationInput: { // input type
+    connect?: NexusGenInputs['PodWhereUniqueInput'] | null; // PodWhereUniqueInput
+    create?: NexusGenInputs['PodCreateWithoutNotificationInput'] | null; // PodCreateWithoutNotificationInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['PodUpdateWithoutNotificationDataInput'] | null; // PodUpdateWithoutNotificationDataInput
+    upsert?: NexusGenInputs['PodUpsertWithoutNotificationInput'] | null; // PodUpsertWithoutNotificationInput
   }
   PodUpdateWithWhereUniqueWithoutCategoriesInput: { // input type
     data: NexusGenInputs['PodUpdateWithoutCategoriesDataInput']; // PodUpdateWithoutCategoriesDataInput!
@@ -1889,12 +1895,6 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['PostUpdateWithoutFavoritesDataInput'] | null; // PostUpdateWithoutFavoritesDataInput
     upsert?: NexusGenInputs['PostUpsertWithoutFavoritesInput'] | null; // PostUpsertWithoutFavoritesInput
   }
-  PostUpdateOneRequiredWithoutNotificationInput: { // input type
-    connect?: NexusGenInputs['PostWhereUniqueInput'] | null; // PostWhereUniqueInput
-    create?: NexusGenInputs['PostCreateWithoutNotificationInput'] | null; // PostCreateWithoutNotificationInput
-    update?: NexusGenInputs['PostUpdateWithoutNotificationDataInput'] | null; // PostUpdateWithoutNotificationDataInput
-    upsert?: NexusGenInputs['PostUpsertWithoutNotificationInput'] | null; // PostUpsertWithoutNotificationInput
-  }
   PostUpdateOneRequiredWithoutQuestionsInput: { // input type
     connect?: NexusGenInputs['PostWhereUniqueInput'] | null; // PostWhereUniqueInput
     create?: NexusGenInputs['PostCreateWithoutQuestionsInput'] | null; // PostCreateWithoutQuestionsInput
@@ -1906,6 +1906,14 @@ export interface NexusGenInputs {
     create?: NexusGenInputs['PostCreateWithoutReviewsInput'] | null; // PostCreateWithoutReviewsInput
     update?: NexusGenInputs['PostUpdateWithoutReviewsDataInput'] | null; // PostUpdateWithoutReviewsDataInput
     upsert?: NexusGenInputs['PostUpsertWithoutReviewsInput'] | null; // PostUpsertWithoutReviewsInput
+  }
+  PostUpdateOneWithoutNotificationInput: { // input type
+    connect?: NexusGenInputs['PostWhereUniqueInput'] | null; // PostWhereUniqueInput
+    create?: NexusGenInputs['PostCreateWithoutNotificationInput'] | null; // PostCreateWithoutNotificationInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['PostUpdateWithoutNotificationDataInput'] | null; // PostUpdateWithoutNotificationDataInput
+    upsert?: NexusGenInputs['PostUpsertWithoutNotificationInput'] | null; // PostUpsertWithoutNotificationInput
   }
   PostUpdateWithWhereUniqueWithoutPodInput: { // input type
     data: NexusGenInputs['PostUpdateWithoutPodDataInput']; // PostUpdateWithoutPodDataInput!
@@ -3530,9 +3538,9 @@ export interface NexusGenInputs {
     privateHash: string; // String!
     publicHash: string; // String!
     questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
-    recievedNotifications: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput']; // NotificationCreateOneWithoutRecievedNotificationsInput!
+    recievedNotifications?: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput'] | null; // NotificationCreateOneWithoutRecievedNotificationsInput
     reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
-    sentNotifications: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput']; // NotificationCreateOneWithoutSentNotificationsInput!
+    sentNotifications?: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput'] | null; // NotificationCreateOneWithoutSentNotificationsInput
     threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
     updatedAt?: any | null; // DateTime
     userConfirmed: number; // Int!
@@ -3582,9 +3590,9 @@ export interface NexusGenInputs {
     privateHash: string; // String!
     publicHash: string; // String!
     questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
-    recievedNotifications: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput']; // NotificationCreateOneWithoutRecievedNotificationsInput!
+    recievedNotifications?: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput'] | null; // NotificationCreateOneWithoutRecievedNotificationsInput
     reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
-    sentNotifications: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput']; // NotificationCreateOneWithoutSentNotificationsInput!
+    sentNotifications?: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput'] | null; // NotificationCreateOneWithoutSentNotificationsInput
     threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
     updatedAt?: any | null; // DateTime
     userConfirmed: number; // Int!
@@ -3610,9 +3618,9 @@ export interface NexusGenInputs {
     privateHash: string; // String!
     publicHash: string; // String!
     questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
-    recievedNotifications: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput']; // NotificationCreateOneWithoutRecievedNotificationsInput!
+    recievedNotifications?: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput'] | null; // NotificationCreateOneWithoutRecievedNotificationsInput
     reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
-    sentNotifications: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput']; // NotificationCreateOneWithoutSentNotificationsInput!
+    sentNotifications?: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput'] | null; // NotificationCreateOneWithoutSentNotificationsInput
     threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
     updatedAt?: any | null; // DateTime
     userConfirmed: number; // Int!
@@ -3638,9 +3646,9 @@ export interface NexusGenInputs {
     privateHash: string; // String!
     publicHash: string; // String!
     questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
-    recievedNotifications: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput']; // NotificationCreateOneWithoutRecievedNotificationsInput!
+    recievedNotifications?: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput'] | null; // NotificationCreateOneWithoutRecievedNotificationsInput
     reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
-    sentNotifications: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput']; // NotificationCreateOneWithoutSentNotificationsInput!
+    sentNotifications?: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput'] | null; // NotificationCreateOneWithoutSentNotificationsInput
     threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
     updatedAt?: any | null; // DateTime
     userConfirmed: number; // Int!
@@ -3666,9 +3674,9 @@ export interface NexusGenInputs {
     privateHash: string; // String!
     publicHash: string; // String!
     questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
-    recievedNotifications: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput']; // NotificationCreateOneWithoutRecievedNotificationsInput!
+    recievedNotifications?: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput'] | null; // NotificationCreateOneWithoutRecievedNotificationsInput
     reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
-    sentNotifications: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput']; // NotificationCreateOneWithoutSentNotificationsInput!
+    sentNotifications?: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput'] | null; // NotificationCreateOneWithoutSentNotificationsInput
     threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
     updatedAt?: any | null; // DateTime
     userConfirmed: number; // Int!
@@ -3694,9 +3702,9 @@ export interface NexusGenInputs {
     privateHash: string; // String!
     publicHash: string; // String!
     questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
-    recievedNotifications: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput']; // NotificationCreateOneWithoutRecievedNotificationsInput!
+    recievedNotifications?: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput'] | null; // NotificationCreateOneWithoutRecievedNotificationsInput
     reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
-    sentNotifications: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput']; // NotificationCreateOneWithoutSentNotificationsInput!
+    sentNotifications?: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput'] | null; // NotificationCreateOneWithoutSentNotificationsInput
     threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
     updatedAt?: any | null; // DateTime
     userConfirmed: number; // Int!
@@ -3722,9 +3730,9 @@ export interface NexusGenInputs {
     privateHash: string; // String!
     publicHash: string; // String!
     questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
-    recievedNotifications: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput']; // NotificationCreateOneWithoutRecievedNotificationsInput!
+    recievedNotifications?: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput'] | null; // NotificationCreateOneWithoutRecievedNotificationsInput
     reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
-    sentNotifications: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput']; // NotificationCreateOneWithoutSentNotificationsInput!
+    sentNotifications?: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput'] | null; // NotificationCreateOneWithoutSentNotificationsInput
     threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
     updatedAt?: any | null; // DateTime
     userConfirmed: number; // Int!
@@ -3750,9 +3758,9 @@ export interface NexusGenInputs {
     privateHash: string; // String!
     publicHash: string; // String!
     questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
-    recievedNotifications: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput']; // NotificationCreateOneWithoutRecievedNotificationsInput!
+    recievedNotifications?: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput'] | null; // NotificationCreateOneWithoutRecievedNotificationsInput
     reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
-    sentNotifications: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput']; // NotificationCreateOneWithoutSentNotificationsInput!
+    sentNotifications?: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput'] | null; // NotificationCreateOneWithoutSentNotificationsInput
     threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
     updatedAt?: any | null; // DateTime
     userConfirmed: number; // Int!
@@ -3778,9 +3786,9 @@ export interface NexusGenInputs {
     privateHash: string; // String!
     publicHash: string; // String!
     questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
-    recievedNotifications: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput']; // NotificationCreateOneWithoutRecievedNotificationsInput!
+    recievedNotifications?: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput'] | null; // NotificationCreateOneWithoutRecievedNotificationsInput
     reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
-    sentNotifications: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput']; // NotificationCreateOneWithoutSentNotificationsInput!
+    sentNotifications?: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput'] | null; // NotificationCreateOneWithoutSentNotificationsInput
     threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
     updatedAt?: any | null; // DateTime
     userConfirmed: number; // Int!
@@ -3806,9 +3814,9 @@ export interface NexusGenInputs {
     privateHash: string; // String!
     publicHash: string; // String!
     questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
-    recievedNotifications: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput']; // NotificationCreateOneWithoutRecievedNotificationsInput!
+    recievedNotifications?: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput'] | null; // NotificationCreateOneWithoutRecievedNotificationsInput
     reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
-    sentNotifications: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput']; // NotificationCreateOneWithoutSentNotificationsInput!
+    sentNotifications?: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput'] | null; // NotificationCreateOneWithoutSentNotificationsInput
     threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
     updatedAt?: any | null; // DateTime
     userConfirmed: number; // Int!
@@ -3834,9 +3842,9 @@ export interface NexusGenInputs {
     posts?: NexusGenInputs['PostCreateManyWithoutPostsInput'] | null; // PostCreateManyWithoutPostsInput
     privateHash: string; // String!
     publicHash: string; // String!
-    recievedNotifications: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput']; // NotificationCreateOneWithoutRecievedNotificationsInput!
+    recievedNotifications?: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput'] | null; // NotificationCreateOneWithoutRecievedNotificationsInput
     reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
-    sentNotifications: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput']; // NotificationCreateOneWithoutSentNotificationsInput!
+    sentNotifications?: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput'] | null; // NotificationCreateOneWithoutSentNotificationsInput
     threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
     updatedAt?: any | null; // DateTime
     userConfirmed: number; // Int!
@@ -3864,7 +3872,7 @@ export interface NexusGenInputs {
     publicHash: string; // String!
     questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
     reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
-    sentNotifications: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput']; // NotificationCreateOneWithoutSentNotificationsInput!
+    sentNotifications?: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput'] | null; // NotificationCreateOneWithoutSentNotificationsInput
     threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
     updatedAt?: any | null; // DateTime
     userConfirmed: number; // Int!
@@ -3891,8 +3899,8 @@ export interface NexusGenInputs {
     privateHash: string; // String!
     publicHash: string; // String!
     questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
-    recievedNotifications: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput']; // NotificationCreateOneWithoutRecievedNotificationsInput!
-    sentNotifications: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput']; // NotificationCreateOneWithoutSentNotificationsInput!
+    recievedNotifications?: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput'] | null; // NotificationCreateOneWithoutRecievedNotificationsInput
+    sentNotifications?: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput'] | null; // NotificationCreateOneWithoutSentNotificationsInput
     threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
     updatedAt?: any | null; // DateTime
     userConfirmed: number; // Int!
@@ -3919,7 +3927,7 @@ export interface NexusGenInputs {
     privateHash: string; // String!
     publicHash: string; // String!
     questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
-    recievedNotifications: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput']; // NotificationCreateOneWithoutRecievedNotificationsInput!
+    recievedNotifications?: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput'] | null; // NotificationCreateOneWithoutRecievedNotificationsInput
     reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
     threads?: NexusGenInputs['ThreadCreateManyWithoutThreadsInput'] | null; // ThreadCreateManyWithoutThreadsInput
     updatedAt?: any | null; // DateTime
@@ -3947,9 +3955,9 @@ export interface NexusGenInputs {
     privateHash: string; // String!
     publicHash: string; // String!
     questions?: NexusGenInputs['QuestionCreateManyWithoutQuestionsInput'] | null; // QuestionCreateManyWithoutQuestionsInput
-    recievedNotifications: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput']; // NotificationCreateOneWithoutRecievedNotificationsInput!
+    recievedNotifications?: NexusGenInputs['NotificationCreateOneWithoutRecievedNotificationsInput'] | null; // NotificationCreateOneWithoutRecievedNotificationsInput
     reviews?: NexusGenInputs['ReviewCreateManyWithoutReviewsInput'] | null; // ReviewCreateManyWithoutReviewsInput
-    sentNotifications: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput']; // NotificationCreateOneWithoutSentNotificationsInput!
+    sentNotifications?: NexusGenInputs['NotificationCreateOneWithoutSentNotificationsInput'] | null; // NotificationCreateOneWithoutSentNotificationsInput
     updatedAt?: any | null; // DateTime
     userConfirmed: number; // Int!
     userDeleted?: boolean | null; // Boolean
@@ -4033,9 +4041,9 @@ export interface NexusGenInputs {
     privateHash?: string | null; // String
     publicHash?: string | null; // String
     questions?: NexusGenInputs['QuestionUpdateManyWithoutUserInput'] | null; // QuestionUpdateManyWithoutUserInput
-    recievedNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutReceiverInput'] | null; // NotificationUpdateOneRequiredWithoutReceiverInput
+    recievedNotifications?: NexusGenInputs['NotificationUpdateOneWithoutReceiverInput'] | null; // NotificationUpdateOneWithoutReceiverInput
     reviews?: NexusGenInputs['ReviewUpdateManyWithoutUserInput'] | null; // ReviewUpdateManyWithoutUserInput
-    sentNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutSenderInput'] | null; // NotificationUpdateOneRequiredWithoutSenderInput
+    sentNotifications?: NexusGenInputs['NotificationUpdateOneWithoutSenderInput'] | null; // NotificationUpdateOneWithoutSenderInput
     threads?: NexusGenInputs['ThreadUpdateManyWithoutUserInput'] | null; // ThreadUpdateManyWithoutUserInput
     updatedAt?: any | null; // DateTime
     userConfirmed?: number | null; // Int
@@ -4114,12 +4122,6 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['UserUpdateWithoutMessageDataInput'] | null; // UserUpdateWithoutMessageDataInput
     upsert?: NexusGenInputs['UserUpsertWithoutMessageInput'] | null; // UserUpsertWithoutMessageInput
   }
-  UserUpdateOneRequiredWithoutNotificationsInput: { // input type
-    connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
-    create?: NexusGenInputs['UserCreateWithoutNotificationsInput'] | null; // UserCreateWithoutNotificationsInput
-    update?: NexusGenInputs['UserUpdateWithoutNotificationsDataInput'] | null; // UserUpdateWithoutNotificationsDataInput
-    upsert?: NexusGenInputs['UserUpsertWithoutNotificationsInput'] | null; // UserUpsertWithoutNotificationsInput
-  }
   UserUpdateOneRequiredWithoutPodsInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
     create?: NexusGenInputs['UserCreateWithoutPodsInput'] | null; // UserCreateWithoutPodsInput
@@ -4162,6 +4164,14 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['UserUpdateWithoutThreadsDataInput'] | null; // UserUpdateWithoutThreadsDataInput
     upsert?: NexusGenInputs['UserUpsertWithoutThreadsInput'] | null; // UserUpsertWithoutThreadsInput
   }
+  UserUpdateOneWithoutNotificationsInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+    create?: NexusGenInputs['UserCreateWithoutNotificationsInput'] | null; // UserCreateWithoutNotificationsInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['UserUpdateWithoutNotificationsDataInput'] | null; // UserUpdateWithoutNotificationsDataInput
+    upsert?: NexusGenInputs['UserUpsertWithoutNotificationsInput'] | null; // UserUpsertWithoutNotificationsInput
+  }
   UserUpdateWithWhereUniqueWithoutFollowersInput: { // input type
     data: NexusGenInputs['UserUpdateWithoutFollowersDataInput']; // UserUpdateWithoutFollowersDataInput!
     where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
@@ -4190,9 +4200,9 @@ export interface NexusGenInputs {
     privateHash?: string | null; // String
     publicHash?: string | null; // String
     questions?: NexusGenInputs['QuestionUpdateManyWithoutUserInput'] | null; // QuestionUpdateManyWithoutUserInput
-    recievedNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutReceiverInput'] | null; // NotificationUpdateOneRequiredWithoutReceiverInput
+    recievedNotifications?: NexusGenInputs['NotificationUpdateOneWithoutReceiverInput'] | null; // NotificationUpdateOneWithoutReceiverInput
     reviews?: NexusGenInputs['ReviewUpdateManyWithoutUserInput'] | null; // ReviewUpdateManyWithoutUserInput
-    sentNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutSenderInput'] | null; // NotificationUpdateOneRequiredWithoutSenderInput
+    sentNotifications?: NexusGenInputs['NotificationUpdateOneWithoutSenderInput'] | null; // NotificationUpdateOneWithoutSenderInput
     threads?: NexusGenInputs['ThreadUpdateManyWithoutUserInput'] | null; // ThreadUpdateManyWithoutUserInput
     updatedAt?: any | null; // DateTime
     userConfirmed?: number | null; // Int
@@ -4218,9 +4228,9 @@ export interface NexusGenInputs {
     privateHash?: string | null; // String
     publicHash?: string | null; // String
     questions?: NexusGenInputs['QuestionUpdateManyWithoutUserInput'] | null; // QuestionUpdateManyWithoutUserInput
-    recievedNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutReceiverInput'] | null; // NotificationUpdateOneRequiredWithoutReceiverInput
+    recievedNotifications?: NexusGenInputs['NotificationUpdateOneWithoutReceiverInput'] | null; // NotificationUpdateOneWithoutReceiverInput
     reviews?: NexusGenInputs['ReviewUpdateManyWithoutUserInput'] | null; // ReviewUpdateManyWithoutUserInput
-    sentNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutSenderInput'] | null; // NotificationUpdateOneRequiredWithoutSenderInput
+    sentNotifications?: NexusGenInputs['NotificationUpdateOneWithoutSenderInput'] | null; // NotificationUpdateOneWithoutSenderInput
     threads?: NexusGenInputs['ThreadUpdateManyWithoutUserInput'] | null; // ThreadUpdateManyWithoutUserInput
     updatedAt?: any | null; // DateTime
     userConfirmed?: number | null; // Int
@@ -4246,9 +4256,9 @@ export interface NexusGenInputs {
     privateHash?: string | null; // String
     publicHash?: string | null; // String
     questions?: NexusGenInputs['QuestionUpdateManyWithoutUserInput'] | null; // QuestionUpdateManyWithoutUserInput
-    recievedNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutReceiverInput'] | null; // NotificationUpdateOneRequiredWithoutReceiverInput
+    recievedNotifications?: NexusGenInputs['NotificationUpdateOneWithoutReceiverInput'] | null; // NotificationUpdateOneWithoutReceiverInput
     reviews?: NexusGenInputs['ReviewUpdateManyWithoutUserInput'] | null; // ReviewUpdateManyWithoutUserInput
-    sentNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutSenderInput'] | null; // NotificationUpdateOneRequiredWithoutSenderInput
+    sentNotifications?: NexusGenInputs['NotificationUpdateOneWithoutSenderInput'] | null; // NotificationUpdateOneWithoutSenderInput
     threads?: NexusGenInputs['ThreadUpdateManyWithoutUserInput'] | null; // ThreadUpdateManyWithoutUserInput
     updatedAt?: any | null; // DateTime
     userConfirmed?: number | null; // Int
@@ -4274,9 +4284,9 @@ export interface NexusGenInputs {
     privateHash?: string | null; // String
     publicHash?: string | null; // String
     questions?: NexusGenInputs['QuestionUpdateManyWithoutUserInput'] | null; // QuestionUpdateManyWithoutUserInput
-    recievedNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutReceiverInput'] | null; // NotificationUpdateOneRequiredWithoutReceiverInput
+    recievedNotifications?: NexusGenInputs['NotificationUpdateOneWithoutReceiverInput'] | null; // NotificationUpdateOneWithoutReceiverInput
     reviews?: NexusGenInputs['ReviewUpdateManyWithoutUserInput'] | null; // ReviewUpdateManyWithoutUserInput
-    sentNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutSenderInput'] | null; // NotificationUpdateOneRequiredWithoutSenderInput
+    sentNotifications?: NexusGenInputs['NotificationUpdateOneWithoutSenderInput'] | null; // NotificationUpdateOneWithoutSenderInput
     threads?: NexusGenInputs['ThreadUpdateManyWithoutUserInput'] | null; // ThreadUpdateManyWithoutUserInput
     updatedAt?: any | null; // DateTime
     userConfirmed?: number | null; // Int
@@ -4302,9 +4312,9 @@ export interface NexusGenInputs {
     privateHash?: string | null; // String
     publicHash?: string | null; // String
     questions?: NexusGenInputs['QuestionUpdateManyWithoutUserInput'] | null; // QuestionUpdateManyWithoutUserInput
-    recievedNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutReceiverInput'] | null; // NotificationUpdateOneRequiredWithoutReceiverInput
+    recievedNotifications?: NexusGenInputs['NotificationUpdateOneWithoutReceiverInput'] | null; // NotificationUpdateOneWithoutReceiverInput
     reviews?: NexusGenInputs['ReviewUpdateManyWithoutUserInput'] | null; // ReviewUpdateManyWithoutUserInput
-    sentNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutSenderInput'] | null; // NotificationUpdateOneRequiredWithoutSenderInput
+    sentNotifications?: NexusGenInputs['NotificationUpdateOneWithoutSenderInput'] | null; // NotificationUpdateOneWithoutSenderInput
     threads?: NexusGenInputs['ThreadUpdateManyWithoutUserInput'] | null; // ThreadUpdateManyWithoutUserInput
     updatedAt?: any | null; // DateTime
     userConfirmed?: number | null; // Int
@@ -4330,9 +4340,9 @@ export interface NexusGenInputs {
     privateHash?: string | null; // String
     publicHash?: string | null; // String
     questions?: NexusGenInputs['QuestionUpdateManyWithoutUserInput'] | null; // QuestionUpdateManyWithoutUserInput
-    recievedNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutReceiverInput'] | null; // NotificationUpdateOneRequiredWithoutReceiverInput
+    recievedNotifications?: NexusGenInputs['NotificationUpdateOneWithoutReceiverInput'] | null; // NotificationUpdateOneWithoutReceiverInput
     reviews?: NexusGenInputs['ReviewUpdateManyWithoutUserInput'] | null; // ReviewUpdateManyWithoutUserInput
-    sentNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutSenderInput'] | null; // NotificationUpdateOneRequiredWithoutSenderInput
+    sentNotifications?: NexusGenInputs['NotificationUpdateOneWithoutSenderInput'] | null; // NotificationUpdateOneWithoutSenderInput
     threads?: NexusGenInputs['ThreadUpdateManyWithoutUserInput'] | null; // ThreadUpdateManyWithoutUserInput
     updatedAt?: any | null; // DateTime
     userConfirmed?: number | null; // Int
@@ -4358,9 +4368,9 @@ export interface NexusGenInputs {
     privateHash?: string | null; // String
     publicHash?: string | null; // String
     questions?: NexusGenInputs['QuestionUpdateManyWithoutUserInput'] | null; // QuestionUpdateManyWithoutUserInput
-    recievedNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutReceiverInput'] | null; // NotificationUpdateOneRequiredWithoutReceiverInput
+    recievedNotifications?: NexusGenInputs['NotificationUpdateOneWithoutReceiverInput'] | null; // NotificationUpdateOneWithoutReceiverInput
     reviews?: NexusGenInputs['ReviewUpdateManyWithoutUserInput'] | null; // ReviewUpdateManyWithoutUserInput
-    sentNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutSenderInput'] | null; // NotificationUpdateOneRequiredWithoutSenderInput
+    sentNotifications?: NexusGenInputs['NotificationUpdateOneWithoutSenderInput'] | null; // NotificationUpdateOneWithoutSenderInput
     threads?: NexusGenInputs['ThreadUpdateManyWithoutUserInput'] | null; // ThreadUpdateManyWithoutUserInput
     updatedAt?: any | null; // DateTime
     userConfirmed?: number | null; // Int
@@ -4386,9 +4396,9 @@ export interface NexusGenInputs {
     privateHash?: string | null; // String
     publicHash?: string | null; // String
     questions?: NexusGenInputs['QuestionUpdateManyWithoutUserInput'] | null; // QuestionUpdateManyWithoutUserInput
-    recievedNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutReceiverInput'] | null; // NotificationUpdateOneRequiredWithoutReceiverInput
+    recievedNotifications?: NexusGenInputs['NotificationUpdateOneWithoutReceiverInput'] | null; // NotificationUpdateOneWithoutReceiverInput
     reviews?: NexusGenInputs['ReviewUpdateManyWithoutUserInput'] | null; // ReviewUpdateManyWithoutUserInput
-    sentNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutSenderInput'] | null; // NotificationUpdateOneRequiredWithoutSenderInput
+    sentNotifications?: NexusGenInputs['NotificationUpdateOneWithoutSenderInput'] | null; // NotificationUpdateOneWithoutSenderInput
     threads?: NexusGenInputs['ThreadUpdateManyWithoutUserInput'] | null; // ThreadUpdateManyWithoutUserInput
     updatedAt?: any | null; // DateTime
     userConfirmed?: number | null; // Int
@@ -4414,9 +4424,9 @@ export interface NexusGenInputs {
     privateHash?: string | null; // String
     publicHash?: string | null; // String
     questions?: NexusGenInputs['QuestionUpdateManyWithoutUserInput'] | null; // QuestionUpdateManyWithoutUserInput
-    recievedNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutReceiverInput'] | null; // NotificationUpdateOneRequiredWithoutReceiverInput
+    recievedNotifications?: NexusGenInputs['NotificationUpdateOneWithoutReceiverInput'] | null; // NotificationUpdateOneWithoutReceiverInput
     reviews?: NexusGenInputs['ReviewUpdateManyWithoutUserInput'] | null; // ReviewUpdateManyWithoutUserInput
-    sentNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutSenderInput'] | null; // NotificationUpdateOneRequiredWithoutSenderInput
+    sentNotifications?: NexusGenInputs['NotificationUpdateOneWithoutSenderInput'] | null; // NotificationUpdateOneWithoutSenderInput
     threads?: NexusGenInputs['ThreadUpdateManyWithoutUserInput'] | null; // ThreadUpdateManyWithoutUserInput
     updatedAt?: any | null; // DateTime
     userConfirmed?: number | null; // Int
@@ -4442,9 +4452,9 @@ export interface NexusGenInputs {
     posts?: NexusGenInputs['PostUpdateManyWithoutUserInput'] | null; // PostUpdateManyWithoutUserInput
     privateHash?: string | null; // String
     publicHash?: string | null; // String
-    recievedNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutReceiverInput'] | null; // NotificationUpdateOneRequiredWithoutReceiverInput
+    recievedNotifications?: NexusGenInputs['NotificationUpdateOneWithoutReceiverInput'] | null; // NotificationUpdateOneWithoutReceiverInput
     reviews?: NexusGenInputs['ReviewUpdateManyWithoutUserInput'] | null; // ReviewUpdateManyWithoutUserInput
-    sentNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutSenderInput'] | null; // NotificationUpdateOneRequiredWithoutSenderInput
+    sentNotifications?: NexusGenInputs['NotificationUpdateOneWithoutSenderInput'] | null; // NotificationUpdateOneWithoutSenderInput
     threads?: NexusGenInputs['ThreadUpdateManyWithoutUserInput'] | null; // ThreadUpdateManyWithoutUserInput
     updatedAt?: any | null; // DateTime
     userConfirmed?: number | null; // Int
@@ -4472,7 +4482,7 @@ export interface NexusGenInputs {
     publicHash?: string | null; // String
     questions?: NexusGenInputs['QuestionUpdateManyWithoutUserInput'] | null; // QuestionUpdateManyWithoutUserInput
     reviews?: NexusGenInputs['ReviewUpdateManyWithoutUserInput'] | null; // ReviewUpdateManyWithoutUserInput
-    sentNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutSenderInput'] | null; // NotificationUpdateOneRequiredWithoutSenderInput
+    sentNotifications?: NexusGenInputs['NotificationUpdateOneWithoutSenderInput'] | null; // NotificationUpdateOneWithoutSenderInput
     threads?: NexusGenInputs['ThreadUpdateManyWithoutUserInput'] | null; // ThreadUpdateManyWithoutUserInput
     updatedAt?: any | null; // DateTime
     userConfirmed?: number | null; // Int
@@ -4499,8 +4509,8 @@ export interface NexusGenInputs {
     privateHash?: string | null; // String
     publicHash?: string | null; // String
     questions?: NexusGenInputs['QuestionUpdateManyWithoutUserInput'] | null; // QuestionUpdateManyWithoutUserInput
-    recievedNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutReceiverInput'] | null; // NotificationUpdateOneRequiredWithoutReceiverInput
-    sentNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutSenderInput'] | null; // NotificationUpdateOneRequiredWithoutSenderInput
+    recievedNotifications?: NexusGenInputs['NotificationUpdateOneWithoutReceiverInput'] | null; // NotificationUpdateOneWithoutReceiverInput
+    sentNotifications?: NexusGenInputs['NotificationUpdateOneWithoutSenderInput'] | null; // NotificationUpdateOneWithoutSenderInput
     threads?: NexusGenInputs['ThreadUpdateManyWithoutUserInput'] | null; // ThreadUpdateManyWithoutUserInput
     updatedAt?: any | null; // DateTime
     userConfirmed?: number | null; // Int
@@ -4527,7 +4537,7 @@ export interface NexusGenInputs {
     privateHash?: string | null; // String
     publicHash?: string | null; // String
     questions?: NexusGenInputs['QuestionUpdateManyWithoutUserInput'] | null; // QuestionUpdateManyWithoutUserInput
-    recievedNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutReceiverInput'] | null; // NotificationUpdateOneRequiredWithoutReceiverInput
+    recievedNotifications?: NexusGenInputs['NotificationUpdateOneWithoutReceiverInput'] | null; // NotificationUpdateOneWithoutReceiverInput
     reviews?: NexusGenInputs['ReviewUpdateManyWithoutUserInput'] | null; // ReviewUpdateManyWithoutUserInput
     threads?: NexusGenInputs['ThreadUpdateManyWithoutUserInput'] | null; // ThreadUpdateManyWithoutUserInput
     updatedAt?: any | null; // DateTime
@@ -4555,9 +4565,9 @@ export interface NexusGenInputs {
     privateHash?: string | null; // String
     publicHash?: string | null; // String
     questions?: NexusGenInputs['QuestionUpdateManyWithoutUserInput'] | null; // QuestionUpdateManyWithoutUserInput
-    recievedNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutReceiverInput'] | null; // NotificationUpdateOneRequiredWithoutReceiverInput
+    recievedNotifications?: NexusGenInputs['NotificationUpdateOneWithoutReceiverInput'] | null; // NotificationUpdateOneWithoutReceiverInput
     reviews?: NexusGenInputs['ReviewUpdateManyWithoutUserInput'] | null; // ReviewUpdateManyWithoutUserInput
-    sentNotifications?: NexusGenInputs['NotificationUpdateOneRequiredWithoutSenderInput'] | null; // NotificationUpdateOneRequiredWithoutSenderInput
+    sentNotifications?: NexusGenInputs['NotificationUpdateOneWithoutSenderInput'] | null; // NotificationUpdateOneWithoutSenderInput
     updatedAt?: any | null; // DateTime
     userConfirmed?: number | null; // Int
     userDeleted?: boolean | null; // Boolean
@@ -4792,10 +4802,10 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   NotificationUpdateManyDataInput: NexusGenInputs['NotificationUpdateManyDataInput'];
   NotificationUpdateManyWithWhereNestedInput: NexusGenInputs['NotificationUpdateManyWithWhereNestedInput'];
   NotificationUpdateManyWithoutUserInput: NexusGenInputs['NotificationUpdateManyWithoutUserInput'];
-  NotificationUpdateOneRequiredWithoutReceiverInput: NexusGenInputs['NotificationUpdateOneRequiredWithoutReceiverInput'];
-  NotificationUpdateOneRequiredWithoutSenderInput: NexusGenInputs['NotificationUpdateOneRequiredWithoutSenderInput'];
   NotificationUpdateOneWithoutPodInput: NexusGenInputs['NotificationUpdateOneWithoutPodInput'];
   NotificationUpdateOneWithoutPostInput: NexusGenInputs['NotificationUpdateOneWithoutPostInput'];
+  NotificationUpdateOneWithoutReceiverInput: NexusGenInputs['NotificationUpdateOneWithoutReceiverInput'];
+  NotificationUpdateOneWithoutSenderInput: NexusGenInputs['NotificationUpdateOneWithoutSenderInput'];
   NotificationUpdateWithWhereUniqueWithoutUserInput: NexusGenInputs['NotificationUpdateWithWhereUniqueWithoutUserInput'];
   NotificationUpdateWithoutPodDataInput: NexusGenInputs['NotificationUpdateWithoutPodDataInput'];
   NotificationUpdateWithoutPostDataInput: NexusGenInputs['NotificationUpdateWithoutPostDataInput'];
@@ -4832,8 +4842,8 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   PodUpdateManyWithoutCategoriesInput: NexusGenInputs['PodUpdateManyWithoutCategoriesInput'];
   PodUpdateManyWithoutMembersInput: NexusGenInputs['PodUpdateManyWithoutMembersInput'];
   PodUpdateManyWithoutUserInput: NexusGenInputs['PodUpdateManyWithoutUserInput'];
-  PodUpdateOneRequiredWithoutNotificationInput: NexusGenInputs['PodUpdateOneRequiredWithoutNotificationInput'];
   PodUpdateOneRequiredWithoutPostsInput: NexusGenInputs['PodUpdateOneRequiredWithoutPostsInput'];
+  PodUpdateOneWithoutNotificationInput: NexusGenInputs['PodUpdateOneWithoutNotificationInput'];
   PodUpdateWithWhereUniqueWithoutCategoriesInput: NexusGenInputs['PodUpdateWithWhereUniqueWithoutCategoriesInput'];
   PodUpdateWithWhereUniqueWithoutMembersInput: NexusGenInputs['PodUpdateWithWhereUniqueWithoutMembersInput'];
   PodUpdateWithWhereUniqueWithoutUserInput: NexusGenInputs['PodUpdateWithWhereUniqueWithoutUserInput'];
@@ -4876,9 +4886,9 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   PostUpdateManyWithoutUserInput: NexusGenInputs['PostUpdateManyWithoutUserInput'];
   PostUpdateOneRequiredWithoutAnnotationsInput: NexusGenInputs['PostUpdateOneRequiredWithoutAnnotationsInput'];
   PostUpdateOneRequiredWithoutFavoritesInput: NexusGenInputs['PostUpdateOneRequiredWithoutFavoritesInput'];
-  PostUpdateOneRequiredWithoutNotificationInput: NexusGenInputs['PostUpdateOneRequiredWithoutNotificationInput'];
   PostUpdateOneRequiredWithoutQuestionsInput: NexusGenInputs['PostUpdateOneRequiredWithoutQuestionsInput'];
   PostUpdateOneRequiredWithoutReviewsInput: NexusGenInputs['PostUpdateOneRequiredWithoutReviewsInput'];
+  PostUpdateOneWithoutNotificationInput: NexusGenInputs['PostUpdateOneWithoutNotificationInput'];
   PostUpdateWithWhereUniqueWithoutPodInput: NexusGenInputs['PostUpdateWithWhereUniqueWithoutPodInput'];
   PostUpdateWithWhereUniqueWithoutTagsInput: NexusGenInputs['PostUpdateWithWhereUniqueWithoutTagsInput'];
   PostUpdateWithWhereUniqueWithoutUserInput: NexusGenInputs['PostUpdateWithWhereUniqueWithoutUserInput'];
@@ -5088,7 +5098,6 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   UserUpdateOneRequiredWithoutAnnotationsInput: NexusGenInputs['UserUpdateOneRequiredWithoutAnnotationsInput'];
   UserUpdateOneRequiredWithoutFavoritesInput: NexusGenInputs['UserUpdateOneRequiredWithoutFavoritesInput'];
   UserUpdateOneRequiredWithoutMessageInput: NexusGenInputs['UserUpdateOneRequiredWithoutMessageInput'];
-  UserUpdateOneRequiredWithoutNotificationsInput: NexusGenInputs['UserUpdateOneRequiredWithoutNotificationsInput'];
   UserUpdateOneRequiredWithoutPodsInput: NexusGenInputs['UserUpdateOneRequiredWithoutPodsInput'];
   UserUpdateOneRequiredWithoutPostsInput: NexusGenInputs['UserUpdateOneRequiredWithoutPostsInput'];
   UserUpdateOneRequiredWithoutQuestionsInput: NexusGenInputs['UserUpdateOneRequiredWithoutQuestionsInput'];
@@ -5096,6 +5105,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   UserUpdateOneRequiredWithoutReviewsInput: NexusGenInputs['UserUpdateOneRequiredWithoutReviewsInput'];
   UserUpdateOneRequiredWithoutSentNotificationsInput: NexusGenInputs['UserUpdateOneRequiredWithoutSentNotificationsInput'];
   UserUpdateOneRequiredWithoutThreadsInput: NexusGenInputs['UserUpdateOneRequiredWithoutThreadsInput'];
+  UserUpdateOneWithoutNotificationsInput: NexusGenInputs['UserUpdateOneWithoutNotificationsInput'];
   UserUpdateWithWhereUniqueWithoutFollowersInput: NexusGenInputs['UserUpdateWithWhereUniqueWithoutFollowersInput'];
   UserUpdateWithWhereUniqueWithoutFollowingInput: NexusGenInputs['UserUpdateWithWhereUniqueWithoutFollowingInput'];
   UserUpdateWithWhereUniqueWithoutMemberOfInput: NexusGenInputs['UserUpdateWithWhereUniqueWithoutMemberOfInput'];
@@ -5223,7 +5233,10 @@ export interface NexusGenFieldTypes {
     itemName: string; // String!
     itemStatus: string; // String!
     itemType: string; // String!
-    user: NexusGenRootTypes['User']; // User!
+    pod: NexusGenRootTypes['Pod'] | null; // Pod
+    post: NexusGenRootTypes['Post'] | null; // Post
+    receiver: NexusGenRootTypes['User']; // User!
+    sender: NexusGenRootTypes['User']; // User!
   }
   NotificationMeta: { // field return type
     id: string; // ID!
@@ -5977,7 +5990,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Annotation" | "AnnotationMeta" | "Category" | "Favorite" | "Message" | "MessageMeta" | "Mutation" | "Notification" | "NotificationMeta" | "Pod" | "PodMeta" | "Post" | "PostMeta" | "Query" | "Question" | "QuestionMeta" | "Review" | "ReviewMeta" | "Tag" | "Thread" | "ThreadMeta" | "User" | "UserMeta";
 
-export type NexusGenInputNames = "AnnotationCreateInput" | "AnnotationCreateManyWithoutAnnotationsInput" | "AnnotationCreateWithoutPostInput" | "AnnotationCreateWithoutUserInput" | "AnnotationMetaCreateManyWithoutItemMetaInput" | "AnnotationMetaCreateWithoutAnnotationInput" | "AnnotationMetaUpdateManyDataInput" | "AnnotationMetaUpdateManyWithWhereNestedInput" | "AnnotationMetaUpdateManyWithoutAnnotationInput" | "AnnotationMetaUpdateWithWhereUniqueWithoutAnnotationInput" | "AnnotationMetaUpdateWithoutAnnotationDataInput" | "AnnotationMetaUpsertWithWhereUniqueWithoutAnnotationInput" | "AnnotationMetaWhereUniqueInput" | "AnnotationUpdateInput" | "AnnotationUpdateManyDataInput" | "AnnotationUpdateManyWithWhereNestedInput" | "AnnotationUpdateManyWithoutPostInput" | "AnnotationUpdateManyWithoutUserInput" | "AnnotationUpdateWithWhereUniqueWithoutPostInput" | "AnnotationUpdateWithWhereUniqueWithoutUserInput" | "AnnotationUpdateWithoutPostDataInput" | "AnnotationUpdateWithoutUserDataInput" | "AnnotationUpsertWithWhereUniqueWithoutPostInput" | "AnnotationUpsertWithWhereUniqueWithoutUserInput" | "AnnotationWhereUniqueInput" | "BooleanFilter" | "CategoryCreateInput" | "CategoryCreateManyWithoutCategoriesInput" | "CategoryCreateWithoutPodsInput" | "CategoryUpdateInput" | "CategoryUpdateManyDataInput" | "CategoryUpdateManyWithWhereNestedInput" | "CategoryUpdateManyWithoutPodsInput" | "CategoryUpdateWithWhereUniqueWithoutPodsInput" | "CategoryUpdateWithoutPodsDataInput" | "CategoryUpsertWithWhereUniqueWithoutPodsInput" | "CategoryWhereUniqueInput" | "FavoriteCreateInput" | "FavoriteCreateManyWithoutFavoritesInput" | "FavoriteCreateWithoutPostInput" | "FavoriteCreateWithoutUserInput" | "FavoriteUpdateInput" | "FavoriteUpdateManyDataInput" | "FavoriteUpdateManyWithWhereNestedInput" | "FavoriteUpdateManyWithoutPostInput" | "FavoriteUpdateManyWithoutUserInput" | "FavoriteUpdateWithWhereUniqueWithoutPostInput" | "FavoriteUpdateWithWhereUniqueWithoutUserInput" | "FavoriteUpdateWithoutPostDataInput" | "FavoriteUpdateWithoutUserDataInput" | "FavoriteUpsertWithWhereUniqueWithoutPostInput" | "FavoriteUpsertWithWhereUniqueWithoutUserInput" | "FavoriteWhereUniqueInput" | "IntFilter" | "MessageCreateInput" | "MessageCreateOneWithoutMessageInput" | "MessageCreateWithoutThreadInput" | "MessageCreateWithoutUserInput" | "MessageMetaCreateManyWithoutItemMetaInput" | "MessageMetaCreateWithoutMessageInput" | "MessageMetaUpdateManyDataInput" | "MessageMetaUpdateManyWithWhereNestedInput" | "MessageMetaUpdateManyWithoutMessageInput" | "MessageMetaUpdateWithWhereUniqueWithoutMessageInput" | "MessageMetaUpdateWithoutMessageDataInput" | "MessageMetaUpsertWithWhereUniqueWithoutMessageInput" | "MessageMetaWhereUniqueInput" | "MessageUpdateInput" | "MessageUpdateOneWithoutThreadInput" | "MessageUpdateOneWithoutUserInput" | "MessageUpdateWithoutThreadDataInput" | "MessageUpdateWithoutUserDataInput" | "MessageUpsertWithoutThreadInput" | "MessageUpsertWithoutUserInput" | "MessageWhereUniqueInput" | "MutationUpdateOneAnnotationFilter" | "MutationUpdateOneAnnotationWhereInput" | "MutationUpdateOneCategoryFilter" | "MutationUpdateOneCategoryWhereInput" | "MutationUpdateOneMessageFilter" | "MutationUpdateOneMessageWhereInput" | "MutationUpdateOneNotificationFilter" | "MutationUpdateOneNotificationWhereInput" | "MutationUpdateOnePodFilter" | "MutationUpdateOnePodWhereInput" | "MutationUpdateOnePostFilter" | "MutationUpdateOnePostWhereInput" | "MutationUpdateOneQuestionFilter" | "MutationUpdateOneQuestionWhereInput" | "MutationUpdateOneReviewFilter" | "MutationUpdateOneReviewWhereInput" | "MutationUpdateOneTagFilter" | "MutationUpdateOneTagWhereInput" | "MutationUpdateOneThreadFilter" | "MutationUpdateOneThreadWhereInput" | "MutationUpdateOneUserFilter" | "MutationUpdateOneUserWhereInput" | "NotificationCreateInput" | "NotificationCreateManyWithoutNotificationsInput" | "NotificationCreateOneWithoutNotificationInput" | "NotificationCreateOneWithoutRecievedNotificationsInput" | "NotificationCreateOneWithoutSentNotificationsInput" | "NotificationCreateWithoutPodInput" | "NotificationCreateWithoutPostInput" | "NotificationCreateWithoutReceiverInput" | "NotificationCreateWithoutSenderInput" | "NotificationCreateWithoutUserInput" | "NotificationMetaCreateManyWithoutItemMetaInput" | "NotificationMetaCreateWithoutNotificationInput" | "NotificationMetaUpdateManyDataInput" | "NotificationMetaUpdateManyWithWhereNestedInput" | "NotificationMetaUpdateManyWithoutNotificationInput" | "NotificationMetaUpdateWithWhereUniqueWithoutNotificationInput" | "NotificationMetaUpdateWithoutNotificationDataInput" | "NotificationMetaUpsertWithWhereUniqueWithoutNotificationInput" | "NotificationMetaWhereUniqueInput" | "NotificationUpdateInput" | "NotificationUpdateManyDataInput" | "NotificationUpdateManyWithWhereNestedInput" | "NotificationUpdateManyWithoutUserInput" | "NotificationUpdateOneRequiredWithoutReceiverInput" | "NotificationUpdateOneRequiredWithoutSenderInput" | "NotificationUpdateOneWithoutPodInput" | "NotificationUpdateOneWithoutPostInput" | "NotificationUpdateWithWhereUniqueWithoutUserInput" | "NotificationUpdateWithoutPodDataInput" | "NotificationUpdateWithoutPostDataInput" | "NotificationUpdateWithoutReceiverDataInput" | "NotificationUpdateWithoutSenderDataInput" | "NotificationUpdateWithoutUserDataInput" | "NotificationUpsertWithWhereUniqueWithoutUserInput" | "NotificationUpsertWithoutPodInput" | "NotificationUpsertWithoutPostInput" | "NotificationUpsertWithoutReceiverInput" | "NotificationUpsertWithoutSenderInput" | "NotificationWhereUniqueInput" | "PodCreateInput" | "PodCreateManyWithoutMemberOfInput" | "PodCreateManyWithoutPodsInput" | "PodCreateOneWithoutPodInput" | "PodCreateWithoutCategoriesInput" | "PodCreateWithoutMembersInput" | "PodCreateWithoutNotificationInput" | "PodCreateWithoutPostsInput" | "PodCreateWithoutUserInput" | "PodMetaCreateManyWithoutItemMetaInput" | "PodMetaCreateWithoutPodInput" | "PodMetaUpdateManyDataInput" | "PodMetaUpdateManyWithWhereNestedInput" | "PodMetaUpdateManyWithoutPodInput" | "PodMetaUpdateWithWhereUniqueWithoutPodInput" | "PodMetaUpdateWithoutPodDataInput" | "PodMetaUpsertWithWhereUniqueWithoutPodInput" | "PodMetaWhereUniqueInput" | "PodUpdateInput" | "PodUpdateManyDataInput" | "PodUpdateManyWithWhereNestedInput" | "PodUpdateManyWithoutCategoriesInput" | "PodUpdateManyWithoutMembersInput" | "PodUpdateManyWithoutUserInput" | "PodUpdateOneRequiredWithoutNotificationInput" | "PodUpdateOneRequiredWithoutPostsInput" | "PodUpdateWithWhereUniqueWithoutCategoriesInput" | "PodUpdateWithWhereUniqueWithoutMembersInput" | "PodUpdateWithWhereUniqueWithoutUserInput" | "PodUpdateWithoutCategoriesDataInput" | "PodUpdateWithoutMembersDataInput" | "PodUpdateWithoutNotificationDataInput" | "PodUpdateWithoutPostsDataInput" | "PodUpdateWithoutUserDataInput" | "PodUpsertWithWhereUniqueWithoutCategoriesInput" | "PodUpsertWithWhereUniqueWithoutMembersInput" | "PodUpsertWithWhereUniqueWithoutUserInput" | "PodUpsertWithoutNotificationInput" | "PodUpsertWithoutPostsInput" | "PodWhereUniqueInput" | "PostCreateInput" | "PostCreateManyWithoutPostsInput" | "PostCreateOneWithoutPostInput" | "PostCreateWithoutAnnotationsInput" | "PostCreateWithoutFavoritesInput" | "PostCreateWithoutNotificationInput" | "PostCreateWithoutPodInput" | "PostCreateWithoutQuestionsInput" | "PostCreateWithoutReviewsInput" | "PostCreateWithoutTagsInput" | "PostCreateWithoutUserInput" | "PostMetaCreateManyWithoutItemMetaInput" | "PostMetaCreateWithoutPostInput" | "PostMetaUpdateManyDataInput" | "PostMetaUpdateManyWithWhereNestedInput" | "PostMetaUpdateManyWithoutPostInput" | "PostMetaUpdateWithWhereUniqueWithoutPostInput" | "PostMetaUpdateWithoutPostDataInput" | "PostMetaUpsertWithWhereUniqueWithoutPostInput" | "PostMetaWhereUniqueInput" | "PostUpdateInput" | "PostUpdateManyDataInput" | "PostUpdateManyWithWhereNestedInput" | "PostUpdateManyWithoutPodInput" | "PostUpdateManyWithoutTagsInput" | "PostUpdateManyWithoutUserInput" | "PostUpdateOneRequiredWithoutAnnotationsInput" | "PostUpdateOneRequiredWithoutFavoritesInput" | "PostUpdateOneRequiredWithoutNotificationInput" | "PostUpdateOneRequiredWithoutQuestionsInput" | "PostUpdateOneRequiredWithoutReviewsInput" | "PostUpdateWithWhereUniqueWithoutPodInput" | "PostUpdateWithWhereUniqueWithoutTagsInput" | "PostUpdateWithWhereUniqueWithoutUserInput" | "PostUpdateWithoutAnnotationsDataInput" | "PostUpdateWithoutFavoritesDataInput" | "PostUpdateWithoutNotificationDataInput" | "PostUpdateWithoutPodDataInput" | "PostUpdateWithoutQuestionsDataInput" | "PostUpdateWithoutReviewsDataInput" | "PostUpdateWithoutTagsDataInput" | "PostUpdateWithoutUserDataInput" | "PostUpsertWithWhereUniqueWithoutPodInput" | "PostUpsertWithWhereUniqueWithoutTagsInput" | "PostUpsertWithWhereUniqueWithoutUserInput" | "PostUpsertWithoutAnnotationsInput" | "PostUpsertWithoutFavoritesInput" | "PostUpsertWithoutNotificationInput" | "PostUpsertWithoutQuestionsInput" | "PostUpsertWithoutReviewsInput" | "PostWhereUniqueInput" | "QueryFindManyAnnotationFilter" | "QueryFindManyAnnotationMetaFilter" | "QueryFindManyAnnotationMetaOrderByInput" | "QueryFindManyAnnotationMetaWhereInput" | "QueryFindManyAnnotationOrderByInput" | "QueryFindManyAnnotationWhereInput" | "QueryFindManyCategoryFilter" | "QueryFindManyCategoryOrderByInput" | "QueryFindManyCategoryWhereInput" | "QueryFindManyFavoriteFilter" | "QueryFindManyFavoriteOrderByInput" | "QueryFindManyFavoriteWhereInput" | "QueryFindManyMessageFilter" | "QueryFindManyMessageMetaFilter" | "QueryFindManyMessageMetaOrderByInput" | "QueryFindManyMessageMetaWhereInput" | "QueryFindManyMessageOrderByInput" | "QueryFindManyMessageWhereInput" | "QueryFindManyNotificationFilter" | "QueryFindManyNotificationMetaFilter" | "QueryFindManyNotificationMetaOrderByInput" | "QueryFindManyNotificationMetaWhereInput" | "QueryFindManyNotificationOrderByInput" | "QueryFindManyNotificationWhereInput" | "QueryFindManyPodFilter" | "QueryFindManyPodMetaFilter" | "QueryFindManyPodMetaOrderByInput" | "QueryFindManyPodMetaWhereInput" | "QueryFindManyPodOrderByInput" | "QueryFindManyPodWhereInput" | "QueryFindManyPostFilter" | "QueryFindManyPostMetaFilter" | "QueryFindManyPostMetaOrderByInput" | "QueryFindManyPostMetaWhereInput" | "QueryFindManyPostOrderByInput" | "QueryFindManyPostWhereInput" | "QueryFindManyQuestionFilter" | "QueryFindManyQuestionMetaFilter" | "QueryFindManyQuestionMetaOrderByInput" | "QueryFindManyQuestionMetaWhereInput" | "QueryFindManyQuestionOrderByInput" | "QueryFindManyQuestionWhereInput" | "QueryFindManyReviewFilter" | "QueryFindManyReviewMetaFilter" | "QueryFindManyReviewMetaOrderByInput" | "QueryFindManyReviewMetaWhereInput" | "QueryFindManyReviewOrderByInput" | "QueryFindManyReviewWhereInput" | "QueryFindManyTagFilter" | "QueryFindManyTagOrderByInput" | "QueryFindManyTagWhereInput" | "QueryFindManyThreadFilter" | "QueryFindManyThreadMetaFilter" | "QueryFindManyThreadMetaOrderByInput" | "QueryFindManyThreadMetaWhereInput" | "QueryFindManyThreadOrderByInput" | "QueryFindManyThreadWhereInput" | "QueryFindManyUserFilter" | "QueryFindManyUserMetaFilter" | "QueryFindManyUserMetaOrderByInput" | "QueryFindManyUserMetaWhereInput" | "QueryFindManyUserOrderByInput" | "QueryFindManyUserWhereInput" | "QuestionCreateInput" | "QuestionCreateManyWithoutQuestionsInput" | "QuestionCreateWithoutPostInput" | "QuestionCreateWithoutUserInput" | "QuestionMetaCreateManyWithoutItemMetaInput" | "QuestionMetaCreateWithoutQuestionInput" | "QuestionMetaUpdateManyDataInput" | "QuestionMetaUpdateManyWithWhereNestedInput" | "QuestionMetaUpdateManyWithoutQuestionInput" | "QuestionMetaUpdateWithWhereUniqueWithoutQuestionInput" | "QuestionMetaUpdateWithoutQuestionDataInput" | "QuestionMetaUpsertWithWhereUniqueWithoutQuestionInput" | "QuestionMetaWhereUniqueInput" | "QuestionUpdateInput" | "QuestionUpdateManyDataInput" | "QuestionUpdateManyWithWhereNestedInput" | "QuestionUpdateManyWithoutPostInput" | "QuestionUpdateManyWithoutUserInput" | "QuestionUpdateWithWhereUniqueWithoutPostInput" | "QuestionUpdateWithWhereUniqueWithoutUserInput" | "QuestionUpdateWithoutPostDataInput" | "QuestionUpdateWithoutUserDataInput" | "QuestionUpsertWithWhereUniqueWithoutPostInput" | "QuestionUpsertWithWhereUniqueWithoutUserInput" | "QuestionWhereUniqueInput" | "ReviewCreateInput" | "ReviewCreateManyWithoutReviewsInput" | "ReviewCreateWithoutPostInput" | "ReviewCreateWithoutUserInput" | "ReviewMetaCreateManyWithoutItemMetaInput" | "ReviewMetaCreateWithoutReviewInput" | "ReviewMetaUpdateManyDataInput" | "ReviewMetaUpdateManyWithWhereNestedInput" | "ReviewMetaUpdateManyWithoutReviewInput" | "ReviewMetaUpdateWithWhereUniqueWithoutReviewInput" | "ReviewMetaUpdateWithoutReviewDataInput" | "ReviewMetaUpsertWithWhereUniqueWithoutReviewInput" | "ReviewMetaWhereUniqueInput" | "ReviewUpdateInput" | "ReviewUpdateManyDataInput" | "ReviewUpdateManyWithWhereNestedInput" | "ReviewUpdateManyWithoutPostInput" | "ReviewUpdateManyWithoutUserInput" | "ReviewUpdateWithWhereUniqueWithoutPostInput" | "ReviewUpdateWithWhereUniqueWithoutUserInput" | "ReviewUpdateWithoutPostDataInput" | "ReviewUpdateWithoutUserDataInput" | "ReviewUpsertWithWhereUniqueWithoutPostInput" | "ReviewUpsertWithWhereUniqueWithoutUserInput" | "ReviewWhereUniqueInput" | "StringFilter" | "TagCreateInput" | "TagCreateManyWithoutTagsInput" | "TagCreateWithoutPostsInput" | "TagUpdateInput" | "TagUpdateManyDataInput" | "TagUpdateManyWithWhereNestedInput" | "TagUpdateManyWithoutPostsInput" | "TagUpdateWithWhereUniqueWithoutPostsInput" | "TagUpdateWithoutPostsDataInput" | "TagUpsertWithWhereUniqueWithoutPostsInput" | "TagWhereUniqueInput" | "ThreadCreateInput" | "ThreadCreateManyWithoutThreadsInput" | "ThreadCreateOneWithoutThreadInput" | "ThreadCreateWithoutMessageInput" | "ThreadCreateWithoutUserInput" | "ThreadMetaCreateManyWithoutItemMetaInput" | "ThreadMetaCreateWithoutThreadInput" | "ThreadMetaUpdateManyDataInput" | "ThreadMetaUpdateManyWithWhereNestedInput" | "ThreadMetaUpdateManyWithoutThreadInput" | "ThreadMetaUpdateWithWhereUniqueWithoutThreadInput" | "ThreadMetaUpdateWithoutThreadDataInput" | "ThreadMetaUpsertWithWhereUniqueWithoutThreadInput" | "ThreadMetaWhereUniqueInput" | "ThreadUpdateInput" | "ThreadUpdateManyDataInput" | "ThreadUpdateManyWithWhereNestedInput" | "ThreadUpdateManyWithoutUserInput" | "ThreadUpdateOneRequiredWithoutMessageInput" | "ThreadUpdateWithWhereUniqueWithoutUserInput" | "ThreadUpdateWithoutMessageDataInput" | "ThreadUpdateWithoutUserDataInput" | "ThreadUpsertWithWhereUniqueWithoutUserInput" | "ThreadUpsertWithoutMessageInput" | "ThreadWhereUniqueInput" | "UserCreateInput" | "UserCreateManyWithoutFollowersInput" | "UserCreateManyWithoutFollowingInput" | "UserCreateManyWithoutMembersInput" | "UserCreateOneWithoutReceiverInput" | "UserCreateOneWithoutSenderInput" | "UserCreateOneWithoutUserInput" | "UserCreateWithoutAnnotationsInput" | "UserCreateWithoutFavoritesInput" | "UserCreateWithoutFollowersInput" | "UserCreateWithoutFollowingInput" | "UserCreateWithoutMemberOfInput" | "UserCreateWithoutMessageInput" | "UserCreateWithoutNotificationsInput" | "UserCreateWithoutPodsInput" | "UserCreateWithoutPostsInput" | "UserCreateWithoutQuestionsInput" | "UserCreateWithoutRecievedNotificationsInput" | "UserCreateWithoutReviewsInput" | "UserCreateWithoutSentNotificationsInput" | "UserCreateWithoutThreadsInput" | "UserMetaCreateManyWithoutUserMetaInput" | "UserMetaCreateWithoutUserInput" | "UserMetaUpdateManyDataInput" | "UserMetaUpdateManyWithWhereNestedInput" | "UserMetaUpdateManyWithoutUserInput" | "UserMetaUpdateWithWhereUniqueWithoutUserInput" | "UserMetaUpdateWithoutUserDataInput" | "UserMetaUpsertWithWhereUniqueWithoutUserInput" | "UserMetaWhereUniqueInput" | "UserUpdateInput" | "UserUpdateManyDataInput" | "UserUpdateManyWithWhereNestedInput" | "UserUpdateManyWithoutFollowersInput" | "UserUpdateManyWithoutFollowingInput" | "UserUpdateManyWithoutMemberOfInput" | "UserUpdateOneRequiredWithoutAnnotationsInput" | "UserUpdateOneRequiredWithoutFavoritesInput" | "UserUpdateOneRequiredWithoutMessageInput" | "UserUpdateOneRequiredWithoutNotificationsInput" | "UserUpdateOneRequiredWithoutPodsInput" | "UserUpdateOneRequiredWithoutPostsInput" | "UserUpdateOneRequiredWithoutQuestionsInput" | "UserUpdateOneRequiredWithoutRecievedNotificationsInput" | "UserUpdateOneRequiredWithoutReviewsInput" | "UserUpdateOneRequiredWithoutSentNotificationsInput" | "UserUpdateOneRequiredWithoutThreadsInput" | "UserUpdateWithWhereUniqueWithoutFollowersInput" | "UserUpdateWithWhereUniqueWithoutFollowingInput" | "UserUpdateWithWhereUniqueWithoutMemberOfInput" | "UserUpdateWithoutAnnotationsDataInput" | "UserUpdateWithoutFavoritesDataInput" | "UserUpdateWithoutFollowersDataInput" | "UserUpdateWithoutFollowingDataInput" | "UserUpdateWithoutMemberOfDataInput" | "UserUpdateWithoutMessageDataInput" | "UserUpdateWithoutNotificationsDataInput" | "UserUpdateWithoutPodsDataInput" | "UserUpdateWithoutPostsDataInput" | "UserUpdateWithoutQuestionsDataInput" | "UserUpdateWithoutRecievedNotificationsDataInput" | "UserUpdateWithoutReviewsDataInput" | "UserUpdateWithoutSentNotificationsDataInput" | "UserUpdateWithoutThreadsDataInput" | "UserUpsertWithWhereUniqueWithoutFollowersInput" | "UserUpsertWithWhereUniqueWithoutFollowingInput" | "UserUpsertWithWhereUniqueWithoutMemberOfInput" | "UserUpsertWithoutAnnotationsInput" | "UserUpsertWithoutFavoritesInput" | "UserUpsertWithoutMessageInput" | "UserUpsertWithoutNotificationsInput" | "UserUpsertWithoutPodsInput" | "UserUpsertWithoutPostsInput" | "UserUpsertWithoutQuestionsInput" | "UserUpsertWithoutRecievedNotificationsInput" | "UserUpsertWithoutReviewsInput" | "UserUpsertWithoutSentNotificationsInput" | "UserUpsertWithoutThreadsInput" | "UserWhereUniqueInput";
+export type NexusGenInputNames = "AnnotationCreateInput" | "AnnotationCreateManyWithoutAnnotationsInput" | "AnnotationCreateWithoutPostInput" | "AnnotationCreateWithoutUserInput" | "AnnotationMetaCreateManyWithoutItemMetaInput" | "AnnotationMetaCreateWithoutAnnotationInput" | "AnnotationMetaUpdateManyDataInput" | "AnnotationMetaUpdateManyWithWhereNestedInput" | "AnnotationMetaUpdateManyWithoutAnnotationInput" | "AnnotationMetaUpdateWithWhereUniqueWithoutAnnotationInput" | "AnnotationMetaUpdateWithoutAnnotationDataInput" | "AnnotationMetaUpsertWithWhereUniqueWithoutAnnotationInput" | "AnnotationMetaWhereUniqueInput" | "AnnotationUpdateInput" | "AnnotationUpdateManyDataInput" | "AnnotationUpdateManyWithWhereNestedInput" | "AnnotationUpdateManyWithoutPostInput" | "AnnotationUpdateManyWithoutUserInput" | "AnnotationUpdateWithWhereUniqueWithoutPostInput" | "AnnotationUpdateWithWhereUniqueWithoutUserInput" | "AnnotationUpdateWithoutPostDataInput" | "AnnotationUpdateWithoutUserDataInput" | "AnnotationUpsertWithWhereUniqueWithoutPostInput" | "AnnotationUpsertWithWhereUniqueWithoutUserInput" | "AnnotationWhereUniqueInput" | "BooleanFilter" | "CategoryCreateInput" | "CategoryCreateManyWithoutCategoriesInput" | "CategoryCreateWithoutPodsInput" | "CategoryUpdateInput" | "CategoryUpdateManyDataInput" | "CategoryUpdateManyWithWhereNestedInput" | "CategoryUpdateManyWithoutPodsInput" | "CategoryUpdateWithWhereUniqueWithoutPodsInput" | "CategoryUpdateWithoutPodsDataInput" | "CategoryUpsertWithWhereUniqueWithoutPodsInput" | "CategoryWhereUniqueInput" | "FavoriteCreateInput" | "FavoriteCreateManyWithoutFavoritesInput" | "FavoriteCreateWithoutPostInput" | "FavoriteCreateWithoutUserInput" | "FavoriteUpdateInput" | "FavoriteUpdateManyDataInput" | "FavoriteUpdateManyWithWhereNestedInput" | "FavoriteUpdateManyWithoutPostInput" | "FavoriteUpdateManyWithoutUserInput" | "FavoriteUpdateWithWhereUniqueWithoutPostInput" | "FavoriteUpdateWithWhereUniqueWithoutUserInput" | "FavoriteUpdateWithoutPostDataInput" | "FavoriteUpdateWithoutUserDataInput" | "FavoriteUpsertWithWhereUniqueWithoutPostInput" | "FavoriteUpsertWithWhereUniqueWithoutUserInput" | "FavoriteWhereUniqueInput" | "IntFilter" | "MessageCreateInput" | "MessageCreateOneWithoutMessageInput" | "MessageCreateWithoutThreadInput" | "MessageCreateWithoutUserInput" | "MessageMetaCreateManyWithoutItemMetaInput" | "MessageMetaCreateWithoutMessageInput" | "MessageMetaUpdateManyDataInput" | "MessageMetaUpdateManyWithWhereNestedInput" | "MessageMetaUpdateManyWithoutMessageInput" | "MessageMetaUpdateWithWhereUniqueWithoutMessageInput" | "MessageMetaUpdateWithoutMessageDataInput" | "MessageMetaUpsertWithWhereUniqueWithoutMessageInput" | "MessageMetaWhereUniqueInput" | "MessageUpdateInput" | "MessageUpdateOneWithoutThreadInput" | "MessageUpdateOneWithoutUserInput" | "MessageUpdateWithoutThreadDataInput" | "MessageUpdateWithoutUserDataInput" | "MessageUpsertWithoutThreadInput" | "MessageUpsertWithoutUserInput" | "MessageWhereUniqueInput" | "MutationUpdateOneAnnotationFilter" | "MutationUpdateOneAnnotationWhereInput" | "MutationUpdateOneCategoryFilter" | "MutationUpdateOneCategoryWhereInput" | "MutationUpdateOneMessageFilter" | "MutationUpdateOneMessageWhereInput" | "MutationUpdateOneNotificationFilter" | "MutationUpdateOneNotificationWhereInput" | "MutationUpdateOnePodFilter" | "MutationUpdateOnePodWhereInput" | "MutationUpdateOnePostFilter" | "MutationUpdateOnePostWhereInput" | "MutationUpdateOneQuestionFilter" | "MutationUpdateOneQuestionWhereInput" | "MutationUpdateOneReviewFilter" | "MutationUpdateOneReviewWhereInput" | "MutationUpdateOneTagFilter" | "MutationUpdateOneTagWhereInput" | "MutationUpdateOneThreadFilter" | "MutationUpdateOneThreadWhereInput" | "MutationUpdateOneUserFilter" | "MutationUpdateOneUserWhereInput" | "NotificationCreateInput" | "NotificationCreateManyWithoutNotificationsInput" | "NotificationCreateOneWithoutNotificationInput" | "NotificationCreateOneWithoutRecievedNotificationsInput" | "NotificationCreateOneWithoutSentNotificationsInput" | "NotificationCreateWithoutPodInput" | "NotificationCreateWithoutPostInput" | "NotificationCreateWithoutReceiverInput" | "NotificationCreateWithoutSenderInput" | "NotificationCreateWithoutUserInput" | "NotificationMetaCreateManyWithoutItemMetaInput" | "NotificationMetaCreateWithoutNotificationInput" | "NotificationMetaUpdateManyDataInput" | "NotificationMetaUpdateManyWithWhereNestedInput" | "NotificationMetaUpdateManyWithoutNotificationInput" | "NotificationMetaUpdateWithWhereUniqueWithoutNotificationInput" | "NotificationMetaUpdateWithoutNotificationDataInput" | "NotificationMetaUpsertWithWhereUniqueWithoutNotificationInput" | "NotificationMetaWhereUniqueInput" | "NotificationUpdateInput" | "NotificationUpdateManyDataInput" | "NotificationUpdateManyWithWhereNestedInput" | "NotificationUpdateManyWithoutUserInput" | "NotificationUpdateOneWithoutPodInput" | "NotificationUpdateOneWithoutPostInput" | "NotificationUpdateOneWithoutReceiverInput" | "NotificationUpdateOneWithoutSenderInput" | "NotificationUpdateWithWhereUniqueWithoutUserInput" | "NotificationUpdateWithoutPodDataInput" | "NotificationUpdateWithoutPostDataInput" | "NotificationUpdateWithoutReceiverDataInput" | "NotificationUpdateWithoutSenderDataInput" | "NotificationUpdateWithoutUserDataInput" | "NotificationUpsertWithWhereUniqueWithoutUserInput" | "NotificationUpsertWithoutPodInput" | "NotificationUpsertWithoutPostInput" | "NotificationUpsertWithoutReceiverInput" | "NotificationUpsertWithoutSenderInput" | "NotificationWhereUniqueInput" | "PodCreateInput" | "PodCreateManyWithoutMemberOfInput" | "PodCreateManyWithoutPodsInput" | "PodCreateOneWithoutPodInput" | "PodCreateWithoutCategoriesInput" | "PodCreateWithoutMembersInput" | "PodCreateWithoutNotificationInput" | "PodCreateWithoutPostsInput" | "PodCreateWithoutUserInput" | "PodMetaCreateManyWithoutItemMetaInput" | "PodMetaCreateWithoutPodInput" | "PodMetaUpdateManyDataInput" | "PodMetaUpdateManyWithWhereNestedInput" | "PodMetaUpdateManyWithoutPodInput" | "PodMetaUpdateWithWhereUniqueWithoutPodInput" | "PodMetaUpdateWithoutPodDataInput" | "PodMetaUpsertWithWhereUniqueWithoutPodInput" | "PodMetaWhereUniqueInput" | "PodUpdateInput" | "PodUpdateManyDataInput" | "PodUpdateManyWithWhereNestedInput" | "PodUpdateManyWithoutCategoriesInput" | "PodUpdateManyWithoutMembersInput" | "PodUpdateManyWithoutUserInput" | "PodUpdateOneRequiredWithoutPostsInput" | "PodUpdateOneWithoutNotificationInput" | "PodUpdateWithWhereUniqueWithoutCategoriesInput" | "PodUpdateWithWhereUniqueWithoutMembersInput" | "PodUpdateWithWhereUniqueWithoutUserInput" | "PodUpdateWithoutCategoriesDataInput" | "PodUpdateWithoutMembersDataInput" | "PodUpdateWithoutNotificationDataInput" | "PodUpdateWithoutPostsDataInput" | "PodUpdateWithoutUserDataInput" | "PodUpsertWithWhereUniqueWithoutCategoriesInput" | "PodUpsertWithWhereUniqueWithoutMembersInput" | "PodUpsertWithWhereUniqueWithoutUserInput" | "PodUpsertWithoutNotificationInput" | "PodUpsertWithoutPostsInput" | "PodWhereUniqueInput" | "PostCreateInput" | "PostCreateManyWithoutPostsInput" | "PostCreateOneWithoutPostInput" | "PostCreateWithoutAnnotationsInput" | "PostCreateWithoutFavoritesInput" | "PostCreateWithoutNotificationInput" | "PostCreateWithoutPodInput" | "PostCreateWithoutQuestionsInput" | "PostCreateWithoutReviewsInput" | "PostCreateWithoutTagsInput" | "PostCreateWithoutUserInput" | "PostMetaCreateManyWithoutItemMetaInput" | "PostMetaCreateWithoutPostInput" | "PostMetaUpdateManyDataInput" | "PostMetaUpdateManyWithWhereNestedInput" | "PostMetaUpdateManyWithoutPostInput" | "PostMetaUpdateWithWhereUniqueWithoutPostInput" | "PostMetaUpdateWithoutPostDataInput" | "PostMetaUpsertWithWhereUniqueWithoutPostInput" | "PostMetaWhereUniqueInput" | "PostUpdateInput" | "PostUpdateManyDataInput" | "PostUpdateManyWithWhereNestedInput" | "PostUpdateManyWithoutPodInput" | "PostUpdateManyWithoutTagsInput" | "PostUpdateManyWithoutUserInput" | "PostUpdateOneRequiredWithoutAnnotationsInput" | "PostUpdateOneRequiredWithoutFavoritesInput" | "PostUpdateOneRequiredWithoutQuestionsInput" | "PostUpdateOneRequiredWithoutReviewsInput" | "PostUpdateOneWithoutNotificationInput" | "PostUpdateWithWhereUniqueWithoutPodInput" | "PostUpdateWithWhereUniqueWithoutTagsInput" | "PostUpdateWithWhereUniqueWithoutUserInput" | "PostUpdateWithoutAnnotationsDataInput" | "PostUpdateWithoutFavoritesDataInput" | "PostUpdateWithoutNotificationDataInput" | "PostUpdateWithoutPodDataInput" | "PostUpdateWithoutQuestionsDataInput" | "PostUpdateWithoutReviewsDataInput" | "PostUpdateWithoutTagsDataInput" | "PostUpdateWithoutUserDataInput" | "PostUpsertWithWhereUniqueWithoutPodInput" | "PostUpsertWithWhereUniqueWithoutTagsInput" | "PostUpsertWithWhereUniqueWithoutUserInput" | "PostUpsertWithoutAnnotationsInput" | "PostUpsertWithoutFavoritesInput" | "PostUpsertWithoutNotificationInput" | "PostUpsertWithoutQuestionsInput" | "PostUpsertWithoutReviewsInput" | "PostWhereUniqueInput" | "QueryFindManyAnnotationFilter" | "QueryFindManyAnnotationMetaFilter" | "QueryFindManyAnnotationMetaOrderByInput" | "QueryFindManyAnnotationMetaWhereInput" | "QueryFindManyAnnotationOrderByInput" | "QueryFindManyAnnotationWhereInput" | "QueryFindManyCategoryFilter" | "QueryFindManyCategoryOrderByInput" | "QueryFindManyCategoryWhereInput" | "QueryFindManyFavoriteFilter" | "QueryFindManyFavoriteOrderByInput" | "QueryFindManyFavoriteWhereInput" | "QueryFindManyMessageFilter" | "QueryFindManyMessageMetaFilter" | "QueryFindManyMessageMetaOrderByInput" | "QueryFindManyMessageMetaWhereInput" | "QueryFindManyMessageOrderByInput" | "QueryFindManyMessageWhereInput" | "QueryFindManyNotificationFilter" | "QueryFindManyNotificationMetaFilter" | "QueryFindManyNotificationMetaOrderByInput" | "QueryFindManyNotificationMetaWhereInput" | "QueryFindManyNotificationOrderByInput" | "QueryFindManyNotificationWhereInput" | "QueryFindManyPodFilter" | "QueryFindManyPodMetaFilter" | "QueryFindManyPodMetaOrderByInput" | "QueryFindManyPodMetaWhereInput" | "QueryFindManyPodOrderByInput" | "QueryFindManyPodWhereInput" | "QueryFindManyPostFilter" | "QueryFindManyPostMetaFilter" | "QueryFindManyPostMetaOrderByInput" | "QueryFindManyPostMetaWhereInput" | "QueryFindManyPostOrderByInput" | "QueryFindManyPostWhereInput" | "QueryFindManyQuestionFilter" | "QueryFindManyQuestionMetaFilter" | "QueryFindManyQuestionMetaOrderByInput" | "QueryFindManyQuestionMetaWhereInput" | "QueryFindManyQuestionOrderByInput" | "QueryFindManyQuestionWhereInput" | "QueryFindManyReviewFilter" | "QueryFindManyReviewMetaFilter" | "QueryFindManyReviewMetaOrderByInput" | "QueryFindManyReviewMetaWhereInput" | "QueryFindManyReviewOrderByInput" | "QueryFindManyReviewWhereInput" | "QueryFindManyTagFilter" | "QueryFindManyTagOrderByInput" | "QueryFindManyTagWhereInput" | "QueryFindManyThreadFilter" | "QueryFindManyThreadMetaFilter" | "QueryFindManyThreadMetaOrderByInput" | "QueryFindManyThreadMetaWhereInput" | "QueryFindManyThreadOrderByInput" | "QueryFindManyThreadWhereInput" | "QueryFindManyUserFilter" | "QueryFindManyUserMetaFilter" | "QueryFindManyUserMetaOrderByInput" | "QueryFindManyUserMetaWhereInput" | "QueryFindManyUserOrderByInput" | "QueryFindManyUserWhereInput" | "QuestionCreateInput" | "QuestionCreateManyWithoutQuestionsInput" | "QuestionCreateWithoutPostInput" | "QuestionCreateWithoutUserInput" | "QuestionMetaCreateManyWithoutItemMetaInput" | "QuestionMetaCreateWithoutQuestionInput" | "QuestionMetaUpdateManyDataInput" | "QuestionMetaUpdateManyWithWhereNestedInput" | "QuestionMetaUpdateManyWithoutQuestionInput" | "QuestionMetaUpdateWithWhereUniqueWithoutQuestionInput" | "QuestionMetaUpdateWithoutQuestionDataInput" | "QuestionMetaUpsertWithWhereUniqueWithoutQuestionInput" | "QuestionMetaWhereUniqueInput" | "QuestionUpdateInput" | "QuestionUpdateManyDataInput" | "QuestionUpdateManyWithWhereNestedInput" | "QuestionUpdateManyWithoutPostInput" | "QuestionUpdateManyWithoutUserInput" | "QuestionUpdateWithWhereUniqueWithoutPostInput" | "QuestionUpdateWithWhereUniqueWithoutUserInput" | "QuestionUpdateWithoutPostDataInput" | "QuestionUpdateWithoutUserDataInput" | "QuestionUpsertWithWhereUniqueWithoutPostInput" | "QuestionUpsertWithWhereUniqueWithoutUserInput" | "QuestionWhereUniqueInput" | "ReviewCreateInput" | "ReviewCreateManyWithoutReviewsInput" | "ReviewCreateWithoutPostInput" | "ReviewCreateWithoutUserInput" | "ReviewMetaCreateManyWithoutItemMetaInput" | "ReviewMetaCreateWithoutReviewInput" | "ReviewMetaUpdateManyDataInput" | "ReviewMetaUpdateManyWithWhereNestedInput" | "ReviewMetaUpdateManyWithoutReviewInput" | "ReviewMetaUpdateWithWhereUniqueWithoutReviewInput" | "ReviewMetaUpdateWithoutReviewDataInput" | "ReviewMetaUpsertWithWhereUniqueWithoutReviewInput" | "ReviewMetaWhereUniqueInput" | "ReviewUpdateInput" | "ReviewUpdateManyDataInput" | "ReviewUpdateManyWithWhereNestedInput" | "ReviewUpdateManyWithoutPostInput" | "ReviewUpdateManyWithoutUserInput" | "ReviewUpdateWithWhereUniqueWithoutPostInput" | "ReviewUpdateWithWhereUniqueWithoutUserInput" | "ReviewUpdateWithoutPostDataInput" | "ReviewUpdateWithoutUserDataInput" | "ReviewUpsertWithWhereUniqueWithoutPostInput" | "ReviewUpsertWithWhereUniqueWithoutUserInput" | "ReviewWhereUniqueInput" | "StringFilter" | "TagCreateInput" | "TagCreateManyWithoutTagsInput" | "TagCreateWithoutPostsInput" | "TagUpdateInput" | "TagUpdateManyDataInput" | "TagUpdateManyWithWhereNestedInput" | "TagUpdateManyWithoutPostsInput" | "TagUpdateWithWhereUniqueWithoutPostsInput" | "TagUpdateWithoutPostsDataInput" | "TagUpsertWithWhereUniqueWithoutPostsInput" | "TagWhereUniqueInput" | "ThreadCreateInput" | "ThreadCreateManyWithoutThreadsInput" | "ThreadCreateOneWithoutThreadInput" | "ThreadCreateWithoutMessageInput" | "ThreadCreateWithoutUserInput" | "ThreadMetaCreateManyWithoutItemMetaInput" | "ThreadMetaCreateWithoutThreadInput" | "ThreadMetaUpdateManyDataInput" | "ThreadMetaUpdateManyWithWhereNestedInput" | "ThreadMetaUpdateManyWithoutThreadInput" | "ThreadMetaUpdateWithWhereUniqueWithoutThreadInput" | "ThreadMetaUpdateWithoutThreadDataInput" | "ThreadMetaUpsertWithWhereUniqueWithoutThreadInput" | "ThreadMetaWhereUniqueInput" | "ThreadUpdateInput" | "ThreadUpdateManyDataInput" | "ThreadUpdateManyWithWhereNestedInput" | "ThreadUpdateManyWithoutUserInput" | "ThreadUpdateOneRequiredWithoutMessageInput" | "ThreadUpdateWithWhereUniqueWithoutUserInput" | "ThreadUpdateWithoutMessageDataInput" | "ThreadUpdateWithoutUserDataInput" | "ThreadUpsertWithWhereUniqueWithoutUserInput" | "ThreadUpsertWithoutMessageInput" | "ThreadWhereUniqueInput" | "UserCreateInput" | "UserCreateManyWithoutFollowersInput" | "UserCreateManyWithoutFollowingInput" | "UserCreateManyWithoutMembersInput" | "UserCreateOneWithoutReceiverInput" | "UserCreateOneWithoutSenderInput" | "UserCreateOneWithoutUserInput" | "UserCreateWithoutAnnotationsInput" | "UserCreateWithoutFavoritesInput" | "UserCreateWithoutFollowersInput" | "UserCreateWithoutFollowingInput" | "UserCreateWithoutMemberOfInput" | "UserCreateWithoutMessageInput" | "UserCreateWithoutNotificationsInput" | "UserCreateWithoutPodsInput" | "UserCreateWithoutPostsInput" | "UserCreateWithoutQuestionsInput" | "UserCreateWithoutRecievedNotificationsInput" | "UserCreateWithoutReviewsInput" | "UserCreateWithoutSentNotificationsInput" | "UserCreateWithoutThreadsInput" | "UserMetaCreateManyWithoutUserMetaInput" | "UserMetaCreateWithoutUserInput" | "UserMetaUpdateManyDataInput" | "UserMetaUpdateManyWithWhereNestedInput" | "UserMetaUpdateManyWithoutUserInput" | "UserMetaUpdateWithWhereUniqueWithoutUserInput" | "UserMetaUpdateWithoutUserDataInput" | "UserMetaUpsertWithWhereUniqueWithoutUserInput" | "UserMetaWhereUniqueInput" | "UserUpdateInput" | "UserUpdateManyDataInput" | "UserUpdateManyWithWhereNestedInput" | "UserUpdateManyWithoutFollowersInput" | "UserUpdateManyWithoutFollowingInput" | "UserUpdateManyWithoutMemberOfInput" | "UserUpdateOneRequiredWithoutAnnotationsInput" | "UserUpdateOneRequiredWithoutFavoritesInput" | "UserUpdateOneRequiredWithoutMessageInput" | "UserUpdateOneRequiredWithoutPodsInput" | "UserUpdateOneRequiredWithoutPostsInput" | "UserUpdateOneRequiredWithoutQuestionsInput" | "UserUpdateOneRequiredWithoutRecievedNotificationsInput" | "UserUpdateOneRequiredWithoutReviewsInput" | "UserUpdateOneRequiredWithoutSentNotificationsInput" | "UserUpdateOneRequiredWithoutThreadsInput" | "UserUpdateOneWithoutNotificationsInput" | "UserUpdateWithWhereUniqueWithoutFollowersInput" | "UserUpdateWithWhereUniqueWithoutFollowingInput" | "UserUpdateWithWhereUniqueWithoutMemberOfInput" | "UserUpdateWithoutAnnotationsDataInput" | "UserUpdateWithoutFavoritesDataInput" | "UserUpdateWithoutFollowersDataInput" | "UserUpdateWithoutFollowingDataInput" | "UserUpdateWithoutMemberOfDataInput" | "UserUpdateWithoutMessageDataInput" | "UserUpdateWithoutNotificationsDataInput" | "UserUpdateWithoutPodsDataInput" | "UserUpdateWithoutPostsDataInput" | "UserUpdateWithoutQuestionsDataInput" | "UserUpdateWithoutRecievedNotificationsDataInput" | "UserUpdateWithoutReviewsDataInput" | "UserUpdateWithoutSentNotificationsDataInput" | "UserUpdateWithoutThreadsDataInput" | "UserUpsertWithWhereUniqueWithoutFollowersInput" | "UserUpsertWithWhereUniqueWithoutFollowingInput" | "UserUpsertWithWhereUniqueWithoutMemberOfInput" | "UserUpsertWithoutAnnotationsInput" | "UserUpsertWithoutFavoritesInput" | "UserUpsertWithoutMessageInput" | "UserUpsertWithoutNotificationsInput" | "UserUpsertWithoutPodsInput" | "UserUpsertWithoutPostsInput" | "UserUpsertWithoutQuestionsInput" | "UserUpsertWithoutRecievedNotificationsInput" | "UserUpsertWithoutReviewsInput" | "UserUpsertWithoutSentNotificationsInput" | "UserUpsertWithoutThreadsInput" | "UserWhereUniqueInput";
 
 export type NexusGenEnumNames = "OrderByArg";
 

@@ -35,8 +35,8 @@ model User {
   notifications         Notification[]
   following             User[]         @relation(name: "FollowRelation")
   followers             User[]         @relation(name: "FollowRelation")
-  sentNotifications     Notification?  @relation(name: "SendingUserRelation")
-  recievedNotifications Notification?  @relation(name: "ReceivingUserRelation")
+  sentNotifications     Notification   @relation(name: "SendingUserRelation")
+  recievedNotifications Notification   @relation(name: "ReceivingUserRelation")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

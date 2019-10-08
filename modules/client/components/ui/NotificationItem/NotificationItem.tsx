@@ -16,22 +16,25 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
   const clickHandler = e => onClick(e);
   console.info("notification details", notification);
 
+  const senderFirstName = legacy.extractMetaValue(notification.sender.userMeta, "firstName");
+  const senderLastName = legacy.extractMetaValue(notification.sender.userMeta, "lastName");
+
   let content = <></>;
   let contentLink = null;
-  // if (notificationMetaList["action"] === NOTIFICATION_CODE.A001) {
-  //   contentLink = `/${notificationMetaList["objectType"]}/${notificationMetaList["objectId"]}`;
-  //   content = (
-  //     <>
-  //       <Link href={`/user/${notificationMetaList["senderId"]}`}>
-  //         {notificationMetaList["senderName"]}
-  //       </Link>
-  //       <Text>has reviewed</Text>
-  //       <Link href={contentLink}>
-  //         {notificationMetaList["receiverName"]}
-  //       </Link>
-  //     </>
-  //   )
-  // }
+  if (notification.itemName === NOTIFICATION_CODE.A001) {
+    contentLink = `/post/${notification.post.id}`;
+    content = (
+      <>
+        <Link href={`/user/${notification.sender.id}`}>
+          {senderFirstName} {senderLastName}
+        </Link>
+        <Text>has reviewed</Text>
+        <Link href={contentLink}>
+          {notification.post.itemName}
+        </Link>
+      </>
+    )
+  }
 
   return (
     <section className="notificationItem">

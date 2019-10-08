@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 export const GET_NOTIFICATIONS = gql`
   query notifications($id: String, $first: Int) {
-    findManyNotification(where: { user: { id: { equals: $id } } }, first: $first) {
+    findManyNotification(where: { receiver: { id: { equals: $id } } }, first: $first) {
       id
       itemName
       itemContent
@@ -11,8 +11,8 @@ export const GET_NOTIFICATIONS = gql`
         userEmail
         userMeta {
           id
-          itemName
-          itemValue
+          metaName
+          metaValue
         }
       }
       receiver {
@@ -20,8 +20,8 @@ export const GET_NOTIFICATIONS = gql`
         userEmail
         userMeta {
           id
-          itemName
-          itemValue
+          metaName
+          metaValue
         }
       }
       pod {

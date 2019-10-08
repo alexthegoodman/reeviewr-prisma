@@ -52,6 +52,20 @@ async function main() {
       id: "1111",
       forgotHash: "1111",
       confirmHash: "1111",
+      userMeta: {
+        create: [
+          {
+            metaName: "firstName",
+            metaValue: "Alex",
+            metaType: "active"
+          },
+          {
+            metaName: "lastName",
+            metaValue: "Woodman",
+            metaType: "active"
+          }
+        ]
+      }
     },
   });
   const user2 = await photon.users.create({
@@ -68,6 +82,20 @@ async function main() {
       id: "1112",
       forgotHash: "1112",
       confirmHash: "1112",
+      userMeta: {
+        create: [
+          {
+            metaName: "firstName",
+            metaValue: "Marco",
+            metaType: "active"
+          },
+          {
+            metaName: "lastName",
+            metaValue: "Bulnes",
+            metaType: "active"
+          }
+        ]
+      }
     },
   });
   const cat1 = await photon.categories.create({
@@ -266,13 +294,13 @@ async function main() {
   });
   const notif1 = await photon.notifications.create({
     data: {
-      user: { connect: { id: user1.id } },
+      // user: { connect: { id: user1.id } },
       itemName: NOTIFICATION_CODE.A001,
       itemContent: "",
       itemType: "default",
       itemStatus: "active",
-      sender: { connect: { id: user1.id } },
-      receiver: { connect: { id: user2.id } },
+      sender: { connect: { id: user2.id } },
+      receiver: { connect: { id: user1.id } },
       // pod: { connect: { id: pod1.id } },
       post: { connect: { id: post1.id } }
       // itemMeta: {

@@ -268,13 +268,17 @@ export const Notification = objectType({
   name: "Notification",
   definition(t) {
     t.model.id();
-    t.model.user();
     t.model.itemType();
     t.model.itemStatus();
     t.model.itemName();
     t.model.itemContent();
     t.model.itemDeleted();
     t.model.itemMeta();
+
+    t.model.sender();
+    t.model.receiver();
+    t.model.pod();
+    t.model.post();
   },
 });
 
