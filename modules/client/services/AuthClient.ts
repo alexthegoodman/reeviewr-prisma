@@ -22,10 +22,17 @@ export default class AuthClient {
         variables: { id: reeviewrId },
       });
       console.info("got user data", reeviewrId, userData);
-      dispatch({
-        type: "setUserData",
-        userData: userData.findOneUser,
-      });
+      if (userData.findOneUser !== null) {
+        dispatch({
+          type: "setUserData",
+          userData: userData.findOneUser,
+        });
+      } else {
+        dispatch({
+          type: "setUserData",
+          userData: false,
+        });
+      }
     } else {
       dispatch({
         type: "setUserData",

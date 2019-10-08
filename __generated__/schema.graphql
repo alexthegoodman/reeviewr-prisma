@@ -1055,6 +1055,10 @@ input NotificationCreateInput {
   itemName: String!
   itemStatus: String!
   itemType: String!
+  pod: PodCreateOneWithoutPodInput!
+  post: PostCreateOneWithoutPostInput!
+  receiver: UserCreateOneWithoutReceiverInput!
+  sender: UserCreateOneWithoutSenderInput!
   updatedAt: DateTime
   user: UserCreateOneWithoutUserInput!
 }
@@ -1062,6 +1066,85 @@ input NotificationCreateInput {
 input NotificationCreateManyWithoutNotificationsInput {
   connect: [NotificationWhereUniqueInput!]
   create: [NotificationCreateWithoutUserInput!]
+}
+
+input NotificationCreateOneWithoutNotificationInput {
+  connect: NotificationWhereUniqueInput
+  create: NotificationCreateWithoutPodInput
+}
+
+input NotificationCreateOneWithoutRecievedNotificationsInput {
+  connect: NotificationWhereUniqueInput
+  create: NotificationCreateWithoutReceiverInput
+}
+
+input NotificationCreateOneWithoutSentNotificationsInput {
+  connect: NotificationWhereUniqueInput
+  create: NotificationCreateWithoutSenderInput
+}
+
+input NotificationCreateWithoutPodInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: NotificationMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  post: PostCreateOneWithoutPostInput!
+  receiver: UserCreateOneWithoutReceiverInput!
+  sender: UserCreateOneWithoutSenderInput!
+  updatedAt: DateTime
+  user: UserCreateOneWithoutUserInput!
+}
+
+input NotificationCreateWithoutPostInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: NotificationMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  pod: PodCreateOneWithoutPodInput!
+  receiver: UserCreateOneWithoutReceiverInput!
+  sender: UserCreateOneWithoutSenderInput!
+  updatedAt: DateTime
+  user: UserCreateOneWithoutUserInput!
+}
+
+input NotificationCreateWithoutReceiverInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: NotificationMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  pod: PodCreateOneWithoutPodInput!
+  post: PostCreateOneWithoutPostInput!
+  sender: UserCreateOneWithoutSenderInput!
+  updatedAt: DateTime
+  user: UserCreateOneWithoutUserInput!
+}
+
+input NotificationCreateWithoutSenderInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: NotificationMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  pod: PodCreateOneWithoutPodInput!
+  post: PostCreateOneWithoutPostInput!
+  receiver: UserCreateOneWithoutReceiverInput!
+  updatedAt: DateTime
+  user: UserCreateOneWithoutUserInput!
 }
 
 input NotificationCreateWithoutUserInput {
@@ -1073,6 +1156,10 @@ input NotificationCreateWithoutUserInput {
   itemName: String!
   itemStatus: String!
   itemType: String!
+  pod: PodCreateOneWithoutPodInput!
+  post: PostCreateOneWithoutPostInput!
+  receiver: UserCreateOneWithoutReceiverInput!
+  sender: UserCreateOneWithoutSenderInput!
   updatedAt: DateTime
 }
 
@@ -1161,6 +1248,10 @@ input NotificationUpdateInput {
   itemName: String
   itemStatus: String
   itemType: String
+  pod: PodUpdateOneRequiredWithoutNotificationInput
+  post: PostUpdateOneRequiredWithoutNotificationInput
+  receiver: UserUpdateOneRequiredWithoutRecievedNotificationsInput
+  sender: UserUpdateOneRequiredWithoutSentNotificationsInput
   updatedAt: DateTime
   user: UserUpdateOneRequiredWithoutNotificationsInput
 }
@@ -1193,6 +1284,102 @@ input NotificationUpdateManyWithWhereNestedInput {
   where: MutationUpdateOneUserWhereInput!
 }
 
+input NotificationUpdateOneRequiredWithoutReceiverInput {
+  connect: NotificationWhereUniqueInput
+  create: NotificationCreateWithoutReceiverInput
+  update: NotificationUpdateWithoutReceiverDataInput
+  upsert: NotificationUpsertWithoutReceiverInput
+}
+
+input NotificationUpdateOneRequiredWithoutSenderInput {
+  connect: NotificationWhereUniqueInput
+  create: NotificationCreateWithoutSenderInput
+  update: NotificationUpdateWithoutSenderDataInput
+  upsert: NotificationUpsertWithoutSenderInput
+}
+
+input NotificationUpdateOneWithoutPodInput {
+  connect: NotificationWhereUniqueInput
+  create: NotificationCreateWithoutPodInput
+  delete: Boolean
+  disconnect: Boolean
+  update: NotificationUpdateWithoutPodDataInput
+  upsert: NotificationUpsertWithoutPodInput
+}
+
+input NotificationUpdateOneWithoutPostInput {
+  connect: NotificationWhereUniqueInput
+  create: NotificationCreateWithoutPostInput
+  delete: Boolean
+  disconnect: Boolean
+  update: NotificationUpdateWithoutPostDataInput
+  upsert: NotificationUpsertWithoutPostInput
+}
+
+input NotificationUpdateWithoutPodDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: NotificationMetaUpdateManyWithoutNotificationInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  post: PostUpdateOneRequiredWithoutNotificationInput
+  receiver: UserUpdateOneRequiredWithoutRecievedNotificationsInput
+  sender: UserUpdateOneRequiredWithoutSentNotificationsInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutNotificationsInput
+}
+
+input NotificationUpdateWithoutPostDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: NotificationMetaUpdateManyWithoutNotificationInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  pod: PodUpdateOneRequiredWithoutNotificationInput
+  receiver: UserUpdateOneRequiredWithoutRecievedNotificationsInput
+  sender: UserUpdateOneRequiredWithoutSentNotificationsInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutNotificationsInput
+}
+
+input NotificationUpdateWithoutReceiverDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: NotificationMetaUpdateManyWithoutNotificationInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  pod: PodUpdateOneRequiredWithoutNotificationInput
+  post: PostUpdateOneRequiredWithoutNotificationInput
+  sender: UserUpdateOneRequiredWithoutSentNotificationsInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutNotificationsInput
+}
+
+input NotificationUpdateWithoutSenderDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: NotificationMetaUpdateManyWithoutNotificationInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  pod: PodUpdateOneRequiredWithoutNotificationInput
+  post: PostUpdateOneRequiredWithoutNotificationInput
+  receiver: UserUpdateOneRequiredWithoutRecievedNotificationsInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutNotificationsInput
+}
+
 input NotificationUpdateWithoutUserDataInput {
   createdAt: DateTime
   id: ID
@@ -1202,12 +1389,36 @@ input NotificationUpdateWithoutUserDataInput {
   itemName: String
   itemStatus: String
   itemType: String
+  pod: PodUpdateOneRequiredWithoutNotificationInput
+  post: PostUpdateOneRequiredWithoutNotificationInput
+  receiver: UserUpdateOneRequiredWithoutRecievedNotificationsInput
+  sender: UserUpdateOneRequiredWithoutSentNotificationsInput
   updatedAt: DateTime
 }
 
 input NotificationUpdateWithWhereUniqueWithoutUserInput {
   data: NotificationUpdateWithoutUserDataInput!
   where: NotificationWhereUniqueInput!
+}
+
+input NotificationUpsertWithoutPodInput {
+  create: NotificationCreateWithoutPodInput!
+  update: NotificationUpdateWithoutPodDataInput!
+}
+
+input NotificationUpsertWithoutPostInput {
+  create: NotificationCreateWithoutPostInput!
+  update: NotificationUpdateWithoutPostDataInput!
+}
+
+input NotificationUpsertWithoutReceiverInput {
+  create: NotificationCreateWithoutReceiverInput!
+  update: NotificationUpdateWithoutReceiverDataInput!
+}
+
+input NotificationUpsertWithoutSenderInput {
+  create: NotificationCreateWithoutSenderInput!
+  update: NotificationUpdateWithoutSenderDataInput!
 }
 
 input NotificationUpsertWithWhereUniqueWithoutUserInput {
@@ -1252,6 +1463,7 @@ input PodCreateInput {
   itemType: String!
   itemUrlSegment: String!
   members: UserCreateManyWithoutMembersInput
+  notification: NotificationCreateOneWithoutNotificationInput
   posts: PostCreateManyWithoutPostsInput
   updatedAt: DateTime
   user: UserCreateOneWithoutUserInput!
@@ -1283,6 +1495,7 @@ input PodCreateWithoutCategoriesInput {
   itemType: String!
   itemUrlSegment: String!
   members: UserCreateManyWithoutMembersInput
+  notification: NotificationCreateOneWithoutNotificationInput
   posts: PostCreateManyWithoutPostsInput
   updatedAt: DateTime
   user: UserCreateOneWithoutUserInput!
@@ -1299,6 +1512,24 @@ input PodCreateWithoutMembersInput {
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
+  notification: NotificationCreateOneWithoutNotificationInput
+  posts: PostCreateManyWithoutPostsInput
+  updatedAt: DateTime
+  user: UserCreateOneWithoutUserInput!
+}
+
+input PodCreateWithoutNotificationInput {
+  categories: CategoryCreateManyWithoutCategoriesInput
+  createdAt: DateTime
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: PodMetaCreateManyWithoutItemMetaInput
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  members: UserCreateManyWithoutMembersInput
   posts: PostCreateManyWithoutPostsInput
   updatedAt: DateTime
   user: UserCreateOneWithoutUserInput!
@@ -1316,6 +1547,7 @@ input PodCreateWithoutPostsInput {
   itemType: String!
   itemUrlSegment: String!
   members: UserCreateManyWithoutMembersInput
+  notification: NotificationCreateOneWithoutNotificationInput
   updatedAt: DateTime
   user: UserCreateOneWithoutUserInput!
 }
@@ -1332,6 +1564,7 @@ input PodCreateWithoutUserInput {
   itemType: String!
   itemUrlSegment: String!
   members: UserCreateManyWithoutMembersInput
+  notification: NotificationCreateOneWithoutNotificationInput
   posts: PostCreateManyWithoutPostsInput
   updatedAt: DateTime
 }
@@ -1424,6 +1657,7 @@ input PodUpdateInput {
   itemType: String
   itemUrlSegment: String
   members: UserUpdateManyWithoutMemberOfInput
+  notification: NotificationUpdateOneWithoutPodInput
   posts: PostUpdateManyWithoutPodInput
   updatedAt: DateTime
   user: UserUpdateOneRequiredWithoutPodsInput
@@ -1482,6 +1716,13 @@ input PodUpdateManyWithWhereNestedInput {
   where: MutationUpdateOneUserWhereInput!
 }
 
+input PodUpdateOneRequiredWithoutNotificationInput {
+  connect: PodWhereUniqueInput
+  create: PodCreateWithoutNotificationInput
+  update: PodUpdateWithoutNotificationDataInput
+  upsert: PodUpsertWithoutNotificationInput
+}
+
 input PodUpdateOneRequiredWithoutPostsInput {
   connect: PodWhereUniqueInput
   create: PodCreateWithoutPostsInput
@@ -1500,6 +1741,7 @@ input PodUpdateWithoutCategoriesDataInput {
   itemType: String
   itemUrlSegment: String
   members: UserUpdateManyWithoutMemberOfInput
+  notification: NotificationUpdateOneWithoutPodInput
   posts: PostUpdateManyWithoutPodInput
   updatedAt: DateTime
   user: UserUpdateOneRequiredWithoutPodsInput
@@ -1516,6 +1758,24 @@ input PodUpdateWithoutMembersDataInput {
   itemStatus: String
   itemType: String
   itemUrlSegment: String
+  notification: NotificationUpdateOneWithoutPodInput
+  posts: PostUpdateManyWithoutPodInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutPodsInput
+}
+
+input PodUpdateWithoutNotificationDataInput {
+  categories: CategoryUpdateManyWithoutPodsInput
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: PodMetaUpdateManyWithoutPodInput
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  members: UserUpdateManyWithoutMemberOfInput
   posts: PostUpdateManyWithoutPodInput
   updatedAt: DateTime
   user: UserUpdateOneRequiredWithoutPodsInput
@@ -1533,6 +1793,7 @@ input PodUpdateWithoutPostsDataInput {
   itemType: String
   itemUrlSegment: String
   members: UserUpdateManyWithoutMemberOfInput
+  notification: NotificationUpdateOneWithoutPodInput
   updatedAt: DateTime
   user: UserUpdateOneRequiredWithoutPodsInput
 }
@@ -1549,6 +1810,7 @@ input PodUpdateWithoutUserDataInput {
   itemType: String
   itemUrlSegment: String
   members: UserUpdateManyWithoutMemberOfInput
+  notification: NotificationUpdateOneWithoutPodInput
   posts: PostUpdateManyWithoutPodInput
   updatedAt: DateTime
 }
@@ -1566,6 +1828,11 @@ input PodUpdateWithWhereUniqueWithoutMembersInput {
 input PodUpdateWithWhereUniqueWithoutUserInput {
   data: PodUpdateWithoutUserDataInput!
   where: PodWhereUniqueInput!
+}
+
+input PodUpsertWithoutNotificationInput {
+  create: PodCreateWithoutNotificationInput!
+  update: PodUpdateWithoutNotificationDataInput!
 }
 
 input PodUpsertWithoutPostsInput {
@@ -1627,6 +1894,7 @@ input PostCreateInput {
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
+  notification: NotificationCreateOneWithoutNotificationInput
   pod: PodCreateOneWithoutPodInput!
   questions: QuestionCreateManyWithoutQuestionsInput
   reviews: ReviewCreateManyWithoutReviewsInput
@@ -1657,6 +1925,7 @@ input PostCreateWithoutAnnotationsInput {
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
+  notification: NotificationCreateOneWithoutNotificationInput
   pod: PodCreateOneWithoutPodInput!
   questions: QuestionCreateManyWithoutQuestionsInput
   reviews: ReviewCreateManyWithoutReviewsInput
@@ -1668,6 +1937,28 @@ input PostCreateWithoutAnnotationsInput {
 input PostCreateWithoutFavoritesInput {
   annotations: AnnotationCreateManyWithoutAnnotationsInput
   createdAt: DateTime
+  id: ID
+  itemContent: String!
+  itemDeleted: Boolean
+  itemMeta: PostMetaCreateManyWithoutItemMetaInput
+  itemMimeType: String!
+  itemName: String!
+  itemStatus: String!
+  itemType: String!
+  itemUrlSegment: String!
+  notification: NotificationCreateOneWithoutNotificationInput
+  pod: PodCreateOneWithoutPodInput!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
+  tags: TagCreateManyWithoutTagsInput
+  updatedAt: DateTime
+  user: UserCreateOneWithoutUserInput!
+}
+
+input PostCreateWithoutNotificationInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  createdAt: DateTime
+  favorites: FavoriteCreateManyWithoutFavoritesInput
   id: ID
   itemContent: String!
   itemDeleted: Boolean
@@ -1698,6 +1989,7 @@ input PostCreateWithoutPodInput {
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
+  notification: NotificationCreateOneWithoutNotificationInput
   questions: QuestionCreateManyWithoutQuestionsInput
   reviews: ReviewCreateManyWithoutReviewsInput
   tags: TagCreateManyWithoutTagsInput
@@ -1718,6 +2010,7 @@ input PostCreateWithoutQuestionsInput {
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
+  notification: NotificationCreateOneWithoutNotificationInput
   pod: PodCreateOneWithoutPodInput!
   reviews: ReviewCreateManyWithoutReviewsInput
   tags: TagCreateManyWithoutTagsInput
@@ -1738,6 +2031,7 @@ input PostCreateWithoutReviewsInput {
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
+  notification: NotificationCreateOneWithoutNotificationInput
   pod: PodCreateOneWithoutPodInput!
   questions: QuestionCreateManyWithoutQuestionsInput
   tags: TagCreateManyWithoutTagsInput
@@ -1758,6 +2052,7 @@ input PostCreateWithoutTagsInput {
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
+  notification: NotificationCreateOneWithoutNotificationInput
   pod: PodCreateOneWithoutPodInput!
   questions: QuestionCreateManyWithoutQuestionsInput
   reviews: ReviewCreateManyWithoutReviewsInput
@@ -1778,6 +2073,7 @@ input PostCreateWithoutUserInput {
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
+  notification: NotificationCreateOneWithoutNotificationInput
   pod: PodCreateOneWithoutPodInput!
   questions: QuestionCreateManyWithoutQuestionsInput
   reviews: ReviewCreateManyWithoutReviewsInput
@@ -1874,6 +2170,7 @@ input PostUpdateInput {
   itemStatus: String
   itemType: String
   itemUrlSegment: String
+  notification: NotificationUpdateOneWithoutPostInput
   pod: PodUpdateOneRequiredWithoutPostsInput
   questions: QuestionUpdateManyWithoutPostInput
   reviews: ReviewUpdateManyWithoutPostInput
@@ -1950,6 +2247,13 @@ input PostUpdateOneRequiredWithoutFavoritesInput {
   upsert: PostUpsertWithoutFavoritesInput
 }
 
+input PostUpdateOneRequiredWithoutNotificationInput {
+  connect: PostWhereUniqueInput
+  create: PostCreateWithoutNotificationInput
+  update: PostUpdateWithoutNotificationDataInput
+  upsert: PostUpsertWithoutNotificationInput
+}
+
 input PostUpdateOneRequiredWithoutQuestionsInput {
   connect: PostWhereUniqueInput
   create: PostCreateWithoutQuestionsInput
@@ -1976,6 +2280,7 @@ input PostUpdateWithoutAnnotationsDataInput {
   itemStatus: String
   itemType: String
   itemUrlSegment: String
+  notification: NotificationUpdateOneWithoutPostInput
   pod: PodUpdateOneRequiredWithoutPostsInput
   questions: QuestionUpdateManyWithoutPostInput
   reviews: ReviewUpdateManyWithoutPostInput
@@ -1987,6 +2292,28 @@ input PostUpdateWithoutAnnotationsDataInput {
 input PostUpdateWithoutFavoritesDataInput {
   annotations: AnnotationUpdateManyWithoutPostInput
   createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemMeta: PostMetaUpdateManyWithoutPostInput
+  itemMimeType: String
+  itemName: String
+  itemStatus: String
+  itemType: String
+  itemUrlSegment: String
+  notification: NotificationUpdateOneWithoutPostInput
+  pod: PodUpdateOneRequiredWithoutPostsInput
+  questions: QuestionUpdateManyWithoutPostInput
+  reviews: ReviewUpdateManyWithoutPostInput
+  tags: TagUpdateManyWithoutPostsInput
+  updatedAt: DateTime
+  user: UserUpdateOneRequiredWithoutPostsInput
+}
+
+input PostUpdateWithoutNotificationDataInput {
+  annotations: AnnotationUpdateManyWithoutPostInput
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutPostInput
   id: ID
   itemContent: String
   itemDeleted: Boolean
@@ -2017,6 +2344,7 @@ input PostUpdateWithoutPodDataInput {
   itemStatus: String
   itemType: String
   itemUrlSegment: String
+  notification: NotificationUpdateOneWithoutPostInput
   questions: QuestionUpdateManyWithoutPostInput
   reviews: ReviewUpdateManyWithoutPostInput
   tags: TagUpdateManyWithoutPostsInput
@@ -2037,6 +2365,7 @@ input PostUpdateWithoutQuestionsDataInput {
   itemStatus: String
   itemType: String
   itemUrlSegment: String
+  notification: NotificationUpdateOneWithoutPostInput
   pod: PodUpdateOneRequiredWithoutPostsInput
   reviews: ReviewUpdateManyWithoutPostInput
   tags: TagUpdateManyWithoutPostsInput
@@ -2057,6 +2386,7 @@ input PostUpdateWithoutReviewsDataInput {
   itemStatus: String
   itemType: String
   itemUrlSegment: String
+  notification: NotificationUpdateOneWithoutPostInput
   pod: PodUpdateOneRequiredWithoutPostsInput
   questions: QuestionUpdateManyWithoutPostInput
   tags: TagUpdateManyWithoutPostsInput
@@ -2077,6 +2407,7 @@ input PostUpdateWithoutTagsDataInput {
   itemStatus: String
   itemType: String
   itemUrlSegment: String
+  notification: NotificationUpdateOneWithoutPostInput
   pod: PodUpdateOneRequiredWithoutPostsInput
   questions: QuestionUpdateManyWithoutPostInput
   reviews: ReviewUpdateManyWithoutPostInput
@@ -2097,6 +2428,7 @@ input PostUpdateWithoutUserDataInput {
   itemStatus: String
   itemType: String
   itemUrlSegment: String
+  notification: NotificationUpdateOneWithoutPostInput
   pod: PodUpdateOneRequiredWithoutPostsInput
   questions: QuestionUpdateManyWithoutPostInput
   reviews: ReviewUpdateManyWithoutPostInput
@@ -2127,6 +2459,11 @@ input PostUpsertWithoutAnnotationsInput {
 input PostUpsertWithoutFavoritesInput {
   create: PostCreateWithoutFavoritesInput!
   update: PostUpdateWithoutFavoritesDataInput!
+}
+
+input PostUpsertWithoutNotificationInput {
+  create: PostCreateWithoutNotificationInput!
+  update: PostUpdateWithoutNotificationDataInput!
 }
 
 input PostUpsertWithoutQuestionsInput {
@@ -2469,6 +2806,10 @@ input QueryFindManyNotificationWhereInput {
   itemType: StringFilter
   NOT: [QueryFindManyNotificationWhereInput!]
   OR: [QueryFindManyNotificationWhereInput!]
+  pod: QueryFindManyNotificationWhereInput
+  post: QueryFindManyNotificationWhereInput
+  receiver: QueryFindManyNotificationWhereInput
+  sender: QueryFindManyNotificationWhereInput
   updatedAt: QueryFindManyNotificationFilter
   user: QueryFindManyNotificationWhereInput
 }
@@ -2540,6 +2881,7 @@ input QueryFindManyPodWhereInput {
   itemUrlSegment: StringFilter
   members: QueryFindManyPodFilter
   NOT: [QueryFindManyPodWhereInput!]
+  notification: QueryFindManyPodWhereInput
   OR: [QueryFindManyPodWhereInput!]
   posts: QueryFindManyPodFilter
   updatedAt: QueryFindManyPodFilter
@@ -2615,6 +2957,7 @@ input QueryFindManyPostWhereInput {
   itemType: StringFilter
   itemUrlSegment: StringFilter
   NOT: [QueryFindManyPostWhereInput!]
+  notification: QueryFindManyPostWhereInput
   OR: [QueryFindManyPostWhereInput!]
   pod: QueryFindManyPostWhereInput
   questions: QueryFindManyPostFilter
@@ -2945,7 +3288,9 @@ input QueryFindManyUserWhereInput {
   privateHash: StringFilter
   publicHash: StringFilter
   questions: QueryFindManyUserFilter
+  recievedNotifications: QueryFindManyUserWhereInput
   reviews: QueryFindManyUserFilter
+  sentNotifications: QueryFindManyUserWhereInput
   threads: QueryFindManyUserFilter
   updatedAt: QueryFindManyUserFilter
   userConfirmed: IntFilter
@@ -3852,7 +4197,9 @@ input UserCreateInput {
   privateHash: String!
   publicHash: String!
   questions: QuestionCreateManyWithoutQuestionsInput
+  recievedNotifications: NotificationCreateOneWithoutRecievedNotificationsInput!
   reviews: ReviewCreateManyWithoutReviewsInput
+  sentNotifications: NotificationCreateOneWithoutSentNotificationsInput!
   threads: ThreadCreateManyWithoutThreadsInput
   updatedAt: DateTime
   userConfirmed: Int!
@@ -3878,6 +4225,16 @@ input UserCreateManyWithoutMembersInput {
   create: [UserCreateWithoutMemberOfInput!]
 }
 
+input UserCreateOneWithoutReceiverInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutRecievedNotificationsInput
+}
+
+input UserCreateOneWithoutSenderInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutSentNotificationsInput
+}
+
 input UserCreateOneWithoutUserInput {
   connect: UserWhereUniqueInput
   create: UserCreateWithoutPodsInput
@@ -3899,7 +4256,9 @@ input UserCreateWithoutAnnotationsInput {
   privateHash: String!
   publicHash: String!
   questions: QuestionCreateManyWithoutQuestionsInput
+  recievedNotifications: NotificationCreateOneWithoutRecievedNotificationsInput!
   reviews: ReviewCreateManyWithoutReviewsInput
+  sentNotifications: NotificationCreateOneWithoutSentNotificationsInput!
   threads: ThreadCreateManyWithoutThreadsInput
   updatedAt: DateTime
   userConfirmed: Int!
@@ -3926,7 +4285,9 @@ input UserCreateWithoutFavoritesInput {
   privateHash: String!
   publicHash: String!
   questions: QuestionCreateManyWithoutQuestionsInput
+  recievedNotifications: NotificationCreateOneWithoutRecievedNotificationsInput!
   reviews: ReviewCreateManyWithoutReviewsInput
+  sentNotifications: NotificationCreateOneWithoutSentNotificationsInput!
   threads: ThreadCreateManyWithoutThreadsInput
   updatedAt: DateTime
   userConfirmed: Int!
@@ -3953,7 +4314,9 @@ input UserCreateWithoutFollowersInput {
   privateHash: String!
   publicHash: String!
   questions: QuestionCreateManyWithoutQuestionsInput
+  recievedNotifications: NotificationCreateOneWithoutRecievedNotificationsInput!
   reviews: ReviewCreateManyWithoutReviewsInput
+  sentNotifications: NotificationCreateOneWithoutSentNotificationsInput!
   threads: ThreadCreateManyWithoutThreadsInput
   updatedAt: DateTime
   userConfirmed: Int!
@@ -3980,7 +4343,9 @@ input UserCreateWithoutFollowingInput {
   privateHash: String!
   publicHash: String!
   questions: QuestionCreateManyWithoutQuestionsInput
+  recievedNotifications: NotificationCreateOneWithoutRecievedNotificationsInput!
   reviews: ReviewCreateManyWithoutReviewsInput
+  sentNotifications: NotificationCreateOneWithoutSentNotificationsInput!
   threads: ThreadCreateManyWithoutThreadsInput
   updatedAt: DateTime
   userConfirmed: Int!
@@ -4007,7 +4372,9 @@ input UserCreateWithoutMemberOfInput {
   privateHash: String!
   publicHash: String!
   questions: QuestionCreateManyWithoutQuestionsInput
+  recievedNotifications: NotificationCreateOneWithoutRecievedNotificationsInput!
   reviews: ReviewCreateManyWithoutReviewsInput
+  sentNotifications: NotificationCreateOneWithoutSentNotificationsInput!
   threads: ThreadCreateManyWithoutThreadsInput
   updatedAt: DateTime
   userConfirmed: Int!
@@ -4034,7 +4401,9 @@ input UserCreateWithoutMessageInput {
   privateHash: String!
   publicHash: String!
   questions: QuestionCreateManyWithoutQuestionsInput
+  recievedNotifications: NotificationCreateOneWithoutRecievedNotificationsInput!
   reviews: ReviewCreateManyWithoutReviewsInput
+  sentNotifications: NotificationCreateOneWithoutSentNotificationsInput!
   threads: ThreadCreateManyWithoutThreadsInput
   updatedAt: DateTime
   userConfirmed: Int!
@@ -4061,7 +4430,9 @@ input UserCreateWithoutNotificationsInput {
   privateHash: String!
   publicHash: String!
   questions: QuestionCreateManyWithoutQuestionsInput
+  recievedNotifications: NotificationCreateOneWithoutRecievedNotificationsInput!
   reviews: ReviewCreateManyWithoutReviewsInput
+  sentNotifications: NotificationCreateOneWithoutSentNotificationsInput!
   threads: ThreadCreateManyWithoutThreadsInput
   updatedAt: DateTime
   userConfirmed: Int!
@@ -4088,7 +4459,9 @@ input UserCreateWithoutPodsInput {
   privateHash: String!
   publicHash: String!
   questions: QuestionCreateManyWithoutQuestionsInput
+  recievedNotifications: NotificationCreateOneWithoutRecievedNotificationsInput!
   reviews: ReviewCreateManyWithoutReviewsInput
+  sentNotifications: NotificationCreateOneWithoutSentNotificationsInput!
   threads: ThreadCreateManyWithoutThreadsInput
   updatedAt: DateTime
   userConfirmed: Int!
@@ -4115,7 +4488,9 @@ input UserCreateWithoutPostsInput {
   privateHash: String!
   publicHash: String!
   questions: QuestionCreateManyWithoutQuestionsInput
+  recievedNotifications: NotificationCreateOneWithoutRecievedNotificationsInput!
   reviews: ReviewCreateManyWithoutReviewsInput
+  sentNotifications: NotificationCreateOneWithoutSentNotificationsInput!
   threads: ThreadCreateManyWithoutThreadsInput
   updatedAt: DateTime
   userConfirmed: Int!
@@ -4142,7 +4517,38 @@ input UserCreateWithoutQuestionsInput {
   posts: PostCreateManyWithoutPostsInput
   privateHash: String!
   publicHash: String!
+  recievedNotifications: NotificationCreateOneWithoutRecievedNotificationsInput!
   reviews: ReviewCreateManyWithoutReviewsInput
+  sentNotifications: NotificationCreateOneWithoutSentNotificationsInput!
+  threads: ThreadCreateManyWithoutThreadsInput
+  updatedAt: DateTime
+  userConfirmed: Int!
+  userDeleted: Boolean
+  userEmail: String!
+  userMeta: UserMetaCreateManyWithoutUserMetaInput
+  userPassword: String!
+  userType: Int!
+}
+
+input UserCreateWithoutRecievedNotificationsInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  confirmHash: String!
+  createdAt: DateTime
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  followers: UserCreateManyWithoutFollowersInput
+  following: UserCreateManyWithoutFollowingInput
+  forgotHash: String!
+  id: ID
+  memberOf: PodCreateManyWithoutMemberOfInput
+  message: MessageCreateOneWithoutMessageInput
+  notifications: NotificationCreateManyWithoutNotificationsInput
+  pods: PodCreateManyWithoutPodsInput
+  posts: PostCreateManyWithoutPostsInput
+  privateHash: String!
+  publicHash: String!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  reviews: ReviewCreateManyWithoutReviewsInput
+  sentNotifications: NotificationCreateOneWithoutSentNotificationsInput!
   threads: ThreadCreateManyWithoutThreadsInput
   updatedAt: DateTime
   userConfirmed: Int!
@@ -4170,6 +4576,37 @@ input UserCreateWithoutReviewsInput {
   privateHash: String!
   publicHash: String!
   questions: QuestionCreateManyWithoutQuestionsInput
+  recievedNotifications: NotificationCreateOneWithoutRecievedNotificationsInput!
+  sentNotifications: NotificationCreateOneWithoutSentNotificationsInput!
+  threads: ThreadCreateManyWithoutThreadsInput
+  updatedAt: DateTime
+  userConfirmed: Int!
+  userDeleted: Boolean
+  userEmail: String!
+  userMeta: UserMetaCreateManyWithoutUserMetaInput
+  userPassword: String!
+  userType: Int!
+}
+
+input UserCreateWithoutSentNotificationsInput {
+  annotations: AnnotationCreateManyWithoutAnnotationsInput
+  confirmHash: String!
+  createdAt: DateTime
+  favorites: FavoriteCreateManyWithoutFavoritesInput
+  followers: UserCreateManyWithoutFollowersInput
+  following: UserCreateManyWithoutFollowingInput
+  forgotHash: String!
+  id: ID
+  memberOf: PodCreateManyWithoutMemberOfInput
+  message: MessageCreateOneWithoutMessageInput
+  notifications: NotificationCreateManyWithoutNotificationsInput
+  pods: PodCreateManyWithoutPodsInput
+  posts: PostCreateManyWithoutPostsInput
+  privateHash: String!
+  publicHash: String!
+  questions: QuestionCreateManyWithoutQuestionsInput
+  recievedNotifications: NotificationCreateOneWithoutRecievedNotificationsInput!
+  reviews: ReviewCreateManyWithoutReviewsInput
   threads: ThreadCreateManyWithoutThreadsInput
   updatedAt: DateTime
   userConfirmed: Int!
@@ -4197,7 +4634,9 @@ input UserCreateWithoutThreadsInput {
   privateHash: String!
   publicHash: String!
   questions: QuestionCreateManyWithoutQuestionsInput
+  recievedNotifications: NotificationCreateOneWithoutRecievedNotificationsInput!
   reviews: ReviewCreateManyWithoutReviewsInput
+  sentNotifications: NotificationCreateOneWithoutSentNotificationsInput!
   updatedAt: DateTime
   userConfirmed: Int!
   userDeleted: Boolean
@@ -4300,7 +4739,9 @@ input UserUpdateInput {
   privateHash: String
   publicHash: String
   questions: QuestionUpdateManyWithoutUserInput
+  recievedNotifications: NotificationUpdateOneRequiredWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
+  sentNotifications: NotificationUpdateOneRequiredWithoutSenderInput
   threads: ThreadUpdateManyWithoutUserInput
   updatedAt: DateTime
   userConfirmed: Int
@@ -4416,11 +4857,25 @@ input UserUpdateOneRequiredWithoutQuestionsInput {
   upsert: UserUpsertWithoutQuestionsInput
 }
 
+input UserUpdateOneRequiredWithoutRecievedNotificationsInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutRecievedNotificationsInput
+  update: UserUpdateWithoutRecievedNotificationsDataInput
+  upsert: UserUpsertWithoutRecievedNotificationsInput
+}
+
 input UserUpdateOneRequiredWithoutReviewsInput {
   connect: UserWhereUniqueInput
   create: UserCreateWithoutReviewsInput
   update: UserUpdateWithoutReviewsDataInput
   upsert: UserUpsertWithoutReviewsInput
+}
+
+input UserUpdateOneRequiredWithoutSentNotificationsInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutSentNotificationsInput
+  update: UserUpdateWithoutSentNotificationsDataInput
+  upsert: UserUpsertWithoutSentNotificationsInput
 }
 
 input UserUpdateOneRequiredWithoutThreadsInput {
@@ -4446,7 +4901,9 @@ input UserUpdateWithoutAnnotationsDataInput {
   privateHash: String
   publicHash: String
   questions: QuestionUpdateManyWithoutUserInput
+  recievedNotifications: NotificationUpdateOneRequiredWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
+  sentNotifications: NotificationUpdateOneRequiredWithoutSenderInput
   threads: ThreadUpdateManyWithoutUserInput
   updatedAt: DateTime
   userConfirmed: Int
@@ -4473,7 +4930,9 @@ input UserUpdateWithoutFavoritesDataInput {
   privateHash: String
   publicHash: String
   questions: QuestionUpdateManyWithoutUserInput
+  recievedNotifications: NotificationUpdateOneRequiredWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
+  sentNotifications: NotificationUpdateOneRequiredWithoutSenderInput
   threads: ThreadUpdateManyWithoutUserInput
   updatedAt: DateTime
   userConfirmed: Int
@@ -4500,7 +4959,9 @@ input UserUpdateWithoutFollowersDataInput {
   privateHash: String
   publicHash: String
   questions: QuestionUpdateManyWithoutUserInput
+  recievedNotifications: NotificationUpdateOneRequiredWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
+  sentNotifications: NotificationUpdateOneRequiredWithoutSenderInput
   threads: ThreadUpdateManyWithoutUserInput
   updatedAt: DateTime
   userConfirmed: Int
@@ -4527,7 +4988,9 @@ input UserUpdateWithoutFollowingDataInput {
   privateHash: String
   publicHash: String
   questions: QuestionUpdateManyWithoutUserInput
+  recievedNotifications: NotificationUpdateOneRequiredWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
+  sentNotifications: NotificationUpdateOneRequiredWithoutSenderInput
   threads: ThreadUpdateManyWithoutUserInput
   updatedAt: DateTime
   userConfirmed: Int
@@ -4554,7 +5017,9 @@ input UserUpdateWithoutMemberOfDataInput {
   privateHash: String
   publicHash: String
   questions: QuestionUpdateManyWithoutUserInput
+  recievedNotifications: NotificationUpdateOneRequiredWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
+  sentNotifications: NotificationUpdateOneRequiredWithoutSenderInput
   threads: ThreadUpdateManyWithoutUserInput
   updatedAt: DateTime
   userConfirmed: Int
@@ -4581,7 +5046,9 @@ input UserUpdateWithoutMessageDataInput {
   privateHash: String
   publicHash: String
   questions: QuestionUpdateManyWithoutUserInput
+  recievedNotifications: NotificationUpdateOneRequiredWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
+  sentNotifications: NotificationUpdateOneRequiredWithoutSenderInput
   threads: ThreadUpdateManyWithoutUserInput
   updatedAt: DateTime
   userConfirmed: Int
@@ -4608,7 +5075,9 @@ input UserUpdateWithoutNotificationsDataInput {
   privateHash: String
   publicHash: String
   questions: QuestionUpdateManyWithoutUserInput
+  recievedNotifications: NotificationUpdateOneRequiredWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
+  sentNotifications: NotificationUpdateOneRequiredWithoutSenderInput
   threads: ThreadUpdateManyWithoutUserInput
   updatedAt: DateTime
   userConfirmed: Int
@@ -4635,7 +5104,9 @@ input UserUpdateWithoutPodsDataInput {
   privateHash: String
   publicHash: String
   questions: QuestionUpdateManyWithoutUserInput
+  recievedNotifications: NotificationUpdateOneRequiredWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
+  sentNotifications: NotificationUpdateOneRequiredWithoutSenderInput
   threads: ThreadUpdateManyWithoutUserInput
   updatedAt: DateTime
   userConfirmed: Int
@@ -4662,7 +5133,9 @@ input UserUpdateWithoutPostsDataInput {
   privateHash: String
   publicHash: String
   questions: QuestionUpdateManyWithoutUserInput
+  recievedNotifications: NotificationUpdateOneRequiredWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
+  sentNotifications: NotificationUpdateOneRequiredWithoutSenderInput
   threads: ThreadUpdateManyWithoutUserInput
   updatedAt: DateTime
   userConfirmed: Int
@@ -4689,7 +5162,38 @@ input UserUpdateWithoutQuestionsDataInput {
   posts: PostUpdateManyWithoutUserInput
   privateHash: String
   publicHash: String
+  recievedNotifications: NotificationUpdateOneRequiredWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
+  sentNotifications: NotificationUpdateOneRequiredWithoutSenderInput
+  threads: ThreadUpdateManyWithoutUserInput
+  updatedAt: DateTime
+  userConfirmed: Int
+  userDeleted: Boolean
+  userEmail: String
+  userMeta: UserMetaUpdateManyWithoutUserInput
+  userPassword: String
+  userType: Int
+}
+
+input UserUpdateWithoutRecievedNotificationsDataInput {
+  annotations: AnnotationUpdateManyWithoutUserInput
+  confirmHash: String
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutUserInput
+  followers: UserUpdateManyWithoutFollowingInput
+  following: UserUpdateManyWithoutFollowersInput
+  forgotHash: String
+  id: ID
+  memberOf: PodUpdateManyWithoutMembersInput
+  message: MessageUpdateOneWithoutUserInput
+  notifications: NotificationUpdateManyWithoutUserInput
+  pods: PodUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutUserInput
+  privateHash: String
+  publicHash: String
+  questions: QuestionUpdateManyWithoutUserInput
+  reviews: ReviewUpdateManyWithoutUserInput
+  sentNotifications: NotificationUpdateOneRequiredWithoutSenderInput
   threads: ThreadUpdateManyWithoutUserInput
   updatedAt: DateTime
   userConfirmed: Int
@@ -4717,6 +5221,37 @@ input UserUpdateWithoutReviewsDataInput {
   privateHash: String
   publicHash: String
   questions: QuestionUpdateManyWithoutUserInput
+  recievedNotifications: NotificationUpdateOneRequiredWithoutReceiverInput
+  sentNotifications: NotificationUpdateOneRequiredWithoutSenderInput
+  threads: ThreadUpdateManyWithoutUserInput
+  updatedAt: DateTime
+  userConfirmed: Int
+  userDeleted: Boolean
+  userEmail: String
+  userMeta: UserMetaUpdateManyWithoutUserInput
+  userPassword: String
+  userType: Int
+}
+
+input UserUpdateWithoutSentNotificationsDataInput {
+  annotations: AnnotationUpdateManyWithoutUserInput
+  confirmHash: String
+  createdAt: DateTime
+  favorites: FavoriteUpdateManyWithoutUserInput
+  followers: UserUpdateManyWithoutFollowingInput
+  following: UserUpdateManyWithoutFollowersInput
+  forgotHash: String
+  id: ID
+  memberOf: PodUpdateManyWithoutMembersInput
+  message: MessageUpdateOneWithoutUserInput
+  notifications: NotificationUpdateManyWithoutUserInput
+  pods: PodUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutUserInput
+  privateHash: String
+  publicHash: String
+  questions: QuestionUpdateManyWithoutUserInput
+  recievedNotifications: NotificationUpdateOneRequiredWithoutReceiverInput
+  reviews: ReviewUpdateManyWithoutUserInput
   threads: ThreadUpdateManyWithoutUserInput
   updatedAt: DateTime
   userConfirmed: Int
@@ -4744,7 +5279,9 @@ input UserUpdateWithoutThreadsDataInput {
   privateHash: String
   publicHash: String
   questions: QuestionUpdateManyWithoutUserInput
+  recievedNotifications: NotificationUpdateOneRequiredWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
+  sentNotifications: NotificationUpdateOneRequiredWithoutSenderInput
   updatedAt: DateTime
   userConfirmed: Int
   userDeleted: Boolean
@@ -4804,9 +5341,19 @@ input UserUpsertWithoutQuestionsInput {
   update: UserUpdateWithoutQuestionsDataInput!
 }
 
+input UserUpsertWithoutRecievedNotificationsInput {
+  create: UserCreateWithoutRecievedNotificationsInput!
+  update: UserUpdateWithoutRecievedNotificationsDataInput!
+}
+
 input UserUpsertWithoutReviewsInput {
   create: UserCreateWithoutReviewsInput!
   update: UserUpdateWithoutReviewsDataInput!
+}
+
+input UserUpsertWithoutSentNotificationsInput {
+  create: UserCreateWithoutSentNotificationsInput!
+  update: UserUpdateWithoutSentNotificationsDataInput!
 }
 
 input UserUpsertWithoutThreadsInput {

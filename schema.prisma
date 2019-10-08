@@ -24,17 +24,19 @@ model User {
   userDeleted   Boolean    @default(false)
   userMeta      UserMeta[]
 
-  posts         Post[]
-  pods          Pod[]          @relation(name: "CreatePodRelation")
-  memberOf      Pod[]          @relation(name: "JoinPodRelation")
-  favorites     Favorite[]
-  reviews       Review[]
-  annotations   Annotation[]
-  questions     Question[]
-  threads       Thread[]
-  notifications Notification[]
-  following     User[]         @relation(name: "FollowRelation")
-  followers     User[]         @relation(name: "FollowRelation")
+  posts                 Post[]
+  pods                  Pod[]          @relation(name: "CreatePodRelation")
+  memberOf              Pod[]          @relation(name: "JoinPodRelation")
+  favorites             Favorite[]
+  reviews               Review[]
+  annotations           Annotation[]
+  questions             Question[]
+  threads               Thread[]
+  notifications         Notification[]
+  following             User[]         @relation(name: "FollowRelation")
+  followers             User[]         @relation(name: "FollowRelation")
+  sentNotifications     Notification   @relation(name: "SendingUserRelation")
+  recievedNotifications Notification   @relation(name: "ReceivingUserRelation")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -243,15 +245,20 @@ model MessageMeta {
 
 model Notification {
   id          String             @id @default(cuid())
-  user        User
   itemType    String
   itemStatus  String
   itemName    String
   itemContent String
   itemDeleted Boolean            @default(false)
   itemMeta    NotificationMeta[]
-  createdAt   DateTime           @default(now())
-  updatedAt   DateTime           @updatedAt
+
+  sender   User  @relation(name: "SendingUserRelation")
+  receiver User  @relation(name: "ReceivingUserRelation")
+  pod      Pod?
+  post     Post?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model NotificationMeta {

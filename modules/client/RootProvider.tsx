@@ -26,9 +26,9 @@ if (process.env.NODE_ENV !== "development") {
   Sentry.init({ dsn: process.env.SENTRY });
 }
 
-interface AppProviderProps {}
+interface AppProviderProps { }
 
-interface RootProviderProps {}
+interface RootProviderProps { }
 
 export const AppProvider: React.FC<AppProviderProps> = props => {
   return (
@@ -51,8 +51,8 @@ const RootProvider: React.FC<RootProviderProps> = props => {
             />
           </>
         ) : (
-          <></>
-        )}
+            <></>
+          )}
         <ApolloProvider client={client}>
           {/** TODO: Good spot for Layout if desire no rerender, consider best placement for context */}
           <CookiesProvider>

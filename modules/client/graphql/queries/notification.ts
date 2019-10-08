@@ -6,6 +6,42 @@ export const GET_NOTIFICATIONS = gql`
       id
       itemName
       itemContent
+      sender {
+        id
+        userEmail
+        userMeta {
+          id
+          itemName
+          itemValue
+        }
+      }
+      receiver {
+        id
+        userEmail
+        userMeta {
+          id
+          itemName
+          itemValue
+        }
+      }
+      pod {
+        id
+        itemName
+        itemMeta {
+          id
+          metaName
+          metaValue
+        }
+      }
+      post {
+        id
+        itemName
+        itemMeta {
+          id
+          metaName
+          metaValue
+        }
+      }
       itemMeta {
         id
         metaName

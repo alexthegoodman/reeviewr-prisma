@@ -30,6 +30,7 @@ const App: React.FC<AppProps> = ({ children }) => {
     userData === null &&
     utility.isDefinedWithContent(cookies["reeviewrId"])
   ) {
+    // if reeviewrId belongs to no user, infinite loop occurs
     authClient.getUserData(dispatch);
 
     console.info("user data", userData);

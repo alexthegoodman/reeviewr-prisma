@@ -11,13 +11,19 @@ async function clean() {
   await photon.notifications.deleteMany({
     where: { id: { contains: "" } },
   });
+  await photon.postMetas.deleteMany({
+    where: { id: { contains: "" } },
+  });
+  await photon.posts.deleteMany({
+    where: { id: { contains: "" } },
+  });
   await photon.podMetas.deleteMany({
     where: { id: { contains: "" } },
   });
   await photon.pods.deleteMany({
     where: { id: { contains: "" } },
   });
-  await photon.posts.deleteMany({
+  await photon.userMetas.deleteMany({
     where: { id: { contains: "" } },
   });
   await photon.users.deleteMany({
@@ -41,6 +47,7 @@ async function main() {
       userPassword:
         "$2a$12$QG3qjuizq4bb24Gl2hhhSegdv7XHpv0nJrc1Fw/920gOMNSzn80A.", // testing
       userType: 1,
+      privateHash: "1111",
       publicHash: "1111",
       id: "1111",
       forgotHash: "1111",
@@ -56,38 +63,11 @@ async function main() {
       userPassword:
         "$2a$12$QG3qjuizq4bb24Gl2hhhSegdv7XHpv0nJrc1Fw/920gOMNSzn80A.", // testing
       userType: 1,
+      privateHash: "1112",
       publicHash: "1112",
       id: "1112",
       forgotHash: "1112",
       confirmHash: "1112",
-    },
-  });
-  const notif1 = await photon.notifications.create({
-    data: {
-      user: { connect: { id: user1.id } },
-      itemName: NOTIFICATION_CODE.A001,
-      itemContent: "",
-      itemType: "default",
-      itemStatus: "active",
-      itemMeta: {
-        create: [
-          {
-            metaName: "sender",
-            metaValue: user1.id,
-            metaType: "active"
-          },
-          {
-            metaName: "receiver",
-            metaValue: user2.id,
-            metaType: "active"
-          },
-          {
-            metaName: "action",
-            metaValue: NOTIFICATION_CODE.A001,
-            metaType: "active"
-          }
-        ]
-      }
     },
   });
   const cat1 = await photon.categories.create({
@@ -282,6 +262,28 @@ async function main() {
       tags: {
         connect: [{ id: tag1.id }],
       },
+    },
+  });
+  const notif1 = await photon.notifications.create({
+    data: {
+      user: { connect: { id: user1.id } },
+      itemName: NOTIFICATION_CODE.A001,
+      itemContent: "",
+      itemType: "default",
+      itemStatus: "active",
+      sender: { connect: { id: user1.id } },
+      receiver: { connect: { id: user2.id } },
+      // pod: { connect: { id: pod1.id } },
+      post: { connect: { id: post1.id } }
+      // itemMeta: {
+      //   create: [
+      //     {
+      //       metaName: "action",
+      //       metaValue: NOTIFICATION_CODE.A001,
+      //       metaType: "active"
+      //     }
+      //   ]
+      // }
     },
   });
 }
