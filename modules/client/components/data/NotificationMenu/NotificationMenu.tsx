@@ -4,6 +4,7 @@ import { Button } from "@blueprintjs/core";
 import NotificationItem from "../../ui/NotificationItem/NotificationItem";
 import { NotificationMenuProps } from "./NotificationMenu.d";
 import { useAppContext } from "../../../context";
+import { useNavigation } from "react-navi";
 
 const NotificationMenu: React.FC<NotificationMenuProps> = ({
   ref = null,
@@ -12,8 +13,7 @@ const NotificationMenu: React.FC<NotificationMenuProps> = ({
   notificationsData = null
 }) => {
   const clickHandler = e => onClick(e);
-
-  console.info("notificationsData", notificationsData);
+  const navigation = useNavigation();
 
   return (
     <section className="notificationMenu">
@@ -21,7 +21,10 @@ const NotificationMenu: React.FC<NotificationMenuProps> = ({
         {notificationsData.findManyNotification.map((notification, i) => {
           return <NotificationItem key={i} notification={notification} />
         })}
-        <Button className="allNotificationsButton">
+        <Button
+          className="allNotificationsButton"
+          onClick={() => navigation.navigate("/notifications/")}
+        >
           View all Notifications
         </Button>
       </div>

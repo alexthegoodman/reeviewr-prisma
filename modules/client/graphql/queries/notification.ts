@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 export const GET_NOTIFICATIONS = gql`
-  query notifications($id: String) {
-    findManyNotification(where: { user: { id: { equals: $id } } }) {
+  query notifications($id: String, $first: Int) {
+    findManyNotification(where: { user: { id: { equals: $id } } }, first: $first) {
       id
       itemName
       itemContent

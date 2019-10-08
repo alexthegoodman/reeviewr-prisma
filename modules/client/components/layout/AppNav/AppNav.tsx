@@ -63,7 +63,8 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
     refetch,
   } = useQuery(GET_NOTIFICATIONS, {
     variables: {
-      id: cookies["reeviewrId"]
+      id: cookies["reeviewrId"],
+      first: 3
     },
     pollInterval: 5000
   });
