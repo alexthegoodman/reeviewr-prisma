@@ -10,7 +10,7 @@ const NotificationMenu: React.FC<NotificationMenuProps> = ({
   ref = null,
   className = "",
   onClick = e => console.info("Click"),
-  notificationsData = null
+  notificationsData = null,
 }) => {
   const clickHandler = e => onClick(e);
   const navigation = useNavigation();
@@ -19,10 +19,10 @@ const NotificationMenu: React.FC<NotificationMenuProps> = ({
     <section className="notificationMenu">
       <div className="notificationMenuContain">
         {notificationsData.findManyNotification.map((notification, i) => {
-          return <NotificationItem key={i} notification={notification} />
+          return <NotificationItem key={i} notification={notification} />;
         })}
         <Button
-          className="allNotificationsButton"
+          className="dropdownMenuButton"
           onClick={() => navigation.navigate("/notifications/")}
         >
           View all Notifications

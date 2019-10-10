@@ -5,6 +5,18 @@ import { NOTIFICATION_CODE } from "../modules/services/NOTIFICATION_CODE";
 const photon = new Photon();
 
 async function clean() {
+  await photon.messageMetas.deleteMany({
+    where: { id: { contains: "" } },
+  });
+  await photon.messages.deleteMany({
+    where: { id: { contains: "" } },
+  });
+  await photon.threadMetas.deleteMany({
+    where: { id: { contains: "" } },
+  });
+  await photon.threads.deleteMany({
+    where: { id: { contains: "" } },
+  });
   await photon.notificationMetas.deleteMany({
     where: { id: { contains: "" } },
   });
@@ -57,15 +69,15 @@ async function main() {
           {
             metaName: "firstName",
             metaValue: "Alex",
-            metaType: "active"
+            metaType: "active",
           },
           {
             metaName: "lastName",
             metaValue: "Woodman",
-            metaType: "active"
-          }
-        ]
-      }
+            metaType: "active",
+          },
+        ],
+      },
     },
   });
   const user2 = await photon.users.create({
@@ -87,15 +99,15 @@ async function main() {
           {
             metaName: "firstName",
             metaValue: "Marco",
-            metaType: "active"
+            metaType: "active",
           },
           {
             metaName: "lastName",
             metaValue: "Bulnes",
-            metaType: "active"
-          }
-        ]
-      }
+            metaType: "active",
+          },
+        ],
+      },
     },
   });
   const cat1 = await photon.categories.create({
@@ -302,7 +314,7 @@ async function main() {
       sender: { connect: { id: user2.id } },
       receiver: { connect: { id: user1.id } },
       // pod: { connect: { id: pod1.id } },
-      post: { connect: { id: post1.id } }
+      post: { connect: { id: post1.id } },
       // itemMeta: {
       //   create: [
       //     {
@@ -312,6 +324,51 @@ async function main() {
       //     }
       //   ]
       // }
+    },
+  });
+  const thread1 = await photon.threads.create({
+    data: {
+      user: { connect: { id: user1.id } },
+      itemName: "Private Thread",
+      itemContent: "",
+      itemType: "default",
+      itemStatus: "active",
+      messages: {
+        create: [
+          {
+            user: { connect: { id: user1.id } },
+            itemName: "Private Message",
+            itemContent: "",
+            itemType: "default",
+            itemStatus: "active",
+            itemMeta: {
+              create: [
+                {
+                  metaName: "content",
+                  metaValue: "This is the message with no HTML",
+                  metaType: "default",
+                },
+              ],
+            },
+          },
+          {
+            user: { connect: { id: user2.id } },
+            itemName: "Private Message",
+            itemContent: "",
+            itemType: "default",
+            itemStatus: "active",
+            itemMeta: {
+              create: [
+                {
+                  metaName: "content",
+                  metaValue: "Here is the response",
+                  metaType: "default",
+                },
+              ],
+            },
+          },
+        ],
+      },
     },
   });
 }

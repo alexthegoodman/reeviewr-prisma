@@ -37,6 +37,7 @@ import Sidebar from "../../ui/Sidebar/Sidebar";
 import App from "../App/App";
 import { GET_NOTIFICATIONS } from "../../../graphql/queries/notification";
 import { useQuery } from "react-apollo";
+import { GET_THREADS } from "../../../graphql/queries/thread";
 
 const AppNav: React.FC<AppNavProps> = ({ children }) => {
   const utility = new Utility();
@@ -60,16 +61,27 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
     data: notificationsData,
     error: notificationsError,
     loading: notificationsLoading,
-    refetch,
   } = useQuery(GET_NOTIFICATIONS, {
     variables: {
       id: cookies["reeviewrId"],
-      first: 3
+      first: 3,
     },
-    pollInterval: 5000
+    pollInterval: 5000,
   });
 
-  console.info("notificationsData", notificationsData)
+  const {
+    data: threadsData,
+    error: threadsError,
+    loading: threadsLoading,
+  } = useQuery(GET_THREADS, {
+    variables: {
+      id: cookies["reeviewrId"],
+      first: 3,
+    },
+    pollInterval: 5000,
+  });
+
+  console.info("threadsData", threadsData);
 
   let loggedIn = false;
   if (utility.isDefinedWithContent(userData)) {
@@ -102,7 +114,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
       <main
         className={`appContainer ${
           cookies["reeviewrDarkMode"] === "true" ? "darkMode" : "lightMode"
-          }`}
+        }`}
       >
         <Sidebar
           className={mobileMenuOpen ? "mobileMenuOpen" : "mobileMenuClosed"}
@@ -201,7 +213,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                         <Button
                           className="notificationsButton headerActionButton headerItem"
                           minimal={true}
-                          onClick={async () => { }}
+                          onClick={async () => {}}
                           icon="notifications"
                         >
                           <Tag
@@ -209,13 +221,18 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                             round={true}
                             intent="danger"
                           >
-                            {typeof notificationsData.findManyNotification !== "undefined" ? notificationsData.findManyNotification.length : 0}
+                            {typeof notificationsData.findManyNotification !==
+                            "undefined"
+                              ? notificationsData.findManyNotification.length
+                              : 0}
                           </Tag>
                         </Button>
                       </Tooltip>
 
                       <div className="popoverContent">
-                        <NotificationMenu notificationsData={notificationsData} />
+                        <NotificationMenu
+                          notificationsData={notificationsData}
+                        />
                       </div>
                     </Popover>
 
@@ -224,32 +241,32 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                         <Button
                           className="messagesButton headerActionButton headerItem"
                           minimal={true}
-                          onClick={async () => { }}
+                          onClick={async () => {}}
                           icon="envelope"
                         />
                       </Tooltip>
 
                       <div className="popoverContent">
-                        <MessageMenu />
+                        <MessageMenu threadsData={threadsData} />
                       </div>
                     </Popover>
                   </>
                 ) : (
-                    <Menu className="headerMenu">
-                      <MenuItem
-                        active={route.url.pathname === "/login" ? true : false}
-                        onClick={() => navigate("/login")}
-                      >
-                        Login
+                  <Menu className="headerMenu">
+                    <MenuItem
+                      active={route.url.pathname === "/login" ? true : false}
+                      onClick={() => navigate("/login")}
+                    >
+                      Login
                     </MenuItem>
-                      <MenuItem
-                        active={route.url.pathname === "/sign-up" ? true : false}
-                        onClick={() => navigate("/sign-up")}
-                      >
-                        Sign Up
+                    <MenuItem
+                      active={route.url.pathname === "/sign-up" ? true : false}
+                      onClick={() => navigate("/sign-up")}
+                    >
+                      Sign Up
                     </MenuItem>
-                    </Menu>
-                  )}
+                  </Menu>
+                )}
 
                 <Popover
                   content={
@@ -275,14 +292,14 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                       points={1500}
                     />
                   ) : (
-                      <Button
-                        className="textButton headerItem"
-                        minimal={true}
-                        rightIcon="caret-down"
-                      >
-                        Menu
+                    <Button
+                      className="textButton headerItem"
+                      minimal={true}
+                      rightIcon="caret-down"
+                    >
+                      Menu
                     </Button>
-                    )}
+                  )}
                 </Popover>
               </div>
 

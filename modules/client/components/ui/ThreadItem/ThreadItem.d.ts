@@ -1,6 +1,6 @@
-export interface MessageMenuProps {
+export interface ThreadItemProps {
   ref?: React.Ref<any>;
   className?: string;
   onClick?: (e: MouseEvent) => void;
-  threadsData: any;
+  thread: any;
 }

@@ -110,7 +110,12 @@ export const USER_JOINED_PODS_POSTS = gql`
 
 export const SEARCH_USER_META = gql`
   query users($search: String) {
-    findManyUserMeta(where: { metaName: { equals: "firstName" }, metaValue: { contains: $search }  }) {
+    findManyUserMeta(
+      where: {
+        metaName: { equals: "firstName" }
+        metaValue: { contains: $search }
+      }
+    ) {
       user {
         id
         userEmail

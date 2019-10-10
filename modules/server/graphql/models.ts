@@ -222,6 +222,7 @@ export const Thread = objectType({
     t.model.itemContent();
     t.model.itemDeleted();
     t.model.itemMeta();
+    t.model.messages();
   },
 });
 

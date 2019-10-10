@@ -418,7 +418,7 @@
           "on_delete": "None"
         }
       },
-      "arity": "required",
+      "arity": "optional",
       "isUnique": false
     },
     {
@@ -433,7 +433,7 @@
           "on_delete": "None"
         }
       },
-      "arity": "required",
+      "arity": "optional",
       "isUnique": false
     },
     {
@@ -2214,6 +2214,21 @@
     {
       "stepType": "CreateField",
       "model": "Thread",
+      "name": "messages",
+      "type": {
+        "Relation": {
+          "to": "Message",
+          "to_fields": [],
+          "name": "MessageToThread",
+          "on_delete": "None"
+        }
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Thread",
       "name": "createdAt",
       "type": {
         "Base": "DateTime"
@@ -2236,21 +2251,6 @@
         "Base": "DateTime"
       },
       "arity": "required",
-      "isUnique": false
-    },
-    {
-      "stepType": "CreateField",
-      "model": "Thread",
-      "name": "message",
-      "type": {
-        "Relation": {
-          "to": "Message",
-          "to_fields": [],
-          "name": "MessageToThread",
-          "on_delete": "None"
-        }
-      },
-      "arity": "optional",
       "isUnique": false
     },
     {

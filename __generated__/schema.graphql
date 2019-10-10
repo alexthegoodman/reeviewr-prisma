@@ -548,9 +548,14 @@ input MessageCreateInput {
   user: UserCreateOneWithoutUserInput!
 }
 
+input MessageCreateManyWithoutMessagesInput {
+  connect: [MessageWhereUniqueInput!]
+  create: [MessageCreateWithoutThreadInput!]
+}
+
 input MessageCreateOneWithoutMessageInput {
   connect: MessageWhereUniqueInput
-  create: MessageCreateWithoutThreadInput
+  create: MessageCreateWithoutUserInput
 }
 
 input MessageCreateWithoutThreadInput {
@@ -664,18 +669,37 @@ input MessageUpdateInput {
   itemName: String
   itemStatus: String
   itemType: String
-  thread: ThreadUpdateOneRequiredWithoutMessageInput
+  thread: ThreadUpdateOneRequiredWithoutMessagesInput
   updatedAt: DateTime
   user: UserUpdateOneRequiredWithoutMessageInput
 }
 
-input MessageUpdateOneWithoutThreadInput {
-  connect: MessageWhereUniqueInput
-  create: MessageCreateWithoutThreadInput
-  delete: Boolean
-  disconnect: Boolean
-  update: MessageUpdateWithoutThreadDataInput
-  upsert: MessageUpsertWithoutThreadInput
+input MessageUpdateManyDataInput {
+  createdAt: DateTime
+  id: ID
+  itemContent: String
+  itemDeleted: Boolean
+  itemName: String
+  itemStatus: String
+  itemType: String
+  updatedAt: DateTime
+}
+
+input MessageUpdateManyWithoutThreadInput {
+  connect: [MessageWhereUniqueInput!]
+  create: [MessageCreateWithoutThreadInput!]
+  delete: [MessageWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneThreadWhereInput!]
+  disconnect: [MessageWhereUniqueInput!]
+  set: [MessageWhereUniqueInput!]
+  update: [MessageUpdateWithWhereUniqueWithoutThreadInput!]
+  updateMany: [MessageUpdateManyWithWhereNestedInput!]
+  upsert: [MessageUpsertWithWhereUniqueWithoutThreadInput!]
+}
+
+input MessageUpdateManyWithWhereNestedInput {
+  data: MessageUpdateManyDataInput!
+  where: MutationUpdateOneThreadWhereInput!
 }
 
 input MessageUpdateOneWithoutUserInput {
@@ -709,18 +733,24 @@ input MessageUpdateWithoutUserDataInput {
   itemName: String
   itemStatus: String
   itemType: String
-  thread: ThreadUpdateOneRequiredWithoutMessageInput
+  thread: ThreadUpdateOneRequiredWithoutMessagesInput
   updatedAt: DateTime
 }
 
-input MessageUpsertWithoutThreadInput {
-  create: MessageCreateWithoutThreadInput!
-  update: MessageUpdateWithoutThreadDataInput!
+input MessageUpdateWithWhereUniqueWithoutThreadInput {
+  data: MessageUpdateWithoutThreadDataInput!
+  where: MessageWhereUniqueInput!
 }
 
 input MessageUpsertWithoutUserInput {
   create: MessageCreateWithoutUserInput!
   update: MessageUpdateWithoutUserDataInput!
+}
+
+input MessageUpsertWithWhereUniqueWithoutThreadInput {
+  create: MessageCreateWithoutThreadInput!
+  update: MessageUpdateWithoutThreadDataInput!
+  where: MessageWhereUniqueInput!
 }
 
 input MessageWhereUniqueInput {
@@ -3216,7 +3246,7 @@ input QueryFindManyThreadWhereInput {
   itemName: StringFilter
   itemStatus: StringFilter
   itemType: StringFilter
-  message: QueryFindManyThreadWhereInput
+  messages: QueryFindManyThreadFilter
   NOT: [QueryFindManyThreadWhereInput!]
   OR: [QueryFindManyThreadWhereInput!]
   updatedAt: QueryFindManyThreadFilter
@@ -3942,6 +3972,7 @@ type Thread {
   itemName: String!
   itemStatus: String!
   itemType: String!
+  messages(after: String, before: String, first: Int, last: Int, skip: Int): [Message!]
   user: User!
 }
 
@@ -3954,7 +3985,7 @@ input ThreadCreateInput {
   itemName: String!
   itemStatus: String!
   itemType: String!
-  message: MessageCreateOneWithoutMessageInput
+  messages: MessageCreateManyWithoutMessagesInput
   updatedAt: DateTime
   user: UserCreateOneWithoutUserInput!
 }
@@ -3966,10 +3997,10 @@ input ThreadCreateManyWithoutThreadsInput {
 
 input ThreadCreateOneWithoutThreadInput {
   connect: ThreadWhereUniqueInput
-  create: ThreadCreateWithoutMessageInput
+  create: ThreadCreateWithoutMessagesInput
 }
 
-input ThreadCreateWithoutMessageInput {
+input ThreadCreateWithoutMessagesInput {
   createdAt: DateTime
   id: ID
   itemContent: String!
@@ -3991,7 +4022,7 @@ input ThreadCreateWithoutUserInput {
   itemName: String!
   itemStatus: String!
   itemType: String!
-  message: MessageCreateOneWithoutMessageInput
+  messages: MessageCreateManyWithoutMessagesInput
   updatedAt: DateTime
 }
 
@@ -4080,7 +4111,7 @@ input ThreadUpdateInput {
   itemName: String
   itemStatus: String
   itemType: String
-  message: MessageUpdateOneWithoutThreadInput
+  messages: MessageUpdateManyWithoutThreadInput
   updatedAt: DateTime
   user: UserUpdateOneRequiredWithoutThreadsInput
 }
@@ -4113,14 +4144,14 @@ input ThreadUpdateManyWithWhereNestedInput {
   where: MutationUpdateOneUserWhereInput!
 }
 
-input ThreadUpdateOneRequiredWithoutMessageInput {
+input ThreadUpdateOneRequiredWithoutMessagesInput {
   connect: ThreadWhereUniqueInput
-  create: ThreadCreateWithoutMessageInput
-  update: ThreadUpdateWithoutMessageDataInput
-  upsert: ThreadUpsertWithoutMessageInput
+  create: ThreadCreateWithoutMessagesInput
+  update: ThreadUpdateWithoutMessagesDataInput
+  upsert: ThreadUpsertWithoutMessagesInput
 }
 
-input ThreadUpdateWithoutMessageDataInput {
+input ThreadUpdateWithoutMessagesDataInput {
   createdAt: DateTime
   id: ID
   itemContent: String
@@ -4142,7 +4173,7 @@ input ThreadUpdateWithoutUserDataInput {
   itemName: String
   itemStatus: String
   itemType: String
-  message: MessageUpdateOneWithoutThreadInput
+  messages: MessageUpdateManyWithoutThreadInput
   updatedAt: DateTime
 }
 
@@ -4151,9 +4182,9 @@ input ThreadUpdateWithWhereUniqueWithoutUserInput {
   where: ThreadWhereUniqueInput!
 }
 
-input ThreadUpsertWithoutMessageInput {
-  create: ThreadCreateWithoutMessageInput!
-  update: ThreadUpdateWithoutMessageDataInput!
+input ThreadUpsertWithoutMessagesInput {
+  create: ThreadCreateWithoutMessagesInput!
+  update: ThreadUpdateWithoutMessagesDataInput!
 }
 
 input ThreadUpsertWithWhereUniqueWithoutUserInput {
