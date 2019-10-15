@@ -17,9 +17,13 @@ const MessageMenu: React.FC<MessageMenuProps> = ({
   return (
     <section className="messagesMenu">
       <div className="messageMenuContain">
-        {threadsData.findManyThread.map((thread, i) => {
-          return <ThreadItem key={i} thread={thread} />;
-        })}
+        {typeof threadsData.findManyThread !== "undefined" ? (
+          threadsData.findManyThread.map((thread, i) => {
+            return <ThreadItem key={i} thread={thread} />;
+          })
+        ) : (
+          <></>
+        )}
         <Button
           className="dropdownMenuButton"
           onClick={() => navigation.navigate("/messages/")}

@@ -1,1 +1,21 @@
-/** Styles **/
+.threadItem {
+  .threadItemContain {
+    display: flex;
+    flex-direction: row;
+
+    .visual {
+      img {
+        width: 100px;
+      }
+    }
+    .info {
+      .infoTitle {
+        color: black;
+      }
+      p {
+        color: grey;
+        margin: 0;
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@ export const GET_THREADS = gql`
       id
       itemName
       itemContent
-      user {
+      participants {
         id
         userEmail
       }

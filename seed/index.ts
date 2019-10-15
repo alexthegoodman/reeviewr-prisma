@@ -328,7 +328,7 @@ async function main() {
   });
   const thread1 = await photon.threads.create({
     data: {
-      user: { connect: { id: user1.id } },
+      participants: { connect: [{ id: user1.id }, { id: user2.id }] },
       itemName: "Private Thread",
       itemContent: "",
       itemType: "default",

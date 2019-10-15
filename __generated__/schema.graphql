@@ -3249,8 +3249,8 @@ input QueryFindManyThreadWhereInput {
   messages: QueryFindManyThreadFilter
   NOT: [QueryFindManyThreadWhereInput!]
   OR: [QueryFindManyThreadWhereInput!]
+  participants: QueryFindManyThreadFilter
   updatedAt: QueryFindManyThreadFilter
-  user: QueryFindManyThreadWhereInput
 }
 
 input QueryFindManyUserFilter {
@@ -3973,7 +3973,7 @@ type Thread {
   itemStatus: String!
   itemType: String!
   messages(after: String, before: String, first: Int, last: Int, skip: Int): [Message!]
-  user: User!
+  participants(after: String, before: String, first: Int, last: Int, skip: Int): [User!]
 }
 
 input ThreadCreateInput {
@@ -3986,13 +3986,13 @@ input ThreadCreateInput {
   itemStatus: String!
   itemType: String!
   messages: MessageCreateManyWithoutMessagesInput
+  participants: UserCreateManyWithoutParticipantsInput
   updatedAt: DateTime
-  user: UserCreateOneWithoutUserInput!
 }
 
 input ThreadCreateManyWithoutThreadsInput {
   connect: [ThreadWhereUniqueInput!]
-  create: [ThreadCreateWithoutUserInput!]
+  create: [ThreadCreateWithoutParticipantsInput!]
 }
 
 input ThreadCreateOneWithoutThreadInput {
@@ -4009,11 +4009,11 @@ input ThreadCreateWithoutMessagesInput {
   itemName: String!
   itemStatus: String!
   itemType: String!
+  participants: UserCreateManyWithoutParticipantsInput
   updatedAt: DateTime
-  user: UserCreateOneWithoutUserInput!
 }
 
-input ThreadCreateWithoutUserInput {
+input ThreadCreateWithoutParticipantsInput {
   createdAt: DateTime
   id: ID
   itemContent: String!
@@ -4112,8 +4112,8 @@ input ThreadUpdateInput {
   itemStatus: String
   itemType: String
   messages: MessageUpdateManyWithoutThreadInput
+  participants: UserUpdateManyWithoutThreadsInput
   updatedAt: DateTime
-  user: UserUpdateOneRequiredWithoutThreadsInput
 }
 
 input ThreadUpdateManyDataInput {
@@ -4127,16 +4127,16 @@ input ThreadUpdateManyDataInput {
   updatedAt: DateTime
 }
 
-input ThreadUpdateManyWithoutUserInput {
+input ThreadUpdateManyWithoutParticipantsInput {
   connect: [ThreadWhereUniqueInput!]
-  create: [ThreadCreateWithoutUserInput!]
+  create: [ThreadCreateWithoutParticipantsInput!]
   delete: [ThreadWhereUniqueInput!]
   deleteMany: [MutationUpdateOneUserWhereInput!]
   disconnect: [ThreadWhereUniqueInput!]
   set: [ThreadWhereUniqueInput!]
-  update: [ThreadUpdateWithWhereUniqueWithoutUserInput!]
+  update: [ThreadUpdateWithWhereUniqueWithoutParticipantsInput!]
   updateMany: [ThreadUpdateManyWithWhereNestedInput!]
-  upsert: [ThreadUpsertWithWhereUniqueWithoutUserInput!]
+  upsert: [ThreadUpsertWithWhereUniqueWithoutParticipantsInput!]
 }
 
 input ThreadUpdateManyWithWhereNestedInput {
@@ -4160,11 +4160,11 @@ input ThreadUpdateWithoutMessagesDataInput {
   itemName: String
   itemStatus: String
   itemType: String
+  participants: UserUpdateManyWithoutThreadsInput
   updatedAt: DateTime
-  user: UserUpdateOneRequiredWithoutThreadsInput
 }
 
-input ThreadUpdateWithoutUserDataInput {
+input ThreadUpdateWithoutParticipantsDataInput {
   createdAt: DateTime
   id: ID
   itemContent: String
@@ -4177,8 +4177,8 @@ input ThreadUpdateWithoutUserDataInput {
   updatedAt: DateTime
 }
 
-input ThreadUpdateWithWhereUniqueWithoutUserInput {
-  data: ThreadUpdateWithoutUserDataInput!
+input ThreadUpdateWithWhereUniqueWithoutParticipantsInput {
+  data: ThreadUpdateWithoutParticipantsDataInput!
   where: ThreadWhereUniqueInput!
 }
 
@@ -4187,9 +4187,9 @@ input ThreadUpsertWithoutMessagesInput {
   update: ThreadUpdateWithoutMessagesDataInput!
 }
 
-input ThreadUpsertWithWhereUniqueWithoutUserInput {
-  create: ThreadCreateWithoutUserInput!
-  update: ThreadUpdateWithoutUserDataInput!
+input ThreadUpsertWithWhereUniqueWithoutParticipantsInput {
+  create: ThreadCreateWithoutParticipantsInput!
+  update: ThreadUpdateWithoutParticipantsDataInput!
   where: ThreadWhereUniqueInput!
 }
 
@@ -4265,6 +4265,11 @@ input UserCreateManyWithoutFollowingInput {
 input UserCreateManyWithoutMembersInput {
   connect: [UserWhereUniqueInput!]
   create: [UserCreateWithoutMemberOfInput!]
+}
+
+input UserCreateManyWithoutParticipantsInput {
+  connect: [UserWhereUniqueInput!]
+  create: [UserCreateWithoutThreadsInput!]
 }
 
 input UserCreateOneWithoutReceiverInput {
@@ -4784,7 +4789,7 @@ input UserUpdateInput {
   recievedNotifications: NotificationUpdateOneWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
   sentNotifications: NotificationUpdateOneWithoutSenderInput
-  threads: ThreadUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutParticipantsInput
   updatedAt: DateTime
   userConfirmed: Int
   userDeleted: Boolean
@@ -4843,6 +4848,18 @@ input UserUpdateManyWithoutMemberOfInput {
   update: [UserUpdateWithWhereUniqueWithoutMemberOfInput!]
   updateMany: [UserUpdateManyWithWhereNestedInput!]
   upsert: [UserUpsertWithWhereUniqueWithoutMemberOfInput!]
+}
+
+input UserUpdateManyWithoutThreadsInput {
+  connect: [UserWhereUniqueInput!]
+  create: [UserCreateWithoutThreadsInput!]
+  delete: [UserWhereUniqueInput!]
+  deleteMany: [MutationUpdateOneThreadWhereInput!]
+  disconnect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutThreadsInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutThreadsInput!]
 }
 
 input UserUpdateManyWithWhereNestedInput {
@@ -4913,13 +4930,6 @@ input UserUpdateOneRequiredWithoutSentNotificationsInput {
   upsert: UserUpsertWithoutSentNotificationsInput
 }
 
-input UserUpdateOneRequiredWithoutThreadsInput {
-  connect: UserWhereUniqueInput
-  create: UserCreateWithoutThreadsInput
-  update: UserUpdateWithoutThreadsDataInput
-  upsert: UserUpsertWithoutThreadsInput
-}
-
 input UserUpdateOneWithoutNotificationsInput {
   connect: UserWhereUniqueInput
   create: UserCreateWithoutNotificationsInput
@@ -4948,7 +4958,7 @@ input UserUpdateWithoutAnnotationsDataInput {
   recievedNotifications: NotificationUpdateOneWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
   sentNotifications: NotificationUpdateOneWithoutSenderInput
-  threads: ThreadUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutParticipantsInput
   updatedAt: DateTime
   userConfirmed: Int
   userDeleted: Boolean
@@ -4977,7 +4987,7 @@ input UserUpdateWithoutFavoritesDataInput {
   recievedNotifications: NotificationUpdateOneWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
   sentNotifications: NotificationUpdateOneWithoutSenderInput
-  threads: ThreadUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutParticipantsInput
   updatedAt: DateTime
   userConfirmed: Int
   userDeleted: Boolean
@@ -5006,7 +5016,7 @@ input UserUpdateWithoutFollowersDataInput {
   recievedNotifications: NotificationUpdateOneWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
   sentNotifications: NotificationUpdateOneWithoutSenderInput
-  threads: ThreadUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutParticipantsInput
   updatedAt: DateTime
   userConfirmed: Int
   userDeleted: Boolean
@@ -5035,7 +5045,7 @@ input UserUpdateWithoutFollowingDataInput {
   recievedNotifications: NotificationUpdateOneWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
   sentNotifications: NotificationUpdateOneWithoutSenderInput
-  threads: ThreadUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutParticipantsInput
   updatedAt: DateTime
   userConfirmed: Int
   userDeleted: Boolean
@@ -5064,7 +5074,7 @@ input UserUpdateWithoutMemberOfDataInput {
   recievedNotifications: NotificationUpdateOneWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
   sentNotifications: NotificationUpdateOneWithoutSenderInput
-  threads: ThreadUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutParticipantsInput
   updatedAt: DateTime
   userConfirmed: Int
   userDeleted: Boolean
@@ -5093,7 +5103,7 @@ input UserUpdateWithoutMessageDataInput {
   recievedNotifications: NotificationUpdateOneWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
   sentNotifications: NotificationUpdateOneWithoutSenderInput
-  threads: ThreadUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutParticipantsInput
   updatedAt: DateTime
   userConfirmed: Int
   userDeleted: Boolean
@@ -5122,7 +5132,7 @@ input UserUpdateWithoutNotificationsDataInput {
   recievedNotifications: NotificationUpdateOneWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
   sentNotifications: NotificationUpdateOneWithoutSenderInput
-  threads: ThreadUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutParticipantsInput
   updatedAt: DateTime
   userConfirmed: Int
   userDeleted: Boolean
@@ -5151,7 +5161,7 @@ input UserUpdateWithoutPodsDataInput {
   recievedNotifications: NotificationUpdateOneWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
   sentNotifications: NotificationUpdateOneWithoutSenderInput
-  threads: ThreadUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutParticipantsInput
   updatedAt: DateTime
   userConfirmed: Int
   userDeleted: Boolean
@@ -5180,7 +5190,7 @@ input UserUpdateWithoutPostsDataInput {
   recievedNotifications: NotificationUpdateOneWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
   sentNotifications: NotificationUpdateOneWithoutSenderInput
-  threads: ThreadUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutParticipantsInput
   updatedAt: DateTime
   userConfirmed: Int
   userDeleted: Boolean
@@ -5209,7 +5219,7 @@ input UserUpdateWithoutQuestionsDataInput {
   recievedNotifications: NotificationUpdateOneWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
   sentNotifications: NotificationUpdateOneWithoutSenderInput
-  threads: ThreadUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutParticipantsInput
   updatedAt: DateTime
   userConfirmed: Int
   userDeleted: Boolean
@@ -5238,7 +5248,7 @@ input UserUpdateWithoutRecievedNotificationsDataInput {
   questions: QuestionUpdateManyWithoutUserInput
   reviews: ReviewUpdateManyWithoutUserInput
   sentNotifications: NotificationUpdateOneWithoutSenderInput
-  threads: ThreadUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutParticipantsInput
   updatedAt: DateTime
   userConfirmed: Int
   userDeleted: Boolean
@@ -5267,7 +5277,7 @@ input UserUpdateWithoutReviewsDataInput {
   questions: QuestionUpdateManyWithoutUserInput
   recievedNotifications: NotificationUpdateOneWithoutReceiverInput
   sentNotifications: NotificationUpdateOneWithoutSenderInput
-  threads: ThreadUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutParticipantsInput
   updatedAt: DateTime
   userConfirmed: Int
   userDeleted: Boolean
@@ -5296,7 +5306,7 @@ input UserUpdateWithoutSentNotificationsDataInput {
   questions: QuestionUpdateManyWithoutUserInput
   recievedNotifications: NotificationUpdateOneWithoutReceiverInput
   reviews: ReviewUpdateManyWithoutUserInput
-  threads: ThreadUpdateManyWithoutUserInput
+  threads: ThreadUpdateManyWithoutParticipantsInput
   updatedAt: DateTime
   userConfirmed: Int
   userDeleted: Boolean
@@ -5350,6 +5360,11 @@ input UserUpdateWithWhereUniqueWithoutMemberOfInput {
   where: UserWhereUniqueInput!
 }
 
+input UserUpdateWithWhereUniqueWithoutThreadsInput {
+  data: UserUpdateWithoutThreadsDataInput!
+  where: UserWhereUniqueInput!
+}
+
 input UserUpsertWithoutAnnotationsInput {
   create: UserCreateWithoutAnnotationsInput!
   update: UserUpdateWithoutAnnotationsDataInput!
@@ -5400,11 +5415,6 @@ input UserUpsertWithoutSentNotificationsInput {
   update: UserUpdateWithoutSentNotificationsDataInput!
 }
 
-input UserUpsertWithoutThreadsInput {
-  create: UserCreateWithoutThreadsInput!
-  update: UserUpdateWithoutThreadsDataInput!
-}
-
 input UserUpsertWithWhereUniqueWithoutFollowersInput {
   create: UserCreateWithoutFollowersInput!
   update: UserUpdateWithoutFollowersDataInput!
@@ -5420,6 +5430,12 @@ input UserUpsertWithWhereUniqueWithoutFollowingInput {
 input UserUpsertWithWhereUniqueWithoutMemberOfInput {
   create: UserCreateWithoutMemberOfInput!
   update: UserUpdateWithoutMemberOfDataInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutThreadsInput {
+  create: UserCreateWithoutThreadsInput!
+  update: UserUpdateWithoutThreadsDataInput!
   where: UserWhereUniqueInput!
 }
 

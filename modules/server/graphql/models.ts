@@ -215,7 +215,7 @@ export const Thread = objectType({
   name: "Thread",
   definition(t) {
     t.model.id();
-    t.model.user();
+    t.model.participants();
     t.model.itemType();
     t.model.itemStatus();
     t.model.itemName();
