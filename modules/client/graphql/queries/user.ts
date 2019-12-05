@@ -20,26 +20,26 @@ const UserFragments = {
 //   }
 // `;
 
-export const USERS_QUERY = gql`
-  query users($search: String) {
-    findManyUser(
-      first: 25
-      where: {
-        AND: [
-          {
-            userMeta_some: {
-              metaName: "firstName"
-              metaValue_contains: $search
-            }
-          }
-        ]
-      }
-    ) {
-      ...UserFragment
-    }
-  }
-  ${UserFragments.user}
-`;
+// export const USERS_QUERY = gql`
+//   query users($search: String) {
+//     findManyUser(
+//       first: 25
+//       where: {
+//         AND: [
+//           {
+//             userMeta_some: {
+//               metaName: "firstName"
+//               metaValue_contains: $search
+//             }
+//           }
+//         ]
+//       }
+//     ) {
+//       ...UserFragment
+//     }
+//   }
+//   ${UserFragments.user}
+// `;
 
 export const USER_QUERY = gql`
   query findUser($id: ID) {
@@ -91,10 +91,10 @@ export const USER_JOINED_PODS = gql`
 `;
 
 export const USER_JOINED_PODS_POSTS = gql`
-  query joinedPodsPosts($userId: ID, $postId: ID) {
+  query joinedPodsPosts($userId: ID, $postId: String) {
     findOneUser(where: { id: $userId }) {
       ...UserFragment
-      memberOfPosts(id: $userId, id: $postId) {
+      memberOfPosts(userId: $userId, postId: $postId) {
         id
         itemName
         itemMeta {
@@ -109,7 +109,7 @@ export const USER_JOINED_PODS_POSTS = gql`
 `;
 
 export const SEARCH_USER_META = gql`
-  query users($search: String) {
+  query searchUserMeta($search: String) {
     findManyUserMeta(
       where: {
         metaName: { equals: "firstName" }

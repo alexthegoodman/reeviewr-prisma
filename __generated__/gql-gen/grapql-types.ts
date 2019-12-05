@@ -586,9 +586,14 @@ export type MessageCreateInput = {
   user: UserCreateOneWithoutUserInput;
 };
 
+export type MessageCreateManyWithoutMessagesInput = {
+  connect?: Maybe<Array<MessageWhereUniqueInput>>;
+  create?: Maybe<Array<MessageCreateWithoutThreadInput>>;
+};
+
 export type MessageCreateOneWithoutMessageInput = {
   connect?: Maybe<MessageWhereUniqueInput>;
-  create?: Maybe<MessageCreateWithoutThreadInput>;
+  create?: Maybe<MessageCreateWithoutUserInput>;
 };
 
 export type MessageCreateWithoutThreadInput = {
@@ -703,18 +708,37 @@ export type MessageUpdateInput = {
   itemName?: Maybe<Scalars["String"]>;
   itemStatus?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
-  thread?: Maybe<ThreadUpdateOneRequiredWithoutMessageInput>;
+  thread?: Maybe<ThreadUpdateOneRequiredWithoutMessagesInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   user?: Maybe<UserUpdateOneRequiredWithoutMessageInput>;
 };
 
-export type MessageUpdateOneWithoutThreadInput = {
-  connect?: Maybe<MessageWhereUniqueInput>;
-  create?: Maybe<MessageCreateWithoutThreadInput>;
-  delete?: Maybe<Scalars["Boolean"]>;
-  disconnect?: Maybe<Scalars["Boolean"]>;
-  update?: Maybe<MessageUpdateWithoutThreadDataInput>;
-  upsert?: Maybe<MessageUpsertWithoutThreadInput>;
+export type MessageUpdateManyDataInput = {
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars["ID"]>;
+  itemContent?: Maybe<Scalars["String"]>;
+  itemDeleted?: Maybe<Scalars["Boolean"]>;
+  itemName?: Maybe<Scalars["String"]>;
+  itemStatus?: Maybe<Scalars["String"]>;
+  itemType?: Maybe<Scalars["String"]>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+};
+
+export type MessageUpdateManyWithoutThreadInput = {
+  connect?: Maybe<Array<MessageWhereUniqueInput>>;
+  create?: Maybe<Array<MessageCreateWithoutThreadInput>>;
+  delete?: Maybe<Array<MessageWhereUniqueInput>>;
+  deleteMany?: Maybe<Array<MutationUpdateOneThreadWhereInput>>;
+  disconnect?: Maybe<Array<MessageWhereUniqueInput>>;
+  set?: Maybe<Array<MessageWhereUniqueInput>>;
+  update?: Maybe<Array<MessageUpdateWithWhereUniqueWithoutThreadInput>>;
+  updateMany?: Maybe<Array<MessageUpdateManyWithWhereNestedInput>>;
+  upsert?: Maybe<Array<MessageUpsertWithWhereUniqueWithoutThreadInput>>;
+};
+
+export type MessageUpdateManyWithWhereNestedInput = {
+  data: MessageUpdateManyDataInput;
+  where: MutationUpdateOneThreadWhereInput;
 };
 
 export type MessageUpdateOneWithoutUserInput = {
@@ -748,18 +772,24 @@ export type MessageUpdateWithoutUserDataInput = {
   itemName?: Maybe<Scalars["String"]>;
   itemStatus?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
-  thread?: Maybe<ThreadUpdateOneRequiredWithoutMessageInput>;
+  thread?: Maybe<ThreadUpdateOneRequiredWithoutMessagesInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
 };
 
-export type MessageUpsertWithoutThreadInput = {
-  create: MessageCreateWithoutThreadInput;
-  update: MessageUpdateWithoutThreadDataInput;
+export type MessageUpdateWithWhereUniqueWithoutThreadInput = {
+  data: MessageUpdateWithoutThreadDataInput;
+  where: MessageWhereUniqueInput;
 };
 
 export type MessageUpsertWithoutUserInput = {
   create: MessageCreateWithoutUserInput;
   update: MessageUpdateWithoutUserDataInput;
+};
+
+export type MessageUpsertWithWhereUniqueWithoutThreadInput = {
+  create: MessageCreateWithoutThreadInput;
+  update: MessageUpdateWithoutThreadDataInput;
+  where: MessageWhereUniqueInput;
 };
 
 export type MessageWhereUniqueInput = {
@@ -1192,8 +1222,10 @@ export type Notification = {
   itemName: Scalars["String"];
   itemStatus: Scalars["String"];
   itemType: Scalars["String"];
-  thread: Thread;
-  user: User;
+  pod?: Maybe<Pod>;
+  post?: Maybe<Post>;
+  receiver: User;
+  sender: User;
 };
 
 export type NotificationItemMetaArgs = {
@@ -1213,9 +1245,12 @@ export type NotificationCreateInput = {
   itemName: Scalars["String"];
   itemStatus: Scalars["String"];
   itemType: Scalars["String"];
-  thread: ThreadCreateOneWithoutThreadInput;
+  pod?: Maybe<PodCreateOneWithoutPodInput>;
+  post?: Maybe<PostCreateOneWithoutPostInput>;
+  receiver: UserCreateOneWithoutReceiverInput;
+  sender: UserCreateOneWithoutSenderInput;
   updatedAt?: Maybe<Scalars["DateTime"]>;
-  user: UserCreateOneWithoutUserInput;
+  user?: Maybe<UserCreateOneWithoutUserInput>;
 };
 
 export type NotificationCreateManyWithoutNotificationsInput = {
@@ -1225,10 +1260,20 @@ export type NotificationCreateManyWithoutNotificationsInput = {
 
 export type NotificationCreateOneWithoutNotificationInput = {
   connect?: Maybe<NotificationWhereUniqueInput>;
-  create?: Maybe<NotificationCreateWithoutThreadInput>;
+  create?: Maybe<NotificationCreateWithoutPodInput>;
 };
 
-export type NotificationCreateWithoutThreadInput = {
+export type NotificationCreateOneWithoutRecievedNotificationsInput = {
+  connect?: Maybe<NotificationWhereUniqueInput>;
+  create?: Maybe<NotificationCreateWithoutReceiverInput>;
+};
+
+export type NotificationCreateOneWithoutSentNotificationsInput = {
+  connect?: Maybe<NotificationWhereUniqueInput>;
+  create?: Maybe<NotificationCreateWithoutSenderInput>;
+};
+
+export type NotificationCreateWithoutPodInput = {
   createdAt?: Maybe<Scalars["DateTime"]>;
   id?: Maybe<Scalars["ID"]>;
   itemContent: Scalars["String"];
@@ -1237,8 +1282,59 @@ export type NotificationCreateWithoutThreadInput = {
   itemName: Scalars["String"];
   itemStatus: Scalars["String"];
   itemType: Scalars["String"];
+  post?: Maybe<PostCreateOneWithoutPostInput>;
+  receiver: UserCreateOneWithoutReceiverInput;
+  sender: UserCreateOneWithoutSenderInput;
   updatedAt?: Maybe<Scalars["DateTime"]>;
-  user: UserCreateOneWithoutUserInput;
+  user?: Maybe<UserCreateOneWithoutUserInput>;
+};
+
+export type NotificationCreateWithoutPostInput = {
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars["ID"]>;
+  itemContent: Scalars["String"];
+  itemDeleted?: Maybe<Scalars["Boolean"]>;
+  itemMeta?: Maybe<NotificationMetaCreateManyWithoutItemMetaInput>;
+  itemName: Scalars["String"];
+  itemStatus: Scalars["String"];
+  itemType: Scalars["String"];
+  pod?: Maybe<PodCreateOneWithoutPodInput>;
+  receiver: UserCreateOneWithoutReceiverInput;
+  sender: UserCreateOneWithoutSenderInput;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+  user?: Maybe<UserCreateOneWithoutUserInput>;
+};
+
+export type NotificationCreateWithoutReceiverInput = {
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars["ID"]>;
+  itemContent: Scalars["String"];
+  itemDeleted?: Maybe<Scalars["Boolean"]>;
+  itemMeta?: Maybe<NotificationMetaCreateManyWithoutItemMetaInput>;
+  itemName: Scalars["String"];
+  itemStatus: Scalars["String"];
+  itemType: Scalars["String"];
+  pod?: Maybe<PodCreateOneWithoutPodInput>;
+  post?: Maybe<PostCreateOneWithoutPostInput>;
+  sender: UserCreateOneWithoutSenderInput;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+  user?: Maybe<UserCreateOneWithoutUserInput>;
+};
+
+export type NotificationCreateWithoutSenderInput = {
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars["ID"]>;
+  itemContent: Scalars["String"];
+  itemDeleted?: Maybe<Scalars["Boolean"]>;
+  itemMeta?: Maybe<NotificationMetaCreateManyWithoutItemMetaInput>;
+  itemName: Scalars["String"];
+  itemStatus: Scalars["String"];
+  itemType: Scalars["String"];
+  pod?: Maybe<PodCreateOneWithoutPodInput>;
+  post?: Maybe<PostCreateOneWithoutPostInput>;
+  receiver: UserCreateOneWithoutReceiverInput;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+  user?: Maybe<UserCreateOneWithoutUserInput>;
 };
 
 export type NotificationCreateWithoutUserInput = {
@@ -1250,7 +1346,10 @@ export type NotificationCreateWithoutUserInput = {
   itemName: Scalars["String"];
   itemStatus: Scalars["String"];
   itemType: Scalars["String"];
-  thread: ThreadCreateOneWithoutThreadInput;
+  pod?: Maybe<PodCreateOneWithoutPodInput>;
+  post?: Maybe<PostCreateOneWithoutPostInput>;
+  receiver: UserCreateOneWithoutReceiverInput;
+  sender: UserCreateOneWithoutSenderInput;
   updatedAt?: Maybe<Scalars["DateTime"]>;
 };
 
@@ -1344,9 +1443,12 @@ export type NotificationUpdateInput = {
   itemName?: Maybe<Scalars["String"]>;
   itemStatus?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
-  thread?: Maybe<ThreadUpdateOneRequiredWithoutNotificationInput>;
+  pod?: Maybe<PodUpdateOneWithoutNotificationInput>;
+  post?: Maybe<PostUpdateOneWithoutNotificationInput>;
+  receiver?: Maybe<UserUpdateOneRequiredWithoutRecievedNotificationsInput>;
+  sender?: Maybe<UserUpdateOneRequiredWithoutSentNotificationsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
-  user?: Maybe<UserUpdateOneRequiredWithoutNotificationsInput>;
+  user?: Maybe<UserUpdateOneWithoutNotificationsInput>;
 };
 
 export type NotificationUpdateManyDataInput = {
@@ -1377,16 +1479,43 @@ export type NotificationUpdateManyWithWhereNestedInput = {
   where: MutationUpdateOneUserWhereInput;
 };
 
-export type NotificationUpdateOneWithoutThreadInput = {
+export type NotificationUpdateOneWithoutPodInput = {
   connect?: Maybe<NotificationWhereUniqueInput>;
-  create?: Maybe<NotificationCreateWithoutThreadInput>;
+  create?: Maybe<NotificationCreateWithoutPodInput>;
   delete?: Maybe<Scalars["Boolean"]>;
   disconnect?: Maybe<Scalars["Boolean"]>;
-  update?: Maybe<NotificationUpdateWithoutThreadDataInput>;
-  upsert?: Maybe<NotificationUpsertWithoutThreadInput>;
+  update?: Maybe<NotificationUpdateWithoutPodDataInput>;
+  upsert?: Maybe<NotificationUpsertWithoutPodInput>;
 };
 
-export type NotificationUpdateWithoutThreadDataInput = {
+export type NotificationUpdateOneWithoutPostInput = {
+  connect?: Maybe<NotificationWhereUniqueInput>;
+  create?: Maybe<NotificationCreateWithoutPostInput>;
+  delete?: Maybe<Scalars["Boolean"]>;
+  disconnect?: Maybe<Scalars["Boolean"]>;
+  update?: Maybe<NotificationUpdateWithoutPostDataInput>;
+  upsert?: Maybe<NotificationUpsertWithoutPostInput>;
+};
+
+export type NotificationUpdateOneWithoutReceiverInput = {
+  connect?: Maybe<NotificationWhereUniqueInput>;
+  create?: Maybe<NotificationCreateWithoutReceiverInput>;
+  delete?: Maybe<Scalars["Boolean"]>;
+  disconnect?: Maybe<Scalars["Boolean"]>;
+  update?: Maybe<NotificationUpdateWithoutReceiverDataInput>;
+  upsert?: Maybe<NotificationUpsertWithoutReceiverInput>;
+};
+
+export type NotificationUpdateOneWithoutSenderInput = {
+  connect?: Maybe<NotificationWhereUniqueInput>;
+  create?: Maybe<NotificationCreateWithoutSenderInput>;
+  delete?: Maybe<Scalars["Boolean"]>;
+  disconnect?: Maybe<Scalars["Boolean"]>;
+  update?: Maybe<NotificationUpdateWithoutSenderDataInput>;
+  upsert?: Maybe<NotificationUpsertWithoutSenderInput>;
+};
+
+export type NotificationUpdateWithoutPodDataInput = {
   createdAt?: Maybe<Scalars["DateTime"]>;
   id?: Maybe<Scalars["ID"]>;
   itemContent?: Maybe<Scalars["String"]>;
@@ -1395,8 +1524,59 @@ export type NotificationUpdateWithoutThreadDataInput = {
   itemName?: Maybe<Scalars["String"]>;
   itemStatus?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
+  post?: Maybe<PostUpdateOneWithoutNotificationInput>;
+  receiver?: Maybe<UserUpdateOneRequiredWithoutRecievedNotificationsInput>;
+  sender?: Maybe<UserUpdateOneRequiredWithoutSentNotificationsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
-  user?: Maybe<UserUpdateOneRequiredWithoutNotificationsInput>;
+  user?: Maybe<UserUpdateOneWithoutNotificationsInput>;
+};
+
+export type NotificationUpdateWithoutPostDataInput = {
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars["ID"]>;
+  itemContent?: Maybe<Scalars["String"]>;
+  itemDeleted?: Maybe<Scalars["Boolean"]>;
+  itemMeta?: Maybe<NotificationMetaUpdateManyWithoutNotificationInput>;
+  itemName?: Maybe<Scalars["String"]>;
+  itemStatus?: Maybe<Scalars["String"]>;
+  itemType?: Maybe<Scalars["String"]>;
+  pod?: Maybe<PodUpdateOneWithoutNotificationInput>;
+  receiver?: Maybe<UserUpdateOneRequiredWithoutRecievedNotificationsInput>;
+  sender?: Maybe<UserUpdateOneRequiredWithoutSentNotificationsInput>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+  user?: Maybe<UserUpdateOneWithoutNotificationsInput>;
+};
+
+export type NotificationUpdateWithoutReceiverDataInput = {
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars["ID"]>;
+  itemContent?: Maybe<Scalars["String"]>;
+  itemDeleted?: Maybe<Scalars["Boolean"]>;
+  itemMeta?: Maybe<NotificationMetaUpdateManyWithoutNotificationInput>;
+  itemName?: Maybe<Scalars["String"]>;
+  itemStatus?: Maybe<Scalars["String"]>;
+  itemType?: Maybe<Scalars["String"]>;
+  pod?: Maybe<PodUpdateOneWithoutNotificationInput>;
+  post?: Maybe<PostUpdateOneWithoutNotificationInput>;
+  sender?: Maybe<UserUpdateOneRequiredWithoutSentNotificationsInput>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+  user?: Maybe<UserUpdateOneWithoutNotificationsInput>;
+};
+
+export type NotificationUpdateWithoutSenderDataInput = {
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars["ID"]>;
+  itemContent?: Maybe<Scalars["String"]>;
+  itemDeleted?: Maybe<Scalars["Boolean"]>;
+  itemMeta?: Maybe<NotificationMetaUpdateManyWithoutNotificationInput>;
+  itemName?: Maybe<Scalars["String"]>;
+  itemStatus?: Maybe<Scalars["String"]>;
+  itemType?: Maybe<Scalars["String"]>;
+  pod?: Maybe<PodUpdateOneWithoutNotificationInput>;
+  post?: Maybe<PostUpdateOneWithoutNotificationInput>;
+  receiver?: Maybe<UserUpdateOneRequiredWithoutRecievedNotificationsInput>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+  user?: Maybe<UserUpdateOneWithoutNotificationsInput>;
 };
 
 export type NotificationUpdateWithoutUserDataInput = {
@@ -1408,7 +1588,10 @@ export type NotificationUpdateWithoutUserDataInput = {
   itemName?: Maybe<Scalars["String"]>;
   itemStatus?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
-  thread?: Maybe<ThreadUpdateOneRequiredWithoutNotificationInput>;
+  pod?: Maybe<PodUpdateOneWithoutNotificationInput>;
+  post?: Maybe<PostUpdateOneWithoutNotificationInput>;
+  receiver?: Maybe<UserUpdateOneRequiredWithoutRecievedNotificationsInput>;
+  sender?: Maybe<UserUpdateOneRequiredWithoutSentNotificationsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
 };
 
@@ -1417,9 +1600,24 @@ export type NotificationUpdateWithWhereUniqueWithoutUserInput = {
   where: NotificationWhereUniqueInput;
 };
 
-export type NotificationUpsertWithoutThreadInput = {
-  create: NotificationCreateWithoutThreadInput;
-  update: NotificationUpdateWithoutThreadDataInput;
+export type NotificationUpsertWithoutPodInput = {
+  create: NotificationCreateWithoutPodInput;
+  update: NotificationUpdateWithoutPodDataInput;
+};
+
+export type NotificationUpsertWithoutPostInput = {
+  create: NotificationCreateWithoutPostInput;
+  update: NotificationUpdateWithoutPostDataInput;
+};
+
+export type NotificationUpsertWithoutReceiverInput = {
+  create: NotificationCreateWithoutReceiverInput;
+  update: NotificationUpdateWithoutReceiverDataInput;
+};
+
+export type NotificationUpsertWithoutSenderInput = {
+  create: NotificationCreateWithoutSenderInput;
+  update: NotificationUpdateWithoutSenderDataInput;
 };
 
 export type NotificationUpsertWithWhereUniqueWithoutUserInput = {
@@ -1431,6 +1629,11 @@ export type NotificationUpsertWithWhereUniqueWithoutUserInput = {
 export type NotificationWhereUniqueInput = {
   id?: Maybe<Scalars["ID"]>;
 };
+
+export enum OrderByArg {
+  Asc = "asc",
+  Desc = "desc",
+}
 
 export type Pod = {
   __typename?: "Pod";
@@ -1492,6 +1695,7 @@ export type PodCreateInput = {
   itemType: Scalars["String"];
   itemUrlSegment: Scalars["String"];
   members?: Maybe<UserCreateManyWithoutMembersInput>;
+  notification?: Maybe<NotificationCreateOneWithoutNotificationInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   user: UserCreateOneWithoutUserInput;
@@ -1523,6 +1727,7 @@ export type PodCreateWithoutCategoriesInput = {
   itemType: Scalars["String"];
   itemUrlSegment: Scalars["String"];
   members?: Maybe<UserCreateManyWithoutMembersInput>;
+  notification?: Maybe<NotificationCreateOneWithoutNotificationInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   user: UserCreateOneWithoutUserInput;
@@ -1539,6 +1744,24 @@ export type PodCreateWithoutMembersInput = {
   itemStatus: Scalars["String"];
   itemType: Scalars["String"];
   itemUrlSegment: Scalars["String"];
+  notification?: Maybe<NotificationCreateOneWithoutNotificationInput>;
+  posts?: Maybe<PostCreateManyWithoutPostsInput>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+  user: UserCreateOneWithoutUserInput;
+};
+
+export type PodCreateWithoutNotificationInput = {
+  categories?: Maybe<CategoryCreateManyWithoutCategoriesInput>;
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars["ID"]>;
+  itemContent: Scalars["String"];
+  itemDeleted?: Maybe<Scalars["Boolean"]>;
+  itemMeta?: Maybe<PodMetaCreateManyWithoutItemMetaInput>;
+  itemName: Scalars["String"];
+  itemStatus: Scalars["String"];
+  itemType: Scalars["String"];
+  itemUrlSegment: Scalars["String"];
+  members?: Maybe<UserCreateManyWithoutMembersInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   user: UserCreateOneWithoutUserInput;
@@ -1556,6 +1779,7 @@ export type PodCreateWithoutPostsInput = {
   itemType: Scalars["String"];
   itemUrlSegment: Scalars["String"];
   members?: Maybe<UserCreateManyWithoutMembersInput>;
+  notification?: Maybe<NotificationCreateOneWithoutNotificationInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   user: UserCreateOneWithoutUserInput;
 };
@@ -1572,6 +1796,7 @@ export type PodCreateWithoutUserInput = {
   itemType: Scalars["String"];
   itemUrlSegment: Scalars["String"];
   members?: Maybe<UserCreateManyWithoutMembersInput>;
+  notification?: Maybe<NotificationCreateOneWithoutNotificationInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
 };
@@ -1665,6 +1890,7 @@ export type PodUpdateInput = {
   itemType?: Maybe<Scalars["String"]>;
   itemUrlSegment?: Maybe<Scalars["String"]>;
   members?: Maybe<UserUpdateManyWithoutMemberOfInput>;
+  notification?: Maybe<NotificationUpdateOneWithoutPodInput>;
   posts?: Maybe<PostUpdateManyWithoutPodInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   user?: Maybe<UserUpdateOneRequiredWithoutPodsInput>;
@@ -1730,6 +1956,15 @@ export type PodUpdateOneRequiredWithoutPostsInput = {
   upsert?: Maybe<PodUpsertWithoutPostsInput>;
 };
 
+export type PodUpdateOneWithoutNotificationInput = {
+  connect?: Maybe<PodWhereUniqueInput>;
+  create?: Maybe<PodCreateWithoutNotificationInput>;
+  delete?: Maybe<Scalars["Boolean"]>;
+  disconnect?: Maybe<Scalars["Boolean"]>;
+  update?: Maybe<PodUpdateWithoutNotificationDataInput>;
+  upsert?: Maybe<PodUpsertWithoutNotificationInput>;
+};
+
 export type PodUpdateWithoutCategoriesDataInput = {
   createdAt?: Maybe<Scalars["DateTime"]>;
   id?: Maybe<Scalars["ID"]>;
@@ -1741,6 +1976,7 @@ export type PodUpdateWithoutCategoriesDataInput = {
   itemType?: Maybe<Scalars["String"]>;
   itemUrlSegment?: Maybe<Scalars["String"]>;
   members?: Maybe<UserUpdateManyWithoutMemberOfInput>;
+  notification?: Maybe<NotificationUpdateOneWithoutPodInput>;
   posts?: Maybe<PostUpdateManyWithoutPodInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   user?: Maybe<UserUpdateOneRequiredWithoutPodsInput>;
@@ -1757,6 +1993,24 @@ export type PodUpdateWithoutMembersDataInput = {
   itemStatus?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
   itemUrlSegment?: Maybe<Scalars["String"]>;
+  notification?: Maybe<NotificationUpdateOneWithoutPodInput>;
+  posts?: Maybe<PostUpdateManyWithoutPodInput>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+  user?: Maybe<UserUpdateOneRequiredWithoutPodsInput>;
+};
+
+export type PodUpdateWithoutNotificationDataInput = {
+  categories?: Maybe<CategoryUpdateManyWithoutPodsInput>;
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars["ID"]>;
+  itemContent?: Maybe<Scalars["String"]>;
+  itemDeleted?: Maybe<Scalars["Boolean"]>;
+  itemMeta?: Maybe<PodMetaUpdateManyWithoutPodInput>;
+  itemName?: Maybe<Scalars["String"]>;
+  itemStatus?: Maybe<Scalars["String"]>;
+  itemType?: Maybe<Scalars["String"]>;
+  itemUrlSegment?: Maybe<Scalars["String"]>;
+  members?: Maybe<UserUpdateManyWithoutMemberOfInput>;
   posts?: Maybe<PostUpdateManyWithoutPodInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   user?: Maybe<UserUpdateOneRequiredWithoutPodsInput>;
@@ -1774,6 +2028,7 @@ export type PodUpdateWithoutPostsDataInput = {
   itemType?: Maybe<Scalars["String"]>;
   itemUrlSegment?: Maybe<Scalars["String"]>;
   members?: Maybe<UserUpdateManyWithoutMemberOfInput>;
+  notification?: Maybe<NotificationUpdateOneWithoutPodInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   user?: Maybe<UserUpdateOneRequiredWithoutPodsInput>;
 };
@@ -1790,6 +2045,7 @@ export type PodUpdateWithoutUserDataInput = {
   itemType?: Maybe<Scalars["String"]>;
   itemUrlSegment?: Maybe<Scalars["String"]>;
   members?: Maybe<UserUpdateManyWithoutMemberOfInput>;
+  notification?: Maybe<NotificationUpdateOneWithoutPodInput>;
   posts?: Maybe<PostUpdateManyWithoutPodInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
 };
@@ -1807,6 +2063,11 @@ export type PodUpdateWithWhereUniqueWithoutMembersInput = {
 export type PodUpdateWithWhereUniqueWithoutUserInput = {
   data: PodUpdateWithoutUserDataInput;
   where: PodWhereUniqueInput;
+};
+
+export type PodUpsertWithoutNotificationInput = {
+  create: PodCreateWithoutNotificationInput;
+  update: PodUpdateWithoutNotificationDataInput;
 };
 
 export type PodUpsertWithoutPostsInput = {
@@ -1917,6 +2178,7 @@ export type PostCreateInput = {
   itemStatus: Scalars["String"];
   itemType: Scalars["String"];
   itemUrlSegment: Scalars["String"];
+  notification?: Maybe<NotificationCreateOneWithoutNotificationInput>;
   pod: PodCreateOneWithoutPodInput;
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
@@ -1947,6 +2209,7 @@ export type PostCreateWithoutAnnotationsInput = {
   itemStatus: Scalars["String"];
   itemType: Scalars["String"];
   itemUrlSegment: Scalars["String"];
+  notification?: Maybe<NotificationCreateOneWithoutNotificationInput>;
   pod: PodCreateOneWithoutPodInput;
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
@@ -1958,6 +2221,28 @@ export type PostCreateWithoutAnnotationsInput = {
 export type PostCreateWithoutFavoritesInput = {
   annotations?: Maybe<AnnotationCreateManyWithoutAnnotationsInput>;
   createdAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars["ID"]>;
+  itemContent: Scalars["String"];
+  itemDeleted?: Maybe<Scalars["Boolean"]>;
+  itemMeta?: Maybe<PostMetaCreateManyWithoutItemMetaInput>;
+  itemMimeType: Scalars["String"];
+  itemName: Scalars["String"];
+  itemStatus: Scalars["String"];
+  itemType: Scalars["String"];
+  itemUrlSegment: Scalars["String"];
+  notification?: Maybe<NotificationCreateOneWithoutNotificationInput>;
+  pod: PodCreateOneWithoutPodInput;
+  questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
+  reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
+  tags?: Maybe<TagCreateManyWithoutTagsInput>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+  user: UserCreateOneWithoutUserInput;
+};
+
+export type PostCreateWithoutNotificationInput = {
+  annotations?: Maybe<AnnotationCreateManyWithoutAnnotationsInput>;
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  favorites?: Maybe<FavoriteCreateManyWithoutFavoritesInput>;
   id?: Maybe<Scalars["ID"]>;
   itemContent: Scalars["String"];
   itemDeleted?: Maybe<Scalars["Boolean"]>;
@@ -1988,6 +2273,7 @@ export type PostCreateWithoutPodInput = {
   itemStatus: Scalars["String"];
   itemType: Scalars["String"];
   itemUrlSegment: Scalars["String"];
+  notification?: Maybe<NotificationCreateOneWithoutNotificationInput>;
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
   tags?: Maybe<TagCreateManyWithoutTagsInput>;
@@ -2008,6 +2294,7 @@ export type PostCreateWithoutQuestionsInput = {
   itemStatus: Scalars["String"];
   itemType: Scalars["String"];
   itemUrlSegment: Scalars["String"];
+  notification?: Maybe<NotificationCreateOneWithoutNotificationInput>;
   pod: PodCreateOneWithoutPodInput;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
   tags?: Maybe<TagCreateManyWithoutTagsInput>;
@@ -2028,6 +2315,7 @@ export type PostCreateWithoutReviewsInput = {
   itemStatus: Scalars["String"];
   itemType: Scalars["String"];
   itemUrlSegment: Scalars["String"];
+  notification?: Maybe<NotificationCreateOneWithoutNotificationInput>;
   pod: PodCreateOneWithoutPodInput;
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   tags?: Maybe<TagCreateManyWithoutTagsInput>;
@@ -2048,6 +2336,7 @@ export type PostCreateWithoutTagsInput = {
   itemStatus: Scalars["String"];
   itemType: Scalars["String"];
   itemUrlSegment: Scalars["String"];
+  notification?: Maybe<NotificationCreateOneWithoutNotificationInput>;
   pod: PodCreateOneWithoutPodInput;
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
@@ -2068,6 +2357,7 @@ export type PostCreateWithoutUserInput = {
   itemStatus: Scalars["String"];
   itemType: Scalars["String"];
   itemUrlSegment: Scalars["String"];
+  notification?: Maybe<NotificationCreateOneWithoutNotificationInput>;
   pod: PodCreateOneWithoutPodInput;
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
@@ -2165,6 +2455,7 @@ export type PostUpdateInput = {
   itemStatus?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
   itemUrlSegment?: Maybe<Scalars["String"]>;
+  notification?: Maybe<NotificationUpdateOneWithoutPostInput>;
   pod?: Maybe<PodUpdateOneRequiredWithoutPostsInput>;
   questions?: Maybe<QuestionUpdateManyWithoutPostInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutPostInput>;
@@ -2255,6 +2546,15 @@ export type PostUpdateOneRequiredWithoutReviewsInput = {
   upsert?: Maybe<PostUpsertWithoutReviewsInput>;
 };
 
+export type PostUpdateOneWithoutNotificationInput = {
+  connect?: Maybe<PostWhereUniqueInput>;
+  create?: Maybe<PostCreateWithoutNotificationInput>;
+  delete?: Maybe<Scalars["Boolean"]>;
+  disconnect?: Maybe<Scalars["Boolean"]>;
+  update?: Maybe<PostUpdateWithoutNotificationDataInput>;
+  upsert?: Maybe<PostUpsertWithoutNotificationInput>;
+};
+
 export type PostUpdateWithoutAnnotationsDataInput = {
   createdAt?: Maybe<Scalars["DateTime"]>;
   favorites?: Maybe<FavoriteUpdateManyWithoutPostInput>;
@@ -2267,6 +2567,7 @@ export type PostUpdateWithoutAnnotationsDataInput = {
   itemStatus?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
   itemUrlSegment?: Maybe<Scalars["String"]>;
+  notification?: Maybe<NotificationUpdateOneWithoutPostInput>;
   pod?: Maybe<PodUpdateOneRequiredWithoutPostsInput>;
   questions?: Maybe<QuestionUpdateManyWithoutPostInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutPostInput>;
@@ -2278,6 +2579,28 @@ export type PostUpdateWithoutAnnotationsDataInput = {
 export type PostUpdateWithoutFavoritesDataInput = {
   annotations?: Maybe<AnnotationUpdateManyWithoutPostInput>;
   createdAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars["ID"]>;
+  itemContent?: Maybe<Scalars["String"]>;
+  itemDeleted?: Maybe<Scalars["Boolean"]>;
+  itemMeta?: Maybe<PostMetaUpdateManyWithoutPostInput>;
+  itemMimeType?: Maybe<Scalars["String"]>;
+  itemName?: Maybe<Scalars["String"]>;
+  itemStatus?: Maybe<Scalars["String"]>;
+  itemType?: Maybe<Scalars["String"]>;
+  itemUrlSegment?: Maybe<Scalars["String"]>;
+  notification?: Maybe<NotificationUpdateOneWithoutPostInput>;
+  pod?: Maybe<PodUpdateOneRequiredWithoutPostsInput>;
+  questions?: Maybe<QuestionUpdateManyWithoutPostInput>;
+  reviews?: Maybe<ReviewUpdateManyWithoutPostInput>;
+  tags?: Maybe<TagUpdateManyWithoutPostsInput>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+  user?: Maybe<UserUpdateOneRequiredWithoutPostsInput>;
+};
+
+export type PostUpdateWithoutNotificationDataInput = {
+  annotations?: Maybe<AnnotationUpdateManyWithoutPostInput>;
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  favorites?: Maybe<FavoriteUpdateManyWithoutPostInput>;
   id?: Maybe<Scalars["ID"]>;
   itemContent?: Maybe<Scalars["String"]>;
   itemDeleted?: Maybe<Scalars["Boolean"]>;
@@ -2308,6 +2631,7 @@ export type PostUpdateWithoutPodDataInput = {
   itemStatus?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
   itemUrlSegment?: Maybe<Scalars["String"]>;
+  notification?: Maybe<NotificationUpdateOneWithoutPostInput>;
   questions?: Maybe<QuestionUpdateManyWithoutPostInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutPostInput>;
   tags?: Maybe<TagUpdateManyWithoutPostsInput>;
@@ -2328,6 +2652,7 @@ export type PostUpdateWithoutQuestionsDataInput = {
   itemStatus?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
   itemUrlSegment?: Maybe<Scalars["String"]>;
+  notification?: Maybe<NotificationUpdateOneWithoutPostInput>;
   pod?: Maybe<PodUpdateOneRequiredWithoutPostsInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutPostInput>;
   tags?: Maybe<TagUpdateManyWithoutPostsInput>;
@@ -2348,6 +2673,7 @@ export type PostUpdateWithoutReviewsDataInput = {
   itemStatus?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
   itemUrlSegment?: Maybe<Scalars["String"]>;
+  notification?: Maybe<NotificationUpdateOneWithoutPostInput>;
   pod?: Maybe<PodUpdateOneRequiredWithoutPostsInput>;
   questions?: Maybe<QuestionUpdateManyWithoutPostInput>;
   tags?: Maybe<TagUpdateManyWithoutPostsInput>;
@@ -2368,6 +2694,7 @@ export type PostUpdateWithoutTagsDataInput = {
   itemStatus?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
   itemUrlSegment?: Maybe<Scalars["String"]>;
+  notification?: Maybe<NotificationUpdateOneWithoutPostInput>;
   pod?: Maybe<PodUpdateOneRequiredWithoutPostsInput>;
   questions?: Maybe<QuestionUpdateManyWithoutPostInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutPostInput>;
@@ -2388,6 +2715,7 @@ export type PostUpdateWithoutUserDataInput = {
   itemStatus?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
   itemUrlSegment?: Maybe<Scalars["String"]>;
+  notification?: Maybe<NotificationUpdateOneWithoutPostInput>;
   pod?: Maybe<PodUpdateOneRequiredWithoutPostsInput>;
   questions?: Maybe<QuestionUpdateManyWithoutPostInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutPostInput>;
@@ -2418,6 +2746,11 @@ export type PostUpsertWithoutAnnotationsInput = {
 export type PostUpsertWithoutFavoritesInput = {
   create: PostCreateWithoutFavoritesInput;
   update: PostUpdateWithoutFavoritesDataInput;
+};
+
+export type PostUpsertWithoutNotificationInput = {
+  create: PostCreateWithoutNotificationInput;
+  update: PostUpdateWithoutNotificationDataInput;
 };
 
 export type PostUpsertWithoutQuestionsInput = {
@@ -2455,17 +2788,26 @@ export type PostWhereUniqueInput = {
 export type Query = {
   __typename?: "Query";
   findManyAnnotation?: Maybe<Array<Annotation>>;
+  findManyAnnotationMeta?: Maybe<Array<AnnotationMeta>>;
   findManyCategory?: Maybe<Array<Category>>;
   findManyFavorite?: Maybe<Array<Favorite>>;
   findManyMessage?: Maybe<Array<Message>>;
+  findManyMessageMeta?: Maybe<Array<MessageMeta>>;
   findManyNotification?: Maybe<Array<Notification>>;
+  findManyNotificationMeta?: Maybe<Array<NotificationMeta>>;
   findManyPod?: Maybe<Array<Pod>>;
+  findManyPodMeta?: Maybe<Array<PodMeta>>;
   findManyPost?: Maybe<Array<Post>>;
+  findManyPostMeta?: Maybe<Array<PostMeta>>;
   findManyQuestion?: Maybe<Array<Question>>;
+  findManyQuestionMeta?: Maybe<Array<QuestionMeta>>;
   findManyReview?: Maybe<Array<Review>>;
+  findManyReviewMeta?: Maybe<Array<ReviewMeta>>;
   findManyTag?: Maybe<Array<Tag>>;
   findManyThread?: Maybe<Array<Thread>>;
+  findManyThreadMeta?: Maybe<Array<ThreadMeta>>;
   findManyUser?: Maybe<Array<User>>;
+  findManyUserMeta?: Maybe<Array<UserMeta>>;
   findOneAnnotation?: Maybe<Annotation>;
   findOneCategory?: Maybe<Category>;
   findOneFavorite?: Maybe<Favorite>;
@@ -2485,7 +2827,19 @@ export type QueryFindManyAnnotationArgs = {
   before?: Maybe<Scalars["String"]>;
   first?: Maybe<Scalars["Int"]>;
   last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyAnnotationOrderByInput>;
   skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyAnnotationWhereInput>;
+};
+
+export type QueryFindManyAnnotationMetaArgs = {
+  after?: Maybe<Scalars["String"]>;
+  before?: Maybe<Scalars["String"]>;
+  first?: Maybe<Scalars["Int"]>;
+  last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyAnnotationMetaOrderByInput>;
+  skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyAnnotationMetaWhereInput>;
 };
 
 export type QueryFindManyCategoryArgs = {
@@ -2493,7 +2847,9 @@ export type QueryFindManyCategoryArgs = {
   before?: Maybe<Scalars["String"]>;
   first?: Maybe<Scalars["Int"]>;
   last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyCategoryOrderByInput>;
   skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyCategoryWhereInput>;
 };
 
 export type QueryFindManyFavoriteArgs = {
@@ -2501,7 +2857,9 @@ export type QueryFindManyFavoriteArgs = {
   before?: Maybe<Scalars["String"]>;
   first?: Maybe<Scalars["Int"]>;
   last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyFavoriteOrderByInput>;
   skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyFavoriteWhereInput>;
 };
 
 export type QueryFindManyMessageArgs = {
@@ -2509,7 +2867,19 @@ export type QueryFindManyMessageArgs = {
   before?: Maybe<Scalars["String"]>;
   first?: Maybe<Scalars["Int"]>;
   last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyMessageOrderByInput>;
   skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyMessageWhereInput>;
+};
+
+export type QueryFindManyMessageMetaArgs = {
+  after?: Maybe<Scalars["String"]>;
+  before?: Maybe<Scalars["String"]>;
+  first?: Maybe<Scalars["Int"]>;
+  last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyMessageMetaOrderByInput>;
+  skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyMessageMetaWhereInput>;
 };
 
 export type QueryFindManyNotificationArgs = {
@@ -2517,7 +2887,19 @@ export type QueryFindManyNotificationArgs = {
   before?: Maybe<Scalars["String"]>;
   first?: Maybe<Scalars["Int"]>;
   last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyNotificationOrderByInput>;
   skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyNotificationWhereInput>;
+};
+
+export type QueryFindManyNotificationMetaArgs = {
+  after?: Maybe<Scalars["String"]>;
+  before?: Maybe<Scalars["String"]>;
+  first?: Maybe<Scalars["Int"]>;
+  last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyNotificationMetaOrderByInput>;
+  skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyNotificationMetaWhereInput>;
 };
 
 export type QueryFindManyPodArgs = {
@@ -2525,7 +2907,19 @@ export type QueryFindManyPodArgs = {
   before?: Maybe<Scalars["String"]>;
   first?: Maybe<Scalars["Int"]>;
   last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyPodOrderByInput>;
   skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyPodWhereInput>;
+};
+
+export type QueryFindManyPodMetaArgs = {
+  after?: Maybe<Scalars["String"]>;
+  before?: Maybe<Scalars["String"]>;
+  first?: Maybe<Scalars["Int"]>;
+  last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyPodMetaOrderByInput>;
+  skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyPodMetaWhereInput>;
 };
 
 export type QueryFindManyPostArgs = {
@@ -2533,7 +2927,19 @@ export type QueryFindManyPostArgs = {
   before?: Maybe<Scalars["String"]>;
   first?: Maybe<Scalars["Int"]>;
   last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyPostOrderByInput>;
   skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyPostWhereInput>;
+};
+
+export type QueryFindManyPostMetaArgs = {
+  after?: Maybe<Scalars["String"]>;
+  before?: Maybe<Scalars["String"]>;
+  first?: Maybe<Scalars["Int"]>;
+  last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyPostMetaOrderByInput>;
+  skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyPostMetaWhereInput>;
 };
 
 export type QueryFindManyQuestionArgs = {
@@ -2541,7 +2947,19 @@ export type QueryFindManyQuestionArgs = {
   before?: Maybe<Scalars["String"]>;
   first?: Maybe<Scalars["Int"]>;
   last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyQuestionOrderByInput>;
   skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyQuestionWhereInput>;
+};
+
+export type QueryFindManyQuestionMetaArgs = {
+  after?: Maybe<Scalars["String"]>;
+  before?: Maybe<Scalars["String"]>;
+  first?: Maybe<Scalars["Int"]>;
+  last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyQuestionMetaOrderByInput>;
+  skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyQuestionMetaWhereInput>;
 };
 
 export type QueryFindManyReviewArgs = {
@@ -2549,7 +2967,19 @@ export type QueryFindManyReviewArgs = {
   before?: Maybe<Scalars["String"]>;
   first?: Maybe<Scalars["Int"]>;
   last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyReviewOrderByInput>;
   skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyReviewWhereInput>;
+};
+
+export type QueryFindManyReviewMetaArgs = {
+  after?: Maybe<Scalars["String"]>;
+  before?: Maybe<Scalars["String"]>;
+  first?: Maybe<Scalars["Int"]>;
+  last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyReviewMetaOrderByInput>;
+  skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyReviewMetaWhereInput>;
 };
 
 export type QueryFindManyTagArgs = {
@@ -2557,7 +2987,9 @@ export type QueryFindManyTagArgs = {
   before?: Maybe<Scalars["String"]>;
   first?: Maybe<Scalars["Int"]>;
   last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyTagOrderByInput>;
   skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyTagWhereInput>;
 };
 
 export type QueryFindManyThreadArgs = {
@@ -2565,7 +2997,19 @@ export type QueryFindManyThreadArgs = {
   before?: Maybe<Scalars["String"]>;
   first?: Maybe<Scalars["Int"]>;
   last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyThreadOrderByInput>;
   skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyThreadWhereInput>;
+};
+
+export type QueryFindManyThreadMetaArgs = {
+  after?: Maybe<Scalars["String"]>;
+  before?: Maybe<Scalars["String"]>;
+  first?: Maybe<Scalars["Int"]>;
+  last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyThreadMetaOrderByInput>;
+  skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyThreadMetaWhereInput>;
 };
 
 export type QueryFindManyUserArgs = {
@@ -2573,7 +3017,19 @@ export type QueryFindManyUserArgs = {
   before?: Maybe<Scalars["String"]>;
   first?: Maybe<Scalars["Int"]>;
   last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyUserOrderByInput>;
   skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyUserWhereInput>;
+};
+
+export type QueryFindManyUserMetaArgs = {
+  after?: Maybe<Scalars["String"]>;
+  before?: Maybe<Scalars["String"]>;
+  first?: Maybe<Scalars["Int"]>;
+  last?: Maybe<Scalars["Int"]>;
+  orderBy?: Maybe<QueryFindManyUserMetaOrderByInput>;
+  skip?: Maybe<Scalars["Int"]>;
+  where?: Maybe<QueryFindManyUserMetaWhereInput>;
 };
 
 export type QueryFindOneAnnotationArgs = {
@@ -2622,6 +3078,773 @@ export type QueryFindOneThreadArgs = {
 
 export type QueryFindOneUserArgs = {
   where: UserWhereUniqueInput;
+};
+
+export type QueryFindManyAnnotationFilter = {
+  every?: Maybe<QueryFindManyAnnotationWhereInput>;
+  none?: Maybe<QueryFindManyAnnotationWhereInput>;
+  some?: Maybe<QueryFindManyAnnotationWhereInput>;
+};
+
+export type QueryFindManyAnnotationMetaFilter = {
+  equals?: Maybe<Scalars["DateTime"]>;
+  gt?: Maybe<Scalars["DateTime"]>;
+  gte?: Maybe<Scalars["DateTime"]>;
+  in?: Maybe<Array<Scalars["DateTime"]>>;
+  lt?: Maybe<Scalars["DateTime"]>;
+  lte?: Maybe<Scalars["DateTime"]>;
+  not?: Maybe<Scalars["DateTime"]>;
+  notIn?: Maybe<Array<Scalars["DateTime"]>>;
+};
+
+export type QueryFindManyAnnotationMetaOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  metaDeleted?: Maybe<OrderByArg>;
+  metaName?: Maybe<OrderByArg>;
+  metaType?: Maybe<OrderByArg>;
+  metaValue?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyAnnotationMetaWhereInput = {
+  AND?: Maybe<Array<QueryFindManyAnnotationMetaWhereInput>>;
+  annotation?: Maybe<QueryFindManyAnnotationMetaWhereInput>;
+  createdAt?: Maybe<QueryFindManyAnnotationMetaFilter>;
+  id?: Maybe<StringFilter>;
+  metaDeleted?: Maybe<BooleanFilter>;
+  metaName?: Maybe<StringFilter>;
+  metaType?: Maybe<StringFilter>;
+  metaValue?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyAnnotationMetaWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyAnnotationMetaWhereInput>>;
+  updatedAt?: Maybe<QueryFindManyAnnotationMetaFilter>;
+};
+
+export type QueryFindManyAnnotationOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  itemContent?: Maybe<OrderByArg>;
+  itemDeleted?: Maybe<OrderByArg>;
+  itemMimeType?: Maybe<OrderByArg>;
+  itemName?: Maybe<OrderByArg>;
+  itemStatus?: Maybe<OrderByArg>;
+  itemType?: Maybe<OrderByArg>;
+  itemUrlSegment?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyAnnotationWhereInput = {
+  AND?: Maybe<Array<QueryFindManyAnnotationWhereInput>>;
+  createdAt?: Maybe<QueryFindManyAnnotationFilter>;
+  id?: Maybe<StringFilter>;
+  itemContent?: Maybe<StringFilter>;
+  itemDeleted?: Maybe<BooleanFilter>;
+  itemMeta?: Maybe<QueryFindManyAnnotationFilter>;
+  itemMimeType?: Maybe<StringFilter>;
+  itemName?: Maybe<StringFilter>;
+  itemStatus?: Maybe<StringFilter>;
+  itemType?: Maybe<StringFilter>;
+  itemUrlSegment?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyAnnotationWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyAnnotationWhereInput>>;
+  post?: Maybe<QueryFindManyAnnotationWhereInput>;
+  updatedAt?: Maybe<QueryFindManyAnnotationFilter>;
+  user?: Maybe<QueryFindManyAnnotationWhereInput>;
+};
+
+export type QueryFindManyCategoryFilter = {
+  every?: Maybe<QueryFindManyCategoryWhereInput>;
+  none?: Maybe<QueryFindManyCategoryWhereInput>;
+  some?: Maybe<QueryFindManyCategoryWhereInput>;
+};
+
+export type QueryFindManyCategoryOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  itemContent?: Maybe<OrderByArg>;
+  itemName?: Maybe<OrderByArg>;
+  itemStatus?: Maybe<OrderByArg>;
+  itemType?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyCategoryWhereInput = {
+  AND?: Maybe<Array<QueryFindManyCategoryWhereInput>>;
+  createdAt?: Maybe<QueryFindManyCategoryFilter>;
+  id?: Maybe<StringFilter>;
+  itemContent?: Maybe<StringFilter>;
+  itemName?: Maybe<StringFilter>;
+  itemStatus?: Maybe<StringFilter>;
+  itemType?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyCategoryWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyCategoryWhereInput>>;
+  pods?: Maybe<QueryFindManyCategoryFilter>;
+  updatedAt?: Maybe<QueryFindManyCategoryFilter>;
+};
+
+export type QueryFindManyFavoriteFilter = {
+  equals?: Maybe<Scalars["DateTime"]>;
+  gt?: Maybe<Scalars["DateTime"]>;
+  gte?: Maybe<Scalars["DateTime"]>;
+  in?: Maybe<Array<Scalars["DateTime"]>>;
+  lt?: Maybe<Scalars["DateTime"]>;
+  lte?: Maybe<Scalars["DateTime"]>;
+  not?: Maybe<Scalars["DateTime"]>;
+  notIn?: Maybe<Array<Scalars["DateTime"]>>;
+};
+
+export type QueryFindManyFavoriteOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  itemContent?: Maybe<OrderByArg>;
+  itemName?: Maybe<OrderByArg>;
+  itemStatus?: Maybe<OrderByArg>;
+  itemType?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyFavoriteWhereInput = {
+  AND?: Maybe<Array<QueryFindManyFavoriteWhereInput>>;
+  createdAt?: Maybe<QueryFindManyFavoriteFilter>;
+  id?: Maybe<StringFilter>;
+  itemContent?: Maybe<StringFilter>;
+  itemName?: Maybe<StringFilter>;
+  itemStatus?: Maybe<StringFilter>;
+  itemType?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyFavoriteWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyFavoriteWhereInput>>;
+  post?: Maybe<QueryFindManyFavoriteWhereInput>;
+  updatedAt?: Maybe<QueryFindManyFavoriteFilter>;
+  user?: Maybe<QueryFindManyFavoriteWhereInput>;
+};
+
+export type QueryFindManyMessageFilter = {
+  every?: Maybe<QueryFindManyMessageWhereInput>;
+  none?: Maybe<QueryFindManyMessageWhereInput>;
+  some?: Maybe<QueryFindManyMessageWhereInput>;
+};
+
+export type QueryFindManyMessageMetaFilter = {
+  equals?: Maybe<Scalars["DateTime"]>;
+  gt?: Maybe<Scalars["DateTime"]>;
+  gte?: Maybe<Scalars["DateTime"]>;
+  in?: Maybe<Array<Scalars["DateTime"]>>;
+  lt?: Maybe<Scalars["DateTime"]>;
+  lte?: Maybe<Scalars["DateTime"]>;
+  not?: Maybe<Scalars["DateTime"]>;
+  notIn?: Maybe<Array<Scalars["DateTime"]>>;
+};
+
+export type QueryFindManyMessageMetaOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  metaDeleted?: Maybe<OrderByArg>;
+  metaName?: Maybe<OrderByArg>;
+  metaType?: Maybe<OrderByArg>;
+  metaValue?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyMessageMetaWhereInput = {
+  AND?: Maybe<Array<QueryFindManyMessageMetaWhereInput>>;
+  createdAt?: Maybe<QueryFindManyMessageMetaFilter>;
+  id?: Maybe<StringFilter>;
+  message?: Maybe<QueryFindManyMessageMetaWhereInput>;
+  metaDeleted?: Maybe<BooleanFilter>;
+  metaName?: Maybe<StringFilter>;
+  metaType?: Maybe<StringFilter>;
+  metaValue?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyMessageMetaWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyMessageMetaWhereInput>>;
+  updatedAt?: Maybe<QueryFindManyMessageMetaFilter>;
+};
+
+export type QueryFindManyMessageOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  itemContent?: Maybe<OrderByArg>;
+  itemDeleted?: Maybe<OrderByArg>;
+  itemName?: Maybe<OrderByArg>;
+  itemStatus?: Maybe<OrderByArg>;
+  itemType?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyMessageWhereInput = {
+  AND?: Maybe<Array<QueryFindManyMessageWhereInput>>;
+  createdAt?: Maybe<QueryFindManyMessageFilter>;
+  id?: Maybe<StringFilter>;
+  itemContent?: Maybe<StringFilter>;
+  itemDeleted?: Maybe<BooleanFilter>;
+  itemMeta?: Maybe<QueryFindManyMessageFilter>;
+  itemName?: Maybe<StringFilter>;
+  itemStatus?: Maybe<StringFilter>;
+  itemType?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyMessageWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyMessageWhereInput>>;
+  thread?: Maybe<QueryFindManyMessageWhereInput>;
+  updatedAt?: Maybe<QueryFindManyMessageFilter>;
+  user?: Maybe<QueryFindManyMessageWhereInput>;
+};
+
+export type QueryFindManyNotificationFilter = {
+  every?: Maybe<QueryFindManyNotificationWhereInput>;
+  none?: Maybe<QueryFindManyNotificationWhereInput>;
+  some?: Maybe<QueryFindManyNotificationWhereInput>;
+};
+
+export type QueryFindManyNotificationMetaFilter = {
+  equals?: Maybe<Scalars["DateTime"]>;
+  gt?: Maybe<Scalars["DateTime"]>;
+  gte?: Maybe<Scalars["DateTime"]>;
+  in?: Maybe<Array<Scalars["DateTime"]>>;
+  lt?: Maybe<Scalars["DateTime"]>;
+  lte?: Maybe<Scalars["DateTime"]>;
+  not?: Maybe<Scalars["DateTime"]>;
+  notIn?: Maybe<Array<Scalars["DateTime"]>>;
+};
+
+export type QueryFindManyNotificationMetaOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  metaDeleted?: Maybe<OrderByArg>;
+  metaName?: Maybe<OrderByArg>;
+  metaType?: Maybe<OrderByArg>;
+  metaValue?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyNotificationMetaWhereInput = {
+  AND?: Maybe<Array<QueryFindManyNotificationMetaWhereInput>>;
+  createdAt?: Maybe<QueryFindManyNotificationMetaFilter>;
+  id?: Maybe<StringFilter>;
+  metaDeleted?: Maybe<BooleanFilter>;
+  metaName?: Maybe<StringFilter>;
+  metaType?: Maybe<StringFilter>;
+  metaValue?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyNotificationMetaWhereInput>>;
+  notification?: Maybe<QueryFindManyNotificationMetaWhereInput>;
+  OR?: Maybe<Array<QueryFindManyNotificationMetaWhereInput>>;
+  updatedAt?: Maybe<QueryFindManyNotificationMetaFilter>;
+};
+
+export type QueryFindManyNotificationOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  itemContent?: Maybe<OrderByArg>;
+  itemDeleted?: Maybe<OrderByArg>;
+  itemName?: Maybe<OrderByArg>;
+  itemStatus?: Maybe<OrderByArg>;
+  itemType?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyNotificationWhereInput = {
+  AND?: Maybe<Array<QueryFindManyNotificationWhereInput>>;
+  createdAt?: Maybe<QueryFindManyNotificationFilter>;
+  id?: Maybe<StringFilter>;
+  itemContent?: Maybe<StringFilter>;
+  itemDeleted?: Maybe<BooleanFilter>;
+  itemMeta?: Maybe<QueryFindManyNotificationFilter>;
+  itemName?: Maybe<StringFilter>;
+  itemStatus?: Maybe<StringFilter>;
+  itemType?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyNotificationWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyNotificationWhereInput>>;
+  pod?: Maybe<QueryFindManyNotificationWhereInput>;
+  post?: Maybe<QueryFindManyNotificationWhereInput>;
+  receiver?: Maybe<QueryFindManyNotificationWhereInput>;
+  sender?: Maybe<QueryFindManyNotificationWhereInput>;
+  updatedAt?: Maybe<QueryFindManyNotificationFilter>;
+  user?: Maybe<QueryFindManyNotificationWhereInput>;
+};
+
+export type QueryFindManyPodFilter = {
+  every?: Maybe<QueryFindManyPodWhereInput>;
+  none?: Maybe<QueryFindManyPodWhereInput>;
+  some?: Maybe<QueryFindManyPodWhereInput>;
+};
+
+export type QueryFindManyPodMetaFilter = {
+  equals?: Maybe<Scalars["DateTime"]>;
+  gt?: Maybe<Scalars["DateTime"]>;
+  gte?: Maybe<Scalars["DateTime"]>;
+  in?: Maybe<Array<Scalars["DateTime"]>>;
+  lt?: Maybe<Scalars["DateTime"]>;
+  lte?: Maybe<Scalars["DateTime"]>;
+  not?: Maybe<Scalars["DateTime"]>;
+  notIn?: Maybe<Array<Scalars["DateTime"]>>;
+};
+
+export type QueryFindManyPodMetaOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  metaDeleted?: Maybe<OrderByArg>;
+  metaName?: Maybe<OrderByArg>;
+  metaType?: Maybe<OrderByArg>;
+  metaValue?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyPodMetaWhereInput = {
+  AND?: Maybe<Array<QueryFindManyPodMetaWhereInput>>;
+  createdAt?: Maybe<QueryFindManyPodMetaFilter>;
+  id?: Maybe<StringFilter>;
+  metaDeleted?: Maybe<BooleanFilter>;
+  metaName?: Maybe<StringFilter>;
+  metaType?: Maybe<StringFilter>;
+  metaValue?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyPodMetaWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyPodMetaWhereInput>>;
+  pod?: Maybe<QueryFindManyPodMetaWhereInput>;
+  updatedAt?: Maybe<QueryFindManyPodMetaFilter>;
+};
+
+export type QueryFindManyPodOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  itemContent?: Maybe<OrderByArg>;
+  itemDeleted?: Maybe<OrderByArg>;
+  itemName?: Maybe<OrderByArg>;
+  itemStatus?: Maybe<OrderByArg>;
+  itemType?: Maybe<OrderByArg>;
+  itemUrlSegment?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyPodWhereInput = {
+  AND?: Maybe<Array<QueryFindManyPodWhereInput>>;
+  categories?: Maybe<QueryFindManyPodFilter>;
+  createdAt?: Maybe<QueryFindManyPodFilter>;
+  id?: Maybe<StringFilter>;
+  itemContent?: Maybe<StringFilter>;
+  itemDeleted?: Maybe<BooleanFilter>;
+  itemMeta?: Maybe<QueryFindManyPodFilter>;
+  itemName?: Maybe<StringFilter>;
+  itemStatus?: Maybe<StringFilter>;
+  itemType?: Maybe<StringFilter>;
+  itemUrlSegment?: Maybe<StringFilter>;
+  members?: Maybe<QueryFindManyPodFilter>;
+  NOT?: Maybe<Array<QueryFindManyPodWhereInput>>;
+  notification?: Maybe<QueryFindManyPodWhereInput>;
+  OR?: Maybe<Array<QueryFindManyPodWhereInput>>;
+  posts?: Maybe<QueryFindManyPodFilter>;
+  updatedAt?: Maybe<QueryFindManyPodFilter>;
+  user?: Maybe<QueryFindManyPodWhereInput>;
+};
+
+export type QueryFindManyPostFilter = {
+  every?: Maybe<QueryFindManyPostWhereInput>;
+  none?: Maybe<QueryFindManyPostWhereInput>;
+  some?: Maybe<QueryFindManyPostWhereInput>;
+};
+
+export type QueryFindManyPostMetaFilter = {
+  equals?: Maybe<Scalars["DateTime"]>;
+  gt?: Maybe<Scalars["DateTime"]>;
+  gte?: Maybe<Scalars["DateTime"]>;
+  in?: Maybe<Array<Scalars["DateTime"]>>;
+  lt?: Maybe<Scalars["DateTime"]>;
+  lte?: Maybe<Scalars["DateTime"]>;
+  not?: Maybe<Scalars["DateTime"]>;
+  notIn?: Maybe<Array<Scalars["DateTime"]>>;
+};
+
+export type QueryFindManyPostMetaOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  metaDeleted?: Maybe<OrderByArg>;
+  metaName?: Maybe<OrderByArg>;
+  metaType?: Maybe<OrderByArg>;
+  metaValue?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyPostMetaWhereInput = {
+  AND?: Maybe<Array<QueryFindManyPostMetaWhereInput>>;
+  createdAt?: Maybe<QueryFindManyPostMetaFilter>;
+  id?: Maybe<StringFilter>;
+  metaDeleted?: Maybe<BooleanFilter>;
+  metaName?: Maybe<StringFilter>;
+  metaType?: Maybe<StringFilter>;
+  metaValue?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyPostMetaWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyPostMetaWhereInput>>;
+  post?: Maybe<QueryFindManyPostMetaWhereInput>;
+  updatedAt?: Maybe<QueryFindManyPostMetaFilter>;
+};
+
+export type QueryFindManyPostOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  itemContent?: Maybe<OrderByArg>;
+  itemDeleted?: Maybe<OrderByArg>;
+  itemMimeType?: Maybe<OrderByArg>;
+  itemName?: Maybe<OrderByArg>;
+  itemStatus?: Maybe<OrderByArg>;
+  itemType?: Maybe<OrderByArg>;
+  itemUrlSegment?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyPostWhereInput = {
+  AND?: Maybe<Array<QueryFindManyPostWhereInput>>;
+  annotations?: Maybe<QueryFindManyPostFilter>;
+  createdAt?: Maybe<QueryFindManyPostFilter>;
+  favorites?: Maybe<QueryFindManyPostFilter>;
+  id?: Maybe<StringFilter>;
+  itemContent?: Maybe<StringFilter>;
+  itemDeleted?: Maybe<BooleanFilter>;
+  itemMeta?: Maybe<QueryFindManyPostFilter>;
+  itemMimeType?: Maybe<StringFilter>;
+  itemName?: Maybe<StringFilter>;
+  itemStatus?: Maybe<StringFilter>;
+  itemType?: Maybe<StringFilter>;
+  itemUrlSegment?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyPostWhereInput>>;
+  notification?: Maybe<QueryFindManyPostWhereInput>;
+  OR?: Maybe<Array<QueryFindManyPostWhereInput>>;
+  pod?: Maybe<QueryFindManyPostWhereInput>;
+  questions?: Maybe<QueryFindManyPostFilter>;
+  reviews?: Maybe<QueryFindManyPostFilter>;
+  tags?: Maybe<QueryFindManyPostFilter>;
+  updatedAt?: Maybe<QueryFindManyPostFilter>;
+  user?: Maybe<QueryFindManyPostWhereInput>;
+};
+
+export type QueryFindManyQuestionFilter = {
+  every?: Maybe<QueryFindManyQuestionWhereInput>;
+  none?: Maybe<QueryFindManyQuestionWhereInput>;
+  some?: Maybe<QueryFindManyQuestionWhereInput>;
+};
+
+export type QueryFindManyQuestionMetaFilter = {
+  equals?: Maybe<Scalars["DateTime"]>;
+  gt?: Maybe<Scalars["DateTime"]>;
+  gte?: Maybe<Scalars["DateTime"]>;
+  in?: Maybe<Array<Scalars["DateTime"]>>;
+  lt?: Maybe<Scalars["DateTime"]>;
+  lte?: Maybe<Scalars["DateTime"]>;
+  not?: Maybe<Scalars["DateTime"]>;
+  notIn?: Maybe<Array<Scalars["DateTime"]>>;
+};
+
+export type QueryFindManyQuestionMetaOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  metaDeleted?: Maybe<OrderByArg>;
+  metaName?: Maybe<OrderByArg>;
+  metaType?: Maybe<OrderByArg>;
+  metaValue?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyQuestionMetaWhereInput = {
+  AND?: Maybe<Array<QueryFindManyQuestionMetaWhereInput>>;
+  createdAt?: Maybe<QueryFindManyQuestionMetaFilter>;
+  id?: Maybe<StringFilter>;
+  metaDeleted?: Maybe<BooleanFilter>;
+  metaName?: Maybe<StringFilter>;
+  metaType?: Maybe<StringFilter>;
+  metaValue?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyQuestionMetaWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyQuestionMetaWhereInput>>;
+  question?: Maybe<QueryFindManyQuestionMetaWhereInput>;
+  updatedAt?: Maybe<QueryFindManyQuestionMetaFilter>;
+};
+
+export type QueryFindManyQuestionOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  itemContent?: Maybe<OrderByArg>;
+  itemDeleted?: Maybe<OrderByArg>;
+  itemMimeType?: Maybe<OrderByArg>;
+  itemName?: Maybe<OrderByArg>;
+  itemStatus?: Maybe<OrderByArg>;
+  itemType?: Maybe<OrderByArg>;
+  itemUrlSegment?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyQuestionWhereInput = {
+  AND?: Maybe<Array<QueryFindManyQuestionWhereInput>>;
+  createdAt?: Maybe<QueryFindManyQuestionFilter>;
+  id?: Maybe<StringFilter>;
+  itemContent?: Maybe<StringFilter>;
+  itemDeleted?: Maybe<BooleanFilter>;
+  itemMeta?: Maybe<QueryFindManyQuestionFilter>;
+  itemMimeType?: Maybe<StringFilter>;
+  itemName?: Maybe<StringFilter>;
+  itemStatus?: Maybe<StringFilter>;
+  itemType?: Maybe<StringFilter>;
+  itemUrlSegment?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyQuestionWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyQuestionWhereInput>>;
+  post?: Maybe<QueryFindManyQuestionWhereInput>;
+  updatedAt?: Maybe<QueryFindManyQuestionFilter>;
+  user?: Maybe<QueryFindManyQuestionWhereInput>;
+};
+
+export type QueryFindManyReviewFilter = {
+  every?: Maybe<QueryFindManyReviewWhereInput>;
+  none?: Maybe<QueryFindManyReviewWhereInput>;
+  some?: Maybe<QueryFindManyReviewWhereInput>;
+};
+
+export type QueryFindManyReviewMetaFilter = {
+  equals?: Maybe<Scalars["DateTime"]>;
+  gt?: Maybe<Scalars["DateTime"]>;
+  gte?: Maybe<Scalars["DateTime"]>;
+  in?: Maybe<Array<Scalars["DateTime"]>>;
+  lt?: Maybe<Scalars["DateTime"]>;
+  lte?: Maybe<Scalars["DateTime"]>;
+  not?: Maybe<Scalars["DateTime"]>;
+  notIn?: Maybe<Array<Scalars["DateTime"]>>;
+};
+
+export type QueryFindManyReviewMetaOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  metaDeleted?: Maybe<OrderByArg>;
+  metaName?: Maybe<OrderByArg>;
+  metaType?: Maybe<OrderByArg>;
+  metaValue?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyReviewMetaWhereInput = {
+  AND?: Maybe<Array<QueryFindManyReviewMetaWhereInput>>;
+  createdAt?: Maybe<QueryFindManyReviewMetaFilter>;
+  id?: Maybe<StringFilter>;
+  metaDeleted?: Maybe<BooleanFilter>;
+  metaName?: Maybe<StringFilter>;
+  metaType?: Maybe<StringFilter>;
+  metaValue?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyReviewMetaWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyReviewMetaWhereInput>>;
+  review?: Maybe<QueryFindManyReviewMetaWhereInput>;
+  updatedAt?: Maybe<QueryFindManyReviewMetaFilter>;
+};
+
+export type QueryFindManyReviewOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  itemContent?: Maybe<OrderByArg>;
+  itemDeleted?: Maybe<OrderByArg>;
+  itemMimeType?: Maybe<OrderByArg>;
+  itemName?: Maybe<OrderByArg>;
+  itemStatus?: Maybe<OrderByArg>;
+  itemType?: Maybe<OrderByArg>;
+  itemUrlSegment?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyReviewWhereInput = {
+  AND?: Maybe<Array<QueryFindManyReviewWhereInput>>;
+  createdAt?: Maybe<QueryFindManyReviewFilter>;
+  id?: Maybe<StringFilter>;
+  itemContent?: Maybe<StringFilter>;
+  itemDeleted?: Maybe<BooleanFilter>;
+  itemMeta?: Maybe<QueryFindManyReviewFilter>;
+  itemMimeType?: Maybe<StringFilter>;
+  itemName?: Maybe<StringFilter>;
+  itemStatus?: Maybe<StringFilter>;
+  itemType?: Maybe<StringFilter>;
+  itemUrlSegment?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyReviewWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyReviewWhereInput>>;
+  post?: Maybe<QueryFindManyReviewWhereInput>;
+  updatedAt?: Maybe<QueryFindManyReviewFilter>;
+  user?: Maybe<QueryFindManyReviewWhereInput>;
+};
+
+export type QueryFindManyTagFilter = {
+  every?: Maybe<QueryFindManyTagWhereInput>;
+  none?: Maybe<QueryFindManyTagWhereInput>;
+  some?: Maybe<QueryFindManyTagWhereInput>;
+};
+
+export type QueryFindManyTagOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  itemContent?: Maybe<OrderByArg>;
+  itemName?: Maybe<OrderByArg>;
+  itemStatus?: Maybe<OrderByArg>;
+  itemType?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyTagWhereInput = {
+  AND?: Maybe<Array<QueryFindManyTagWhereInput>>;
+  createdAt?: Maybe<QueryFindManyTagFilter>;
+  id?: Maybe<StringFilter>;
+  itemContent?: Maybe<StringFilter>;
+  itemName?: Maybe<StringFilter>;
+  itemStatus?: Maybe<StringFilter>;
+  itemType?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyTagWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyTagWhereInput>>;
+  posts?: Maybe<QueryFindManyTagFilter>;
+  updatedAt?: Maybe<QueryFindManyTagFilter>;
+};
+
+export type QueryFindManyThreadFilter = {
+  every?: Maybe<QueryFindManyThreadWhereInput>;
+  none?: Maybe<QueryFindManyThreadWhereInput>;
+  some?: Maybe<QueryFindManyThreadWhereInput>;
+};
+
+export type QueryFindManyThreadMetaFilter = {
+  equals?: Maybe<Scalars["DateTime"]>;
+  gt?: Maybe<Scalars["DateTime"]>;
+  gte?: Maybe<Scalars["DateTime"]>;
+  in?: Maybe<Array<Scalars["DateTime"]>>;
+  lt?: Maybe<Scalars["DateTime"]>;
+  lte?: Maybe<Scalars["DateTime"]>;
+  not?: Maybe<Scalars["DateTime"]>;
+  notIn?: Maybe<Array<Scalars["DateTime"]>>;
+};
+
+export type QueryFindManyThreadMetaOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  metaDeleted?: Maybe<OrderByArg>;
+  metaName?: Maybe<OrderByArg>;
+  metaType?: Maybe<OrderByArg>;
+  metaValue?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyThreadMetaWhereInput = {
+  AND?: Maybe<Array<QueryFindManyThreadMetaWhereInput>>;
+  createdAt?: Maybe<QueryFindManyThreadMetaFilter>;
+  id?: Maybe<StringFilter>;
+  metaDeleted?: Maybe<BooleanFilter>;
+  metaName?: Maybe<StringFilter>;
+  metaType?: Maybe<StringFilter>;
+  metaValue?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyThreadMetaWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyThreadMetaWhereInput>>;
+  thread?: Maybe<QueryFindManyThreadMetaWhereInput>;
+  updatedAt?: Maybe<QueryFindManyThreadMetaFilter>;
+};
+
+export type QueryFindManyThreadOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  itemContent?: Maybe<OrderByArg>;
+  itemDeleted?: Maybe<OrderByArg>;
+  itemName?: Maybe<OrderByArg>;
+  itemStatus?: Maybe<OrderByArg>;
+  itemType?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyThreadWhereInput = {
+  AND?: Maybe<Array<QueryFindManyThreadWhereInput>>;
+  createdAt?: Maybe<QueryFindManyThreadFilter>;
+  id?: Maybe<StringFilter>;
+  itemContent?: Maybe<StringFilter>;
+  itemDeleted?: Maybe<BooleanFilter>;
+  itemMeta?: Maybe<QueryFindManyThreadFilter>;
+  itemName?: Maybe<StringFilter>;
+  itemStatus?: Maybe<StringFilter>;
+  itemType?: Maybe<StringFilter>;
+  messages?: Maybe<QueryFindManyThreadFilter>;
+  NOT?: Maybe<Array<QueryFindManyThreadWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyThreadWhereInput>>;
+  participants?: Maybe<QueryFindManyThreadFilter>;
+  updatedAt?: Maybe<QueryFindManyThreadFilter>;
+};
+
+export type QueryFindManyUserFilter = {
+  every?: Maybe<QueryFindManyUserWhereInput>;
+  none?: Maybe<QueryFindManyUserWhereInput>;
+  some?: Maybe<QueryFindManyUserWhereInput>;
+};
+
+export type QueryFindManyUserMetaFilter = {
+  equals?: Maybe<Scalars["DateTime"]>;
+  gt?: Maybe<Scalars["DateTime"]>;
+  gte?: Maybe<Scalars["DateTime"]>;
+  in?: Maybe<Array<Scalars["DateTime"]>>;
+  lt?: Maybe<Scalars["DateTime"]>;
+  lte?: Maybe<Scalars["DateTime"]>;
+  not?: Maybe<Scalars["DateTime"]>;
+  notIn?: Maybe<Array<Scalars["DateTime"]>>;
+};
+
+export type QueryFindManyUserMetaOrderByInput = {
+  createdAt?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  metaDeleted?: Maybe<OrderByArg>;
+  metaName?: Maybe<OrderByArg>;
+  metaType?: Maybe<OrderByArg>;
+  metaValue?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyUserMetaWhereInput = {
+  AND?: Maybe<Array<QueryFindManyUserMetaWhereInput>>;
+  createdAt?: Maybe<QueryFindManyUserMetaFilter>;
+  id?: Maybe<StringFilter>;
+  metaDeleted?: Maybe<BooleanFilter>;
+  metaName?: Maybe<StringFilter>;
+  metaType?: Maybe<StringFilter>;
+  metaValue?: Maybe<StringFilter>;
+  NOT?: Maybe<Array<QueryFindManyUserMetaWhereInput>>;
+  OR?: Maybe<Array<QueryFindManyUserMetaWhereInput>>;
+  updatedAt?: Maybe<QueryFindManyUserMetaFilter>;
+  user?: Maybe<QueryFindManyUserMetaWhereInput>;
+};
+
+export type QueryFindManyUserOrderByInput = {
+  confirmHash?: Maybe<OrderByArg>;
+  createdAt?: Maybe<OrderByArg>;
+  forgotHash?: Maybe<OrderByArg>;
+  id?: Maybe<OrderByArg>;
+  privateHash?: Maybe<OrderByArg>;
+  publicHash?: Maybe<OrderByArg>;
+  updatedAt?: Maybe<OrderByArg>;
+  userConfirmed?: Maybe<OrderByArg>;
+  userDeleted?: Maybe<OrderByArg>;
+  userEmail?: Maybe<OrderByArg>;
+  userPassword?: Maybe<OrderByArg>;
+  userType?: Maybe<OrderByArg>;
+};
+
+export type QueryFindManyUserWhereInput = {
+  AND?: Maybe<Array<QueryFindManyUserWhereInput>>;
+  annotations?: Maybe<QueryFindManyUserFilter>;
+  confirmHash?: Maybe<StringFilter>;
+  createdAt?: Maybe<QueryFindManyUserFilter>;
+  favorites?: Maybe<QueryFindManyUserFilter>;
+  followers?: Maybe<QueryFindManyUserFilter>;
+  following?: Maybe<QueryFindManyUserFilter>;
+  forgotHash?: Maybe<StringFilter>;
+  id?: Maybe<StringFilter>;
+  memberOf?: Maybe<QueryFindManyUserFilter>;
+  message?: Maybe<QueryFindManyUserWhereInput>;
+  NOT?: Maybe<Array<QueryFindManyUserWhereInput>>;
+  notifications?: Maybe<QueryFindManyUserFilter>;
+  OR?: Maybe<Array<QueryFindManyUserWhereInput>>;
+  pods?: Maybe<QueryFindManyUserFilter>;
+  posts?: Maybe<QueryFindManyUserFilter>;
+  privateHash?: Maybe<StringFilter>;
+  publicHash?: Maybe<StringFilter>;
+  questions?: Maybe<QueryFindManyUserFilter>;
+  recievedNotifications?: Maybe<QueryFindManyUserWhereInput>;
+  reviews?: Maybe<QueryFindManyUserFilter>;
+  sentNotifications?: Maybe<QueryFindManyUserWhereInput>;
+  threads?: Maybe<QueryFindManyUserFilter>;
+  updatedAt?: Maybe<QueryFindManyUserFilter>;
+  userConfirmed?: Maybe<IntFilter>;
+  userDeleted?: Maybe<BooleanFilter>;
+  userEmail?: Maybe<StringFilter>;
+  userMeta?: Maybe<QueryFindManyUserFilter>;
+  userPassword?: Maybe<StringFilter>;
+  userType?: Maybe<IntFilter>;
 };
 
 export type Question = {
@@ -3284,10 +4507,27 @@ export type Thread = {
   itemName: Scalars["String"];
   itemStatus: Scalars["String"];
   itemType: Scalars["String"];
-  user: User;
+  messages?: Maybe<Array<Message>>;
+  participants?: Maybe<Array<User>>;
 };
 
 export type ThreadItemMetaArgs = {
+  after?: Maybe<Scalars["String"]>;
+  before?: Maybe<Scalars["String"]>;
+  first?: Maybe<Scalars["Int"]>;
+  last?: Maybe<Scalars["Int"]>;
+  skip?: Maybe<Scalars["Int"]>;
+};
+
+export type ThreadMessagesArgs = {
+  after?: Maybe<Scalars["String"]>;
+  before?: Maybe<Scalars["String"]>;
+  first?: Maybe<Scalars["Int"]>;
+  last?: Maybe<Scalars["Int"]>;
+  skip?: Maybe<Scalars["Int"]>;
+};
+
+export type ThreadParticipantsArgs = {
   after?: Maybe<Scalars["String"]>;
   before?: Maybe<Scalars["String"]>;
   first?: Maybe<Scalars["Int"]>;
@@ -3304,23 +4544,22 @@ export type ThreadCreateInput = {
   itemName: Scalars["String"];
   itemStatus: Scalars["String"];
   itemType: Scalars["String"];
-  message?: Maybe<MessageCreateOneWithoutMessageInput>;
-  notification?: Maybe<NotificationCreateOneWithoutNotificationInput>;
+  messages?: Maybe<MessageCreateManyWithoutMessagesInput>;
+  participants?: Maybe<UserCreateManyWithoutParticipantsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
-  user: UserCreateOneWithoutUserInput;
 };
 
 export type ThreadCreateManyWithoutThreadsInput = {
   connect?: Maybe<Array<ThreadWhereUniqueInput>>;
-  create?: Maybe<Array<ThreadCreateWithoutUserInput>>;
+  create?: Maybe<Array<ThreadCreateWithoutParticipantsInput>>;
 };
 
 export type ThreadCreateOneWithoutThreadInput = {
   connect?: Maybe<ThreadWhereUniqueInput>;
-  create?: Maybe<ThreadCreateWithoutNotificationInput>;
+  create?: Maybe<ThreadCreateWithoutMessagesInput>;
 };
 
-export type ThreadCreateWithoutMessageInput = {
+export type ThreadCreateWithoutMessagesInput = {
   createdAt?: Maybe<Scalars["DateTime"]>;
   id?: Maybe<Scalars["ID"]>;
   itemContent: Scalars["String"];
@@ -3329,12 +4568,11 @@ export type ThreadCreateWithoutMessageInput = {
   itemName: Scalars["String"];
   itemStatus: Scalars["String"];
   itemType: Scalars["String"];
-  notification?: Maybe<NotificationCreateOneWithoutNotificationInput>;
+  participants?: Maybe<UserCreateManyWithoutParticipantsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
-  user: UserCreateOneWithoutUserInput;
 };
 
-export type ThreadCreateWithoutNotificationInput = {
+export type ThreadCreateWithoutParticipantsInput = {
   createdAt?: Maybe<Scalars["DateTime"]>;
   id?: Maybe<Scalars["ID"]>;
   itemContent: Scalars["String"];
@@ -3343,22 +4581,7 @@ export type ThreadCreateWithoutNotificationInput = {
   itemName: Scalars["String"];
   itemStatus: Scalars["String"];
   itemType: Scalars["String"];
-  message?: Maybe<MessageCreateOneWithoutMessageInput>;
-  updatedAt?: Maybe<Scalars["DateTime"]>;
-  user: UserCreateOneWithoutUserInput;
-};
-
-export type ThreadCreateWithoutUserInput = {
-  createdAt?: Maybe<Scalars["DateTime"]>;
-  id?: Maybe<Scalars["ID"]>;
-  itemContent: Scalars["String"];
-  itemDeleted?: Maybe<Scalars["Boolean"]>;
-  itemMeta?: Maybe<ThreadMetaCreateManyWithoutItemMetaInput>;
-  itemName: Scalars["String"];
-  itemStatus: Scalars["String"];
-  itemType: Scalars["String"];
-  message?: Maybe<MessageCreateOneWithoutMessageInput>;
-  notification?: Maybe<NotificationCreateOneWithoutNotificationInput>;
+  messages?: Maybe<MessageCreateManyWithoutMessagesInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
 };
 
@@ -3448,10 +4671,9 @@ export type ThreadUpdateInput = {
   itemName?: Maybe<Scalars["String"]>;
   itemStatus?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
-  message?: Maybe<MessageUpdateOneWithoutThreadInput>;
-  notification?: Maybe<NotificationUpdateOneWithoutThreadInput>;
+  messages?: Maybe<MessageUpdateManyWithoutThreadInput>;
+  participants?: Maybe<UserUpdateManyWithoutThreadsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
-  user?: Maybe<UserUpdateOneRequiredWithoutThreadsInput>;
 };
 
 export type ThreadUpdateManyDataInput = {
@@ -3465,16 +4687,16 @@ export type ThreadUpdateManyDataInput = {
   updatedAt?: Maybe<Scalars["DateTime"]>;
 };
 
-export type ThreadUpdateManyWithoutUserInput = {
+export type ThreadUpdateManyWithoutParticipantsInput = {
   connect?: Maybe<Array<ThreadWhereUniqueInput>>;
-  create?: Maybe<Array<ThreadCreateWithoutUserInput>>;
+  create?: Maybe<Array<ThreadCreateWithoutParticipantsInput>>;
   delete?: Maybe<Array<ThreadWhereUniqueInput>>;
   deleteMany?: Maybe<Array<MutationUpdateOneUserWhereInput>>;
   disconnect?: Maybe<Array<ThreadWhereUniqueInput>>;
   set?: Maybe<Array<ThreadWhereUniqueInput>>;
-  update?: Maybe<Array<ThreadUpdateWithWhereUniqueWithoutUserInput>>;
+  update?: Maybe<Array<ThreadUpdateWithWhereUniqueWithoutParticipantsInput>>;
   updateMany?: Maybe<Array<ThreadUpdateManyWithWhereNestedInput>>;
-  upsert?: Maybe<Array<ThreadUpsertWithWhereUniqueWithoutUserInput>>;
+  upsert?: Maybe<Array<ThreadUpsertWithWhereUniqueWithoutParticipantsInput>>;
 };
 
 export type ThreadUpdateManyWithWhereNestedInput = {
@@ -3482,21 +4704,14 @@ export type ThreadUpdateManyWithWhereNestedInput = {
   where: MutationUpdateOneUserWhereInput;
 };
 
-export type ThreadUpdateOneRequiredWithoutMessageInput = {
+export type ThreadUpdateOneRequiredWithoutMessagesInput = {
   connect?: Maybe<ThreadWhereUniqueInput>;
-  create?: Maybe<ThreadCreateWithoutMessageInput>;
-  update?: Maybe<ThreadUpdateWithoutMessageDataInput>;
-  upsert?: Maybe<ThreadUpsertWithoutMessageInput>;
+  create?: Maybe<ThreadCreateWithoutMessagesInput>;
+  update?: Maybe<ThreadUpdateWithoutMessagesDataInput>;
+  upsert?: Maybe<ThreadUpsertWithoutMessagesInput>;
 };
 
-export type ThreadUpdateOneRequiredWithoutNotificationInput = {
-  connect?: Maybe<ThreadWhereUniqueInput>;
-  create?: Maybe<ThreadCreateWithoutNotificationInput>;
-  update?: Maybe<ThreadUpdateWithoutNotificationDataInput>;
-  upsert?: Maybe<ThreadUpsertWithoutNotificationInput>;
-};
-
-export type ThreadUpdateWithoutMessageDataInput = {
+export type ThreadUpdateWithoutMessagesDataInput = {
   createdAt?: Maybe<Scalars["DateTime"]>;
   id?: Maybe<Scalars["ID"]>;
   itemContent?: Maybe<Scalars["String"]>;
@@ -3505,12 +4720,11 @@ export type ThreadUpdateWithoutMessageDataInput = {
   itemName?: Maybe<Scalars["String"]>;
   itemStatus?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
-  notification?: Maybe<NotificationUpdateOneWithoutThreadInput>;
+  participants?: Maybe<UserUpdateManyWithoutThreadsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
-  user?: Maybe<UserUpdateOneRequiredWithoutThreadsInput>;
 };
 
-export type ThreadUpdateWithoutNotificationDataInput = {
+export type ThreadUpdateWithoutParticipantsDataInput = {
   createdAt?: Maybe<Scalars["DateTime"]>;
   id?: Maybe<Scalars["ID"]>;
   itemContent?: Maybe<Scalars["String"]>;
@@ -3519,43 +4733,23 @@ export type ThreadUpdateWithoutNotificationDataInput = {
   itemName?: Maybe<Scalars["String"]>;
   itemStatus?: Maybe<Scalars["String"]>;
   itemType?: Maybe<Scalars["String"]>;
-  message?: Maybe<MessageUpdateOneWithoutThreadInput>;
-  updatedAt?: Maybe<Scalars["DateTime"]>;
-  user?: Maybe<UserUpdateOneRequiredWithoutThreadsInput>;
-};
-
-export type ThreadUpdateWithoutUserDataInput = {
-  createdAt?: Maybe<Scalars["DateTime"]>;
-  id?: Maybe<Scalars["ID"]>;
-  itemContent?: Maybe<Scalars["String"]>;
-  itemDeleted?: Maybe<Scalars["Boolean"]>;
-  itemMeta?: Maybe<ThreadMetaUpdateManyWithoutThreadInput>;
-  itemName?: Maybe<Scalars["String"]>;
-  itemStatus?: Maybe<Scalars["String"]>;
-  itemType?: Maybe<Scalars["String"]>;
-  message?: Maybe<MessageUpdateOneWithoutThreadInput>;
-  notification?: Maybe<NotificationUpdateOneWithoutThreadInput>;
+  messages?: Maybe<MessageUpdateManyWithoutThreadInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
 };
 
-export type ThreadUpdateWithWhereUniqueWithoutUserInput = {
-  data: ThreadUpdateWithoutUserDataInput;
+export type ThreadUpdateWithWhereUniqueWithoutParticipantsInput = {
+  data: ThreadUpdateWithoutParticipantsDataInput;
   where: ThreadWhereUniqueInput;
 };
 
-export type ThreadUpsertWithoutMessageInput = {
-  create: ThreadCreateWithoutMessageInput;
-  update: ThreadUpdateWithoutMessageDataInput;
+export type ThreadUpsertWithoutMessagesInput = {
+  create: ThreadCreateWithoutMessagesInput;
+  update: ThreadUpdateWithoutMessagesDataInput;
 };
 
-export type ThreadUpsertWithoutNotificationInput = {
-  create: ThreadCreateWithoutNotificationInput;
-  update: ThreadUpdateWithoutNotificationDataInput;
-};
-
-export type ThreadUpsertWithWhereUniqueWithoutUserInput = {
-  create: ThreadCreateWithoutUserInput;
-  update: ThreadUpdateWithoutUserDataInput;
+export type ThreadUpsertWithWhereUniqueWithoutParticipantsInput = {
+  create: ThreadCreateWithoutParticipantsInput;
+  update: ThreadUpdateWithoutParticipantsDataInput;
   where: ThreadWhereUniqueInput;
 };
 
@@ -3577,7 +4771,7 @@ export type User = {
   notifications?: Maybe<Array<Notification>>;
   pods?: Maybe<Array<Pod>>;
   posts?: Maybe<Array<Post>>;
-  id: Scalars["String"];
+  privateHash: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<Array<Question>>;
   reviews?: Maybe<Array<Review>>;
@@ -3630,8 +4824,8 @@ export type UserMemberOfArgs = {
 };
 
 export type UserMemberOfPostsArgs = {
-  id?: Maybe<Scalars["ID"]>;
-  privateHash?: Maybe<Scalars["String"]>;
+  postId?: Maybe<Scalars["String"]>;
+  userId?: Maybe<Scalars["ID"]>;
 };
 
 export type UserNotificationsArgs = {
@@ -3704,10 +4898,14 @@ export type UserCreateInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  id: Scalars["String"];
+  privateHash: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
+  recievedNotifications?: Maybe<
+    NotificationCreateOneWithoutRecievedNotificationsInput
+  >;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
+  sentNotifications?: Maybe<NotificationCreateOneWithoutSentNotificationsInput>;
   threads?: Maybe<ThreadCreateManyWithoutThreadsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed: Scalars["Int"];
@@ -3733,6 +4931,21 @@ export type UserCreateManyWithoutMembersInput = {
   create?: Maybe<Array<UserCreateWithoutMemberOfInput>>;
 };
 
+export type UserCreateManyWithoutParticipantsInput = {
+  connect?: Maybe<Array<UserWhereUniqueInput>>;
+  create?: Maybe<Array<UserCreateWithoutThreadsInput>>;
+};
+
+export type UserCreateOneWithoutReceiverInput = {
+  connect?: Maybe<UserWhereUniqueInput>;
+  create?: Maybe<UserCreateWithoutRecievedNotificationsInput>;
+};
+
+export type UserCreateOneWithoutSenderInput = {
+  connect?: Maybe<UserWhereUniqueInput>;
+  create?: Maybe<UserCreateWithoutSentNotificationsInput>;
+};
+
 export type UserCreateOneWithoutUserInput = {
   connect?: Maybe<UserWhereUniqueInput>;
   create?: Maybe<UserCreateWithoutPodsInput>;
@@ -3751,10 +4964,14 @@ export type UserCreateWithoutAnnotationsInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  id: Scalars["String"];
+  privateHash: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
+  recievedNotifications?: Maybe<
+    NotificationCreateOneWithoutRecievedNotificationsInput
+  >;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
+  sentNotifications?: Maybe<NotificationCreateOneWithoutSentNotificationsInput>;
   threads?: Maybe<ThreadCreateManyWithoutThreadsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed: Scalars["Int"];
@@ -3778,10 +4995,14 @@ export type UserCreateWithoutFavoritesInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  id: Scalars["String"];
+  privateHash: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
+  recievedNotifications?: Maybe<
+    NotificationCreateOneWithoutRecievedNotificationsInput
+  >;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
+  sentNotifications?: Maybe<NotificationCreateOneWithoutSentNotificationsInput>;
   threads?: Maybe<ThreadCreateManyWithoutThreadsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed: Scalars["Int"];
@@ -3805,10 +5026,14 @@ export type UserCreateWithoutFollowersInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  id: Scalars["String"];
+  privateHash: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
+  recievedNotifications?: Maybe<
+    NotificationCreateOneWithoutRecievedNotificationsInput
+  >;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
+  sentNotifications?: Maybe<NotificationCreateOneWithoutSentNotificationsInput>;
   threads?: Maybe<ThreadCreateManyWithoutThreadsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed: Scalars["Int"];
@@ -3832,10 +5057,14 @@ export type UserCreateWithoutFollowingInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  id: Scalars["String"];
+  privateHash: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
+  recievedNotifications?: Maybe<
+    NotificationCreateOneWithoutRecievedNotificationsInput
+  >;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
+  sentNotifications?: Maybe<NotificationCreateOneWithoutSentNotificationsInput>;
   threads?: Maybe<ThreadCreateManyWithoutThreadsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed: Scalars["Int"];
@@ -3859,10 +5088,14 @@ export type UserCreateWithoutMemberOfInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  id: Scalars["String"];
+  privateHash: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
+  recievedNotifications?: Maybe<
+    NotificationCreateOneWithoutRecievedNotificationsInput
+  >;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
+  sentNotifications?: Maybe<NotificationCreateOneWithoutSentNotificationsInput>;
   threads?: Maybe<ThreadCreateManyWithoutThreadsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed: Scalars["Int"];
@@ -3886,10 +5119,14 @@ export type UserCreateWithoutMessageInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  id: Scalars["String"];
+  privateHash: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
+  recievedNotifications?: Maybe<
+    NotificationCreateOneWithoutRecievedNotificationsInput
+  >;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
+  sentNotifications?: Maybe<NotificationCreateOneWithoutSentNotificationsInput>;
   threads?: Maybe<ThreadCreateManyWithoutThreadsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed: Scalars["Int"];
@@ -3913,10 +5150,14 @@ export type UserCreateWithoutNotificationsInput = {
   message?: Maybe<MessageCreateOneWithoutMessageInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  id: Scalars["String"];
+  privateHash: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
+  recievedNotifications?: Maybe<
+    NotificationCreateOneWithoutRecievedNotificationsInput
+  >;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
+  sentNotifications?: Maybe<NotificationCreateOneWithoutSentNotificationsInput>;
   threads?: Maybe<ThreadCreateManyWithoutThreadsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed: Scalars["Int"];
@@ -3940,10 +5181,14 @@ export type UserCreateWithoutPodsInput = {
   message?: Maybe<MessageCreateOneWithoutMessageInput>;
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  id: Scalars["String"];
+  privateHash: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
+  recievedNotifications?: Maybe<
+    NotificationCreateOneWithoutRecievedNotificationsInput
+  >;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
+  sentNotifications?: Maybe<NotificationCreateOneWithoutSentNotificationsInput>;
   threads?: Maybe<ThreadCreateManyWithoutThreadsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed: Scalars["Int"];
@@ -3967,10 +5212,14 @@ export type UserCreateWithoutPostsInput = {
   message?: Maybe<MessageCreateOneWithoutMessageInput>;
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
-  id: Scalars["String"];
+  privateHash: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
+  recievedNotifications?: Maybe<
+    NotificationCreateOneWithoutRecievedNotificationsInput
+  >;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
+  sentNotifications?: Maybe<NotificationCreateOneWithoutSentNotificationsInput>;
   threads?: Maybe<ThreadCreateManyWithoutThreadsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed: Scalars["Int"];
@@ -3995,9 +5244,42 @@ export type UserCreateWithoutQuestionsInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  id: Scalars["String"];
+  privateHash: Scalars["String"];
   publicHash: Scalars["String"];
+  recievedNotifications?: Maybe<
+    NotificationCreateOneWithoutRecievedNotificationsInput
+  >;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
+  sentNotifications?: Maybe<NotificationCreateOneWithoutSentNotificationsInput>;
+  threads?: Maybe<ThreadCreateManyWithoutThreadsInput>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+  userConfirmed: Scalars["Int"];
+  userDeleted?: Maybe<Scalars["Boolean"]>;
+  userEmail: Scalars["String"];
+  userMeta?: Maybe<UserMetaCreateManyWithoutUserMetaInput>;
+  userPassword: Scalars["String"];
+  userType: Scalars["Int"];
+};
+
+export type UserCreateWithoutRecievedNotificationsInput = {
+  annotations?: Maybe<AnnotationCreateManyWithoutAnnotationsInput>;
+  confirmHash: Scalars["String"];
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  favorites?: Maybe<FavoriteCreateManyWithoutFavoritesInput>;
+  followers?: Maybe<UserCreateManyWithoutFollowersInput>;
+  following?: Maybe<UserCreateManyWithoutFollowingInput>;
+  forgotHash: Scalars["String"];
+  id?: Maybe<Scalars["ID"]>;
+  memberOf?: Maybe<PodCreateManyWithoutMemberOfInput>;
+  message?: Maybe<MessageCreateOneWithoutMessageInput>;
+  notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
+  pods?: Maybe<PodCreateManyWithoutPodsInput>;
+  posts?: Maybe<PostCreateManyWithoutPostsInput>;
+  privateHash: Scalars["String"];
+  publicHash: Scalars["String"];
+  questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
+  reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
+  sentNotifications?: Maybe<NotificationCreateOneWithoutSentNotificationsInput>;
   threads?: Maybe<ThreadCreateManyWithoutThreadsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed: Scalars["Int"];
@@ -4022,9 +5304,44 @@ export type UserCreateWithoutReviewsInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  id: Scalars["String"];
+  privateHash: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
+  recievedNotifications?: Maybe<
+    NotificationCreateOneWithoutRecievedNotificationsInput
+  >;
+  sentNotifications?: Maybe<NotificationCreateOneWithoutSentNotificationsInput>;
+  threads?: Maybe<ThreadCreateManyWithoutThreadsInput>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+  userConfirmed: Scalars["Int"];
+  userDeleted?: Maybe<Scalars["Boolean"]>;
+  userEmail: Scalars["String"];
+  userMeta?: Maybe<UserMetaCreateManyWithoutUserMetaInput>;
+  userPassword: Scalars["String"];
+  userType: Scalars["Int"];
+};
+
+export type UserCreateWithoutSentNotificationsInput = {
+  annotations?: Maybe<AnnotationCreateManyWithoutAnnotationsInput>;
+  confirmHash: Scalars["String"];
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  favorites?: Maybe<FavoriteCreateManyWithoutFavoritesInput>;
+  followers?: Maybe<UserCreateManyWithoutFollowersInput>;
+  following?: Maybe<UserCreateManyWithoutFollowingInput>;
+  forgotHash: Scalars["String"];
+  id?: Maybe<Scalars["ID"]>;
+  memberOf?: Maybe<PodCreateManyWithoutMemberOfInput>;
+  message?: Maybe<MessageCreateOneWithoutMessageInput>;
+  notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
+  pods?: Maybe<PodCreateManyWithoutPodsInput>;
+  posts?: Maybe<PostCreateManyWithoutPostsInput>;
+  privateHash: Scalars["String"];
+  publicHash: Scalars["String"];
+  questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
+  recievedNotifications?: Maybe<
+    NotificationCreateOneWithoutRecievedNotificationsInput
+  >;
+  reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
   threads?: Maybe<ThreadCreateManyWithoutThreadsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed: Scalars["Int"];
@@ -4049,10 +5366,14 @@ export type UserCreateWithoutThreadsInput = {
   notifications?: Maybe<NotificationCreateManyWithoutNotificationsInput>;
   pods?: Maybe<PodCreateManyWithoutPodsInput>;
   posts?: Maybe<PostCreateManyWithoutPostsInput>;
-  id: Scalars["String"];
+  privateHash: Scalars["String"];
   publicHash: Scalars["String"];
   questions?: Maybe<QuestionCreateManyWithoutQuestionsInput>;
+  recievedNotifications?: Maybe<
+    NotificationCreateOneWithoutRecievedNotificationsInput
+  >;
   reviews?: Maybe<ReviewCreateManyWithoutReviewsInput>;
+  sentNotifications?: Maybe<NotificationCreateOneWithoutSentNotificationsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed: Scalars["Int"];
   userDeleted?: Maybe<Scalars["Boolean"]>;
@@ -4156,8 +5477,10 @@ export type UserUpdateInput = {
   privateHash?: Maybe<Scalars["String"]>;
   publicHash?: Maybe<Scalars["String"]>;
   questions?: Maybe<QuestionUpdateManyWithoutUserInput>;
+  recievedNotifications?: Maybe<NotificationUpdateOneWithoutReceiverInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
-  threads?: Maybe<ThreadUpdateManyWithoutUserInput>;
+  sentNotifications?: Maybe<NotificationUpdateOneWithoutSenderInput>;
+  threads?: Maybe<ThreadUpdateManyWithoutParticipantsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed?: Maybe<Scalars["Int"]>;
   userDeleted?: Maybe<Scalars["Boolean"]>;
@@ -4218,6 +5541,18 @@ export type UserUpdateManyWithoutMemberOfInput = {
   upsert?: Maybe<Array<UserUpsertWithWhereUniqueWithoutMemberOfInput>>;
 };
 
+export type UserUpdateManyWithoutThreadsInput = {
+  connect?: Maybe<Array<UserWhereUniqueInput>>;
+  create?: Maybe<Array<UserCreateWithoutThreadsInput>>;
+  delete?: Maybe<Array<UserWhereUniqueInput>>;
+  deleteMany?: Maybe<Array<MutationUpdateOneThreadWhereInput>>;
+  disconnect?: Maybe<Array<UserWhereUniqueInput>>;
+  set?: Maybe<Array<UserWhereUniqueInput>>;
+  update?: Maybe<Array<UserUpdateWithWhereUniqueWithoutThreadsInput>>;
+  updateMany?: Maybe<Array<UserUpdateManyWithWhereNestedInput>>;
+  upsert?: Maybe<Array<UserUpsertWithWhereUniqueWithoutThreadsInput>>;
+};
+
 export type UserUpdateManyWithWhereNestedInput = {
   data: UserUpdateManyDataInput;
   where: MutationUpdateOneUserWhereInput;
@@ -4244,13 +5579,6 @@ export type UserUpdateOneRequiredWithoutMessageInput = {
   upsert?: Maybe<UserUpsertWithoutMessageInput>;
 };
 
-export type UserUpdateOneRequiredWithoutNotificationsInput = {
-  connect?: Maybe<UserWhereUniqueInput>;
-  create?: Maybe<UserCreateWithoutNotificationsInput>;
-  update?: Maybe<UserUpdateWithoutNotificationsDataInput>;
-  upsert?: Maybe<UserUpsertWithoutNotificationsInput>;
-};
-
 export type UserUpdateOneRequiredWithoutPodsInput = {
   connect?: Maybe<UserWhereUniqueInput>;
   create?: Maybe<UserCreateWithoutPodsInput>;
@@ -4272,6 +5600,13 @@ export type UserUpdateOneRequiredWithoutQuestionsInput = {
   upsert?: Maybe<UserUpsertWithoutQuestionsInput>;
 };
 
+export type UserUpdateOneRequiredWithoutRecievedNotificationsInput = {
+  connect?: Maybe<UserWhereUniqueInput>;
+  create?: Maybe<UserCreateWithoutRecievedNotificationsInput>;
+  update?: Maybe<UserUpdateWithoutRecievedNotificationsDataInput>;
+  upsert?: Maybe<UserUpsertWithoutRecievedNotificationsInput>;
+};
+
 export type UserUpdateOneRequiredWithoutReviewsInput = {
   connect?: Maybe<UserWhereUniqueInput>;
   create?: Maybe<UserCreateWithoutReviewsInput>;
@@ -4279,11 +5614,20 @@ export type UserUpdateOneRequiredWithoutReviewsInput = {
   upsert?: Maybe<UserUpsertWithoutReviewsInput>;
 };
 
-export type UserUpdateOneRequiredWithoutThreadsInput = {
+export type UserUpdateOneRequiredWithoutSentNotificationsInput = {
   connect?: Maybe<UserWhereUniqueInput>;
-  create?: Maybe<UserCreateWithoutThreadsInput>;
-  update?: Maybe<UserUpdateWithoutThreadsDataInput>;
-  upsert?: Maybe<UserUpsertWithoutThreadsInput>;
+  create?: Maybe<UserCreateWithoutSentNotificationsInput>;
+  update?: Maybe<UserUpdateWithoutSentNotificationsDataInput>;
+  upsert?: Maybe<UserUpsertWithoutSentNotificationsInput>;
+};
+
+export type UserUpdateOneWithoutNotificationsInput = {
+  connect?: Maybe<UserWhereUniqueInput>;
+  create?: Maybe<UserCreateWithoutNotificationsInput>;
+  delete?: Maybe<Scalars["Boolean"]>;
+  disconnect?: Maybe<Scalars["Boolean"]>;
+  update?: Maybe<UserUpdateWithoutNotificationsDataInput>;
+  upsert?: Maybe<UserUpsertWithoutNotificationsInput>;
 };
 
 export type UserUpdateWithoutAnnotationsDataInput = {
@@ -4302,8 +5646,10 @@ export type UserUpdateWithoutAnnotationsDataInput = {
   privateHash?: Maybe<Scalars["String"]>;
   publicHash?: Maybe<Scalars["String"]>;
   questions?: Maybe<QuestionUpdateManyWithoutUserInput>;
+  recievedNotifications?: Maybe<NotificationUpdateOneWithoutReceiverInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
-  threads?: Maybe<ThreadUpdateManyWithoutUserInput>;
+  sentNotifications?: Maybe<NotificationUpdateOneWithoutSenderInput>;
+  threads?: Maybe<ThreadUpdateManyWithoutParticipantsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed?: Maybe<Scalars["Int"]>;
   userDeleted?: Maybe<Scalars["Boolean"]>;
@@ -4329,8 +5675,10 @@ export type UserUpdateWithoutFavoritesDataInput = {
   privateHash?: Maybe<Scalars["String"]>;
   publicHash?: Maybe<Scalars["String"]>;
   questions?: Maybe<QuestionUpdateManyWithoutUserInput>;
+  recievedNotifications?: Maybe<NotificationUpdateOneWithoutReceiverInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
-  threads?: Maybe<ThreadUpdateManyWithoutUserInput>;
+  sentNotifications?: Maybe<NotificationUpdateOneWithoutSenderInput>;
+  threads?: Maybe<ThreadUpdateManyWithoutParticipantsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed?: Maybe<Scalars["Int"]>;
   userDeleted?: Maybe<Scalars["Boolean"]>;
@@ -4356,8 +5704,10 @@ export type UserUpdateWithoutFollowersDataInput = {
   privateHash?: Maybe<Scalars["String"]>;
   publicHash?: Maybe<Scalars["String"]>;
   questions?: Maybe<QuestionUpdateManyWithoutUserInput>;
+  recievedNotifications?: Maybe<NotificationUpdateOneWithoutReceiverInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
-  threads?: Maybe<ThreadUpdateManyWithoutUserInput>;
+  sentNotifications?: Maybe<NotificationUpdateOneWithoutSenderInput>;
+  threads?: Maybe<ThreadUpdateManyWithoutParticipantsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed?: Maybe<Scalars["Int"]>;
   userDeleted?: Maybe<Scalars["Boolean"]>;
@@ -4383,8 +5733,10 @@ export type UserUpdateWithoutFollowingDataInput = {
   privateHash?: Maybe<Scalars["String"]>;
   publicHash?: Maybe<Scalars["String"]>;
   questions?: Maybe<QuestionUpdateManyWithoutUserInput>;
+  recievedNotifications?: Maybe<NotificationUpdateOneWithoutReceiverInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
-  threads?: Maybe<ThreadUpdateManyWithoutUserInput>;
+  sentNotifications?: Maybe<NotificationUpdateOneWithoutSenderInput>;
+  threads?: Maybe<ThreadUpdateManyWithoutParticipantsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed?: Maybe<Scalars["Int"]>;
   userDeleted?: Maybe<Scalars["Boolean"]>;
@@ -4410,8 +5762,10 @@ export type UserUpdateWithoutMemberOfDataInput = {
   privateHash?: Maybe<Scalars["String"]>;
   publicHash?: Maybe<Scalars["String"]>;
   questions?: Maybe<QuestionUpdateManyWithoutUserInput>;
+  recievedNotifications?: Maybe<NotificationUpdateOneWithoutReceiverInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
-  threads?: Maybe<ThreadUpdateManyWithoutUserInput>;
+  sentNotifications?: Maybe<NotificationUpdateOneWithoutSenderInput>;
+  threads?: Maybe<ThreadUpdateManyWithoutParticipantsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed?: Maybe<Scalars["Int"]>;
   userDeleted?: Maybe<Scalars["Boolean"]>;
@@ -4437,8 +5791,10 @@ export type UserUpdateWithoutMessageDataInput = {
   privateHash?: Maybe<Scalars["String"]>;
   publicHash?: Maybe<Scalars["String"]>;
   questions?: Maybe<QuestionUpdateManyWithoutUserInput>;
+  recievedNotifications?: Maybe<NotificationUpdateOneWithoutReceiverInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
-  threads?: Maybe<ThreadUpdateManyWithoutUserInput>;
+  sentNotifications?: Maybe<NotificationUpdateOneWithoutSenderInput>;
+  threads?: Maybe<ThreadUpdateManyWithoutParticipantsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed?: Maybe<Scalars["Int"]>;
   userDeleted?: Maybe<Scalars["Boolean"]>;
@@ -4464,8 +5820,10 @@ export type UserUpdateWithoutNotificationsDataInput = {
   privateHash?: Maybe<Scalars["String"]>;
   publicHash?: Maybe<Scalars["String"]>;
   questions?: Maybe<QuestionUpdateManyWithoutUserInput>;
+  recievedNotifications?: Maybe<NotificationUpdateOneWithoutReceiverInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
-  threads?: Maybe<ThreadUpdateManyWithoutUserInput>;
+  sentNotifications?: Maybe<NotificationUpdateOneWithoutSenderInput>;
+  threads?: Maybe<ThreadUpdateManyWithoutParticipantsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed?: Maybe<Scalars["Int"]>;
   userDeleted?: Maybe<Scalars["Boolean"]>;
@@ -4491,8 +5849,10 @@ export type UserUpdateWithoutPodsDataInput = {
   privateHash?: Maybe<Scalars["String"]>;
   publicHash?: Maybe<Scalars["String"]>;
   questions?: Maybe<QuestionUpdateManyWithoutUserInput>;
+  recievedNotifications?: Maybe<NotificationUpdateOneWithoutReceiverInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
-  threads?: Maybe<ThreadUpdateManyWithoutUserInput>;
+  sentNotifications?: Maybe<NotificationUpdateOneWithoutSenderInput>;
+  threads?: Maybe<ThreadUpdateManyWithoutParticipantsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed?: Maybe<Scalars["Int"]>;
   userDeleted?: Maybe<Scalars["Boolean"]>;
@@ -4518,8 +5878,10 @@ export type UserUpdateWithoutPostsDataInput = {
   privateHash?: Maybe<Scalars["String"]>;
   publicHash?: Maybe<Scalars["String"]>;
   questions?: Maybe<QuestionUpdateManyWithoutUserInput>;
+  recievedNotifications?: Maybe<NotificationUpdateOneWithoutReceiverInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
-  threads?: Maybe<ThreadUpdateManyWithoutUserInput>;
+  sentNotifications?: Maybe<NotificationUpdateOneWithoutSenderInput>;
+  threads?: Maybe<ThreadUpdateManyWithoutParticipantsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed?: Maybe<Scalars["Int"]>;
   userDeleted?: Maybe<Scalars["Boolean"]>;
@@ -4545,8 +5907,39 @@ export type UserUpdateWithoutQuestionsDataInput = {
   posts?: Maybe<PostUpdateManyWithoutUserInput>;
   privateHash?: Maybe<Scalars["String"]>;
   publicHash?: Maybe<Scalars["String"]>;
+  recievedNotifications?: Maybe<NotificationUpdateOneWithoutReceiverInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
-  threads?: Maybe<ThreadUpdateManyWithoutUserInput>;
+  sentNotifications?: Maybe<NotificationUpdateOneWithoutSenderInput>;
+  threads?: Maybe<ThreadUpdateManyWithoutParticipantsInput>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+  userConfirmed?: Maybe<Scalars["Int"]>;
+  userDeleted?: Maybe<Scalars["Boolean"]>;
+  userEmail?: Maybe<Scalars["String"]>;
+  userMeta?: Maybe<UserMetaUpdateManyWithoutUserInput>;
+  userPassword?: Maybe<Scalars["String"]>;
+  userType?: Maybe<Scalars["Int"]>;
+};
+
+export type UserUpdateWithoutRecievedNotificationsDataInput = {
+  annotations?: Maybe<AnnotationUpdateManyWithoutUserInput>;
+  confirmHash?: Maybe<Scalars["String"]>;
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  favorites?: Maybe<FavoriteUpdateManyWithoutUserInput>;
+  followers?: Maybe<UserUpdateManyWithoutFollowingInput>;
+  following?: Maybe<UserUpdateManyWithoutFollowersInput>;
+  forgotHash?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars["ID"]>;
+  memberOf?: Maybe<PodUpdateManyWithoutMembersInput>;
+  message?: Maybe<MessageUpdateOneWithoutUserInput>;
+  notifications?: Maybe<NotificationUpdateManyWithoutUserInput>;
+  pods?: Maybe<PodUpdateManyWithoutUserInput>;
+  posts?: Maybe<PostUpdateManyWithoutUserInput>;
+  privateHash?: Maybe<Scalars["String"]>;
+  publicHash?: Maybe<Scalars["String"]>;
+  questions?: Maybe<QuestionUpdateManyWithoutUserInput>;
+  reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
+  sentNotifications?: Maybe<NotificationUpdateOneWithoutSenderInput>;
+  threads?: Maybe<ThreadUpdateManyWithoutParticipantsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed?: Maybe<Scalars["Int"]>;
   userDeleted?: Maybe<Scalars["Boolean"]>;
@@ -4573,7 +5966,38 @@ export type UserUpdateWithoutReviewsDataInput = {
   privateHash?: Maybe<Scalars["String"]>;
   publicHash?: Maybe<Scalars["String"]>;
   questions?: Maybe<QuestionUpdateManyWithoutUserInput>;
-  threads?: Maybe<ThreadUpdateManyWithoutUserInput>;
+  recievedNotifications?: Maybe<NotificationUpdateOneWithoutReceiverInput>;
+  sentNotifications?: Maybe<NotificationUpdateOneWithoutSenderInput>;
+  threads?: Maybe<ThreadUpdateManyWithoutParticipantsInput>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+  userConfirmed?: Maybe<Scalars["Int"]>;
+  userDeleted?: Maybe<Scalars["Boolean"]>;
+  userEmail?: Maybe<Scalars["String"]>;
+  userMeta?: Maybe<UserMetaUpdateManyWithoutUserInput>;
+  userPassword?: Maybe<Scalars["String"]>;
+  userType?: Maybe<Scalars["Int"]>;
+};
+
+export type UserUpdateWithoutSentNotificationsDataInput = {
+  annotations?: Maybe<AnnotationUpdateManyWithoutUserInput>;
+  confirmHash?: Maybe<Scalars["String"]>;
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  favorites?: Maybe<FavoriteUpdateManyWithoutUserInput>;
+  followers?: Maybe<UserUpdateManyWithoutFollowingInput>;
+  following?: Maybe<UserUpdateManyWithoutFollowersInput>;
+  forgotHash?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars["ID"]>;
+  memberOf?: Maybe<PodUpdateManyWithoutMembersInput>;
+  message?: Maybe<MessageUpdateOneWithoutUserInput>;
+  notifications?: Maybe<NotificationUpdateManyWithoutUserInput>;
+  pods?: Maybe<PodUpdateManyWithoutUserInput>;
+  posts?: Maybe<PostUpdateManyWithoutUserInput>;
+  privateHash?: Maybe<Scalars["String"]>;
+  publicHash?: Maybe<Scalars["String"]>;
+  questions?: Maybe<QuestionUpdateManyWithoutUserInput>;
+  recievedNotifications?: Maybe<NotificationUpdateOneWithoutReceiverInput>;
+  reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
+  threads?: Maybe<ThreadUpdateManyWithoutParticipantsInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed?: Maybe<Scalars["Int"]>;
   userDeleted?: Maybe<Scalars["Boolean"]>;
@@ -4600,7 +6024,9 @@ export type UserUpdateWithoutThreadsDataInput = {
   privateHash?: Maybe<Scalars["String"]>;
   publicHash?: Maybe<Scalars["String"]>;
   questions?: Maybe<QuestionUpdateManyWithoutUserInput>;
+  recievedNotifications?: Maybe<NotificationUpdateOneWithoutReceiverInput>;
   reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
+  sentNotifications?: Maybe<NotificationUpdateOneWithoutSenderInput>;
   updatedAt?: Maybe<Scalars["DateTime"]>;
   userConfirmed?: Maybe<Scalars["Int"]>;
   userDeleted?: Maybe<Scalars["Boolean"]>;
@@ -4622,6 +6048,11 @@ export type UserUpdateWithWhereUniqueWithoutFollowingInput = {
 
 export type UserUpdateWithWhereUniqueWithoutMemberOfInput = {
   data: UserUpdateWithoutMemberOfDataInput;
+  where: UserWhereUniqueInput;
+};
+
+export type UserUpdateWithWhereUniqueWithoutThreadsInput = {
+  data: UserUpdateWithoutThreadsDataInput;
   where: UserWhereUniqueInput;
 };
 
@@ -4660,14 +6091,19 @@ export type UserUpsertWithoutQuestionsInput = {
   update: UserUpdateWithoutQuestionsDataInput;
 };
 
+export type UserUpsertWithoutRecievedNotificationsInput = {
+  create: UserCreateWithoutRecievedNotificationsInput;
+  update: UserUpdateWithoutRecievedNotificationsDataInput;
+};
+
 export type UserUpsertWithoutReviewsInput = {
   create: UserCreateWithoutReviewsInput;
   update: UserUpdateWithoutReviewsDataInput;
 };
 
-export type UserUpsertWithoutThreadsInput = {
-  create: UserCreateWithoutThreadsInput;
-  update: UserUpdateWithoutThreadsDataInput;
+export type UserUpsertWithoutSentNotificationsInput = {
+  create: UserCreateWithoutSentNotificationsInput;
+  update: UserUpdateWithoutSentNotificationsDataInput;
 };
 
 export type UserUpsertWithWhereUniqueWithoutFollowersInput = {
@@ -4685,6 +6121,12 @@ export type UserUpsertWithWhereUniqueWithoutFollowingInput = {
 export type UserUpsertWithWhereUniqueWithoutMemberOfInput = {
   create: UserCreateWithoutMemberOfInput;
   update: UserUpdateWithoutMemberOfDataInput;
+  where: UserWhereUniqueInput;
+};
+
+export type UserUpsertWithWhereUniqueWithoutThreadsInput = {
+  create: UserCreateWithoutThreadsInput;
+  update: UserUpdateWithoutThreadsDataInput;
   where: UserWhereUniqueInput;
 };
 
@@ -4769,17 +6211,67 @@ export type CategoriesPodsPostsQuery = { __typename?: "Query" } & {
   >;
 };
 
-export type AllPodsQueryVariables = {};
+export type NotificationsQueryVariables = {
+  id?: Maybe<Scalars["String"]>;
+  first?: Maybe<Scalars["Int"]>;
+};
 
-export type AllPodsQuery = { __typename?: "Query" } & {
-  findManyPod: Maybe<
+export type NotificationsQuery = { __typename?: "Query" } & {
+  findManyNotification: Maybe<
     Array<
-      { __typename?: "Pod" } & Pick<Pod, "id" | "itemName" | "itemContent"> & {
+      { __typename?: "Notification" } & Pick<
+        Notification,
+        "id" | "itemName" | "itemContent"
+      > & {
+          sender: { __typename?: "User" } & Pick<User, "id" | "userEmail"> & {
+              userMeta: Maybe<
+                Array<
+                  { __typename?: "UserMeta" } & Pick<
+                    UserMeta,
+                    "id" | "metaName" | "metaValue"
+                  >
+                >
+              >;
+            };
+          receiver: { __typename?: "User" } & Pick<User, "id" | "userEmail"> & {
+              userMeta: Maybe<
+                Array<
+                  { __typename?: "UserMeta" } & Pick<
+                    UserMeta,
+                    "id" | "metaName" | "metaValue"
+                  >
+                >
+              >;
+            };
+          pod: Maybe<
+            { __typename?: "Pod" } & Pick<Pod, "id" | "itemName"> & {
+                itemMeta: Maybe<
+                  Array<
+                    { __typename?: "PodMeta" } & Pick<
+                      PodMeta,
+                      "id" | "metaName" | "metaValue"
+                    >
+                  >
+                >;
+              }
+          >;
+          post: Maybe<
+            { __typename?: "Post" } & Pick<Post, "id" | "itemName"> & {
+                itemMeta: Maybe<
+                  Array<
+                    { __typename?: "PostMeta" } & Pick<
+                      PostMeta,
+                      "id" | "metaName" | "metaValue"
+                    >
+                  >
+                >;
+              }
+          >;
           itemMeta: Maybe<
             Array<
-              { __typename?: "PodMeta" } & Pick<
-                PodMeta,
-                "metaName" | "metaValue"
+              { __typename?: "NotificationMeta" } & Pick<
+                NotificationMeta,
+                "id" | "metaName" | "metaValue"
               >
             >
           >;
@@ -4788,11 +6280,110 @@ export type AllPodsQuery = { __typename?: "Query" } & {
   >;
 };
 
+export type PodFragmentFragment = { __typename?: "Pod" } & Pick<
+  Pod,
+  "id" | "itemName" | "itemContent"
+> & {
+    itemMeta: Maybe<
+      Array<
+        { __typename?: "PodMeta" } & Pick<
+          PodMeta,
+          "id" | "metaName" | "metaValue"
+        >
+      >
+    >;
+    posts: Maybe<
+      Array<
+        { __typename?: "Post" } & Pick<Post, "id" | "itemName"> & {
+            itemMeta: Maybe<
+              Array<
+                { __typename?: "PostMeta" } & Pick<
+                  PostMeta,
+                  "id" | "metaName" | "metaValue"
+                >
+              >
+            >;
+          }
+      >
+    >;
+    members: Maybe<
+      Array<{ __typename?: "User" } & Pick<User, "id" | "userEmail">>
+    >;
+  };
+
+export type AllPodsQueryVariables = {};
+
+export type AllPodsQuery = { __typename?: "Query" } & {
+  findManyPod: Maybe<Array<{ __typename?: "Pod" } & PodFragmentFragment>>;
+};
+
+export type PodsQueryVariables = {
+  search?: Maybe<Scalars["String"]>;
+};
+
+export type PodsQuery = { __typename?: "Query" } & {
+  findManyPod: Maybe<Array<{ __typename?: "Pod" } & PodFragmentFragment>>;
+};
+
+export type PostsQueryVariables = {
+  search?: Maybe<Scalars["String"]>;
+};
+
+export type PostsQuery = { __typename?: "Query" } & {
+  findManyPost: Maybe<Array<{ __typename?: "Post" } & Pick<Post, "id">>>;
+};
+
 export type AllTagsQueryVariables = {};
 
 export type AllTagsQuery = { __typename?: "Query" } & {
   findManyTag: Maybe<
     Array<{ __typename?: "Tag" } & Pick<Tag, "id" | "itemName">>
+  >;
+};
+
+export type ThreadsQueryVariables = {};
+
+export type ThreadsQuery = { __typename?: "Query" } & {
+  findManyThread: Maybe<
+    Array<
+      { __typename?: "Thread" } & Pick<
+        Thread,
+        "id" | "itemName" | "itemContent"
+      > & {
+          participants: Maybe<
+            Array<{ __typename?: "User" } & Pick<User, "id" | "userEmail">>
+          >;
+          itemMeta: Maybe<
+            Array<
+              { __typename?: "ThreadMeta" } & Pick<
+                ThreadMeta,
+                "id" | "metaName" | "metaValue"
+              >
+            >
+          >;
+          messages: Maybe<
+            Array<
+              { __typename?: "Message" } & Pick<
+                Message,
+                "id" | "itemName" | "itemContent"
+              > & {
+                  user: { __typename?: "User" } & Pick<
+                    User,
+                    "id" | "userEmail"
+                  >;
+                  itemMeta: Maybe<
+                    Array<
+                      { __typename?: "MessageMeta" } & Pick<
+                        MessageMeta,
+                        "id" | "metaName" | "metaValue"
+                      >
+                    >
+                  >;
+                }
+            >
+          >;
+        }
+    >
   >;
 };
 
@@ -4810,7 +6401,7 @@ export type FindUserQuery = { __typename?: "Query" } & {
 };
 
 export type PrivateUserQueryVariables = {
-  privateHash?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars["ID"]>;
 };
 
 export type PrivateUserQuery = { __typename?: "Query" } & {
@@ -4818,7 +6409,7 @@ export type PrivateUserQuery = { __typename?: "Query" } & {
 };
 
 export type UserJoinedPodsQueryVariables = {
-  privateHash?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars["ID"]>;
 };
 
 export type UserJoinedPodsQuery = { __typename?: "Query" } & {
@@ -4860,8 +6451,8 @@ export type UserJoinedPodsQuery = { __typename?: "Query" } & {
 };
 
 export type JoinedPodsPostsQueryVariables = {
-  id?: Maybe<Scalars["ID"]>;
-  privateHash?: Maybe<Scalars["String"]>;
+  userId?: Maybe<Scalars["ID"]>;
+  postId?: Maybe<Scalars["String"]>;
 };
 
 export type JoinedPodsPostsQuery = { __typename?: "Query" } & {
@@ -4882,5 +6473,19 @@ export type JoinedPodsPostsQuery = { __typename?: "Query" } & {
         >
       >;
     } & UserFragmentFragment
+  >;
+};
+
+export type SearchUserMetaQueryVariables = {
+  search?: Maybe<Scalars["String"]>;
+};
+
+export type SearchUserMetaQuery = { __typename?: "Query" } & {
+  findManyUserMeta: Maybe<
+    Array<
+      { __typename?: "UserMeta" } & {
+        user: { __typename?: "User" } & Pick<User, "id" | "userEmail">;
+      }
+    >
   >;
 };
