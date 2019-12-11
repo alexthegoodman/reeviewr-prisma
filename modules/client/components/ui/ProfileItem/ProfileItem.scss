@@ -3,7 +3,7 @@
   box-shadow: none;
   border: none;
   background: transparent;
-  min-width: 200px;
+  // min-width: 200px;
   justify-content: center;
 
   margin: 0 $mobile;
@@ -31,6 +31,8 @@
       .name {
         font-size: 0.9rem;
         letter-spacing: 1.24px;
+        display: flex;
+        flex-direction: row;
 
         .bp3-icon {
           margin-left: 4px;
@@ -39,6 +41,13 @@
       .points {
         font-size: 0.8rem;
         letter-spacing: 1.06px;
+      }
+
+      @include desktopDown {
+        .nameLabel,
+        .points {
+          display: none;
+        }
       }
     }
   }

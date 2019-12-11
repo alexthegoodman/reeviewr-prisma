@@ -30,7 +30,7 @@ const ProfileItem: React.FC<ProfileItemProps> = ({
       </div>
       <div className="info">
         <Text className="name" tagName="span">
-          {name}
+          <Text className="nameLabel">{name}</Text>
           <Icon icon="chevron-down" />
         </Text>
         <Text className="points" tagName="span">

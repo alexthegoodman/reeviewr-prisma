@@ -6,8 +6,6 @@ import Legacy from "../../services/Legacy";
 import Utility from "../../services/Utility";
 import AppNav from "../components/layout/AppNav/AppNav";
 import AuthNav from "../components/layout/AuthNav/AuthNav";
-import ArtistDetail from "../components/pages/ArtistDetail/ArtistDetail";
-import Artists from "../components/pages/Artists/Artists";
 import CompleteProfile from "../components/pages/CompleteProfile/CompleteProfile";
 import ConfirmEmail from "../components/pages/ConfirmEmail/ConfirmEmail";
 import CreatePod from "../components/pages/CreatePod/CreatePod";
@@ -15,7 +13,6 @@ import CreatePost from "../components/pages/CreatePost/CreatePost";
 import Explore from "../components/pages/Explore/Explore";
 import FindPeople from "../components/pages/FindPeople/FindPeople";
 import ForgotPassword from "../components/pages/ForgotPassword/ForgotPassword";
-import Home from "../components/pages/Home/Home";
 import InviteFriends from "../components/pages/InviteFriends/InviteFriends";
 import JoinedPods from "../components/pages/JoinedPods/JoinedPods";
 import MailchimpPods070619 from "../components/pages/landing/MailchimpPods070619/MailchimpPods070619";
@@ -165,6 +162,22 @@ const routes = mount({
       ),
     };
   }),
+  "/pods/:podId/:slug/edit": route(req => {
+    const { podId, slug } = req.params;
+
+    return {
+      title: "Edit Pod / Reeviewr",
+      head: (
+        <>
+          <link
+            rel="canonical"
+            href={`https://reeviewr.com/pods/${podId}/${slug}/edit`}
+          />
+        </>
+      ),
+      view: <AppNav></AppNav>,
+    };
+  }),
   "/pods/create": route(req => {
     return {
       title: "Create Pod / Reeviewr",
@@ -198,6 +211,22 @@ const routes = mount({
           <PostDetail />
         </AppNav>
       ),
+    };
+  }),
+  "/posts/:postId/:slug/edit": route(req => {
+    const { postId, slug } = req.params;
+
+    return {
+      title: "Edit Post / Reeviewr",
+      head: (
+        <>
+          <link
+            rel="canonical"
+            href={`https://reeviewr.com/posts/${postId}/${slug}/edit`}
+          />
+        </>
+      ),
+      view: <AppNav></AppNav>,
     };
   }),
   "/posts/create": route(req => {
