@@ -14,6 +14,7 @@ const PodFragments = {
       livePosts {
         id
         itemName
+        itemUrlSegment
         itemMeta {
           id
           metaName

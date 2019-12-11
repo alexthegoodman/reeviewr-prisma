@@ -2,7 +2,10 @@ import gql from "graphql-tag";
 
 export const GET_NOTIFICATIONS = gql`
   query notifications($id: String, $first: Int) {
-    findManyNotification(where: { receiver: { id: { equals: $id } } }, first: $first) {
+    findManyNotification(
+      where: { receiver: { id: { equals: $id } } }
+      first: $first
+    ) {
       id
       itemName
       itemContent
@@ -36,6 +39,7 @@ export const GET_NOTIFICATIONS = gql`
       post {
         id
         itemName
+        itemUrlSegment
         itemMeta {
           id
           metaName

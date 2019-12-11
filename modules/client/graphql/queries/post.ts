@@ -4,6 +4,7 @@ export const POSTS_QUERY = gql`
   query posts($search: String) {
     findManyPost(where: { itemName: { contains: $search } }) {
       id
+      itemUrlSegment
     }
   }
 `;

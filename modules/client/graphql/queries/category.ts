@@ -29,6 +29,7 @@ export const CATEGORIES_PODS_POSTS = gql`
         livePosts(first: 2) {
           id
           itemName
+          itemUrlSegment
           itemMeta {
             id
             metaName

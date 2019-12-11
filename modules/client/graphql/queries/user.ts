@@ -77,6 +77,7 @@ export const USER_JOINED_PODS = gql`
         livePosts(first: 2) {
           id
           itemName
+          itemUrlSegment
           itemMeta {
             id
             metaName

@@ -4,6 +4,7 @@ import { Button, Icon, Menu, Popover, Position, Text } from "@blueprintjs/core";
 import { Link } from "react-navi";
 import MenuItem from "../MenuItem/MenuItem";
 import { PostCardProps } from "./PostCard.d";
+import PostCtrls from "../PostCtrls/PostCtrls";
 
 const PostCard: React.FC<PostCardProps> = ({
   ref = null,
@@ -24,13 +25,7 @@ const PostCard: React.FC<PostCardProps> = ({
               {post.itemName}
             </Text>
             <Popover
-              content={
-                <Menu className="dropdown">
-                  <MenuItem>Report</MenuItem>
-                  <MenuItem>Edit</MenuItem>
-                  <MenuItem>Delete</MenuItem>
-                </Menu>
-              }
+              content={<PostCtrls post={post} />}
               position={Position.BOTTOM_LEFT}
             >
               <Button className="moreButton" icon="more" />

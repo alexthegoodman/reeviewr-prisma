@@ -9,6 +9,7 @@ import MenuItem from "../MenuItem/MenuItem";
 import Hawaii from "../../../services/Hawaii";
 import Oahu from "../../../../services/Oahu";
 import { DELETE_POST } from "../../../graphql/mutations/post";
+import PostCtrls from "../PostCtrls/PostCtrls";
 
 const MiniPostCard: React.FC<MiniPostCardProps> = ({
   ref = null,
@@ -64,23 +65,7 @@ const MiniPostCard: React.FC<MiniPostCardProps> = ({
           </div>
           <div className="infoCtrls">
             <Popover
-              content={
-                <Menu className="dropdown">
-                  <MenuItem>Report</MenuItem>
-                  <MenuItem>Edit</MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      hawaii.itemClient
-                        .deleteItem(post.id, DELETE_POST)
-                        .then(data => {
-                          window.location.reload();
-                        });
-                    }}
-                  >
-                    Delete
-                  </MenuItem>
-                </Menu>
-              }
+              content={<PostCtrls post={post} />}
               position={Position.BOTTOM_LEFT}
             >
               <Button

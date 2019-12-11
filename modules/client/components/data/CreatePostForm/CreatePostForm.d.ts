@@ -2,6 +2,7 @@ export interface CreatePostFormProps {
   ref?: React.Ref<any>;
   className?: string;
   onClick?: (e: MouseEvent) => void;
+  initialValues?: any;
 }
 
 export interface CreatePostFormValues {

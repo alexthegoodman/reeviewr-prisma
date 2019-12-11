@@ -31,6 +31,8 @@ import SearchResults from "../components/pages/SearchResults/SearchResults";
 import SignUp from "../components/pages/SignUp/SignUp";
 import YourFeed from "../components/pages/YourFeed/YourFeed";
 import Strings from "../services/Strings";
+import EditPod from "../components/pages/EditPod/EditPod";
+import EditPost from "../components/pages/EditPost/EditPost";
 
 const utility = new Utility();
 const legacy = new Legacy();
@@ -175,7 +177,11 @@ const routes = mount({
           />
         </>
       ),
-      view: <AppNav></AppNav>,
+      view: (
+        <AppNav>
+          <EditPod />
+        </AppNav>
+      ),
     };
   }),
   "/pods/create": route(req => {
@@ -226,7 +232,11 @@ const routes = mount({
           />
         </>
       ),
-      view: <AppNav></AppNav>,
+      view: (
+        <AppNav>
+          <EditPost />
+        </AppNav>
+      ),
     };
   }),
   "/posts/create": route(req => {
