@@ -51,3 +51,9 @@ export const LEAVE_POD = gql`
     }
   }
 `;
+
+export const DELETE_USER = gql`
+  mutation deleteUser($id: ID) {
+    deleteOneUser(id: $id)
+  }
+`;

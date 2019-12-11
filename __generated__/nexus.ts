@@ -5258,6 +5258,14 @@ export interface NexusGenFieldTypes {
     createOneTag: NexusGenRootTypes['Tag']; // Tag!
     createOneThread: NexusGenRootTypes['Thread']; // Thread!
     createOneUser: NexusGenRootTypes['User']; // User!
+    deleteOneAnnotation: boolean | null; // Boolean
+    deleteOneMessage: boolean | null; // Boolean
+    deleteOnePod: boolean | null; // Boolean
+    deleteOnePost: boolean | null; // Boolean
+    deleteOneQuestion: boolean | null; // Boolean
+    deleteOneReview: boolean | null; // Boolean
+    deleteOneThread: boolean | null; // Boolean
+    deleteOneUser: boolean | null; // Boolean
     updateOneAnnotation: NexusGenRootTypes['Annotation'] | null; // Annotation
     updateOneCategory: NexusGenRootTypes['Category'] | null; // Category
     updateOneFavorite: NexusGenRootTypes['Favorite'] | null; // Favorite
@@ -5302,8 +5310,8 @@ export interface NexusGenFieldTypes {
     itemStatus: string; // String!
     itemType: string; // String!
     itemUrlSegment: string; // String!
+    livePosts: NexusGenRootTypes['Post'][] | null; // [Post!]
     members: NexusGenRootTypes['User'][] | null; // [User!]
-    posts: NexusGenRootTypes['Post'][] | null; // [Post!]
     user: NexusGenRootTypes['User']; // User!
   }
   PodMeta: { // field return type
@@ -5543,6 +5551,30 @@ export interface NexusGenArgTypes {
     createOneUser: { // args
       data: NexusGenInputs['UserCreateInput']; // UserCreateInput!
     }
+    deleteOneAnnotation: { // args
+      id?: string | null; // ID
+    }
+    deleteOneMessage: { // args
+      id?: string | null; // ID
+    }
+    deleteOnePod: { // args
+      id?: string | null; // ID
+    }
+    deleteOnePost: { // args
+      id?: string | null; // ID
+    }
+    deleteOneQuestion: { // args
+      id?: string | null; // ID
+    }
+    deleteOneReview: { // args
+      id?: string | null; // ID
+    }
+    deleteOneThread: { // args
+      id?: string | null; // ID
+    }
+    deleteOneUser: { // args
+      id?: string | null; // ID
+    }
     updateOneAnnotation: { // args
       data: NexusGenInputs['AnnotationUpdateInput']; // AnnotationUpdateInput!
       where: NexusGenInputs['AnnotationWhereUniqueInput']; // AnnotationWhereUniqueInput!
@@ -5616,14 +5648,10 @@ export interface NexusGenArgTypes {
       last?: number | null; // Int
       skip?: number | null; // Int
     }
-    members: { // args
-      after?: string | null; // String
-      before?: string | null; // String
+    livePosts: { // args
       first?: number | null; // Int
-      last?: number | null; // Int
-      skip?: number | null; // Int
     }
-    posts: { // args
+    members: { // args
       after?: string | null; // String
       before?: string | null; // String
       first?: number | null; // Int

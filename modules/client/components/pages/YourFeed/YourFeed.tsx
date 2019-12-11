@@ -22,21 +22,21 @@ const YourFeed: React.FC<YourFeedProps> = () => {
         QUERY={USER_JOINED_PODS_POSTS}
         loadingText="Loading pod's posts..."
         onFinish={data => setData(data)}
-        variables={{ id: null, id: cookies["reeviewrId"] }}
+        variables={{ userId: cookies["reeviewrId"], postId: null }}
       >
         {data !== null &&
-          data.findOneUser !== null &&
-          data.findOneUser.memberOfPosts !== null ? (
-            <section className="postWrapper">
-              <div className="postWrapperContain">
-                {data.findOneUser.memberOfPosts.map((post, i) => {
-                  return <PostCard key={i} post={post} />;
-                })}
-              </div>
-            </section>
-          ) : (
-            <NoResults />
-          )}
+        data.findOneUser !== null &&
+        data.findOneUser.memberOfPosts !== null ? (
+          <section className="postWrapper">
+            <div className="postWrapperContain">
+              {data.findOneUser.memberOfPosts.map((post, i) => {
+                return <PostCard key={i} post={post} />;
+              })}
+            </div>
+          </section>
+        ) : (
+          <NoResults />
+        )}
       </GraphQLData>
     </>
   );

@@ -770,6 +770,14 @@ type Mutation {
   createOneTag(data: TagCreateInput!): Tag!
   createOneThread(data: ThreadCreateInput!): Thread!
   createOneUser(data: UserCreateInput!): User!
+  deleteOneAnnotation(id: ID): Boolean
+  deleteOneMessage(id: ID): Boolean
+  deleteOnePod(id: ID): Boolean
+  deleteOnePost(id: ID): Boolean
+  deleteOneQuestion(id: ID): Boolean
+  deleteOneReview(id: ID): Boolean
+  deleteOneThread(id: ID): Boolean
+  deleteOneUser(id: ID): Boolean
   updateOneAnnotation(data: AnnotationUpdateInput!, where: AnnotationWhereUniqueInput!): Annotation
   updateOneCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category
   updateOneFavorite(data: FavoriteUpdateInput!, where: FavoriteWhereUniqueInput!): Favorite
@@ -1483,8 +1491,8 @@ type Pod {
   itemStatus: String!
   itemType: String!
   itemUrlSegment: String!
+  livePosts(first: Int): [Post!]
   members(after: String, before: String, first: Int, last: Int, skip: Int): [User!]
-  posts(after: String, before: String, first: Int, last: Int, skip: Int): [Post!]
   user: User!
 }
 

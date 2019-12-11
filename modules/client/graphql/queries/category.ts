@@ -26,7 +26,7 @@ export const CATEGORIES_PODS_POSTS = gql`
           id
           userEmail
         }
-        posts(first: 2) {
+        livePosts(first: 2) {
           id
           itemName
           itemMeta {

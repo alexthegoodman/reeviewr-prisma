@@ -1,9 +1,18 @@
 import * as React from "react";
 
-import { Button, Icon, Position, Text, Tooltip } from "@blueprintjs/core";
+import {
+  Button,
+  Icon,
+  Position,
+  Text,
+  Tooltip,
+  Popover,
+  Menu,
+} from "@blueprintjs/core";
 import JoinButton from "../JoinButton/JoinButton";
 import MiniPostCard from "../MiniPostCard/MiniPostCard";
 import { PodCardProps } from "./PodCard.d";
+import MenuItem from "../MenuItem/MenuItem";
 
 const PodCard: React.FC<PodCardProps> = ({
   ref = null,
@@ -18,7 +27,26 @@ const PodCard: React.FC<PodCardProps> = ({
           <Text className="podCardHeadline" tagName="span">
             {pod.itemName}
           </Text>
-          <JoinButton podId={pod.id} podMembers={pod.members} />
+          <div className="podCtrls">
+            <JoinButton podId={pod.id} podMembers={pod.members} />
+            <Popover
+              content={
+                <Menu className="dropdown">
+                  <MenuItem>Report</MenuItem>
+                  <MenuItem>Edit</MenuItem>
+                  <MenuItem>Delete</MenuItem>
+                </Menu>
+              }
+              position={Position.BOTTOM_LEFT}
+            >
+              <Button
+                className="cardCtrl"
+                minimal={true}
+                onClick={async () => {}}
+                icon="chevron-down"
+              />
+            </Popover>
+          </div>
         </div>
         <div className="podCardStats">
           <Tooltip content="50 Reviews" position={Position.BOTTOM}>
@@ -41,9 +69,13 @@ const PodCard: React.FC<PodCardProps> = ({
           </Tooltip>
         </div>
         <div className="podCardContent">
-          {pod.posts.map(post => {
-            return <MiniPostCard key={post.id} post={post} />;
-          })}
+          {pod.livePosts !== null ? (
+            pod.livePosts.map(post => {
+              return <MiniPostCard key={post.id} post={post} />;
+            })
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </section>

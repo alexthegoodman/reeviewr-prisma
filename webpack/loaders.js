@@ -7,6 +7,7 @@ module.exports = {
   typescript: {
     test: /\.(tsx?|jsx?)/,
     // exclude: /data-seed/,
+    exclude: /node_modules/,
     use: [
       {
         // loader: "happypack/loader?id=ts"
@@ -24,6 +25,7 @@ module.exports = {
   clientSideTypeScript: {
     test: /\.(tsx?|jsx?)/,
     // exclude: /data-seed/,
+    exclude: /node_modules/,
     use: [
       {
         // loader: "happypack/loader?id=ts",

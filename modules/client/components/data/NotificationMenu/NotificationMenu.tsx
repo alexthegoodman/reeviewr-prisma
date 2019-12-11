@@ -18,9 +18,14 @@ const NotificationMenu: React.FC<NotificationMenuProps> = ({
   return (
     <section className="notificationMenu">
       <div className="notificationMenuContain">
-        {notificationsData.findManyNotification.map((notification, i) => {
-          return <NotificationItem key={i} notification={notification} />;
-        })}
+        {typeof notificationsData !== "undefined" &&
+        notificationsData !== null ? (
+          notificationsData.findManyNotification.map((notification, i) => {
+            return <NotificationItem key={i} notification={notification} />;
+          })
+        ) : (
+          <></>
+        )}
         <Button
           className="dropdownMenuButton"
           onClick={() => navigation.navigate("/notifications/")}

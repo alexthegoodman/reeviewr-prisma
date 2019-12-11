@@ -3,7 +3,7 @@ import * as React from "react";
 import { MessengerReplyProps } from "./MessengerReply.d";
 import Utility from "../../../../services/Utility";
 import { EditorState } from "draft-js";
-import { Editor } from "react-draft-wysiwyg";
+// import { Editor } from "react-draft-wysiwyg";
 import { Button, Text } from "@blueprintjs/core";
 import { useAppContext } from "../../../context";
 
@@ -24,11 +24,14 @@ const MessengerReply: React.FC<MessengerReplyProps> = ({
     EditorState.createEmpty()
   );
 
-  if (utility.isDefinedWithContent(document)) {
+  if (
+    utility.isDefinedWithContent(document) &&
+    utility.isDefinedWithContent(window)
+  ) {
     // this editor has support for Mentions and Hashtags if needed
     return (
       <>
-        <Editor
+        {/* <Editor
           editorState={editorState}
           toolbarClassName="draftToolbar replyToolbar"
           wrapperClassName="draftWrapper replyWrapper"
@@ -55,7 +58,7 @@ const MessengerReply: React.FC<MessengerReplyProps> = ({
           >
             Send Message
           </Button>
-        )}
+        )} */}
       </>
     );
   } else {

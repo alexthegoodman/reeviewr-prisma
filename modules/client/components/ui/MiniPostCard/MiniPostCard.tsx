@@ -1,10 +1,14 @@
 import * as React from "react";
 
-import { Icon, Text } from "@blueprintjs/core";
+import { Icon, Text, Popover, Button, Position, Menu } from "@blueprintjs/core";
 import { Link } from "react-navi";
 import Core from "../../../../services/Core";
 import Legacy from "../../../../services/Legacy";
 import { MiniPostCardProps } from "./MiniPostCard.d";
+import MenuItem from "../MenuItem/MenuItem";
+import Hawaii from "../../../services/Hawaii";
+import Oahu from "../../../../services/Oahu";
+import { DELETE_POST } from "../../../graphql/mutations/post";
 
 const MiniPostCard: React.FC<MiniPostCardProps> = ({
   ref = null,
@@ -12,11 +16,14 @@ const MiniPostCard: React.FC<MiniPostCardProps> = ({
   onClick = e => console.info("Click"),
   post = null,
 }) => {
-  const legacy = new Legacy();
-  const core = new Core();
+  const hawaii = new Hawaii();
+  const oahu = new Oahu();
 
-  const filename = legacy.extractMetaValue(post.itemMeta, "contentFilename");
-  const imageUrl = core.imagePath("reeviewr-pods", filename, {
+  const filename = oahu.legacy.extractMetaValue(
+    post.itemMeta,
+    "contentFilename"
+  );
+  const imageUrl = oahu.core.imagePath("reeviewr-pods", filename, {
     resize: {
       width: 200,
       height: 200,
@@ -33,26 +40,57 @@ const MiniPostCard: React.FC<MiniPostCardProps> = ({
           <img src={imageUrl} alt={post.itemName} title={post.itemName} />
         </div>
         <div className="info">
-          <Text className="miniPostCardTitle" tagName="span">
-            {post.itemName}
-          </Text>
-          {/* <div className="miniPostCardStats">
-            <div className="stat">
-              <Icon icon="help" />
-              <Text tagName="span">5</Text>
-            </div>
-            <div className="stat">
-              <Icon icon="comment" />
-              <Text tagName="span">7</Text>
-            </div>
-            <div className="stat">
-              <Icon icon="highlight" />
-              <Text tagName="span">3</Text>
-            </div>
-          </div> */}
-          <Link className="miniPostCardLink" href="post">
-            View Post
-          </Link>
+          <div className="infoContent">
+            <Text className="miniPostCardTitle" tagName="span">
+              {post.itemName}
+            </Text>
+            {/* <div className="miniPostCardStats">
+              <div className="stat">
+                <Icon icon="help" />
+                <Text tagName="span">5</Text>
+              </div>
+              <div className="stat">
+                <Icon icon="comment" />
+                <Text tagName="span">7</Text>
+              </div>
+              <div className="stat">
+                <Icon icon="highlight" />
+                <Text tagName="span">3</Text>
+              </div>
+            </div> */}
+            <Link className="miniPostCardLink" href="post">
+              View Post
+            </Link>
+          </div>
+          <div className="infoCtrls">
+            <Popover
+              content={
+                <Menu className="dropdown">
+                  <MenuItem>Report</MenuItem>
+                  <MenuItem>Edit</MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      hawaii.itemClient
+                        .deleteItem(post.id, DELETE_POST)
+                        .then(data => {
+                          window.location.reload();
+                        });
+                    }}
+                  >
+                    Delete
+                  </MenuItem>
+                </Menu>
+              }
+              position={Position.BOTTOM_LEFT}
+            >
+              <Button
+                className="cardCtrl"
+                minimal={true}
+                onClick={async () => {}}
+                icon="chevron-down"
+              />
+            </Popover>
+          </div>
         </div>
       </div>
     </section>

@@ -22,24 +22,27 @@ const Notifications: React.FC<NotificationsProps> = () => {
     <>
       <section className="notificationList">
         <div className="notificationListContain">
-          <Text tagName="h1" className="darkHeadline">Notifications</Text>
+          <Text tagName="h1" className="darkHeadline">
+            Notifications
+          </Text>
           <GraphQLData
             QUERY={GET_NOTIFICATIONS}
             loadingText="Loading notifications..."
             onFinish={data => setData(data)}
             variables={{
               id: cookies["reeviewrId"],
-              first: count
+              first: count,
             }}
           >
             {data !== null &&
-              data.findManyNotification !== null ? (
-                data.findManyNotification.map((notification, i) => {
-                  return <NotificationItem key={i} notification={notification} />
-                })
-              ) : (
-                <NoResults />
-              )}
+            typeof data.findManyNotification !== "undefined" &&
+            data.findManyNotification !== null ? (
+              data.findManyNotification.map((notification, i) => {
+                return <NotificationItem key={i} notification={notification} />;
+              })
+            ) : (
+              <NoResults />
+            )}
           </GraphQLData>
           <Button
             className="seeMoreButton"

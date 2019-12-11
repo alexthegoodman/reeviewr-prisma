@@ -19,7 +19,7 @@ const Explore: React.FC<ExploreProps> = () => {
         loadingText="Loading all pods..."
         onFinish={data => setData(data)}
       >
-        {data !== null ? (
+        {typeof data !== "undefined" && data !== null ? (
           data.findManyCategory.map(cpp => {
             return (
               <CategoryGrid key={cpp.id} title={cpp.itemName}>

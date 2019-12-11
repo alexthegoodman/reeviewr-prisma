@@ -11,7 +11,7 @@ const PodFragments = {
         metaName
         metaValue
       }
-      posts {
+      livePosts {
         id
         itemName
         itemMeta {
@@ -20,7 +20,7 @@ const PodFragments = {
           metaValue
         }
       }
-      members  {
+      members {
         id
         userEmail
       }

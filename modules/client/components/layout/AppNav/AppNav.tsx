@@ -221,8 +221,9 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                             round={true}
                             intent="danger"
                           >
-                            {typeof notificationsData.findManyNotification !==
-                            "undefined"
+                            {typeof notificationsData !== "undefined" &&
+                            typeof notificationsData.findManyNotification !==
+                              "undefined"
                               ? notificationsData.findManyNotification.length
                               : 0}
                           </Tag>

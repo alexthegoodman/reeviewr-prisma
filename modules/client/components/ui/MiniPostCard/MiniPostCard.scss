@@ -15,7 +15,14 @@
     .info {
       padding: 8px 10px;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .infoContent,
+      .infoCtrls {
+        display: flex;
+        flex-direction: column;
+      }
 
       .miniPostCardTitle {
         font-size: 0.9rem;

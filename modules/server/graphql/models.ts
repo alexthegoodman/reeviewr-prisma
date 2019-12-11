@@ -1,4 +1,10 @@
-import { idArg, makeSchema, objectType, stringArg } from "@prisma/nexus";
+import {
+  idArg,
+  makeSchema,
+  objectType,
+  stringArg,
+  intArg,
+} from "@prisma/nexus";
 
 export const User = objectType({
   name: "User",
@@ -73,8 +79,23 @@ export const Pod = objectType({
     t.model.itemContent();
     t.model.itemDeleted();
     t.model.itemMeta();
-    t.model.posts();
+    // t.model.posts({ ordering: true, filtering: true });
     t.model.categories();
+
+    t.list.field("livePosts", {
+      type: "Post",
+      args: { first: intArg() },
+      nullable: true,
+      resolve: async (pod, { first = 1 }, ctx) => {
+        // posts with pods with members contain this user
+        const posts = await ctx.photon.posts.findMany({
+          where: { pod: { id: pod.id }, itemDeleted: false },
+          first,
+        });
+
+        return posts;
+      },
+    });
   },
 });
 
