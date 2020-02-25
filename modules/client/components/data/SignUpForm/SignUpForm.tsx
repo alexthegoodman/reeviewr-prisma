@@ -36,7 +36,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
   const utility = new Utility();
 
   const [{ mixpanel }, dispatch] = useAppContext();
-  const [userExists, setUserExists] = React.useState(false);
+  const [formError, setFormError] = React.useState(null);
   // const [successfulSubmission, setSuccessfulSubmission] = React.useState(false);
 
   const SignUpSchema = Yup.object().shape({
@@ -75,9 +75,9 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
   // } else {
   return (
     <>
-      {userExists ? (
+      {formError !== null ? (
         <Callout title="Attention" intent="danger">
-          A user with this email address already exists. Try signing in.
+          {formError}
         </Callout>
       ) : (
         <></>
@@ -108,14 +108,12 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
           authClient.signup(values, (err, res) => {
             console.info("returned", err, res);
 
-            if (err) {
-              console.error(err);
-              if (res.body.errorMessage === ERROR_CODE.C008) {
-                setUserExists(true);
-              } else {
-                setUserExists(false);
-              }
+            if (typeof res.body.error !== "undefined") {
+              setFormError(res.body.errorMessage);
+            } else {
+              setFormError(null);
             }
+
             if (res.body.success) {
               // redirect to Home
               console.info(

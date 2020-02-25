@@ -31,6 +31,10 @@ export const User = objectType({
     t.model.notifications();
     t.model.following();
     t.model.followers();
+    t.model.sentNotifications();
+    t.model.recievedNotifications();
+    t.model.createdAt();
+    t.model.updatedAt();
 
     // resolver example
     // resolver is needed for certain kinds of deep queries

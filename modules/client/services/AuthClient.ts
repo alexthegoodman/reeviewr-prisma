@@ -84,6 +84,8 @@ export default class AuthClient {
   }
 
   logout() {
-    // remove cookie and load home
+    const cookies = new Cookies();
+    cookies.remove("reeviewrId");
+    window.location.replace("/");
   }
 }

@@ -38,6 +38,7 @@ import App from "../App/App";
 import { GET_NOTIFICATIONS } from "../../../graphql/queries/notification";
 import { useQuery } from "react-apollo";
 import { GET_THREADS } from "../../../graphql/queries/thread";
+import AuthClient from "../../../services/AuthClient";
 
 const AppNav: React.FC<AppNavProps> = ({ children }) => {
   const utility = new Utility();
@@ -56,6 +57,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
   const [darkMode, setDarkMode] = React.useState(
     cookies["reeviewrDarkMode"] === "true" ? true : false
   );
+  const authClient = new AuthClient();
 
   const {
     data: notificationsData,
@@ -281,17 +283,24 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                         }}
                         large={true}
                       />
+                      {loggedIn ? (
+                          <>
+                            <MenuItem>Profile</MenuItem>
+                            <MenuItem>Support</MenuItem>
+                            <MenuItem onClick={authClient.logout}>Log Out</MenuItem>
+                          </>
+                      ) : (
+                          <>
+                            <MenuItem>Support</MenuItem>
+                          </>
+                      )}
+
                     </Menu>
                   }
                   position={Position.BOTTOM_LEFT}
                 >
                   {loggedIn ? (
-                    <ProfileItem
-                      className="headerItem"
-                      imageUrl={"/public/img/mailchimp2-small.jpg"}
-                      name={userData.userEmail}
-                      points={1500}
-                    />
+                    <ProfileItem className="headerItem" userData={userData} />
                   ) : (
                     <Button
                       className="textButton headerItem"

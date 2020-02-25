@@ -40,7 +40,7 @@ export const createPod = async (req, res, mixpanel, photon) => {
     // TODO: build privateHash middleware
 
     const {
-      privateHash,
+      id,
       name,
       description,
       banner,
@@ -52,7 +52,7 @@ export const createPod = async (req, res, mixpanel, photon) => {
       category,
     } = req.body;
 
-    const authUser = await photon.users.findOne({ where: { privateHash } });
+    const authUser = await photon.users.findOne({ where: { id } });
     // const authUserMeta = await photon.users
     //   .findOne({ where: { privateHash } })
     //   .userMeta();

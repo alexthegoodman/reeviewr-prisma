@@ -76,6 +76,16 @@ async function main() {
             metaValue: "Woodman",
             metaType: "active",
           },
+          {
+            metaName: "points",
+            metaValue: "10", // 100s? 1000s?
+            metaType: "active",
+          },
+          {
+            metaName: "profileFilename",
+            metaValue: `me_circle.jpg`,
+            metaType: "default",
+          },
         ],
       },
     },
@@ -104,6 +114,11 @@ async function main() {
           {
             metaName: "lastName",
             metaValue: "Bulnes",
+            metaType: "active",
+          },
+          {
+            metaName: "points",
+            metaValue: "10", // 100s? 1000s?
             metaType: "active",
           },
         ],

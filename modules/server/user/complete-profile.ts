@@ -40,7 +40,7 @@ export const completeProfile = async (req, res, mixpanel, photon) => {
     const emailService = new EmailService();
 
     const {
-      privateHash,
+      id,
       artistName,
       aboutArtist,
       profilePicture,
@@ -51,9 +51,9 @@ export const completeProfile = async (req, res, mixpanel, photon) => {
       explicit,
     } = req.body;
 
-    const authUser = await photon.users.findOne({ where: { privateHash } });
+    const authUser = await photon.users.findOne({ where: { id } });
     const authUserMeta = await photon.users
-      .findOne({ where: { privateHash } })
+      .findOne({ where: { id } })
       .userMeta();
 
     console.info("authUser", authUser);

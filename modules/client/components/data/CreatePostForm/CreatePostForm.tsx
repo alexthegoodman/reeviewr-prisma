@@ -50,7 +50,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
   const legacy = new Legacy();
 
   const [{ mixpanel }, dispatch] = useAppContext();
-  const [userExists, setUserExists] = React.useState(false);
+  const [formError, setFormError] = React.useState(null);
   const [navbarTabId, setNavbarTabId] = React.useState("basic" as TabId);
 
   // pod / interests autocomplete
@@ -122,13 +122,13 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
 
   return (
     <>
-      {/* {userExists ? (
+      {formError !== null ? (
         <Callout title="Attention" intent="danger">
-          A user with this email address already exists. Try signing in.
+          {formError}
         </Callout>
       ) : (
         <></>
-      )} */}
+      )}
 
       <Formik
         initialValues={{
@@ -177,19 +177,17 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
           itemClient.createPost(values, (err, res) => {
             console.info("returned", err, res);
 
-            if (err) {
-              console.error(err);
-              // if (res.body.errorMessage === ERROR_CODE.C008) {
-              //   setUserExists(true);
-              // } else {
-              //   setUserExists(false);
-              // }
+            if (typeof res.body.error !== "undefined") {
+              setFormError(res.body.errorMessage);
+            } else {
+              setFormError(null);
             }
+
             if (res.body.success) {
               // redirect to Home
               console.info("thank you - go to post page");
               // setSuccessfulSubmission(true);
-              // window.location.href = window.location.origin; // itemUrlSegment
+              window.location.href = `/posts/${res.body.data.newPost.id}/${res.body.data.newPost.itemUrlSegment}`; // itemUrlSegment
             }
             actions.resetForm();
           });

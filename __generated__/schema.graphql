@@ -4208,6 +4208,7 @@ input ThreadWhereUniqueInput {
 type User {
   annotations(after: String, before: String, first: Int, last: Int, skip: Int): [Annotation!]
   confirmHash: String!
+  createdAt: DateTime!
   favorites(after: String, before: String, first: Int, last: Int, skip: Int): [Favorite!]
   followers(after: String, before: String, first: Int, last: Int, skip: Int): [User!]
   following(after: String, before: String, first: Int, last: Int, skip: Int): [User!]
@@ -4221,8 +4222,11 @@ type User {
   privateHash: String!
   publicHash: String!
   questions(after: String, before: String, first: Int, last: Int, skip: Int): [Question!]
+  recievedNotifications: Notification
   reviews(after: String, before: String, first: Int, last: Int, skip: Int): [Review!]
+  sentNotifications: Notification
   threads(after: String, before: String, first: Int, last: Int, skip: Int): [Thread!]
+  updatedAt: DateTime!
   userConfirmed: Int!
   userDeleted: Boolean!
   userEmail: String!

@@ -8,8 +8,75 @@ const UserFragments = {
   user: gql`
     fragment UserFragment on User {
       id
-      userEmail
       userType
+      userEmail
+      userConfirmed
+      userMeta {
+        id
+        metaName
+        metaValue
+      }
+      posts {
+        id
+        itemName
+        itemContent
+      }
+      pods {
+        id
+        itemName
+        itemContent
+      }
+      favorites {
+        id
+        itemName
+        itemContent
+      }
+      reviews {
+        id
+        itemName
+        itemContent
+      }
+      annotations {
+        id
+        itemName
+        itemContent
+      }
+      questions {
+        id
+        itemName
+        itemContent
+      }
+      threads {
+        id
+        itemName
+        itemContent
+      }
+      notifications {
+        id
+        itemName
+        itemContent
+      }
+      following {
+        id
+        userEmail
+      }
+      followers {
+        id
+        userEmail
+      }
+      sentNotifications {
+        id
+        itemName
+        itemContent
+      }
+      recievedNotifications {
+        id
+        itemName
+        itemContent
+      }
+      
+      createdAt
+      updatedAt
     }
   `,
 };

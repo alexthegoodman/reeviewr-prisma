@@ -34,7 +34,10 @@ export const createUser = async (req, res, mixpanel, photon) => {
       })
       .then(data => {
         console.info("UNINTENDED PHOTON DATA", data);
-        throw Error(ERROR_CODE.C008);
+        // throw Error(ERROR_CODE.C008);
+        res.status(200);
+        res.send({ success: false, error: {}, errorMessage: ERROR_CODE.C008 });
+        res.end();
       })
       .catch(err => {
         console.error("INTENDED PHOTON ERROR", err.message);

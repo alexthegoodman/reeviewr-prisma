@@ -5455,6 +5455,7 @@ export interface NexusGenFieldTypes {
   User: { // field return type
     annotations: NexusGenRootTypes['Annotation'][] | null; // [Annotation!]
     confirmHash: string; // String!
+    createdAt: any; // DateTime!
     favorites: NexusGenRootTypes['Favorite'][] | null; // [Favorite!]
     followers: NexusGenRootTypes['User'][] | null; // [User!]
     following: NexusGenRootTypes['User'][] | null; // [User!]
@@ -5468,8 +5469,11 @@ export interface NexusGenFieldTypes {
     privateHash: string; // String!
     publicHash: string; // String!
     questions: NexusGenRootTypes['Question'][] | null; // [Question!]
+    recievedNotifications: NexusGenRootTypes['Notification'] | null; // Notification
     reviews: NexusGenRootTypes['Review'][] | null; // [Review!]
+    sentNotifications: NexusGenRootTypes['Notification'] | null; // Notification
     threads: NexusGenRootTypes['Thread'][] | null; // [Thread!]
+    updatedAt: any; // DateTime!
     userConfirmed: number; // Int!
     userDeleted: boolean; // Boolean!
     userEmail: string; // String!

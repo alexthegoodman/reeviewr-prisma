@@ -36,7 +36,8 @@ const PostCtrls: React.FC<PostCtrlsProps> = ({
       <MenuItem
         onClick={() => {
           hawaii.itemClient.deleteItem(post.id, DELETE_POST).then(data => {
-            navigation.refresh();
+            // navigation.refresh();
+            window.location.reload();
           });
         }}
       >

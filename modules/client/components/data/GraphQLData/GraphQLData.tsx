@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { useQuery } from "@apollo/react-hooks";
 import Utility from "../../../../services/Utility";
-import LoadingIndicator from "../../../componentsOld/ui/LoadingIndicator/LoadingIndicator";
+import LoadingIndicator from "../../../components/ui/LoadingIndicator/LoadingIndicator";
 import { GraphQLDataProps } from "./GraphQLData.d";
 
 const GraphQLData: React.FC<GraphQLDataProps> = ({
