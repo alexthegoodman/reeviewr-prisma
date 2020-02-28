@@ -3,6 +3,7 @@
 
 
 type Annotation {
+  createdAt: DateTime!
   id: ID!
   itemContent: String!
   itemDeleted: Boolean!
@@ -13,6 +14,7 @@ type Annotation {
   itemType: String!
   itemUrlSegment: String!
   post: Post!
+  updatedAt: DateTime!
   user: User!
 }
 
@@ -263,12 +265,14 @@ input BooleanFilter {
 }
 
 type Category {
+  createdAt: DateTime!
   id: ID!
   itemContent: String!
   itemName: String!
   itemStatus: String!
   itemType: String!
   pods(after: String, before: String, first: Int, last: Int, skip: Int): [Pod!]
+  updatedAt: DateTime!
 }
 
 input CategoryCreateInput {
@@ -364,12 +368,14 @@ input CategoryWhereUniqueInput {
 scalar DateTime
 
 type Favorite {
+  createdAt: DateTime!
   id: ID!
   itemContent: String!
   itemName: String!
   itemStatus: String!
   itemType: String!
   post: Post!
+  updatedAt: DateTime!
   user: User!
 }
 
@@ -523,6 +529,7 @@ input IntFilter {
 }
 
 type Message {
+  createdAt: DateTime!
   id: ID!
   itemContent: String!
   itemDeleted: Boolean!
@@ -531,6 +538,7 @@ type Message {
   itemStatus: String!
   itemType: String!
   thread: Thread!
+  updatedAt: DateTime!
   user: User!
 }
 
@@ -1074,6 +1082,7 @@ input MutationUpdateOneUserWhereInput {
 }
 
 type Notification {
+  createdAt: DateTime!
   id: ID!
   itemContent: String!
   itemDeleted: Boolean!
@@ -1085,6 +1094,7 @@ type Notification {
   post: Post
   receiver: User!
   sender: User!
+  updatedAt: DateTime!
 }
 
 input NotificationCreateInput {
@@ -1911,6 +1921,7 @@ input PodWhereUniqueInput {
 
 type Post {
   annotations(after: String, before: String, first: Int, last: Int, skip: Int): [Annotation!]
+  createdAt: DateTime!
   favorites(after: String, before: String, first: Int, last: Int, skip: Int): [Favorite!]
   id: ID!
   itemContent: String!
@@ -1925,6 +1936,7 @@ type Post {
   questions(after: String, before: String, first: Int, last: Int, skip: Int): [Question!]
   reviews(after: String, before: String, first: Int, last: Int, skip: Int): [Review!]
   tags(after: String, before: String, first: Int, last: Int, skip: Int): [Tag!]
+  updatedAt: DateTime!
   user: User!
 }
 
@@ -3351,6 +3363,7 @@ input QueryFindManyUserWhereInput {
 }
 
 type Question {
+  createdAt: DateTime!
   id: ID!
   itemContent: String!
   itemDeleted: Boolean!
@@ -3361,6 +3374,7 @@ type Question {
   itemType: String!
   itemUrlSegment: String!
   post: Post!
+  updatedAt: DateTime!
   user: User!
 }
 
@@ -3606,6 +3620,7 @@ input QuestionWhereUniqueInput {
 }
 
 type Review {
+  createdAt: DateTime!
   id: ID!
   itemContent: String!
   itemDeleted: Boolean!
@@ -3616,6 +3631,7 @@ type Review {
   itemType: String!
   itemUrlSegment: String!
   post: Post!
+  updatedAt: DateTime!
   user: User!
 }
 
@@ -3875,12 +3891,14 @@ input StringFilter {
 }
 
 type Tag {
+  createdAt: DateTime!
   id: ID!
   itemContent: String!
   itemName: String!
   itemStatus: String!
   itemType: String!
   posts(after: String, before: String, first: Int, last: Int, skip: Int): [Post!]
+  updatedAt: DateTime!
 }
 
 input TagCreateInput {
@@ -3973,6 +3991,7 @@ input TagWhereUniqueInput {
 }
 
 type Thread {
+  createdAt: DateTime!
   id: ID!
   itemContent: String!
   itemDeleted: Boolean!
@@ -3982,6 +4001,7 @@ type Thread {
   itemType: String!
   messages(after: String, before: String, first: Int, last: Int, skip: Int): [Message!]
   participants(after: String, before: String, first: Int, last: Int, skip: Int): [User!]
+  updatedAt: DateTime!
 }
 
 input ThreadCreateInput {

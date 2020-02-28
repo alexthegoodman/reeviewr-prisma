@@ -32,8 +32,6 @@ const MiniPostCard: React.FC<MiniPostCardProps> = ({
     },
   });
 
-  console.info("mini post card", filename, imageUrl);
-
   return (
     <section className="miniPostCard">
       <div className="miniPostCardContain">
@@ -45,21 +43,10 @@ const MiniPostCard: React.FC<MiniPostCardProps> = ({
             <Text className="miniPostCardTitle" tagName="span">
               {post.itemName}
             </Text>
-            {/* <div className="miniPostCardStats">
-              <div className="stat">
-                <Icon icon="help" />
-                <Text tagName="span">5</Text>
-              </div>
-              <div className="stat">
-                <Icon icon="comment" />
-                <Text tagName="span">7</Text>
-              </div>
-              <div className="stat">
-                <Icon icon="highlight" />
-                <Text tagName="span">3</Text>
-              </div>
-            </div> */}
-            <Link className="miniPostCardLink" href="post">
+            <Link
+              className="miniPostCardLink"
+              href={`/posts/${post.id}/${post.itemUrlSegment}`}
+            >
               View Post
             </Link>
           </div>

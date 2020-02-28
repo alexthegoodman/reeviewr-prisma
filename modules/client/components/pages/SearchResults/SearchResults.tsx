@@ -8,7 +8,7 @@ import UserTrack from "../../data/UserTrack/UserTrack";
 import Utility from "../../../../services/Utility";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
-import { USERS_QUERY, SEARCH_USER_META } from "../../../graphql/queries/user";
+import { SEARCH_USER_META } from "../../../graphql/queries/user";
 import { POSTS_QUERY } from "../../../graphql/queries/post";
 import PostCard from "../../ui/PostCard/PostCard";
 import UserCard from "../../ui/UserCard/UserCard";
@@ -27,29 +27,26 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
   const {
     data: userData,
     error: userError,
-    loading: userLoading
-  } = useQuery(
-    SEARCH_USER_META,
-    { variables: { search: encodeURIComponent(search) } }
-  );
+    loading: userLoading,
+  } = useQuery(SEARCH_USER_META, {
+    variables: { search: encodeURIComponent(search) },
+  });
 
   const {
     data: postsData,
     error: postsError,
     loading: postsLoading,
-  } = useQuery(
-    POSTS_QUERY,
-    { variables: { search: encodeURIComponent(search) } }
-  );
+  } = useQuery(POSTS_QUERY, {
+    variables: { search: encodeURIComponent(search) },
+  });
 
   const {
     data: podsData,
     error: podsError,
     loading: podsLoading,
-  } = useQuery(
-    SEARCH_PODS,
-    { variables: { search: encodeURIComponent(search) } }
-  );
+  } = useQuery(SEARCH_PODS, {
+    variables: { search: encodeURIComponent(search) },
+  });
 
   if (userLoading) {
     return (
@@ -136,42 +133,42 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
               {userData.findManyUserMeta.length > 0 ? (
                 <section className="grid col-4">
                   {userData.findManyUserMeta.map(userMeta => {
-                    return <UserCard user={userMeta.user} />
+                    return <UserCard user={userMeta.user} />;
                   })}
                 </section>
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
 
               {postsData.findManyPost.length > 0 ? (
                 <section className="grid col-4">
                   {postsData.findManyPost.map(post => {
-                    return <PostCard post={post} />
+                    return <PostCard post={post} />;
                   })}
                 </section>
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
 
               {podsData.findManyPod.length > 0 ? (
                 <section className="grid col-4">
                   {podsData.findManyPod.map(pod => {
-                    return <PodCard pod={pod} />
+                    return <PodCard pod={pod} />;
                   })}
                 </section>
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
             </>
           ) : (
-              <></>
-            )}
+            <></>
+          )}
         </section>
       ) : (
-          <Text tagName="h5" className="headline">
-            No search phrase entered
+        <Text tagName="h5" className="headline">
+          No search phrase entered
         </Text>
-        )}
+      )}
     </>
   );
 };

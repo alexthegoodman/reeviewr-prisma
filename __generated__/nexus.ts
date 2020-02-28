@@ -5189,6 +5189,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 
 export interface NexusGenFieldTypes {
   Annotation: { // field return type
+    createdAt: any; // DateTime!
     id: string; // ID!
     itemContent: string; // String!
     itemDeleted: boolean; // Boolean!
@@ -5199,6 +5200,7 @@ export interface NexusGenFieldTypes {
     itemType: string; // String!
     itemUrlSegment: string; // String!
     post: NexusGenRootTypes['Post']; // Post!
+    updatedAt: any; // DateTime!
     user: NexusGenRootTypes['User']; // User!
   }
   AnnotationMeta: { // field return type
@@ -5210,23 +5212,28 @@ export interface NexusGenFieldTypes {
     metaValue: string; // String!
   }
   Category: { // field return type
+    createdAt: any; // DateTime!
     id: string; // ID!
     itemContent: string; // String!
     itemName: string; // String!
     itemStatus: string; // String!
     itemType: string; // String!
     pods: NexusGenRootTypes['Pod'][] | null; // [Pod!]
+    updatedAt: any; // DateTime!
   }
   Favorite: { // field return type
+    createdAt: any; // DateTime!
     id: string; // ID!
     itemContent: string; // String!
     itemName: string; // String!
     itemStatus: string; // String!
     itemType: string; // String!
     post: NexusGenRootTypes['Post']; // Post!
+    updatedAt: any; // DateTime!
     user: NexusGenRootTypes['User']; // User!
   }
   Message: { // field return type
+    createdAt: any; // DateTime!
     id: string; // ID!
     itemContent: string; // String!
     itemDeleted: boolean; // Boolean!
@@ -5235,6 +5242,7 @@ export interface NexusGenFieldTypes {
     itemStatus: string; // String!
     itemType: string; // String!
     thread: NexusGenRootTypes['Thread']; // Thread!
+    updatedAt: any; // DateTime!
     user: NexusGenRootTypes['User']; // User!
   }
   MessageMeta: { // field return type
@@ -5280,6 +5288,7 @@ export interface NexusGenFieldTypes {
     updateOneUser: NexusGenRootTypes['User'] | null; // User
   }
   Notification: { // field return type
+    createdAt: any; // DateTime!
     id: string; // ID!
     itemContent: string; // String!
     itemDeleted: boolean; // Boolean!
@@ -5291,6 +5300,7 @@ export interface NexusGenFieldTypes {
     post: NexusGenRootTypes['Post'] | null; // Post
     receiver: NexusGenRootTypes['User']; // User!
     sender: NexusGenRootTypes['User']; // User!
+    updatedAt: any; // DateTime!
   }
   NotificationMeta: { // field return type
     id: string; // ID!
@@ -5324,6 +5334,7 @@ export interface NexusGenFieldTypes {
   }
   Post: { // field return type
     annotations: NexusGenRootTypes['Annotation'][] | null; // [Annotation!]
+    createdAt: any; // DateTime!
     favorites: NexusGenRootTypes['Favorite'][] | null; // [Favorite!]
     id: string; // ID!
     itemContent: string; // String!
@@ -5338,6 +5349,7 @@ export interface NexusGenFieldTypes {
     questions: NexusGenRootTypes['Question'][] | null; // [Question!]
     reviews: NexusGenRootTypes['Review'][] | null; // [Review!]
     tags: NexusGenRootTypes['Tag'][] | null; // [Tag!]
+    updatedAt: any; // DateTime!
     user: NexusGenRootTypes['User']; // User!
   }
   PostMeta: { // field return type
@@ -5384,6 +5396,7 @@ export interface NexusGenFieldTypes {
     findOneUser: NexusGenRootTypes['User'] | null; // User
   }
   Question: { // field return type
+    createdAt: any; // DateTime!
     id: string; // ID!
     itemContent: string; // String!
     itemDeleted: boolean; // Boolean!
@@ -5394,6 +5407,7 @@ export interface NexusGenFieldTypes {
     itemType: string; // String!
     itemUrlSegment: string; // String!
     post: NexusGenRootTypes['Post']; // Post!
+    updatedAt: any; // DateTime!
     user: NexusGenRootTypes['User']; // User!
   }
   QuestionMeta: { // field return type
@@ -5405,6 +5419,7 @@ export interface NexusGenFieldTypes {
     question: NexusGenRootTypes['Question']; // Question!
   }
   Review: { // field return type
+    createdAt: any; // DateTime!
     id: string; // ID!
     itemContent: string; // String!
     itemDeleted: boolean; // Boolean!
@@ -5415,6 +5430,7 @@ export interface NexusGenFieldTypes {
     itemType: string; // String!
     itemUrlSegment: string; // String!
     post: NexusGenRootTypes['Post']; // Post!
+    updatedAt: any; // DateTime!
     user: NexusGenRootTypes['User']; // User!
   }
   ReviewMeta: { // field return type
@@ -5426,14 +5442,17 @@ export interface NexusGenFieldTypes {
     review: NexusGenRootTypes['Review']; // Review!
   }
   Tag: { // field return type
+    createdAt: any; // DateTime!
     id: string; // ID!
     itemContent: string; // String!
     itemName: string; // String!
     itemStatus: string; // String!
     itemType: string; // String!
     posts: NexusGenRootTypes['Post'][] | null; // [Post!]
+    updatedAt: any; // DateTime!
   }
   Thread: { // field return type
+    createdAt: any; // DateTime!
     id: string; // ID!
     itemContent: string; // String!
     itemDeleted: boolean; // Boolean!
@@ -5443,6 +5462,7 @@ export interface NexusGenFieldTypes {
     itemType: string; // String!
     messages: NexusGenRootTypes['Message'][] | null; // [Message!]
     participants: NexusGenRootTypes['User'][] | null; // [User!]
+    updatedAt: any; // DateTime!
   }
   ThreadMeta: { // field return type
     id: string; // ID!

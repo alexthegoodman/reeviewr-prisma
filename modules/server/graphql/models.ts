@@ -134,6 +134,8 @@ export const Post = objectType({
     t.model.reviews();
     t.model.annotations();
     t.model.questions();
+    t.model.createdAt();
+    t.model.updatedAt();
   },
 });
 
@@ -163,6 +165,8 @@ export const Review = objectType({
     t.model.itemDeleted();
     t.model.itemMeta();
     t.model.post();
+    t.model.createdAt();
+    t.model.updatedAt();
   },
 });
 
@@ -192,6 +196,8 @@ export const Annotation = objectType({
     t.model.itemDeleted();
     t.model.itemMeta();
     t.model.post();
+    t.model.createdAt();
+    t.model.updatedAt();
   },
 });
 
@@ -221,6 +227,8 @@ export const Question = objectType({
     t.model.itemDeleted();
     t.model.itemMeta();
     t.model.post();
+    t.model.createdAt();
+    t.model.updatedAt();
   },
 });
 
@@ -248,6 +256,8 @@ export const Thread = objectType({
     t.model.itemDeleted();
     t.model.itemMeta();
     t.model.messages();
+    t.model.createdAt();
+    t.model.updatedAt();
   },
 });
 
@@ -275,6 +285,8 @@ export const Message = objectType({
     t.model.itemDeleted();
     t.model.itemMeta();
     t.model.thread();
+    t.model.createdAt();
+    t.model.updatedAt();
   },
 });
 
@@ -305,6 +317,9 @@ export const Notification = objectType({
     t.model.receiver();
     t.model.pod();
     t.model.post();
+
+    t.model.createdAt();
+    t.model.updatedAt();
   },
 });
 
@@ -330,6 +345,8 @@ export const Favorite = objectType({
     t.model.itemName();
     t.model.itemContent();
     t.model.post();
+    t.model.createdAt();
+    t.model.updatedAt();
   },
 });
 
@@ -342,6 +359,8 @@ export const Tag = objectType({
     t.model.itemName();
     t.model.itemContent();
     t.model.posts();
+    t.model.createdAt();
+    t.model.updatedAt();
   },
 });
 
@@ -354,5 +373,7 @@ export const Category = objectType({
     t.model.itemName();
     t.model.itemContent();
     t.model.pods();
+    t.model.createdAt();
+    t.model.updatedAt();
   },
 });

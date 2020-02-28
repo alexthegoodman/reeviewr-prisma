@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/react-hooks";
 import Utility from "../../../../services/Utility";
 import LoadingIndicator from "../../../components/ui/LoadingIndicator/LoadingIndicator";
 import { GraphQLDataProps } from "./GraphQLData.d";
+import { useCookies } from "react-cookie";
 
 const GraphQLData: React.FC<GraphQLDataProps> = ({
   ref = null,
@@ -16,6 +17,13 @@ const GraphQLData: React.FC<GraphQLDataProps> = ({
   variables = null,
 }) => {
   const utility = new Utility();
+  const [cookies] = useCookies(["reeviewrId"]);
+
+  let queryVars = { ...variables };
+
+  if (variables !== null && typeof variables["userId"] === "undefined") {
+    queryVars = { ...variables, userId: cookies["reeviewrId"] };
+  }
 
   const {
     data,
@@ -23,7 +31,7 @@ const GraphQLData: React.FC<GraphQLDataProps> = ({
     loading,
   }: { data?: any; loading?: any; error?: any } = useQuery(QUERY, {
     onCompleted: onFinish,
-    variables,
+    variables: queryVars,
   });
 
   if (loading) {

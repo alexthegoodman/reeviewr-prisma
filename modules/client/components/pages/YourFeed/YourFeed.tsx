@@ -11,9 +11,6 @@ import { YourFeedProps } from "./YourFeed.d";
 
 const YourFeed: React.FC<YourFeedProps> = () => {
   const [data, setData] = React.useState(null);
-  const [cookies] = useCookies(["reeviewrId"]);
-
-  console.info("data", data);
 
   return (
     <>
@@ -22,7 +19,7 @@ const YourFeed: React.FC<YourFeedProps> = () => {
         QUERY={USER_JOINED_PODS_POSTS}
         loadingText="Loading pod's posts..."
         onFinish={data => setData(data)}
-        variables={{ userId: cookies["reeviewrId"], postId: null }}
+        variables={{ postId: null }}
       >
         {data !== null &&
         data.findOneUser !== null &&
