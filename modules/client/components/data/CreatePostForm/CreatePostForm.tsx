@@ -38,12 +38,14 @@ import SelectField from "../../ui/SelectField/SelectField";
 import TextareaField from "../../ui/TextareaField/TextareaField";
 import TextField from "../../ui/TextField/TextField";
 import UploadField from "../../ui/UploadField/UploadField";
+import Hawaii from "../../../services/Hawaii";
 
 const CreatePostForm: React.FC<CreatePostFormProps> = ({
   ref = null,
   className = "",
   onClick = e => console.info("Click"),
 }) => {
+  const hawaii = new Hawaii();
   const authClient = new AuthClient();
   const itemClient = new ItemClient();
   const utility = new Utility();
@@ -184,10 +186,9 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
             }
 
             if (res.body.success) {
-              // redirect to Home
-              console.info("thank you - go to post page");
-              // setSuccessfulSubmission(true);
-              window.location.href = `/posts/${res.body.data.newPost.id}/${res.body.data.newPost.itemUrlSegment}`; // itemUrlSegment
+              window.location.href = hawaii.stringHandler.getPostUrl(
+                res.body.data.newPost
+              );
             }
             actions.resetForm();
           });

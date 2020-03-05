@@ -13,6 +13,8 @@ import JoinButton from "../JoinButton/JoinButton";
 import MiniPostCard from "../MiniPostCard/MiniPostCard";
 import { PodCardProps } from "./PodCard.d";
 import MenuItem from "../MenuItem/MenuItem";
+import { Link } from "react-navi";
+import Hawaii from "../../../services/Hawaii";
 
 const PodCard: React.FC<PodCardProps> = ({
   ref = null,
@@ -20,13 +22,16 @@ const PodCard: React.FC<PodCardProps> = ({
   onClick = e => console.info("Click"),
   pod = null,
 }) => {
+  const hawaii = new Hawaii();
+  const podUrl = hawaii.stringHandler.getPodUrl(pod);
+
   return (
     <section className="podCard">
       <div className="podCardContain">
         <div className="podCardHeader">
-          <Text className="podCardHeadline" tagName="span">
+          <Link className="podCardHeadline" href={podUrl}>
             {pod.itemName}
-          </Text>
+          </Link>
           <div className="podCtrls">
             <JoinButton podId={pod.id} podMembers={pod.members} />
             <Popover
