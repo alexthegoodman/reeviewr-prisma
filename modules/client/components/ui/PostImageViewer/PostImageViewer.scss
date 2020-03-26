@@ -1,3 +1,5 @@
+$postImageGap: 8px;
+
 .postImageViewer {
   .postImageViewerContain {
     .focusContent {
@@ -11,23 +13,32 @@
     .secondaryContent {
       display: flex;
       flex-direction: row;
-      margin-top: 8px;
+      margin-top: $postImageGap;
 
-      .ctrls {
-        width: 90px;
-      }
+      // .ctrls {
+      //   width: 90px;
+      // }
       .photoStrip {
-        width: calc(100% - 90px);
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-row-gap: 8px;
-        grid-column-gap: 8px;
+        height: 100px;
+        width: 100%;
+        // width: calc(100% - 90px);
+        // display: grid;
+        // grid-template-columns: 1fr 1fr 1fr;
+        // grid-row-gap: 8px;
+        // grid-column-gap: 8px;
 
         img {
           display: block;
-          width: 100%;
+          // width: 100%;
+          width: auto;
+          height: 100px;
           background: $lightGrey;
           border-radius: 5px;
+          margin-right: $postImageGap;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
         }
       }
     }

@@ -11,26 +11,21 @@ import PostTextViewer from "../../ui/PostTextViewer/PostTextViewer";
 import PostVideoViewer from "../../ui/PostVideoViewer/PostVideoViewer";
 import ShareButton from "../../ui/ShareButton/ShareButton";
 import { PostDetailProps } from "./PostDetail.d";
+import PostDetailCtrls from "../../ui/PostDetailCtrls/PostDetailCtrls";
 
 const PostDetail: React.FC<PostDetailProps> = () => {
   return (
     <section className="postDetail">
       <div className="postDetailContain">
         <div className="content">
-          <PostImageViewer
-            ctrls={
-              <>
-                <LikeButton trackOldId="" />
-                <ShareButton url="" />
-              </>
-            }
-          />
+          <PostImageViewer />
           <PostAudioViewer />
           <PostVideoViewer />
           <PostTextViewer />
         </div>
         <div className="interaction">
           <PostMetaData />
+          <PostDetailCtrls />
           <PostReviews />
           <PostAnnotations />
           <PostQuestions />

@@ -8,6 +8,9 @@
 @import "../../../node_modules/@blueprintjs/icons/lib/css/blueprint-icons.css";
 @import "../../../node_modules/@blueprintjs/core/src/blueprint";
 
+@import "../../../node_modules/slick-carousel/slick/slick.css";
+@import "../../../node_modules/slick-carousel/slick/slick-theme.css";
+
 @import "vars";
 
 // @import "base/reset";
@@ -95,6 +98,8 @@
 @import "../components/ui/PostAudioViewer/PostAudioViewer";
 @import "../components/ui/PostAnnotations/PostAnnotations";
 @import "../components/ui/ThreadItem/ThreadItem";
+@import "../components/ui/PostCtrls/PostCtrls";
+@import "../components/ui/PostDetailCtrls/PostDetailCtrls";
 
 @import "../components/ui/landing/LandingHeroA/LandingHeroA";
 @import "../components/ui/landing/LandingFeaturesA/LandingFeaturesA";

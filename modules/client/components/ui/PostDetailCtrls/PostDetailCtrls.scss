@@ -1,0 +1,17 @@
+.postCtrls {
+  width: 200px;
+}
+
+.ctrlsContain {
+  display: flex;
+  flex-direction: row;
+}
+
+.postCtrlButton {
+  margin: 0 7px 0 0;
+  padding: 7px 15px;
+
+  .bp3-button-text {
+    color: $dark-gray3;
+  }
+}

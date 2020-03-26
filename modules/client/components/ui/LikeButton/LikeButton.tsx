@@ -33,13 +33,15 @@ const LikeButton: React.FC<LikeButtonProps> = ({
   return (
     <Button
       ref={ref}
-      className={`trackButton likeButton ${className} ${
+      className={`postCtrlButton likeButton ${className} ${
         faved ? "selected" : ""
       }`}
       onClick={clickHandler}
       disabled={faved}
       icon="heart"
-    />
+    >
+      Like
+    </Button>
   );
 };
 

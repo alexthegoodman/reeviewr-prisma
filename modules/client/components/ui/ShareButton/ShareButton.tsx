@@ -32,7 +32,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({
     <Popover>
       <Button
         ref={ref}
-        className={`trackButton shareButton ${className}`}
+        className={`postCtrlButton shareButton ${className}`}
         onClick={clickHandler}
         icon="share"
       >

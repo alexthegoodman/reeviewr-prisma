@@ -6,6 +6,7 @@ import { POST_QUERY } from "../../../graphql/queries/post";
 import PostCard from "../PostCard/PostCard";
 import NoResults from "../../ui/NoResults/NoResults";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
+import HorizontalScroll from "react-scroll-horizontal";
 
 const PostImageViewer: React.FC<PostImageViewerProps> = ({
   ref = null,
@@ -16,8 +17,6 @@ const PostImageViewer: React.FC<PostImageViewerProps> = ({
   const [data, setData] = React.useState(null);
 
   const route = useCurrentRoute();
-  // const loadingRoute = useLoadingRoute();
-  // const navigation = useNavigation();
 
   const { postId } = route.lastChunk.request.params;
 
@@ -34,15 +33,46 @@ const PostImageViewer: React.FC<PostImageViewerProps> = ({
         <section className="postImageViewer">
           <div className="postImageViewerContain">
             <div className="focusContent">
-              <img src="" alt="" title="" />
+              <img
+                src="/public/img/birme/IMG_3372.jpg"
+                alt="Birme"
+                title="Birme"
+              />
             </div>
             <div className="secondaryContent">
-              <div className="ctrls">{ctrls}</div>
               <div className="photoStrip">
-                {/** TODO: Limit on # of photos uploaded */}
-                <img src="" alt="" title="" />
-                <img src="" alt="" title="" />
-                <img src="" alt="" title="" />
+                <HorizontalScroll reverseScroll={true}>
+                  <img
+                    src="/public/img/birme/IMG_3384.jpg"
+                    alt="Birme 1"
+                    title="Birme 1"
+                  />
+                  <img
+                    src="/public/img/birme/IMG_3420.jpg"
+                    alt="Birme 2"
+                    title="Birme 2"
+                  />
+                  <img
+                    src="/public/img/birme/IMG_3540.jpg"
+                    alt="Birme 3"
+                    title="Birme 3"
+                  />
+                  <img
+                    src="/public/img/birme/IMG_3648.jpg"
+                    alt="Birme 4"
+                    title="Birme 4"
+                  />
+                  <img
+                    src="/public/img/birme/IMG_3648.jpg"
+                    alt="Birme 4"
+                    title="Birme 4"
+                  />
+                  <img
+                    src="/public/img/birme/IMG_3648.jpg"
+                    alt="Birme 4"
+                    title="Birme 4"
+                  />
+                </HorizontalScroll>
               </div>
             </div>
           </div>
