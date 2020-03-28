@@ -25,7 +25,6 @@ const PostDetail: React.FC<PostDetailProps> = () => {
         </div>
         <div className="interaction">
           <PostMetaData />
-          <PostDetailCtrls />
           <PostReviews />
           <PostAnnotations />
           <PostQuestions />

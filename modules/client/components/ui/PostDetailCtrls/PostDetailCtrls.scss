@@ -1,5 +1,6 @@
 .postCtrls {
   width: 200px;
+  margin: 15px 0;
 }
 
 .ctrlsContain {
@@ -7,11 +8,26 @@
   flex-direction: row;
 }
 
-.postCtrlButton {
-  margin: 0 7px 0 0;
+.postCtrlButton,
+.postCtrlButton.bp3-button:not([class*="bp3-intent-"]) {
+  // margin: 0 7px 0 0;
   padding: 7px 15px;
+  // background: none;
+  // background-color: none;
+  background-image: none;
+  box-shadow: none;
+  border: none;
+  // border-radius: 50px;
+  // border: 1px $light-gray1 solid;
 
   .bp3-button-text {
     color: $dark-gray3;
+    top: 1px;
+    position: relative;
+  }
+
+  &:hover {
+    box-shadow: none;
+    border: none;
   }
 }

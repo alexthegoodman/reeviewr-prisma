@@ -1,2 +1,10 @@
 .followButton {
+  .bp3-icon {
+    top: 2px;
+    position: relative;
+
+    svg {
+      fill: $turquoise-blue;
+    }
+  }
 }
