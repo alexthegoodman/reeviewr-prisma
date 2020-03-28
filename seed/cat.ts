@@ -17,6 +17,7 @@ export default async function seedCats() {
       itemName: "Music",
     },
   });
+
   const cat2 = await photon.categories.create({
     data: {
       ...catSchema,

@@ -3,7 +3,7 @@ import * as faker from "faker";
 
 const photon = new Photon();
 
-export default async function seedPosts(user1, pod1, user2, pod2, tag1) {
+export default async function seedPosts(user1, pod1, user2, pod2, tag1, pod3) {
   const postSchema = {
     // user: { connect: { id: user1.id } },
     // pod: { connect: { id: pod1.id } },
@@ -158,9 +158,20 @@ export default async function seedPosts(user1, pod1, user2, pod2, tag1) {
     },
   });
 
+  const post4 = await photon.posts.create({
+    data: {
+      ...postSchema,
+      user: { connect: { id: user2.id } },
+      pod: { connect: { id: pod3.id } },
+      itemUrlSegment: faker.lorem.slug(),
+      itemName: faker.lorem.words(),
+    },
+  });
+
   return {
     post1,
     post2,
     post3,
+    post4,
   };
 }

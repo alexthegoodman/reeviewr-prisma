@@ -3,7 +3,7 @@ import * as faker from "faker";
 
 const photon = new Photon();
 
-export default async function seedPods(user1, cat1) {
+export default async function seedPods(user1, cat1, user2, cat2) {
   const podSchema = {
     user: { connect: { id: user1.id } },
     itemType: "default",
@@ -36,8 +36,6 @@ export default async function seedPods(user1, cat1) {
         },
       ],
     },
-    // posts: { connect: {} },
-    categories: { connect: { id: cat1.id } },
   };
 
   const pod1 = await photon.pods.create({
@@ -45,6 +43,7 @@ export default async function seedPods(user1, cat1) {
       ...podSchema,
       itemUrlSegment: faker.lorem.slug(),
       itemName: faker.name.findName(),
+      categories: { connect: { id: cat1.id } },
     },
   });
 
@@ -53,11 +52,22 @@ export default async function seedPods(user1, cat1) {
       ...podSchema,
       itemUrlSegment: faker.lorem.slug(),
       itemName: faker.name.findName(),
+      categories: { connect: { id: cat1.id } },
+    },
+  });
+
+  const pod3 = await photon.pods.create({
+    data: {
+      ...podSchema,
+      itemUrlSegment: faker.lorem.slug(),
+      itemName: faker.name.findName(),
+      categories: { connect: { id: cat2.id } },
     },
   });
 
   return {
     pod1,
     pod2,
+    pod3,
   };
 }
