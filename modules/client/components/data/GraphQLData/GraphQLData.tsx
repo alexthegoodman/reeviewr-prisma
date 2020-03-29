@@ -29,20 +29,33 @@ const GraphQLData: React.FC<GraphQLDataProps> = ({
     data,
     error,
     loading,
-  }: { data?: any; loading?: any; error?: any } = useQuery(QUERY, {
-    onCompleted: onFinish,
-    variables: queryVars,
-  });
+    refetch,
+  }: { data?: any; loading?: any; error?: any; refetch: any } = useQuery(
+    QUERY,
+    {
+      onCompleted: onFinish,
+      variables: queryVars,
+    }
+  );
+
+  React.useEffect(() => {
+    if (error || !utility.isDefinedWithContent(data)) {
+      console.error("GraphQLData ERROR:", error, data);
+      refetch();
+    }
+  }, error);
 
   if (loading) {
     return <LoadingIndicator loadingText={loadingText} />;
   }
+
   if (error) {
-    console.error("GraphQLData ERROR:", error);
-    return <div>Error! {error.message}</div>;
+    return <div>Error 001! Will attempt refetch. Output: {error.message}</div>;
   }
   if (!utility.isDefinedWithContent(data)) {
-    return <div>Error 2! Data not loading. Will attempt refetch.</div>;
+    return (
+      <div>Error 002! Will attempt refetch. Output: Data not loading.</div>
+    );
   }
 
   return <>{children}</>;

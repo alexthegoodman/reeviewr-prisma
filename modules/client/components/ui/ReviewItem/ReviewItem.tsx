@@ -2,13 +2,17 @@ import * as React from "react";
 
 import { Button, Icon, Popover, Text } from "@blueprintjs/core";
 import { ReviewItemProps } from "./ReviewItem.d";
+import { LoremIpsum } from "lorem-ipsum";
+import Hawaii from "../../../services/Hawaii";
 
 const ReviewItem: React.FC<ReviewItemProps> = ({
   ref = null,
   className = "",
   onClick = e => console.info("Click"),
 }) => {
+  const hawaii = new Hawaii();
   const clickHandler = e => onClick(e);
+
   return (
     <section className="reviewItem">
       <div className="reviewItemContain">
@@ -18,13 +22,13 @@ const ReviewItem: React.FC<ReviewItemProps> = ({
           </div>
           <div className="info">
             <Text className="userName" tagName="span">
-              Henry Lolligag
+              {hawaii.stringHandler.lorem.generateSentences(1)}
             </Text>
           </div>
         </div>
         <div className="itemContent">
           <Text className="reviewAnswer" tagName="span">
-            This is the first answer on the review...
+            {hawaii.stringHandler.lorem.generateSentences(3)}
           </Text>
         </div>
       </div>

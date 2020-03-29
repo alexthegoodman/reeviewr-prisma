@@ -13,10 +13,8 @@ const AddReview: React.FC<AddReviewProps> = ({
 
   return (
     <Button className="addReview" onClick={clickHandler}>
-      {imageUrl !== "" ? <img src={imageUrl} /> : <></>}
-      <Text tagName="span">
-        Add Review <em>+1 Point</em>
-      </Text>
+      {/* {imageUrl !== "" ? <img src={imageUrl} /> : <></>} */}
+      <Text tagName="span">Add Review</Text>
     </Button>
   );
 };

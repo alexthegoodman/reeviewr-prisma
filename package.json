@@ -202,6 +202,7 @@
     "lodash-es": "4.17.15",
     "lodash.groupby": "4.6.0",
     "lodash.keyby": "4.6.0",
+    "lorem-ipsum": "^2.0.3",
     "mailchimp-api-v3": "1.13.1",
     "md5": "2.2.1",
     "mini-css-extract-plugin": "0.8.0",

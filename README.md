@@ -58,3 +58,4 @@ To ease creation of components, take advantage of these commands
 
 - Utilizing Prisma 2 on Postgres database
 - https://alligator.io/nodejs/take-command-with-env-cmd/
+- https://gqless.dev/

@@ -3,6 +3,8 @@
   padding: 50px 50px 50px 50px;
   margin: 0 -35px;
   width: calc(100% + 70px);
+  position: relative;
+  z-index: 1000;
 
   @include tabletDown {
     margin-bottom: -20px;

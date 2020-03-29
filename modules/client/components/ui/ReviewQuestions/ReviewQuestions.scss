@@ -1,0 +1,28 @@
+.reviewQuestions {
+  .reviewQuestionsContain {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 25px 0;
+
+    .reviewQuestionItem {
+      display: block;
+      width: 160px;
+      text-decoration: none;
+      padding: 9px;
+
+      &.selected {
+        background: $light-gray3;
+      }
+
+      span {
+        display: block;
+        color: $light-slate-blue;
+        text-align: center;
+      }
+      .counter {
+        font-size: 24px;
+      }
+    }
+  }
+}

@@ -1,1 +1,18 @@
-/** Styles **/
+.postInteraction {
+  margin: 25px 0;
+
+  .postInteractionContain {
+    .postInteractionHeader {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    .postInteractionContent {
+      display: flex;
+      flex-direction: column;
+    }
+    .postInteractionCtrls {
+    }
+  }
+}

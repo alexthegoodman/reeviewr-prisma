@@ -2,13 +2,23 @@
   .postDetailContain {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 
     .content {
-      width: 55%;
-      margin-right: 55px;
+      // width: calc(100% - 540px);
+
+      position: relative;
+
+      .postImageViewer {
+        // width: 100%;
+        width: calc(100% - 840px);
+        position: fixed;
+      }
     }
     .interaction {
-      width: 45%;
+      width: 490px;
+      // height: calc(100vh - 115px);
+      // overflow: scroll;
     }
   }
 }

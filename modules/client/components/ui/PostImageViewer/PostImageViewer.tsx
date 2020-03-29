@@ -29,7 +29,9 @@ const PostImageViewer: React.FC<PostImageViewerProps> = ({
       onFinish={data => setData(data)}
       variables={{ postId }}
     >
-      {data !== null && data.findOnePost !== null ? (
+      {typeof data !== "undefined" &&
+      data !== null &&
+      data.findOnePost !== null ? (
         <section className="postImageViewer">
           <div className="postImageViewerContain">
             <div className="focusContent">

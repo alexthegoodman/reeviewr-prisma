@@ -3,9 +3,13 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  background-image: none;
+  box-shadow: none;
+  border: none;
+  margin-top: 15px;
   // background: $dark-gray2;
   // border-bottom: 5px $red solid;
-  @extend .scaleClick;
+  // @extend .scaleClick;
 
   .bp3-button-text {
     margin: 5px 0;
@@ -23,7 +27,7 @@
     width: calc(100% - 50px);
     display: flex;
     justify-content: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-transform: uppercase;
     font-family: $bFont;
     font-weight: 600;
