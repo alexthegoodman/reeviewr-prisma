@@ -197,8 +197,8 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                 You must answer all of the questions.
               </Callout>
             ) : (
-                <></>
-              )}
+              <></>
+            )}
 
             <Formik
               initialValues={{
@@ -225,7 +225,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                 }
 
                 if (!error) {
-                  console.info("success", values, track);
+                  // console.info("success", values, track);
 
                   const { data, errors } = await addReviewMutation({
                     variables: {
@@ -274,20 +274,20 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                     },
                   });
 
-                  console.info(
-                    "total points",
-                    pointsId,
-                    totalPoints,
-                    data2,
-                    errors2
-                  );
+                  // console.info(
+                  //   "total points",
+                  //   pointsId,
+                  //   totalPoints,
+                  //   data2,
+                  //   errors2
+                  // );
 
                   authClient.getUserData(dispatch);
 
                   actions.resetForm();
                   setModelOpen(false);
 
-                  console.info("data", data, errors);
+                  // console.info("data", data, errors);
                 }
               }}
               render={(formikBag: FormikProps<AddReviewFormValues>) => {
@@ -298,8 +298,8 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                       {questionType[0] === "rating" ? (
                         <Text>Rate the following from 1 to 10</Text>
                       ) : (
-                          <></>
-                        )}
+                        <></>
+                      )}
                       {strings.decode(trackMetaList["questionContent1"])}
                       {strings.decode(trackMetaList["questionOne1"])}
                     </Text>
@@ -324,8 +324,8 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                       {questionType[1] === "rating" ? (
                         <Text>Rate the following from 1 to 10</Text>
                       ) : (
-                          <></>
-                        )}
+                        <></>
+                      )}
                       {strings.decode(trackMetaList["questionContent2"])}
                       {strings.decode(trackMetaList["questionOne2"])}
                     </Text>
@@ -350,8 +350,8 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                       {questionType[2] === "rating" ? (
                         <Text>Rate the following from 1 to 10</Text>
                       ) : (
-                          <></>
-                        )}
+                        <></>
+                      )}
                       {strings.decode(trackMetaList["questionContent3"])}
                       {strings.decode(trackMetaList["questionOne3"])}
                     </Text>
@@ -365,7 +365,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                       disabled={formikBag.isSubmitting}
                       loading={formikBag.isSubmitting}
                       className="actionButton"
-                    // onClick={() => formikBag.submitForm()}
+                      // onClick={() => formikBag.submitForm()}
                     >
                       Finish
                     </Button>

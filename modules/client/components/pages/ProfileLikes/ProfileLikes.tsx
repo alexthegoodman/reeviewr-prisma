@@ -27,18 +27,19 @@ const ProfileLikes: React.FC<ProfileLikesProps> = ({ artistId }) => {
 
   // const { artistId, name } = route.lastChunk.request.params;
 
-  console.info("ProfileLikes", artistId);
+  // console.info("ProfileLikes", artistId);
 
-  const { data: userData, error: userError, loading: userLoading } = useQuery(
-    USER_QUERY,
-    { variables: { id: artistId } }
-  );
+  const {
+    data: userData,
+    error: userError,
+    loading: userLoading,
+  } = useQuery(USER_QUERY, { variables: { id: artistId } });
 
   let favs = null;
   if (utility.isDefinedWithContent(userData.user)) {
     let savedFavs = legacy.extractMetaValue(userData.user.userMeta, "favs");
     favs = core.getFromCSV(savedFavs);
-    console.info("favs", favs);
+    // console.info("favs", favs);
   }
 
   const {
@@ -50,7 +51,7 @@ const ProfileLikes: React.FC<ProfileLikesProps> = ({ artistId }) => {
 
   // console.info("User data", artistId, name, userData);
 
-  console.info("Tracks Data", artistId, tracksData, tracksLoading, tracksError);
+  // console.info("Tracks Data", artistId, tracksData, tracksLoading, tracksError);
 
   // track fetching is technically about ProfileNav which does the UserFetch
   if (userLoading) {

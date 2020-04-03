@@ -31,10 +31,11 @@ const ProfileFollowers: React.FC<ProfileFollowersProps> = ({ artistId }) => {
 
   // const { artistId, name } = route.lastChunk.request.params;
 
-  const { data: userData, error: userError, loading: userLoading } = useQuery(
-    USER_QUERY,
-    { variables: { id: artistId } }
-  );
+  const {
+    data: userData,
+    error: userError,
+    loading: userLoading,
+  } = useQuery(USER_QUERY, { variables: { id: artistId } });
 
   let followers = null;
   if (utility.isDefinedWithContent(userData.user)) {
@@ -43,7 +44,7 @@ const ProfileFollowers: React.FC<ProfileFollowersProps> = ({ artistId }) => {
       "followers"
     );
     followers = core.getFromCSV(savedFollowers);
-    console.info("profile followers", followers);
+    // console.info("profile followers", followers);
   }
 
   const {

@@ -6,4 +6,6 @@ export interface MenuItemProps {
   onClick?: (e: MouseEvent) => void;
   active?: boolean;
   labelElement?: ReactElement<any>;
+  disabled?: boolean;
+  text?: any;
 }

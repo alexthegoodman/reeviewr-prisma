@@ -1,5 +1,5 @@
 .reviewItem {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 
   .reviewItemContain {
     .itemHeader {
@@ -24,26 +24,29 @@
 
         .userName {
           color: $dark-slate-blue;
-          font-size: 14px;
+          font-size: 0.9rem;
           font-weight: bold;
           font-stretch: normal;
           font-style: normal;
           line-height: normal;
           letter-spacing: 1.17px;
+          line-height: 1.2rem;
         }
       }
     }
     .itemContent {
       margin-top: 10px;
+      padding-left: 55px;
 
       .reviewAnswer {
         color: $dark-slate-blue;
-        font-size: 14px;
+        font-size: 0.85rem;
         font-weight: normal;
         font-stretch: normal;
         font-style: normal;
         line-height: normal;
         letter-spacing: 1.17px;
+        line-height: 1.25rem;
       }
     }
   }

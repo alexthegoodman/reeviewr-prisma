@@ -68,7 +68,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
       id: cookies["reeviewrId"],
       first: 3,
     },
-    pollInterval: 5000,
+    pollInterval: process.env.POLL_INTERVAL as any, // 30-second poll interval
   });
 
   const {
@@ -80,7 +80,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
       id: cookies["reeviewrId"],
       first: 3,
     },
-    pollInterval: 5000,
+    pollInterval: process.env.POLL_INTERVAL as any,
   });
 
   console.info("threadsData", threadsData);
@@ -158,6 +158,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
           <WhoToFollow />
           <Advertisement />
         </Sidebar>
+
         <Header
           leftElements={
             <>
@@ -284,17 +285,18 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                         large={true}
                       />
                       {loggedIn ? (
-                          <>
-                            <MenuItem>Profile</MenuItem>
-                            <MenuItem>Support</MenuItem>
-                            <MenuItem onClick={authClient.logout}>Log Out</MenuItem>
-                          </>
+                        <>
+                          <MenuItem>Profile</MenuItem>
+                          <MenuItem>Support</MenuItem>
+                          <MenuItem onClick={authClient.logout}>
+                            Log Out
+                          </MenuItem>
+                        </>
                       ) : (
-                          <>
-                            <MenuItem>Support</MenuItem>
-                          </>
+                        <>
+                          <MenuItem>Support</MenuItem>
+                        </>
                       )}
-
                     </Menu>
                   }
                   position={Position.BOTTOM_LEFT}

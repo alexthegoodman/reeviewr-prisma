@@ -20,7 +20,7 @@ const PostImageViewer: React.FC<PostImageViewerProps> = ({
 
   const { postId } = route.lastChunk.request.params;
 
-  console.info("PostImageViewer data", route, postId, data);
+  // console.info("PostImageViewer data", route, postId, data);
 
   return (
     <GraphQLData

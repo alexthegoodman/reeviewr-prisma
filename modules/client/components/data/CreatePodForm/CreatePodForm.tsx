@@ -62,7 +62,7 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
     });
   }
 
-  console.info("categoryData", categoryData);
+  // console.info("categoryData", categoryData);
 
   const CreatePodSchema = Yup.object().shape({
     name: Yup.string()
@@ -132,7 +132,7 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
           });
 
           itemClient.createPod(values, (err, res) => {
-            console.info("returned", err, res);
+            // console.info("returned", err, res);
 
             if (err) {
               console.error(err);
@@ -144,10 +144,10 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
             }
             if (res.body.success) {
               // redirect to Home
-              console.info(
-                "thank you - go to new pod",
-                res.body.data.newPod.id
-              );
+              // console.info(
+              //   "thank you - go to new pod",
+              //   res.body.data.newPod.id
+              // );
               // setSuccessfulSubmission(true);
               window.location.href =
                 window.location.origin + "/pods/" + res.body.data.newPod.id;

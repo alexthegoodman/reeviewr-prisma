@@ -16,12 +16,15 @@ const PostAnnotations: React.FC<PostAnnotationsProps> = ({
     <PostInteraction
       header={
         <>
-          <Text tagName="h3">Annotations</Text>
+          <Text className="postHeadline" tagName="h3">
+            Annotations
+          </Text>
           <Link href="#!">All annotations</Link>
         </>
       }
       ctrls={<></>}
     >
+      <AnnotationItem />
       <AnnotationItem />
       <AnnotationItem />
     </PostInteraction>

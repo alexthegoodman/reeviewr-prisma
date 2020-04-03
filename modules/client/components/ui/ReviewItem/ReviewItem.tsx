@@ -22,7 +22,7 @@ const ReviewItem: React.FC<ReviewItemProps> = ({
           </div>
           <div className="info">
             <Text className="userName" tagName="span">
-              {hawaii.stringHandler.lorem.generateSentences(1)}
+              {hawaii.stringHandler.lorem.generateWords(2)}
             </Text>
           </div>
         </div>

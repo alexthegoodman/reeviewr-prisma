@@ -34,7 +34,7 @@ const RadioField: React.FC<RadioFieldProps> = ({
               label={label}
               name={fieldName}
               onChange={event => {
-                console.info("radio change", event.currentTarget.value);
+                // console.info("radio change", event.currentTarget.value);
                 form.setFieldValue(fieldName, event.currentTarget.value);
                 setFieldValue(event.currentTarget.value);
               }}
@@ -46,7 +46,7 @@ const RadioField: React.FC<RadioFieldProps> = ({
                     <Radio
                       {...field}
                       onChange={event => {
-                        console.info("radio change", event.currentTarget.value);
+                        // console.info("radio change", event.currentTarget.value);
                         form.setFieldValue(
                           fieldName,
                           event.currentTarget.value

@@ -15,7 +15,6 @@ const ThreadItem: React.FC<ThreadItemProps> = ({
   const clickHandler = e => onClick(e);
   let content = null;
   let contentLink = null;
-  console.info("thread", thread);
 
   const messageSnippet = legacy.extractMetaValue(
     thread.messages[0].itemMeta,

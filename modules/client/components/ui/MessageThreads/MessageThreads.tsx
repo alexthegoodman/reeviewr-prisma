@@ -51,13 +51,13 @@ const MessageThreads: React.FC<MessageThreadsProps> = ({
             }
           }
 
-          console.info(
-            "thread",
-            chatkitUser.roomSubscriptions,
-            room,
-            room.users,
-            otherUser
-          );
+          // console.info(
+          //   "thread",
+          //   chatkitUser.roomSubscriptions,
+          //   room,
+          //   room.users,
+          //   otherUser
+          // );
 
           return (
             <div
@@ -66,7 +66,7 @@ const MessageThreads: React.FC<MessageThreadsProps> = ({
               }
               key={room.id}
               onClick={() => {
-                console.info("room", room, room.users);
+                // console.info("room", room, room.users);
 
                 onSelectThread(room.id);
 

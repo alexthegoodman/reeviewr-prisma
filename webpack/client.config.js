@@ -57,9 +57,9 @@ module.exports = {
     ],
   },
 
-  devServer: {
-    hot: false,
-  },
+  // devServer: {
+  //   hot: false,
+  // },
 
   // optimization: config.get("minify")
   //   ? {
@@ -135,6 +135,10 @@ module.exports = {
         process.env.IDENTITY_PROVIDER_HOST
       ),
       "process.env.CLOUDFRONT_URL": JSON.stringify(process.env.CLOUDFRONT_URL),
+      "process.env.POLL_INTERVAL": JSON.stringify(process.env.POLL_INTERVAL),
+      "process.env.ERROR_REFETCH_DELAY": JSON.stringify(
+        process.env.ERROR_REFETCH_DELAY
+      ),
     }),
 
     // Process index.html and insert script and stylesheet tags for us.
@@ -205,7 +209,7 @@ module.exports = {
     // new IconFontPlugin(),
 
     ...(process.env.ANALYZE
-      ? [new (require("webpack-bundle-analyzer")).BundleAnalyzerPlugin()]
+      ? [new (require("webpack-bundle-analyzer").BundleAnalyzerPlugin)()]
       : []),
   ].concat(environmentPlugins),
 
@@ -217,9 +221,7 @@ module.exports = {
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/",
     filename:
-      process.env.NODE_ENV === "development"
-        ? "client.[chunkhash].js"
-        : "client.js",
+      process.env.NODE_ENV === "development" ? "client.[hash].js" : "client.js",
   },
 
   resolve: {

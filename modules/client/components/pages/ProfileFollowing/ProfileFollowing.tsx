@@ -28,10 +28,11 @@ const ProfileFollowing: React.FC<ProfileFollowingProps> = ({ artistId }) => {
 
   // const { artistId, name } = route.lastChunk.request.params;
 
-  const { data: userData, error: userError, loading: userLoading } = useQuery(
-    USER_QUERY,
-    { variables: { id: artistId } }
-  );
+  const {
+    data: userData,
+    error: userError,
+    loading: userLoading,
+  } = useQuery(USER_QUERY, { variables: { id: artistId } });
 
   let following = null;
   if (utility.isDefinedWithContent(userData.user)) {
@@ -74,7 +75,7 @@ const ProfileFollowing: React.FC<ProfileFollowingProps> = ({ artistId }) => {
   if (usersError) {
     return <div>Error on tracks! {usersError.message}</div>;
   }
-  console.info("uuserdata", usersData);
+  // console.info("uuserdata", usersData);
   if (
     !utility.isDefinedWithContent(usersData.users) ||
     !utility.isDefinedWithContent(usersData)

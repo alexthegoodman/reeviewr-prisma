@@ -17,6 +17,7 @@ import ErrorFallback from "./components/pages/status/ErrorFallback/ErrorFallback
 import { AppContextAPI } from "./context/AppContextAPI";
 import client from "./services/ApolloClient";
 import { ErrorHandler } from "./services/ErrorHandler";
+import whyDidYouRender from "@welldone-software/why-did-you-render";
 
 const styles = require("./sass/style.scss");
 
@@ -26,9 +27,15 @@ if (process.env.NODE_ENV !== "development") {
   Sentry.init({ dsn: process.env.SENTRY });
 }
 
-interface AppProviderProps { }
+// if (process.env.NODE_ENV === "development") {
+//   whyDidYouRender(React, {
+//     trackAllPureComponents: true,
+//   });
+// }
 
-interface RootProviderProps { }
+interface AppProviderProps {}
+
+interface RootProviderProps {}
 
 export const AppProvider: React.FC<AppProviderProps> = props => {
   return (
@@ -51,8 +58,8 @@ const RootProvider: React.FC<RootProviderProps> = props => {
             />
           </>
         ) : (
-            <></>
-          )}
+          <></>
+        )}
         <ApolloProvider client={client}>
           {/** TODO: Good spot for Layout if desire no rerender, consider best placement for context */}
           <CookiesProvider>

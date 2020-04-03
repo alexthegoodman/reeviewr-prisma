@@ -3,25 +3,111 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin: 25px 0;
+    margin: 0 0 25px 0;
+
+    .bp3-popover-wrapper {
+      width: 100%;
+
+      .bp3-popover-target {
+        width: 100%;
+
+        > div {
+          width: 100%;
+
+          .reviewDropdownContain {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-content: center;
+
+            .reviewDropdownLabel {
+              font-weight: 400;
+              align-self: center;
+              color: $gray3;
+              letter-spacing: 1.13px;
+            }
+          }
+        }
+      }
+    }
+
+    .reviewDropdown {
+      .bp3-button-text {
+        color: $dark-gray3;
+      }
+    }
 
     .reviewQuestionItem {
-      display: block;
+      // display: block;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       width: 160px;
       text-decoration: none;
-      padding: 9px;
+      padding: 18px 9px;
+      border-bottom: 5px transparent solid;
 
       &.selected {
-        background: $light-gray3;
+        background: $light-gray5;
+        border-color: $lightBlue;
+
+        &:hover {
+          border-color: $lightBlue;
+        }
+      }
+
+      &:hover {
+        border-color: $light-gray5;
       }
 
       span {
         display: block;
-        color: $light-slate-blue;
+        color: $dark-gray5;
         text-align: center;
+        line-height: 18px;
       }
       .counter {
         font-size: 24px;
+        margin-bottom: 7px;
+        font-weight: 600;
+        color: $dark-gray5;
+      }
+    }
+  }
+}
+
+div.bp3-portal {
+  div.bp3-overlay {
+    a.questionMenuItem {
+      margin: 0;
+      padding: 0;
+      position: relative;
+
+      &.bp3-active {
+        background: #eeeeee;
+
+        > .bp3-fill {
+          color: $turquoise-blue;
+        }
+      }
+      &.bp3-active > div.bp3-fill,
+      > div.bp3-fill {
+        padding: 4px 15px;
+        margin: 0;
+        font-size: 0.8rem;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        letter-spacing: 1.41px;
+        color: $dark-slate-blue;
+        line-height: 1rem;
+
+        .bp3-icon {
+          margin: 0 15px 0 0;
+          position: relative;
+          top: -4px;
+        }
       }
     }
   }

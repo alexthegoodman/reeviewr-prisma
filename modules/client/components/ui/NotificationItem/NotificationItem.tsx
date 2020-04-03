@@ -10,14 +10,20 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
   ref = null,
   className = "",
   onClick = e => console.info("Click"),
-  notification = null
+  notification = null,
 }) => {
   const legacy = new Legacy();
   const clickHandler = e => onClick(e);
-  console.info("notification details", notification);
+  // console.info("notification details", notification);
 
-  const senderFirstName = legacy.extractMetaValue(notification.sender.userMeta, "firstName");
-  const senderLastName = legacy.extractMetaValue(notification.sender.userMeta, "lastName");
+  const senderFirstName = legacy.extractMetaValue(
+    notification.sender.userMeta,
+    "firstName"
+  );
+  const senderLastName = legacy.extractMetaValue(
+    notification.sender.userMeta,
+    "lastName"
+  );
 
   let content = <></>;
   let contentLink = null;
@@ -29,11 +35,9 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
           {senderFirstName} {senderLastName}
         </Link>
         <Text>has reviewed</Text>
-        <Link href={contentLink}>
-          {notification.post.itemName}
-        </Link>
+        <Link href={contentLink}>{notification.post.itemName}</Link>
       </>
-    )
+    );
   }
 
   return (

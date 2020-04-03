@@ -5,6 +5,10 @@
   line-height: 30px;
   position: relative;
 
+  &:hover {
+    line-height: 30px;
+  }
+
   &.bp3-active {
     background: #eeeeee;
 

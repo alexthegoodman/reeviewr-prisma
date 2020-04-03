@@ -5,6 +5,8 @@ import Utility from "../../../../services/Utility";
 import LoadingIndicator from "../../../components/ui/LoadingIndicator/LoadingIndicator";
 import { GraphQLDataProps } from "./GraphQLData.d";
 import { useCookies } from "react-cookie";
+import Hawaii from "../../../services/Hawaii";
+import Oahu from "../../../../services/Oahu";
 
 const GraphQLData: React.FC<GraphQLDataProps> = ({
   ref = null,
@@ -14,9 +16,11 @@ const GraphQLData: React.FC<GraphQLDataProps> = ({
   QUERY = null,
   loadingText = "Loading...",
   onFinish = data => console.info("finish default", data),
+  onError = error => console.error("error", error),
   variables = null,
 }) => {
-  const utility = new Utility();
+  const hawaii = new Hawaii();
+  const oahu = new Oahu();
   const [cookies] = useCookies(["reeviewrId"]);
 
   let queryVars = { ...variables };
@@ -24,6 +28,18 @@ const GraphQLData: React.FC<GraphQLDataProps> = ({
   if (variables !== null && typeof variables["userId"] === "undefined") {
     queryVars = { ...variables, userId: cookies["reeviewrId"] };
   }
+
+  const finishError = error => {
+    setTimeout(() => {
+      hawaii.apolloClient.reFetchObservableQueries();
+    }, process.env.ERROR_REFETCH_DELAY as any);
+    // hawaii.apolloClient.reFetchObservableQueries
+    onError(error);
+  };
+
+  const finishSuccess = data => {
+    onFinish(data);
+  };
 
   const {
     data,
@@ -33,17 +49,12 @@ const GraphQLData: React.FC<GraphQLDataProps> = ({
   }: { data?: any; loading?: any; error?: any; refetch: any } = useQuery(
     QUERY,
     {
-      onCompleted: onFinish,
+      onError: finishError,
+      onCompleted: finishSuccess,
       variables: queryVars,
+      pollInterval: process.env.POLL_INTERVAL as any,
     }
   );
-
-  React.useEffect(() => {
-    if (error || !utility.isDefinedWithContent(data)) {
-      console.error("GraphQLData ERROR:", error, data);
-      refetch();
-    }
-  }, error);
 
   if (loading) {
     return <LoadingIndicator loadingText={loadingText} />;
@@ -52,7 +63,7 @@ const GraphQLData: React.FC<GraphQLDataProps> = ({
   if (error) {
     return <div>Error 001! Will attempt refetch. Output: {error.message}</div>;
   }
-  if (!utility.isDefinedWithContent(data)) {
+  if (!oahu.utility.isDefinedWithContent(data)) {
     return (
       <div>Error 002! Will attempt refetch. Output: Data not loading.</div>
     );

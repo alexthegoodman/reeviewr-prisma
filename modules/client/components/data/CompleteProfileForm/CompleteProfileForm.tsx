@@ -124,15 +124,15 @@ const CompleteProfileForm: React.FC<CompleteProfileFormProps> = ({
             ) {
               setFileSizeError(true);
             } else {
-              console.info("success", values);
+              // console.info("success", values);
               authClient.completeProfile(values, (err, res) => {
-                console.info("returned", err, res);
+                // console.info("returned", err, res);
                 if (err) {
                   console.error(err);
                 }
                 if (res.body.success) {
                   // redirect to Home
-                  console.info("thank you - go home");
+                  // console.info("thank you - go home");
                   setSuccessfulSubmission(true);
                   window.location.href = window.location.origin;
                 }

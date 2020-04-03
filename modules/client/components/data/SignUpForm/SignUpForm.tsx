@@ -106,7 +106,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
           });
 
           authClient.signup(values, (err, res) => {
-            console.info("returned", err, res);
+            // console.info("returned", err, res);
 
             if (typeof res.body.error !== "undefined") {
               setFormError(res.body.errorMessage);
@@ -116,9 +116,9 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
 
             if (res.body.success) {
               // redirect to Home
-              console.info(
-                "thank you - go confirm your email and complete your profile"
-              );
+              // console.info(
+              //   "thank you - go confirm your email and complete your profile"
+              // );
               // setSuccessfulSubmission(true);
               window.location.href = window.location.origin;
             }

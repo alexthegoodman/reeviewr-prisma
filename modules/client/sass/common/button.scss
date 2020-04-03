@@ -1,3 +1,10 @@
+.bp3-button:not([class*="bp3-intent-"]) {
+  background-image: none;
+  box-shadow: none;
+  border: none;
+  min-height: auto;
+}
+
 .button,
 .button.bp3-button:not([class*="bp3-intent-"]) {
   background-image: none;

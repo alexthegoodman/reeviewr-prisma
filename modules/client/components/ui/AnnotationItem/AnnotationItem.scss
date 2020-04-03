@@ -1,1 +1,56 @@
-/** Styles **/
+.annotationItem {
+  width: 100%;
+  background: $light-gray5;
+  margin-bottom: 15px;
+
+  .annotationItemContain {
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .left {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .annotationImage {
+      display: block;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: $dark-gray5;
+    }
+    .annotationInfo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 15px;
+    }
+    .annotationUserName,
+    .annotationCount {
+      font-size: 0.9rem;
+      color: $dark-gray3;
+    }
+    .annotationUserName {
+      font-weight: 600;
+    }
+    .annotationCount {
+      font-size: 0.8rem;
+    }
+    .button {
+      height: 28px;
+      padding-top: 8px;
+
+      .bp3-button-text {
+        color: white;
+      }
+    }
+  }
+}

@@ -10,6 +10,8 @@ const MenuItem: React.FC<MenuItemProps> = ({
   labelElement = <></>,
   onClick = () => console.info("Click"),
   children = null,
+  disabled = false,
+  text = "",
 }) => {
   const clickHandler = e => onClick(e);
   return (
@@ -19,7 +21,8 @@ const MenuItem: React.FC<MenuItemProps> = ({
       onClick={clickHandler}
       active={active}
       labelElement={labelElement}
-      text={children}
+      text={text !== "" ? text : children}
+      disabled={disabled}
     />
   );
 };

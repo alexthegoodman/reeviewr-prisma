@@ -35,7 +35,7 @@ const MessengerHistory: React.FC<MessengerHistoryProps> = ({
           name = message.userStore.users[key].name;
         }
       }
-      console.info("message", message, id, name);
+      // console.info("message", message, id, name);
       messageArr[messageArr.length] = new Message({
         id: message.senderId,
         senderName: name,

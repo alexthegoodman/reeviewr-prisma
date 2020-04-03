@@ -101,14 +101,14 @@ const MailchimpSubscribeForm: React.FC<MailchimpSubscribeFormProps> = ({
             });
 
             integrationClient.mailchimpSubscribe(values, (err, res) => {
-              console.info("returned", err, res);
+              // console.info("returned", err, res);
 
               if (err) {
                 console.error(err);
               }
               if (res.body.success) {
                 // redirect to Home
-                console.info("thank you");
+                // console.info("thank you");
                 setSuccessfulSubmission(true);
               }
               actions.resetForm();

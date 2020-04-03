@@ -28,30 +28,28 @@ const startDevServer = () => {
     "webpack/hot/dev-server"
   );
   return new Promise((resolve, reject) => {
-    devServer = new WebpackDevServer(webpack(webpackConfig), {
-      publicPath: webpackConfig.output.publicPath,
-      hot: hot,
-      inline: inline,
-      historyApiFallback: true,
-      noInfo: noInfo,
-      stats: "errors-only",
-      disableHostCheck: config.get("devServer.disableHostCheck"),
-      proxy: {
-        "/graphql/*": `http://${PROXY_HOST}`,
-        "/graphiql/*": `http://${PROXY_HOST}`,
-      },
-    });
-
-    setTimeout(function() {}, 10000);
-
-    devServer.listen(DEV_PORT, err => {
-      if (err) {
-        console.error(err);
-        reject(err);
-      }
-      console.log(`WDS: Listening on port ${DEV_PORT}`);
-      resolve();
-    });
+    // devServer = new WebpackDevServer(webpack(webpackConfig), {
+    //   publicPath: webpackConfig.output.publicPath,
+    //   hot: hot,
+    //   inline: inline,
+    //   historyApiFallback: true,
+    //   noInfo: noInfo,
+    //   stats: "errors-only",
+    //   disableHostCheck: config.get("devServer.disableHostCheck"),
+    //   proxy: {
+    //     "/graphql/*": `http://${PROXY_HOST}`,
+    //     "/graphiql/*": `http://${PROXY_HOST}`,
+    //   },
+    // });
+    // setTimeout(function() {}, 10000);
+    // devServer.listen(DEV_PORT, err => {
+    //   if (err) {
+    //     console.error(err);
+    //     reject(err);
+    //   }
+    //   console.log(`WDS: Listening on port ${DEV_PORT}`);
+    //   resolve();
+    // });
   });
 };
 

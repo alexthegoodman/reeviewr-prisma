@@ -12,9 +12,7 @@ import MessageThreads from "../../ui/MessageThreads/MessageThreads";
 import Messenger from "../../ui/Messenger/Messenger";
 
 const Messages: React.FC<MessagesProps> = () => {
-  const [cookies, setCookie, removeCookie] = useCookies([
-    "reeviewrId",
-  ]);
+  const [cookies, setCookie, removeCookie] = useCookies(["reeviewrId"]);
 
   const [{ userData }, dispatch] = useAppContext();
   const [chatkitUser, setChatkitUser] = React.useState(null);
@@ -132,41 +130,41 @@ const Messages: React.FC<MessagesProps> = () => {
     }
   };
 
-  console.info("checking here", allRoomsSubscribed);
+  // console.info("checking here", allRoomsSubscribed);
   return (
     <section className="messages">
       {!allRoomsSubscribed ? (
         <LoadingIndicator loadingText="Subscribing..." />
       ) : (
-          <>
-            <MessageThreads
-              chatkitUser={chatkitUser}
-              onSelectThread={setSelectedThread}
-              setEmptyThead={setEmptyThead}
-              setSelectedThread={setSelectedThread}
-              selectedThread={selectedThread}
-              selectedUser={selectedUser}
-              setSelectedUser={setSelectedUser}
-              setSendDisabled={setSendDisabled}
-              allRoomsSubscribed={allRoomsSubscribed}
-              setAllRoomsSubscribed={setAllRoomsSubscribed}
-            />
-            <Messenger
-              chatkitUser={chatkitUser}
-              selectedThread={selectedThread}
-              emptyThread={emptyThread}
-              selectedUser={selectedUser}
-              sendDisabled={sendDisabled}
-              setSendDisabled={setSendDisabled}
-              setSelectedUser={setSelectedUser}
-              messages={messages}
-              setMessages={setMessages}
-              allRoomsSubscribed={allRoomsSubscribed}
-              setAllRoomsSubscribed={setAllRoomsSubscribed}
-              updateMessages={updateMessages}
-            />
-          </>
-        )}
+        <>
+          <MessageThreads
+            chatkitUser={chatkitUser}
+            onSelectThread={setSelectedThread}
+            setEmptyThead={setEmptyThead}
+            setSelectedThread={setSelectedThread}
+            selectedThread={selectedThread}
+            selectedUser={selectedUser}
+            setSelectedUser={setSelectedUser}
+            setSendDisabled={setSendDisabled}
+            allRoomsSubscribed={allRoomsSubscribed}
+            setAllRoomsSubscribed={setAllRoomsSubscribed}
+          />
+          <Messenger
+            chatkitUser={chatkitUser}
+            selectedThread={selectedThread}
+            emptyThread={emptyThread}
+            selectedUser={selectedUser}
+            sendDisabled={sendDisabled}
+            setSendDisabled={setSendDisabled}
+            setSelectedUser={setSelectedUser}
+            messages={messages}
+            setMessages={setMessages}
+            allRoomsSubscribed={allRoomsSubscribed}
+            setAllRoomsSubscribed={setAllRoomsSubscribed}
+            updateMessages={updateMessages}
+          />
+        </>
+      )}
     </section>
   );
 };

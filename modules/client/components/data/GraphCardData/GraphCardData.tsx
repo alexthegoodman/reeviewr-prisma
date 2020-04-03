@@ -55,7 +55,7 @@ const GraphCardData: React.FC<GraphCardDataProps> = ({
         // const greenData = [{ x: "A", y: 10 }, { x: "B", y: 5 }, { x: "C", y: 15 }];
         graphData = [];
         for (let i = 1; i <= 10; i++) {
-          console.info(reviews);
+          // console.info(reviews);
           const matchReview = reviews.items.filter(
             item => item.answer === `${i}`
           );
@@ -73,12 +73,12 @@ const GraphCardData: React.FC<GraphCardDataProps> = ({
         let multChoiceOptions = [option1, option2, option3, option4];
         for (let key in multChoiceOptions) {
           if (typeof multChoiceOptions[key] !== "undefined") {
-            console.info(
-              key,
-              multChoiceOptions,
-              `${parseInt(key) + 1}`,
-              reviews
-            );
+            // console.info(
+            //   key,
+            //   multChoiceOptions,
+            //   `${parseInt(key) + 1}`,
+            //   reviews
+            // );
             const matchReview = reviews.items.filter(
               item => item.answer === `${parseInt(key) + 1}`
             );
@@ -89,7 +89,7 @@ const GraphCardData: React.FC<GraphCardDataProps> = ({
           }
         }
 
-        console.info("graphdata", multChoiceOptions, reviews.items, graphData);
+        // console.info("graphdata", multChoiceOptions, reviews.items, graphData);
 
         graphType = "bar";
 

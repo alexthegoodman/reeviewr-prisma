@@ -11,6 +11,7 @@ const WhoToFollow: React.FC<WhoToFollowProps> = ({
   onClick = e => console.info("Click"),
 }) => {
   const clickHandler = e => onClick(e);
+  // TODO: Tie this to Joined Pods
   return (
     <>
       <section className="whoToFollow">
