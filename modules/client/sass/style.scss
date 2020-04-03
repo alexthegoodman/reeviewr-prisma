@@ -11,6 +11,8 @@
 @import "../../../node_modules/slick-carousel/slick/slick.css";
 @import "../../../node_modules/slick-carousel/slick/slick-theme.css";
 
+@import "../../../node_modules/semantic-ui-css/semantic.min.css";
+
 @import "vars";
 
 // @import "base/reset";
@@ -104,6 +106,7 @@
 @import "../components/ui/PostInteraction/PostInteraction";
 @import "../components/ui/ReviewQuestions/ReviewQuestions";
 @import "../components/ui/AnnotationItem/AnnotationItem";
+@import "../components/ui/QuestionItem/QuestionItem";
 
 @import "../components/ui/landing/LandingHeroA/LandingHeroA";
 @import "../components/ui/landing/LandingFeaturesA/LandingFeaturesA";

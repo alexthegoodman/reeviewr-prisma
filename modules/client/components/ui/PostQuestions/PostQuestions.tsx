@@ -22,8 +22,30 @@ const PostQuestions: React.FC<PostQuestionsProps> = ({
       }
       ctrls={<></>}
     >
-      <QuestionItem />
-      <QuestionItem />
+      <QuestionItem
+        inquiry={{
+          userName: "Alex Woodman",
+          time: Date.now(),
+          text: "Here is the question",
+        }}
+        answer={{
+          userName: "Marco Bulnes",
+          time: Date.now(),
+          text: "Here is the answer",
+        }}
+      />
+      <QuestionItem
+        inquiry={{
+          userName: "Alex Woodman",
+          time: Date.now(),
+          text: "Here is the question",
+        }}
+        answer={{
+          userName: "Marco Bulnes",
+          time: Date.now(),
+          text: "Here is the answer",
+        }}
+      />
     </PostInteraction>
   );
 };
