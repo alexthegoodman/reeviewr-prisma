@@ -1,24 +1,46 @@
 .postDetail {
   .postDetailContain {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
     .content {
-      // width: calc(100% - 540px);
+      .contentContain {
+        display: flex;
+        justify-content: center;
+        background-color: $dark-gray2;
+        padding: 50px;
 
-      position: relative;
-
-      .postImageViewer {
-        // width: 100%;
-        width: calc(100% - 840px);
-        position: fixed;
+        .contentContainInside {
+        }
       }
     }
     .interaction {
-      width: 490px;
-      // height: calc(100vh - 115px);
-      // overflow: scroll;
+      .interactionContain {
+        .bp3-tab-indicator-wrapper ~ .bp3-tab {
+        }
+      }
     }
   }
 }
+
+// .postDetail {
+//   .postDetailContain {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+
+//     .content {
+//       // width: calc(100% - 540px);
+
+//       position: relative;
+
+//       .postImageViewer {
+//         // width: 100%;
+//         width: calc(100% - 840px);
+//         position: fixed;
+//       }
+//     }
+//     .interaction {
+//       width: 490px;
+//       // height: calc(100vh - 115px);
+//       // overflow: scroll;
+//     }
+//   }
+// }

@@ -7,6 +7,8 @@ import { GraphQLDataProps } from "./GraphQLData.d";
 import { useCookies } from "react-cookie";
 import Hawaii from "../../../services/Hawaii";
 import Oahu from "../../../../services/Oahu";
+import { Text, Callout } from "@blueprintjs/core";
+import OutputSystemMessage from "../../ui/OutputSystemMessage/OutputSystemMessage";
 
 const GraphQLData: React.FC<GraphQLDataProps> = ({
   ref = null,
@@ -31,6 +33,7 @@ const GraphQLData: React.FC<GraphQLDataProps> = ({
 
   const finishError = error => {
     setTimeout(() => {
+      // TODO: Toast "Syncing"
       hawaii.apolloClient.reFetchObservableQueries();
     }, process.env.ERROR_REFETCH_DELAY as any);
     // hawaii.apolloClient.reFetchObservableQueries
@@ -60,12 +63,26 @@ const GraphQLData: React.FC<GraphQLDataProps> = ({
     return <LoadingIndicator loadingText={loadingText} />;
   }
 
+  // TODO: Create ErrorCallout / OutputMessages comp
+  // with options ex. type={error} code={001} attemptRefetch={true} output={Text}
   if (error) {
-    return <div>Error 001! Will attempt refetch. Output: {error.message}</div>;
+    return (
+      <OutputSystemMessage
+        type="ERROR"
+        code="GRAPHQLDATA-001"
+        attemptRefetch={true}
+        output={error.message}
+      />
+    );
   }
   if (!oahu.utility.isDefinedWithContent(data)) {
     return (
-      <div>Error 002! Will attempt refetch. Output: Data not loading.</div>
+      <OutputSystemMessage
+        type="ERROR"
+        code="GRAPHQLDATA-002"
+        attemptRefetch={true}
+        output="Data not loading."
+      />
     );
   }
 

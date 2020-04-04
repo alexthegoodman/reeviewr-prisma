@@ -12,22 +12,51 @@ import PostVideoViewer from "../../ui/PostVideoViewer/PostVideoViewer";
 import ShareButton from "../../ui/ShareButton/ShareButton";
 import { PostDetailProps } from "./PostDetail.d";
 import PostDetailCtrls from "../../ui/PostDetailCtrls/PostDetailCtrls";
+import { Tab, Tabs } from "@blueprintjs/core";
+import PostInfo from "../../ui/PostInfo/PostInfo";
+import FlushContentWrapper from "../../ui/FlushContentWrapper/FlushContentWrapper";
 
 const PostDetail: React.FC<PostDetailProps> = () => {
+  const [selectTab, setSelectTab] = React.useState(
+    "reviews" as React.ReactText
+  );
   return (
     <section className="postDetail">
       <div className="postDetailContain">
         <div className="content">
-          <PostImageViewer />
-          <PostAudioViewer />
-          <PostVideoViewer />
-          <PostTextViewer />
+          <FlushContentWrapper>
+            <div className="contentContain">
+              <div className="contentContainInside">
+                <PostImageViewer />
+                <PostAudioViewer />
+                <PostVideoViewer />
+                <PostTextViewer />
+              </div>
+            </div>
+          </FlushContentWrapper>
         </div>
         <div className="interaction">
-          <PostMetaData />
-          <PostReviews />
-          <PostAnnotations />
-          <PostQuestions />
+          <div className="interactionContain">
+            {/* <PostMetaData /> */}
+            <Tabs
+              id="postTabs"
+              onChange={(newTabId, prevTabId, event) => {
+                setSelectTab(newTabId);
+              }}
+              selectedTabId={selectTab}
+            >
+              <Tab id="reviews" title="Reviews" panel={<PostReviews />} />
+              <Tab
+                id="annotations"
+                title="Annotations"
+                panel={<PostAnnotations />}
+                panelClassName="ember-panel"
+              />
+              <Tab id="questions" title="Q&A" panel={<PostQuestions />} />
+              <Tab id="audience" title="Audience" panel={<></>} />
+              <Tab id="info" title="Info" panel={<PostInfo />} />
+            </Tabs>
+          </div>
         </div>
       </div>
     </section>

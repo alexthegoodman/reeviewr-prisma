@@ -43,38 +43,38 @@ const PostImageViewer: React.FC<PostImageViewerProps> = ({
             </div>
             <div className="secondaryContent">
               <div className="photoStrip">
-                <HorizontalScroll reverseScroll={true}>
-                  <img
-                    src="/public/img/birme/IMG_3384.jpg"
-                    alt="Birme 1"
-                    title="Birme 1"
-                  />
-                  <img
-                    src="/public/img/birme/IMG_3420.jpg"
-                    alt="Birme 2"
-                    title="Birme 2"
-                  />
-                  <img
-                    src="/public/img/birme/IMG_3540.jpg"
-                    alt="Birme 3"
-                    title="Birme 3"
-                  />
-                  <img
-                    src="/public/img/birme/IMG_3648.jpg"
-                    alt="Birme 4"
-                    title="Birme 4"
-                  />
-                  <img
-                    src="/public/img/birme/IMG_3648.jpg"
-                    alt="Birme 4"
-                    title="Birme 4"
-                  />
-                  <img
-                    src="/public/img/birme/IMG_3648.jpg"
-                    alt="Birme 4"
-                    title="Birme 4"
-                  />
-                </HorizontalScroll>
+                {/* <HorizontalScroll reverseScroll={true}> */}
+                <img
+                  src="/public/img/birme/IMG_3384.jpg"
+                  alt="Birme 1"
+                  title="Birme 1"
+                />
+                <img
+                  src="/public/img/birme/IMG_3420.jpg"
+                  alt="Birme 2"
+                  title="Birme 2"
+                />
+                <img
+                  src="/public/img/birme/IMG_3540.jpg"
+                  alt="Birme 3"
+                  title="Birme 3"
+                />
+                <img
+                  src="/public/img/birme/IMG_3648.jpg"
+                  alt="Birme 4"
+                  title="Birme 4"
+                />
+                <img
+                  src="/public/img/birme/IMG_3648.jpg"
+                  alt="Birme 4"
+                  title="Birme 4"
+                />
+                <img
+                  src="/public/img/birme/IMG_3648.jpg"
+                  alt="Birme 4"
+                  title="Birme 4"
+                />
+                {/* </HorizontalScroll> */}
               </div>
             </div>
           </div>
