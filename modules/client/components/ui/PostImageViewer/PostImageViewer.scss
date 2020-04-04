@@ -5,9 +5,13 @@ $postImageGap: 8px;
     padding: 0 0 10px 0;
 
     .focusContent {
+      display: flex;
+      justify-content: center;
+
       img {
         display: block;
-        width: 100%;
+        width: auto;
+        max-width: 100%;
         max-height: 60vh;
         background: $lightGrey;
         border-radius: 5px;

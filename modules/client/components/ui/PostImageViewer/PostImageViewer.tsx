@@ -22,6 +22,8 @@ const PostImageViewer: React.FC<PostImageViewerProps> = ({
 
   // console.info("PostImageViewer data", route, postId, data);
 
+  // TODO: vertical content picker
+
   return (
     <GraphQLData
       QUERY={POST_QUERY}

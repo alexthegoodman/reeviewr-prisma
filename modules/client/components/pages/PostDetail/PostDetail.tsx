@@ -54,7 +54,7 @@ const PostDetail: React.FC<PostDetailProps> = () => {
               />
               <Tab id="questions" title="Q&A" panel={<PostQuestions />} />
               <Tab id="audience" title="Audience" panel={<></>} />
-              <Tab id="info" title="Info" panel={<PostInfo />} />
+              <Tab id="information" title="Information" panel={<PostInfo />} />
             </Tabs>
           </div>
         </div>

@@ -59,7 +59,7 @@ const GraphQLData: React.FC<GraphQLDataProps> = ({
     }
   );
 
-  if (loading) {
+  if (loading && !oahu.utility.isDefinedWithContent(data)) {
     return <LoadingIndicator loadingText={loadingText} />;
   }
 
