@@ -1,10 +1,8 @@
-# Prisma / Reeviewr
+# Reeviewr v2 Beta - Prisma + React + TypeScript
 
-Special thanks goes to Atomic Object for open sourcing a starter kit that was preferable to my own.
+## Introduction
 
-The project has since evolved into Prisma centric.
-
-# Set Up
+### Getting Started
 
 - Use a Linux machine. This will assure compatability.
 - Pull the repo https://github.com/alexthegoodman/reeviewr-prisma
@@ -24,27 +22,35 @@ The project has since evolved into Prisma centric.
 - Visit `http://localhost:4000/` to verify that the Prisma / GraphQL Playground is functioning
 - Open `localhost:3000` in your browser to verify the web app is functioning
 
-You wll be doing most work in /modules/client/, /modules/server/, and /cypress/.
+### Relevant Directories
 
-SSR will not function with `yarn dev` because webpack-dev-server is serving on port `3000`.
-TO test SSR functions, run `yarn build:production` and check port `3001`.
+- /modules/ Working Directory
+- /cypress/ UI Tests
 
-## Commands
+## Run
 
-To ease creation of components, take advantage of these commands
+### Development
 
-- `yarn gen:ui ComponentName`
-- `yarn gen:page PageName`
-- `yarn gen:data DataComponentName`
-- `yarn storybook` to browse all /ui/ components
-- `yarn test` to run Jest and Cypress tests
+```
+Run `yarn dev`
+Check `localhost:3000`
+```
 
-## TODO
+Notes: SSR will not function with `yarn dev` because webpack-dev-server is serving on port `3000`.
 
-- Write Cypress tests
-- Put components in categorical sub folders
+### Production
 
-## Technology Used
+```
+Run `yarn build:production`
+Run `yarn dev:server:nodemon`
+Check `localhost:3001`
+```
+
+Notes: To test SSR functions, run `yarn build:production` and `yarn dev:server:nodemon` and check port `3001`.
+
+## Contributing
+
+### Technology Used
 
 - Prisma
 - Hooks
@@ -54,8 +60,24 @@ To ease creation of components, take advantage of these commands
 - Navi
 - Heroku
 
+### Terminal Commands
+
+To ease creation of components, take advantage of these commands
+
+- `yarn gen:ui ComponentName`
+- `yarn gen:page PageName`
+- `yarn gen:data DataComponentName`
+- `yarn storybook` to browse all /ui/ components
+- `yarn test` to run Jest and Cypress tests
+
+### TODO
+
+- Write Cypress tests
+- Put components in categorical sub folders
+
 ### Notes
 
 - Utilizing Prisma 2 on Postgres database
 - https://alligator.io/nodejs/take-command-with-env-cmd/
 - https://gqless.dev/
+- Special thanks goes to Atomic Object for starter kit
