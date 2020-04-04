@@ -47,6 +47,21 @@
 
   li {
     margin: 0;
+
+    .menuItem {
+      > .bp3-fill {
+        font-size: 1.1rem;
+
+        > .bp3-icon {
+          top: 0;
+
+          svg {
+            width: 15px;
+            height: 15px;
+          }
+        }
+      }
+    }
   }
 }
 
