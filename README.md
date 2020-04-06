@@ -91,5 +91,17 @@ To ease creation of components, take advantage of these commands
 
 - Utilizing Prisma 2 on Postgres database
 - https://alligator.io/nodejs/take-command-with-env-cmd/
-- https://gqless.dev/
 - Special thanks goes to Atomic Object for starter kit
+
+Nexus/Prisma:
+
+How to simplify?
+
+- `@prisma/cli` - Global add for `prisma` and `prisma2` terminal commands
+- `nexus-prisma` - Get the `nexusPrismaPlugin` function (replaced by nexus-plugin-prisma?)
+- `nexus` - Get the `schema` object
+- `@nexus/schema` - Get the `makeSchema` function
+- `@prisma/nexus` - 10 months old
+- `nexus-plugin-prisma` - Highly volatile, Learn More https://github.com/graphql-nexus/nexus-plugin-prisma
+- `@prisma/client` - Better / worse for Heroku?
+- `../../**generated**/prisma-client` - Better / worse for Heroku?
