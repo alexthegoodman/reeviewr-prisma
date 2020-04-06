@@ -8,24 +8,23 @@ Prisma + React + TypeScript
 
 ### Getting Started
 
-- Use a Linux machine. This will assure compatability.
-- Pull the repo `https://github.com/alexthegoodman/reeviewr-prisma`
-- Install all prerequisites. Including Node and Yarn.
-- Install dependencies by running `yarn`.
-- Duplicate `.env.example` as `.env` and get the needed values from Alex
-- `yarn global add dotenv-cli`
-- `yarn global add @prisma/cli`
-- `yarn prisma:apply`
-- `yarn build:graphql`
-- `yarn seed`
-- install `audiowaveform` on your machine
-- Run `yarn dev`
-- `yarn build:graphql` (to generate client-side types)
-- Wait for all the bundles to finshing bundling
-- Visit `http://localhost:3000/graphql` to verify that the Prisma / GraphiQL is functioning
-- Open `http://localhost:3000/` in your browser to verify the web app is functioning
+Use a Linux machine. This will assure compatability.
 
-`nexus dev` ?
+- Pull `https://github.com/alexthegoodman/reeviewr-prisma`
+- Install Pre-Requisites
+  - Node
+  - Yarn
+- Install Dependencies
+  - `yarn`
+  - `yarn global add dotenv-cli`
+  - `yarn global add @prisma/cli`
+  - Install `audiowaveform` on your machine
+- Project Configuration
+  - Duplicate `.env.example` as `.env` and get the needed values from Alex
+- Initial Data
+  - `yarn prisma:apply`
+  - `yarn build:graphql`
+  - `yarn seed`
 
 ### Relevant Directories
 
@@ -41,7 +40,12 @@ Run `yarn dev`
 Check `localhost:3000`
 ```
 
+- Visit `http://localhost:3000/graphql` to verify that the Prisma / GraphiQL is functioning
+- Open `http://localhost:3000/` in your browser to verify the web app is functioning
+
 Notes: SSR will not function with `yarn dev` because webpack-dev-server is serving on port `3000`.
+
+Health Check `nexus dev` should work?
 
 ### Production
 
