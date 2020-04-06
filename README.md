@@ -1,6 +1,10 @@
-# Reeviewr v2 Beta - Prisma + React + TypeScript
+# Reeviewr v2 Beta
+
+[![alexthegoodman](https://circleci.com/gh/alexthegoodman/reeviewr-prisma.svg?style=svg)](https://app.circleci.com/pipelines/github/alexthegoodman/reeviewr-prisma)
 
 ## Introduction
+
+Prisma + React + TypeScript
 
 ### Getting Started
 
@@ -14,14 +18,14 @@
 - `yarn prisma:apply`
 - `yarn build:graphql`
 - `yarn seed`
-- install audiowaveform on your machine
+- install `audiowaveform` on your machine
 - Run `yarn dev`
 - `yarn build:graphql` (to generate client-side types)
 - Wait for all the bundles to finshing bundling
-- Visit `http://localhost:4000/` to verify that the Prisma / GraphQL Playground is functioning
+- Visit `http://localhost:3000/graphql` to verify that the Prisma / GraphiQL is functioning
 - Open `http://localhost:3000/` in your browser to verify the web app is functioning
 
-`nexus dev`
+`nexus dev` ?
 
 ### Relevant Directories
 
