@@ -12,12 +12,11 @@
 - `yarn global add dotenv-cli`
 - `yarn global add @prisma/cli`
 - `yarn prisma:apply`
-- `yarn gen:gql`
 - `yarn build:graphql`
 - `yarn seed`
 - install audiowaveform on your machine
 - Run `yarn dev`
-- `yarn gen:gql` (to generate client-side types)
+- `yarn build:graphql` (to generate client-side types)
 - Wait for all the bundles to finshing bundling
 - Visit `http://localhost:4000/` to verify that the Prisma / GraphQL Playground is functioning
 - Open `http://localhost:3000/` in your browser to verify the web app is functioning
