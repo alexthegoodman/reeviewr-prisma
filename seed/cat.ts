@@ -1,7 +1,7 @@
-import Photon from "@generated/photon";
+import { PrismaClient } from "../__generated__/prisma-client";
 import * as faker from "faker";
 
-const photon = new Photon();
+const prisma = new PrismaClient();
 
 export default async function seedCats() {
   const catSchema = {
@@ -11,14 +11,14 @@ export default async function seedCats() {
     itemStatus: "active",
   };
 
-  const cat1 = await photon.categories.create({
+  const cat1 = await prisma.category.create({
     data: {
       ...catSchema,
       itemName: "Music",
     },
   });
 
-  const cat2 = await photon.categories.create({
+  const cat2 = await prisma.category.create({
     data: {
       ...catSchema,
       itemName: "Painting",

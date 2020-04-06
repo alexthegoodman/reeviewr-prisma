@@ -1,7 +1,7 @@
-import Photon from "@generated/photon";
+import { PrismaClient } from "../__generated__/prisma-client";
 import * as faker from "faker";
 
-const photon = new Photon();
+const prisma = new PrismaClient();
 
 export default async function seedTags() {
   const tagSchema = {
@@ -11,13 +11,13 @@ export default async function seedTags() {
     itemStatus: "active",
   };
 
-  const tag1 = await photon.tags.create({
+  const tag1 = await prisma.tag.create({
     data: {
       ...tagSchema,
       itemName: "2019",
     },
   });
-  const tag2 = await photon.tags.create({
+  const tag2 = await prisma.tag.create({
     data: {
       ...tagSchema,
       itemName: "Space",

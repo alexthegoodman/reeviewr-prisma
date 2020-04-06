@@ -1,4 +1,4 @@
-import * as photon from "@generated/photon";
+// import * as photon from "@generated/photon";
 import * as React from "react";
 import { MixpanelConsumer } from "react-mixpanel";
 import { AppContextProvider } from ".";
@@ -15,8 +15,10 @@ export interface IInitialAppState {
   tour: {
     run: true;
   };
-  userData: photon.User;
-  notificationsData: photon.Notification[],
+  // userData: photon.User;
+  // notificationsData: photon.Notification[],
+  userData: any;
+  notificationsData: any;
   audioManager: {
     tracks: any;
   };
@@ -78,12 +80,12 @@ export const AppContextAPI = ({ children }) => {
 
   return (
     <MixpanelConsumer>
-      {mixpanel => (
+      {(mixpanel) => (
         <AppContextProvider
           initialState={{
             ...InitialAppState,
             // notificationsData,
-            mixpanel
+            mixpanel,
           }}
           reducer={reducer}
         >

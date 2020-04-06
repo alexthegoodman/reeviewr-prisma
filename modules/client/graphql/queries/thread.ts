@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 export const GET_THREADS = gql`
   query threads {
-    findManyThread {
+    threads {
       id
       itemName
       itemContent

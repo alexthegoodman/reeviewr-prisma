@@ -31,7 +31,7 @@ const PodFragments = {
 
 export const ALL_PODS = gql`
   query allPods {
-    findManyPod {
+    pods {
       ...PodFragment
     }
   }
@@ -40,7 +40,7 @@ export const ALL_PODS = gql`
 
 export const SEARCH_PODS = gql`
   query pods($search: String) {
-    findManyPod(where: { itemName: { contains: $search } }) {
+    pods(where: { itemName: { contains: $search } }) {
       ...PodFragment
     }
   }

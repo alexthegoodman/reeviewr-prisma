@@ -5,12 +5,12 @@
 ### Getting Started
 
 - Use a Linux machine. This will assure compatability.
-- Pull the repo https://github.com/alexthegoodman/reeviewr-prisma
-- Install all prerequesites. Including Node and Yarn.
+- Pull the repo `https://github.com/alexthegoodman/reeviewr-prisma`
+- Install all prerequisites. Including Node and Yarn.
 - Install dependencies by running `yarn`.
 - Duplicate `.env.example` as `.env` and get the needed values from Alex
-- `npm install -g dotenv-cli`
-- `npm install -g prisma2@latest`
+- `yarn global add dotenv-cli`
+- `yarn global add @prisma/cli`
 - `yarn prisma:apply`
 - `yarn gen:gql`
 - `yarn build:graphql`
@@ -20,7 +20,9 @@
 - `yarn gen:gql` (to generate client-side types)
 - Wait for all the bundles to finshing bundling
 - Visit `http://localhost:4000/` to verify that the Prisma / GraphQL Playground is functioning
-- Open `localhost:3000` in your browser to verify the web app is functioning
+- Open `http://localhost:3000/` in your browser to verify the web app is functioning
+
+`nexus dev`
 
 ### Relevant Directories
 
@@ -48,6 +50,14 @@ Check `localhost:3001`
 
 Notes: To test SSR functions, run `yarn build:production` and `yarn dev:server:nodemon` and check port `3001`.
 
+## Deploy
+
+### Heroku
+
+- Assure updated ENV vars
+- Check Prisma generator binaryTargets
+- Put binary needed from node_modules to /entry/ (`build:production` copies it to /dist/)
+
 ## Contributing
 
 ### Technology Used
@@ -74,6 +84,8 @@ To ease creation of components, take advantage of these commands
 
 - Write Cypress tests
 - Put components in categorical sub folders
+- graphql-codegen
+- Limit incoming/outgoing calls/queries per minute on average
 
 ### Notes
 

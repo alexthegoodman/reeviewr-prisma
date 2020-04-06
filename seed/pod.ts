@@ -1,7 +1,7 @@
-import Photon from "@generated/photon";
+import { PrismaClient } from "../__generated__/prisma-client";
 import * as faker from "faker";
 
-const photon = new Photon();
+const prisma = new PrismaClient();
 
 export default async function seedPods(user1, cat1, user2, cat2) {
   const podSchema = {
@@ -38,7 +38,7 @@ export default async function seedPods(user1, cat1, user2, cat2) {
     },
   };
 
-  const pod1 = await photon.pods.create({
+  const pod1 = await prisma.pod.create({
     data: {
       ...podSchema,
       itemUrlSegment: faker.lorem.slug(),
@@ -47,7 +47,7 @@ export default async function seedPods(user1, cat1, user2, cat2) {
     },
   });
 
-  const pod2 = await photon.pods.create({
+  const pod2 = await prisma.pod.create({
     data: {
       ...podSchema,
       itemUrlSegment: faker.lorem.slug(),
@@ -56,7 +56,7 @@ export default async function seedPods(user1, cat1, user2, cat2) {
     },
   });
 
-  const pod3 = await photon.pods.create({
+  const pod3 = await prisma.pod.create({
     data: {
       ...podSchema,
       itemUrlSegment: faker.lorem.slug(),

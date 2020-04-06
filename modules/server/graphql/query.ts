@@ -1,51 +1,59 @@
-import { idArg, makeSchema, objectType } from "@prisma/nexus";
+// import { idArg, makeSchema, objectType } from "@prisma/nexus";
+import * as schema from "nexus";
+// import { makeSchema, mutationType, objectType, queryType } from '@nexus/schema';
 
-export const Query = objectType({
-  name: "Query",
+// https://www.nexusjs.org/#/plugins/prisma
+
+export const Query = schema.queryType({
+  // name: "Query",
   definition(t) {
-    t.crud.findOneUser();
-    t.crud.findManyUser({ filtering: true, ordering: true });
-    t.crud.findManyUserMeta({ filtering: true, ordering: true });
+    // t.crud.findOneUser();
+    // t.crud.findManyUser({ filtering: true, ordering: true });
+    // t.crud.findManyUserMeta({ filtering: true, ordering: true });
 
-    t.crud.findOnePod();
-    t.crud.findManyPod({ filtering: true, ordering: true });
-    t.crud.findManyPodMeta({ filtering: true, ordering: true });
+    t.crud.user();
+    t.crud.users({ filtering: true, ordering: true });
+    t.crud.userMetas({ filtering: true, ordering: true });
 
-    t.crud.findOnePost();
-    t.crud.findManyPost({ filtering: true, ordering: true });
-    t.crud.findManyPostMeta({ filtering: true, ordering: true });
+    t.crud.pod();
+    t.crud.pods({ filtering: true, ordering: true });
+    t.crud.podMetas({ filtering: true, ordering: true });
 
-    t.crud.findOneReview();
-    t.crud.findManyReview({ filtering: true, ordering: true });
-    t.crud.findManyReviewMeta({ filtering: true, ordering: true });
+    t.crud.post();
+    t.crud.posts({ filtering: true, ordering: true });
+    t.crud.postMetas({ filtering: true, ordering: true });
 
-    t.crud.findOneAnnotation();
-    t.crud.findManyAnnotation({ filtering: true, ordering: true });
-    t.crud.findManyAnnotationMeta({ filtering: true, ordering: true });
+    t.crud.review();
+    t.crud.reviews({ filtering: true, ordering: true });
+    t.crud.reviewMetas({ filtering: true, ordering: true });
 
-    t.crud.findOneQuestion();
-    t.crud.findManyQuestion({ filtering: true, ordering: true });
-    t.crud.findManyQuestionMeta({ filtering: true, ordering: true });
+    t.crud.annotation();
+    t.crud.annotations({ filtering: true, ordering: true });
+    t.crud.annotationMetas({ filtering: true, ordering: true });
 
-    t.crud.findOneThread();
-    t.crud.findManyThread({ filtering: true, ordering: true });
-    t.crud.findManyThreadMeta({ filtering: true, ordering: true });
+    t.crud.question();
+    t.crud.questions({ filtering: true, ordering: true });
+    t.crud.questionMetas({ filtering: true, ordering: true });
 
-    t.crud.findOneMessage();
-    t.crud.findManyMessage({ filtering: true, ordering: true });
-    t.crud.findManyMessageMeta({ filtering: true, ordering: true });
+    t.crud.thread();
+    t.crud.threads({ filtering: true, ordering: true });
+    t.crud.threadMetas({ filtering: true, ordering: true });
 
-    t.crud.findOneNotification();
-    t.crud.findManyNotification({ filtering: true, ordering: true });
-    t.crud.findManyNotificationMeta({ filtering: true, ordering: true });
+    t.crud.message();
+    t.crud.messages({ filtering: true, ordering: true });
+    t.crud.messageMetas({ filtering: true, ordering: true });
 
-    t.crud.findOneFavorite();
-    t.crud.findManyFavorite({ filtering: true, ordering: true });
+    t.crud.notification();
+    t.crud.notifications({ filtering: true, ordering: true });
+    t.crud.notificationMetas({ filtering: true, ordering: true });
 
-    t.crud.findOneTag();
-    t.crud.findManyTag({ filtering: true, ordering: true });
+    t.crud.favorite();
+    t.crud.favorites({ filtering: true, ordering: true });
 
-    t.crud.findOneCategory();
-    t.crud.findManyCategory({ filtering: true, ordering: true });
+    t.crud.tag();
+    t.crud.tags({ filtering: true, ordering: true });
+
+    t.crud.category();
+    t.crud.categories({ filtering: true, ordering: true });
   },
 });

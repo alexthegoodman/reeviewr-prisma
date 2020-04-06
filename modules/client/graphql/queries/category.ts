@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 export const ALL_CATEGORIES = gql`
   query allCategories {
-    findManyCategory {
+    categories {
       id
       itemName
     }
@@ -11,7 +11,7 @@ export const ALL_CATEGORIES = gql`
 
 export const CATEGORIES_PODS_POSTS = gql`
   query categoriesPodsPosts {
-    findManyCategory {
+    categories {
       id
       itemName
       pods(first: 3) {

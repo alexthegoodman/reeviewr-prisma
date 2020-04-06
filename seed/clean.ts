@@ -1,49 +1,49 @@
-import Photon from "@generated/photon";
+import { PrismaClient } from "../__generated__/prisma-client";
 import * as faker from "faker";
 
-const photon = new Photon();
+const prisma = new PrismaClient();
 
 export default async function clean() {
-  await photon.messageMetas.deleteMany({
+  await prisma.messageMeta.deleteMany({
     where: { id: { contains: "" } },
   });
-  await photon.messages.deleteMany({
+  await prisma.message.deleteMany({
     where: { id: { contains: "" } },
   });
-  await photon.threadMetas.deleteMany({
+  await prisma.threadMeta.deleteMany({
     where: { id: { contains: "" } },
   });
-  await photon.threads.deleteMany({
+  await prisma.thread.deleteMany({
     where: { id: { contains: "" } },
   });
-  await photon.notificationMetas.deleteMany({
+  await prisma.notificationMeta.deleteMany({
     where: { id: { contains: "" } },
   });
-  await photon.notifications.deleteMany({
+  await prisma.notification.deleteMany({
     where: { id: { contains: "" } },
   });
-  await photon.postMetas.deleteMany({
+  await prisma.postMeta.deleteMany({
     where: { id: { contains: "" } },
   });
-  await photon.posts.deleteMany({
+  await prisma.post.deleteMany({
     where: { id: { contains: "" } },
   });
-  await photon.podMetas.deleteMany({
+  await prisma.podMeta.deleteMany({
     where: { id: { contains: "" } },
   });
-  await photon.pods.deleteMany({
+  await prisma.pod.deleteMany({
     where: { id: { contains: "" } },
   });
-  await photon.userMetas.deleteMany({
+  await prisma.userMeta.deleteMany({
     where: { id: { contains: "" } },
   });
-  await photon.users.deleteMany({
+  await prisma.user.deleteMany({
     where: { id: { contains: "" } },
   });
-  await photon.categories.deleteMany({
+  await prisma.category.deleteMany({
     where: { id: { contains: "" } },
   });
-  await photon.tags.deleteMany({
+  await prisma.tag.deleteMany({
     where: { id: { contains: "" } },
   });
 }

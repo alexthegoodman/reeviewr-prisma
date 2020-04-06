@@ -5,12 +5,11 @@ import Utility from "../../../../services/Utility";
 import Strings from "../../../services/Strings";
 import BeyondSearch from "../../ui/BeyondSearch/BeyondSearch";
 import { BeyondSearchDataProps } from "./BeyondSearchData.d";
-// import { useDebounce } from 'use-debounce';
 
 const BeyondSearchData: React.FC<BeyondSearchDataProps> = ({
   ref = null,
   className = "",
-  onClick = e => console.info("Click"),
+  onClick = (e) => console.info("Click"),
 }) => {
   const strings = new Strings();
   const utility = new Utility();
@@ -19,7 +18,7 @@ const BeyondSearchData: React.FC<BeyondSearchDataProps> = ({
   const loadingRoute = useLoadingRoute();
   const navigation = useNavigation();
 
-  const clickHandler = e => onClick(e);
+  const clickHandler = (e) => onClick(e);
   const { search } = route.lastChunk.request.params;
 
   const [lastKeyTime, setLastKeyTime] = React.useState(Date.now());
@@ -52,7 +51,7 @@ const BeyondSearchData: React.FC<BeyondSearchDataProps> = ({
     navigation.navigate(
       "/search?" + strings.createQueryString({ search: phrase })
     );
-  }
+  };
 
   return (
     <>
@@ -67,7 +66,7 @@ const BeyondSearchData: React.FC<BeyondSearchDataProps> = ({
           setPhrase(text);
           clearInterval(global["searchTimeout"]);
           global["searchTimeout"] = setTimeout(() => {
-            if ((lastKeyTime + debounce) <= Date.now()) {
+            if (lastKeyTime + debounce <= Date.now()) {
               onSearch(text);
             }
           }, debounce);

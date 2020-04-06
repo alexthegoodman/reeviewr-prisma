@@ -53,7 +53,7 @@ const PostFragments = {
 
 export const POSTS_QUERY = gql`
   query posts($search: String) {
-    findManyPost(where: { itemName: { contains: $search } }) {
+    posts(where: { itemName: { contains: $search } }) {
       ...PostFragment
     }
   }
@@ -61,8 +61,8 @@ export const POSTS_QUERY = gql`
 `;
 
 export const POST_QUERY = gql`
-  query posts($postId: ID) {
-    findOnePost(where: { id: $postId }) {
+  query post($postId: ID) {
+    post(where: { id: $postId }) {
       ...PostFragment
     }
   }

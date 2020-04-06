@@ -1,8 +1,9 @@
-import Photon from "@generated/photon";
 import { NOTIFICATION_CODE } from "../modules/services/NOTIFICATION_CODE";
+
+import { PrismaClient } from "../__generated__/prisma-client";
 import * as faker from "faker";
 
-const photon = new Photon();
+const prisma = new PrismaClient();
 
 export default async function seedNotifs(user1, user2, post1) {
   const notifSchema = {
@@ -26,7 +27,7 @@ export default async function seedNotifs(user1, user2, post1) {
     // }
   };
 
-  const notif1 = await photon.notifications.create({
+  const notif1 = await prisma.notification.create({
     data: {
       ...notifSchema,
     },

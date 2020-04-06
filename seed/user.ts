@@ -1,7 +1,7 @@
-import Photon from "@generated/photon";
+import { PrismaClient } from "../__generated__/prisma-client";
 import * as faker from "faker";
 
-const photon = new Photon();
+const prisma = new PrismaClient();
 
 export default async function seedUsers() {
   const metaSchema = [
@@ -26,7 +26,7 @@ export default async function seedUsers() {
     userType: 1,
   };
 
-  const user1 = await photon.users.create({
+  const user1 = await prisma.user.create({
     data: {
       ...userSchema,
       userEmail: faker.internet.email(),
@@ -52,7 +52,7 @@ export default async function seedUsers() {
       },
     },
   });
-  const user2 = await photon.users.create({
+  const user2 = await prisma.user.create({
     data: {
       ...userSchema,
       userEmail: faker.internet.email(),

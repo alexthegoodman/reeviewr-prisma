@@ -3,13 +3,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-generator photonjs {
-  provider = "photonjs"
+generator client {
+  provider = "prisma-client-js"
+  output   = "./__generated__/prisma-client/"
+  binaryTargets = ["native", "darwin"]
 }
 
-generator nexus_prisma {
-  provider = "nexus-prisma"
-}
+// generator nexus_prisma {
+//   provider = "nexus-prisma"
+// }
 
 model User {
   id            String     @id @default(cuid())

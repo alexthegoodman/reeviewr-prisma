@@ -13,12 +13,12 @@ import {
   Tabs,
   Text,
 } from "@blueprintjs/core";
-import { Category } from "@generated/photon";
-import { Form, Formik, FormikActions, FormikProps } from "formik";
+// import { Category } from "@generated/photon";
+import { Form, Formik, FormikProps } from "formik";
 import { useQuery } from "@apollo/react-hooks";
 import { Link } from "react-navi";
 import * as Yup from "yup";
-import { AllCategoriesQuery } from "../../../../../__generated__/gql-gen/grapql-types";
+// import { AllCategoriesQuery } from "../../../../../__generated__/gql-gen/grapql-types";
 import { GenreList, Genres } from "../../../../defs/genres";
 import { ERROR_CODE } from "../../../../services/ERROR_CODE";
 import Utility from "../../../../services/Utility";
@@ -37,7 +37,7 @@ import UploadField from "../../ui/UploadField/UploadField";
 const CreatePodForm: React.FC<CreatePodFormProps> = ({
   ref = null,
   className = "",
-  onClick = e => console.info("Click"),
+  onClick = (e) => console.info("Click"),
 }) => {
   const authClient = new AuthClient();
   const itemClient = new ItemClient();
@@ -51,9 +51,7 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
     data: categoryData,
     error: categoryError,
     loading: categoryLoading,
-  }: { data?: AllCategoriesQuery; loading?: any; error?: any } = useQuery(
-    ALL_CATEGORIES
-  );
+  }: { data?: any; loading?: any; error?: any } = useQuery(ALL_CATEGORIES);
 
   let categoryOptions = [];
   if (!categoryLoading && utility.isDefinedWithContent(categoryData)) {
@@ -79,7 +77,7 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
     category: Yup.string().required("Required"),
   });
 
-  const openInNewTab = url => {
+  const openInNewTab = (url) => {
     const win = window.open(url, "_blank");
     win.focus();
   };
@@ -117,10 +115,7 @@ const CreatePodForm: React.FC<CreatePodFormProps> = ({
           category: "",
         }}
         validationSchema={CreatePodSchema}
-        onSubmit={(
-          values: CreatePodFormValues,
-          actions: FormikActions<CreatePodFormValues>
-        ) => {
+        onSubmit={(values: CreatePodFormValues, actions: any) => {
           console.log("values", { values, actions }, mixpanel, mixpanel.track);
 
           mixpanel.track("Create pod form submission attempt", {

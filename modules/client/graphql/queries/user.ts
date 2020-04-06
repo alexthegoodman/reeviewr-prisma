@@ -74,7 +74,7 @@ const UserFragments = {
         itemName
         itemContent
       }
-      
+
       createdAt
       updatedAt
     }
@@ -110,7 +110,7 @@ const UserFragments = {
 
 export const USER_QUERY = gql`
   query findUser($id: ID) {
-    findOneUser(where: { id: $id }) {
+    user(where: { id: $id }) {
       ...UserFragment
     }
   }
@@ -119,7 +119,7 @@ export const USER_QUERY = gql`
 
 export const USER_PRIVATE_QUERY = gql`
   query privateUser($id: ID) {
-    findOneUser(where: { id: $id }) {
+    user(where: { id: $id }) {
       ...UserFragment
     }
   }
@@ -128,7 +128,7 @@ export const USER_PRIVATE_QUERY = gql`
 
 export const USER_JOINED_PODS = gql`
   query userJoinedPods($id: ID) {
-    findOneUser(where: { id: $id }) {
+    user(where: { id: $id }) {
       memberOf {
         id
         itemName
@@ -160,7 +160,7 @@ export const USER_JOINED_PODS = gql`
 
 export const USER_JOINED_PODS_POSTS = gql`
   query joinedPodsPosts($userId: ID, $postId: String) {
-    findOneUser(where: { id: $userId }) {
+    user(where: { id: $userId }) {
       ...UserFragment
       memberOfPosts(userId: $userId, postId: $postId) {
         id
@@ -178,7 +178,7 @@ export const USER_JOINED_PODS_POSTS = gql`
 
 export const SEARCH_USER_META = gql`
   query searchUserMeta($search: String) {
-    findManyUserMeta(
+    users(
       where: {
         metaName: { equals: "firstName" }
         metaValue: { contains: $search }

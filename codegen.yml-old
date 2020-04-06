@@ -1,0 +1,11 @@
+overwrite: true
+schema: "./__generated__/schema.graphql"
+documents: "./modules/client/graphql/**/*.ts"
+generates:
+  __generated__/gql-gen/grapql-types.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+  __generated__/graphql.schema.json:
+    plugins:
+      - "introspection"

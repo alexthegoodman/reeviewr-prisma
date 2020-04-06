@@ -1,4 +1,3 @@
-import Photon from "@generated/photon";
 import seedUsers from "./user";
 import seedCats from "./cat";
 import seedTags from "./tag";
@@ -7,9 +6,11 @@ import seedPosts from "./post";
 import seedNotifs from "./notif";
 import seedThreads from "./thread";
 import clean from "./clean";
+
+import { PrismaClient } from "../__generated__/prisma-client";
 import * as faker from "faker";
 
-const photon = new Photon();
+const prisma = new PrismaClient();
 
 async function main() {
   const { user1, user2 } = await seedUsers();
@@ -29,14 +30,14 @@ async function main() {
 }
 
 clean()
-  .catch(e => console.error(e))
+  .catch((e) => console.error(e))
   .finally(async () => {
     console.info("cleaned");
     // reload
     main()
-      .catch(e => console.error(e))
+      .catch((e) => console.error(e))
       .finally(async () => {
         console.info("disconnect");
-        await photon.disconnect();
+        await prisma.disconnect();
       });
   });

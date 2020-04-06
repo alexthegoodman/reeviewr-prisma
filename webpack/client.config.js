@@ -203,6 +203,16 @@ module.exports = {
     new CopyPlugin([
       { from: "./entry/img/", to: "./img/" },
       { from: "./entry/favicon.ico", to: "./favicon.ico" },
+      {
+        from: "./entry/introspection-engine-darwin",
+        to: "./",
+      },
+      {
+        from: "./entry/migration-engine-darwin",
+        to: "./",
+      },
+      { from: "./entry/query-engine-darwin", to: "./" },
+      { from: "./schema.prisma", to: "./" },
       { from: "./entry/", to: "./public/" },
     ]),
 

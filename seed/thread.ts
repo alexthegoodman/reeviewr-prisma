@@ -1,8 +1,7 @@
-import Photon from "@generated/photon";
-import { NOTIFICATION_CODE } from "../modules/services/NOTIFICATION_CODE";
+import { PrismaClient } from "../__generated__/prisma-client";
 import * as faker from "faker";
 
-const photon = new Photon();
+const prisma = new PrismaClient();
 
 export default async function seedThreads(user1, user2) {
   const threadSchema = {
@@ -49,7 +48,7 @@ export default async function seedThreads(user1, user2) {
     },
   };
 
-  const thread1 = await photon.threads.create({
+  const thread1 = await prisma.thread.create({
     data: {
       ...threadSchema,
     },

@@ -10,7 +10,7 @@ import * as morgan from "morgan";
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
-const Arena = require("bull-arena");
+// const Arena = require("bull-arena");
 // const knex = db.getConnection();
 // const knexLogger = require("knex-logger");
 const enforce = require("express-sslify");
@@ -62,13 +62,17 @@ import { forgotPassword } from "./user/forgot-password";
 import { resendEmailConfirmation } from "./user/resend-email-confirmation";
 
 // import { prisma } from "../../__generated__/prisma-client";
-import { nexusPrismaPlugin } from "@generated/nexus-prisma";
-import datamodelInfo from "@generated/nexus-prisma";
-import Photon from "@generated/photon";
-import { idArg, makeSchema, objectType } from "@prisma/nexus";
+// import { nexusPrismaPlugin } from "@generated/nexus-prisma";
+import { nexusPrismaPlugin } from "nexus-prisma";
+// import datamodelInfo from "@generated/nexus-prisma";
+// import Photon from "@generated/photon";
+// import { PrismaClient } from "../../__generated__/prisma-client";
+import { PrismaClient } from "../../__generated__/prisma-client";
+// import { idArg, makeSchema, objectType } from "@prisma/nexus";
+import { makeSchema } from "@nexus/schema";
 import bcrypt from "bcrypt";
 import cors from "cors";
-import { makePrismaSchema } from "nexus-prisma";
+// import { makePrismaSchema } from "nexus-prisma";
 import Utility from "../services/Utility";
 import {
   Annotation,
@@ -95,7 +99,7 @@ import {
 } from "./graphql/models";
 import { Mutation } from "./graphql/mutation";
 import { Query } from "./graphql/query";
-import resolvers from "./graphql/resolvers";
+// import resolvers from "./graphql/resolvers";
 import { mailchimpSubscribe } from "./integration/mailchimp-subscribe";
 import { createPod } from "./pods/create-pod";
 import { createPost } from "./posts/create-post";
@@ -107,15 +111,27 @@ const path = require("path");
 const csp = require("helmet-csp");
 const Mixpanel = require("mixpanel");
 
-const photon = new Photon();
-
-const nexusPrisma = nexusPrismaPlugin({
-  photon: ctx => photon,
+const prisma = new PrismaClient({
+  // log: ["query"],
 });
 
+// const graphqlServer = new GraphQLServer({
+//   schema,
+//   context: { prisma },
+// });
+
+// const nexusPrisma = nexusPrismaPlugin({
+//   prismaClient: (ctx) => prisma,
+// });
+
 // TODO: move to graphql/index.ts
+// https://github.com/graphql-nexus/schema/blob/develop/src/builder.ts
 const schema = makeSchema({
+  plugins: [nexusPrismaPlugin()],
+  // plugins: [nexusPrisma],
   types: [
+    Query,
+    Mutation,
     User,
     UserMeta,
     Pod,
@@ -137,27 +153,46 @@ const schema = makeSchema({
     Favorite,
     Tag,
     Category,
-    Query,
-    Mutation,
-    nexusPrisma,
+
+    // nexusPrisma,
   ],
   outputs: {
     schema: path.join(__dirname, "../__generated__/schema.graphql"),
-    typegen: path.join(__dirname, "../__generated__/nexus.ts"),
+    typegen: path.join(__dirname, "../__generated__/nexus.d.ts"),
   },
+  // outputs: {
+  //   typegen: path.join(
+  //     __dirname,
+  //     "node_modules/@types/nexus-typegen/index.d.ts" // good local, not heroku? add def to tsconfig or us .d.ts?
+  //   ),
+  // },
   typegenAutoConfig: {
+    contextType: "{ prisma: PrismaClient.PrismaClient }",
+    // sources: [{ source: "@prisma/client", alias: "PrismaClient" }],
     sources: [
       {
-        source: "@generated/photon",
-        alias: "photon",
+        source: path.join(
+          __dirname,
+          "../__generated__/prisma-client/index.d.ts"
+        ),
+        alias: "PrismaClient",
       },
     ],
   },
-});
-
-const graphqlServer = new GraphQLServer({
-  schema,
-  context: { photon },
+  // typegenAutoConfig: {
+  //   sources: [
+  //     {
+  //       source: path.join(__dirname, "../__generated__/prisma-client"),
+  //       alias: "prisma",
+  //     },
+  //   ],
+  // },
+  // shouldGenerateArtifacts
+  // typegenConfig
+  // prettierConfig
+  // formatTypegen
+  // nonNullDefaults
+  // customPrintSchemaFn
 });
 
 const app = express();
@@ -170,8 +205,10 @@ export const enableDeveloperLogin = config.get<boolean>(
   "server.enableDeveloperLogin"
 );
 
+const graphqlHTTP = require("express-graphql");
+
 export async function startServer() {
-  await photon.connect();
+  await prisma.connect();
 
   app.use(bodyParser.json({ limit: "50mb" }));
   app.use(
@@ -201,6 +238,7 @@ export async function startServer() {
   // app.use(wwwhisper());
 
   const allowedOrigins = [
+    "http://localhost:3001",
     "http://localhost:3000",
     "http://reeviewr.com",
     "http://reeviewr-prisma.herokuapp.com",
@@ -294,7 +332,7 @@ export async function startServer() {
 
         let user = null;
         try {
-          user = await photon.users.findOne({
+          user = await prisma.user.findOne({
             where: { userEmail: email },
           });
         } catch (err) {
@@ -332,52 +370,65 @@ export async function startServer() {
   app.post(
     `/${apiVersion}${AUTHENTICATE_USER}`,
     // passport.authenticate("local"),
-    (req, res) => authenticate(req, res, passport, mixpanel, photon)
+    (req, res) => authenticate(req, res, passport, mixpanel, prisma)
   );
   app.post(`/${apiVersion}${CONFIRM_EMAIL}`, (req, res) =>
-    confirmEmail(req, res, mixpanel, photon)
+    confirmEmail(req, res, mixpanel, prisma)
   );
   app.post(`/${apiVersion}${CREATE_USER}`, (req, res) =>
-    createUser(req, res, mixpanel, photon)
+    createUser(req, res, mixpanel, prisma)
   );
   app.post(`/${apiVersion}${COMPLETE_PROFILE}`, (req, res) =>
-    completeProfile(req, res, mixpanel, photon)
+    completeProfile(req, res, mixpanel, prisma)
   );
   app.post(`/${apiVersion}${FORGOT_PASSWORD}`, (req, res) =>
-    forgotPassword(req, res, mixpanel, photon)
+    forgotPassword(req, res, mixpanel, prisma)
   );
   app.post(`/${apiVersion}${RESET_PASSWORD}`, (req, res) =>
-    resetPassword(req, res, mixpanel, photon)
+    resetPassword(req, res, mixpanel, prisma)
   );
   app.post(`/${apiVersion}${RESEND_EMAIL_CONFIRMATION}`, (req, res) =>
-    resendEmailConfirmation(req, res, mixpanel, photon)
+    resendEmailConfirmation(req, res, mixpanel, prisma)
   );
   app.post(`/${apiVersion}${MAILCHIMP_SUBSCRIBE}`, (req, res) =>
-    mailchimpSubscribe(req, res, mixpanel, photon)
+    mailchimpSubscribe(req, res, mixpanel, prisma)
   );
   app.post(`/${apiVersion}${CREATE_POD}`, (req, res) =>
-    createPod(req, res, mixpanel, photon)
+    createPod(req, res, mixpanel, prisma)
   );
   app.post(`/${apiVersion}${CREATE_POST}`, (req, res) =>
-    createPost(req, res, mixpanel, photon)
+    createPost(req, res, mixpanel, prisma)
+  );
+
+  // app.get(
+  //   ["/admin", "/admin/*"],
+  //   // Authentication.ensureAuthenticatedAndRedirect,
+  //   async (req, res) => {
+
+  //   });
+
+  app.use(
+    "/graphql",
+    graphqlHTTP((request) => {
+      return {
+        schema,
+        context: { prisma },
+        graphiql: process.env.NODE_ENV === "development" ? true : false,
+      };
+    })
   );
 
   app.get(
     "/*",
     // Authentication.ensureAuthenticatedAndRedirect,
     async (req, res) => {
-      let prismaUri = process.env.PRISMA_API_LOCAL;
-      if (process.env.NODE_ENV !== "development") {
-        prismaUri = process.env.PRISMA_API_PROD;
-      }
-
       // console.info("req 2", req);
       const client = new ApolloClient({
         ssrMode: true,
         // Remember that this is the interface the SSR server will use to connect to the
         // API server, so we need to ensure it isn't firewalled, etc
         link: createHttpLink({
-          uri: prismaUri,
+          uri: process.env.PRISMA_API,
           // credentials: "same-origin",
           // headers: {
           //   cookie: req.header("Cookie"),
@@ -440,11 +491,12 @@ export async function startServer() {
     console.error("ERROR", e);
   }
 
-  try {
-    graphqlServer.start({ port: 4000, cors: { origin: allowedOrigins } }, () =>
-      console.log("GRAPHQL API is running on port 4000")
-    );
-  } catch (e) {
-    console.error("ERROR", e);
-  }
+  // try {
+  //   // TODO - Playon /graphql
+  //   graphqlServer.start({ port: 4000, cors: { origin: allowedOrigins } }, () =>
+  //     console.log("GRAPHQL API is running on port 4000")
+  //   );
+  // } catch (e) {
+  //   console.error("ERROR", e);
+  // }
 }

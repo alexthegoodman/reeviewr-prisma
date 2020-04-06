@@ -17,7 +17,7 @@ import {
   Text,
   Tooltip,
 } from "@blueprintjs/core";
-import * as photon from "@generated/photon";
+// import * as photon from "@generated/photon";
 import * as $ from "jquery";
 import { useCookies } from "react-cookie";
 import Legacy from "../../../../services/Legacy";
@@ -90,7 +90,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
     loggedIn = true;
   }
 
-  const openInNewTab = url => {
+  const openInNewTab = (url) => {
     const win = window.open(url, "_blank");
     win.focus();
   };
@@ -278,7 +278,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                       <Switch
                         label="Dark Mode"
                         defaultChecked={darkMode}
-                        onChange={e => {
+                        onChange={(e) => {
                           setDarkMode(!darkMode);
                           setCookie("reeviewrDarkMode", !darkMode);
                         }}

@@ -1,7 +1,7 @@
-import Photon from "@generated/photon";
+import { PrismaClient } from "../__generated__/prisma-client";
 import * as faker from "faker";
 
-const photon = new Photon();
+const prisma = new PrismaClient();
 
 export default async function seedPosts(user1, pod1, user2, pod2, tag1, pod3) {
   const postSchema = {
@@ -128,7 +128,7 @@ export default async function seedPosts(user1, pod1, user2, pod2, tag1, pod3) {
     },
   };
 
-  const post1 = await photon.posts.create({
+  const post1 = await prisma.post.create({
     data: {
       ...postSchema,
       user: { connect: { id: user1.id } },
@@ -138,7 +138,7 @@ export default async function seedPosts(user1, pod1, user2, pod2, tag1, pod3) {
     },
   });
 
-  const post2 = await photon.posts.create({
+  const post2 = await prisma.post.create({
     data: {
       ...postSchema,
       user: { connect: { id: user1.id } },
@@ -148,7 +148,7 @@ export default async function seedPosts(user1, pod1, user2, pod2, tag1, pod3) {
     },
   });
 
-  const post3 = await photon.posts.create({
+  const post3 = await prisma.post.create({
     data: {
       ...postSchema,
       user: { connect: { id: user2.id } },
@@ -158,7 +158,7 @@ export default async function seedPosts(user1, pod1, user2, pod2, tag1, pod3) {
     },
   });
 
-  const post4 = await photon.posts.create({
+  const post4 = await prisma.post.create({
     data: {
       ...postSchema,
       user: { connect: { id: user2.id } },
