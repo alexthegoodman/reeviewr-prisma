@@ -27,18 +27,18 @@ model User {
   userMeta      UserMeta[]
 
   posts                 Post[]
-  pods                  Pod[]          @relation(name: "CreatePodRelation")
-  memberOf              Pod[]          @relation(name: "JoinPodRelation")
+  pods                  Pod[]          @relation(name: "CreatePodRelation", references: [id])
+  memberOf              Pod[]          @relation(name: "JoinPodRelation", references: [id])
   favorites             Favorite[]
   reviews               Review[]
   annotations           Annotation[]
   questions             Question[]
   threads               Thread[]
   notifications         Notification[]
-  following             User[]         @relation(name: "FollowRelation")
-  followers             User[]         @relation(name: "FollowRelation")
-  sentNotifications     Notification?  @relation(name: "SendingUserRelation")
-  recievedNotifications Notification?  @relation(name: "ReceivingUserRelation")
+  following             User[]         @relation(name: "FollowRelation", references: [id])
+  followers             User[]         @relation(name: "FollowRelation", references: [id])
+  sentNotifications     Notification?  @relation(name: "SendingUserRelation", references: [id])
+  recievedNotifications Notification?  @relation(name: "ReceivingUserRelation", references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -57,8 +57,9 @@ model UserMeta {
 
 model Pod {
   id             String     @id @default(cuid())
-  user           User       @relation(name: "CreatePodRelation")
-  members        User[]     @relation(name: "JoinPodRelation")
+  user           User       @relation(name: "CreatePodRelation", fields: [userId], references: [id])
+  userId          String
+  members        User[]     @relation(name: "JoinPodRelation", references: [id])
   itemType       String
   itemStatus     String
   itemUrlSegment String
@@ -257,8 +258,10 @@ model Notification {
   itemDeleted Boolean            @default(false)
   itemMeta    NotificationMeta[]
 
-  sender   User  @relation(name: "SendingUserRelation")
-  receiver User  @relation(name: "ReceivingUserRelation")
+  sender   User  @relation(name: "SendingUserRelation", fields: [senderId], references: [id])
+  senderId String 
+  receiver User  @relation(name: "ReceivingUserRelation", fields: [receiverId], references: [id])
+  receiverId String
   pod      Pod?
   post     Post?
 

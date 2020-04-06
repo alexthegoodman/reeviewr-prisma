@@ -1,9 +1,11 @@
-import { PrismaClient } from "../__generated__/prisma-client";
+import { PrismaClient } from "@prisma/client";
+// import { PrismaClient } from "../__generated__/prisma-client";
 import * as faker from "faker";
 
 const prisma = new PrismaClient();
 
 export default async function seedUsers() {
+  // try {
   const metaSchema = [
     {
       metaName: "points",
@@ -26,32 +28,36 @@ export default async function seedUsers() {
     userType: 1,
   };
 
-  const user1 = await prisma.user.create({
-    data: {
-      ...userSchema,
-      userEmail: faker.internet.email(),
-      privateHash: faker.random.uuid(),
-      publicHash: faker.random.uuid(),
-      id: faker.random.number().toString(),
-      forgotHash: faker.random.uuid(),
-      confirmHash: faker.random.uuid(),
-      userMeta: {
-        create: [
-          ...metaSchema,
-          {
-            metaName: "firstName",
-            metaValue: faker.name.firstName(),
-            metaType: "active",
-          },
-          {
-            metaName: "lastName",
-            metaValue: faker.name.lastName(),
-            metaType: "active",
-          },
-        ],
+  const user1 = await prisma.user
+    .create({
+      data: {
+        ...userSchema,
+        userEmail: faker.internet.email(),
+        privateHash: faker.random.uuid(),
+        publicHash: faker.random.uuid(),
+        id: faker.random.number().toString(),
+        forgotHash: faker.random.uuid(),
+        confirmHash: faker.random.uuid(),
+        userMeta: {
+          create: [
+            ...metaSchema,
+            {
+              metaName: "firstName",
+              metaValue: faker.name.firstName(),
+              metaType: "active",
+            },
+            {
+              metaName: "lastName",
+              metaValue: faker.name.lastName(),
+              metaType: "active",
+            },
+          ],
+        },
       },
-    },
-  });
+    })
+    .catch((err) => {
+      console.error("ERR", err);
+    });
   const user2 = await prisma.user.create({
     data: {
       ...userSchema,
@@ -83,4 +89,11 @@ export default async function seedUsers() {
     user1,
     user2,
   };
+  // } catch (error) {
+  //   console.error("ERROR", JSON.stringify(error), error);
+  //   return {
+  //     user1: null,
+  //     user2: null,
+  //   };
+  // }
 }

@@ -1,6 +1,7 @@
 import { NOTIFICATION_CODE } from "../modules/services/NOTIFICATION_CODE";
 
-import { PrismaClient } from "../__generated__/prisma-client";
+import { PrismaClient } from "@prisma/client";
+// import { PrismaClient } from "../__generated__/prisma-client";
 import * as faker from "faker";
 
 const prisma = new PrismaClient();

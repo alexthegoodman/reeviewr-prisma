@@ -22,9 +22,9 @@ Use a Linux machine. This will assure compatability.
 - Project Configuration
   - Duplicate `.env.example` as `.env` and get the needed values from Alex
 - Initial Data
-  - `yarn prisma:apply`
+  - `yarn prisma:apply` (may need to run manually without `dotenv`)
   - `yarn build:graphql`
-  - `yarn seed`
+  - `yarn db:seed`
 
 ### Relevant Directories
 

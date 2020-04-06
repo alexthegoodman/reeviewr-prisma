@@ -7,7 +7,8 @@ import seedNotifs from "./notif";
 import seedThreads from "./thread";
 import clean from "./clean";
 
-import { PrismaClient } from "../__generated__/prisma-client";
+import { PrismaClient } from "@prisma/client";
+// import { PrismaClient } from "../__generated__/prisma-client";
 import * as faker from "faker";
 
 const prisma = new PrismaClient();
