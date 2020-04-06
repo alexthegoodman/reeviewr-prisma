@@ -41,8 +41,8 @@
     "gen:data": "bash/gen_data_component.sh",
     "gen:layout": "bash/gen_layout_component.sh",
     "heroku:deploy": "git push heroku master",
-    "prisma:migrate": "dotenv prisma migrate save",
-    "prisma:apply": "dotenv prisma migrate up",
+    "prisma:migrate": "dotenv prisma migrate save --experimental",
+    "prisma:apply": "dotenv prisma migrate up --experimental",
     "db:seed": "dotenv ts-node seed/index.ts"
   },
   "resolutions": {},
