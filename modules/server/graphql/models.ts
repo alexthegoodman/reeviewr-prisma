@@ -1,4 +1,4 @@
-import * as schema from "nexus";
+import { idArg, intArg, queryType, stringArg, objectType } from "@nexus/schema";
 import { PrismaClient } from "../../../__generated__/prisma-client";
 // import "../../../__generated__/nexus.d.ts";
 // import "../../../__generated__/prisma-client/index.d.ts";
@@ -7,7 +7,7 @@ import { PrismaClient } from "../../../__generated__/prisma-client";
 
 // Need "Backing Types" for t.model and t.crud https://www.nexusjs.org/#/getting-started/migrate-from-nexus-schema?id=backing-types
 
-export const User = schema.objectType({
+export const User = objectType({
   name: "User",
   rootTyping: "User",
   definition(t) {
@@ -42,7 +42,7 @@ export const User = schema.objectType({
     // resolver is needed for certain kinds of deep queries
     t.list.field("memberOfPosts", {
       type: "Post",
-      args: { userId: schema.idArg(), postId: schema.stringArg() },
+      args: { userId: idArg(), postId: stringArg() },
       nullable: true,
       resolve: async (_, { userId, postId }, ctx) => {
         console.info("call", userId, postId);
@@ -60,7 +60,7 @@ export const User = schema.objectType({
   },
 });
 
-export const UserMeta = schema.objectType({
+export const UserMeta = objectType({
   name: "UserMeta",
   definition(t) {
     t.model.id();
@@ -72,7 +72,7 @@ export const UserMeta = schema.objectType({
   },
 });
 
-export const Pod = schema.objectType({
+export const Pod = objectType({
   name: "Pod",
   definition(t) {
     t.model.id();
@@ -94,7 +94,7 @@ export const Pod = schema.objectType({
 
     // t.list.field("livePosts", {
     //   type: "Post",
-    //   args: { first: schema.intArg() },
+    //   args: { first: intArg() },
     //   nullable: true,
     //   resolve: async (pod, { first = 1 }, ctx) => {
     //     const prisma: PrismaClient<{}, never> = ctx.prisma;
@@ -117,7 +117,7 @@ export const Pod = schema.objectType({
   },
 });
 
-export const PodMeta = schema.objectType({
+export const PodMeta = objectType({
   name: "PodMeta",
   definition(t) {
     t.model.id();
@@ -129,7 +129,7 @@ export const PodMeta = schema.objectType({
   },
 });
 
-export const Post = schema.objectType({
+export const Post = objectType({
   name: "Post",
   definition(t) {
     t.model.id();
@@ -153,7 +153,7 @@ export const Post = schema.objectType({
   },
 });
 
-export const PostMeta = schema.objectType({
+export const PostMeta = objectType({
   name: "PostMeta",
   definition(t) {
     t.model.id();
@@ -165,7 +165,7 @@ export const PostMeta = schema.objectType({
   },
 });
 
-export const Review = schema.objectType({
+export const Review = objectType({
   name: "Review",
   definition(t) {
     t.model.id();
@@ -184,7 +184,7 @@ export const Review = schema.objectType({
   },
 });
 
-export const ReviewMeta = schema.objectType({
+export const ReviewMeta = objectType({
   name: "ReviewMeta",
   definition(t) {
     t.model.id();
@@ -196,7 +196,7 @@ export const ReviewMeta = schema.objectType({
   },
 });
 
-export const Annotation = schema.objectType({
+export const Annotation = objectType({
   name: "Annotation",
   definition(t) {
     t.model.id();
@@ -215,7 +215,7 @@ export const Annotation = schema.objectType({
   },
 });
 
-export const AnnotationMeta = schema.objectType({
+export const AnnotationMeta = objectType({
   name: "AnnotationMeta",
   definition(t) {
     t.model.id();
@@ -227,7 +227,7 @@ export const AnnotationMeta = schema.objectType({
   },
 });
 
-export const Question = schema.objectType({
+export const Question = objectType({
   name: "Question",
   definition(t) {
     t.model.id();
@@ -246,7 +246,7 @@ export const Question = schema.objectType({
   },
 });
 
-export const QuestionMeta = schema.objectType({
+export const QuestionMeta = objectType({
   name: "QuestionMeta",
   definition(t) {
     t.model.id();
@@ -258,7 +258,7 @@ export const QuestionMeta = schema.objectType({
   },
 });
 
-export const Thread = schema.objectType({
+export const Thread = objectType({
   name: "Thread",
   definition(t) {
     t.model.id();
@@ -275,7 +275,7 @@ export const Thread = schema.objectType({
   },
 });
 
-export const ThreadMeta = schema.objectType({
+export const ThreadMeta = objectType({
   name: "ThreadMeta",
   definition(t) {
     t.model.id();
@@ -287,7 +287,7 @@ export const ThreadMeta = schema.objectType({
   },
 });
 
-export const Message = schema.objectType({
+export const Message = objectType({
   name: "Message",
   definition(t) {
     t.model.id();
@@ -304,7 +304,7 @@ export const Message = schema.objectType({
   },
 });
 
-export const MessageMeta = schema.objectType({
+export const MessageMeta = objectType({
   name: "MessageMeta",
   definition(t) {
     t.model.id();
@@ -316,7 +316,7 @@ export const MessageMeta = schema.objectType({
   },
 });
 
-export const Notification = schema.objectType({
+export const Notification = objectType({
   name: "Notification",
   definition(t) {
     t.model.id();
@@ -337,7 +337,7 @@ export const Notification = schema.objectType({
   },
 });
 
-export const NotificationMeta = schema.objectType({
+export const NotificationMeta = objectType({
   name: "NotificationMeta",
   definition(t) {
     t.model.id();
@@ -349,7 +349,7 @@ export const NotificationMeta = schema.objectType({
   },
 });
 
-export const Favorite = schema.objectType({
+export const Favorite = objectType({
   name: "Favorite",
   definition(t) {
     t.model.id();
@@ -364,7 +364,7 @@ export const Favorite = schema.objectType({
   },
 });
 
-export const Tag = schema.objectType({
+export const Tag = objectType({
   name: "Tag",
   definition(t) {
     t.model.id();
@@ -378,7 +378,7 @@ export const Tag = schema.objectType({
   },
 });
 
-export const Category = schema.objectType({
+export const Category = objectType({
   name: "Category",
   definition(t) {
     t.model.id();

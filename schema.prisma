@@ -5,7 +5,7 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
-  output   = "./__generated__/prisma-client/"
+  // output   = "./__generated__/prisma-client/"
   binaryTargets = ["native", "darwin"]
 }
 

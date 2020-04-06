@@ -1,10 +1,17 @@
 // import { idArg, makeSchema, objectType } from "@prisma/nexus";
-import * as schema from "nexus";
+// import { schema } from "nexus";
+import {
+  mutationType,
+  idArg,
+  intArg,
+  stringArg,
+  objectType,
+} from "@nexus/schema";
 import { PrismaClient } from "../../../__generated__/prisma-client";
 
 // https://www.nexusjs.org/#/plugins/prisma
 
-export const Mutation = schema.mutationType({
+export const Mutation = mutationType({
   // name: "Mutation",
   definition(t) {
     t.crud.createOneUser();
@@ -34,7 +41,7 @@ export const Mutation = schema.mutationType({
     t.crud.updateOneCategory();
 
     t.boolean("deleteOneUser", {
-      args: { id: schema.idArg() },
+      args: { id: idArg() },
       nullable: true,
       resolve: async (_, { id }, ctx) => {
         await ctx.prisma.user.update({
@@ -47,7 +54,7 @@ export const Mutation = schema.mutationType({
     });
 
     t.boolean("deleteOnePod", {
-      args: { id: schema.idArg() },
+      args: { id: idArg() },
       nullable: true,
       resolve: async (_, { id }, ctx) => {
         await ctx.prisma.pod.update({
@@ -59,7 +66,7 @@ export const Mutation = schema.mutationType({
     });
 
     t.boolean("deleteOnePost", {
-      args: { id: schema.idArg() },
+      args: { id: idArg() },
       nullable: true,
       resolve: async (_, { id }, ctx) => {
         await ctx.prisma.post.update({
@@ -72,7 +79,7 @@ export const Mutation = schema.mutationType({
     });
 
     t.boolean("deleteOneReview", {
-      args: { id: schema.idArg() },
+      args: { id: idArg() },
       nullable: true,
       resolve: async (_, { id }, ctx) => {
         await ctx.prisma.review.update({
@@ -85,7 +92,7 @@ export const Mutation = schema.mutationType({
     });
 
     t.boolean("deleteOneAnnotation", {
-      args: { id: schema.idArg() },
+      args: { id: idArg() },
       nullable: true,
       resolve: async (_, { id }, ctx) => {
         await ctx.prisma.annotation.update({
@@ -98,7 +105,7 @@ export const Mutation = schema.mutationType({
     });
 
     t.boolean("deleteOneQuestion", {
-      args: { id: schema.idArg() },
+      args: { id: idArg() },
       nullable: true,
       resolve: async (_, { id }, ctx) => {
         await ctx.prisma.question.update({
@@ -111,7 +118,7 @@ export const Mutation = schema.mutationType({
     });
 
     t.boolean("deleteOneThread", {
-      args: { id: schema.idArg() },
+      args: { id: idArg() },
       nullable: true,
       resolve: async (_, { id }, ctx) => {
         await ctx.prisma.thread.update({
@@ -124,7 +131,7 @@ export const Mutation = schema.mutationType({
     });
 
     t.boolean("deleteOneMessage", {
-      args: { id: schema.idArg() },
+      args: { id: idArg() },
       nullable: true,
       resolve: async (_, { id }, ctx) => {
         await ctx.prisma.message.update({

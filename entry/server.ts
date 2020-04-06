@@ -1,4 +1,4 @@
-import { startServer } from "../modules/server";
+import startServer from "../modules/server/index";
 import * as throng from "throng";
 import * as config from "config";
 import window from "global";

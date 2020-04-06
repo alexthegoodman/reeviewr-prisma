@@ -99,6 +99,7 @@ To ease creation of components, take advantage of these commands
 - Utilizing Prisma 2 on Postgres database
 - https://alligator.io/nodejs/take-command-with-env-cmd/
 - Special thanks goes to Atomic Object for starter kit
+- graphql-code-generator needed for types?
 
 Nexus/Prisma:
 
@@ -109,6 +110,6 @@ How to simplify?
 - `nexus` - Get the `schema` object
 - `@nexus/schema` - Get the `makeSchema` function
 - `@prisma/nexus` - 10 months old
-- `nexus-plugin-prisma` - Highly volatile, Learn More https://github.com/graphql-nexus/nexus-plugin-prisma
+- `nexus-plugin-prisma` - Highly volatile, Learn More https://github.com/graphql-nexus/nexus-plugin-prisma (Seems to install multiple nexus/prisma modules in one?)
 - `@prisma/client` - Better / worse for Heroku?
 - `../../**generated**/prisma-client` - Better / worse for Heroku?

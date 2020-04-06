@@ -156,26 +156,35 @@ const schema = makeSchema({
 
     // nexusPrisma,
   ],
-  outputs: {
-    schema: path.join(__dirname, "../__generated__/schema.graphql"),
-    typegen: path.join(__dirname, "../__generated__/nexus.d.ts"),
-  },
   // outputs: {
-  //   typegen: path.join(
-  //     __dirname,
-  //     "node_modules/@types/nexus-typegen/index.d.ts" // good local, not heroku? add def to tsconfig or us .d.ts?
-  //   ),
+  //   schema: path.join(__dirname, "../__generated__/schema.graphql"),
+  //   typegen: path.join(__dirname, "../__generated__/nexus.d.ts"),
   // },
+  outputs: {
+    typegen: path.join(
+      __dirname,
+      "node_modules/@types/nexus-typegen/index.d.ts" // good local, not heroku? add def to tsconfig or us .d.ts?
+    ),
+  },
   typegenAutoConfig: {
-    contextType: "{ prisma: PrismaClient.PrismaClient }",
+    contextType: "Context.Context",
+    // contextType: "{ prisma: PrismaClient.PrismaClient }",
     // sources: [{ source: "@prisma/client", alias: "PrismaClient" }],
     sources: [
+      // {
+      //   source: path.join(
+      //     __dirname,
+      //     "../__generated__/prisma-client/index.d.ts"
+      //   ),
+      //   alias: "PrismaClient",
+      // },
       {
-        source: path.join(
-          __dirname,
-          "../__generated__/prisma-client/index.d.ts"
-        ),
-        alias: "PrismaClient",
+        source: "@prisma/client",
+        alias: "prisma",
+      },
+      {
+        source: require.resolve("./context"),
+        alias: "Context",
       },
     ],
   },
@@ -207,7 +216,7 @@ export const enableDeveloperLogin = config.get<boolean>(
 
 const graphqlHTTP = require("express-graphql");
 
-export async function startServer() {
+export default async function startServer() {
   await prisma.connect();
 
   app.use(bodyParser.json({ limit: "50mb" }));
