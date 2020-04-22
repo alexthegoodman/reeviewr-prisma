@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 // import { PrismaClient } from "../__generated__/prisma-client";
 import * as faker from "faker";
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({ log: ["query", "info", "warn"] });
 
 export default async function seedPosts(user1, pod1, user2, pod2, tag1, pod3) {
   const postSchema = {

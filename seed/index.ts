@@ -26,7 +26,7 @@ async function main() {
     tag1,
     pod3
   );
-  const { notif1 } = await seedNotifs(user1, user2, post1);
+  const { notif1 } = await seedNotifs(user1, user2, pod1, post1);
   const { thread1 } = await seedThreads(user1, user2);
 }
 

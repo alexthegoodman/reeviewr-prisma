@@ -28,48 +28,50 @@ export default async function seedUsers() {
     userType: 1,
   };
 
-  const user1 = await prisma.user
-    .create({
-      data: {
-        ...userSchema,
-        userEmail: faker.internet.email(),
-        privateHash: faker.random.uuid(),
-        publicHash: faker.random.uuid(),
-        id: faker.random.number().toString(),
-        forgotHash: faker.random.uuid(),
-        confirmHash: faker.random.uuid(),
-        userMeta: {
-          create: [
-            ...metaSchema,
-            {
-              metaName: "firstName",
-              metaValue: faker.name.firstName(),
-              metaType: "active",
-            },
-            {
-              metaName: "lastName",
-              metaValue: faker.name.lastName(),
-              metaType: "active",
-            },
-          ],
-        },
-      },
-    })
-    .catch((err) => {
-      console.error("ERR", err);
-    });
+  const user1 = await prisma.user.create({
+    data: {
+      ...userSchema,
+      userEmail: faker.internet.email(),
+      privateHash: faker.random.uuid(),
+      publicHash: faker.random.uuid(),
+      id: faker.random.uuid(),
+      forgotHash: faker.random.uuid(),
+      confirmHash: faker.random.uuid(),
+
+      // error:
+
+      // userMeta: {
+      //   create: [
+      //     ...metaSchema,
+      //     {
+      //       metaName: "firstName",
+      //       metaValue: faker.name.firstName(),
+      //       metaType: "active",
+      //     },
+      //     {
+      //       metaName: "lastName",
+      //       metaValue: faker.name.lastName(),
+      //       metaType: "active",
+      //     },
+      //   ],
+      // },
+    },
+  });
+  // .catch((err) => {
+  //   console.error("ERR", err);
+  // });
   const user2 = await prisma.user.create({
     data: {
       ...userSchema,
       userEmail: faker.internet.email(),
       privateHash: faker.random.uuid(),
       publicHash: faker.random.uuid(),
-      id: faker.random.number().toString(),
+      id: faker.random.uuid(),
       forgotHash: faker.random.uuid(),
       confirmHash: faker.random.uuid(),
       userMeta: {
         create: [
-          ...metaSchema,
+          // ...metaSchema,
           {
             metaName: "firstName",
             metaValue: faker.name.firstName(),

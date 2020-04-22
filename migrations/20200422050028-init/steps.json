@@ -42,17 +42,6 @@
           "model": "User",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -69,6 +58,17 @@
       },
       "argument": "",
       "value": "cuid()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "id"
+        },
+        "directive": "id"
+      }
     },
     {
       "tag": "CreateField",
@@ -221,61 +221,11 @@
       "arity": "List"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "userMeta"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "userMeta"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
-    },
-    {
       "tag": "CreateField",
       "model": "User",
       "field": "posts",
       "type": "Post",
       "arity": "List"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "posts"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "posts"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
     },
     {
       "tag": "CreateField",
@@ -306,22 +256,8 @@
         },
         "directive": "relation"
       },
-      "argument": "name",
+      "argument": "",
       "value": "\"CreatePodRelation\""
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "pods"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
     },
     {
       "tag": "CreateField",
@@ -352,7 +288,7 @@
         },
         "directive": "relation"
       },
-      "argument": "name",
+      "argument": "",
       "value": "\"JoinPodRelation\""
     },
     {
@@ -377,61 +313,11 @@
       "arity": "List"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "favorites"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "favorites"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
-    },
-    {
       "tag": "CreateField",
       "model": "User",
       "field": "reviews",
       "type": "Review",
       "arity": "List"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "reviews"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "reviews"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
     },
     {
       "tag": "CreateField",
@@ -441,61 +327,11 @@
       "arity": "List"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "annotations"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "annotations"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
-    },
-    {
       "tag": "CreateField",
       "model": "User",
       "field": "questions",
       "type": "Question",
       "arity": "List"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "questions"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "questions"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
     },
     {
       "tag": "CreateField",
@@ -532,38 +368,6 @@
     {
       "tag": "CreateField",
       "model": "User",
-      "field": "notifications",
-      "type": "Notification",
-      "arity": "List"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "notifications"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "notifications"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
-    },
-    {
-      "tag": "CreateField",
-      "model": "User",
       "field": "following",
       "type": "User",
       "arity": "List"
@@ -590,8 +394,8 @@
         },
         "directive": "relation"
       },
-      "argument": "name",
-      "value": "\"FollowRelation\""
+      "argument": "",
+      "value": "\"FollowerRelation\""
     },
     {
       "tag": "CreateArgument",
@@ -636,8 +440,8 @@
         },
         "directive": "relation"
       },
-      "argument": "name",
-      "value": "\"FollowRelation\""
+      "argument": "",
+      "value": "\"FollowerRelation\""
     },
     {
       "tag": "CreateArgument",
@@ -652,6 +456,38 @@
       },
       "argument": "references",
       "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "notifications",
+      "type": "Notification",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "notifications"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "notifications"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"NotificationRelation\""
     },
     {
       "tag": "CreateField",
@@ -682,22 +518,8 @@
         },
         "directive": "relation"
       },
-      "argument": "name",
+      "argument": "",
       "value": "\"SendingUserRelation\""
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "sentNotifications"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
     },
     {
       "tag": "CreateField",
@@ -728,22 +550,8 @@
         },
         "directive": "relation"
       },
-      "argument": "name",
+      "argument": "",
       "value": "\"ReceivingUserRelation\""
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "recievedNotifications"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
     },
     {
       "tag": "CreateField",
@@ -814,17 +622,6 @@
           "model": "UserMeta",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "UserMeta",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -843,10 +640,67 @@
       "value": "cuid()"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "UserMeta",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
       "tag": "CreateField",
       "model": "UserMeta",
       "field": "user",
       "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "UserMeta",
+          "field": "user"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "UserMeta",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "UserMeta",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "UserMeta",
+      "field": "userId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -971,17 +825,6 @@
           "model": "Pod",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Pod",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -998,6 +841,17 @@
       },
       "argument": "",
       "value": "cuid()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Pod",
+          "field": "id"
+        },
+        "directive": "id"
+      }
     },
     {
       "tag": "CreateField",
@@ -1028,7 +882,7 @@
         },
         "directive": "relation"
       },
-      "argument": "name",
+      "argument": "",
       "value": "\"CreatePodRelation\""
     },
     {
@@ -1095,7 +949,7 @@
         },
         "directive": "relation"
       },
-      "argument": "name",
+      "argument": "",
       "value": "\"JoinPodRelation\""
     },
     {
@@ -1187,31 +1041,6 @@
       "arity": "List"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Pod",
-          "field": "itemMeta"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Pod",
-          "field": "itemMeta"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
-    },
-    {
       "tag": "CreateField",
       "model": "Pod",
       "field": "posts",
@@ -1219,61 +1048,11 @@
       "arity": "List"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Pod",
-          "field": "posts"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Pod",
-          "field": "posts"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
-    },
-    {
       "tag": "CreateField",
       "model": "Pod",
       "field": "categories",
       "type": "Category",
       "arity": "List"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Pod",
-          "field": "categories"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Pod",
-          "field": "categories"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
     },
     {
       "tag": "CreateField",
@@ -1344,17 +1123,6 @@
           "model": "PodMeta",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "PodMeta",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -1373,10 +1141,67 @@
       "value": "cuid()"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "PodMeta",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
       "tag": "CreateField",
       "model": "PodMeta",
       "field": "pod",
       "type": "Pod",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "PodMeta",
+          "field": "pod"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "PodMeta",
+          "field": "pod"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[podId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "PodMeta",
+          "field": "pod"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "PodMeta",
+      "field": "podId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -1501,17 +1326,6 @@
           "model": "Post",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Post",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -1530,6 +1344,17 @@
       "value": "cuid()"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Post",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
       "tag": "CreateField",
       "model": "Post",
       "field": "user",
@@ -1537,10 +1362,102 @@
       "arity": "Required"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Post",
+          "field": "user"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Post",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Post",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Post",
+      "field": "userId",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
       "tag": "CreateField",
       "model": "Post",
       "field": "pod",
       "type": "Pod",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Post",
+          "field": "pod"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Post",
+          "field": "pod"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[podId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Post",
+          "field": "pod"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Post",
+      "field": "podId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -1625,61 +1542,11 @@
       "arity": "List"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Post",
-          "field": "itemMeta"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Post",
-          "field": "itemMeta"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
-    },
-    {
       "tag": "CreateField",
       "model": "Post",
       "field": "tags",
       "type": "Tag",
       "arity": "List"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Post",
-          "field": "tags"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Post",
-          "field": "tags"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
     },
     {
       "tag": "CreateField",
@@ -1689,61 +1556,11 @@
       "arity": "List"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Post",
-          "field": "favorites"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Post",
-          "field": "favorites"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
-    },
-    {
       "tag": "CreateField",
       "model": "Post",
       "field": "reviews",
       "type": "Review",
       "arity": "List"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Post",
-          "field": "reviews"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Post",
-          "field": "reviews"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
     },
     {
       "tag": "CreateField",
@@ -1753,61 +1570,11 @@
       "arity": "List"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Post",
-          "field": "annotations"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Post",
-          "field": "annotations"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
-    },
-    {
       "tag": "CreateField",
       "model": "Post",
       "field": "questions",
       "type": "Question",
       "arity": "List"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Post",
-          "field": "questions"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Post",
-          "field": "questions"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
     },
     {
       "tag": "CreateField",
@@ -1878,17 +1645,6 @@
           "model": "PostMeta",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "PostMeta",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -1907,10 +1663,67 @@
       "value": "cuid()"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "PostMeta",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
       "tag": "CreateField",
       "model": "PostMeta",
       "field": "post",
       "type": "Post",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "PostMeta",
+          "field": "post"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "PostMeta",
+          "field": "post"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[postId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "PostMeta",
+          "field": "post"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "PostMeta",
+      "field": "postId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -2035,17 +1848,6 @@
           "model": "Review",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Review",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -2064,10 +1866,67 @@
       "value": "cuid()"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Review",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
       "tag": "CreateField",
       "model": "Review",
       "field": "user",
       "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Review",
+          "field": "user"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Review",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Review",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Review",
+      "field": "userId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -2152,12 +2011,19 @@
       "arity": "List"
     },
     {
+      "tag": "CreateField",
+      "model": "Review",
+      "field": "post",
+      "type": "Post",
+      "arity": "Required"
+    },
+    {
       "tag": "CreateDirective",
       "location": {
         "path": {
           "tag": "Field",
           "model": "Review",
-          "field": "itemMeta"
+          "field": "post"
         },
         "directive": "relation"
       }
@@ -2169,7 +2035,21 @@
         "path": {
           "tag": "Field",
           "model": "Review",
-          "field": "itemMeta"
+          "field": "post"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[postId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Review",
+          "field": "post"
         },
         "directive": "relation"
       },
@@ -2179,8 +2059,8 @@
     {
       "tag": "CreateField",
       "model": "Review",
-      "field": "post",
-      "type": "Post",
+      "field": "postId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -2252,17 +2132,6 @@
           "model": "ReviewMeta",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "ReviewMeta",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -2281,10 +2150,67 @@
       "value": "cuid()"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ReviewMeta",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
       "tag": "CreateField",
       "model": "ReviewMeta",
       "field": "review",
       "type": "Review",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ReviewMeta",
+          "field": "review"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ReviewMeta",
+          "field": "review"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[reviewId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ReviewMeta",
+          "field": "review"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "ReviewMeta",
+      "field": "reviewId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -2409,17 +2335,6 @@
           "model": "Annotation",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Annotation",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -2438,10 +2353,67 @@
       "value": "cuid()"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Annotation",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
       "tag": "CreateField",
       "model": "Annotation",
       "field": "user",
       "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Annotation",
+          "field": "user"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Annotation",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Annotation",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Annotation",
+      "field": "userId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -2526,12 +2498,19 @@
       "arity": "List"
     },
     {
+      "tag": "CreateField",
+      "model": "Annotation",
+      "field": "post",
+      "type": "Post",
+      "arity": "Required"
+    },
+    {
       "tag": "CreateDirective",
       "location": {
         "path": {
           "tag": "Field",
           "model": "Annotation",
-          "field": "itemMeta"
+          "field": "post"
         },
         "directive": "relation"
       }
@@ -2543,7 +2522,21 @@
         "path": {
           "tag": "Field",
           "model": "Annotation",
-          "field": "itemMeta"
+          "field": "post"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[postId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Annotation",
+          "field": "post"
         },
         "directive": "relation"
       },
@@ -2553,8 +2546,8 @@
     {
       "tag": "CreateField",
       "model": "Annotation",
-      "field": "post",
-      "type": "Post",
+      "field": "postId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -2626,17 +2619,6 @@
           "model": "AnnotationMeta",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "AnnotationMeta",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -2655,10 +2637,67 @@
       "value": "cuid()"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "AnnotationMeta",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
       "tag": "CreateField",
       "model": "AnnotationMeta",
       "field": "annotation",
       "type": "Annotation",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "AnnotationMeta",
+          "field": "annotation"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "AnnotationMeta",
+          "field": "annotation"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[annotationId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "AnnotationMeta",
+          "field": "annotation"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "AnnotationMeta",
+      "field": "annotationId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -2783,17 +2822,6 @@
           "model": "Question",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Question",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -2812,10 +2840,67 @@
       "value": "cuid()"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Question",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
       "tag": "CreateField",
       "model": "Question",
       "field": "user",
       "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Question",
+          "field": "user"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Question",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Question",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Question",
+      "field": "userId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -2900,12 +2985,19 @@
       "arity": "List"
     },
     {
+      "tag": "CreateField",
+      "model": "Question",
+      "field": "post",
+      "type": "Post",
+      "arity": "Required"
+    },
+    {
       "tag": "CreateDirective",
       "location": {
         "path": {
           "tag": "Field",
           "model": "Question",
-          "field": "itemMeta"
+          "field": "post"
         },
         "directive": "relation"
       }
@@ -2917,7 +3009,21 @@
         "path": {
           "tag": "Field",
           "model": "Question",
-          "field": "itemMeta"
+          "field": "post"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[postId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Question",
+          "field": "post"
         },
         "directive": "relation"
       },
@@ -2927,8 +3033,8 @@
     {
       "tag": "CreateField",
       "model": "Question",
-      "field": "post",
-      "type": "Post",
+      "field": "postId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -3000,17 +3106,6 @@
           "model": "QuestionMeta",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "QuestionMeta",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -3029,10 +3124,67 @@
       "value": "cuid()"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "QuestionMeta",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
       "tag": "CreateField",
       "model": "QuestionMeta",
       "field": "question",
       "type": "Question",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "QuestionMeta",
+          "field": "question"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "QuestionMeta",
+          "field": "question"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[questionId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "QuestionMeta",
+          "field": "question"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "QuestionMeta",
+      "field": "questionId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -3157,17 +3309,6 @@
           "model": "Thread",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Thread",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -3184,6 +3325,17 @@
       },
       "argument": "",
       "value": "cuid()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Thread",
+          "field": "id"
+        },
+        "directive": "id"
+      }
     },
     {
       "tag": "CreateField",
@@ -3253,61 +3405,11 @@
       "arity": "List"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Thread",
-          "field": "itemMeta"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Thread",
-          "field": "itemMeta"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
-    },
-    {
       "tag": "CreateField",
       "model": "Thread",
       "field": "messages",
       "type": "Message",
       "arity": "List"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Thread",
-          "field": "messages"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Thread",
-          "field": "messages"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
     },
     {
       "tag": "CreateField",
@@ -3410,17 +3512,6 @@
           "model": "ThreadMeta",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "ThreadMeta",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -3439,10 +3530,67 @@
       "value": "cuid()"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ThreadMeta",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
       "tag": "CreateField",
       "model": "ThreadMeta",
       "field": "thread",
       "type": "Thread",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ThreadMeta",
+          "field": "thread"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ThreadMeta",
+          "field": "thread"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[threadId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ThreadMeta",
+          "field": "thread"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "ThreadMeta",
+      "field": "threadId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -3567,17 +3715,6 @@
           "model": "Message",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Message",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -3596,10 +3733,67 @@
       "value": "cuid()"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Message",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
       "tag": "CreateField",
       "model": "Message",
       "field": "user",
       "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Message",
+          "field": "user"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Message",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Message",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Message",
+      "field": "userId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -3670,12 +3864,19 @@
       "arity": "List"
     },
     {
+      "tag": "CreateField",
+      "model": "Message",
+      "field": "thread",
+      "type": "Thread",
+      "arity": "Required"
+    },
+    {
       "tag": "CreateDirective",
       "location": {
         "path": {
           "tag": "Field",
           "model": "Message",
-          "field": "itemMeta"
+          "field": "thread"
         },
         "directive": "relation"
       }
@@ -3687,7 +3888,21 @@
         "path": {
           "tag": "Field",
           "model": "Message",
-          "field": "itemMeta"
+          "field": "thread"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[threadId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Message",
+          "field": "thread"
         },
         "directive": "relation"
       },
@@ -3697,8 +3912,8 @@
     {
       "tag": "CreateField",
       "model": "Message",
-      "field": "thread",
-      "type": "Thread",
+      "field": "threadId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -3770,17 +3985,6 @@
           "model": "MessageMeta",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "MessageMeta",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -3799,10 +4003,67 @@
       "value": "cuid()"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "MessageMeta",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
       "tag": "CreateField",
       "model": "MessageMeta",
       "field": "message",
       "type": "Message",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "MessageMeta",
+          "field": "message"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "MessageMeta",
+          "field": "message"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[messageId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "MessageMeta",
+          "field": "message"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "MessageMeta",
+      "field": "messageId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -3927,17 +4188,6 @@
           "model": "Notification",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Notification",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -3954,6 +4204,17 @@
       },
       "argument": "",
       "value": "cuid()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Notification",
+          "field": "id"
+        },
+        "directive": "id"
+      }
     },
     {
       "tag": "CreateField",
@@ -4023,31 +4284,6 @@
       "arity": "List"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Notification",
-          "field": "itemMeta"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Notification",
-          "field": "itemMeta"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
-    },
-    {
       "tag": "CreateField",
       "model": "Notification",
       "field": "sender",
@@ -4076,7 +4312,7 @@
         },
         "directive": "relation"
       },
-      "argument": "name",
+      "argument": "",
       "value": "\"SendingUserRelation\""
     },
     {
@@ -4143,7 +4379,7 @@
         },
         "directive": "relation"
       },
-      "argument": "name",
+      "argument": "",
       "value": "\"ReceivingUserRelation\""
     },
     {
@@ -4186,14 +4422,106 @@
       "model": "Notification",
       "field": "pod",
       "type": "Pod",
-      "arity": "Optional"
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Notification",
+          "field": "pod"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Notification",
+          "field": "pod"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[podId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Notification",
+          "field": "pod"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Notification",
+      "field": "podId",
+      "type": "String",
+      "arity": "Required"
     },
     {
       "tag": "CreateField",
       "model": "Notification",
       "field": "post",
       "type": "Post",
-      "arity": "Optional"
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Notification",
+          "field": "post"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Notification",
+          "field": "post"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[postId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Notification",
+          "field": "post"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Notification",
+      "field": "postId",
+      "type": "String",
+      "arity": "Required"
     },
     {
       "tag": "CreateField",
@@ -4246,6 +4574,13 @@
       }
     },
     {
+      "tag": "CreateField",
+      "model": "Notification",
+      "field": "userId",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
       "tag": "CreateModel",
       "model": "NotificationMeta"
     },
@@ -4255,17 +4590,6 @@
       "field": "id",
       "type": "String",
       "arity": "Required"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "NotificationMeta",
-          "field": "id"
-        },
-        "directive": "id"
-      }
     },
     {
       "tag": "CreateDirective",
@@ -4293,10 +4617,67 @@
       "value": "cuid()"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "NotificationMeta",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
       "tag": "CreateField",
       "model": "NotificationMeta",
       "field": "notification",
       "type": "Notification",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "NotificationMeta",
+          "field": "notification"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "NotificationMeta",
+          "field": "notification"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[notificationId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "NotificationMeta",
+          "field": "notification"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "NotificationMeta",
+      "field": "notificationId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -4421,17 +4802,6 @@
           "model": "Favorite",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Favorite",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -4450,10 +4820,67 @@
       "value": "cuid()"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Favorite",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
       "tag": "CreateField",
       "model": "Favorite",
       "field": "user",
       "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Favorite",
+          "field": "user"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Favorite",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Favorite",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Favorite",
+      "field": "userId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -4489,6 +4916,52 @@
       "model": "Favorite",
       "field": "post",
       "type": "Post",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Favorite",
+          "field": "post"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Favorite",
+          "field": "post"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[postId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Favorite",
+          "field": "post"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Favorite",
+      "field": "postId",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -4560,17 +5033,6 @@
           "model": "Tag",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Tag",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -4587,6 +5049,17 @@
       },
       "argument": "",
       "value": "cuid()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Tag",
+          "field": "id"
+        },
+        "directive": "id"
+      }
     },
     {
       "tag": "CreateField",
@@ -4717,17 +5190,6 @@
           "model": "Category",
           "field": "id"
         },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Category",
-          "field": "id"
-        },
         "directive": "default"
       }
     },
@@ -4744,6 +5206,17 @@
       },
       "argument": "",
       "value": "cuid()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Category",
+          "field": "id"
+        },
+        "directive": "id"
+      }
     },
     {
       "tag": "CreateField",
