@@ -1,11 +1,11 @@
 // import { idArg, makeSchema, objectType } from "@prisma/nexus";
-// import { schema } from "nexus";
-import { idArg, intArg, queryType, stringArg } from "@nexus/schema";
+import { schema } from "nexus";
+// import { idArg, intArg, queryType, stringArg } from "@nexus/schema";
 // import { makeSchema, mutationType, objectType, queryType } from '@nexus/schema';
 
 // https://www.nexusjs.org/#/plugins/prisma
 
-export const Query = queryType({
+export const Query = schema.queryType({
   // name: "Query",
   definition(t) {
     // t.crud.findOneUser();

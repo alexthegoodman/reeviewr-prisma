@@ -111,9 +111,14 @@ const path = require("path");
 const csp = require("helmet-csp");
 const Mixpanel = require("mixpanel");
 
-const prisma = new PrismaClient({
-  // log: ["query"],
-});
+import { use } from "nexus";
+import { prisma } from "nexus-plugin-prisma";
+
+use(prisma());
+
+// const prisma = new PrismaClient({
+//   // log: ["query"],
+// });
 
 // const graphqlServer = new GraphQLServer({
 //   schema,
@@ -127,7 +132,7 @@ const prisma = new PrismaClient({
 // TODO: move to graphql/index.ts
 // https://github.com/graphql-nexus/schema/blob/develop/src/builder.ts
 const schema = makeSchema({
-  plugins: [nexusPrismaPlugin()],
+  // plugins: [nexusPrismaPlugin()],
   // plugins: [nexusPrisma],
   types: [
     Query,

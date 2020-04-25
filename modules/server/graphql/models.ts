@@ -1,5 +1,5 @@
 import { idArg, intArg, queryType, stringArg, objectType } from "@nexus/schema";
-import { PrismaClient } from "../../../__generated__/prisma-client";
+import { PrismaClient } from "@prisma/client";
 // import "../../../__generated__/nexus.d.ts";
 // import "../../../__generated__/prisma-client/index.d.ts";
 

@@ -1,17 +1,17 @@
 // import { idArg, makeSchema, objectType } from "@prisma/nexus";
-// import { schema } from "nexus";
-import {
-  mutationType,
-  idArg,
-  intArg,
-  stringArg,
-  objectType,
-} from "@nexus/schema";
-import { PrismaClient } from "../../../__generated__/prisma-client";
+import { schema } from "nexus";
+// import {
+//   mutationType,
+//   idArg,
+//   intArg,
+//   stringArg,
+//   objectType,
+// } from "@nexus/schema";
+import { PrismaClient } from "@prisma/client";
 
 // https://www.nexusjs.org/#/plugins/prisma
 
-export const Mutation = mutationType({
+export const Mutation = schema.mutationType({
   // name: "Mutation",
   definition(t) {
     t.crud.createOneUser();

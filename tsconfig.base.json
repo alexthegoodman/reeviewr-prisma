@@ -19,11 +19,12 @@
     "removeComments": true,
     "rootDir": ".",
     "outDir": "./dist",
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "sourceMap": true,
     "strict": true,
     "noImplicitAny": false,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "esModuleInterop": true
   },
   "exclude": ["./dist", "./es", "./data-seed"]
 }
