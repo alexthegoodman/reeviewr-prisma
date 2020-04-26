@@ -36,7 +36,7 @@ Use a Linux machine. This will assure compatability.
 - Project Configuration
   - Duplicate `.env.example` as `.env` and get the needed values from Alex
 - Initial Data
-  - Optional: See Using Prisma for more on migrations
+  - Optional: See <a href="#using-prisma">Using Prisma</a> for more on migrations
   - `yarn prisma:apply` to update database according to latest migrations
   - `yarn build:graphql` (create Prisma client)
   - `yarn db:seed` (use Prisma client to load database with test data)
