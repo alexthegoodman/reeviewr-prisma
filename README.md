@@ -1,6 +1,19 @@
 # Reeviewr v2 Beta
 
-[![alexthegoodman](https://circleci.com/gh/alexthegoodman/reeviewr-prisma.svg?style=svg)](https://app.circleci.com/pipelines/github/alexthegoodman/reeviewr-prisma)
+<p>
+<a href="https://app.circleci.com/pipelines/github/alexthegoodman/reeviewr-prisma">
+<img alt="Maintained?: Yes" src="https://circleci.com/gh/alexthegoodman/reeviewr-prisma.svg?style=svg" target="_blank" />
+</a>
+<a href="https://github.com/alexthegoodman/reeviewr-prisma/graphs/commit-activity">
+<img alt="Maintained?: Yes" src="https://img.shields.io/badge/Maintained%3F-Yes-success.svg" target="_blank" />
+</a>
+<a href="https://github.com/alexthegoodman/reeviewr-prisma/blob/master/LICENSE">
+<img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
+</a>
+<a href="https://twitter.com/reeviewr">
+<img alt="Twitter: Reeviewr" src="https://img.shields.io/twitter/follow/Reeviewr.svg?style=social" target="_blank" />
+</a>
+</p>
 
 ## Introduction
 
@@ -14,6 +27,7 @@ Use a Linux machine. This will assure compatability.
 - Install Pre-Requisites
   - Node
   - Yarn
+  - Postgres
 - Install Dependencies
   - `yarn`
   - `yarn global add dotenv-cli`
@@ -22,14 +36,15 @@ Use a Linux machine. This will assure compatability.
 - Project Configuration
   - Duplicate `.env.example` as `.env` and get the needed values from Alex
 - Initial Data
-  - `yarn prisma:apply` (may need to run manually without `dotenv`)
-  - `yarn build:graphql`
-  - `yarn db:seed`
+  - Optional: See Using Prisma for more on migrations
+  - `yarn prisma:apply` to update database according to latest migrations
+  - `yarn build:graphql` (create Prisma client)
+  - `yarn db:seed` (use Prisma client to load database with test data)
 
 ### Relevant Directories
 
-- /modules/ Working Directory
-- /cypress/ UI Tests
+- `/modules/` Working Directory
+- `/cypress/` UI Tests
 
 ## Run
 
@@ -94,22 +109,41 @@ To ease creation of components, take advantage of these commands
 - graphql-codegen
 - Limit incoming/outgoing calls/queries per minute on average
 
-### Notes
+### Using Prisma
 
-- Utilizing Prisma 2 on Postgres database
-- https://alligator.io/nodejs/take-command-with-env-cmd/
-- Special thanks goes to Atomic Object for starter kit
-- graphql-code-generator needed for types?
+#### Prisma Commands:
 
-Nexus/Prisma:
+- Run `yarn global add @prisma/cli`
+- Delete `/migrations/` and run `yarn prisma:migrate` to re-create migrations
+- Alter `schema.prisma` and run `yarn prisma:migrate` to add a new migration
+- Run `yarn prisma:apply` to update database according to latest migrations
 
-How to simplify?
+#### Generate Prisma Client (and Types?):
 
-- `@prisma/cli` - Global add for `prisma` and `prisma2` terminal commands
-- `nexus-prisma` - Get the `nexusPrismaPlugin` function (replaced by nexus-plugin-prisma?)
+Which location is better / worse for Heroku? Type checking?
+
+- `@prisma/client`
+- `../../**generated**/prisma-client`
+
+#### Connect Prisma to Nexus:
+
+Seems to install multiple nexus / prisma modules in one? (setup with use())
+
+- `nexus-plugin-prisma`
+
+#### Build Schema:
+
+Must determine `nexus` vs `@nexus/schema` for creating Queries, Mutations, etc
+
 - `nexus` - Get the `schema` object
 - `@nexus/schema` - Get the `makeSchema` function
-- `@prisma/nexus` - 10 months old
-- `nexus-plugin-prisma` - Highly volatile, Learn More https://github.com/graphql-nexus/nexus-plugin-prisma (Seems to install multiple nexus/prisma modules in one?)
-- `@prisma/client` - Better / worse for Heroku?
-- `../../**generated**/prisma-client` - Better / worse for Heroku?
+
+#### Deprecated:
+
+- `@prisma/nexus` - 10 months old (deprecated)
+- `nexus-prisma` - Get the `nexusPrismaPlugin` function (replaced by nexus-plugin-prisma?)
+
+### Further Notes
+
+- Special thanks goes to Atomic Object for starter kit
+- Is `graphql-code-generator` needed for types?
