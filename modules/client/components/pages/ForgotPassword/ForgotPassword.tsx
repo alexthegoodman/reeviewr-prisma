@@ -10,10 +10,10 @@ import {
   Alert,
   Callout,
 } from "@blueprintjs/core";
-import { Formik, Form, FormikActions, FormikProps } from "formik";
+import { Formik, Form, FormikProps } from "formik";
 import * as Yup from "yup";
 
-import TextField from "../../ui/TextField/TextField";
+import TextField from "../../fields/TextField/TextField";
 import AuthClient from "../../../services/AuthClient";
 import { ERROR_CODE } from "../../../../services/ERROR_CODE";
 
@@ -60,10 +60,7 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = () => {
       <Formik
         initialValues={{ email: "" }}
         validationSchema={LoginSchema}
-        onSubmit={(
-          values: ForgotPasswordValues,
-          actions: FormikActions<ForgotPasswordValues>
-        ) => {
+        onSubmit={(values: ForgotPasswordValues, actions) => {
           console.log("values", { values, actions });
           authClient.forgotPassword(values, (err, res) => {
             if (err) {

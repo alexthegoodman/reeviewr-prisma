@@ -1,5 +1,5 @@
 // @import url("https://use.typekit.net/kod8qec.css");
-@import "~react-draft-wysiwyg/dist/react-draft-wysiwyg.css"; // Option 1
+// @import "~react-draft-wysiwyg/dist/react-draft-wysiwyg.css"; // Option 1
 @import "~react-quill/dist/quill.snow.css"; // Option 2
 @import "~react-vis/dist/style";
 
@@ -36,6 +36,12 @@
 @import "../components/layout/AppNav/AppNav";
 @import "../components/layout/AuthNav/AuthNav";
 @import "../components/layout/ProfileNav/ProfileNav";
+@import "../components/layout/FlushContentWrapper/FlushContentWrapper";
+@import "../components/layout/CategoryGrid/CategoryGrid";
+@import "../components/layout/HomeHero/HomeHero";
+@import "../components/layout/MessageMenu/MessageMenu";
+@import "../components/layout/NotificationMenu/NotificationMenu";
+@import "../components/layout/PageHeader/PageHeader";
 
 @import "../components/pages/status/NotFound/NotFound";
 @import "../components/pages/Messages/Messages";
@@ -45,71 +51,65 @@
 
 @import "../components/pages/landing/MailchimpPods070619/MailchimpPods070619";
 
-@import "../components/data/UserTrack/UserTrack";
-@import "../components/data/BeyondSearchData/BeyondSearchData";
-@import "../components/data/WhoToFollow/WhoToFollow";
-@import "../components/data/MessageMenu/MessageMenu";
-@import "../components/data/NotificationMenu/NotificationMenu";
+@import "../components/system/BeyondSearchData/BeyondSearchData";
+@import "../components/system/BeyondSearch/BeyondSearch";
+@import "../components/system/LoadingIndicator/LoadingIndicator";
+@import "../components/system/OutputSystemMessage/OutputSystemMessage";
 
-@import "../components/ui/ArtistCard/ArtistCard";
-@import "../components/ui/AddReview/AddReview";
-@import "../components/ui/BeyondSearch/BeyondSearch";
-@import "../components/ui/GraphCard/GraphCard";
-@import "../components/ui/Header/Header";
-@import "../components/ui/MenuItem/MenuItem";
-@import "../components/ui/ProfileItem/ProfileItem";
-@import "../components/ui/ReviewCard/ReviewCard";
-@import "../components/ui/ReviewParticipants/ReviewParticipants";
-@import "../components/ui/Sidebar/Sidebar";
-@import "../components/ui/Track/Track";
-@import "../components/ui/TrackArt/TrackArt";
-@import "../components/ui/TrackHeader/TrackHeader";
-@import "../components/ui/TrackWaveForm/TrackWaveForm";
-@import "../components/ui/ProfileSidebar/ProfileSidebar";
-@import "../components/ui/ValidationNotice/ValidationNotice";
-@import "../components/ui/PageHeader/PageHeader";
-@import "../components/ui/ShareButton/ShareButton";
-@import "../components/ui/LikeButton/LikeButton";
-@import "../components/ui/FollowButton/FollowButton";
-@import "../components/ui/LoadingIndicator/LoadingIndicator";
-@import "../components/ui/RadioField/RadioField";
-@import "../components/ui/ProfileTabs/ProfileTabs";
-@import "../components/ui/HomeHero/HomeHero";
-@import "../components/ui/MessageThreads/MessageThreads";
-@import "../components/ui/Messenger/Messenger";
-@import "../components/ui/MessengerReply/MessengerReply";
-@import "../components/ui/CheckboxField/CheckboxField";
-@import "../components/ui/ContentFooter/ContentFooter";
-@import "../components/ui/Logo/Logo";
-@import "../components/ui/FollowButton/FollowButton";
-@import "../components/ui/FollowUser/FollowUser";
-@import "../components/ui/Advertisement/Advertisement";
-@import "../components/ui/CategoryGrid/CategoryGrid";
-@import "../components/ui/PodCard/PodCard";
-@import "../components/ui/PostCard/PostCard";
-@import "../components/ui/MiniPostCard/MiniPostCard";
-@import "../components/ui/UserCard/UserCard";
-@import "../components/ui/PodHero/PodHero";
-@import "../components/ui/NotificationItem/NotificationItem";
-@import "../components/ui/PostImageViewer/PostImageViewer";
-@import "../components/ui/PostMetaData/PostMetaData";
-@import "../components/ui/PostQuestions/PostQuestions";
-@import "../components/ui/PostReviews/PostReviews";
-@import "../components/ui/PostTextViewer/PostTextViewer";
-@import "../components/ui/PostVideoViewer/PostVideoViewer";
-@import "../components/ui/PostAudioViewer/PostAudioViewer";
-@import "../components/ui/PostAnnotations/PostAnnotations";
-@import "../components/ui/ThreadItem/ThreadItem";
-@import "../components/ui/PostCtrls/PostCtrls";
-@import "../components/ui/PostDetailCtrls/PostDetailCtrls";
-@import "../components/ui/ReviewItem/ReviewItem";
-@import "../components/ui/PostInteraction/PostInteraction";
-@import "../components/ui/ReviewQuestions/ReviewQuestions";
-@import "../components/ui/AnnotationItem/AnnotationItem";
-@import "../components/ui/QuestionItem/QuestionItem";
-@import "../components/ui/FlushContentWrapper/FlushContentWrapper";
-@import "../components/ui/OutputSystemMessage/OutputSystemMessage";
+@import "../components/post/PostCard/PostCard";
+@import "../components/post/MiniPostCard/MiniPostCard";
+@import "../components/post/PostImageViewer/PostImageViewer";
+@import "../components/post/PostMetaData/PostMetaData";
+@import "../components/post/PostQuestions/PostQuestions";
+@import "../components/post/PostReviews/PostReviews";
+@import "../components/post/PostTextViewer/PostTextViewer";
+@import "../components/post/PostVideoViewer/PostVideoViewer";
+@import "../components/post/PostAudioViewer/PostAudioViewer";
+@import "../components/post/PostAnnotations/PostAnnotations";
+@import "../components/post/PostCtrls/PostCtrls";
+@import "../components/post/PostDetailCtrls/PostDetailCtrls";
+@import "../components/post/ReviewItem/ReviewItem";
+@import "../components/post/PostInteraction/PostInteraction";
+@import "../components/post/AnnotationItem/AnnotationItem";
+@import "../components/post/QuestionItem/QuestionItem";
 
-@import "../components/ui/landing/LandingHeroA/LandingHeroA";
-@import "../components/ui/landing/LandingFeaturesA/LandingFeaturesA";
-@import "../components/ui/landing/LandingBlockA/LandingBlockA";
+@import "../components/actions/FollowButton/FollowButton";
+@import "../components/actions/FollowUser/FollowUser";
+@import "../components/actions/AddReview/AddReview";
+@import "../components/actions/ShareButton/ShareButton";
+@import "../components/actions/LikeButton/LikeButton";
+@import "../components/actions/FollowButton/FollowButton";
+
+@import "../components/navigation/ContentFooter/ContentFooter";
+@import "../components/navigation/Logo/Logo";
+@import "../components/navigation/ProfileTabs/ProfileTabs";
+@import "../components/navigation/Header/Header";
+@import "../components/navigation/MenuItem/MenuItem";
+@import "../components/navigation/ProfileItem/ProfileItem";
+@import "../components/navigation/Sidebar/Sidebar";
+@import "../components/navigation/ProfileSidebar/ProfileSidebar";
+
+@import "../components/landing/LandingHeroA/LandingHeroA";
+@import "../components/landing/LandingFeaturesA/LandingFeaturesA";
+@import "../components/landing/LandingBlockA/LandingBlockA";
+
+@import "../components/user/UserCard/UserCard";
+@import "../components/user/WhoToFollow/WhoToFollow";
+
+@import "../components/review/ReviewQuestions/ReviewQuestions";
+@import "../components/review/ReviewParticipants/ReviewParticipants";
+
+@import "../components/fields/CheckboxField/CheckboxField";
+@import "../components/fields/RadioField/RadioField";
+@import "../components/fields/ValidationNotice/ValidationNotice";
+
+@import "../components/pod/PodCard/PodCard";
+@import "../components/pod/PodHero/PodHero";
+
+@import "../components/viz/GraphCard/GraphCard";
+
+@import "../components/ads/Advertisement/Advertisement";
+
+@import "../components/notifications/NotificationItem/NotificationItem";
+
+@import "../components/messages/ThreadItem/ThreadItem";

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { EditPodProps } from "./EditPod.d";
 import { Card, Text, Callout } from "@blueprintjs/core";
-import CreatePodForm from "../../data/CreatePodForm/CreatePodForm";
+import CreatePodForm from "../../forms/CreatePodForm/CreatePodForm";
 
 const EditPod: React.FC<EditPodProps> = () => {
   return (

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { SignUpProps } from "./SignUp.d";
 import { Text, Card } from "@blueprintjs/core";
-import SignUpForm from "../../data/SignUpForm/SignUpForm";
+import SignUpForm from "../../forms/SignUpForm/SignUpForm";
 
 const SignUp: React.FC<SignUpProps> = () => {
   return (

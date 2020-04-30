@@ -2,23 +2,23 @@ import * as React from "react";
 
 import { useQuery } from "@apollo/react-hooks";
 import Utility from "../../../../services/Utility";
-import LoadingIndicator from "../../../components/ui/LoadingIndicator/LoadingIndicator";
+import LoadingIndicator from "../../system/LoadingIndicator/LoadingIndicator";
 import { GraphQLDataProps } from "./GraphQLData.d";
 import { useCookies } from "react-cookie";
 import Hawaii from "../../../services/Hawaii";
 import Oahu from "../../../../services/Oahu";
 import { Text, Callout } from "@blueprintjs/core";
-import OutputSystemMessage from "../../ui/OutputSystemMessage/OutputSystemMessage";
+import OutputSystemMessage from "../../system/OutputSystemMessage/OutputSystemMessage";
 
 const GraphQLData: React.FC<GraphQLDataProps> = ({
   ref = null,
   className = "",
-  onClick = e => console.info("Click"),
+  onClick = (e) => console.info("Click"),
   children,
   QUERY = null,
   loadingText = "Loading...",
-  onFinish = data => console.info("finish default", data),
-  onError = error => console.error("error", error),
+  onFinish = (data) => console.info("finish default", data),
+  onError = (error) => console.error("error", error),
   variables = null,
 }) => {
   const hawaii = new Hawaii();
@@ -31,7 +31,7 @@ const GraphQLData: React.FC<GraphQLDataProps> = ({
     queryVars = { ...variables, userId: cookies["reeviewrId"] };
   }
 
-  const finishError = error => {
+  const finishError = (error) => {
     setTimeout(() => {
       // TODO: Toast "Syncing"
       hawaii.apolloClient.reFetchObservableQueries();
@@ -40,7 +40,7 @@ const GraphQLData: React.FC<GraphQLDataProps> = ({
     onError(error);
   };
 
-  const finishSuccess = data => {
+  const finishSuccess = (data) => {
     onFinish(data);
   };
 

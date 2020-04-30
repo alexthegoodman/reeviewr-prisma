@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { CompleteProfileProps } from "./CompleteProfile.d";
 import { Card, Text } from "@blueprintjs/core";
-import CompleteProfileForm from "../../data/CompleteProfileForm/CompleteProfileForm";
+import CompleteProfileForm from "../../forms/CompleteProfileForm/CompleteProfileForm";
 
 const CompleteProfile: React.FC<CompleteProfileProps> = () => {
   return (

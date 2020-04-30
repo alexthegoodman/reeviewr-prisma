@@ -1,9 +1,9 @@
 import * as React from "react";
 
-import SignUpForm from "../../../data/SignUpForm/SignUpForm";
-import LandingBlockA from "../../../ui/landing/LandingBlockA/LandingBlockA";
-import LandingFeaturesA from "../../../ui/landing/LandingFeaturesA/LandingFeaturesA";
-import LandingHeroA from "../../../ui/landing/LandingHeroA/LandingHeroA";
+import SignUpForm from "../../../forms/SignUpForm/SignUpForm";
+import LandingBlockA from "../../../landing/LandingBlockA/LandingBlockA";
+import LandingFeaturesA from "../../../landing/LandingFeaturesA/LandingFeaturesA";
+import LandingHeroA from "../../../landing/LandingHeroA/LandingHeroA";
 import { MailchimpPods072019Props } from "./MailchimpPods072019.d";
 
 const MailchimpPods072019: React.FC<MailchimpPods072019Props> = () => {

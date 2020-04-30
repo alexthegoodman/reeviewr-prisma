@@ -5,5 +5,6 @@ export interface GraphQLDataProps {
   QUERY: any;
   loadingText: string;
   onFinish: any;
+  onError?: any;
   variables?: any;
 }

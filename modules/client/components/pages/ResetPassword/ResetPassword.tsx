@@ -9,10 +9,10 @@ import {
   Card,
   Callout,
 } from "@blueprintjs/core";
-import { Formik, Form, FormikActions, FormikProps } from "formik";
+import { Formik, Form, FormikProps } from "formik";
 import * as Yup from "yup";
 
-import TextField from "../../ui/TextField/TextField";
+import TextField from "../../fields/TextField/TextField";
 import AuthClient from "../../../services/AuthClient";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 import Utility from "../../../../services/Utility";
@@ -58,10 +58,7 @@ const ResetPassword: React.FC<ResetPasswordProps> = () => {
         <Formik
           initialValues={{ password: "", passwordConfirm: "" }}
           validationSchema={ResetPasswordSchema}
-          onSubmit={(
-            values: ResetPasswordValues,
-            actions: FormikActions<ResetPasswordValues>
-          ) => {
+          onSubmit={(values: ResetPasswordValues, actions) => {
             console.log("values", { values, actions });
             authClient.resetPassword({ ...values, forgotHash }, (err, res) => {
               if (err) {

@@ -8,7 +8,7 @@ import {
   InputGroup,
   Text,
 } from "@blueprintjs/core";
-import { Form, Formik, FormikActions, FormikProps } from "formik";
+import { Form, Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 import { LoginFormValues, LoginProps } from "./Login.d";
 
@@ -16,7 +16,7 @@ import { Link } from "react-navi";
 import { ERROR_CODE } from "../../../../services/ERROR_CODE";
 import { useAppContext } from "../../../context";
 import AuthClient from "../../../services/AuthClient";
-import TextField from "../../ui/TextField/TextField";
+import TextField from "../../fields/TextField/TextField";
 
 const Login: React.FC<LoginProps> = () => {
   const authClient = new AuthClient();
@@ -71,10 +71,7 @@ const Login: React.FC<LoginProps> = () => {
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={LoginSchema}
-        onSubmit={(
-          values: LoginFormValues,
-          actions: FormikActions<LoginFormValues>
-        ) => {
+        onSubmit={(values: LoginFormValues, actions) => {
           console.log("values", { values, actions });
 
           mixpanel.track("Log in form submission attempt", {

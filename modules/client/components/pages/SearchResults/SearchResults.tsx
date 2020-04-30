@@ -3,17 +3,15 @@ import * as React from "react";
 import { SearchResultsProps } from "./SearchResults.d";
 import { useQuery } from "@apollo/react-hooks";
 import { Text } from "@blueprintjs/core";
-import ArtistCardData from "../../data/ArtistCardData/ArtistCardData";
-import UserTrack from "../../data/UserTrack/UserTrack";
 import Utility from "../../../../services/Utility";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
-import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
+import LoadingIndicator from "../../system/LoadingIndicator/LoadingIndicator";
 import { SEARCH_USER_META } from "../../../graphql/queries/user";
 import { POSTS_QUERY } from "../../../graphql/queries/post";
-import PostCard from "../../ui/PostCard/PostCard";
-import UserCard from "../../ui/UserCard/UserCard";
+import PostCard from "../../post/PostCard/PostCard";
+import UserCard from "../../user/UserCard/UserCard";
 import { SEARCH_PODS } from "../../../graphql/queries/pod";
-import PodCard from "../../ui/PodCard/PodCard";
+import PodCard from "../../pod/PodCard/PodCard";
 
 const SearchResults: React.FC<SearchResultsProps> = () => {
   const utility = new Utility();
@@ -24,13 +22,12 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
 
   const { search } = route.lastChunk.request.params;
 
-  const {
-    data: userData,
-    error: userError,
-    loading: userLoading,
-  } = useQuery(SEARCH_USER_META, {
-    variables: { search: encodeURIComponent(search) },
-  });
+  const { data: userData, error: userError, loading: userLoading } = useQuery(
+    SEARCH_USER_META,
+    {
+      variables: { search: encodeURIComponent(search) },
+    }
+  );
 
   const {
     data: postsData,
@@ -40,13 +37,12 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
     variables: { search: encodeURIComponent(search) },
   });
 
-  const {
-    data: podsData,
-    error: podsError,
-    loading: podsLoading,
-  } = useQuery(SEARCH_PODS, {
-    variables: { search: encodeURIComponent(search) },
-  });
+  const { data: podsData, error: podsError, loading: podsLoading } = useQuery(
+    SEARCH_PODS,
+    {
+      variables: { search: encodeURIComponent(search) },
+    }
+  );
 
   if (userLoading) {
     return (
@@ -132,7 +128,7 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
 
               {userData.findManyUserMeta.length > 0 ? (
                 <section className="grid col-4">
-                  {userData.findManyUserMeta.map(userMeta => {
+                  {userData.findManyUserMeta.map((userMeta) => {
                     return <UserCard user={userMeta.user} />;
                   })}
                 </section>
@@ -142,7 +138,7 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
 
               {postsData.findManyPost.length > 0 ? (
                 <section className="grid col-4">
-                  {postsData.findManyPost.map(post => {
+                  {postsData.findManyPost.map((post) => {
                     return <PostCard post={post} />;
                   })}
                 </section>
@@ -152,7 +148,7 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
 
               {podsData.findManyPod.length > 0 ? (
                 <section className="grid col-4">
-                  {podsData.findManyPod.map(pod => {
+                  {podsData.findManyPod.map((pod) => {
                     return <PodCard pod={pod} />;
                   })}
                 </section>

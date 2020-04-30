@@ -1,24 +1,22 @@
 import * as React from "react";
 
 import { ReviewsProps } from "./Reviews.d";
-import ReviewCardData from "../../data/ReviewCardData/ReviewCardData";
-import { ALL_REVIEWS_QUERY } from "../../../graphql/queries/review";
 import { useQuery } from "@apollo/react-hooks";
-import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
+import LoadingIndicator from "../../system/LoadingIndicator/LoadingIndicator";
 
 const Reviews: React.FC<ReviewsProps> = () => {
-  const {
-    data: reviewsData,
-    error: reviewsError,
-    loading: reviewsLoading,
-  } = useQuery(ALL_REVIEWS_QUERY);
+  // const {
+  //   data: reviewsData,
+  //   error: reviewsError,
+  //   loading: reviewsLoading,
+  // } = useQuery(ALL_REVIEWS_QUERY);
 
-  if (reviewsLoading) {
-    return <LoadingIndicator loadingText="Loading reviews..." />;
-  }
-  if (reviewsError) {
-    return <div>Error on tracks! {reviewsError.message}</div>;
-  }
+  // if (reviewsLoading) {
+  //   return <LoadingIndicator loadingText="Loading reviews..." />;
+  // }
+  // if (reviewsError) {
+  //   return <div>Error on tracks! {reviewsError.message}</div>;
+  // }
 
   return (
     <>
@@ -31,9 +29,9 @@ const Reviews: React.FC<ReviewsProps> = () => {
           gridColumnGap: 25,
         }}
       >
-        {reviewsData.reviews.map((review, i) => {
+        {/* {reviewsData.reviews.map((review, i) => {
           return <ReviewCardData key={review.id} node={i} review={review} />;
-        })}
+        })} */}
       </section>
     </>
   );

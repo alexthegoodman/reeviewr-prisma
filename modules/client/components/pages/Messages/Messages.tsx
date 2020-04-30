@@ -6,9 +6,7 @@ import { Text } from "@blueprintjs/core";
 import * as _ from "lodash";
 import { useCookies } from "react-cookie";
 import { useAppContext } from "../../../context";
-import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
-import MessageThreads from "../../ui/MessageThreads/MessageThreads";
-import Messenger from "../../ui/Messenger/Messenger";
+import LoadingIndicator from "../../system/LoadingIndicator/LoadingIndicator";
 
 const Messages: React.FC<MessagesProps> = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["reeviewrId"]);
@@ -135,34 +133,7 @@ const Messages: React.FC<MessagesProps> = () => {
       {!allRoomsSubscribed ? (
         <LoadingIndicator loadingText="Subscribing..." />
       ) : (
-        <>
-          <MessageThreads
-            chatkitUser={chatkitUser}
-            onSelectThread={setSelectedThread}
-            setEmptyThead={setEmptyThead}
-            setSelectedThread={setSelectedThread}
-            selectedThread={selectedThread}
-            selectedUser={selectedUser}
-            setSelectedUser={setSelectedUser}
-            setSendDisabled={setSendDisabled}
-            allRoomsSubscribed={allRoomsSubscribed}
-            setAllRoomsSubscribed={setAllRoomsSubscribed}
-          />
-          <Messenger
-            chatkitUser={chatkitUser}
-            selectedThread={selectedThread}
-            emptyThread={emptyThread}
-            selectedUser={selectedUser}
-            sendDisabled={sendDisabled}
-            setSendDisabled={setSendDisabled}
-            setSelectedUser={setSelectedUser}
-            messages={messages}
-            setMessages={setMessages}
-            allRoomsSubscribed={allRoomsSubscribed}
-            setAllRoomsSubscribed={setAllRoomsSubscribed}
-            updateMessages={updateMessages}
-          />
-        </>
+        <></>
       )}
     </section>
   );

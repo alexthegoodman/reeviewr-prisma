@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import CategoryGrid from "../../ui/CategoryGrid/CategoryGrid";
-import UserCard from "../../ui/UserCard/UserCard";
+import CategoryGrid from "../../layout/CategoryGrid/CategoryGrid";
+import UserCard from "../../user/UserCard/UserCard";
 import { FindPeopleProps } from "./FindPeople.d";
 
 const FindPeople: React.FC<FindPeopleProps> = () => {

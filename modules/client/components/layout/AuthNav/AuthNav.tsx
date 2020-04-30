@@ -3,7 +3,7 @@ import * as React from "react";
 import { Button } from "@blueprintjs/core";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 import { useAppContext } from "../../../context";
-import Header from "../../ui/Header/Header";
+import Header from "../../navigation/Header/Header";
 import App from "../App/App";
 import { AuthNavProps } from "./AuthNav.d";
 

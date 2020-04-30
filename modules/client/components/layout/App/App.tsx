@@ -6,7 +6,7 @@ import { useCurrentRoute, useNavigation } from "react-navi";
 import Utility from "../../../../services/Utility";
 import { useAppContext } from "../../../context";
 import AuthClient from "../../../services/AuthClient";
-import LoadingIndicator from "../../ui/LoadingIndicator/LoadingIndicator";
+import LoadingIndicator from "../../system/LoadingIndicator/LoadingIndicator";
 import { AppProps } from "./App.d";
 import { useQuery } from "react-apollo";
 import { GET_NOTIFICATIONS } from "../../../graphql/queries/notification";

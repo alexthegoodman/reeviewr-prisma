@@ -1,12 +1,11 @@
 import * as React from "react";
 
 import { useCookies } from "react-cookie";
-import { JOINED_PODS_POSTS } from "../../../graphql/queries/post";
 import { USER_JOINED_PODS_POSTS } from "../../../graphql/queries/user";
 import GraphQLData from "../../data/GraphQLData/GraphQLData";
-import NoResults from "../../ui/NoResults/NoResults";
-import PodHero from "../../ui/PodHero/PodHero";
-import PostCard from "../../ui/PostCard/PostCard";
+import NoResults from "../../system/NoResults/NoResults";
+import PodHero from "../../pod/PodHero/PodHero";
+import PostCard from "../../post/PostCard/PostCard";
 import { YourFeedProps } from "./YourFeed.d";
 
 const YourFeed: React.FC<YourFeedProps> = () => {
@@ -18,7 +17,7 @@ const YourFeed: React.FC<YourFeedProps> = () => {
       <GraphQLData
         QUERY={USER_JOINED_PODS_POSTS}
         loadingText="Loading pod's posts..."
-        onFinish={data => setData(data)}
+        onFinish={(data) => setData(data)}
         variables={{ postId: null }}
       >
         {data !== null &&

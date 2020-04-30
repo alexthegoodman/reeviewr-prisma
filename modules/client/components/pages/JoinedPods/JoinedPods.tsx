@@ -4,15 +4,13 @@ import { Text } from "@blueprintjs/core";
 import { useCookies } from "react-cookie";
 import { USER_JOINED_PODS } from "../../../graphql/queries/user";
 import GraphQLData from "../../data/GraphQLData/GraphQLData";
-import CategoryGrid from "../../ui/CategoryGrid/CategoryGrid";
-import NoResults from "../../ui/NoResults/NoResults";
-import PodCard from "../../ui/PodCard/PodCard";
+import CategoryGrid from "../../layout/CategoryGrid/CategoryGrid";
+import NoResults from "../../system/NoResults/NoResults";
+import PodCard from "../../pod/PodCard/PodCard";
 import { JoinedPodsProps } from "./JoinedPods.d";
 
 const JoinedPods: React.FC<JoinedPodsProps> = () => {
-  const [cookies, setCookie, removeCookie] = useCookies([
-    "reeviewrId",
-  ]);
+  const [cookies, setCookie, removeCookie] = useCookies(["reeviewrId"]);
 
   const [data, setData] = React.useState(null);
 
@@ -21,20 +19,20 @@ const JoinedPods: React.FC<JoinedPodsProps> = () => {
       <GraphQLData
         QUERY={USER_JOINED_PODS}
         loadingText="Loading joined pods..."
-        onFinish={data => setData(data)}
+        onFinish={(data) => setData(data)}
         variables={{ id: cookies["reeviewrId"] }}
       >
         {data !== null &&
-          data.findOneUser !== null &&
-          data.findOneUser.memberOf.length > 0 ? (
-            <CategoryGrid title="Joined Pods">
-              {data.findOneUser.memberOf.map(pod => {
-                return <PodCard key={pod.id} pod={pod} />;
-              })}
-            </CategoryGrid>
-          ) : (
-            <NoResults />
-          )}
+        data.findOneUser !== null &&
+        data.findOneUser.memberOf.length > 0 ? (
+          <CategoryGrid title="Joined Pods">
+            {data.findOneUser.memberOf.map((pod) => {
+              return <PodCard key={pod.id} pod={pod} />;
+            })}
+          </CategoryGrid>
+        ) : (
+          <NoResults />
+        )}
       </GraphQLData>
     </>
   );

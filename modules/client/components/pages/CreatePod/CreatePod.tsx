@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Callout, Card, Text } from "@blueprintjs/core";
-import CreatePodForm from "../../data/CreatePodForm/CreatePodForm";
+import CreatePodForm from "../../forms/CreatePodForm/CreatePodForm";
 import { CreatePodProps } from "./CreatePod.d";
 
 const CreatePod: React.FC<CreatePodProps> = () => {

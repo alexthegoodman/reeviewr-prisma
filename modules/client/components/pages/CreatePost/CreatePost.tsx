@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Card, Text } from "@blueprintjs/core";
-import CreatePostForm from "../../data/CreatePostForm/CreatePostForm";
+import CreatePostForm from "../../forms/CreatePostForm/CreatePostForm";
 import { CreatePostProps } from "./CreatePost.d";
 
 const CreatePost: React.FC<CreatePostProps> = () => {

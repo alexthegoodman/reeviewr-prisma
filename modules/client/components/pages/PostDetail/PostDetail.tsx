@@ -1,20 +1,20 @@
 import * as React from "react";
 
-import LikeButton from "../../ui/LikeButton/LikeButton";
-import PostAnnotations from "../../ui/PostAnnotations/PostAnnotations";
-import PostAudioViewer from "../../ui/PostAudioViewer/PostAudioViewer";
-import PostImageViewer from "../../ui/PostImageViewer/PostImageViewer";
-import PostMetaData from "../../ui/PostMetaData/PostMetaData";
-import PostQuestions from "../../ui/PostQuestions/PostQuestions";
-import PostReviews from "../../ui/PostReviews/PostReviews";
-import PostTextViewer from "../../ui/PostTextViewer/PostTextViewer";
-import PostVideoViewer from "../../ui/PostVideoViewer/PostVideoViewer";
-import ShareButton from "../../ui/ShareButton/ShareButton";
+import LikeButton from "../../actions/LikeButton/LikeButton";
+import PostAnnotations from "../../post/PostAnnotations/PostAnnotations";
+import PostAudioViewer from "../../post/PostAudioViewer/PostAudioViewer";
+import PostImageViewer from "../../post/PostImageViewer/PostImageViewer";
+import PostMetaData from "../../post/PostMetaData/PostMetaData";
+import PostQuestions from "../../post/PostQuestions/PostQuestions";
+import PostReviews from "../../post/PostReviews/PostReviews";
+import PostTextViewer from "../../post/PostTextViewer/PostTextViewer";
+import PostVideoViewer from "../../post/PostVideoViewer/PostVideoViewer";
+import ShareButton from "../../actions/ShareButton/ShareButton";
 import { PostDetailProps } from "./PostDetail.d";
-import PostDetailCtrls from "../../ui/PostDetailCtrls/PostDetailCtrls";
+import PostDetailCtrls from "../../post/PostDetailCtrls/PostDetailCtrls";
 import { Tab, Tabs } from "@blueprintjs/core";
-import PostInfo from "../../ui/PostInfo/PostInfo";
-import FlushContentWrapper from "../../ui/FlushContentWrapper/FlushContentWrapper";
+import PostInfo from "../../post/PostInfo/PostInfo";
+import FlushContentWrapper from "../../layout/FlushContentWrapper/FlushContentWrapper";
 
 const PostDetail: React.FC<PostDetailProps> = () => {
   const [selectTab, setSelectTab] = React.useState(

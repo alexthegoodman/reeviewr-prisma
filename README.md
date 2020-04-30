@@ -58,9 +58,7 @@ Check `localhost:3000`
 - Visit `http://localhost:3000/graphql` to verify that the Prisma / GraphiQL is functioning
 - Open `http://localhost:3000/` in your browser to verify the web app is functioning
 
-Notes: SSR will not function with `yarn dev` because webpack-dev-server is serving on port `3000`.
-
-Health Check `nexus dev` should work?
+Notes: SSR will not function with `yarn dev` because webpack-dev-server is serving the client bundle to enable Hot Reloading.
 
 ### Production
 
@@ -70,7 +68,7 @@ Run `yarn dev:server:nodemon`
 Check `localhost:3001`
 ```
 
-Notes: To test SSR functions, run `yarn build:production` and `yarn dev:server:nodemon` and check port `3001`.
+Notes: SSR should function here via the Express server
 
 ## Deploy
 
@@ -108,6 +106,7 @@ To ease creation of components, take advantage of these commands
 - Put components in categorical sub folders
 - graphql-codegen
 - Limit incoming/outgoing calls/queries per minute on average
+- Hot Module Replacement
 
 ### Using Prisma
 
@@ -117,6 +116,7 @@ To ease creation of components, take advantage of these commands
 - Delete `/migrations/` and run `yarn prisma:migrate` to re-create migrations
 - Alter `schema.prisma` and run `yarn prisma:migrate` to add a new migration
 - Run `yarn prisma:apply` to update database according to latest migrations
+- Health Check `nexus dev` should work?
 
 #### Generate Prisma Client (and Types?):
 

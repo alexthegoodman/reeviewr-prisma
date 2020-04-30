@@ -5,9 +5,9 @@ import { GET_NOTIFICATIONS } from "../../../graphql/queries/notification";
 import { useQuery } from "react-apollo";
 import { useCookies } from "react-cookie";
 import { Button, Text } from "@blueprintjs/core";
-import NotificationItem from "../../ui/NotificationItem/NotificationItem";
+import NotificationItem from "../../notifications/NotificationItem/NotificationItem";
 import GraphQLData from "../../data/GraphQLData/GraphQLData";
-import NoResults from "../../ui/NoResults/NoResults";
+import NoResults from "../../system/NoResults/NoResults";
 
 const Notifications: React.FC<NotificationsProps> = () => {
   const [count, setCount] = React.useState(10);
@@ -28,7 +28,7 @@ const Notifications: React.FC<NotificationsProps> = () => {
           <GraphQLData
             QUERY={GET_NOTIFICATIONS}
             loadingText="Loading notifications..."
-            onFinish={data => setData(data)}
+            onFinish={(data) => setData(data)}
             variables={{
               id: cookies["reeviewrId"],
               first: count,
