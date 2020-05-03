@@ -117,6 +117,8 @@ To ease creation of components, take advantage of these commands
 - Alter `schema.prisma` and run `yarn prisma:migrate` to add a new migration
 - Run `yarn prisma:apply` to update database according to latest migrations
 - Health Check `nexus dev` should work?
+- GraphQL roles / permissions: https://github.com/lvauvillier/nexus-plugin-shield
+- JWT on queries: https://github.com/Camji55/nexus-plugin-jwt-auth
 
 #### Generate Prisma Client (and Types?):
 

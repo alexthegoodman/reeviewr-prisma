@@ -13,32 +13,32 @@ generator client {
 // provider = "nexus-prisma"
 // }
 model User {
-  id                    String         @default(cuid()) @id
-  userType              Int
-  userEmail             String         @unique
-  userPassword          String
-  publicHash            String         @unique
-  privateHash           String         @unique
-  confirmHash           String         @unique
-  forgotHash            String         @unique
-  userConfirmed         Int
-  userDeleted           Boolean        @default(false)
-  userMeta              UserMeta[]     @relation("UserMetaRelation")
-  posts                 Post[]         @relation("UserPostRelation")
-  pods                  Pod[]          @relation("CreatePodRelation")
-  memberOf              Pod[]          @relation("JoinPodRelation", references: [id])
-  favorites             Favorite[]     @relation("UserFavoriteRelation")
-  reviews               Review[]       @relation("UserReviewRelation")
-  annotations           Annotation[]   @relation("UserAnnotationRelation")
-  questions             Question[]     @relation("UserQuestionRelation")
-  threads               Thread[]       @relation("ThreadUserRelation", references: [id])
-  following             User[]         @relation("FollowerRelation", references: [id])
-  followers             User[]         @relation("FollowerRelation", references: [id])
-  notifications         Notification[] @relation("NotificationRelation")
-  sentNotifications     Notification[] @relation("SendingUserRelation")
-  recievedNotifications Notification[] @relation("ReceivingUserRelation")
-  createdAt             DateTime       @default(now())
-  updatedAt             DateTime       @updatedAt
+  id            String     @default(cuid()) @id
+  userType      Int
+  userEmail     String     @unique
+  userPassword  String
+  publicHash    String     @unique
+  privateHash   String     @unique
+  confirmHash   String     @unique
+  forgotHash    String     @unique
+  userConfirmed Int
+  userDeleted   Boolean    @default(false)
+  userMeta      UserMeta[] @relation("UserMetaRelation")
+  // posts                 Post[]         @relation("UserPostRelation")
+  // pods                  Pod[]          @relation("CreatePodRelation")
+  // memberOf              Pod[]          @relation("JoinPodRelation", references: [id])
+  // favorites             Favorite[]     @relation("UserFavoriteRelation")
+  // reviews               Review[]       @relation("UserReviewRelation")
+  // annotations           Annotation[]   @relation("UserAnnotationRelation")
+  // questions             Question[]     @relation("UserQuestionRelation")
+  // threads               Thread[]       @relation("ThreadUserRelation", references: [id])
+  following     User[]     @relation("FollowerRelation", references: [id])
+  followers     User[]     @relation("FollowerRelation", references: [id])
+  // notifications         Notification[] @relation("NotificationRelation")
+  // sentNotifications     Notification[] @relation("SendingUserRelation")
+  // recievedNotifications Notification[] @relation("ReceivingUserRelation")
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 }
 
 model UserMeta {
@@ -49,284 +49,6 @@ model UserMeta {
   metaName    String
   metaValue   String
   metaDeleted Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model Pod {
-  id             String     @default(cuid()) @id
-  user           User       @relation("CreatePodRelation", fields: [userId], references: [id])
-  userId         String
-  members        User[]     @relation("JoinPodRelation", references: [id])
-  itemType       String
-  itemStatus     String
-  itemUrlSegment String
-  itemName       String
-  itemContent    String
-  itemDeleted    Boolean    @default(false)
-  itemMeta       PodMeta[]  @relation("PodMetaRelation")
-  posts          Post[]     @relation("PodPostsRelation")
-  categories     Category[] @relation("PodCategoriesRelation")
-  createdAt      DateTime   @default(now())
-  updatedAt      DateTime   @updatedAt
-}
-
-model PodMeta {
-  id          String   @default(cuid()) @id
-  pod         Pod      @relation("PodMetaRelation", fields: [podId], references: [id])
-  podId       String
-  metaType    String
-  metaName    String
-  metaValue   String
-  metaDeleted Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model Post {
-  id             String       @default(cuid()) @id
-  user           User         @relation("UserPostRelation", fields: [userId], references: [id])
-  userId         String
-  pod            Pod          @relation("PodPostsRelation", fields: [podId], references: [id])
-  podId          String
-  itemType       String
-  itemStatus     String
-  itemUrlSegment String
-  itemMimeType   String
-  itemName       String
-  itemContent    String
-  itemDeleted    Boolean      @default(false)
-  itemMeta       PostMeta[]   @relation("PostMetaRelation")
-  tags           Tag[]        @relation("PostTagRelation")
-  favorites      Favorite[]   @relation("PostFavoriteRelation")
-  reviews        Review[]     @relation("PostReviewRelation")
-  annotations    Annotation[] @relation("PostAnnotationRelation")
-  questions      Question[]   @relation("PostQuestionRelation")
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-}
-
-model PostMeta {
-  id          String   @default(cuid()) @id
-  post        Post     @relation("PostMetaRelation", fields: [postId], references: [id])
-  postId      String
-  metaType    String
-  metaName    String
-  metaValue   String
-  metaDeleted Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model Review {
-  id             String       @default(cuid()) @id
-  user           User         @relation("UserReviewRelation", fields: [userId], references: [id])
-  userId         String
-  itemType       String
-  itemStatus     String
-  itemUrlSegment String
-  itemMimeType   String
-  itemName       String
-  itemContent    String
-  itemDeleted    Boolean      @default(false)
-  itemMeta       ReviewMeta[] @relation("ReviewMetaRelation")
-  post           Post         @relation("PostReviewRelation", fields: [postId], references: [id])
-  postId         String
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-}
-
-model ReviewMeta {
-  id          String   @default(cuid()) @id
-  review      Review   @relation("ReviewMetaRelation", fields: [reviewId], references: [id])
-  reviewId    String
-  metaType    String
-  metaName    String
-  metaValue   String
-  metaDeleted Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model Annotation {
-  id             String           @default(cuid()) @id
-  user           User             @relation("UserAnnotationRelation", fields: [userId], references: [id])
-  userId         String
-  itemType       String
-  itemStatus     String
-  itemUrlSegment String
-  itemMimeType   String
-  itemName       String
-  itemContent    String
-  itemDeleted    Boolean          @default(false)
-  itemMeta       AnnotationMeta[] @relation("AnnotationMetaRelation")
-  post           Post             @relation("PostAnnotationRelation", fields: [postId], references: [id])
-  postId         String
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
-}
-
-model AnnotationMeta {
-  id           String     @default(cuid()) @id
-  annotation   Annotation @relation("AnnotationMetaRelation", fields: [annotationId], references: [id])
-  annotationId String
-  metaType     String
-  metaName     String
-  metaValue    String
-  metaDeleted  Boolean    @default(false)
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-}
-
-model Question {
-  id             String         @default(cuid()) @id
-  user           User           @relation("UserQuestionRelation", fields: [userId], references: [id])
-  userId         String
-  itemType       String
-  itemStatus     String
-  itemUrlSegment String
-  itemMimeType   String
-  itemName       String
-  itemContent    String
-  itemDeleted    Boolean        @default(false)
-  itemMeta       QuestionMeta[] @relation("QuestionMetaRelation")
-  post           Post           @relation("PostQuestionRelation", fields: [postId], references: [id])
-  postId         String
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
-}
-
-model QuestionMeta {
-  id          String   @default(cuid()) @id
-  question    Question @relation("QuestionMetaRelation", fields: [questionId], references: [id])
-  questionId  String
-  metaType    String
-  metaName    String
-  metaValue   String
-  metaDeleted Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model Thread {
-  id           String       @default(cuid()) @id
-  itemType     String
-  itemStatus   String
-  itemName     String
-  itemContent  String
-  itemDeleted  Boolean      @default(false)
-  itemMeta     ThreadMeta[] @relation("ThreadMetaRelation")
-  messages     Message[]    @relation("ThreadMessageRelation")
-  participants User[]       @relation("ThreadUserRelation", references: [id])
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-}
-
-model ThreadMeta {
-  id          String   @default(cuid()) @id
-  thread      Thread   @relation("ThreadMetaRelation", fields: [threadId], references: [id])
-  threadId    String
-  metaType    String
-  metaName    String
-  metaValue   String
-  metaDeleted Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model Message {
-  id          String        @default(cuid()) @id
-  user        User          @relation("UserMessageRelation", fields: [userId], references: [id])
-  userId      String
-  itemType    String
-  itemStatus  String
-  itemName    String
-  itemContent String
-  itemDeleted Boolean       @default(false)
-  itemMeta    MessageMeta[] @relation("MessageMetaRelation")
-  thread      Thread        @relation("ThreadMessageRelation", fields: [threadId], references: [id])
-  threadId    String
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-}
-
-model MessageMeta {
-  id          String   @default(cuid()) @id
-  message     Message  @relation("MessageMetaRelation", fields: [messageId], references: [id])
-  messageId   String
-  metaType    String
-  metaName    String
-  metaValue   String
-  metaDeleted Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model Notification {
-  id          String             @default(cuid()) @id
-  itemType    String
-  itemStatus  String
-  itemName    String
-  itemContent String
-  itemDeleted Boolean            @default(false)
-  itemMeta    NotificationMeta[] @relation("NotificationMetaRelation")
-  sender      User               @relation("SendingUserRelation", fields: [senderId], references: [id])
-  senderId    String
-  receiver    User               @relation("ReceivingUserRelation", fields: [receiverId], references: [id])
-  receiverId  String
-  pod         Pod                @relation("PodNotificationRelation", fields: [podId], references: [id])
-  podId       String
-  post        Post               @relation("PostNotificationRelation", fields: [postId], references: [id])
-  postId      String
-  createdAt   DateTime           @default(now())
-  updatedAt   DateTime           @updatedAt
-  userId      String?
-}
-
-model NotificationMeta {
-  id             String       @default(cuid()) @id
-  notification   Notification @relation("NotificationMetaRelation", fields: [notificationId], references: [id])
-  notificationId String
-  metaType       String
-  metaName       String
-  metaValue      String
-  metaDeleted    Boolean      @default(false)
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-}
-
-model Favorite {
-  id          String   @default(cuid()) @id
-  user        User     @relation("UserFavoriteRelation", fields: [userId], references: [id])
-  userId      String
-  itemType    String
-  itemStatus  String
-  itemName    String
-  itemContent String
-  post        Post     @relation("PostFavoriteRelation", fields: [postId], references: [id])
-  postId      String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model Tag {
-  id          String   @default(cuid()) @id
-  itemType    String
-  itemStatus  String
-  itemName    String
-  itemContent String
-  posts       Post[]   @relation("PostTagRelation", references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model Category {
-  id          String   @default(cuid()) @id
-  itemType    String
-  itemStatus  String
-  itemName    String
-  itemContent String
-  pods        Pod[]    @relation("PodCategoriesRelation", references: [id])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

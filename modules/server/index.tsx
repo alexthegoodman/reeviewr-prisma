@@ -1,18 +1,11 @@
+import * as React from "react";
 import * as compression from "compression";
 import * as config from "config";
 import * as express from "express";
-import { formatError, GraphQLError } from "graphql";
-import { graphiqlExpress, graphqlExpress } from "graphql-server-express";
-import { sortBy } from "lodash-es";
-import md5 from "md5";
 import * as morgan from "morgan";
-// import * as db from "../db";
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
-// const Arena = require("bull-arena");
-// const knex = db.getConnection();
-// const knexLogger = require("knex-logger");
 const enforce = require("express-sslify");
 const expressStaticGzip = require("express-static-gzip");
 const cookieSession = require("cookie-session");
@@ -24,22 +17,22 @@ if (typeof window === "undefined") {
 }
 
 // import fetch from "node-fetch";
+// import * as ReactDOM from "react-dom";
+
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import fetch from "cross-fetch";
 import { GraphQLServer } from "graphql-yoga";
 import { createMemoryNavigation } from "navi";
-import * as React from "react";
+import * as ReactDOMServer from "react-dom/server";
+import { Router } from "react-navi";
 import {
   ApolloProvider,
   getDataFromTree,
   getMarkupFromTree,
 } from "react-apollo";
 
-// import * as ReactDOM from "react-dom";
-import * as ReactDOMServer from "react-dom/server";
-import { Router } from "react-navi";
 import { Html } from "../client/Html";
 import { AppProvider } from "../client/RootProvider";
 import routes from "../client/routes";
@@ -61,18 +54,8 @@ import { createUser } from "./user/create-user";
 import { forgotPassword } from "./user/forgot-password";
 import { resendEmailConfirmation } from "./user/resend-email-confirmation";
 
-// import { prisma } from "../../__generated__/prisma-client";
-// import { nexusPrismaPlugin } from "@generated/nexus-prisma";
-import { nexusPrismaPlugin } from "nexus-prisma";
-// import datamodelInfo from "@generated/nexus-prisma";
-// import Photon from "@generated/photon";
-// import { PrismaClient } from "../../__generated__/prisma-client";
-import { PrismaClient } from "../../__generated__/prisma-client";
-// import { idArg, makeSchema, objectType } from "@prisma/nexus";
-import { makeSchema } from "@nexus/schema";
 import bcrypt from "bcrypt";
 import cors from "cors";
-// import { makePrismaSchema } from "nexus-prisma";
 import Utility from "../services/Utility";
 import {
   Annotation,
@@ -111,10 +94,28 @@ const path = require("path");
 const csp = require("helmet-csp");
 const Mixpanel = require("mixpanel");
 
-import { use } from "nexus";
-import { prisma } from "nexus-plugin-prisma";
+// import { prisma } from "../../__generated__/prisma-client";
+// import { nexusPrismaPlugin } from "@generated/nexus-prisma";
+import { nexusPrismaPlugin } from "nexus-prisma";
+// import datamodelInfo from "@generated/nexus-prisma";
+// import Photon from "@generated/photon";
+import { PrismaClient } from "@prisma/client";
+// import { PrismaClient } from "../../__generated__/prisma-client";
+// import { idArg, makeSchema, objectType } from "@prisma/nexus";
+import { makeSchema } from "@nexus/schema";
+// import { makePrismaSchema } from "nexus-prisma";
 
-use(prisma());
+import { use } from "nexus";
+import { prisma as nexusPrisma } from "nexus-plugin-prisma";
+const prisma = new PrismaClient();
+
+// connects to nexus but not nexus/schema?
+// schema is also imported from nexus so auto-connect?
+use(
+  nexusPrisma({
+    client: { instance: prisma },
+  })
+);
 
 // const prisma = new PrismaClient({
 //   // log: ["query"],
@@ -132,7 +133,8 @@ use(prisma());
 // TODO: move to graphql/index.ts
 // https://github.com/graphql-nexus/schema/blob/develop/src/builder.ts
 const schema = makeSchema({
-  // plugins: [nexusPrismaPlugin()],
+  // nullabilityGuard, fieldAuthorizePlugin
+  plugins: [nexusPrismaPlugin()],
   // plugins: [nexusPrisma],
   types: [
     Query,
@@ -161,38 +163,75 @@ const schema = makeSchema({
 
     // nexusPrisma,
   ],
+
+  // *** https://www.nexusjs.org/#/components/schema/api/copy/api-makeSchema?id=shouldgenerateartifacts-outputs-typegenautoconfig ***
+  shouldGenerateArtifacts: process.env.NODE_ENV === "development",
+  outputs: {
+    // I tend to use `.gen` to denote "auto-generated" files, but this is not a requirement.
+    schema: path.join(__dirname, "../__generated__/schema.gen.graphql"),
+    typegen: path.join(__dirname, "../__generated__/nexusTypes.gen.ts"),
+  },
+  typegenAutoConfig: {
+    headers: [
+      'import { ConnectionFieldOpts } from "@packages/api-graphql/src/extensions/connectionType"',
+    ],
+    sources: [
+      // Automatically finds any interface/type/class named similarly to the and infers it
+      // the "source" type of that resolver.
+      {
+        source: "@packages/types/src/db.ts",
+        alias: "dbt",
+        typeMatch: (name) =>
+          new RegExp(`(?:interface|type|class)\\s+(${name}s?)\\W`, "g"),
+      },
+      // We also need to import this source in order to provide it as the `contextType` below.
+      {
+        source: "@packages/data-context/src/DataContext.ts",
+        alias: "ctx",
+      },
+    ],
+    // Typing from the source
+    contextType: "ctx.DataContext",
+    backingTypeMap: {
+      Date: "Date",
+      DateTime: "Date",
+      UUID: "string",
+    },
+    debug: false,
+  },
+  // *** OLD ***
   // outputs: {
   //   schema: path.join(__dirname, "../__generated__/schema.graphql"),
   //   typegen: path.join(__dirname, "../__generated__/nexus.d.ts"),
   // },
-  outputs: {
-    typegen: path.join(
-      __dirname,
-      "node_modules/@types/nexus-typegen/index.d.ts" // good local, not heroku? add def to tsconfig or us .d.ts?
-    ),
-  },
-  typegenAutoConfig: {
-    contextType: "Context.Context",
-    // contextType: "{ prisma: PrismaClient.PrismaClient }",
-    // sources: [{ source: "@prisma/client", alias: "PrismaClient" }],
-    sources: [
-      // {
-      //   source: path.join(
-      //     __dirname,
-      //     "../__generated__/prisma-client/index.d.ts"
-      //   ),
-      //   alias: "PrismaClient",
-      // },
-      {
-        source: "@prisma/client",
-        alias: "prisma",
-      },
-      {
-        source: require.resolve("./context"),
-        alias: "Context",
-      },
-    ],
-  },
+  // outputs: {
+  //   typegen: path.join(
+  //     __dirname,
+  //     "node_modules/@types/nexus-typegen/index.d.ts" // good local, not heroku? add def to tsconfig or us .d.ts?
+  //   ),
+  // },
+  // typegenAutoConfig: {
+  //   contextType: "Context.Context",
+  //   // contextType: "{ prisma: PrismaClient.PrismaClient }",
+  //   // sources: [{ source: "@prisma/client", alias: "PrismaClient" }],
+  //   sources: [
+  //     // {
+  //     //   source: path.join(
+  //     //     __dirname,
+  //     //     "../__generated__/prisma-client/index.d.ts"
+  //     //   ),
+  //     //   alias: "PrismaClient",
+  //     // },
+  //     {
+  //       source: "@prisma/client",
+  //       alias: "prisma",
+  //     },
+  //     {
+  //       source: require.resolve("./context"),
+  //       alias: "Context",
+  //     },
+  //   ],
+  // },
   // typegenAutoConfig: {
   //   sources: [
   //     {
