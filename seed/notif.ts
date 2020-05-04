@@ -1,12 +1,12 @@
 import { NOTIFICATION_CODE } from "../modules/services/NOTIFICATION_CODE";
 
-import { PrismaClient } from "@prisma/client";
-// import { PrismaClient } from "../__generated__/prisma-client";
+// import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../__generated__/prisma-client";
 import * as faker from "faker";
 
 const prisma = new PrismaClient();
 
-export default async function seedNotifs(user1, user2, pod1, post1) {
+export default async function seedNotifs(user1, user2, space1, post1) {
   const notifSchema = {
     // user: { connect: { id: user1.id } },
     itemName: NOTIFICATION_CODE.A001,
@@ -15,7 +15,7 @@ export default async function seedNotifs(user1, user2, pod1, post1) {
     itemStatus: "active",
     sender: { connect: { id: user2.id } },
     receiver: { connect: { id: user1.id } },
-    pod: { connect: { id: pod1.id } },
+    space: { connect: { id: space1.id } },
     post: { connect: { id: post1.id } },
     // itemMeta: {
     //   create: [

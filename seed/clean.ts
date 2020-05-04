@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-// import { PrismaClient } from "../__generated__/prisma-client";
+// import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../__generated__/prisma-client";
 import * as faker from "faker";
 
 const prisma = new PrismaClient();
@@ -47,10 +47,10 @@ export default async function clean() {
   await prisma.post.deleteMany({
     where: { id: { contains: "" } },
   });
-  await prisma.podMeta.deleteMany({
+  await prisma.spaceMeta.deleteMany({
     where: { id: { contains: "" } },
   });
-  await prisma.pod.deleteMany({
+  await prisma.space.deleteMany({
     where: { id: { contains: "" } },
   });
   await prisma.userMeta.deleteMany({

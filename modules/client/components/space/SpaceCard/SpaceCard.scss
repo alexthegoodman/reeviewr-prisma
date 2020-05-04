@@ -1,0 +1,61 @@
+.spaceCard {
+  border-radius: 5px;
+  background-color: #f4f5f7;
+
+  .spaceCardContain {
+    padding: 25px 30px;
+
+    .spaceCardHeader {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .spaceCardHeadline {
+        font-size: 16px;
+        font-weight: 600;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: 1.33px;
+        color: $dark-slate-blue;
+        margin-bottom: 15px;
+        text-decoration: none;
+      }
+      .spaceCtrls {
+        display: flex;
+        flex-direction: row;
+        height: 30px;
+      }
+    }
+    .spaceCardStats {
+      display: flex;
+      flex-direction: row;
+
+      .stat {
+        display: flex;
+        flex-direction: row;
+        margin-right: 40px;
+
+        .bp3-icon {
+          margin-right: 9px;
+        }
+
+        span {
+          font-size: 13px;
+          font-weight: 300;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: 1.15px;
+          color: rgba($dark-slate-blue, 0.6);
+        }
+      }
+    }
+    .spaceCardContent {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 14px;
+      margin-top: 40px;
+    }
+  }
+}

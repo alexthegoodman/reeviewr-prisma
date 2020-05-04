@@ -8,7 +8,7 @@ import { CategoryGridProps } from "./CategoryGrid.d";
 const CategoryGrid: React.FC<CategoryGridProps> = ({
   ref = null,
   className = "",
-  onClick = e => console.info("Click"),
+  onClick = (e) => console.info("Click"),
   children = null,
   title = "",
 }) => {
@@ -34,10 +34,10 @@ const CategoryGrid: React.FC<CategoryGridProps> = ({
         <div className="categoryGridHeader">
           <Text tagName="h6">{title}</Text>
           <Button
-            className="button createPodButton"
-            onClick={() => navigate("/pods/create", true)}
+            className="button createSpaceButton"
+            onClick={() => navigate("/spaces/create", true)}
           >
-            Create Pod
+            Create Space
           </Button>
         </div>
         <div className="categoryGridContent">{children}</div>

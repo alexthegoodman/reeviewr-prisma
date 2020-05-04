@@ -66,8 +66,8 @@ import {
   MessageMeta,
   Notification,
   NotificationMeta,
-  Pod,
-  PodMeta,
+  Space,
+  SpaceMeta,
   Post,
   PostMeta,
   Question,
@@ -99,7 +99,7 @@ const Mixpanel = require("mixpanel");
 import { nexusPrismaPlugin } from "nexus-prisma";
 // import datamodelInfo from "@generated/nexus-prisma";
 // import Photon from "@generated/photon";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../__generated__/prisma-client";
 // import { PrismaClient } from "../../__generated__/prisma-client";
 // import { idArg, makeSchema, objectType } from "@prisma/nexus";
 import { makeSchema } from "@nexus/schema";
@@ -109,11 +109,13 @@ import { use } from "nexus";
 import { prisma as nexusPrisma } from "nexus-plugin-prisma";
 const prisma = new PrismaClient();
 
+console.info("Starting server...");
+
 // connects to nexus but not nexus/schema?
 // schema is also imported from nexus so auto-connect?
 use(
   nexusPrisma({
-    client: { instance: prisma },
+    client: { instance: prisma as any },
   })
 );
 
@@ -130,6 +132,8 @@ use(
 //   prismaClient: (ctx) => prisma,
 // });
 
+console.info("Making GraphQL schema...");
+
 // TODO: move to graphql/index.ts
 // https://github.com/graphql-nexus/schema/blob/develop/src/builder.ts
 const schema = makeSchema({
@@ -141,8 +145,8 @@ const schema = makeSchema({
     Mutation,
     User,
     UserMeta,
-    Pod,
-    PodMeta,
+    Space,
+    SpaceMeta,
     Post,
     PostMeta,
     Review,
@@ -167,31 +171,39 @@ const schema = makeSchema({
   // *** https://www.nexusjs.org/#/components/schema/api/copy/api-makeSchema?id=shouldgenerateartifacts-outputs-typegenautoconfig ***
   shouldGenerateArtifacts: process.env.NODE_ENV === "development",
   outputs: {
-    // I tend to use `.gen` to denote "auto-generated" files, but this is not a requirement.
     schema: path.join(__dirname, "../__generated__/schema.gen.graphql"),
     typegen: path.join(__dirname, "../__generated__/nexusTypes.gen.ts"),
   },
   typegenAutoConfig: {
-    headers: [
-      'import { ConnectionFieldOpts } from "@packages/api-graphql/src/extensions/connectionType"',
-    ],
+    // headers: [
+    //   'import { ConnectionFieldOpts } from "@packages/api-graphql/src/extensions/connectionType"',
+    // ],
     sources: [
-      // Automatically finds any interface/type/class named similarly to the and infers it
-      // the "source" type of that resolver.
+      // Context/ctx provides ability to query with database,
+      // db/dbt provides types/interfaces
+
+      // {
+      //   source: "@packages/types/src/db.ts",
+      //   alias: "dbt",
+      //   typeMatch: (name) =>
+      //     new RegExp(`(?:interface|type|class)\\s+(${name}s?)\\W`, "g"),
+      // },
+      // {
+      //   source: "@packages/data-context/src/DataContext.ts",
+      //   alias: "ctx",
+      // },
       {
-        source: "@packages/types/src/db.ts",
-        alias: "dbt",
-        typeMatch: (name) =>
-          new RegExp(`(?:interface|type|class)\\s+(${name}s?)\\W`, "g"),
+        source: "../__generated__/prisma-client",
+        alias: "prisma",
       },
-      // We also need to import this source in order to provide it as the `contextType` below.
-      {
-        source: "@packages/data-context/src/DataContext.ts",
-        alias: "ctx",
-      },
+      // {
+      //   source: require.resolve("./context"),
+      //   alias: "ctx",
+      // },
     ],
     // Typing from the source
-    contextType: "ctx.DataContext",
+    // contextType: "ctx.DataContext",
+    // contextType: "ctx",
     backingTypeMap: {
       Date: "Date",
       DateTime: "Date",
@@ -213,7 +225,7 @@ const schema = makeSchema({
   // typegenAutoConfig: {
   //   contextType: "Context.Context",
   //   // contextType: "{ prisma: PrismaClient.PrismaClient }",
-  //   // sources: [{ source: "@prisma/client", alias: "PrismaClient" }],
+  //   // sources: [{ source: "../__generated__/prisma-client", alias: "PrismaClient" }],
   //   sources: [
   //     // {
   //     //   source: path.join(
@@ -223,7 +235,7 @@ const schema = makeSchema({
   //     //   alias: "PrismaClient",
   //     // },
   //     {
-  //       source: "@prisma/client",
+  //       source: "../__generated__/prisma-client",
   //       alias: "prisma",
   //     },
   //     {
@@ -260,8 +272,14 @@ export const enableDeveloperLogin = config.get<boolean>(
 
 const graphqlHTTP = require("express-graphql");
 
+console.info("Starting Express...");
+
 export default async function startServer() {
+  console.info("Connecting Prisma...");
+
   await prisma.connect();
+
+  console.info("Configuring Express...");
 
   app.use(bodyParser.json({ limit: "50mb" }));
   app.use(
@@ -529,6 +547,8 @@ export default async function startServer() {
     }
   );
 
+  console.info("Attach to port...");
+
   try {
     app.listen(port, () => {
       console.log(
@@ -542,6 +562,7 @@ export default async function startServer() {
     });
   } catch (e) {
     console.error("ERROR", e);
+    await prisma.disconnect();
   }
 
   // try {

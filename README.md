@@ -38,7 +38,8 @@ Use a Linux machine. This will assure compatability.
 - Initial Data
   - Optional: See <a href="#using-prisma">Using Prisma</a> for more on migrations
   - `yarn prisma:apply` to update database according to latest migrations
-  - `yarn build:graphql` (create Prisma client)
+  - `yarn generate:prisma` (create Prisma client)
+  - `yarn generate:gql-types` (generate interfaces/types for use in `/modules/client/`)
   - `yarn db:seed` (use Prisma client to load database with test data)
 
 ### Relevant Directories
@@ -77,6 +78,9 @@ Notes: SSR should function here via the Express server
 - Assure updated ENV vars
 - Check Prisma generator binaryTargets
 - Put binary needed from node_modules to /entry/ (`build:production` copies it to /dist/)
+- Procfile
+- Aptfile
+- https://devcenter.heroku.com/articles/app-json-schema
 
 ## Contributing
 
@@ -119,6 +123,7 @@ To ease creation of components, take advantage of these commands
 - Health Check `nexus dev` should work?
 - GraphQL roles / permissions: https://github.com/lvauvillier/nexus-plugin-shield
 - JWT on queries: https://github.com/Camji55/nexus-plugin-jwt-auth
+- Docgen `styleguide.config.js`
 
 #### Generate Prisma Client (and Types?):
 

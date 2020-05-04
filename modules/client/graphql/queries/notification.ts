@@ -24,7 +24,7 @@ export const GET_NOTIFICATIONS = gql`
           metaValue
         }
       }
-      pod {
+      space {
         id
         itemName
         itemMeta {

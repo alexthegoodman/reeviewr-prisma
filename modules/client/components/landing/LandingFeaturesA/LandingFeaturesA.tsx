@@ -5,10 +5,10 @@ import { LandingFeaturesAProps } from "./LandingFeaturesA.d";
 const LandingFeaturesA: React.FC<LandingFeaturesAProps> = ({
   ref = null,
   className = "",
-  onClick = e => console.info("Click"),
+  onClick = (e) => console.info("Click"),
   features = [],
 }) => {
-  const clickHandler = e => onClick(e);
+  const clickHandler = (e) => onClick(e);
   return (
     <section className="landingFeatures landingFeaturesA">
       <div className="contain">
@@ -19,7 +19,7 @@ const LandingFeaturesA: React.FC<LandingFeaturesAProps> = ({
             upload your own. Everything from music and research papers to poems
             and calligraphy.
           </p>
-          <p>There's a Reeviewr Pod for anything you do or create.</p>
+          <p>There's a Reeviewr Space for anything you do or create.</p>
         </div>
         <div className="features">
           {features.map((feature, i) => {

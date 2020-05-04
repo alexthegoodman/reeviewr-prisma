@@ -8,19 +8,19 @@ import AppNav from "../components/layout/AppNav/AppNav";
 import AuthNav from "../components/layout/AuthNav/AuthNav";
 import CompleteProfile from "../components/pages/CompleteProfile/CompleteProfile";
 import ConfirmEmail from "../components/pages/ConfirmEmail/ConfirmEmail";
-import CreatePod from "../components/pages/CreatePod/CreatePod";
+import CreateSpace from "../components/pages/CreateSpace/CreateSpace";
 import CreatePost from "../components/pages/CreatePost/CreatePost";
 import Explore from "../components/pages/Explore/Explore";
 import FindPeople from "../components/pages/FindPeople/FindPeople";
 import ForgotPassword from "../components/pages/ForgotPassword/ForgotPassword";
 import InviteFriends from "../components/pages/InviteFriends/InviteFriends";
-import JoinedPods from "../components/pages/JoinedPods/JoinedPods";
-import MailchimpPods070619 from "../components/pages/landing/MailchimpPods070619/MailchimpPods070619";
-import MailchimpPods072019 from "../components/pages/landing/MailchimpPods072019/MailchimpPods072019";
+import JoinedSpaces from "../components/pages/JoinedSpaces/JoinedSpaces";
+import MailchimpSpaces070619 from "../components/pages/landing/MailchimpSpaces070619/MailchimpSpaces070619";
+import MailchimpSpaces072019 from "../components/pages/landing/MailchimpSpaces072019/MailchimpSpaces072019";
 import Login from "../components/pages/Login/Login";
 import Messages from "../components/pages/Messages/Messages";
 import Notifications from "../components/pages/Notifications/Notifications";
-import PodDetail from "../components/pages/PodDetail/PodDetail";
+import SpaceDetail from "../components/pages/SpaceDetail/SpaceDetail";
 import PostDetail from "../components/pages/PostDetail/PostDetail";
 import ProfileFollowers from "../components/pages/ProfileFollowers/ProfileFollowers";
 import ProfileFollowing from "../components/pages/ProfileFollowing/ProfileFollowing";
@@ -31,7 +31,7 @@ import SearchResults from "../components/pages/SearchResults/SearchResults";
 import SignUp from "../components/pages/SignUp/SignUp";
 import YourFeed from "../components/pages/YourFeed/YourFeed";
 import Strings from "../services/Strings";
-import EditPod from "../components/pages/EditPod/EditPod";
+import EditSpace from "../components/pages/EditSpace/EditSpace";
 import EditPost from "../components/pages/EditPost/EditPost";
 
 const utility = new Utility();
@@ -40,7 +40,7 @@ const strings = new Strings();
 const changeCase = require("change-case");
 
 const routes = mount({
-  "/login": route(req => {
+  "/login": route((req) => {
     return {
       title: "Login / Reeviewr",
       head: (
@@ -55,7 +55,7 @@ const routes = mount({
       ),
     };
   }),
-  "/sign-up": route(req => {
+  "/sign-up": route((req) => {
     return {
       title: "Sign Up / Reeviewr",
       head: (
@@ -70,7 +70,7 @@ const routes = mount({
       ),
     };
   }),
-  "/complete-profile": route(req => {
+  "/complete-profile": route((req) => {
     return {
       title: "Complete Profile / Reeviewr",
       head: (
@@ -85,7 +85,7 @@ const routes = mount({
       ),
     };
   }),
-  "/forgot-password": route(req => {
+  "/forgot-password": route((req) => {
     return {
       title: "Forgot Password / Reeviewr",
       head: (
@@ -100,7 +100,7 @@ const routes = mount({
       ),
     };
   }),
-  "/reset-password": route(req => {
+  "/reset-password": route((req) => {
     return {
       title: "Reset Password / Reeviewr",
       head: (
@@ -115,7 +115,7 @@ const routes = mount({
       ),
     };
   }),
-  "/confirm-email": route(req => {
+  "/confirm-email": route((req) => {
     return {
       title: "Confirm Email / Reeviewr",
       head: (
@@ -144,62 +144,62 @@ const routes = mount({
       </AppNav>
     ),
   }),
-  "/pods/:podId/:slug": route(req => {
-    const { podId, slug } = req.params;
+  "/spaces/:spaceId/:slug": route((req) => {
+    const { spaceId, slug } = req.params;
 
     return {
-      title: "Pod Detail / Reeviewr",
+      title: "Space Detail / Reeviewr",
       head: (
         <>
           <link
             rel="canonical"
-            href={`https://reeviewr.com/pods/${podId}/${slug}`}
+            href={`https://reeviewr.com/spaces/${spaceId}/${slug}`}
           />
         </>
       ),
       view: (
         <AppNav>
-          <PodDetail />
+          <SpaceDetail />
         </AppNav>
       ),
     };
   }),
-  "/pods/:podId/:slug/edit": route(req => {
-    const { podId, slug } = req.params;
+  "/spaces/:spaceId/:slug/edit": route((req) => {
+    const { spaceId, slug } = req.params;
 
     return {
-      title: "Edit Pod / Reeviewr",
+      title: "Edit Space / Reeviewr",
       head: (
         <>
           <link
             rel="canonical"
-            href={`https://reeviewr.com/pods/${podId}/${slug}/edit`}
+            href={`https://reeviewr.com/spaces/${spaceId}/${slug}/edit`}
           />
         </>
       ),
       view: (
         <AppNav>
-          <EditPod />
+          <EditSpace />
         </AppNav>
       ),
     };
   }),
-  "/pods/create": route(req => {
+  "/spaces/create": route((req) => {
     return {
-      title: "Create Pod / Reeviewr",
+      title: "Create Space / Reeviewr",
       head: (
         <>
-          <link rel="canonical" href={`https://reeviewr.com/pods/create`} />
+          <link rel="canonical" href={`https://reeviewr.com/spaces/create`} />
         </>
       ),
       view: (
         <AppNav>
-          <CreatePod />
+          <CreateSpace />
         </AppNav>
       ),
     };
   }),
-  "/posts/:postId/:slug": route(req => {
+  "/posts/:postId/:slug": route((req) => {
     const { postId, slug } = req.params;
 
     return {
@@ -219,7 +219,7 @@ const routes = mount({
       ),
     };
   }),
-  "/posts/:postId/:slug/edit": route(req => {
+  "/posts/:postId/:slug/edit": route((req) => {
     const { postId, slug } = req.params;
 
     return {
@@ -239,7 +239,7 @@ const routes = mount({
       ),
     };
   }),
-  "/posts/create": route(req => {
+  "/posts/create": route((req) => {
     return {
       title: "Create Post / Reeviewr",
       head: (
@@ -254,7 +254,7 @@ const routes = mount({
       ),
     };
   }),
-  "/find-people": route(req => {
+  "/find-people": route((req) => {
     return {
       title: "Find People / Reeviewr",
       head: (
@@ -269,7 +269,7 @@ const routes = mount({
       ),
     };
   }),
-  "/invite-friends": route(req => {
+  "/invite-friends": route((req) => {
     return {
       title: "Invite Friends / Reeviewr",
       head: (
@@ -284,22 +284,22 @@ const routes = mount({
       ),
     };
   }),
-  "/joined-pods": route(req => {
+  "/joined-spaces": route((req) => {
     return {
-      title: "Joined Pods / Reeviewr",
+      title: "Joined Spaces / Reeviewr",
       head: (
         <>
-          <link rel="canonical" href={`https://reeviewr.com/joined-pods`} />
+          <link rel="canonical" href={`https://reeviewr.com/joined-spaces`} />
         </>
       ),
       view: (
         <AppNav>
-          <JoinedPods />
+          <JoinedSpaces />
         </AppNav>
       ),
     };
   }),
-  "/feed": route(req => {
+  "/feed": route((req) => {
     return {
       title: "Your Feed / Reeviewr",
       head: (
@@ -314,7 +314,7 @@ const routes = mount({
       ),
     };
   }),
-  "/search": route(req => {
+  "/search": route((req) => {
     return {
       title: "Search Results / Reeviewr",
       head: (
@@ -329,7 +329,7 @@ const routes = mount({
       ),
     };
   }),
-  "/messages": route(req => {
+  "/messages": route((req) => {
     return {
       title: "Messages / Reeviewr",
       head: (
@@ -344,7 +344,7 @@ const routes = mount({
       ),
     };
   }),
-  "/notifications": route(req => {
+  "/notifications": route((req) => {
     return {
       title: "Notifications / Reeviewr",
       head: (
@@ -359,26 +359,26 @@ const routes = mount({
       ),
     };
   }),
-  "/landing/pods-a": route(req => {
+  "/landing/spaces-a": route((req) => {
     return {
-      title: "Reeviewr Pods",
+      title: "Reeviewr Spaces",
       head: (
         <>
-          <title>Reeviewr Pods</title>
+          <title>Reeviewr Spaces</title>
         </>
       ),
-      view: <MailchimpPods070619 />,
+      view: <MailchimpSpaces070619 />,
     };
   }),
-  "/landing/pods-b": route(req => {
+  "/landing/spaces-b": route((req) => {
     return {
-      title: "Reeviewr Pods",
+      title: "Reeviewr Spaces",
       head: (
         <>
-          <title>Reeviewr Pods</title>
+          <title>Reeviewr Spaces</title>
         </>
       ),
-      view: <MailchimpPods072019 />,
+      view: <MailchimpSpaces072019 />,
     };
   }),
   // "/products": lazy(() => import("./productsRoutes")), // TODO: set up code-splitting

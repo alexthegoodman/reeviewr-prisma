@@ -18,7 +18,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { Link } from "react-navi";
 import * as Yup from "yup";
 // import {
-//   AllPodsQuery,
+//   AllSpacesQuery,
 //   AllTagsQuery,
 // } from "../../../../../__generated__/gql-gen/grapql-types";
 import { GenreList, Genres } from "../../../../defs/genres";
@@ -26,7 +26,7 @@ import { ERROR_CODE } from "../../../../services/ERROR_CODE";
 import Legacy from "../../../../services/Legacy";
 import Utility from "../../../../services/Utility";
 import { useAppContext } from "../../../context";
-import { ALL_PODS } from "../../../graphql/queries/pod";
+import { ALL_SPACES } from "../../../graphql/queries/space";
 import { ALL_TAGS } from "../../../graphql/queries/tag";
 import AuthClient from "../../../services/AuthClient";
 import ItemClient from "../../../services/ItemClient";
@@ -55,18 +55,18 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
   const [formError, setFormError] = React.useState(null);
   const [navbarTabId, setNavbarTabId] = React.useState("basic" as TabId);
 
-  // pod / interests autocomplete
+  // space / interests autocomplete
   const {
-    data: podData,
-    error: podError,
-    loading: podLoading,
-  }: { data?: any; loading?: any; error?: any } = useQuery(ALL_PODS);
+    data: spaceData,
+    error: spaceError,
+    loading: spaceLoading,
+  }: { data?: any; loading?: any; error?: any } = useQuery(ALL_SPACES);
 
-  let podOptions = [];
-  if (!podLoading && utility.isDefinedWithContent(podData)) {
-    podOptions = podData.findManyPod.map((pod, i) => {
-      const postType = legacy.extractMetaValue(pod.itemMeta, "postType");
-      return { label: pod.itemName, value: pod.id, postType };
+  let spaceOptions = [];
+  if (!spaceLoading && utility.isDefinedWithContent(spaceData)) {
+    spaceOptions = spaceData.findManySpace.map((space, i) => {
+      const postType = legacy.extractMetaValue(space.itemMeta, "postType");
+      return { label: space.itemName, value: space.id, postType };
     });
   }
 
@@ -90,7 +90,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
   const [questionType3, setQuestionType3] = React.useState("");
 
   const CreatePostSchema = Yup.object().shape({
-    pod: Yup.string().required("Required"),
+    space: Yup.string().required("Required"),
     content: Yup.string().required("Required"),
     title: Yup.string()
       .min(4, "Too Short!")
@@ -134,7 +134,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
 
       <Formik
         initialValues={{
-          pod: "",
+          space: "",
           content: "",
           title: "",
           description: "",
@@ -192,14 +192,14 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
         }}
         render={(formikBag: FormikProps<CreatePostFormValues>) => {
           let uploadField = <></>;
-          if (formikBag.values["pod"] !== "") {
-            const postType = formikBag.values["pod"]["postType"];
+          if (formikBag.values["space"] !== "") {
+            const postType = formikBag.values["space"]["postType"];
             if (postType === "Text") {
               uploadField = (
                 <QuillField
                   label="Text"
                   fieldName="content"
-                  helperText="This pod allows text only. Must be between 100 and 100,000 characters."
+                  helperText="This space allows text only. Must be between 100 and 100,000 characters."
                 />
               );
             } else {
@@ -207,15 +207,15 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
               switch (postType) {
                 case "Image":
                   helperText =
-                    "This pod allows images only. Must be under 10MB.";
+                    "This space allows images only. Must be under 10MB.";
                   break;
                 case "Video":
                   helperText =
-                    "This pod allows videos only. Must be under 10MB.";
+                    "This space allows videos only. Must be under 10MB.";
                   break;
                 case "Audio":
                   helperText =
-                    "This pod allows audio only. Must be under 10MB.";
+                    "This space allows audio only. Must be under 10MB.";
                   break;
               }
               uploadField = (
@@ -230,12 +230,12 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
 
           const panel1 = (
             <>
-              {!podLoading ? (
+              {!spaceLoading ? (
                 <AutocompleteField
                   label="Find your interest"
-                  fieldName="pod"
+                  fieldName="space"
                   helperText="Search for whatever you want feedback on"
-                  options={podOptions}
+                  options={spaceOptions}
                   isMulti={false}
                 />
               ) : (

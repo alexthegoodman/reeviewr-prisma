@@ -24,7 +24,7 @@ const MiniPostCard: React.FC<MiniPostCardProps> = ({
     post.itemMeta,
     "contentFilename"
   );
-  const imageUrl = oahu.core.imagePath("reeviewr-pods", filename, {
+  const imageUrl = oahu.core.imagePath("reeviewr-spaces", filename, {
     resize: {
       width: 200,
       height: 200,

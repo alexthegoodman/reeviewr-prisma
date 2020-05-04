@@ -1,13 +1,20 @@
-import { PrismaClient } from "@prisma/client";
-// import { PrismaClient } from "../__generated__/prisma-client";
+// import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../__generated__/prisma-client";
 import * as faker from "faker";
 
 const prisma = new PrismaClient({ log: ["query", "info", "warn"] });
 
-export default async function seedPosts(user1, pod1, user2, pod2, tag1, pod3) {
+export default async function seedPosts(
+  user1,
+  space1,
+  user2,
+  space2,
+  tag1,
+  space3
+) {
   const postSchema = {
     // user: { connect: { id: user1.id } },
-    // pod: { connect: { id: pod1.id } },
+    // space: { connect: { id: space1.id } },
     itemType: "default",
     itemStatus: "active",
     // itemUrlSegment: faker.lorem.slug(),
@@ -133,7 +140,7 @@ export default async function seedPosts(user1, pod1, user2, pod2, tag1, pod3) {
     data: {
       ...postSchema,
       user: { connect: { id: user1.id } },
-      pod: { connect: { id: pod1.id } },
+      space: { connect: { id: space1.id } },
       itemUrlSegment: faker.lorem.slug(),
       itemName: faker.lorem.words(),
     },
@@ -143,7 +150,7 @@ export default async function seedPosts(user1, pod1, user2, pod2, tag1, pod3) {
     data: {
       ...postSchema,
       user: { connect: { id: user1.id } },
-      pod: { connect: { id: pod1.id } },
+      space: { connect: { id: space1.id } },
       itemUrlSegment: faker.lorem.slug(),
       itemName: faker.lorem.words(),
     },
@@ -153,7 +160,7 @@ export default async function seedPosts(user1, pod1, user2, pod2, tag1, pod3) {
     data: {
       ...postSchema,
       user: { connect: { id: user2.id } },
-      pod: { connect: { id: pod2.id } },
+      space: { connect: { id: space2.id } },
       itemUrlSegment: faker.lorem.slug(),
       itemName: faker.lorem.words(),
     },
@@ -163,7 +170,7 @@ export default async function seedPosts(user1, pod1, user2, pod2, tag1, pod3) {
     data: {
       ...postSchema,
       user: { connect: { id: user2.id } },
-      pod: { connect: { id: pod3.id } },
+      space: { connect: { id: space3.id } },
       itemUrlSegment: faker.lorem.slug(),
       itemName: faker.lorem.words(),
     },

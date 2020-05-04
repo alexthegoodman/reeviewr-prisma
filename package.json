@@ -11,21 +11,19 @@
   "scripts": {
     "start": "nf start web=1,worker=1",
     "admin:show-running-apps": "lsof -i :9229; lsof -i :9230; lsof -i :3001; lsof -i :3000",
-    "build:graphql": "dotenv prisma generate;",
     "build:client": "webpack --config ./webpack/client.config.js",
     "build:server": "webpack --config ./webpack/server.config.js",
-    "build:pre": "yarn build:graphql",
+    "build:pre": "yarn generate:prisma",
     "build:app": "concurrently 'yarn build:client' 'yarn build:server'",
     "build": "yarn build:pre && yarn build:app",
     "build:production": "cross-env NODE_ENV=production yarn build",
-    "dev:jsonschema": "nodemon -C -w 'modules/**/*.schema.json' ./scripts/json-schema-types.js",
-    "dev:graphql": "nodemon -C -w 'modules/**/*.graphql' 'yarn build:graphql'",
+    "dev:storybook": "start-storybook -p 9001 -c .storybook --ci",
+    "dev:graphql": "nodemon -C -w 'modules/client/graphql/**/*.ts' 'yarn generate:gql-types'",
+    "dev:client": "webpack-dev-server --config webpack/client.config.js",
     "dev:server:webpack": "webpack --config webpack/server.config.js --watch",
     "dev:server:nodemon": "nodemon --watch dist/server.js -- dist/server.js",
-    "dev:worker:nodemon": "ls",
-    "dev:client": "webpack-dev-server --config webpack/client.config.js",
-    "dev": "NODE_ENV=development PRISMA_API=http://localhost:443 yarn build:pre && concurrently -p name -c \"yellow,magenta,green,blue,gray\" -n \"webpack-server,nodemon-server,webpack-client,graphql-types,json-schema,workers\" \"yarn dev:server:webpack\" \"yarn dev:server:nodemon\" \"yarn dev:client\" \"yarn dev:graphql\" \"yarn dev:jsonschema\" \"yarn dev:worker:nodemon\"",
-    "dev:storybook": "start-storybook -p 9001 -c .storybook --ci",
+    "dev:server": "concurrently \"dotenv yarn dev:server:webpack\" \"dotenv yarn dev:server:nodemon\"",
+    "dev": "dotenv yarn build:pre && concurrently -p name -c \"yellow,magenta,green,blue,gray\" -n \"webpack-server,nodemon-server,webpack-client,graphql-types,json-schema,workers\" \"dotenv yarn dev:server\" \"dotenv yarn dev:client\" \"dotenv yarn dev:graphql\"",
     "lint": "tslint -c ./tslint.json -p ./tsconfig.json './modules/**/*.{ts,tsx}'",
     "lint:fix": "tslint --fix -c ./tslint.json -p ./tsconfig.json './modules/**/*.{ts,tsx}'",
     "fmt:prettier": "prettier --write 'modules/**/*.{ts,tsx,js,jsx}'",
@@ -43,6 +41,8 @@
     "heroku:deploy": "git push heroku master",
     "prisma:migrate": "prisma migrate save --experimental",
     "prisma:apply": "prisma migrate up --experimental",
+    "generate:prisma": "dotenv prisma generate;",
+    "generate:gql-types": "yarn run graphql-codegen;",
     "db:seed": "dotenv ts-node seed/index.ts"
   },
   "resolutions": {},
@@ -301,5 +301,11 @@
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.13.5",
+    "@graphql-codegen/introspection": "^1.13.5",
+    "@graphql-codegen/typescript": "^1.13.5",
+    "@graphql-codegen/typescript-operations": "^1.13.5"
   }
 }

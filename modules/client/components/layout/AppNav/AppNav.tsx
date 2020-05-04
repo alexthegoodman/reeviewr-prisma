@@ -139,12 +139,12 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
               Your Feed
             </MenuItem>
             <MenuItem
-              className="joyrideJoinedPodsPage"
-              active={route.url.pathname === "/joined-pods" ? true : false}
-              onClick={() => navigate("/joined-pods", true)}
+              className="joyrideJoinedSpacesPage"
+              active={route.url.pathname === "/joined-spaces" ? true : false}
+              onClick={() => navigate("/joined-spaces", true)}
             >
               <Icon icon="layout-grid" />
-              Joined Pods
+              Joined Spaces
             </MenuItem>
             <MenuItem
               className="joyrideInviteFriendsPage"

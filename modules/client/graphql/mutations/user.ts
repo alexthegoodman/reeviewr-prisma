@@ -30,22 +30,22 @@ import gql from "graphql-tag";
 //   }
 // `;
 
-export const JOIN_POD = gql`
-  mutation joinPod($userId: ID, $podId: ID) {
+export const JOIN_SPACE = gql`
+  mutation joinSpace($userId: ID, $spaceId: ID) {
     updateOneUser(
       where: { id: $userId }
-      data: { memberOf: { connect: { id: $podId } } }
+      data: { memberOf: { connect: { id: $spaceId } } }
     ) {
       id
     }
   }
 `;
 
-export const LEAVE_POD = gql`
-  mutation leavePod($userId: ID, $podId: ID) {
+export const LEAVE_SPACE = gql`
+  mutation leaveSpace($userId: ID, $spaceId: ID) {
     updateOneUser(
       where: { id: $userId }
-      data: { memberOf: { disconnect: { id: $podId } } }
+      data: { memberOf: { disconnect: { id: $spaceId } } }
     ) {
       id
     }

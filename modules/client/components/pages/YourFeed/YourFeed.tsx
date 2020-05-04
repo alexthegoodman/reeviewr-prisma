@@ -1,10 +1,10 @@
 import * as React from "react";
 
 import { useCookies } from "react-cookie";
-import { USER_JOINED_PODS_POSTS } from "../../../graphql/queries/user";
+import { USER_JOINED_SPACES_POSTS } from "../../../graphql/queries/user";
 import GraphQLData from "../../data/GraphQLData/GraphQLData";
 import NoResults from "../../system/NoResults/NoResults";
-import PodHero from "../../pod/PodHero/PodHero";
+import SpaceHero from "../../space/SpaceHero/SpaceHero";
 import PostCard from "../../post/PostCard/PostCard";
 import { YourFeedProps } from "./YourFeed.d";
 
@@ -13,10 +13,10 @@ const YourFeed: React.FC<YourFeedProps> = () => {
 
   return (
     <>
-      <PodHero showStats={false} />
+      <SpaceHero showStats={false} />
       <GraphQLData
-        QUERY={USER_JOINED_PODS_POSTS}
-        loadingText="Loading pod's posts..."
+        QUERY={USER_JOINED_SPACES_POSTS}
+        loadingText="Loading space's posts..."
         onFinish={(data) => setData(data)}
         variables={{ postId: null }}
       >

@@ -8,7 +8,7 @@ const PostFragments = {
         id
         userEmail
       }
-      pod {
+      space {
         id
         itemName
       }

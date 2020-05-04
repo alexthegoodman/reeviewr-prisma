@@ -7,9 +7,6 @@ if (typeof window === "undefined") {
   global["window"] = window;
 }
 
-// if (config.get<boolean>("server.cluster")) {
-//   console.log(`Starting ${config.get<number>("server.workers")} workers`);
-//   throng(config.get<number>("server.workers"), startServer);
-// } else {
+console.info("Initiate entry file...");
+
 startServer();
-// }

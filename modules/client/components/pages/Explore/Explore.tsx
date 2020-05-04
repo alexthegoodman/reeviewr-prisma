@@ -1,10 +1,10 @@
 import * as React from "react";
 
 import Utility from "../../../../services/Utility";
-import { CATEGORIES_PODS_POSTS } from "../../../graphql/queries/category";
+import { CATEGORIES_SPACES_POSTS } from "../../../graphql/queries/category";
 import GraphQLData from "../../data/GraphQLData/GraphQLData";
 import CategoryGrid from "../../layout/CategoryGrid/CategoryGrid";
-import PodCard from "../../pod/PodCard/PodCard";
+import SpaceCard from "../../space/SpaceCard/SpaceCard";
 import { ExploreProps } from "./Explore.d";
 
 const Explore: React.FC<ExploreProps> = () => {
@@ -15,16 +15,16 @@ const Explore: React.FC<ExploreProps> = () => {
   return (
     <>
       <GraphQLData
-        QUERY={CATEGORIES_PODS_POSTS}
-        loadingText="Loading all pods..."
+        QUERY={CATEGORIES_SPACES_POSTS}
+        loadingText="Loading all spaces..."
         onFinish={(data) => setData(data)}
       >
         {typeof data !== "undefined" && data !== null ? (
           data.findManyCategory.map((cpp) => {
             return (
               <CategoryGrid key={cpp.id} title={cpp.itemName}>
-                {cpp.pods.map((pod) => {
-                  return <PodCard key={pod.id} pod={pod} />;
+                {cpp.spaces.map((space) => {
+                  return <SpaceCard key={space.id} space={space} />;
                 })}
               </CategoryGrid>
             );

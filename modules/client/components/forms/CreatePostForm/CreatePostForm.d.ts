@@ -6,7 +6,7 @@ export interface CreatePostFormProps {
 }
 
 export interface CreatePostFormValues {
-  pod: any;
+  space: any;
   content: string;
   title: string;
   description: string;

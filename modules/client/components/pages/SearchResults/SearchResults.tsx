@@ -10,8 +10,8 @@ import { SEARCH_USER_META } from "../../../graphql/queries/user";
 import { POSTS_QUERY } from "../../../graphql/queries/post";
 import PostCard from "../../post/PostCard/PostCard";
 import UserCard from "../../user/UserCard/UserCard";
-import { SEARCH_PODS } from "../../../graphql/queries/pod";
-import PodCard from "../../pod/PodCard/PodCard";
+import { SEARCH_SPACES } from "../../../graphql/queries/space";
+import SpaceCard from "../../space/SpaceCard/SpaceCard";
 
 const SearchResults: React.FC<SearchResultsProps> = () => {
   const utility = new Utility();
@@ -37,12 +37,13 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
     variables: { search: encodeURIComponent(search) },
   });
 
-  const { data: podsData, error: podsError, loading: podsLoading } = useQuery(
-    SEARCH_PODS,
-    {
-      variables: { search: encodeURIComponent(search) },
-    }
-  );
+  const {
+    data: spacesData,
+    error: spacesError,
+    loading: spacesLoading,
+  } = useQuery(SEARCH_SPACES, {
+    variables: { search: encodeURIComponent(search) },
+  });
 
   if (userLoading) {
     return (
@@ -84,21 +85,21 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
     );
   }
 
-  if (podsLoading) {
+  if (spacesLoading) {
     return (
       <>
         <section className="searchResults">
-          <LoadingIndicator loadingText="Loading pods..." />
+          <LoadingIndicator loadingText="Loading spaces..." />
         </section>
       </>
     );
   }
 
-  if (podsError) {
+  if (spacesError) {
     return (
       <>
         <section className="searchResults">
-          <div>Error on pods! {podsError.message}</div>
+          <div>Error on spaces! {spacesError.message}</div>
         </section>
       </>
     );
@@ -107,7 +108,7 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
   if (
     !utility.isDefinedWithContent(userData.findManyUserMeta) &&
     !utility.isDefinedWithContent(postsData.findManyPost) &&
-    !utility.isDefinedWithContent(podsData.findManyPod)
+    !utility.isDefinedWithContent(spacesData.findManySpace)
   ) {
     return (
       <>
@@ -122,7 +123,7 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
     <>
       {search !== "" ? (
         <section className="searchResults">
-          {!postsLoading && !userLoading && !podsLoading ? (
+          {!postsLoading && !userLoading && !spacesLoading ? (
             <>
               <Text tagName="h1">Search Results</Text>
 
@@ -146,10 +147,10 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
                 <></>
               )}
 
-              {podsData.findManyPod.length > 0 ? (
+              {spacesData.findManySpace.length > 0 ? (
                 <section className="grid col-4">
-                  {podsData.findManyPod.map((pod) => {
-                    return <PodCard pod={pod} />;
+                  {spacesData.findManySpace.map((space) => {
+                    return <SpaceCard space={space} />;
                   })}
                 </section>
               ) : (

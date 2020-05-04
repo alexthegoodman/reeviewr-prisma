@@ -14,8 +14,8 @@ export default class StringHandler {
 
   constructor() {}
 
-  getPodUrl(pod) {
-    return window.location.origin + "/pods/" + pod.id;
+  getSpaceUrl(space) {
+    return window.location.origin + "/spaces/" + space.id;
   }
 
   getPostUrl(post) {

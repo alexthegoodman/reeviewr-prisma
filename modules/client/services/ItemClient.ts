@@ -11,20 +11,20 @@ export default class ItemClient {
 
   constructor() {}
 
-  createPod(values, callback) {
+  createSpace(values, callback) {
     const cookies = new Cookies();
     const reeviewrId = cookies.get("reeviewrId");
 
-    console.info("create pod", reeviewrId);
+    console.info("create space", reeviewrId);
 
     if (this.utility.isDefinedWithContent(reeviewrId)) {
       this.restClient.makeRequest(
-        "/pods/create/",
+        "/spaces/create/",
         { id: reeviewrId, ...values },
         callback
       );
     } else {
-      console.error("Only logged in users can create pods");
+      console.error("Only logged in users can create spaces");
       alert("Sorry! Please sign up to create items. Code 4403");
     }
   }

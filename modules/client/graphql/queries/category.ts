@@ -9,12 +9,12 @@ export const ALL_CATEGORIES = gql`
   }
 `;
 
-export const CATEGORIES_PODS_POSTS = gql`
-  query categoriesPodsPosts {
+export const CATEGORIES_SPACES_POSTS = gql`
+  query categoriesSpacesPosts {
     categories {
       id
       itemName
-      pods(first: 3) {
+      spaces(first: 3) {
         id
         itemName
         itemMeta {

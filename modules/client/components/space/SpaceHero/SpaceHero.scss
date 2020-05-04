@@ -1,0 +1,63 @@
+.spaceHero {
+  width: 100%;
+  height: 320px;
+  background: $irise;
+  margin: -35px -35px 0 -35px;
+  width: calc(100% + 70px);
+
+  .spaceHeroContain {
+    padding: 45px 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .info {
+    }
+    .interact {
+      // display: flex;
+      // align-self: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.77;
+      letter-spacing: 2px;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+    .spaceHeroStats {
+      display: flex;
+      flex-direction: row;
+
+      .stat {
+        display: flex;
+        flex-direction: row;
+        margin-right: 40px;
+
+        .bp3-icon {
+          margin-right: 12px;
+        }
+
+        span {
+          font-size: 16px;
+          font-weight: 600;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: 1.41px;
+          color: #ffffff;
+        }
+      }
+    }
+    .interact {
+      .joinButtonBig {
+        margin-right: 20px;
+      }
+      .filterButton {
+      }
+    }
+  }
+}

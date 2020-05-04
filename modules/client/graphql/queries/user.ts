@@ -21,7 +21,7 @@ const UserFragments = {
         itemName
         itemContent
       }
-      pods {
+      spaces {
         id
         itemName
         itemContent
@@ -126,8 +126,8 @@ export const USER_PRIVATE_QUERY = gql`
   ${UserFragments.user}
 `;
 
-export const USER_JOINED_PODS = gql`
-  query userJoinedPods($id: ID) {
+export const USER_JOINED_SPACES = gql`
+  query userJoinedSpaces($id: ID) {
     user(where: { id: $id }) {
       memberOf {
         id
@@ -158,8 +158,8 @@ export const USER_JOINED_PODS = gql`
   ${UserFragments.user}
 `;
 
-export const USER_JOINED_PODS_POSTS = gql`
-  query joinedPodsPosts($userId: ID, $postId: String) {
+export const USER_JOINED_SPACES_POSTS = gql`
+  query joinedSpacesPosts($userId: ID, $postId: String) {
     user(where: { id: $userId }) {
       ...UserFragment
       memberOfPosts(userId: $userId, postId: $postId) {
