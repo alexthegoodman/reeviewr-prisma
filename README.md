@@ -25,9 +25,9 @@ Use a Linux machine. This will assure compatability.
 
 - Pull `https://github.com/alexthegoodman/reeviewr-prisma`
 - Install Pre-Requisites
-  - Node
+  - Node (NVM)
   - Yarn
-  - Postgres
+  - Postgres and PgAdmin
 - Install Dependencies
   - `yarn`
   - `yarn global add dotenv-cli`
