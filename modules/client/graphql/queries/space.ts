@@ -12,7 +12,7 @@ const SpaceFragments = {
         metaValue
       }
       # livePosts {
-      posts {
+      posts(first: 2, where: { itemDeleted: { equals: false } }) {
         id
         itemName
         itemUrlSegment

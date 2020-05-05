@@ -11,7 +11,7 @@ import {
 } from "@blueprintjs/core";
 import JoinButton from "../../actions/JoinButton/JoinButton";
 import MiniPostCard from "../../post/MiniPostCard/MiniPostCard";
-import { SpaceCardProps } from "./SpaceCard";
+import { SpaceCardProps } from "./SpaceCard.d";
 import MenuItem from "../../navigation/MenuItem/MenuItem";
 import { Link } from "react-navi";
 import Hawaii from "../../../services/Hawaii";
@@ -74,8 +74,8 @@ const SpaceCard: React.FC<SpaceCardProps> = ({
           </Tooltip>
         </div>
         <div className="spaceCardContent">
-          {space.livePosts !== null ? (
-            space.livePosts.map((post) => {
+          {space.posts !== null ? (
+            space.posts.map((post) => {
               return <MiniPostCard key={post.id} post={post} />;
             })
           ) : (

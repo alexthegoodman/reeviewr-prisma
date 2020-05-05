@@ -141,7 +141,7 @@ export const USER_JOINED_SPACES = gql`
           id
           userEmail
         }
-        posts(where: { itemDeleted: { equals: true } }) {
+        posts(first: 2, where: { itemDeleted: { equals: false } }) {
           id
           itemName
           itemUrlSegment

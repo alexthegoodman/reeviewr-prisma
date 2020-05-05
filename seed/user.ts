@@ -31,7 +31,7 @@ export default async function seedUsers() {
   const user1 = await prisma.user.create({
     data: {
       ...userSchema,
-      userEmail: faker.internet.email(),
+      userEmail: "test@email.com",
       privateHash: faker.random.uuid(),
       publicHash: faker.random.uuid(),
       id: faker.random.uuid(),

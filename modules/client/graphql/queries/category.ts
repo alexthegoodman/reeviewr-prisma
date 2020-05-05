@@ -26,7 +26,7 @@ export const CATEGORIES_SPACES_POSTS = gql`
           id
           userEmail
         }
-        posts(where: { itemDeleted: { equals: true } }) {
+        posts(first: 2, where: { itemDeleted: { equals: false } }) {
           id
           itemName
           itemUrlSegment

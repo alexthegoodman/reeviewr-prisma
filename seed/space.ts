@@ -43,7 +43,7 @@ export default async function seedSpaces(user1, cat1, user2, cat2) {
     data: {
       ...spaceSchema,
       itemUrlSegment: faker.lorem.slug(),
-      itemName: faker.name.findName(),
+      itemName: "Watercolor Painting",
       categories: { connect: { id: cat1.id } },
     },
   });
@@ -52,7 +52,7 @@ export default async function seedSpaces(user1, cat1, user2, cat2) {
     data: {
       ...spaceSchema,
       itemUrlSegment: faker.lorem.slug(),
-      itemName: faker.name.findName(),
+      itemName: "Oil Painting",
       categories: { connect: { id: cat1.id } },
     },
   });
@@ -61,7 +61,7 @@ export default async function seedSpaces(user1, cat1, user2, cat2) {
     data: {
       ...spaceSchema,
       itemUrlSegment: faker.lorem.slug(),
-      itemName: faker.name.findName(),
+      itemName: "Landscapes and Outdoors",
       categories: { connect: { id: cat2.id } },
     },
   });
