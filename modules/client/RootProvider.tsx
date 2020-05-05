@@ -1,5 +1,5 @@
 import * as React from "react";
-import ErrorBoundary from "react-error-boundary";
+import { ErrorBoundary } from "react-error-boundary";
 
 import * as mixpanel from "mixpanel-browser";
 import { ApolloProvider } from "react-apollo";
@@ -37,7 +37,7 @@ interface AppProviderProps {}
 
 interface RootProviderProps {}
 
-export const AppProvider: React.FC<AppProviderProps> = props => {
+export const AppProvider: React.FC<AppProviderProps> = (props) => {
   return (
     <AppContextAPI>
       <View />
@@ -45,7 +45,7 @@ export const AppProvider: React.FC<AppProviderProps> = props => {
   );
 };
 
-const RootProvider: React.FC<RootProviderProps> = props => {
+const RootProvider: React.FC<RootProviderProps> = (props) => {
   return (
     <ErrorBoundary onError={ErrorHandler} FallbackComponent={ErrorFallback}>
       <MixpanelProvider mixpanel={mixpanel}>

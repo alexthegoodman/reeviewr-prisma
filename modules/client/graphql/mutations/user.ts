@@ -31,7 +31,7 @@ import gql from "graphql-tag";
 // `;
 
 export const JOIN_SPACE = gql`
-  mutation joinSpace($userId: ID, $spaceId: ID) {
+  mutation joinSpace($userId: String, $spaceId: String) {
     updateOneUser(
       where: { id: $userId }
       data: { memberOf: { connect: { id: $spaceId } } }
@@ -42,7 +42,7 @@ export const JOIN_SPACE = gql`
 `;
 
 export const LEAVE_SPACE = gql`
-  mutation leaveSpace($userId: ID, $spaceId: ID) {
+  mutation leaveSpace($userId: String, $spaceId: String) {
     updateOneUser(
       where: { id: $userId }
       data: { memberOf: { disconnect: { id: $spaceId } } }

@@ -99,7 +99,7 @@ const Mixpanel = require("mixpanel");
 import { nexusPrismaPlugin } from "nexus-prisma";
 // import datamodelInfo from "@generated/nexus-prisma";
 // import Photon from "@generated/photon";
-import { PrismaClient } from "../../__generated__/prisma-client";
+import { PrismaClient } from "@prisma/client";
 // import { PrismaClient } from "../../__generated__/prisma-client";
 // import { idArg, makeSchema, objectType } from "@prisma/nexus";
 import { makeSchema } from "@nexus/schema";
@@ -204,6 +204,7 @@ const schema = makeSchema({
     // Typing from the source
     // contextType: "ctx.DataContext",
     // contextType: "ctx",
+    contextType: "{ prisma: PrismaClient.PrismaClient }",
     backingTypeMap: {
       Date: "Date",
       DateTime: "Date",
@@ -385,7 +386,7 @@ export default async function startServer() {
   // app.use(expressStaticGzip("./dist/"));
   app.use("/public", express.static("./dist/"));
 
-  console.info("start server");
+  console.info("Setup Passport...");
 
   // add to ENV
   const apiVersion = "v1.0";
@@ -424,17 +425,15 @@ export default async function startServer() {
     )
   );
 
-  console.info("start get");
-
   app.use(passport.initialize());
   app.use(passport.session());
 
-  // TODO: fetch from ENV
   const mixpanel = Mixpanel.init(process.env.SERVER_MIXPANEL_SECRET, {
     protocol: "https",
   });
 
-  console.info("api", `${apiVersion}${AUTHENTICATE_USER}`);
+  console.info(`Setup REST API (${apiVersion}) Endpoints...`);
+
   app.get(`/${apiVersion}`, (req, res) => {
     return res.json({ success: true });
   });
@@ -493,7 +492,7 @@ export default async function startServer() {
     "/*",
     // Authentication.ensureAuthenticatedAndRedirect,
     async (req, res) => {
-      // console.info("req 2", req);
+      console.info("SSR: Initiate Request");
       const client = new ApolloClient({
         ssrMode: true,
         // Remember that this is the interface the SSR server will use to connect to the
@@ -526,19 +525,19 @@ export default async function startServer() {
         </>
       );
 
-      console.info("get data");
+      console.info("SSR: Generate HTML");
       const rendered = await getMarkupFromTree({
         renderFunction: ReactDOMServer.renderToString,
         tree: <App />,
       });
 
-      console.info("render");
+      console.info("SSR: Render HTML");
       // const content = ReactDOMServer.renderToString(<App />);
       const initialState = client.extract();
 
       const html = <Html content={rendered} state={initialState} />;
 
-      console.info("send response");
+      console.info("SSR: Send HTML");
 
       res.status(200);
       res.send(`<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`);
@@ -547,11 +546,11 @@ export default async function startServer() {
     }
   );
 
-  console.info("Attach to port...");
+  console.info(`Attach Express to port: ${port}...`);
 
   try {
     app.listen(port, () => {
-      console.log(
+      console.info(
         "REST API up and running on port",
         port,
         "apiHost: ",
@@ -564,13 +563,4 @@ export default async function startServer() {
     console.error("ERROR", e);
     await prisma.disconnect();
   }
-
-  // try {
-  //   // TODO - Playon /graphql
-  //   graphqlServer.start({ port: 4000, cors: { origin: allowedOrigins } }, () =>
-  //     console.log("GRAPHQL API is running on port 4000")
-  //   );
-  // } catch (e) {
-  //   console.error("ERROR", e);
-  // }
 }

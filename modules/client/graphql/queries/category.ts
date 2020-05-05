@@ -26,7 +26,7 @@ export const CATEGORIES_SPACES_POSTS = gql`
           id
           userEmail
         }
-        livePosts(first: 2) {
+        posts(where: { itemDeleted: { equals: true } }) {
           id
           itemName
           itemUrlSegment
@@ -36,6 +36,16 @@ export const CATEGORIES_SPACES_POSTS = gql`
             metaValue
           }
         }
+        # livePosts(first: 2) {
+        #   id
+        #   itemName
+        #   itemUrlSegment
+        #   itemMeta {
+        #     id
+        #     metaName
+        #     metaValue
+        #   }
+        # }
       }
     }
   }

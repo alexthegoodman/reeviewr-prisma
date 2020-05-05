@@ -17756,6 +17756,13 @@ pretty-bytes@^1.0.2:
     get-stdin "^4.0.1"
     meow "^3.1.0"
 
+pretty-console-logs@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/pretty-console-logs/-/pretty-console-logs-0.3.0.tgz#d319703f5872ceae2c791e01806e29bf8ed06eb0"
+  integrity sha512-08PPWKYokqkWiHNvr+VTLPBc/jSZvOuS4nhuDEMDW6XCDCZbAFdi2ZM9kknYp5YnGuZgpLZysaykTg6yH3Umvw==
+  dependencies:
+    chalk "2.4.2"
+
 pretty-error@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/pretty-error/-/pretty-error-2.1.1.tgz#5f4f87c8f91e5ae3f3ba87ab4cf5e03b1a17f1a3"

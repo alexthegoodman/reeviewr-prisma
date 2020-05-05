@@ -14,7 +14,7 @@ export default class Strings {
   wordFreq(str) {
     const words = str.replace(/[.]/g, "").split(/\s/);
     const freqMap = {};
-    words.forEach(w => {
+    words.forEach((w) => {
       if (!freqMap[w]) {
         freqMap[w] = 0;
       }
@@ -53,8 +53,25 @@ export default class Strings {
 
   createQueryString(params) {
     var queryString = Object.keys(params)
-      .map(key => key + "=" + params[key])
+      .map((key) => key + "=" + params[key])
       .join("&");
     return queryString;
+  }
+
+  formatUrl(path) {
+    const pathBase = process.env.SERVER_URL;
+    const adjustedPath = path[0] !== "/" ? "/" + path : path;
+
+    return pathBase + adjustedPath;
+  }
+
+  paramsToString(params) {
+    let sendParams = "?";
+    for (const key in params) {
+      if (params.hasOwnProperty(key)) {
+        sendParams += key + "=" + params[key] + "&";
+      }
+    }
+    return sendParams;
   }
 }

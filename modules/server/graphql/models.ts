@@ -1,13 +1,5 @@
 // import { idArg, intArg, queryType, stringArg, objectType } from "@nexus/schema";
 import { schema } from "nexus";
-import { PrismaClient } from "../../../__generated__/prisma-client";
-import { NexusTypes } from "@nexus/schema/dist/core";
-// import "../../../__generated__/nexus.d.ts";
-// import "../../../__generated__/prisma-client/index.d.ts";
-
-// https://www.nexusjs.org/#/plugins/prisma
-
-// Need "Backing Types" for t.model and t.crud https://www.nexusjs.org/#/getting-started/migrate-from-nexus-schema?id=backing-types
 
 export const User = schema.objectType({
   name: "User",
@@ -29,9 +21,17 @@ export const User = schema.objectType({
     //   filtering: true,
     //   pagination: true,
     // });
-    t.model.spaces();
+    t.model.spaces({
+      pagination: true,
+      ordering: true,
+      filtering: true,
+    });
     t.model.memberOf();
-    // t.model.posts();
+    t.model.posts({
+      pagination: true,
+      ordering: true,
+      filtering: true,
+    });
     t.model.favorites();
     t.model.reviews();
     t.model.annotations();
@@ -49,7 +49,7 @@ export const User = schema.objectType({
     // // resolver is needed for certain kinds of deep queries
     t.list.field("memberOfPosts", {
       type: "Post",
-      args: { userId: schema.idArg(), postId: schema.stringArg() },
+      args: { userId: schema.stringArg(), postId: schema.stringArg() },
       nullable: true,
       resolve: async (_, { userId, postId }, ctx) => {
         console.info("call", ctx, userId, postId);
@@ -101,10 +101,11 @@ export const Space = schema.objectType({
 
     // t.list.field("livePosts", {
     //   type: "Post",
-    //   args: { first: intArg() },
+    //   args: { first: schema.intArg() },
     //   nullable: true,
     //   resolve: async (space, { first = 1 }, ctx) => {
-    //     const prisma: PrismaClient<{}, never> = ctx.prisma;
+    //     // console.info("livePosts ctx", ctx);
+    //     const prisma: PrismaClient<{}, never> = ctx["prisma"];
 
     //     // posts with spaces with members contain this user
     //     const posts = await prisma.post

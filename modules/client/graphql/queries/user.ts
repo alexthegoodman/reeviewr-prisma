@@ -109,7 +109,7 @@ const UserFragments = {
 // `;
 
 export const USER_QUERY = gql`
-  query findUser($id: ID) {
+  query findUser($id: String) {
     user(where: { id: $id }) {
       ...UserFragment
     }
@@ -118,7 +118,7 @@ export const USER_QUERY = gql`
 `;
 
 export const USER_PRIVATE_QUERY = gql`
-  query privateUser($id: ID) {
+  query privateUser($id: String) {
     user(where: { id: $id }) {
       ...UserFragment
     }
@@ -127,7 +127,7 @@ export const USER_PRIVATE_QUERY = gql`
 `;
 
 export const USER_JOINED_SPACES = gql`
-  query userJoinedSpaces($id: ID) {
+  query userJoinedSpaces($id: String) {
     user(where: { id: $id }) {
       memberOf {
         id
@@ -141,7 +141,7 @@ export const USER_JOINED_SPACES = gql`
           id
           userEmail
         }
-        livePosts(first: 2) {
+        posts(where: { itemDeleted: { equals: true } }) {
           id
           itemName
           itemUrlSegment
@@ -151,6 +151,16 @@ export const USER_JOINED_SPACES = gql`
             metaValue
           }
         }
+        # livePosts(first: 2) {
+        #   id
+        #   itemName
+        #   itemUrlSegment
+        #   itemMeta {
+        #     id
+        #     metaName
+        #     metaValue
+        #   }
+        # }
       }
       ...UserFragment
     }
@@ -159,7 +169,7 @@ export const USER_JOINED_SPACES = gql`
 `;
 
 export const USER_JOINED_SPACES_POSTS = gql`
-  query joinedSpacesPosts($userId: ID, $postId: String) {
+  query joinedSpacesPosts($userId: String, $postId: String) {
     user(where: { id: $userId }) {
       ...UserFragment
       memberOfPosts(userId: $userId, postId: $postId) {
@@ -176,18 +186,27 @@ export const USER_JOINED_SPACES_POSTS = gql`
   ${UserFragments.user}
 `;
 
+// export const SEARCH_USER_META = gql`
+//   query searchUserMeta($search: String) {
+//     users(
+//       where: {
+//         userMeta: {
+//           metaName: { equals: "firstName" }
+//           metaValue: { contains: $search }
+//         }
+//       }
+//     ) {
+//       id
+//       userEmail
+//     }
+//   }
+// `;
+
 export const SEARCH_USER_META = gql`
-  query searchUserMeta($search: String) {
-    users(
-      where: {
-        metaName: { equals: "firstName" }
-        metaValue: { contains: $search }
-      }
-    ) {
-      user {
-        id
-        userEmail
-      }
+  query searchUserMeta {
+    users {
+      id
+      userEmail
     }
   }
 `;

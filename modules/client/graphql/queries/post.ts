@@ -61,7 +61,7 @@ export const POSTS_QUERY = gql`
 `;
 
 export const POST_QUERY = gql`
-  query post($postId: ID) {
+  query post($postId: String) {
     post(where: { id: $postId }) {
       ...PostFragment
     }

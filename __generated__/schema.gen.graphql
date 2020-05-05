@@ -1111,10 +1111,10 @@ type Mutation {
   createOneUser(data: UserCreateInput!): User!
   deleteOneAnnotation(id: ID): Boolean
   deleteOneMessage(id: ID): Boolean
-  deleteOnePod(id: ID): Boolean
   deleteOnePost(id: ID): Boolean
   deleteOneQuestion(id: ID): Boolean
   deleteOneReview(id: ID): Boolean
+  deleteOneSpace(id: ID): Boolean
   deleteOneThread(id: ID): Boolean
   deleteOneUser(id: ID): Boolean
   updateOneAnnotation(data: AnnotationUpdateInput!, where: AnnotationWhereUniqueInput!): Annotation
@@ -4314,15 +4314,16 @@ type User {
   forgotHash: String!
   id: String!
   memberOf(after: SpaceWhereUniqueInput, before: SpaceWhereUniqueInput, first: Int, last: Int, skip: Int): [Space!]!
-  memberOfPosts(postId: String, userId: ID): [Post!]
+  memberOfPosts(postId: String, userId: String): [Post!]
   notifications(after: NotificationWhereUniqueInput, before: NotificationWhereUniqueInput, first: Int, last: Int, skip: Int): [Notification!]!
+  posts(after: PostWhereUniqueInput, before: PostWhereUniqueInput, first: Int, last: Int, orderBy: PostOrderByInput, skip: Int, where: PostWhereInput): [Post!]!
   privateHash: String!
   publicHash: String!
   questions(after: QuestionWhereUniqueInput, before: QuestionWhereUniqueInput, first: Int, last: Int, skip: Int): [Question!]!
   recievedNotifications(after: NotificationWhereUniqueInput, before: NotificationWhereUniqueInput, first: Int, last: Int, skip: Int): [Notification!]!
   reviews(after: ReviewWhereUniqueInput, before: ReviewWhereUniqueInput, first: Int, last: Int, skip: Int): [Review!]!
   sentNotifications(after: NotificationWhereUniqueInput, before: NotificationWhereUniqueInput, first: Int, last: Int, skip: Int): [Notification!]!
-  spaces(after: SpaceWhereUniqueInput, before: SpaceWhereUniqueInput, first: Int, last: Int, skip: Int): [Space!]!
+  spaces(after: SpaceWhereUniqueInput, before: SpaceWhereUniqueInput, first: Int, last: Int, orderBy: SpaceOrderByInput, skip: Int, where: SpaceWhereInput): [Space!]!
   threads(after: ThreadWhereUniqueInput, before: ThreadWhereUniqueInput, first: Int, last: Int, skip: Int): [Thread!]!
   updatedAt: DateTime!
   userConfirmed: Int!

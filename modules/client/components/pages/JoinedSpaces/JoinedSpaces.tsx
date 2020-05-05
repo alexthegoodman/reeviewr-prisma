@@ -8,25 +8,24 @@ import CategoryGrid from "../../layout/CategoryGrid/CategoryGrid";
 import NoResults from "../../system/NoResults/NoResults";
 import SpaceCard from "../../space/SpaceCard/SpaceCard";
 import { JoinedSpacesProps } from "./JoinedSpaces.d";
+import { User } from "../../../../../__generated__/gql-gen/grapql-types";
 
 const JoinedSpaces: React.FC<JoinedSpacesProps> = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["reeviewrId"]);
 
-  const [data, setData] = React.useState(null);
+  const [data, setData] = React.useState<User>(null);
 
   return (
     <>
       <GraphQLData
         QUERY={USER_JOINED_SPACES}
         loadingText="Loading joined spaces..."
-        onFinish={(data) => setData(data)}
+        onFinish={(gqlData) => setData(gqlData["user"])}
         variables={{ id: cookies["reeviewrId"] }}
       >
-        {data !== null &&
-        data.findOneUser !== null &&
-        data.findOneUser.memberOf.length > 0 ? (
+        {data !== null && data.memberOf.length > 0 ? (
           <CategoryGrid title="Joined Spaces">
-            {data.findOneUser.memberOf.map((space) => {
+            {data.memberOf.map((space) => {
               return <SpaceCard key={space.id} space={space} />;
             })}
           </CategoryGrid>

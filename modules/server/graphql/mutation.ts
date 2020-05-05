@@ -40,6 +40,8 @@ export const Mutation = schema.mutationType({
     t.crud.updateOneTag();
     t.crud.updateOneCategory();
 
+    // TODO: Leverage upsert
+
     t.boolean("deleteOneUser", {
       args: { id: schema.idArg() },
       nullable: true,
@@ -53,11 +55,11 @@ export const Mutation = schema.mutationType({
       },
     });
 
-    t.boolean("deleteOnePod", {
+    t.boolean("deleteOneSpace", {
       args: { id: schema.idArg() },
       nullable: true,
       resolve: async (_, { id }, ctx) => {
-        await ctx.prisma.pod.update({
+        await ctx.prisma.space.update({
           where: { id },
           data: { itemDeleted: true },
         });

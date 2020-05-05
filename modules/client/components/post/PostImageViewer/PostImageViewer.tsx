@@ -7,6 +7,7 @@ import PostCard from "../PostCard/PostCard";
 import NoResults from "../../system/NoResults/NoResults";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 import HorizontalScroll from "react-scroll-horizontal";
+import { Post } from "../../../../../__generated__/gql-gen/grapql-types";
 
 const PostImageViewer: React.FC<PostImageViewerProps> = ({
   ref = null,
@@ -14,7 +15,7 @@ const PostImageViewer: React.FC<PostImageViewerProps> = ({
   onClick = (e) => console.info("Click"),
   ctrls = <></>,
 }) => {
-  const [data, setData] = React.useState(null);
+  const [data, setData] = React.useState<Post>(null);
 
   const route = useCurrentRoute();
 
@@ -28,12 +29,10 @@ const PostImageViewer: React.FC<PostImageViewerProps> = ({
     <GraphQLData
       QUERY={POST_QUERY}
       loadingText="Loading post detail..."
-      onFinish={(data) => setData(data)}
+      onFinish={(gqlData) => setData(gqlData["post"])}
       variables={{ postId }}
     >
-      {typeof data !== "undefined" &&
-      data !== null &&
-      data.findOnePost !== null ? (
+      {data !== null && typeof data !== "undefined" ? (
         <section className="postImageViewer">
           <div className="postImageViewerContain">
             <div className="focusContent">

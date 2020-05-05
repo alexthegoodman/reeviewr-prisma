@@ -8,6 +8,7 @@ import { Button, Text } from "@blueprintjs/core";
 import NotificationItem from "../../notifications/NotificationItem/NotificationItem";
 import GraphQLData from "../../data/GraphQLData/GraphQLData";
 import NoResults from "../../system/NoResults/NoResults";
+import { Notification } from "../../../../../__generated__/gql-gen/grapql-types";
 
 const Notifications: React.FC<NotificationsProps> = () => {
   const [count, setCount] = React.useState(10);
@@ -16,7 +17,7 @@ const Notifications: React.FC<NotificationsProps> = () => {
     "reeviewrDarkMode",
   ]);
 
-  const [data, setData] = React.useState(null);
+  const [data, setData] = React.useState<Notification[]>(null);
 
   return (
     <>
@@ -28,16 +29,14 @@ const Notifications: React.FC<NotificationsProps> = () => {
           <GraphQLData
             QUERY={GET_NOTIFICATIONS}
             loadingText="Loading notifications..."
-            onFinish={(data) => setData(data)}
+            onFinish={(gqlData) => setData(gqlData["notifications"])}
             variables={{
               id: cookies["reeviewrId"],
               first: count,
             }}
           >
-            {data !== null &&
-            typeof data.findManyNotification !== "undefined" &&
-            data.findManyNotification !== null ? (
-              data.findManyNotification.map((notification, i) => {
+            {data !== null && typeof data !== "undefined" ? (
+              data.map((notification, i) => {
                 return <NotificationItem key={i} notification={notification} />;
               })
             ) : (
