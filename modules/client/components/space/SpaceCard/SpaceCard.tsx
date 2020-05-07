@@ -30,7 +30,7 @@ const SpaceCard: React.FC<SpaceCardProps> = ({
       <div className="spaceCardContain">
         <div className="spaceCardHeader">
           <Link className="spaceCardHeadline" href={spaceUrl}>
-            {space.itemName}!
+            {space.itemName}
           </Link>
           <div className="spaceCtrls">
             <JoinButton spaceId={space.id} spaceMembers={space.members} />
