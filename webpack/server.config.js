@@ -27,7 +27,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const entry = Object.assign(
   {
     server: "./entry/server.ts",
-  },
+  }
   // scriptEntry
 );
 console.log(entry);
@@ -72,8 +72,8 @@ module.exports = {
       loaders.typescript,
       loaders.graphql,
       // loaders.fontLoader,
-      loaders.scss,
-      loaders.css,
+      loaders.serverSideSass,
+      loaders.serverSideCss,
     ].concat(loaders.allImagesAndFontsArray),
   },
 

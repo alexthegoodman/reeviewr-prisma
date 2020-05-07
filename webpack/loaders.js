@@ -81,7 +81,7 @@ module.exports = {
   //   type: "javascript/auto",
   // },
 
-  scss: {
+  clientSideSass: {
     test: /\.scss$/,
     use: [
       // "style-loader", // creates style nodes from JS strings
@@ -89,6 +89,16 @@ module.exports = {
       process.env.NODE_ENV !== "production"
         ? "style-loader"
         : MiniCssExtractPlugin.loader,
+      "css-loader", // translates CSS into CommonJS
+      "sass-loader", // compiles Sass to CSS, using Node Sass by default
+      // "icon-font-loader",
+    ],
+  },
+
+  serverSideSass: {
+    test: /\.scss$/,
+    use: [
+      MiniCssExtractPlugin.loader,
       "css-loader", // translates CSS into CommonJS
       "sass-loader", // compiles Sass to CSS, using Node Sass by default
       // "icon-font-loader",
@@ -104,15 +114,19 @@ module.exports = {
   //   },
   // },
 
-  css: {
+  clientSideCss: {
     test: /\.css$/,
     use: [
-      "style-loader", // creates style nodes from JS strings
-      // MiniCssExtractPlugin.loader,
-      "css-loader", // translates CSS into CommonJS
-      // "sass-loader", // compiles Sass to CSS, using Node Sass by default
-      // "icon-font-loader",
+      process.env.NODE_ENV !== "production"
+        ? "style-loader"
+        : MiniCssExtractPlugin.loader,
+      "css-loader",
     ],
+  },
+
+  serverSideCss: {
+    test: /\.css$/,
+    use: [MiniCssExtractPlugin.loader, "css-loader"],
   },
 
   // css: {

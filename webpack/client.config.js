@@ -293,8 +293,8 @@ module.exports = {
       },
       loaders.clientSideTypeScript,
       loaders.graphql,
-      loaders.scss,
-      loaders.css,
+      loaders.clientSideSass,
+      loaders.clientSideCss,
     ].concat(loaders.allImagesAndFontsArray),
   },
   devServer: {
