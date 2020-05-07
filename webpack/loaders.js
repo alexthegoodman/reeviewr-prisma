@@ -22,19 +22,48 @@ module.exports = {
     ],
   },
 
+  // clientSideTypeScript: {
+  //   test: /\.(tsx?|jsx?)/,
+  //   // exclude: /data-seed/,
+  //   exclude: /node_modules/,
+  //   use: [
+  //     {
+  //       // loader: "happypack/loader?id=ts",
+  //       loader: "ts-loader",
+  //       options: {
+  //         // https://webpack.js.org/guides/build-performance/#typescript-loader
+  //         transpileOnly: true,
+  //         experimentalWatchApi: true,
+  //         configFile: "tsconfig.client.json",
+  //       },
+  //     },
+  //   ],
+  // },
+
   clientSideTypeScript: {
     test: /\.(tsx?|jsx?)/,
     // exclude: /data-seed/,
     exclude: /node_modules/,
     use: [
       {
-        // loader: "happypack/loader?id=ts",
-        loader: "ts-loader",
+        loader: "babel-loader",
         options: {
-          // https://webpack.js.org/guides/build-performance/#typescript-loader
-          transpileOnly: true,
-          experimentalWatchApi: true,
-          configFile: "tsconfig.client.json",
+          cacheDirectory: true,
+          babelrc: false,
+          presets: [
+            [
+              "@babel/preset-env",
+              { targets: { browsers: "last 2 versions" } }, // or whatever your project requires
+            ],
+            "@babel/preset-typescript",
+            "@babel/preset-react",
+          ],
+          plugins: [
+            // plugin-proposal-decorators is only needed if you're using experimental decorators in TypeScript
+            ["@babel/plugin-proposal-decorators", { legacy: true }],
+            ["@babel/plugin-proposal-class-properties", { loose: true }],
+            "react-hot-loader/babel",
+          ],
         },
       },
     ],
@@ -56,7 +85,10 @@ module.exports = {
     test: /\.scss$/,
     use: [
       // "style-loader", // creates style nodes from JS strings
-      MiniCssExtractPlugin.loader,
+      // MiniCssExtractPlugin.loader,
+      process.env.NODE_ENV !== "production"
+        ? "style-loader"
+        : MiniCssExtractPlugin.loader,
       "css-loader", // translates CSS into CommonJS
       "sass-loader", // compiles Sass to CSS, using Node Sass by default
       // "icon-font-loader",

@@ -1,25 +1,25 @@
 import * as React from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
+import { hot } from "react-hot-loader/root";
+
 import * as mixpanel from "mixpanel-browser";
 import { ApolloProvider } from "react-apollo";
 import { MixpanelProvider } from "react-mixpanel";
 import { Router, View } from "react-navi";
-
-import App from "./components/layout/App/App";
-import routes from "./routes";
-
 import * as Sentry from "@sentry/browser";
 import { CookiesProvider } from "react-cookie";
 import FullStory from "react-fullstory";
 import MessengerCustomerChat from "react-messenger-customer-chat";
-import ErrorFallback from "./components/pages/status/ErrorFallback/ErrorFallback";
-import { AppContextAPI } from "./context/AppContextAPI";
-import client from "./services/ApolloClient";
-import { ErrorHandler } from "./services/ErrorHandler";
 import whyDidYouRender from "@welldone-software/why-did-you-render";
 
-const styles = require("./sass/style.scss");
+import routes from "./routes";
+import ErrorFallback from "./components/pages/status/ErrorFallback/ErrorFallback";
+import client from "./services/ApolloClient";
+import { ErrorHandler } from "./services/ErrorHandler";
+import { AppProvider } from "./StyleProvider";
+
+// TagManager
 
 mixpanel.init(process.env.MIXPANEL_SECRET);
 
@@ -33,17 +33,7 @@ if (process.env.NODE_ENV !== "development") {
 //   });
 // }
 
-interface AppProviderProps {}
-
 interface RootProviderProps {}
-
-export const AppProvider: React.FC<AppProviderProps> = (props) => {
-  return (
-    <AppContextAPI>
-      <View />
-    </AppContextAPI>
-  );
-};
 
 const RootProvider: React.FC<RootProviderProps> = (props) => {
   return (
@@ -73,4 +63,4 @@ const RootProvider: React.FC<RootProviderProps> = (props) => {
   );
 };
 
-export default RootProvider;
+export default hot(RootProvider);

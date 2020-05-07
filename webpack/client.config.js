@@ -11,6 +11,7 @@ var ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const IconFontPlugin = require("icon-font-loader").Plugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 const { defaults } = require("lodash");
 
 const os = require("os");
@@ -26,10 +27,12 @@ const PROXY_HOST = config.get("server.apiHost");
 // });
 
 let hot = true;
-let injectHot = false;
-let inline = false; // show/hide black top-bar
-let noInfo = false;
+let injectHot = true;
+let inline = true; // show/hide black top-bar
+let noInfo = true;
 let liveReload = false;
+
+console.info("webpack client", process.env.NODE_ENV);
 ////////////////////////////////////////////////////////////////////////////////
 // per-environment plugins
 const environmentPlugins = (() => {
@@ -56,7 +59,7 @@ const environmentPlugins = (() => {
 })();
 
 module.exports = {
-  mode: config.get("minify") ? "production" : "development",
+  mode: process.env.NODE_ENV,
   entry: {
     app: [
       // "whatwg-fetch",
@@ -101,7 +104,16 @@ module.exports = {
     warningsFilter: /export .* was not found in/,
   },
 
+  devtool: "eval-source-map",
+
   plugins: [
+    // clean-webpack-plugin to clean /dist/ every build
+    // TODO better than EnvironmentPlugin and DefinePlugin?
+    new Dotenv(),
+    // TODO: compared to DefinedPlugin?
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: process.env.NODE_ENV,
+    }),
     // Define global letiables in the client to instrument behavior.
     new webpack.DefinePlugin({
       // Flag to detect non-production
@@ -196,6 +208,8 @@ module.exports = {
       WaveSurfer: "wavesurfer.js",
     }),
 
+    new webpack.NamedModulesPlugin(),
+
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
@@ -208,9 +222,13 @@ module.exports = {
       //     ? "[name].[chunkhash].css"
       //     : "[name].css",
       filename:
-        process.env.NODE_ENV === "development" ? "[name].css" : "[name].css",
+        process.env.NODE_ENV === "development"
+          ? "[hash].[name].css"
+          : "[name].css",
       chunkFilename:
-        process.env.NODE_ENV === "development" ? "[name].css" : "[name].css",
+        process.env.NODE_ENV === "development"
+          ? "[hash].[name].css"
+          : "[name].css",
     }),
 
     new CopyPlugin([
@@ -253,6 +271,7 @@ module.exports = {
     alias: {
       "@material-ui/core": "@material-ui/core/es",
       wavesurfer: require.resolve("wavesurfer.js"),
+      "react-dom": "@hot-loader/react-dom",
     },
   },
 

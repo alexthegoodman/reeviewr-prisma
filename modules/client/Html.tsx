@@ -1,5 +1,9 @@
 import * as React from "react";
 
+// ***
+// This file is used only in SSR. (live / production settings)
+// Should be same as entry/index.html except SSR related adjustments
+
 export const Html = ({ content, state }) => {
   return (
     <html>
@@ -12,7 +16,7 @@ export const Html = ({ content, state }) => {
           href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900&display=swap"
           rel="stylesheet"
         />
-        <link rel="stylesheet" href="/public/server.css" />
+        <link rel="stylesheet" href="/public/app.css" />
         <link rel="icon" href="/public/favicon.ico" />
       </head>
       <body>

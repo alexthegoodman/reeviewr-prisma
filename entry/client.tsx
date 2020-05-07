@@ -1,3 +1,6 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+
 import window from "global";
 import TagManager from "react-gtm-module";
 
@@ -9,11 +12,12 @@ const bootstrapClient = () => {
   console.info("bootstrap client");
 
   // TODO: add to ENV
-  const tagManagerArgs = {
-    gtmId: process.env.GTM,
-  };
+  // See RootProvider
+  // const tagManagerArgs = {
+  //   gtmId: process.env.GTM,
+  // };
 
-  TagManager.initialize(tagManagerArgs);
+  // TagManager.initialize(tagManagerArgs);
 
   ReactDom.render(<RootProvider />, document.getElementById("app"));
 };

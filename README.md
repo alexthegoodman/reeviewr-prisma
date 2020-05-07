@@ -25,9 +25,9 @@ Use a Linux machine. This will assure compatability.
 
 - Pull `https://github.com/alexthegoodman/reeviewr-prisma`
 - Install Pre-Requisites
-  - Node (NVM)
-  - Yarn
-  - Postgres and PgAdmin
+  - Node <a href="#using-nvm">Using nvm</a>
+  - Yarn <a href="#managing-packages">Managing packages</a>
+  - Postgres <a href="#managing-databases">Managing databases</a>
 - Install Dependencies
   - `yarn`
   - `yarn global add dotenv-cli`
@@ -115,6 +115,26 @@ To ease creation of components, take advantage of these commands
 - Dev Depenendencies
 - Suspense in Navi with SSR and HMR
 - Add `yarn upgrade`, `npm-upgrade`, and `ncu` to CI/CD
+
+### Managing Packages
+
+- Delete `yarn.lock`
+- Run `yarn upgrade`
+- Run `npm-upgrade`
+- Run `ncu`
+- Freeze `package.json` by removing all carets (^)
+- Re-install modules by running `yarn`
+
+### Managing Databases
+
+- Run `brew cask install pgadmin4`
+
+### Using nvm
+
+- Run `nvm install node`
+- Run `nvm alias default node`
+- Restart Terminal
+- Run`node -v`
 
 ### Using Prisma
 

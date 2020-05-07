@@ -1,4 +1,5 @@
 import * as React from "react";
+// import { hot } from "react-hot-loader/root";
 
 import Utility from "../../../../services/Utility";
 import { CATEGORIES_SPACES_POSTS } from "../../../graphql/queries/category";
@@ -37,5 +38,7 @@ const Explore: React.FC<ExploreProps> = () => {
     </>
   );
 };
+
+// if (module.hot) module.hot.accept();
 
 export default Explore;
