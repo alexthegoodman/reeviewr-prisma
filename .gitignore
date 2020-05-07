@@ -61,10 +61,6 @@ typings/
 .idea/
 msl-website.iml
 
-# dist
-dist/*.js
-dist/**/*.*
-
 # shared
 shared/**/*.js
 
@@ -73,10 +69,10 @@ server/src/**/*.js
 server/tests/**/*.js
 
 # ignore generated js files under server/src
-client/src/**/*.js
-client/src/**/*.jsx
-client/tests/**/*.js
-client/tests/**/*.jsx
+# client/src/**/*.js
+# client/src/**/*.jsx
+# client/tests/**/*.js
+# client/tests/**/*.jsx
 
 # DS_Store
 *.DS_Store
@@ -106,3 +102,7 @@ tmp/
 toxicrobin
 
 .sql
+
+# Generated / For Distribution
+dist
+__generated__
