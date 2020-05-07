@@ -11,12 +11,25 @@ var ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const IconFontPlugin = require("icon-font-loader").Plugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const { defaults } = require("lodash");
 
 const os = require("os");
 const DEV_PORT = config.get("devServer.port");
 
 const PROXY_HOST = config.get("server.apiHost");
 
+// const { hot, inline, noInfo, liveReload } = defaults(config.get("devServer"), {
+//   hot: false,
+//   inline: false,
+//   noInfo: false,
+//   liveReload: false,
+// });
+
+let hot = true;
+let injectHot = false;
+let inline = false; // show/hide black top-bar
+let noInfo = false;
+let liveReload = false;
 ////////////////////////////////////////////////////////////////////////////////
 // per-environment plugins
 const environmentPlugins = (() => {
@@ -270,9 +283,11 @@ module.exports = {
     publicPath: "/",
     // contentBase: "/public",
     port: DEV_PORT,
-    hot: true,
-    injectHot: true,
-    liveReload: false,
+    injectHot: injectHot,
+    hot,
+    inline,
+    noInfo,
+    liveReload,
     historyApiFallback: true,
     stats: "errors-only",
     disableHostCheck: config.get("devServer.disableHostCheck"),

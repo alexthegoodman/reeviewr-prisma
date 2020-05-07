@@ -15,11 +15,15 @@ const startDevServer = () => {
     return Promise.resolve(devServer);
   }
 
-  const { hot, inline, noInfo } = defaults(config.get("devServer"), {
-    hot: true,
-    inline: true,
-    noInfo: true,
-  });
+  const { hot, inline, noInfo, liveReload } = defaults(
+    config.get("devServer"),
+    {
+      hot: true,
+      inline: true,
+      noInfo: true,
+      liveReload: false,
+    }
+  );
 
   // Set up hot reloading entry points.
   webpackConfig.plugins.unshift(new webpack.HotModuleReplacementPlugin());
@@ -30,7 +34,7 @@ const startDevServer = () => {
   return new Promise((resolve, reject) => {
     devServer = new WebpackDevServer(webpack(webpackConfig), {
       publicPath: webpackConfig.output.publicPath,
-      liveReload: false,
+      liveReload: liveReload,
       hot: hot,
       injectHot: hot,
       inline: inline,

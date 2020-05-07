@@ -37,9 +37,10 @@ module.exports = {
   devServer: {
     url: "http://localhost",
     port: 3000,
-    hot: true,
-    inline: true,
-    noInfo: true,
+    hot: process.env.HMR || true,
+    inline: process.env.HMR || true,
+    noInfo: process.env.HMR || true,
+    liveReload: process.env.LIVE_RELOAD || true,
     disableHostCheck: ["1", "true"].includes(
       process.env.DEV_SERVER_DISABLE_HOST_CHECK
     ),

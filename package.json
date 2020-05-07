@@ -17,6 +17,7 @@
     "build:app": "concurrently 'yarn build:client' 'yarn build:server'",
     "build": "yarn build:pre && yarn build:app",
     "build:production": "cross-env NODE_ENV=production yarn build",
+    "build:run:server": "node dist/server.js -- dist/server.js",
     "dev:client": "webpack-dev-server --config webpack/client.config.js",
     "dev:server:webpack": "webpack --config webpack/server.config.js --watch",
     "dev:server:nodemon": "nodemon --watch dist/server.js -- dist/server.js",
