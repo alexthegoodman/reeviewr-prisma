@@ -30,7 +30,9 @@ const startDevServer = () => {
   return new Promise((resolve, reject) => {
     devServer = new WebpackDevServer(webpack(webpackConfig), {
       publicPath: webpackConfig.output.publicPath,
+      liveReload: false,
       hot: hot,
+      injectHot: hot,
       inline: inline,
       historyApiFallback: true,
       noInfo: noInfo,

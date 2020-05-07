@@ -111,6 +111,10 @@ To ease creation of components, take advantage of these commands
 - graphql-codegen
 - Limit incoming/outgoing calls/queries per minute on average
 - Hot Module Replacement
+- Split up Prisma schema
+- Dev Depenendencies
+- Suspense in Navi with SSR and HMR
+- Add `yarn upgrade`, `npm-upgrade`, and `ncu` to CI/CD
 
 ### Using Prisma
 

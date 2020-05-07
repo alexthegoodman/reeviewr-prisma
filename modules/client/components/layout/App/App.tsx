@@ -1,5 +1,5 @@
 import * as React from "react";
-import { hot } from "react-hot-loader";
+// import { hot } from "react-hot-loader";
 
 import { useCookies } from "react-cookie";
 import { useCurrentRoute, useNavigation } from "react-navi";
@@ -59,4 +59,8 @@ const App: React.FC<AppProps> = ({ children }) => {
   return <>{children}</>;
 };
 
-export default hot(module)(App);
+// export default hot(module)(App);
+
+if (module.hot) module.hot.accept();
+
+export default App;
