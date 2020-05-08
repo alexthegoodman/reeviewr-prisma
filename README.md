@@ -17,11 +17,15 @@
 
 ## Introduction
 
-TypeScript
-Node + Postgres + Prisma + GraphQL
-React + Apollo
+This web app has been open sourced so that it may evolve and inspire other developers and creatives.
 
-Special thanks goes to Atomic Object of Grand Rapids, MI for the original starter kit.
+Featuring Packages: `TypeScript, Node, Postgres, Passport, Mandrill, Prisma, Nexus, React, Apollo, Blueprint, Storybook, Jest, Cypress, Formik, Lodash, Moment, Navi, Superagent, Webpack`
+
+Monitoring: `Mixpanel, Sentry, FullStory, Tag Manager, Rollbar`
+
+Recommended: `VS Code, Prettier plugin`
+
+Special thanks goes to Atomic Object for the original starter kit.
 
 ### Getting Started
 
@@ -79,6 +83,7 @@ Notes: SSR should function here via the Express server
 
 ### Heroku
 
+- Install Heroku for Terminal
 - Assure updated ENV vars
 - Check Prisma generator binaryTargets
 - Put binary needed from node_modules to /entry/ (`build:production` copies it to /dist/)
@@ -91,79 +96,6 @@ Notes: SSR should function here via the Express server
 ### How To
 
 - Use Git Flow (feature branches)
-
-### Technology Used
-
-### Prisma
-
-See <a href="#using-prisma">Using Prisma</a>
-
-### Custom Hooks
-
-See `modules/client/hooks/`
-
-### Apollo
-
-See `modules/client/services/ApolloClient.ts`
-
-### Context
-
-See `modules/client/context/`
-
-### Navi
-
-See `modules/client/routes/`
-
-### Passport
-
-See `modules/server/`
-
-### Heroku
-
-Install Heroku for Terminal
-
-### Terminal Commands
-
-To ease creation of components, take advantage of these commands
-
-- `yarn gen:ui ComponentName`
-- `yarn gen:page PageName`
-- `yarn gen:data DataComponentName`
-- `yarn storybook` to browse all /ui/ components
-- `yarn test` to run Jest and Cypress tests
-
-### TODO
-
-- `TODO` comments in code
-- Write Cypress tests
-- Limit incoming/outgoing calls/queries per minute on average
-- Split up Prisma schema
-- Dev Depenendencies
-- Suspense in Navi with SSR and HMR
-- https://classic.yarnpkg.com/blog/2017/08/02/introducing-workspaces/
-- Docgen `styleguide.config.js`
-- GraphQL roles / permissions: https://github.com/lvauvillier/nexus-plugin-shield
-- JWT on queries: https://github.com/Camji55/nexus-plugin-jwt-auth
-
-### Managing Packages
-
-- Delete `yarn.lock`
-- Run `yarn upgrade`
-- Run `npm-upgrade`
-- Run `ncu`
-- Freeze `package.json` by removing all carets (^)
-- Re-install modules by running `yarn`
-
-### Managing Databases
-
-- Run `brew cask install pgadmin4`
-
-### Using nvm
-
-- Run `nvm install node`
-- Run `nvm alias default node`
-- Restart Terminal
-- Run`node -v`
 
 ### Using Prisma
 
@@ -178,3 +110,76 @@ To ease creation of components, take advantage of these commands
 - Run `yarn prisma:apply` to update database according to latest migrations
 
 Learn more about Prisma at <a href="/PRISMA.md">PRISMA.md</a>
+
+### More Info
+
+#### Terminal Commands
+
+To ease creation of components, take advantage of these commands
+
+- `yarn gen:ui ComponentName`
+- `yarn gen:page PageName`
+- `yarn gen:data DataComponentName`
+- `yarn storybook` to browse all /ui/ components
+- `yarn test` to run Jest and Cypress tests
+
+#### Managing Packages
+
+- Delete `yarn.lock`
+- Run `yarn upgrade`
+- Run `npm-upgrade`
+- Run `ncu`
+- Freeze `package.json` by removing all carets (^)
+- Re-install modules by running `yarn`
+
+#### Managing Databases
+
+- Run `brew cask install pgadmin4`
+
+#### Using nvm
+
+- Run `nvm install node`
+- Run `nvm alias default node`
+- Restart Terminal
+- Run`node -v`
+
+### Technology Used
+
+#### Prisma
+
+See <a href="#using-prisma">Using Prisma</a>
+
+#### Custom Hooks
+
+See `modules/client/hooks/`
+
+#### Apollo
+
+See `modules/client/services/ApolloClient.ts`
+
+#### Context
+
+See `modules/client/context/`
+
+#### Navi
+
+See `modules/client/routes/`
+
+#### Passport
+
+See `modules/server/`
+
+### TODO
+
+#### Priority
+
+- `TODO` comments in code
+- Write Cypress tests
+- Limit incoming/outgoing calls/queries per minute on average
+- Split up Prisma schema
+- Dev Depenendencies
+- Suspense in Navi with SSR and HMR
+- https://classic.yarnpkg.com/blog/2017/08/02/introducing-workspaces/
+- Docgen `styleguide.config.js`
+- GraphQL roles / permissions: https://github.com/lvauvillier/nexus-plugin-shield
+- JWT on queries: https://github.com/Camji55/nexus-plugin-jwt-auth
