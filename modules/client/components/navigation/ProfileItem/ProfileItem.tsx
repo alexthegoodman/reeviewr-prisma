@@ -13,15 +13,15 @@ const ProfileItem: React.FC<ProfileItemProps> = ({
 }) => {
   const hawaii = new Hawaii();
   const oahu = new Oahu();
-  const clickHandler = e => onClick(e);
+  const clickHandler = (e) => onClick(e);
 
   // console.info("profile item data", userData);
 
   let imageUrl = "";
   let points = parseInt(
-    oahu.legacy.extractMetaValue(userData.userMeta, "points")
+    oahu.dataHandler.extractMetaValue(userData.userMeta, "points")
   );
-  // let profileFilename = parseInt(oahu.legacy.extractMetaValue(userData.userMeta, "profileFilename"));
+  // let profileFilename = parseInt(oahu.dataHandler.extractMetaValue(userData.userMeta, "profileFilename"));
 
   let pointLabel = points > 1 ? `${points} Points` : `${points} Point`;
 

@@ -23,7 +23,7 @@ import * as Yup from "yup";
 // } from "../../../../../__generated__/gql-gen/grapql-types";
 import { GenreList, Genres } from "../../../../defs/genres";
 import { ERROR_CODE } from "../../../../services/ERROR_CODE";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import Utility from "../../../../services/Utility";
 import { useAppContext } from "../../../context";
 import { ALL_SPACES } from "../../../graphql/queries/space";
@@ -49,7 +49,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
   const authClient = new AuthClient();
   const itemClient = new ItemClient();
   const utility = new Utility();
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
 
   const [{ mixpanel }, dispatch] = useAppContext();
   const [formError, setFormError] = React.useState(null);
@@ -65,7 +65,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
   let spaceOptions = [];
   if (!spaceLoading && utility.isDefinedWithContent(spaceData)) {
     spaceOptions = spaceData.findManySpace.map((space, i) => {
-      const postType = legacy.extractMetaValue(space.itemMeta, "postType");
+      const postType = dataHandler.extractMetaValue(space.itemMeta, "postType");
       return { label: space.itemName, value: space.id, postType };
     });
   }

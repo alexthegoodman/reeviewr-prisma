@@ -3,7 +3,7 @@ import * as React from "react";
 import { Icon, Text, Popover, Button, Position, Menu } from "@blueprintjs/core";
 import { Link } from "react-navi";
 import Core from "../../../../services/Core";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import { MiniPostCardProps } from "./MiniPostCard.d";
 import MenuItem from "../../navigation/MenuItem/MenuItem";
 import Hawaii from "../../../services/Hawaii";
@@ -20,7 +20,7 @@ const MiniPostCard: React.FC<MiniPostCardProps> = ({
   const hawaii = new Hawaii();
   const oahu = new Oahu();
 
-  const filename = oahu.legacy.extractMetaValue(
+  const filename = oahu.dataHandler.extractMetaValue(
     post.itemMeta,
     "contentFilename"
   );

@@ -5,7 +5,7 @@ import { Image } from "cloudinary-react";
 import { useQuery } from "@apollo/react-hooks";
 import { ImageSizes } from "../../../../defs/imageSizes";
 import Core from "../../../../services/Core";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import Utility from "../../../../services/Utility";
 import { useAppContext } from "../../../context";
 import { FILE_QUERY } from "../../../graphql/queries/userTrack";
@@ -16,19 +16,19 @@ import { ReviewCardDataProps } from "./ReviewCardData.d";
 const ReviewCardData: React.FC<ReviewCardDataProps> = ({
   ref = null,
   className = "",
-  onClick = e => console.info("Click"),
+  onClick = (e) => console.info("Click"),
   review,
   node = 0,
   track = null,
   trackImageUrl = "",
   trackAltText = "",
 }) => {
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
   const strings = new Strings();
   const core = new Core();
   const utility = new Utility();
 
-  const clickHandler = e => onClick(e);
+  const clickHandler = (e) => onClick(e);
 
   const [{ mixpanel }, dispatch] = useAppContext();
   const [modelOpen, setModelOpen] = React.useState(false);
@@ -45,7 +45,7 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
     trackImageUrl = core.extractCoverArt(track);
     trackAltText = track.itemName;
 
-    trackMetaList = legacy.extractMultipleMeta(review.userTrack.itemMeta, [
+    trackMetaList = dataHandler.extractMultipleMeta(review.userTrack.itemMeta, [
       "questionCount",
       "theOption",
       "audioId",
@@ -71,7 +71,7 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
       "reviewedBy",
     ]);
   } else if (track !== null) {
-    trackMetaList = legacy.extractMultipleMeta(track.itemMeta, [
+    trackMetaList = dataHandler.extractMultipleMeta(track.itemMeta, [
       "questionCount",
       "theOption",
       "audioId",
@@ -99,14 +99,14 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
   }
 
   if (review.user !== null) {
-    const userMetaList = legacy.extractMultipleMeta(review.user.userMeta, [
+    const userMetaList = dataHandler.extractMultipleMeta(review.user.userMeta, [
       "firstName",
       "lastName",
       "userArtistName",
       "profileImage",
     ]);
 
-    const reviewMetaList = legacy.extractMultipleMeta(review.itemMeta, [
+    const reviewMetaList = dataHandler.extractMultipleMeta(review.itemMeta, [
       "questionType1",
       "questionAnswer1",
       "questionType2",
@@ -139,7 +139,7 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
           trackImageUrl={trackImageUrl}
           trackAltText={trackAltText}
           trackId={trackId}
-          onClick={e => {
+          onClick={(e) => {
             // clickHandler(e);
             mixpanel.track("Open review card modal", {
               env: process.env.NODE_ENV,
@@ -157,7 +157,7 @@ const ReviewCardData: React.FC<ReviewCardDataProps> = ({
             onClose={() => setModelOpen(false)}
           >
             <section className="dialog-body">
-              {[1, 2, 3].map(node => {
+              {[1, 2, 3].map((node) => {
                 let answer = strings.decode(
                   reviewMetaList[`questionAnswer${node}`]
                 );

@@ -4,7 +4,15 @@ import * as faker from "faker";
 
 const prisma = new PrismaClient({ log: ["query", "info", "warn"] });
 
-export default async function seedSpaces(user1, cat1, user2, cat2) {
+export default async function seedSpaces(
+  user1,
+  user2,
+  user3,
+  user4,
+  user5,
+  cat1,
+  cat2
+) {
   const spaceSchema = {
     user: { connect: { id: user1.id } },
     itemType: "default",
@@ -45,6 +53,7 @@ export default async function seedSpaces(user1, cat1, user2, cat2) {
       itemUrlSegment: faker.lorem.slug(),
       itemName: "Watercolor Painting",
       categories: { connect: { id: cat1.id } },
+      members: { connect: [{ id: user2.id }, { id: user3.id }] },
     },
   });
 
@@ -54,6 +63,7 @@ export default async function seedSpaces(user1, cat1, user2, cat2) {
       itemUrlSegment: faker.lorem.slug(),
       itemName: "Oil Painting",
       categories: { connect: { id: cat1.id } },
+      members: { connect: [{ id: user4.id }, { id: user5.id }] },
     },
   });
 
@@ -63,6 +73,7 @@ export default async function seedSpaces(user1, cat1, user2, cat2) {
       itemUrlSegment: faker.lorem.slug(),
       itemName: "Landscapes and Outdoors",
       categories: { connect: { id: cat2.id } },
+      members: { connect: [{ id: user1.id }] },
     },
   });
 

@@ -3,24 +3,24 @@ import * as React from "react";
 import { Text } from "@blueprintjs/core";
 import { Link } from "react-navi";
 import { NotificationItemProps } from "./NotificationItem.d";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import { NOTIFICATION_CODE } from "../../../../services/NOTIFICATION_CODE";
 
 const NotificationItem: React.FC<NotificationItemProps> = ({
   ref = null,
   className = "",
-  onClick = e => console.info("Click"),
+  onClick = (e) => console.info("Click"),
   notification = null,
 }) => {
-  const legacy = new Legacy();
-  const clickHandler = e => onClick(e);
+  const dataHandler = new DataHandler();
+  const clickHandler = (e) => onClick(e);
   // console.info("notification details", notification);
 
-  const senderFirstName = legacy.extractMetaValue(
+  const senderFirstName = dataHandler.extractMetaValue(
     notification.sender.userMeta,
     "firstName"
   );
-  const senderLastName = legacy.extractMetaValue(
+  const senderLastName = dataHandler.extractMetaValue(
     notification.sender.userMeta,
     "lastName"
   );

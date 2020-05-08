@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Button, Text } from "@blueprintjs/core";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import { useAppContext } from "../../../context";
 // import { USER_ID_QUERY } from "../../../graphql/queries/user";
 import client from "../../../services/ApolloClient";
@@ -21,11 +21,11 @@ const MessageThreads: React.FC<MessageThreadsProps> = ({
   setSelectedUser = () => console.info("Set Selected User"),
   setSendDisabled = () => console.info("Send Send Disabled"),
 }) => {
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
 
   const [{ userData }, dispatch] = useAppContext();
 
-  const userMetaList = legacy.extractMultipleMeta(userData.user.userMeta, [
+  const userMetaList = dataHandler.extractMultipleMeta(userData.user.userMeta, [
     "userArtistName",
     "profileImage",
   ]);

@@ -1,6 +1,6 @@
 import * as moment from "moment";
 import Strings from "../client/services/Strings";
-import Legacy from "./Legacy";
+import DataHandler from "./DataHandler";
 import Utility from "./Utility";
 const uuid = require("uuid");
 const slugify = require("slugify");
@@ -9,12 +9,12 @@ const btoa = require("btoa");
 export default class Core {
   public strings;
   public utility;
-  public legacy;
+  public dataHandler;
 
   constructor() {
     this.strings = new Strings();
     this.utility = new Utility();
-    this.legacy = new Legacy();
+    this.dataHandler = new DataHandler();
   }
 
   // https://docs.aws.amazon.com/solutions/latest/serverless-image-handler/deployment.html
@@ -44,11 +44,14 @@ export default class Core {
   }
 
   extractCoverArt(track) {
-    let imageUrl = this.legacy.extractMetaValue(track.itemMeta, "coverArt");
+    let imageUrl = this.dataHandler.extractMetaValue(
+      track.itemMeta,
+      "coverArt"
+    );
 
-    // legacy soundcloud imports
+    // dataHandler soundcloud imports
     if (imageUrl === "" || imageUrl === null) {
-      const soundcloudArtUrl = this.legacy.extractMetaValue(
+      const soundcloudArtUrl = this.dataHandler.extractMetaValue(
         track.itemMeta,
         "scArtUrl",
         "",

@@ -3,21 +3,21 @@ import * as React from "react";
 import { MessengerHistoryProps } from "./MessengerHistory.d";
 import { Text } from "@blueprintjs/core";
 import { ChatFeed, Message } from "react-chat-ui";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import Utility from "../../../../services/Utility";
 
 const MessengerHistory: React.FC<MessengerHistoryProps> = ({
   ref = null,
   className = "",
-  onClick = e => console.info("Click"),
+  onClick = (e) => console.info("Click"),
   messages = null,
   chatkitUser = null,
   chatkitRoomId = null,
 }) => {
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
   const utility = new Utility();
 
-  const clickHandler = e => onClick(e);
+  const clickHandler = (e) => onClick(e);
 
   // subscribe to room
   // TODO: avoiid resubscription
@@ -27,7 +27,7 @@ const MessengerHistory: React.FC<MessengerHistoryProps> = ({
   if (messages !== null) {
     let messageArr = new Array();
 
-    messages.forEach(message => {
+    messages.forEach((message) => {
       const id = message.senderId;
       let name = "";
       for (let key in message.userStore.users) {

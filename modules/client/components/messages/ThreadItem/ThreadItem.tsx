@@ -3,20 +3,20 @@ import * as React from "react";
 import { Text } from "@blueprintjs/core";
 import { ThreadItemProps } from "./ThreadItem.d";
 import { Link } from "react-navi";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 
 const ThreadItem: React.FC<ThreadItemProps> = ({
   ref = null,
   className = "",
-  onClick = e => console.info("Click"),
+  onClick = (e) => console.info("Click"),
   thread = null,
 }) => {
-  const legacy = new Legacy();
-  const clickHandler = e => onClick(e);
+  const dataHandler = new DataHandler();
+  const clickHandler = (e) => onClick(e);
   let content = null;
   let contentLink = null;
 
-  const messageSnippet = legacy.extractMetaValue(
+  const messageSnippet = dataHandler.extractMetaValue(
     thread.messages[0].itemMeta,
     "content"
   );

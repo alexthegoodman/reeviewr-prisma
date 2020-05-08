@@ -19,7 +19,7 @@ import { useCurrentRoute, useNavigation } from "react-navi";
 import * as Yup from "yup";
 import { GenreList, Genres } from "../../../../defs/genres";
 import { ERROR_CODE } from "../../../../services/ERROR_CODE";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import Utility from "../../../../services/Utility";
 import { useAppContext } from "../../../context";
 import { ADD_REVIEW } from "../../../graphql/mutations/review";
@@ -40,15 +40,15 @@ import { AddReviewDataProps, AddReviewFormValues } from "./AddReviewData.d";
 const AddReviewData: React.FC<AddReviewDataProps> = ({
   ref = null,
   className = "",
-  onClick = e => console.info("Click"),
+  onClick = (e) => console.info("Click"),
   track = null,
 }) => {
   const strings = new Strings();
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
   const authClient = new AuthClient();
   const utility = new Utility();
 
-  const clickHandler = e => onClick(e);
+  const clickHandler = (e) => onClick(e);
 
   const route = useCurrentRoute();
   const navigation = useNavigation();
@@ -75,7 +75,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
 
   let userMetaList = null;
   if (userData !== null && userData) {
-    userMetaList = legacy.extractMultipleMeta(userData.user.userMeta, [
+    userMetaList = dataHandler.extractMultipleMeta(userData.user.userMeta, [
       "userArtistName",
       "profileImage",
       "userFavGenre",
@@ -102,7 +102,7 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
 
   let trackMetaList = null;
   if (track !== null) {
-    trackMetaList = legacy.extractMultipleMeta(track.itemMeta, [
+    trackMetaList = dataHandler.extractMultipleMeta(track.itemMeta, [
       "questionCount",
       "theOption",
       "audioId",
@@ -255,9 +255,12 @@ const AddReviewData: React.FC<AddReviewDataProps> = ({
                   });
 
                   const savedPoints = parseInt(
-                    legacy.extractMetaValue(userData.user.userMeta, "points")
+                    dataHandler.extractMetaValue(
+                      userData.user.userMeta,
+                      "points"
+                    )
                   );
-                  const pointsId = legacy.extractMetaProp(
+                  const pointsId = dataHandler.extractMetaProp(
                     userData.user.userMeta,
                     "points",
                     "id"

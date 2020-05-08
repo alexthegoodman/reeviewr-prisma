@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { Button, Icon, Text } from "@blueprintjs/core";
 import { useNavigation } from "react-navi";
 import Core from "../../../../services/Core";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import Utility from "../../../../services/Utility";
 import { useAppContext } from "../../../context";
 import AuthClient from "../../../services/AuthClient";
@@ -16,7 +16,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
   trackOldId = "",
   onClick = (e) => console.info("Click"),
 }) => {
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
   const utility = new Utility();
   const core = new Core();
   const authClient = new AuthClient();

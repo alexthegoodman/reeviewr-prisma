@@ -1,5 +1,5 @@
 import { ERROR_CODE } from "../../services/ERROR_CODE";
-import Legacy from "../../services/Legacy";
+import DataHandler from "../../services/DataHandler";
 import Utility from "../../services/Utility";
 import EmailService from "../utils/email";
 
@@ -15,7 +15,7 @@ export const confirmEmail = async (req, res, mixpanel, photon) => {
     );
 
     const emailService = new EmailService();
-    const legacy = new Legacy();
+    const dataHandler = new DataHandler();
     const utility = new Utility();
 
     const { confirmHash } = req.body;

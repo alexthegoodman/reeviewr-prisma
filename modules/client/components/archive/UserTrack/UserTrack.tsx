@@ -6,7 +6,7 @@ import { FILE_QUERY } from "../../../graphql/queries/userTrack";
 import Track from "../../ui/Track/Track";
 import ReviewCard from "../../ui/ReviewCard/ReviewCard";
 import Strings from "../../../services/Strings";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import ReviewCardData from "../ReviewCardData/ReviewCardData";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 import { ImageSizes } from "../../../../defs/imageSizes";
@@ -18,12 +18,12 @@ import Utility from "../../../../services/Utility";
 import { useAppContext } from "../../../context";
 
 const UserTrack: React.FC<UserTrackProps> = ({
-  onClick = e => console.info("Click"),
+  onClick = (e) => console.info("Click"),
   track = null,
   reviewLimit = null,
   children,
 }) => {
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
   const strings = new Strings();
   const core = new Core();
   const utility = new Utility();
@@ -34,11 +34,17 @@ const UserTrack: React.FC<UserTrackProps> = ({
 
   // console.info("contextTrack", contextTrack);
 
-  const clickHandler = e => onClick(e);
+  const clickHandler = (e) => onClick(e);
 
-  const firstName = legacy.extractMetaValue(track.user.userMeta, "firstName");
-  const lastName = legacy.extractMetaValue(track.user.userMeta, "lastName");
-  const userArtistName = legacy.extractMetaValue(
+  const firstName = dataHandler.extractMetaValue(
+    track.user.userMeta,
+    "firstName"
+  );
+  const lastName = dataHandler.extractMetaValue(
+    track.user.userMeta,
+    "lastName"
+  );
+  const userArtistName = dataHandler.extractMetaValue(
     track.user.userMeta,
     "userArtistName"
   );
@@ -46,10 +52,10 @@ const UserTrack: React.FC<UserTrackProps> = ({
   const trackTitle = track.itemName;
 
   const imageUrl = core.extractCoverArt(track);
-  const audioFile = legacy.extractMetaValue(track.itemMeta, "audioFile");
-  const audioJson = legacy.extractMetaValue(track.itemMeta, "audioJson");
-  const genre = legacy.extractMetaValue(track.itemMeta, "genre");
-  const scGenre = legacy.extractMetaValue(track.itemMeta, "scGenre");
+  const audioFile = dataHandler.extractMetaValue(track.itemMeta, "audioFile");
+  const audioJson = dataHandler.extractMetaValue(track.itemMeta, "audioJson");
+  const genre = dataHandler.extractMetaValue(track.itemMeta, "genre");
+  const scGenre = dataHandler.extractMetaValue(track.itemMeta, "scGenre");
 
   const navigateToTrack = () =>
     navigation.navigate(`/tracks/${track.id}/${track.itemUrlSegment}`);
@@ -110,11 +116,10 @@ const UserTrack: React.FC<UserTrackProps> = ({
           (reviewLimit !== null && reviewRenderCount < reviewLimit) ||
           reviewLimit === null
         ) {
-          const reviewMetaList = legacy.extractMultipleMeta(review.itemMeta, [
-            "questionAnswer1",
-            "questionAnswer2",
-            "questionAnswer3",
-          ]);
+          const reviewMetaList = dataHandler.extractMultipleMeta(
+            review.itemMeta,
+            ["questionAnswer1", "questionAnswer2", "questionAnswer3"]
+          );
 
           if (reviewMetaList["questionAnswer1"] !== "") {
             reviewRenderCount++;

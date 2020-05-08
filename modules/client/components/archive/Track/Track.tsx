@@ -10,13 +10,13 @@ import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
 import LikeButton from "../LikeButton/LikeButton";
 import FollowButton from "../FollowButton/FollowButton";
 import ShareButton from "../ShareButton/ShareButton";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import Strings from "../../../services/Strings";
 
 const Track: React.FC<TrackProps> = ({
   ref = null,
   className = "",
-  onClick = e => console.info("Click"),
+  onClick = (e) => console.info("Click"),
   track = null,
   trackId = null,
   trackOldId = null,
@@ -32,7 +32,7 @@ const Track: React.FC<TrackProps> = ({
   actionChildren,
   headerChildren,
 }) => {
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
   const strings = new Strings();
 
   let navigation = useNavigation();
@@ -40,7 +40,7 @@ const Track: React.FC<TrackProps> = ({
   const trackUrl = `/tracks/${trackId}/${urlSegment}`;
   const navigateToTrack = () => navigation.navigate(trackUrl);
 
-  const userArtistName = legacy.extractMetaValue(
+  const userArtistName = dataHandler.extractMetaValue(
     track.user.userMeta,
     "userArtistName"
   );
@@ -50,7 +50,7 @@ const Track: React.FC<TrackProps> = ({
   )}`;
   const navigateToArtist = () => navigation.navigate(artistUrl);
 
-  const clickHandler = e => onClick(e);
+  const clickHandler = (e) => onClick(e);
 
   return (
     <section ref={ref} className={`track ${className}`}>

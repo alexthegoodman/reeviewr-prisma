@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { GraphCardDataProps } from "./GraphCardData.d";
 import GraphCard from "../GraphCard/GraphCard";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import Strings from "../../../services/Strings";
 
 const GraphCardData: React.FC<GraphCardDataProps> = ({
@@ -11,7 +11,7 @@ const GraphCardData: React.FC<GraphCardDataProps> = ({
   onClick = (e) => console.info("Click"),
   question = null,
 }) => {
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
   const strings = new Strings();
 
   const clickHandler = (e) => onClick(e);

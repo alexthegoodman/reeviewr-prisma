@@ -6,14 +6,14 @@ import MessengerReply from "../MessengerReply/MessengerReply";
 import MessengerHistory from "../MessengerHistory/MessengerHistory";
 import { Message } from "react-chat-ui";
 import { Text, Callout } from "@blueprintjs/core";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import Utility from "../../../../services/Utility";
 import * as _ from "lodash";
 
 const Messenger: React.FC<MessengerProps> = ({
   ref = null,
   className = "",
-  onClick = e => console.info("Click"),
+  onClick = (e) => console.info("Click"),
   chatkitUser = null,
   selectedThread = null,
   emptyThread = false,
@@ -27,7 +27,7 @@ const Messenger: React.FC<MessengerProps> = ({
   setAllRoomsSubscribed = () => console.info("Set All Rooms Subscribed"),
   updateMessages = () => console.info("Update Messages"),
 }) => {
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
   const utiility = new Utility();
 
   if (chatkitUser !== null && (selectedThread !== null || emptyThread)) {
@@ -43,10 +43,10 @@ const Messenger: React.FC<MessengerProps> = ({
             roomId: roomId,
             text: messageText,
           })
-          .then(messageId => {
+          .then((messageId) => {
             console.log(`Added message to ${roomId}`);
           })
-          .catch(err => {
+          .catch((err) => {
             console.error(`Error adding message to ${roomId}: ${err}`);
           });
       } else {
@@ -67,10 +67,10 @@ const Messenger: React.FC<MessengerProps> = ({
             private: true,
             addUserIds: userIds,
           })
-          .then(chatkitRoom => {
+          .then((chatkitRoom) => {
             sendMessage(chatkitRoom, messageText);
           })
-          .catch(err => {
+          .catch((err) => {
             console.error(`Error creating room ${err}`);
           });
       } else {
@@ -80,10 +80,10 @@ const Messenger: React.FC<MessengerProps> = ({
 
     let selectedUserName = "";
     if (selectedUser != null) {
-      let userMetaList = legacy.extractMultipleMeta(selectedUser.userMeta, [
-        "userArtistName",
-        "profileImage",
-      ]);
+      let userMetaList = dataHandler.extractMultipleMeta(
+        selectedUser.userMeta,
+        ["userArtistName", "profileImage"]
+      );
       selectedUserName = userMetaList["userArtistName"];
       if (sendDisabled) {
         setSendDisabled(false);

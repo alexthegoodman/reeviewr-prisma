@@ -3,22 +3,22 @@ import * as React from "react";
 import { ProfileSidebarProps } from "./ProfileSidebar.d";
 import Sidebar from "../Sidebar/Sidebar";
 import { Text, Icon } from "@blueprintjs/core";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import Strings from "../../../services/Strings";
 import { SocialIcon } from "react-social-icons";
 
 const ProfileSidebar: React.FC<ProfileSidebarProps> = ({
   ref = null,
   className = "",
-  onClick = e => console.info("Click"),
+  onClick = (e) => console.info("Click"),
   userData = null,
 }) => {
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
   const strings = new Strings();
 
-  const clickHandler = e => onClick(e);
+  const clickHandler = (e) => onClick(e);
 
-  const userMetaList = legacy.extractMultipleMeta(userData.user.userMeta, [
+  const userMetaList = dataHandler.extractMultipleMeta(userData.user.userMeta, [
     "firstName",
     "lastName",
     "userArtistName",
@@ -40,9 +40,10 @@ const ProfileSidebar: React.FC<ProfileSidebarProps> = ({
               {strings.decode(userMetaList["userArtistName"])}
             </Text>
             {/* TODO: Edit Profile */}
-            <Text tagName="h2" className="sidebarMeta">{`${
-              userMetaList["firstName"]
-            } ${userMetaList["lastName"]}`}</Text>
+            <Text
+              tagName="h2"
+              className="sidebarMeta"
+            >{`${userMetaList["firstName"]} ${userMetaList["lastName"]}`}</Text>
           </div>
         </div>
         <div className="sidebarBody">
@@ -80,9 +81,10 @@ const ProfileSidebar: React.FC<ProfileSidebarProps> = ({
               {strings.decode(userMetaList["userArtistName"])}
             </Text>
             {/* TODO: Edit Profile */}
-            <Text tagName="h2" className="sidebarMeta">{`${
-              userMetaList["firstName"]
-            } ${userMetaList["lastName"]}`}</Text>
+            <Text
+              tagName="h2"
+              className="sidebarMeta"
+            >{`${userMetaList["firstName"]} ${userMetaList["lastName"]}`}</Text>
           </div>
           <Text tagName="p">{strings.decode(userMetaList["userBio"])}</Text>
         </div>

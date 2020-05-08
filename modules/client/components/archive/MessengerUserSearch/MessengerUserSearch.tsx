@@ -5,7 +5,7 @@ import { MessengerUserSearchProps } from "./MessengerUserSearch.d";
 import Autocomplete from "react-autocomplete";
 import { useQuery } from "@apollo/react-hooks";
 import { USERS_QUERY, ALL_USERS_QUERY } from "../../../graphql/queries/user";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import Utility from "../../../../services/Utility";
 import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
 import Strings from "../../../services/Strings";
@@ -14,7 +14,7 @@ import { Text } from "@blueprintjs/core";
 const MessengerUserSearch: React.FC<MessengerUserSearchProps> = ({
   ref = null,
   className = "",
-  onClick = e => console.info("Click"),
+  onClick = (e) => console.info("Click"),
   selectedUser = null,
   setSendDisabled = () => console.info("Send Send Disabled"),
   setSelectedUser = () => console.info("Set Selected User"),
@@ -22,18 +22,19 @@ const MessengerUserSearch: React.FC<MessengerUserSearchProps> = ({
   chatkitUser = null,
   roomUsers = null,
 }) => {
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
   const utility = new Utility();
   const strings = new Strings();
 
-  const clickHandler = e => onClick(e);
+  const clickHandler = (e) => onClick(e);
 
   const [searchValue, setSearchValue] = React.useState("");
 
-  const { data: userData, error: userError, loading: userLoading } = useQuery(
-    ALL_USERS_QUERY,
-    { variables: { search: searchValue } }
-  );
+  const {
+    data: userData,
+    error: userError,
+    loading: userLoading,
+  } = useQuery(ALL_USERS_QUERY, { variables: { search: searchValue } });
 
   let users = [];
   let loading = <></>;
@@ -48,7 +49,7 @@ const MessengerUserSearch: React.FC<MessengerUserSearchProps> = ({
 
   let selectedUserName = "";
   if (selectedUser !== null) {
-    let userMetaList = legacy.extractMultipleMeta(selectedUser.userMeta, [
+    let userMetaList = dataHandler.extractMultipleMeta(selectedUser.userMeta, [
       "userArtistName",
       "profileImage",
     ]);
@@ -65,20 +66,20 @@ const MessengerUserSearch: React.FC<MessengerUserSearchProps> = ({
         <>
           <Text>Find User to Message</Text>
           <Autocomplete
-            getItemValue={user => {
-              let userMetaList = legacy.extractMultipleMeta(user.userMeta, [
-                "userArtistName",
-                "profileImage",
-              ]);
+            getItemValue={(user) => {
+              let userMetaList = dataHandler.extractMultipleMeta(
+                user.userMeta,
+                ["userArtistName", "profileImage"]
+              );
               setSelectedUser(user);
               return strings.decode(userMetaList["userArtistName"]);
             }}
             items={users}
             renderItem={(user, isHighlighted) => {
-              let userMetaList = legacy.extractMultipleMeta(user.userMeta, [
-                "userArtistName",
-                "profileImage",
-              ]);
+              let userMetaList = dataHandler.extractMultipleMeta(
+                user.userMeta,
+                ["userArtistName", "profileImage"]
+              );
 
               return (
                 <div
@@ -90,8 +91,8 @@ const MessengerUserSearch: React.FC<MessengerUserSearchProps> = ({
               );
             }}
             value={searchValue}
-            onChange={e => setSearchValue(e.target.value)}
-            onSelect={val => {
+            onChange={(e) => setSearchValue(e.target.value)}
+            onSelect={(val) => {
               setSearchValue(val);
             }}
           />

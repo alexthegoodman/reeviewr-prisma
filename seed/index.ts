@@ -14,10 +14,18 @@ import * as faker from "faker";
 const prisma = new PrismaClient();
 
 async function main() {
-  const { user1, user2 } = await seedUsers();
+  const { user1, user2, user3, user4, user5 } = await seedUsers();
   const { cat1, cat2 } = await seedCats();
   const { tag1, tag2 } = await seedTags();
-  const { space1, space2, space3 } = await seedSpaces(user1, cat1, user2, cat2);
+  const { space1, space2, space3 } = await seedSpaces(
+    user1,
+    user2,
+    user3,
+    user4,
+    user5,
+    cat1,
+    cat2
+  );
   const { post1, post2, post3, post4 } = await seedPosts(
     user1,
     space1,

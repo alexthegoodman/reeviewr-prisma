@@ -6,13 +6,13 @@ import { useQuery } from "@apollo/react-hooks";
 import Utility from "../../../../services/Utility";
 import { USER_QUERY } from "../../../graphql/queries/user";
 import { Text } from "@blueprintjs/core";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import Core from "../../../../services/Core";
 import LoadingIndicator from "../../system/LoadingIndicator/LoadingIndicator";
 
 const ProfileLikes: React.FC<ProfileLikesProps> = ({ artistId }) => {
   const core = new Core();
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
   const utility = new Utility();
 
   // let route = useCurrentRoute();
@@ -31,7 +31,7 @@ const ProfileLikes: React.FC<ProfileLikesProps> = ({ artistId }) => {
 
   // let favs = null;
   // if (utility.isDefinedWithContent(userData.user)) {
-  //   let savedFavs = legacy.extractMetaValue(userData.user.userMeta, "favs");
+  //   let savedFavs = dataHandler.extractMetaValue(userData.user.userMeta, "favs");
   //   favs = core.getFromCSV(savedFavs);
   //   // console.info("favs", favs);
   // }

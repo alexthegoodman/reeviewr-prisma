@@ -20,7 +20,7 @@ import {
 // import * as photon from "@generated/photon";
 import * as $ from "jquery";
 import { useCookies } from "react-cookie";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import Utility from "../../../../services/Utility";
 import Strings from "../../../services/Strings";
 import BeyondSearchData from "../../system/BeyondSearchData/BeyondSearchData";
@@ -42,7 +42,7 @@ import AuthClient from "../../../services/AuthClient";
 
 const AppNav: React.FC<AppNavProps> = ({ children }) => {
   const utility = new Utility();
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
   const strings = new Strings();
 
   const route = useCurrentRoute();

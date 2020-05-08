@@ -2,7 +2,7 @@ import fs from "fs";
 import AWSService from "../../services/AWSService";
 import Core from "../../services/Core";
 import { ERROR_CODE } from "../../services/ERROR_CODE";
-import Legacy from "../../services/Legacy";
+import DataHandler from "../../services/DataHandler";
 import Utility from "../../services/Utility";
 import EmailService from "../utils/email";
 // import * as cmd from "node-cmd";
@@ -12,7 +12,7 @@ const uuid = require("uuid");
 const cloudinary = require("cloudinary").v2;
 const slugify = require("slugify");
 
-// TODO: legacy endpoint - swap out for createPost
+// TODO: dataHandler endpoint - swap out for createPost
 
 export const createPod = async (req, res, mixpanel, photon) => {
   try {
@@ -28,7 +28,7 @@ export const createPod = async (req, res, mixpanel, photon) => {
 
     const core = new Core();
     const utility = new Utility();
-    const legacy = new Legacy();
+    const dataHandler = new DataHandler();
     const emailService = new EmailService();
     const awsService = new AWSService();
 
@@ -126,7 +126,7 @@ export const createPod = async (req, res, mixpanel, photon) => {
             res.send({ success: true, data: { newPod } });
             res.end();
           })
-          .catch(err => {
+          .catch((err) => {
             console.error(err);
             throw Error(ERROR_CODE.D001);
           });

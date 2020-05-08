@@ -1,8 +1,7 @@
 import { lazy, mount, route } from "navi";
 import * as React from "react";
 
-import he from "he";
-import Legacy from "../../services/Legacy";
+import DataHandler from "../../services/DataHandler";
 import Utility from "../../services/Utility";
 import AppNav from "../components/layout/AppNav/AppNav";
 import AuthNav from "../components/layout/AuthNav/AuthNav";
@@ -35,7 +34,7 @@ import EditSpace from "../components/pages/EditSpace/EditSpace";
 import EditPost from "../components/pages/EditPost/EditPost";
 
 const utility = new Utility();
-const legacy = new Legacy();
+const dataHandler = new DataHandler();
 const strings = new Strings();
 const changeCase = require("change-case");
 

@@ -1,5 +1,5 @@
 import { ERROR_CODE } from "../../services/ERROR_CODE";
-import Legacy from "../../services/Legacy";
+import DataHandler from "../../services/DataHandler";
 import Utility from "../../services/Utility";
 import EmailService from "../utils/email";
 
@@ -20,7 +20,7 @@ export const resetPassword = async (req, res, mixpanel, photon) => {
     );
 
     const emailService = new EmailService();
-    const legacy = new Legacy();
+    const dataHandler = new DataHandler();
     const utility = new Utility();
 
     const { forgotHash, password, passwordConfirm } = req.body;

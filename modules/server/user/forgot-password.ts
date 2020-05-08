@@ -1,5 +1,5 @@
 import { ERROR_CODE } from "../../services/ERROR_CODE";
-import Legacy from "../../services/Legacy";
+import DataHandler from "../../services/DataHandler";
 import Utility from "../../services/Utility";
 import EmailService from "../utils/email";
 
@@ -18,7 +18,7 @@ export const forgotPassword = async (req, res, mixpanel, photon) => {
     );
 
     const emailService = new EmailService();
-    const legacy = new Legacy();
+    const dataHandler = new DataHandler();
     const utility = new Utility();
 
     const { email } = req.body;
@@ -30,7 +30,7 @@ export const forgotPassword = async (req, res, mixpanel, photon) => {
         utility.isDefinedWithContent(user.userEmail)
       ) {
         // const userMeta = await prisma.userMeta({ oldId: user.oldId });
-        // const firstName = legacy.extractMetaValue(userMeta, "firstName");
+        // const firstName = dataHandler.extractMetaValue(userMeta, "firstName");
         const buttonText = "Click to Reset";
 
         const host = req.get("host");

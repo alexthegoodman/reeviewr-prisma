@@ -5,64 +5,14 @@ import * as faker from "faker";
 const prisma = new PrismaClient();
 
 export default async function seedUsers() {
-  // try {
-  const metaSchema = [
-    {
-      metaName: "points",
-      metaValue: "10", // 100s? 1000s?
-      metaType: "active",
-    },
-    {
-      metaName: "profileFilename",
-      metaValue: `me_circle.jpg`,
-      metaType: "default",
-    },
-  ];
-
-  const userSchema = {
-    userConfirmed: 0,
-    userDeleted: false,
-    // userMeta,
-    userPassword:
-      "$2a$12$QG3qjuizq4bb24Gl2hhhSegdv7XHpv0nJrc1Fw/920gOMNSzn80A.", // testing
-    userType: 1,
-  };
-
-  const user1 = await prisma.user.create({
-    data: {
-      ...userSchema,
-      userEmail: "test@email.com",
-      privateHash: faker.random.uuid(),
-      publicHash: faker.random.uuid(),
-      id: faker.random.uuid(),
-      forgotHash: faker.random.uuid(),
-      confirmHash: faker.random.uuid(),
-
-      // error:
-
-      // userMeta: {
-      //   create: [
-      //     ...metaSchema,
-      //     {
-      //       metaName: "firstName",
-      //       metaValue: faker.name.firstName(),
-      //       metaType: "active",
-      //     },
-      //     {
-      //       metaName: "lastName",
-      //       metaValue: faker.name.lastName(),
-      //       metaType: "active",
-      //     },
-      //   ],
-      // },
-    },
-  });
-  // .catch((err) => {
-  //   console.error("ERR", err);
-  // });
-  const user2 = await prisma.user.create({
-    data: {
-      ...userSchema,
+  const getDefaultUser = () => {
+    return {
+      userConfirmed: 0,
+      userDeleted: false,
+      // userMeta,
+      userPassword:
+        "$2a$12$QG3qjuizq4bb24Gl2hhhSegdv7XHpv0nJrc1Fw/920gOMNSzn80A.", // testing
+      userType: 1,
       userEmail: faker.internet.email(),
       privateHash: faker.random.uuid(),
       publicHash: faker.random.uuid(),
@@ -71,7 +21,16 @@ export default async function seedUsers() {
       confirmHash: faker.random.uuid(),
       userMeta: {
         create: [
-          // ...metaSchema,
+          {
+            metaName: "points",
+            metaValue: "10", // 100s? 1000s?
+            metaType: "active",
+          },
+          {
+            metaName: "profileFilename",
+            metaValue: `me_circle.jpg`,
+            metaType: "default",
+          },
           {
             metaName: "firstName",
             metaValue: faker.name.firstName(),
@@ -84,18 +43,41 @@ export default async function seedUsers() {
           },
         ],
       },
+    };
+  };
+
+  const user1 = await prisma.user.create({
+    data: {
+      ...getDefaultUser(),
+      userEmail: "test@email.com",
+    },
+  });
+  const user2 = await prisma.user.create({
+    data: {
+      ...getDefaultUser(),
+    },
+  });
+  const user3 = await prisma.user.create({
+    data: {
+      ...getDefaultUser(),
+    },
+  });
+  const user4 = await prisma.user.create({
+    data: {
+      ...getDefaultUser(),
+    },
+  });
+  const user5 = await prisma.user.create({
+    data: {
+      ...getDefaultUser(),
     },
   });
 
   return {
     user1,
     user2,
+    user3,
+    user4,
+    user5,
   };
-  // } catch (error) {
-  //   console.error("ERROR", JSON.stringify(error), error);
-  //   return {
-  //     user1: null,
-  //     user2: null,
-  //   };
-  // }
 }

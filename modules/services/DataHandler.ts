@@ -1,6 +1,6 @@
 import Strings from "../client/services/Strings";
 
-export default class Legacy {
+export default class DataHandler {
   public strings;
 
   constructor() {
@@ -11,7 +11,7 @@ export default class Legacy {
     let profileImageUrl = null;
 
     let profileImage = user.userMeta.filter(
-      meta => meta.metaName === "profileImage"
+      (meta) => meta.metaName === "profileImage"
     );
     profileImage =
       typeof profileImage[0] !== "undefined"
@@ -20,9 +20,9 @@ export default class Legacy {
 
     if (profileImage === "") {
       let firstImage = null;
-      user.files.forEach(file => {
+      user.files.forEach((file) => {
         let attachedFile = file.itemMeta.filter(
-          meta => meta.metaName === "attachedFile"
+          (meta) => meta.metaName === "attachedFile"
         );
         attachedFile =
           typeof attachedFile[0] !== "undefined"
@@ -80,7 +80,7 @@ export default class Legacy {
       }
     }
 
-    // legacy soundcloud imports
+    // dataHandler soundcloud imports
     if (imageUrl === "" || imageUrl === null) {
       const soundcloudArtUrl = this.extractMetaValue(
         track.itemMeta,
@@ -103,7 +103,7 @@ export default class Legacy {
   }
 
   extractMetaValue(allMeta, metaName, prependValue = "", decode = false) {
-    let metaObj = allMeta.filter(meta => meta.metaName === metaName);
+    let metaObj = allMeta.filter((meta) => meta.metaName === metaName);
 
     metaObj =
       typeof metaObj[0] !== "undefined"
@@ -118,7 +118,7 @@ export default class Legacy {
   }
 
   extractMetaProp(allMeta, metaName, propName) {
-    let metaObj = allMeta.filter(meta => meta.metaName === metaName);
+    let metaObj = allMeta.filter((meta) => meta.metaName === metaName);
 
     metaObj = typeof metaObj[0] !== "undefined" ? metaObj[0][propName] : "";
 
@@ -132,7 +132,7 @@ export default class Legacy {
     decode = false
   ) {
     let metaList = {};
-    metaNameList.forEach(metaName => {
+    metaNameList.forEach((metaName) => {
       metaList[metaName] = this.extractMetaValue(
         allMeta,
         metaName,

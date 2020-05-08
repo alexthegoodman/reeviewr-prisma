@@ -2,7 +2,7 @@ import fs from "fs";
 import AWSService from "../../services/AWSService";
 import Core from "../../services/Core";
 import { ERROR_CODE } from "../../services/ERROR_CODE";
-import Legacy from "../../services/Legacy";
+import DataHandler from "../../services/DataHandler";
 import Utility from "../../services/Utility";
 import EmailService from "../utils/email";
 // import * as cmd from "node-cmd";
@@ -25,7 +25,7 @@ export const createPost = async (req, res, mixpanel, photon) => {
 
     const core = new Core();
     const utility = new Utility();
-    const legacy = new Legacy();
+    const dataHandler = new DataHandler();
     const emailService = new EmailService();
     const awsService = new AWSService();
 
@@ -211,7 +211,7 @@ export const createPost = async (req, res, mixpanel, photon) => {
             },
             pod: { connect: { id: pod.value } },
             tags: {
-              connect: tags.map(tag => {
+              connect: tags.map((tag) => {
                 return { id: tag.value };
               }),
             },

@@ -24,7 +24,18 @@ const SpaceFragments = {
       }
       members {
         id
+        userType
         userEmail
+        userConfirmed
+        posts {
+          id
+          itemName
+        }
+        userMeta {
+          id
+          metaName
+          metaValue
+        }
       }
     }
   `,

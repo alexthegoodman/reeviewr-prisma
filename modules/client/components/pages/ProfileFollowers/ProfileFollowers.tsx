@@ -5,14 +5,14 @@ import ProfileNav from "../../layout/ProfileNav/ProfileNav";
 import { useQuery } from "@apollo/react-hooks";
 import Utility from "../../../../services/Utility";
 import { USER_QUERY } from "../../../graphql/queries/user";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import { Text } from "@blueprintjs/core";
 import Core from "../../../../services/Core";
 import LoadingIndicator from "../../system/LoadingIndicator/LoadingIndicator";
 
 const ProfileFollowers: React.FC<ProfileFollowersProps> = ({ artistId }) => {
   const core = new Core();
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
   const utility = new Utility();
 
   // let route = useCurrentRoute();
@@ -29,7 +29,7 @@ const ProfileFollowers: React.FC<ProfileFollowersProps> = ({ artistId }) => {
 
   let followers = null;
   if (utility.isDefinedWithContent(userData.user)) {
-    let savedFollowers = legacy.extractMetaValue(
+    let savedFollowers = dataHandler.extractMetaValue(
       userData.user.userMeta,
       "followers"
     );

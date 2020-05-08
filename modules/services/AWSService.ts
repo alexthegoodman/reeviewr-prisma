@@ -1,6 +1,6 @@
 import * as moment from "moment";
 import Strings from "../client/services/Strings";
-import Legacy from "./Legacy";
+import DataHandler from "./DataHandler";
 import Utility from "./Utility";
 const uuid = require("uuid");
 const slugify = require("slugify");
@@ -11,14 +11,14 @@ const atob = require("atob");
 export default class AWSService {
   public strings;
   public utility;
-  public legacy;
+  public dataHandler;
   public core;
   public s3;
 
   constructor() {
     this.strings = new Strings();
     this.utility = new Utility();
-    this.legacy = new Legacy();
+    this.dataHandler = new DataHandler();
     this.core = new Core();
 
     this.s3 = new S3({
@@ -52,7 +52,7 @@ export default class AWSService {
 
       console.info("uploading", ext, title, data);
 
-      this.s3.putObject(data, function(err, data) {
+      this.s3.putObject(data, function (err, data) {
         if (err) {
           console.log(err);
           console.log("Error uploading data: ", data);

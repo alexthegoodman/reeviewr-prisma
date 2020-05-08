@@ -4,13 +4,13 @@ import { ProfileFollowingProps } from "./ProfileFollowing.d";
 import ProfileNav from "../../layout/ProfileNav/ProfileNav";
 import { useQuery } from "@apollo/react-hooks";
 import Utility from "../../../../services/Utility";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import { Text } from "@blueprintjs/core";
 import LoadingIndicator from "../../system/LoadingIndicator/LoadingIndicator";
 import Core from "../../../../services/Core";
 
 const ProfileFollowing: React.FC<ProfileFollowingProps> = ({ artistId }) => {
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
   const utility = new Utility();
   const core = new Core();
 
@@ -28,7 +28,7 @@ const ProfileFollowing: React.FC<ProfileFollowingProps> = ({ artistId }) => {
 
   // let following = null;
   // if (utility.isDefinedWithContent(userData.user)) {
-  //   let savedFollowing = legacy.extractMetaValue(
+  //   let savedFollowing = dataHandler.extractMetaValue(
   //     userData.user.userMeta,
   //     "following"
   //   );

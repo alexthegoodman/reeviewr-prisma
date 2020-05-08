@@ -3,12 +3,12 @@ import * as React from "react";
 import { ConfirmEmailProps } from "./ConfirmEmail.d";
 import { Card, Text, Callout } from "@blueprintjs/core";
 import { useCurrentRoute, useLoadingRoute, useNavigation } from "react-navi";
-import Legacy from "../../../../services/Legacy";
+import DataHandler from "../../../../services/DataHandler";
 import Utility from "../../../../services/Utility";
 import AuthClient from "../../../services/AuthClient";
 
 const ConfirmEmail: React.FC<ConfirmEmailProps> = () => {
-  const legacy = new Legacy();
+  const dataHandler = new DataHandler();
   const utility = new Utility();
   const authClient = new AuthClient();
 
