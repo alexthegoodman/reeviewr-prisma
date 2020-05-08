@@ -21,9 +21,9 @@ This web app has been open sourced so that it may evolve and inspire other devel
 
 Featuring Packages: `TypeScript, Node, Postgres, Passport, Mandrill, Prisma, Nexus, React, Apollo, Blueprint, Storybook, Jest, Cypress, Formik, Lodash, Moment, Navi, Superagent, Webpack`
 
-Monitoring: `Mixpanel, Sentry, FullStory, Tag Manager, Rollbar`
+Monitoring: `Mixpanel, Sentry, FullStory, Tag Manager, Rollbar (Bugsnag? Timber?)`
 
-Recommended: `VS Code, Prettier plugin`
+Recommended: `.vscode/extensions.json`
 
 Special thanks goes to Atomic Object for the original starter kit.
 

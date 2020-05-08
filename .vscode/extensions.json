@@ -1,12 +1,13 @@
 {
   "recommendations": [
+    "aaron-bond.better-comments",
     "mikestead.dotenv",
-    "kumar-harsh.graphql-for-vscode",
+    "tobermory.es6-string-html",
     "eamodio.gitlens",
+    "kumar-harsh.graphql-for-vscode",
     "christian-kohler.npm-intellisense",
     "esbenp.prettier-vscode",
-    "ms-vscode.vscode-typescript-tslint-plugin",
-    "tobermory.es6-string-html",
-    "tberman.json-schema-validator"
+    "prisma.prisma",
+    "ms-vscode.vscode-typescript-tslint-plugin"
   ]
 }
