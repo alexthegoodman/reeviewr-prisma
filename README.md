@@ -17,7 +17,11 @@
 
 ## Introduction
 
-Prisma + React + TypeScript
+TypeScript
+Node + Postgres + Prisma + GraphQL
+React + Apollo
+
+Special thanks goes to Atomic Object of Grand Rapids, MI for the original starter kit.
 
 ### Getting Started
 
@@ -84,15 +88,39 @@ Notes: SSR should function here via the Express server
 
 ## Contributing
 
+### How To
+
+- Use Git Flow (feature branches)
+
 ### Technology Used
 
-- Prisma
-- Hooks
-- Apollo
-- Context
-- Passport
-- Navi
-- Heroku
+### Prisma
+
+See <a href="#using-prisma">Using Prisma</a>
+
+### Custom Hooks
+
+See `modules/client/hooks/`
+
+### Apollo
+
+See `modules/client/services/ApolloClient.ts`
+
+### Context
+
+See `modules/client/context/`
+
+### Navi
+
+See `modules/client/routes/`
+
+### Passport
+
+See `modules/server/`
+
+### Heroku
+
+Install Heroku for Terminal
 
 ### Terminal Commands
 
@@ -106,15 +134,16 @@ To ease creation of components, take advantage of these commands
 
 ### TODO
 
+- `TODO` comments in code
 - Write Cypress tests
-- Put components in categorical sub folders
-- graphql-codegen
 - Limit incoming/outgoing calls/queries per minute on average
-- Hot Module Replacement
 - Split up Prisma schema
 - Dev Depenendencies
 - Suspense in Navi with SSR and HMR
-- Add `yarn upgrade`, `npm-upgrade`, and `ncu` to CI/CD
+- https://classic.yarnpkg.com/blog/2017/08/02/introducing-workspaces/
+- Docgen `styleguide.config.js`
+- GraphQL roles / permissions: https://github.com/lvauvillier/nexus-plugin-shield
+- JWT on queries: https://github.com/Camji55/nexus-plugin-jwt-auth
 
 ### Managing Packages
 
@@ -138,23 +167,22 @@ To ease creation of components, take advantage of these commands
 
 ### Using Prisma
 
-#### Prisma Commands:
+#### Install Prisma:
 
 - Run `yarn global add @prisma/cli`
+
+#### Prisma Commands:
+
 - Delete `/migrations/` and run `yarn prisma:migrate` to re-create migrations
 - Alter `schema.prisma` and run `yarn prisma:migrate` to add a new migration
 - Run `yarn prisma:apply` to update database according to latest migrations
-- Health Check `nexus dev` should work?
-- GraphQL roles / permissions: https://github.com/lvauvillier/nexus-plugin-shield
-- JWT on queries: https://github.com/Camji55/nexus-plugin-jwt-auth
-- Docgen `styleguide.config.js`
 
 #### Generate Prisma Client (and Types?):
 
 Which location is better / worse for Heroku? Type checking?
 
 - `@prisma/client`
-- `../../**generated**/prisma-client`
+- `../../__generated__/prisma-client`
 
 #### Connect Prisma to Nexus:
 
@@ -173,8 +201,3 @@ Must determine `nexus` vs `@nexus/schema` for creating Queries, Mutations, etc
 
 - `@prisma/nexus` - 10 months old (deprecated)
 - `nexus-prisma` - Get the `nexusPrismaPlugin` function (replaced by nexus-plugin-prisma?)
-
-### Further Notes
-
-- Special thanks goes to Atomic Object for starter kit
-- Is `graphql-code-generator` needed for types?

@@ -127,7 +127,7 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
             onClick={() => navigate("/posts/create", true)}
             icon="plus"
           >
-            Create Post
+            Upload Creation
           </Button>
           <Menu className="sidebarMenu">
             <MenuItem
