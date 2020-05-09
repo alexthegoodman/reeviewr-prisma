@@ -188,3 +188,7 @@ See `modules/server/`
 - Special Kit (ex. <Article /> or <Heading /> (auto numbered) with required props for SEO, Accessibility, SSR, Intl)
 - useMemo
 - Combine `seo-linter` and `yarn test` command as `yarn validate`
+
+#### Secondary
+
+- Disable Prettier is VS Code, have it run via Webpack on save. Based on .eslintrc. In VS Code, use only the ESLint plugin, not Prettier plugin. And disable formatting on save. Results? Hopefully Prettier is tied to eslint without conflicting plugins on save. Correct formatting on a per project basis.

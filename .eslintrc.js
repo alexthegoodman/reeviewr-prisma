@@ -22,6 +22,7 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended",
   ],
   globals: {
     Atomics: "readonly",
@@ -33,8 +34,14 @@ module.exports = {
     project: "tsconfig.json",
     sourceType: "module",
   },
-  plugins: ["@typescript-eslint", "@typescript-eslint/tslint", "jsx-a11y"],
+  plugins: [
+    "@typescript-eslint",
+    "@typescript-eslint/tslint",
+    "jsx-a11y",
+    "prettier",
+  ],
   rules: {
+    "prettier/prettier": "error",
     "jsx-a11y/rule-name": 2,
     "react/display-name": [2],
     "react/jsx-key": [2],
