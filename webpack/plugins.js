@@ -1,5 +1,7 @@
 const webpack = require("webpack");
 const os = require("os");
+const config = require("config");
+
 const IconFontPlugin = require("icon-font-loader").Plugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -37,7 +39,7 @@ const environmentPlugins = (() => {
 
 module.exports = {
   default: [
-    
+
   ],
   client: [
     // clean-webpack-plugin to clean /dist/ every build

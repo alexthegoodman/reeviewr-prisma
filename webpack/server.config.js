@@ -50,7 +50,8 @@ module.exports = {
   ],
   module: {
     rules: [
-      loaders.eslint,
+      // loaders.prettier,
+      // loaders.eslint,
       loaders.serverSideTypeScript,
       loaders.serverSideSass,
       loaders.serverSideCss,

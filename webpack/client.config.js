@@ -103,7 +103,8 @@ module.exports = {
 
   module: {
     rules: [
-      loaders.eslint,
+      // loaders.prettier,
+      // loaders.eslint,
       loaders.clientSideTypeScript,
       loaders.clientSideSass,
       loaders.clientSideCss,
