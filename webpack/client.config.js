@@ -199,10 +199,10 @@ module.exports = {
     //     },
     //   ],
     // }),
-    new ForkTsCheckerWebpackPlugin({
-      // https://github.com/Realytics/fork-ts-checker-webpack-plugin#options
-      useTypescriptIncrementalApi: true,
-    }),
+    // new ForkTsCheckerWebpackPlugin({
+    //   // https://github.com/Realytics/fork-ts-checker-webpack-plugin#options
+    //   useTypescriptIncrementalApi: true,
+    // }),
 
     new webpack.ProvidePlugin({
       WaveSurfer: "wavesurfer.js",
@@ -277,24 +277,11 @@ module.exports = {
 
   module: {
     rules: [
-      {
-        // Transpile non-IE compatible node modules.
-        test: /\.jsx?$/,
-        // Whitelist the modules inside the () in this regex:
-        include: /node_modules\/(@material-ui)\//,
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              presets: ["@babel/preset-env"],
-            },
-          },
-        ],
-      },
+      loaders.eslint,
       loaders.clientSideTypeScript,
-      loaders.graphql,
       loaders.clientSideSass,
       loaders.clientSideCss,
+      loaders.graphql,
     ].concat(loaders.allImagesAndFontsArray),
   },
   devServer: {

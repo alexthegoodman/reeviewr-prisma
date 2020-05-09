@@ -32,6 +32,7 @@ import YourFeed from "../components/pages/YourFeed/YourFeed";
 import Strings from "../services/Strings";
 import EditSpace from "../components/pages/EditSpace/EditSpace";
 import EditPost from "../components/pages/EditPost/EditPost";
+import AboutReeviewr from "../components/pages/AboutReeviewr/AboutReeviewr";
 
 const utility = new Utility();
 const dataHandler = new DataHandler();
@@ -39,6 +40,21 @@ const strings = new Strings();
 const changeCase = require("change-case");
 
 const routes = mount({
+  "/about-reeviewr": route((req) => {
+    return {
+      title: "About / Reeviewr",
+      head: (
+        <>
+          <link rel="canonical" href="https://reeviewr.com/about-reeviewr" />
+        </>
+      ),
+      view: (
+        <AppNav>
+          <AboutReeviewr />
+        </AppNav>
+      ),
+    };
+  }),
   "/login": route((req) => {
     return {
       title: "Login / Reeviewr",

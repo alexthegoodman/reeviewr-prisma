@@ -4,7 +4,14 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  typescript: {
+  eslint: {
+    enforce: "pre",
+    test: /\.(tsx?|jsx?)/,
+    exclude: /node_modules/,
+    loader: "eslint-loader",
+  },
+
+  serverSideTypeScript: {
     test: /\.(tsx?|jsx?)/,
     // exclude: /data-seed/,
     exclude: /node_modules/,
@@ -21,24 +28,6 @@ module.exports = {
       },
     ],
   },
-
-  // clientSideTypeScript: {
-  //   test: /\.(tsx?|jsx?)/,
-  //   // exclude: /data-seed/,
-  //   exclude: /node_modules/,
-  //   use: [
-  //     {
-  //       // loader: "happypack/loader?id=ts",
-  //       loader: "ts-loader",
-  //       options: {
-  //         // https://webpack.js.org/guides/build-performance/#typescript-loader
-  //         transpileOnly: true,
-  //         experimentalWatchApi: true,
-  //         configFile: "tsconfig.client.json",
-  //       },
-  //     },
-  //   ],
-  // },
 
   clientSideTypeScript: {
     test: /\.(tsx?|jsx?)/,

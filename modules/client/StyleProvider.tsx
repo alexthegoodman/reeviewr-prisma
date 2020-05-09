@@ -4,9 +4,9 @@ import { View } from "react-navi";
 
 const styles = require("./sass/style.scss");
 
-interface AppProviderProps {}
+interface StyleProviderProps {}
 
-export const AppProvider: React.FC<AppProviderProps> = (props) => {
+export const StyleProvider: React.FC<StyleProviderProps> = (props) => {
   return (
     <AppContextAPI>
       <View />

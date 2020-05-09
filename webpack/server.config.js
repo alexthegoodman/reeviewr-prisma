@@ -69,11 +69,11 @@ module.exports = {
   ],
   module: {
     rules: [
-      loaders.typescript,
-      loaders.graphql,
-      // loaders.fontLoader,
+      loaders.eslint,
+      loaders.serverSideTypeScript,
       loaders.serverSideSass,
       loaders.serverSideCss,
+      loaders.graphql,
     ].concat(loaders.allImagesAndFontsArray),
   },
 

@@ -7,7 +7,6 @@
     "kumar-harsh.graphql-for-vscode",
     "christian-kohler.npm-intellisense",
     "esbenp.prettier-vscode",
-    "prisma.prisma",
-    "ms-vscode.vscode-typescript-tslint-plugin"
+    "prisma.prisma"
   ]
 }

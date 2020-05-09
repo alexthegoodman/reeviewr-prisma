@@ -34,7 +34,7 @@ import {
 } from "react-apollo";
 
 import { Html } from "../client/Html";
-import { AppProvider } from "../client/RootProvider";
+import { StyleProvider } from "../client/StyleProvider";
 import routes from "../client/routes";
 import {
   AUTHENTICATE_USER,
@@ -135,6 +135,7 @@ use(
 console.info("Making GraphQL schema...");
 
 // TODO: move to graphql/index.ts
+// TODO: add package.json script for graphql/index.ts to create nexusTypes.gen.ts on command w/o yarn dev
 // https://github.com/graphql-nexus/schema/blob/develop/src/builder.ts
 const schema = makeSchema({
   // nullabilityGuard, fieldAuthorizePlugin
@@ -519,7 +520,7 @@ export default async function startServer() {
         <>
           <Router navigation={navigation}>
             <ApolloProvider client={client}>
-              <AppProvider />
+              <StyleProvider />
             </ApolloProvider>
           </Router>
         </>

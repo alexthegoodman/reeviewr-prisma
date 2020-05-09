@@ -286,15 +286,28 @@ const AppNav: React.FC<AppNavProps> = ({ children }) => {
                       />
                       {loggedIn ? (
                         <>
-                          <MenuItem>Profile</MenuItem>
-                          <MenuItem>Support</MenuItem>
+                          <MenuItem onClick={() => alert("profile")}>
+                            Profile
+                          </MenuItem>
+                          <MenuItem onClick={() => alert("support")}>
+                            Support
+                          </MenuItem>
                           <MenuItem onClick={authClient.logout}>
                             Log Out
                           </MenuItem>
                         </>
                       ) : (
                         <>
-                          <MenuItem>Support</MenuItem>
+                          <MenuItem onClick={() => alert("support")}>
+                            Support
+                          </MenuItem>
+                          <MenuItem
+                            onClick={() =>
+                              navigation.navigate("/about-reeviewr/")
+                            }
+                          >
+                            About Reeviewr
+                          </MenuItem>
                         </>
                       )}
                     </Menu>

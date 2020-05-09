@@ -17,7 +17,7 @@ import routes from "./routes";
 import ErrorFallback from "./components/pages/status/ErrorFallback/ErrorFallback";
 import client from "./services/ApolloClient";
 import { ErrorHandler } from "./services/ErrorHandler";
-import { AppProvider } from "./StyleProvider";
+import { StyleProvider } from "./StyleProvider";
 
 // TagManager
 
@@ -54,7 +54,7 @@ const RootProvider: React.FC<RootProviderProps> = (props) => {
           {/** TODO: Good spot for Layout if desire no rerender, consider best placement for context */}
           <CookiesProvider>
             <Router routes={routes}>
-              <AppProvider />
+              <StyleProvider />
             </Router>
           </CookiesProvider>
         </ApolloProvider>

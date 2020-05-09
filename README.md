@@ -183,3 +183,8 @@ See `modules/server/`
 - Docgen `styleguide.config.js`
 - GraphQL roles / permissions: https://github.com/lvauvillier/nexus-plugin-shield
 - JWT on queries: https://github.com/Camji55/nexus-plugin-jwt-auth
+- Accessibility / WCAG
+- High-Level UI Kit (incl. UserCards, PostCard, NotificationItem) https://components.thetimes.co.uk/
+- Special Kit (ex. <Article /> or <Heading /> (auto numbered) with required props for SEO, Accessibility, SSR, Intl)
+- useMemo
+- Combine `seo-linter` and `yarn test` command as `yarn validate`

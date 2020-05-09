@@ -10,6 +10,7 @@
     }
   },
   "include": [
+    "./modules/",
     "./node_modules/@types/jest",
     "./node_modules/@types/nexus-typegen",
     "./__generated__/nexus.d.ts",
