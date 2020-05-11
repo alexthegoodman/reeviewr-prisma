@@ -212,7 +212,6 @@
     "postcss-modules-local-by-default": "3.0.2",
     "postcss-scss": "2.0.0",
     "prettier": "^2.0.5",
-    "prettier-loader": "^3.3.0",
     "pretty-console-logs": "0.3.0",
     "prisma-client-lib": "1.34.10",
     "progress-bar-webpack-plugin": "2.1.0",

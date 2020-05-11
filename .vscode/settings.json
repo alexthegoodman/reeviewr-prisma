@@ -1,4 +1,5 @@
 {
+  "editor.formatOnSave": true,
   "search.exclude": {
     "**/bower_components": true,
     "**/node_modules": false

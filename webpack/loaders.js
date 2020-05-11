@@ -4,12 +4,12 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  prettier: {
-    enforce: "pre",
-    test: /\.(tsx?|jsx?)/,
-    exclude: /node_modules/,
-    loader: "prettier-loader"
-  },
+  // prettier: {
+  //   enforce: "pre",
+  //   test: /\.(tsx?|jsx?)/,
+  //   exclude: /node_modules/,
+  //   loader: "prettier-loader"
+  // },
 
   eslint: {
     enforce: "pre",
@@ -18,7 +18,7 @@ module.exports = {
     loader: "eslint-loader",
     options: {
       fix: true,
-    }
+    },
   },
 
   serverSideTypeScript: {
