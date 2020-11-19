@@ -106,18 +106,18 @@ import { makeSchema } from "@nexus/schema";
 // import { makePrismaSchema } from "nexus-prisma";
 
 import { use } from "nexus";
-import { prisma as nexusPrisma } from "nexus-plugin-prisma";
+import { nexusPrisma } from "nexus-plugin-prisma";
 const prisma = new PrismaClient();
 
 console.info("Starting server...");
 
 // connects to nexus but not nexus/schema?
 // schema is also imported from nexus so auto-connect?
-use(
-  nexusPrisma({
-    client: { instance: prisma as any },
-  })
-);
+// use(
+//   nexusPrisma({
+//     client: { instance: prisma as any },
+//   })
+// );
 
 // const prisma = new PrismaClient({
 //   // log: ["query"],
@@ -139,7 +139,7 @@ console.info("Making GraphQL schema...");
 // https://github.com/graphql-nexus/schema/blob/develop/src/builder.ts
 const schema = makeSchema({
   // nullabilityGuard, fieldAuthorizePlugin
-  plugins: [nexusPrismaPlugin()],
+  plugins: [nexusPrisma()],
   // plugins: [nexusPrisma],
   types: [
     Query,
@@ -272,7 +272,7 @@ export const enableDeveloperLogin = config.get<boolean>(
   "server.enableDeveloperLogin"
 );
 
-const graphqlHTTP = require("express-graphql");
+const { graphqlHTTP } = require("express-graphql");
 
 console.info("Starting Express...");
 

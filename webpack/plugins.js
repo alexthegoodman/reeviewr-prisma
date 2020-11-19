@@ -91,14 +91,14 @@ module.exports = {
       //   config.get("rollbar.clientAccessToken")
       // ),
 
-      "process.env.IDENTITY_PROVIDER_HOST": JSON.stringify(
-        process.env.IDENTITY_PROVIDER_HOST
-      ),
-      "process.env.CLOUDFRONT_URL": JSON.stringify(process.env.CLOUDFRONT_URL),
-      "process.env.POLL_INTERVAL": JSON.stringify(process.env.POLL_INTERVAL),
-      "process.env.ERROR_REFETCH_DELAY": JSON.stringify(
-        process.env.ERROR_REFETCH_DELAY
-      ),
+      // "process.env.IDENTITY_PROVIDER_HOST": JSON.stringify(
+      //   process.env.IDENTITY_PROVIDER_HOST
+      // ),
+      // "process.env.CLOUDFRONT_URL": JSON.stringify(process.env.CLOUDFRONT_URL),
+      // "process.env.POLL_INTERVAL": JSON.stringify(process.env.POLL_INTERVAL),
+      // "process.env.ERROR_REFETCH_DELAY": JSON.stringify(
+      //   process.env.ERROR_REFETCH_DELAY
+      // ),
     }),
 
     // Process index.html and insert script and stylesheet tags for us.
@@ -143,7 +143,7 @@ module.exports = {
       WaveSurfer: "wavesurfer.js",
     }),
 
-    new webpack.NamedModulesPlugin(),
+    // new webpack.NamedModulesPlugin(),
 
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
@@ -166,22 +166,24 @@ module.exports = {
           : "[name].css",
     }),
 
-    new CopyPlugin([
-      { from: "./entry/img/", to: "./img/" },
-      { from: "./entry/favicon.ico", to: "./favicon.ico" },
-      {
-        from: "./entry/introspection-engine-darwin",
-        to: "./",
-      },
-      {
-        from: "./entry/migration-engine-darwin",
-        to: "./",
-      },
-      { from: "./entry/query-engine-darwin", to: "./" },
-      { from: "./schema.prisma", to: "./" },
-      { from: "./entry/", to: "./public/" },
-    ]),
-
+    new CopyPlugin({ 
+      patterns: [
+        { from: "./entry/img/", to: "./img/" },
+        { from: "./entry/favicon.ico", to: "./favicon.ico" },
+        {
+          from: "./entry/introspection-engine-darwin",
+          to: "./",
+        },
+        {
+          from: "./entry/migration-engine-darwin",
+          to: "./",
+        },
+        { from: "./entry/query-engine-darwin", to: "./" },
+        { from: "./schema.prisma", to: "./" },
+        { from: "./entry/", to: "./public/" },
+      ]
+    }),
+ 
     // new IconFontPlugin(),
 
     ...(process.env.ANALYZE
@@ -223,10 +225,10 @@ module.exports = {
     //     },
     //   ],
     // }),
-    new ForkTsCheckerWebpackPlugin({
-      // https://github.com/Realytics/fork-ts-checker-webpack-plugin#options
-      useTypescriptIncrementalApi: true,
-    }),
+    // new ForkTsCheckerWebpackPlugin({
+    //   // https://github.com/Realytics/fork-ts-checker-webpack-plugin#options
+    //   useTypescriptIncrementalApi: true,
+    // }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional

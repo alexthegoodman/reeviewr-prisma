@@ -165,7 +165,7 @@ module.exports = {
       use: [
         {
           loader: "url-loader",
-          query: {
+          options: {
             prefix: "img/",
             name: "assets/[hash].[ext]",
             limit: 5000,
@@ -181,7 +181,7 @@ module.exports = {
         {
           // loader: "file-loader",
           loader: "url-loader",
-          query: {
+          options: {
             limit: 7500,
             name: "assets/[hash].[ext]",
           },
@@ -195,7 +195,7 @@ module.exports = {
       use: [
         {
           loader: "file-loader",
-          query: {
+          options: {
             name: "fonts/[hash].[ext]",
           },
         },
@@ -208,7 +208,7 @@ module.exports = {
       use: [
         {
           loader: "url-loader",
-          query: {
+          options: {
             limit: 50000,
             mimetype: "application/font-woff",
             name: "fonts/[hash].[ext]",
