@@ -38,9 +38,7 @@ const environmentPlugins = (() => {
 })();
 
 module.exports = {
-  default: [
-
-  ],
+  default: [],
   client: [
     // clean-webpack-plugin to clean /dist/ every build
     // TODO better than EnvironmentPlugin and DefinePlugin?
@@ -166,10 +164,10 @@ module.exports = {
           : "[name].css",
     }),
 
-    new CopyPlugin({ 
+    new CopyPlugin({
       patterns: [
         { from: "./entry/img/", to: "./img/" },
-        { from: "./entry/favicon.ico", to: "./favicon.ico" },
+        // { from: "./entry/favicon.ico", to: "./favicon.ico" },
         {
           from: "./entry/introspection-engine-darwin",
           to: "./",
@@ -181,9 +179,9 @@ module.exports = {
         { from: "./entry/query-engine-darwin", to: "./" },
         { from: "./schema.prisma", to: "./" },
         { from: "./entry/", to: "./public/" },
-      ]
+      ],
     }),
- 
+
     // new IconFontPlugin(),
 
     ...(process.env.ANALYZE
@@ -236,5 +234,5 @@ module.exports = {
       chunkFilename: "server.css",
     }),
     // new IconFontPlugin(),
-  ]
-}
+  ],
+};

@@ -24,7 +24,8 @@ export default class Core {
       key: filename,
       edits: options,
     });
-    const url = `${process.env.CLOUDFRONT_URL}/${btoa(imageRequest)}`;
+    // const url = `${process.env.CLOUDFRONT_URL}/${btoa(imageRequest)}`; // uses browser's Buffer (SSR?)
+    const url = "";
     return url;
   }
 

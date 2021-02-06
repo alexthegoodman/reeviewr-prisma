@@ -17,7 +17,7 @@ export const Html = ({ content, state }) => {
           rel="stylesheet"
         />
         <link rel="stylesheet" href="/public/app.css" />
-        <link rel="icon" href="/public/favicon.ico" />
+        {/* <link rel="icon" href="/public/favicon.ico" /> */}
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: content }} />

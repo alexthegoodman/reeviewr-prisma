@@ -93,6 +93,7 @@ const serveStatic = require("serve-static");
 const path = require("path");
 const csp = require("helmet-csp");
 const Mixpanel = require("mixpanel");
+import favicon from "serve-favicon";
 
 // import { prisma } from "../../__generated__/prisma-client";
 // import { nexusPrismaPlugin } from "@generated/nexus-prisma";
@@ -139,7 +140,7 @@ console.info("Making GraphQL schema...");
 // https://github.com/graphql-nexus/schema/blob/develop/src/builder.ts
 const schema = makeSchema({
   // nullabilityGuard, fieldAuthorizePlugin
-  plugins: [nexusPrisma()],
+  plugins: [nexusPrisma({ experimentalCRUD: true })],
   // plugins: [nexusPrisma],
   types: [
     Query,
@@ -194,7 +195,10 @@ const schema = makeSchema({
       //   alias: "ctx",
       // },
       {
-        source: "../__generated__/prisma-client",
+        source: path.join(
+          __dirname,
+          "../__generated__/prisma-client/index.d.ts"
+        ),
         alias: "prisma",
       },
       // {
@@ -279,7 +283,7 @@ console.info("Starting Express...");
 export default async function startServer() {
   console.info("Connecting Prisma...");
 
-  await prisma.connect();
+  await prisma.$connect();
 
   console.info("Configuring Express...");
 
@@ -386,6 +390,7 @@ export default async function startServer() {
   // Static assets
   // app.use(expressStaticGzip("./dist/"));
   app.use("/public", express.static("./dist/"));
+  app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
   console.info("Setup Passport...");
 
@@ -562,6 +567,6 @@ export default async function startServer() {
     });
   } catch (e) {
     console.error("ERROR", e);
-    await prisma.disconnect();
+    await prisma.$disconnect();
   }
 }

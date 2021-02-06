@@ -37,31 +37,31 @@ export default class AWSService {
 
       base64 = base64.split(",")[1];
 
-      const buf = new Buffer(
-        base64.replace(/^data:image\/\w+;base64,/, ""),
-        "base64"
-      );
+      // const buf = new Buffer(
+      //   base64.replace(/^data:image\/\w+;base64,/, ""),
+      //   "base64"
+      // );
 
-      const data = {
-        Key: key,
-        Body: buf,
-        ContentEncoding: "base64",
-        ContentType: "image/jpeg",
-        Bucket: bucket,
-      };
+      // const data = {
+      //   Key: key,
+      //   Body: buf,
+      //   ContentEncoding: "base64",
+      //   ContentType: "image/jpeg",
+      //   Bucket: bucket,
+      // };
 
-      console.info("uploading", ext, title, data);
+      // console.info("uploading", ext, title, data);
 
-      this.s3.putObject(data, function (err, data) {
-        if (err) {
-          console.log(err);
-          console.log("Error uploading data: ", data);
-          reject(err);
-        } else {
-          console.log("succesfully uploaded the image!", data);
-          resolve(key);
-        }
-      });
+      // this.s3.putObject(data, function (err, data) {
+      //   if (err) {
+      //     console.log(err);
+      //     console.log("Error uploading data: ", data);
+      //     reject(err);
+      //   } else {
+      //     console.log("succesfully uploaded the image!", data);
+      //     resolve(key);
+      //   }
+      // });
     });
   }
 
