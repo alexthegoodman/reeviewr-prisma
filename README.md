@@ -40,7 +40,6 @@ Use a Linux machine. This will assure compatability.
   - `yarn`
   - `yarn global add dotenv-cli`
   - `yarn global add @prisma/cli`
-  - Install `audiowaveform` on your machine
 - Project Configuration
   - Duplicate `.env.example` as `.env` and get the needed values from Alex
 - Initial Data
