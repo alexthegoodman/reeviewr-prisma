@@ -40,8 +40,7 @@
     "gen:data": "bash/gen_data_component.sh",
     "gen:layout": "bash/gen_layout_component.sh",
     "heroku:deploy": "git push heroku master",
-    "prisma:migrate": "prisma migrate save --experimental",
-    "prisma:apply": "prisma migrate up --experimental",
+    "prisma:apply": "prisma migrate dev --preview-feature",
     "generate:prisma": "dotenv prisma generate;",
     "generate:gql-types": "yarn run graphql-codegen;",
     "db:seed": "dotenv ts-node seed/index.ts"
