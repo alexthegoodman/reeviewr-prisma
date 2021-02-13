@@ -39,7 +39,7 @@ Use a Linux machine. This will assure compatability.
 - Install Dependencies
   - `yarn`
   - `yarn global add dotenv-cli`
-  - `yarn global add @prisma/cli`
+  - `yarn global add @prisma/cli@2.11.0`
 - Project Configuration
   - Duplicate `.env.example` as `.env` and get the needed values from Alex
 - Initial Data
